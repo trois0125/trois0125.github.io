@@ -48,6 +48,8 @@
     .topbar .mark .sq { width: 8px; height: 8px; background: var(--fg); flex: none; }
     .topbar .meta { font-variant-numeric: tabular-nums; }
     .topbar .meta .muted { margin-left: 2px; }
+    .topbar .navlink { text-decoration: none; border-bottom: 1px solid transparent; }
+    .topbar .navlink:hover { border-bottom-color: currentColor; }
 
     /* Hero */
     .hero {
@@ -253,7 +255,7 @@
 
   <div class="topbar">
     <div class="mark"><span class="sq"></span>VALUE INVEST</div>
-    <div class="meta">JP EQUITIES <span class="muted">/ INDEX</span></div>
+    <div class="meta"><a href="stocks.html" class="navlink">個別銘柄レポート →</a></div>
   </div>
 
   <div class="hero">
@@ -332,6 +334,24 @@
     <div class="section-inner">
       <div class="section-header">
         <span class="idx">02</span>
+        <h2>個別銘柄レポート</h2>
+        <div class="line"></div>
+      </div>
+      <a class="row" href="stocks.html">
+        <div class="num">→</div>
+        <div class="info">
+          <h3>銘柄コード・社名で探す</h3>
+          <p id="stocksTeaser">スクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
+        </div>
+        <div class="date">一覧を見る</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="idx">03</span>
         <h2>分析アプローチ</h2>
         <div class="line"></div>
       </div>
@@ -361,5 +381,16 @@
     <p class="muted">© 2026</p>
   </footer>
 
+<script>
+fetch('stocks.json').then(r => r.json()).then(data => {
+  const stocks = data.stocks || [];
+  const reportN = stocks.filter(s => s.report_date).length;
+  const qualN = stocks.filter(s => s.qualitative_date).length;
+  const el = document.getElementById('stocksTeaser');
+  if (el && stocks.length) {
+    el.textContent = `現在 ${stocks.length} 銘柄を掲載（定量レポート ${reportN} 本・有報定性レポート ${qualN} 本）。スクリーニング通過銘柄を中心に、財務・バリュエーションと有価証券報告書の定性分析を掲載。`;
+  }
+}).catch(() => {});
+</script>
 </body>
 </html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6145 NITTOKU 投資分析レポート | 2026-07-20</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0f1419; --panel:#171d26; --panel2:#1e2632; --line:#2b3543;
+  --tx:#e6edf3; --tx2:#9aa7b5; --tx3:#6b7785;
+  --up:#3fb950; --down:#f85149; --warn:#d29922; --acc:#58a6ff; --acc2:#a371f7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+     line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+header{border-bottom:1px solid var(--line);padding:32px 0 24px;margin-bottom:0}
+.code{font-size:13px;color:var(--tx3);letter-spacing:.18em;font-weight:600}
+h1{font-size:31px;font-weight:700;margin:6px 0 4px;letter-spacing:-.01em}
+.sub{color:var(--tx2);font-size:13.5px}
+.hero{display:flex;gap:36px;flex-wrap:wrap;margin-top:22px;padding:18px 22px;
+      background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.hero div{min-width:98px}
+.hl{font-size:11px;color:var(--tx3);letter-spacing:.05em}
+.hv{font-size:22px;font-weight:700;margin-top:2px}
+.hv small{font-size:12px;font-weight:400;color:var(--tx2)}
+nav{display:flex;gap:2px;margin:26px 0 30px;border-bottom:1px solid var(--line);
+    overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;border-bottom:2px solid transparent;color:var(--tx2);
+  padding:11px 17px;font-size:14px;cursor:pointer;white-space:nowrap;font-family:inherit;transition:.15s}
+nav button:hover{color:var(--tx)}
+nav button.on{color:var(--acc);border-bottom-color:var(--acc);font-weight:600}
+section{display:none;animation:f .25s ease}
+section.on{display:block}
+@keyframes f{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+h2{font-size:20px;font-weight:700;margin:34px 0 14px;padding-left:11px;border-left:3px solid var(--acc)}
+h2:first-child{margin-top:0}
+h3{font-size:15.5px;font-weight:700;margin:24px 0 10px;color:var(--tx)}
+p{margin:11px 0;color:#cfd8e3}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:16px 0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(165px,1fr))}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
+th,td{padding:9px 11px;text-align:right;border-bottom:1px solid var(--line)}
+th{color:var(--tx3);font-weight:600;font-size:11.5px;letter-spacing:.04em;
+   background:var(--panel2);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+tbody tr:hover{background:#1a222d}
+tr.hi td{background:#1c2733;font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+.up{color:var(--up)} .down{color:var(--down)} .warn{color:var(--warn)} .mut{color:var(--tx3)}
+.src{font-size:10.5px;color:var(--tx3);vertical-align:super;margin-left:2px;font-weight:400}
+.chip{display:inline-block;padding:2px 9px;border-radius:11px;font-size:11.5px;font-weight:600;margin-right:5px}
+.c-ok{background:rgba(63,185,80,.15);color:var(--up)}
+.c-ng{background:rgba(248,81,73,.15);color:var(--down)}
+.c-wn{background:rgba(210,153,34,.15);color:var(--warn)}
+.c-nt{background:rgba(88,166,255,.13);color:var(--acc)}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:15px 17px}
+.kpi .l{font-size:11.5px;color:var(--tx3)}
+.kpi .v{font-size:25px;font-weight:700;margin:4px 0 1px;font-variant-numeric:tabular-nums}
+.kpi .n{font-size:11.5px;color:var(--tx2)}
+.chart{position:relative;height:290px;margin:8px 0 4px}
+.chart.tall{height:340px}
+.note{background:rgba(210,153,34,.07);border-left:3px solid var(--warn);padding:13px 17px;
+      border-radius:0 7px 7px 0;margin:16px 0;font-size:13.5px;color:#ddd}
+.note.crit{background:rgba(248,81,73,.07);border-left-color:var(--down)}
+.note.info{background:rgba(88,166,255,.07);border-left-color:var(--acc)}
+.note b{color:var(--tx)}
+ul{margin:10px 0 10px 20px;color:#cfd8e3}
+li{margin:6px 0}
+.bar{height:7px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;border-radius:4px}
+footer{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);
+       font-size:12px;color:var(--tx3);line-height:1.85}
+.legend{font-size:11.5px;color:var(--tx3);margin-top:10px}
+.legend b{color:var(--tx2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="code">6145 &nbsp;/&nbsp; 東証スタンダード &nbsp;/&nbsp; 機械</div>
+  <h1>NITTOKU 株式会社</h1>
+  <div class="sub">コイル自動巻線機の世界最大手 &nbsp;·&nbsp; 分析日 2026年7月20日 &nbsp;·&nbsp; 株価基準日 2026年7月17日</div>
+  <div class="hero">
+    <div><div class="hl">株価</div><div class="hv">2,567<small> 円</small></div></div>
+    <div><div class="hl">前日比</div><div class="hv down">-5.31<small>%</small></div></div>
+    <div><div class="hl">PER（会社予想）</div><div class="hv">13.1<small> 倍</small></div></div>
+    <div><div class="hl">PBR</div><div class="hv">1.08<small> 倍</small></div></div>
+    <div><div class="hl">時価総額</div><div class="hv">465<small> 億円</small></div></div>
+    <div><div class="hl">配当利回り</div><div class="hv">3.19<small>%</small></div></div>
+    <div><div class="hl">スクリーニング</div><div class="hv up">8<small>/8 条件</small></div></div>
+  </div>
+</header>
+
+<nav>
+  <button class="on" data-t="t1">① 総合評価</button>
+  <button data-t="t2">② 企業概要</button>
+  <button data-t="t3">③ 財務分析</button>
+  <button data-t="t4">④ バリュエーション</button>
+  <button data-t="t5">⑤ カタリスト</button>
+  <button data-t="t6">⑥ リスク</button>
+  <button data-t="t7">⑦ 投資結論</button>
+</nav>
+
+<!-- ============ ① 総合評価 ============ -->
+<section id="t1" class="on">
+  <h2>スクリーニング8条件の判定</h2>
+  <p>本プロジェクトの割安株スクリーニング条件（2026年7月20日改定・東証全銘柄10年分のバックテストにより③④の閾値を9%→4%に変更）に対する判定です。<span class="src">[⑤]</span></p>
+
+  <div class="card">
+  <table>
+    <thead><tr><th>条件</th><th>基準</th><th>実測値</th><th>判定</th><th style="text-align:left">母集団内での位置</th></tr></thead>
+    <tbody>
+      <tr><td>① PER</td><td class="num mut">≤ 15倍</td><td class="num">12.59倍</td><td><span class="chip c-ok">○</span></td><td class="mut" style="text-align:left">実績EPS 203.85円ベース</td></tr>
+      <tr><td>② PBR</td><td class="num mut">≤ 1.5倍</td><td class="num">1.08倍</td><td><span class="chip c-ok">○</span></td><td class="mut" style="text-align:left">BPS 2,385.72円</td></tr>
+      <tr><td>③ 売上高CAGR</td><td class="num mut">≥ 4%</td><td class="num up">+6.9%</td><td><span class="chip c-ok">○</span></td><td class="mut" style="text-align:left">9年分の実績で算出</td></tr>
+      <tr><td>④ 営業利益CAGR</td><td class="num mut">≥ 4%</td><td class="num up">+7.3%</td><td><span class="chip c-ok">○</span></td><td class="mut" style="text-align:left">9年分の実績で算出</td></tr>
+      <tr><td>⑤ 自己資本比率</td><td class="num mut">≥ 40%</td><td class="num">64.0%</td><td><span class="chip c-ok">○</span></td><td class="mut" style="text-align:left">無借金に近い財務</td></tr>
+      <tr><td>⑥ 時価総額</td><td class="num mut">≤ 600億円</td><td class="num">433億円</td><td><span class="chip c-ok">○</span></td><td class="mut" style="text-align:left">自己株控除ベース</td></tr>
+      <tr class="hi"><td>⑦ 直近営業増益率</td><td class="num mut">上位1/3</td><td class="num up">+386.1%</td><td><span class="chip c-ok">○</span></td><td style="text-align:left">母集団内 <b>上位1%</b>（境界 +22%）</td></tr>
+      <tr><td>⑧ 6ヶ月モメンタム</td><td class="num mut">上位1/3</td><td class="num up">+5.2%</td><td><span class="chip c-ok">○</span></td><td style="text-align:left">母集団内 上位27%（境界 +3%）</td></tr>
+    </tbody>
+  </table>
+  <div class="legend"><b>母集団：</b>①〜⑥を通過した101銘柄。⑦⑧はこの101銘柄内での相対順位で判定。最終的に8条件すべてを通過したのは11銘柄。<span class="src">[⑤]</span></div>
+  </div>
+
+  <div class="note crit">
+    <b>⑦の+386%は「前期の異常な落ち込みからの反動」を多分に含みます。</b>
+    営業利益は 2024/3期 41.7億 → 2025/3期 11.2億（-73%）→ 2026/3期 54.4億（+386%）と推移しており、
+    比較対象の前期が過去10年で最悪の水準でした。ただし54.4億という絶対額は
+    <b>過去10年の最高益（2018/3期 40.2億）を35%上回る過去最高</b>であり、単なる原状回復ではありません。
+    詳細は「③ 財務分析」を参照。
+  </div>
+
+  <h2>10年の業績推移</h2>
+  <div class="card"><div class="chart tall"><canvas id="c_hist"></canvas></div>
+  <div class="legend">出所：J-Quants API V2（JPX公式・決算短信サマリー）<span class="src">[⑤]</span></div></div>
+
+  <h2>投資判断サマリー</h2>
+  <div class="grid g3">
+    <div class="kpi"><div class="l">スクリーニング適合</div><div class="v up">8/8</div><div class="n">全条件通過（該当11銘柄）</div></div>
+    <div class="kpi"><div class="l">増益の質</div><div class="v warn">要検証</div><div class="n">反動増 + 過去最高益の複合</div></div>
+    <div class="kpi"><div class="l">会社の来期予想</div><div class="v down">-6.2%</div><div class="n">営業利益 54.4億 → 51.0億</div></div>
+  </div>
+  <div class="note">
+    <b>最大の論点：</b>スクリーニングは「直近の増益」を評価して本銘柄を選び出しましたが、
+    会社自身は来期（2027/3期）を<b>減益</b>で計画しています。ただしこの51.0億は
+    中期経営計画の35.0億を<b>+45.7%上方修正</b>した数字でもあります。
+    「前期比では減益、計画比では大幅増額」という二面性の解釈が投資判断の分かれ目になります。
+  </div>
+</section>
+
+<!-- ============ ② 企業概要 ============ -->
+<section id="t2">
+  <h2>事業内容</h2>
+  <p>コイル製造用の自動巻線機で世界最大手。<span class="src">[④]</span> モーター用巻線機、各種自動システム機、非接触ICタグ・カードを手掛けます。<span class="src">[②]</span>
+  電気自動車のモーター、スマートフォンのアンテナコイル、パワー半導体、そしてペロブスカイト太陽電池の製造装置まで、
+  「巻く・貼る・積む」工程の生産設備を供給する立場にあります。<span class="src">[③]</span></p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>会社基本情報 <span class="src">[②][④]</span></h3>
+      <table>
+        <tbody>
+          <tr><td>正式社名</td><td>NITTOKU 株式会社</td></tr>
+          <tr><td>英文社名</td><td>NITTOKU CO., LTD.</td></tr>
+          <tr><td>市場区分</td><td>東証スタンダード</td></tr>
+          <tr><td>業種（33分類）</td><td>機械</td></tr>
+          <tr><td>発行済株式数</td><td class="num">18,098,923 株</td></tr>
+          <tr><td>自己株式</td><td class="num">1,224,441 株</td></tr>
+          <tr><td>決算期</td><td>3月期</td></tr>
+          <tr><td>次回決算発表</td><td>2026年8月7日（1Q）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>事業セグメント別 売上（2026/3期）<span class="src">[③]</span></h3>
+      <table>
+        <thead><tr><th>セグメント</th><th>売上</th><th>構成比</th><th>前期比</th></tr></thead>
+        <tbody>
+          <tr><td>ワインディングシステム</td><td class="num">319.9億</td><td class="num">75.4%</td><td class="num up">+50.0%</td></tr>
+          <tr><td>メカトロニクス</td><td class="num">85.1億</td><td class="num">20.1%</td><td class="num down">-16.4%</td></tr>
+          <tr><td>RFID（非接触ICタグ）</td><td class="num">18.9億</td><td class="num">4.5%</td><td class="num up">+5.9%</td></tr>
+          <tr class="hi"><td>合計</td><td class="num">424.1億</td><td class="num">100%</td><td class="num up">+27.5%</td></tr>
+        </tbody>
+      </table>
+      <div class="legend">巻線工程を含むワインディングシステムが大幅増。防犯グッズのコイル巻線・組立ラインが牽引。<span class="src">[③]</span></div>
+    </div>
+  </div>
+
+  <h2>業界別の受注構成</h2>
+  <div class="card">
+    <div class="chart"><canvas id="c_seg"></canvas></div>
+    <table>
+      <thead><tr><th>業界</th><th>2026/3期 受注</th><th>構成比</th><th>2025/3期</th><th>増減率</th></tr></thead>
+      <tbody>
+        <tr><td>モビリティ（EV・モーター）</td><td class="num">94.2億</td><td class="num">39.4%</td><td class="num">69.1億</td><td class="num up">+36.3%</td></tr>
+        <tr><td>その他</td><td class="num">69.1億</td><td class="num">28.9%</td><td class="num">81.1億</td><td class="num down">-14.7%</td></tr>
+        <tr><td>産業機器</td><td class="num">44.6億</td><td class="num">18.7%</td><td class="num">26.1億</td><td class="num up">+70.9%</td></tr>
+        <tr><td>情報通信</td><td class="num">20.5億</td><td class="num">8.6%</td><td class="num">9.4億</td><td class="num up">+118.1%</td></tr>
+        <tr><td>家電・住宅</td><td class="num">10.4億</td><td class="num">4.4%</td><td class="num">20.0億</td><td class="num down">-47.9%</td></tr>
+        <tr class="hi"><td>受注高合計（個別）</td><td class="num">238.8億</td><td class="num">100%</td><td class="num">205.7億</td><td class="num up">+12.6%</td></tr>
+      </tbody>
+    </table>
+    <div class="legend">出所：2026年3月期 決算説明資料（2026年5月15日開示）<span class="src">[③]</span></div>
+  </div>
+
+  <div class="note info">
+    <b>産業機器の+70.9%は、ペロブスカイト太陽電池向けロールtoロール装置とサーボモータ生産ラインが中心</b>と会社は説明しています。<span class="src">[③]</span>
+    情報通信の+118.1%と併せ、成長の牽引役が従来のEV・家電から、新エネルギーと半導体・通信インフラへ移りつつあることが読み取れます。
+  </div>
+</section>
+
+<!-- ============ ③ 財務分析 ============ -->
+<section id="t3">
+  <h2>通期業績の10年推移</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>決算期</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>純利益</th><th>EPS</th><th>BPS</th><th>自己資本比率</th><th>営業CF</th><th>配当</th></tr></thead>
+      <tbody>
+        <tr><td>2017/3</td><td class="num">232.8億</td><td class="num">28.7億</td><td class="num">12.3%</td><td class="num">22.3億</td><td class="num">123.40</td><td class="num">1,270</td><td class="num">68.1%</td><td class="num">47.8億</td><td class="num">28円</td></tr>
+        <tr><td>2018/3</td><td class="num">306.9億</td><td class="num">40.2億</td><td class="num">13.1%</td><td class="num">32.0億</td><td class="num">177.17</td><td class="num">1,451</td><td class="num">69.2%</td><td class="num">8.9億</td><td class="num">30円</td></tr>
+        <tr><td>2019/3</td><td class="num">318.4億</td><td class="num">38.5億</td><td class="num">12.1%</td><td class="num">28.6億</td><td class="num">158.08</td><td class="num">1,554</td><td class="num">72.5%</td><td class="num">10.2億</td><td class="num">30円</td></tr>
+        <tr><td>2020/3</td><td class="num">274.9億</td><td class="num">24.8億</td><td class="num">9.0%</td><td class="num">21.2億</td><td class="num">117.36</td><td class="num">1,616</td><td class="num">77.6%</td><td class="num">32.5億</td><td class="num">30円</td></tr>
+        <tr><td>2021/3</td><td class="num">220.5億</td><td class="num">13.6億</td><td class="num">6.2%</td><td class="num">12.5億</td><td class="num">69.05</td><td class="num">1,743</td><td class="num">74.5%</td><td class="num">26.9億</td><td class="num">30円</td></tr>
+        <tr><td>2022/3</td><td class="num">281.2億</td><td class="num">28.9億</td><td class="num">10.3%</td><td class="num">23.1億</td><td class="num">127.78</td><td class="num">1,863</td><td class="num">71.1%</td><td class="num">26.9億</td><td class="num">40円</td></tr>
+        <tr><td>2023/3</td><td class="num">294.6億</td><td class="num">31.0億</td><td class="num">10.5%</td><td class="num">22.2億</td><td class="num">123.10</td><td class="num">1,977</td><td class="num">74.9%</td><td class="num">12.5億</td><td class="num">30円</td></tr>
+        <tr><td>2024/3</td><td class="num">308.0億</td><td class="num">41.7億</td><td class="num">13.5%</td><td class="num">27.4億</td><td class="num">151.92</td><td class="num">2,182</td><td class="num">69.4%</td><td class="num">5.3億</td><td class="num">34円</td></tr>
+        <tr><td class="down">2025/3</td><td class="num">332.7億</td><td class="num down">11.2億</td><td class="num down">3.4%</td><td class="num down">13.1億</td><td class="num down">73.97</td><td class="num">2,157</td><td class="num">60.2%</td><td class="num down">0.5億</td><td class="num">42円</td></tr>
+        <tr class="hi"><td>2026/3</td><td class="num up">424.1億</td><td class="num up">54.4億</td><td class="num up">12.8%</td><td class="num up">34.4億</td><td class="num up">203.85</td><td class="num">2,386</td><td class="num">64.0%</td><td class="num up">41.0億</td><td class="num up">82円</td></tr>
+        <tr><td class="mut">2027/3 予</td><td class="num mut">440.0億</td><td class="num mut">51.0億</td><td class="num mut">11.6%</td><td class="num mut">33.0億</td><td class="num mut">195.57</td><td class="num mut">―</td><td class="num mut">―</td><td class="num mut">―</td><td class="num mut">82円</td></tr>
+      </tbody>
+    </table>
+    <div class="legend">実績は J-Quants API V2（JPX公式）<span class="src">[⑤]</span>、2027/3期予想は会社公表値<span class="src">[③][④]</span>。金額は百万円単位を億円換算し小数第1位で表示。</div>
+  </div>
+
+  <h2>「+386%増益」の正体</h2>
+  <div class="card">
+    <div class="chart"><canvas id="c_op"></canvas></div>
+  </div>
+
+  <div class="grid g3">
+    <div class="kpi"><div class="l">前期比 営業増益率</div><div class="v up">+386%</div><div class="n">11.2億 → 54.4億</div></div>
+    <div class="kpi"><div class="l">過去最高益との比較</div><div class="v up">+35%</div><div class="n">従来最高 40.2億（2018/3）を更新</div></div>
+    <div class="kpi"><div class="l">10年平均営業利益</div><div class="v">31.3億</div><div class="n">今期はその1.74倍</div></div>
+  </div>
+
+  <div class="note">
+    <b>解釈：</b>「反動増だから割り引くべき」と「過去最高益だから実力」の両方が同時に正しい状況です。
+    比較対象の2025/3期は営業利益率3.4%と明らかな異常値ですが、2026/3期の12.8%は
+    過去10年の中央値（12.2%）と同水準に戻っただけであり、<b>利益率としては「正常化」</b>と読むのが自然です。
+    一方で売上高424億は過去10年で断トツの最高（従来最高318億を+33%更新）であり、
+    <b>規模そのものが一段跳ね上がった</b>点は反動では説明できません。
+  </div>
+
+  <h2>受注残高の推移</h2>
+  <div class="card">
+    <div class="chart"><canvas id="c_bl"></canvas></div>
+    <div class="legend">個別ベースの四半期末 受注残高（百万円）。出所：2026年3月期 決算説明資料<span class="src">[③]</span></div>
+  </div>
+  <div class="note crit">
+    <b>受注残高はピークアウトしています。</b>2026/3期1Qの268.3億をピークに、
+    2Q 245.9億 → 3Q 217.4億 → 4Q 205.7億と3四半期連続で減少しました。<span class="src">[③]</span>
+    今期の好業績は積み上がった受注残の消化によるところが大きく、
+    <b>この水準低下は来期の売上に対する下押し要因</b>になります。会社が来期を減益で計画している理由の一つと考えられます。
+  </div>
+
+  <h2>財務健全性</h2>
+  <div class="grid g4">
+    <div class="kpi"><div class="l">自己資本比率</div><div class="v">64.0%</div><div class="bar"><i style="width:64%;background:var(--up)"></i></div><div class="n">基準40%を大きく上回る</div></div>
+    <div class="kpi"><div class="l">自己資本</div><div class="v">405億</div><div class="n">総資産629億</div></div>
+    <div class="kpi"><div class="l">営業CF（2026/3）</div><div class="v up">41.0億</div><div class="n">前期0.5億から急回復</div></div>
+    <div class="kpi"><div class="l">配当性向</div><div class="v">40.2%</div><div class="n">82円 / EPS203.85円</div></div>
+  </div>
+  <p>自己資本比率は10年間64〜78%で推移しており、財務基盤は一貫して堅固です。<span class="src">[⑤]</span>
+  営業キャッシュフローは2024/3期5.3億、2025/3期0.5億と2期連続で低迷していましたが、
+  2026/3期は41.0億へ回復しました。利益の質という観点で、増益が現金を伴っている点は確認できます。</p>
+</section>
+
+<!-- ============ ④ バリュエーション ============ -->
+<section id="t4">
+  <h2>現在の株価指標</h2>
+  <div class="grid g4">
+    <div class="kpi"><div class="l">PER（実績）</div><div class="v">12.6倍</div><div class="n">EPS 203.85円</div></div>
+    <div class="kpi"><div class="l">PER（会社予想）</div><div class="v">13.1倍</div><div class="n">予想EPS 195.57円</div></div>
+    <div class="kpi"><div class="l">PBR</div><div class="v">1.08倍</div><div class="n">BPS 2,385.72円</div></div>
+    <div class="kpi"><div class="l">配当利回り</div><div class="v up">3.19%</div><div class="n">年82円</div></div>
+  </div>
+
+  <h2>PBRの10年推移との比較</h2>
+  <div class="card"><div class="chart"><canvas id="c_bps"></canvas></div>
+  <div class="legend">BPSは着実に成長（1,270円→2,386円、10年で+88%）。現在のPBR1.08倍は解散価値をわずかに上回る水準。<span class="src">[⑤]</span></div></div>
+
+  <h2>シナリオ分析</h2>
+  <div class="note">
+    <b>以下はすべて推計値であり、将来の株価を保証するものではありません。</b>
+    前提を明示した上での機械的な試算です。実際の株価は業績以外の多数の要因に左右されます。
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>シナリオ</th><th>前提EPS</th><th>想定PER</th><th>理論株価</th><th>現在比</th><th style="text-align:left">前提の考え方</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip c-ok">強気</span></td><td class="num">220円</td><td class="num">16倍</td><td class="num up">3,520円</td><td class="num up">+37%</td><td style="text-align:left">中計2028/3期の営業利益55億が前倒しで実現し、成長性が評価され過去平均PERへ回帰</td></tr>
+        <tr class="hi"><td><span class="chip c-nt">基本</span></td><td class="num">195.6円</td><td class="num">13倍</td><td class="num">2,543円</td><td class="num">-1%</td><td style="text-align:left">会社予想どおり着地。PERは現状水準を維持</td></tr>
+        <tr><td><span class="chip c-ng">弱気</span></td><td class="num">150円</td><td class="num">10倍</td><td class="num down">1,500円</td><td class="num down">-42%</td><td style="text-align:left">受注残の減少が想定以上に響き会社予想未達。設備投資循環の下降局面入りでPERも収縮</td></tr>
+      </tbody>
+    </table>
+    <div class="legend"><b>推計値・保証なし。</b>理論株価＝前提EPS×想定PER。EPS前提は会社計画・中期経営計画<span class="src">[③]</span>および過去実績レンジ<span class="src">[⑤]</span>から機械的に設定したもので、当方の予測ではありません。</div>
+  </div>
+
+  <div class="note info">
+    <b>注目点：</b>基本シナリオの理論株価が現在値とほぼ一致します。
+    つまり市場は既に「会社予想どおりの着地」を織り込んでおり、
+    <b>現在の株価に上振れ期待はほとんど含まれていない</b>と解釈できます。
+    株価が動くとすれば、会社予想からの乖離が判明したときになります。
+  </div>
+</section>
+
+<!-- ============ ⑤ カタリスト ============ -->
+<section id="t5">
+  <h2>会社が掲げる成長ドライバー</h2>
+  <p>2026年3月期決算説明資料において、会社は今後のトレンドとして
+  <b>ヒューマノイドロボット・データセンター・セラミックスモータ</b>を挙げ、
+  「開発アイテムの早期投入」「高難易度案件の積極受注」を方針としています。<span class="src">[③]</span></p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>① ペロブスカイト太陽電池</h3>
+      <p>産業機器向け受注が前期比+70.9%と伸びた主因が、ペロブスカイト太陽電池向けロールtoロール装置とされています。<span class="src">[③]</span>
+      同社はロール・ツー・ロール技術を保有し、既に製造設備の受注実績があります。</p>
+      <div class="legend">実装が進めば新たな収益柱になり得ますが、ペロブスカイト自体がまだ量産初期段階であり、時期・規模とも不確実です。</div>
+    </div>
+    <div class="card">
+      <h3>② 半導体・情報通信</h3>
+      <p>情報通信向け受注が+118.1%。RFID事業では半導体需要増に伴い、生産ライン管理用FAタグの売上が<b>前期比+139.6%</b>と急拡大しました。<span class="src">[③]</span>
+      パワー半導体関連の製造装置も手掛けます。</p>
+    </div>
+    <div class="card">
+      <h3>③ 中期経営計画の上方修正</h3>
+      <p>2027/3期の営業利益計画を、中期計画の35.0億から<b>51.0億へ+45.7%上方修正</b>しました。<span class="src">[③]</span>
+      2028/3期は売上500億・営業利益55億を掲げています。</p>
+      <div class="legend">前期比では減益計画ですが、「計画を上回るペースで進捗している」という位置づけです。</div>
+    </div>
+    <div class="card">
+      <h3>④ 株主還元の強化</h3>
+      <p>年間配当は42円（2025/3期）から<b>82円へ倍増</b>。<span class="src">[⑤]</span>
+      来期も82円を維持する計画で、配当利回りは3.19%です。<span class="src">[④]</span></p>
+      <div class="legend">過去の分析で、2倍株となった銘柄には資本政策の変更（増配・DOE導入等）が引き金になった例が複数ありました。</div>
+    </div>
+  </div>
+
+  <h2>中期経営計画の数値目標</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>項目</th><th>2026/3 実績</th><th>2027/3 計画</th><th>2028/3 中計</th><th>中計CAGR</th></tr></thead>
+      <tbody>
+        <tr><td>売上高</td><td class="num">424.1億</td><td class="num">440.0億</td><td class="num">500.0億</td><td class="num up">+14.5%</td></tr>
+        <tr><td>売上総利益</td><td class="num">129.2億</td><td class="num">132.0億</td><td class="num">150.0億</td><td class="num up">+23.3%</td></tr>
+        <tr><td>営業利益</td><td class="num">54.4億</td><td class="num down">51.0億</td><td class="num">55.0億</td><td class="num up">+70.0%</td></tr>
+        <tr><td>営業利益率</td><td class="num">12.8%</td><td class="num">11.6%</td><td class="num">11.0%</td><td class="num">―</td></tr>
+        <tr><td>純利益</td><td class="num">34.4億</td><td class="num down">33.0億</td><td class="num">37.5億</td><td class="num up">+42.1%</td></tr>
+      </tbody>
+    </table>
+    <div class="legend">出所：2026年3月期 決算説明資料 P.19「中期経営計画 連結売上/利益 実績値・計画値」<span class="src">[③]</span>。CAGRは会社記載値。</div>
+  </div>
+  <div class="note">
+    <b>中期計画の営業利益55億は、既に達成した54.4億とほぼ同水準です。</b>
+    2028/3期の目標を今期時点でほぼ到達してしまっており、
+    計画の再上方修正がなければ「今後2年間ほぼ横ばい」という絵姿になります。
+    次の中期計画の内容が、株価の方向を決める重要な材料になると考えられます。
+  </div>
+
+  <h2>事業部別 売上計画</h2>
+  <div class="card"><div class="chart"><canvas id="c_div"></canvas></div>
+  <div class="legend">MT=モータ / CD=コイルデバイス / CA=応用技術 / FA=オートメーション / SD=半導体関連 / RFID / CS=カスタマーサービス（単位：億円）<span class="src">[③]</span></div></div>
+</section>
+
+<!-- ============ ⑥ リスク ============ -->
+<section id="t6">
+  <h2>主要リスク</h2>
+
+  <div class="card">
+    <h3><span class="chip c-ng">高</span> 受注残高の減少</h3>
+    <p>個別ベースの受注残高は2026/3期1Qの268.3億をピークに、4Q時点で205.7億まで<b>23%減少</b>しました。<span class="src">[③]</span>
+    受注残は将来売上の先行指標であり、この減少は来期以降の売上減少に直結します。
+    会社が来期を減益計画としているのは、この事実と整合的です。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="chip c-ng">高</span> 設備投資循環への依存</h3>
+    <p>同社は製造装置メーカーであり、顧客の設備投資意欲に業績が大きく左右されます。
+    実際、営業利益は2018/3期40.2億→2021/3期13.6億→2024/3期41.7億→2025/3期11.2億と、
+    <b>数年周期で3〜4倍の振れ幅</b>を繰り返してきました。<span class="src">[⑤]</span>
+    今期の過去最高益が循環の山である可能性は否定できません。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="chip c-wn">中</span> 会社予想が減益</h3>
+    <p>2027/3期の会社計画は営業利益51.0億（前期比-6.2%）、EPS 195.57円（-4.1%）。<span class="src">[③][④]</span>
+    スクリーニング条件⑦（直近営業増益率）は過去の実績を見る指標であり、
+    <b>将来の減益見通しを捉えていません</b>。この点はスクリーニングの構造的な限界です。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="chip c-wn">中</span> 需給の重さ（信用買い残の積み上がり）</h3>
+    <p>信用倍率67.63倍（買い残182.6千株に対し売り残2.7千株）。<span class="src">[④]</span>
+    買い方に大きく偏っており、株価上昇時には戻り売り圧力となります。
+    直近5週間で買い残は152.0千株→182.6千株へ増加しました。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="chip c-wn">中</span> 足元の株価下落トレンド</h3>
+    <p>基準日終値2,567円は前日比-5.31%。移動平均線からの乖離は25日線-13.67%、75日線-7.31%と、
+    <b>短期的には明確な下落局面</b>にあります。<span class="src">[④]</span>
+    条件⑧（6ヶ月モメンタム+5.2%）は通過していますが、これは半年前との比較であり、直近の勢いは反対方向です。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="chip c-wn">中</span> セグメント間のばらつき</h3>
+    <p>ワインディングシステムが+50.0%と伸びる一方、メカトロニクスは-16.4%、家電・住宅向け受注は-47.9%。<span class="src">[③]</span>
+    全社の増収は一部セグメントの急伸に依存しており、その持続性が全体を左右します。</p>
+  </div>
+
+  <div class="note crit">
+    <b>スクリーニング手法そのものの限界について。</b>
+    本レポートの8条件は、2016年7月〜2026年7月の東証全銘柄データ（96観測時点）でバックテストしたものですが、
+    検証期間の的中率は8.43%（リフト3.00倍）にとどまります。<span class="src">[⑤]</span>
+    <b>10銘柄に絞っても9銘柄は外れる</b>前提の手法であり、
+    かつ2024年はリフト0.89倍と機能しなかった年もありました。個別銘柄の精査を代替するものではありません。
+  </div>
+</section>
+
+<!-- ============ ⑦ 投資結論 ============ -->
+<section id="t7">
+  <h2>総括</h2>
+  <p>NITTOKUはスクリーニング8条件をすべて通過した11銘柄の一つであり、
+  特に条件⑦（直近営業増益率）では母集団内上位1%という突出した数値を示しました。
+  一方で精査の結果、この数値には解釈上の留保が必要であることが判明しました。</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3 class="up">評価できる点</h3>
+      <ul>
+        <li><b>過去最高の売上・利益</b>を達成。売上424億は従来最高を+33%更新しており、反動増だけでは説明できない規模拡大がある</li>
+        <li><b>利益率が正常水準に回復</b>。営業利益率12.8%は過去10年の中央値12.2%と同等で、異常な高収益ではない</li>
+        <li><b>財務が堅固</b>。自己資本比率64.0%、営業CF41.0億と利益が現金を伴っている</li>
+        <li><b>配当を42円→82円へ倍増</b>し来期も維持計画。株主還元姿勢の変化</li>
+        <li><b>成長領域への布石</b>。ペロブスカイト太陽電池・半導体向けの受注が+70〜118%と伸長</li>
+        <li><b>バリュエーションは割高でない</b>。PER13.1倍・PBR1.08倍・配当利回り3.19%</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="down">懸念される点</h3>
+      <ul>
+        <li><b>受注残高が3四半期連続減少</b>（268億→206億、-23%）。来期売上の下押し要因</li>
+        <li><b>会社自身が来期を減益計画</b>（営業利益-6.2%）。条件⑦は過去を見る指標で将来を捉えていない</li>
+        <li><b>中期計画2028/3期の営業利益55億を今期ほぼ達成</b>。追加の成長ストーリーが不在</li>
+        <li><b>設備投資循環への強い依存</b>。過去10年、営業利益は3〜4倍の振れ幅を繰り返してきた</li>
+        <li><b>信用買い残の偏り</b>（信用倍率67.6倍）と足元の下落トレンド（25日線-13.7%）</li>
+        <li><b>基本シナリオの理論株価が現在値とほぼ同値</b>。上振れ期待が株価に含まれていない</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>判断の分かれ目</h2>
+  <div class="note info">
+    本銘柄の評価は、<b>「今期の過去最高益は循環の山か、それとも新しい水準か」</b>という一点に集約されます。<br><br>
+    <b>循環の山と見るなら：</b>受注残の減少と会社の減益計画は、既に下降局面に入った証拠と読めます。
+    過去10年、営業利益40億超の翌々年には必ず大きく落ち込んできました（2018/3期40.2億→2021/3期13.6億、2024/3期41.7億→2025/3期11.2億）。<br><br>
+    <b>新しい水準と見るなら：</b>売上424億という規模は過去の循環の山（318億）を大きく超えており、
+    ペロブスカイト・半導体という新領域の受注が二桁成長で積み上がっています。
+    従来とは異なる需要基盤ができつつある可能性があります。
+  </div>
+
+  <p>この判断はスクリーニングや過去データからは導けません。
+  ペロブスカイト太陽電池の量産化スケジュール、顧客の設備投資計画、
+  次期中期経営計画の内容といった、<b>今後の開示情報を追って判断すべき論点</b>です。</p>
+
+  <h2>確認すべき今後のイベント</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>時期</th><th style="text-align:left">イベント</th><th style="text-align:left">着目点</th></tr></thead>
+      <tbody>
+        <tr><td>2026/8/7</td><td style="text-align:left">2027/3期 1Q決算</td><td style="text-align:left">受注残高が下げ止まったか。1Qの受注高が前年同期（76億）を上回るか</td></tr>
+        <tr><td>四半期ごと</td><td style="text-align:left">業界別受注実績の開示</td><td style="text-align:left">産業機器（ペロブスカイト）・情報通信の伸びが continue しているか</td></tr>
+        <tr><td>未定</td><td style="text-align:left">次期中期経営計画</td><td style="text-align:left">2028/3期以降の成長絵姿。現中計は今期でほぼ達成済み</td></tr>
+        <tr><td>随時</td><td style="text-align:left">業績予想の修正開示</td><td style="text-align:left">減益計画からの上方修正があるか。過去に上方修正の実績あり</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note crit">
+    <b>本レポートは投資判断を推奨するものではありません。</b>
+    記載された分析は公開情報に基づく事実の整理と論点提示であり、
+    売買の助言ではありません。投資判断はご自身の責任において行ってください。
+  </div>
+</section>
+
+<footer>
+  <b>データ出所</b><br>
+  <span class="src">[②]</span> NITTOKU 株式会社 公式IRページ（https://nittoku.co.jp/ir/）— 会社概要・株式情報<br>
+  <span class="src">[③]</span> 2026年3月期 決算説明資料（2026年5月15日開示・XBRL storage経由の公式PDF）— セグメント別実績・受注・中期経営計画<br>
+  <span class="src">[④]</span> kabutan.jp（2026年7月17日取得）— 現在株価・会社予想・信用残高・移動平均乖離率<br>
+  <span class="src">[⑤]</span> J-Quants API V2（JPX総研公式）— 通期財務実績10年分・株価時系列・スクリーニング8条件の判定と相対順位<br><br>
+  <b>基準日</b>：株価・信用残高は2026年7月17日終値。財務データは2026年3月期本決算（2026年5月15日開示）。
+  会社予想は2026年5月15日公表の2027年3月期計画。スクリーニング判定の母集団は2026年7月17日時点の東証3,702銘柄。<br><br>
+  <b>免責事項</b>：本レポートは一次情報（公式開示情報）のみに基づいて作成した個人の投資検討用資料です。
+  シナリオ分析における理論株価はすべて推計値であり、その実現を保証するものではありません。
+  記載内容の正確性について万全を期していますが、これを保証するものではなく、
+  本資料に基づく投資判断により生じたいかなる損害についても責任を負いません。
+  作成者は証券アナリストではなく、本資料は投資助言に該当しません。<br><br>
+  分析日 2026年7月20日 &nbsp;/&nbsp; 6145_NITTOKU/260720_report.html
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  document.getElementById(b.dataset.t).classList.add('on');
+  drawAll();
+});
+
+const TX='#9aa7b5', GRID='rgba(139,148,158,.13)';
+Chart.defaults.color=TX;
+Chart.defaults.font.family='-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif';
+Chart.defaults.font.size=11.5;
+const made={};
+function mk(id,cfg){
+  const el=document.getElementById(id);
+  if(!el||made[id]||el.offsetParent===null) return;
+  made[id]=new Chart(el,cfg);
+}
+const ax=(extra={})=>Object.assign({grid:{color:GRID},ticks:{color:TX}},extra);
+
+function drawAll(){
+  const yrs=['2017/3','2018/3','2019/3','2020/3','2021/3','2022/3','2023/3','2024/3','2025/3','2026/3'];
+  const sales=[232.8,306.9,318.4,274.9,220.5,281.2,294.6,308.0,332.7,424.1];
+  const op=[28.7,40.2,38.5,24.8,13.6,28.9,31.0,41.7,11.2,54.4];
+  const opm=[12.3,13.1,12.1,9.0,6.2,10.3,10.5,13.5,3.4,12.8];
+
+  mk('c_hist',{type:'bar',data:{labels:yrs,datasets:[
+    {label:'売上高（億円）',data:sales,backgroundColor:'rgba(88,166,255,.55)',
+     borderColor:'#58a6ff',borderWidth:1,yAxisID:'y',order:3},
+    {label:'営業利益（億円）',data:op,backgroundColor:'rgba(63,185,80,.75)',
+     borderColor:'#3fb950',borderWidth:1,yAxisID:'y',order:2},
+    {label:'営業利益率（%）',data:opm,type:'line',borderColor:'#d29922',
+     backgroundColor:'#d29922',borderWidth:2,pointRadius:3,yAxisID:'y1',order:1,tension:.25}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{boxWidth:12,padding:14}}},
+    scales:{x:ax(),y:ax({position:'left',title:{display:true,text:'億円',color:TX}}),
+      y1:{position:'right',grid:{display:false},ticks:{color:'#d29922',callback:v=>v+'%'},
+          title:{display:true,text:'営業利益率',color:'#d29922'}}}}});
+
+  mk('c_op',{type:'bar',data:{labels:yrs,datasets:[{
+    label:'営業利益（億円）',data:op,
+    backgroundColor:op.map((v,i)=>i===8?'rgba(248,81,73,.8)':i===9?'rgba(63,185,80,.85)':'rgba(139,148,158,.4)'),
+    borderColor:op.map((v,i)=>i===8?'#f85149':i===9?'#3fb950':'#6b7785'),borderWidth:1}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:c=>
+        c.dataIndex===8?'← 過去10年で最低水準':c.dataIndex===9?'← 過去最高（従来最高40.2億を+35%更新）':''}}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'億円',color:TX}})}}});
+
+  mk('c_bps',{type:'line',data:{labels:yrs,datasets:[{
+    label:'BPS（円）',data:[1270,1451,1554,1616,1743,1863,1977,2182,2157,2386],
+    borderColor:'#a371f7',backgroundColor:'rgba(163,113,247,.12)',
+    borderWidth:2.5,pointRadius:3,fill:true,tension:.25}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'1株純資産（円）',color:TX}})}}});
+
+  mk('c_bl',{type:'line',data:{
+    labels:['2024/3 1Q','2Q','3Q','4Q','2025/3 1Q','2Q','3Q','4Q','2026/3 1Q','2Q','3Q','4Q'],
+    datasets:[{label:'受注残高（百万円）',
+      data:[22077,20341,22768,18246,21277,22026,23153,22756,26829,24590,21738,20568],
+      borderColor:'#f85149',backgroundColor:'rgba(248,81,73,.1)',
+      borderWidth:2.5,pointRadius:3.5,fill:true,tension:.2}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:c=>
+        c.dataIndex===8?'← ピーク':c.dataIndex===11?'← ピーク比 -23%':''}}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'百万円',color:TX}})}}});
+
+  mk('c_seg',{type:'bar',data:{labels:['モビリティ','その他','産業機器','情報通信','家電・住宅'],
+    datasets:[
+      {label:'2025/3期 受注（億円）',data:[69.1,81.1,26.1,9.4,20.0],
+       backgroundColor:'rgba(139,148,158,.45)',borderColor:'#6b7785',borderWidth:1},
+      {label:'2026/3期 受注（億円）',data:[94.2,69.1,44.6,20.5,10.4],
+       backgroundColor:'rgba(88,166,255,.7)',borderColor:'#58a6ff',borderWidth:1}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{boxWidth:12,padding:14}}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'億円',color:TX}})}}});
+
+  mk('c_div',{type:'bar',data:{labels:['MT','CD','CA','FA','SD','RFID','CS'],
+    datasets:[
+      {label:'2026/3 実績',data:[106,57,72,123,2,19,44],
+       backgroundColor:'rgba(63,185,80,.7)',borderColor:'#3fb950',borderWidth:1},
+      {label:'2027/3 計画',data:[102,77,80,114,11,18,38],
+       backgroundColor:'rgba(88,166,255,.6)',borderColor:'#58a6ff',borderWidth:1},
+      {label:'2028/3 中計',data:[160,80,70,110,10,20,50],
+       backgroundColor:'rgba(163,113,247,.5)',borderColor:'#a371f7',borderWidth:1}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{boxWidth:12,padding:14}}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'億円',color:TX}})}}});
+}
+drawAll();
+</script>
+</body>
+</html>

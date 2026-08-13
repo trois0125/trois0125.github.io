@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8935 FJネクストホールディングス｜有価証券報告書 定性分析レポート（第46期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#1c3a5e; --navy-l:#2f5680; --accent:#b8860b; --amber:#a86a00; --amber-bg:#fdf6e6;
+  --red:#a32b2b; --red-bg:#fceeee; --teal:#0f6b63; --teal-bg:#e9f5f4;
+  --gray:#5a6875; --line:#dfe4ea; --bg:#f5f7f9; --card:#ffffff; --quote-bg:#f4f6f8;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  background:var(--bg);color:#232b33;line-height:1.85;font-size:15px;}
+header{background:linear-gradient(135deg,var(--navy),var(--navy-l));color:#fff;padding:26px 30px 20px;}
+header h1{margin:0 0 4px;font-size:21px;letter-spacing:.02em;}
+header .sub{font-size:13px;opacity:.9;}
+.legend{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;}
+.legend span{padding:3px 10px;border-radius:11px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);}
+.wrap{display:flex;align-items:flex-start;gap:0;}
+nav{width:232px;flex:0 0 232px;background:#fff;border-right:1px solid var(--line);
+  position:sticky;top:0;height:100vh;overflow-y:auto;padding:14px 0;}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;
+  padding:9px 16px;font-size:13.5px;color:#3c4650;cursor:pointer;font-family:inherit;line-height:1.5;}
+nav button:hover{background:#f0f4f8;}
+nav button.active{background:#eaf1f8;border-left-color:var(--navy);color:var(--navy);font-weight:700;}
+main{flex:1;padding:26px 32px 70px;min-width:0;max-width:1100px;}
+section{display:none;} section.active{display:block;}
+h2.chap{font-size:20px;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:8px;margin:0 0 20px;}
+h3{font-size:16px;color:var(--navy);margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--accent);}
+h4{font-size:14.5px;color:#33414f;margin:18px 0 8px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin:14px 0;
+  box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card > :first-child{margin-top:0;} .card > :last-child{margin-bottom:0;}
+.quote{background:var(--quote-bg);border-left:4px solid #9aa7b4;padding:12px 16px;margin:12px 0;
+  font-size:14px;color:#39434d;border-radius:0 5px 5px 0;}
+.quote .qlabel{display:block;font-size:11px;color:#7c8794;letter-spacing:.08em;margin-bottom:5px;}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:3px;margin-left:4px;
+  vertical-align:middle;white-space:nowrap;font-weight:700;}
+.f{background:#eaeef3;color:#3f4d5c;border:1px solid #cfd8e2;}
+.i{background:var(--amber-bg);color:var(--amber);border:1px solid #e8d3a0;}
+.q{background:var(--red-bg);color:var(--red);border:1px solid #e6c2c2;}
+.w{background:var(--teal-bg);color:var(--teal);border:1px solid #a9d3ce;}
+.src{display:inline-block;font-size:11px;color:#6c7885;margin-left:3px;}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px;background:#fff;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;}
+th{background:#eef2f6;color:#33414f;font-weight:700;text-align:center;}
+td.l,th.l{text-align:left;}
+tr.hl td{background:#fff9ec;}
+ul,ol{padding-left:22px;margin:8px 0;} li{margin:5px 0;}
+.chartbox{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;margin:14px 0;}
+.chartbox h4{margin-top:0;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:900px){.grid2{grid-template-columns:1fr;} nav{display:none;} main{padding:18px;}}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0;}
+.kpi div{background:#fff;border:1px solid var(--line);border-radius:7px;padding:11px 13px;}
+.kpi .k{font-size:11.5px;color:var(--gray);} .kpi .v{font-size:19px;font-weight:700;color:var(--navy);}
+.kpi .n{font-size:11px;color:var(--gray);}
+.note{font-size:12.5px;color:var(--gray);background:#f8fafb;border:1px dashed #ccd4dd;padding:9px 12px;border-radius:5px;margin:10px 0;}
+.alert{background:var(--red-bg);border:1px solid #e6c2c2;border-left:4px solid var(--red);padding:12px 15px;border-radius:0 5px 5px 0;margin:12px 0;}
+.pos{background:var(--teal-bg);border-left:4px solid var(--teal);padding:12px 15px;border-radius:0 5px 5px 0;margin:12px 0;}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:0;list-style:none;}
+.tl li{position:relative;padding:0 0 14px 20px;margin:0;}
+.tl li::before{content:"";position:absolute;left:-6px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--navy-l);border:2px solid #fff;}
+.tl li.big::before{background:var(--accent);width:12px;height:12px;left:-7px;}
+.tl .yr{font-weight:700;color:var(--navy);font-size:13.5px;margin-right:8px;}
+footer{background:#e9edf1;border-top:1px solid var(--line);padding:20px 32px;font-size:12.5px;color:#4c5763;}
+footer h4{margin:0 0 8px;color:var(--navy);}
+</style>
+</head>
+<body>
+<header>
+  <h1>株式会社ＦＪネクストホールディングス（8935・東証プライム）</h1>
+  <div class="sub">有価証券報告書 定性分析レポート ／ 第46期（2025年4月1日〜2026年3月31日）　主ソース：有価証券報告書（2026年6月25日提出、訂正報告書 2026年7月23日）<span class="src">[③]</span></div>
+  <div class="legend">
+    <span>[事実] 有報に記載あり</span><span>[解釈] 記載からの合理的推論</span>
+    <span>[要確認] 有報だけでは判断不能</span><span>[web] 外部Web由来（沿革章のみ）</span>
+    <span>数値裏取り [①]／有報 [③]</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav id="nav"></nav>
+<main>
+
+<!-- ===================== 0 ===================== -->
+<section id="s0" class="active">
+<h2 class="chap">0. エグゼクティブサマリー</h2>
+
+<div class="card">
+<h3 style="margin-top:0">この企業を一文で</h3>
+<p>首都圏の単身者向け資産運用型マンション「ガーラ」を自社ブランドで企画・開発・販売し、その販売済み物件の賃貸管理・建物管理・建設・買取再販までをグループ内に囲い込んだ、無借金に近い財務体質の中堅デベロッパー<span class="tag f">[事実]</span>。ただし当期の売上の58％は自社開発ではなく<strong>中古マンションの売買</strong>が稼いでおり、「開発会社」という自己記述と収益の実態にはズレが生じている<span class="tag i">[解釈]</span>。</p>
+</div>
+
+<div class="kpi">
+  <div><div class="k">売上高（連結）</div><div class="v">1,423.7億円</div><div class="n">前期比 +26.6%<span class="tag f">[事実]</span></div></div>
+  <div><div class="k">営業利益</div><div class="v">144.0億円</div><div class="n">前期比 +51.8%／営業利益率10.1%</div></div>
+  <div><div class="k">自己資本比率</div><div class="v">71.2%</div><div class="n">有利子負債比率13.0%</div></div>
+  <div><div class="k">ROE</div><div class="v">13.0%</div><div class="n">5期で最高</div></div>
+  <div><div class="k">従業員（連結）</div><div class="v">600人</div><div class="n">外、臨時657人</div></div>
+  <div><div class="k">1株当たり配当</div><div class="v">66円</div><div class="n">配当性向21.6%（推計値・保証なし）</div></div>
+</div>
+
+<h3>記述情報から読み取れる最重要ポイント3点</h3>
+
+<div class="card">
+<h4>① 「開発会社」の看板と、実際の稼ぎ頭のズレ</h4>
+<p>不動産開発事業の売上1,277億円のうち、中古マンションが831.7億円（2,885戸）で65.1％を占め、自社ブランド新築（ガーラ652戸＋レジデンス341戸＝374.0億円）を大きく上回る<span class="tag f">[事実]</span>。それにもかかわらず、【経営方針・経営戦略等】で中古マンションに触れているのは「売却査定・買取りの体制を強化し、中古マンションの取引拡大を図ってまいります」の1文のみで、【事業等のリスク】にも中古在庫・仕入価格に固有のリスク項目は立てられていない<span class="tag f">[事実]</span>。会社の語りの重心が事業の重心に追いついていない<span class="tag i">[解釈]</span>。</p>
+</div>
+
+<div class="card">
+<h4>② 増益の質は「単価上昇と賃料上昇」であり、経営者もそう説明している</h4>
+<p>営業利益率は8.4%→10.1%へ1.7ポイント改善。経営者は「賃料が上昇傾向のなか、保有マンションの賃貸収入の好転やマンション販売価格の高まりにより、（中略）売上高経常利益率10％を上回りました」と、自社の唯一の公表目標指標に対する達成として説明している<span class="tag f">[事実]</span>。裏を返せば、増益はコスト構造改革や新規事業ではなく<strong>不動産市況（賃料・価格）に依存</strong>しており、市況が反転すれば同じ経路で剥落しうる<span class="tag i">[解釈]</span>。</p>
+</div>
+
+<div class="card">
+<h4>③ 財務は極めて保守的、還元も方針として明文化されている</h4>
+<p>自己資本比率71.2%、有利子負債は総資産の13.0%（平均利率1.1%台）、GC注記・後発事象・偶発債務いずれも記載なし<span class="tag f">[事実]</span>。配当は「中長期的な利益成長に合わせて増配していく累進配当」と方針に明記され、当期は普通56円＋特別10円の66円<span class="tag f">[事実]</span>。一方で配当性向は21.6%（推計値・保証なし）にとどまり、当期の自己株式取得はゼロ。潤沢な資本をどう配分するかの説明は、有報上は「今後の積極的な事業展開において機動的に投入する」以上に踏み込んでいない<span class="tag f">[事実]</span>。</p>
+</div>
+
+<h3>最も注意すべき論点1点</h3>
+<div class="alert">
+<strong>先行指標である契約実績が、当期売上を下回った。</strong>当期の不動産開発事業の契約実績は3,881戸・1,220.1億円で、同事業の売上高1,277.3億円を下回る<span class="tag f">[事実]</span>。前期は契約1,010.8億円 &gt; 売上999.0億円と上回っていた関係が逆転している<span class="tag f">[事実]</span>。とりわけ主力ブランド「ガーラマンションシリーズ」の契約は569戸（前年比78.6%）・192.6億円（同93.9%）と戸数・金額とも前年割れ<span class="tag f">[事実]</span>。有報の【経営環境】【MD&amp;A】は、この主力ブランドの契約減少について理由を説明していない<span class="tag f">[事実]</span>。翌期の売上・利益に対する反動リスクの主要因になり得るため、決算説明資料等での確認が要る<span class="tag q">[要確認]</span>。
+</div>
+</section>
+
+<!-- ===================== I ===================== -->
+<section id="s1">
+<h2 class="chap">Ⅰ. 企業の輪郭</h2>
+
+<h3>1. 5年推移（代表6指標）</h3>
+<table>
+<tr><th class="l">指標（連結）</th><th>第42期<br>2022/3</th><th>第43期<br>2023/3</th><th>第44期<br>2024/3</th><th>第45期<br>2025/3</th><th>第46期<br>2026/3</th><th>4年CAGR</th></tr>
+<tr><td class="l">売上高（百万円）</td><td>82,258</td><td>84,688</td><td>100,405</td><td>112,429</td><td>142,374</td><td>+14.7%</td></tr>
+<tr><td class="l">経常利益（百万円）</td><td>9,080</td><td>8,219</td><td>9,434</td><td>9,459</td><td>14,356</td><td>+12.1%</td></tr>
+<tr><td class="l">EPS（円）</td><td>193.93</td><td>171.97</td><td>197.31</td><td>198.11</td><td>305.73</td><td>+12.1%</td></tr>
+<tr><td class="l">ROE（%）</td><td>11.2</td><td>9.2</td><td>9.8</td><td>9.2</td><td>13.0</td><td>―</td></tr>
+<tr><td class="l">自己資本比率（%）</td><td>71.3</td><td>70.9</td><td>71.4</td><td>69.1</td><td>71.2</td><td>―</td></tr>
+<tr class="hl"><td class="l">営業CF（百万円）</td><td>22,215</td><td>△4,534</td><td>4,671</td><td>△13,880</td><td>7,103</td><td>―</td></tr>
+<tr><td class="l">（参考）純資産</td><td>58,917</td><td>63,022</td><td>68,031</td><td>72,922</td><td>81,127</td><td>+8.3%</td></tr>
+<tr><td class="l">（参考）BPS（円）</td><td>1,802.55</td><td>1,928.17</td><td>2,079.57</td><td>2,227.90</td><td>2,477.00</td><td>+8.3%</td></tr>
+<tr><td class="l">（参考）PER（倍）</td><td>5.1</td><td>5.7</td><td>7.2</td><td>6.0</td><td>5.1</td><td>―</td></tr>
+<tr><td class="l">従業員数（人）</td><td>558</td><td>564</td><td>557</td><td>584</td><td>600</td><td>―</td></tr>
+</table>
+<p class="note">出所：第1【企業の概況】1 主要な経営指標等の推移 <span class="src">[③][①]</span>。CAGRは第42期→第46期の4年で当方が算出（推計値・保証なし）。営業利益は主要指標推移に含まれないため、当期144.0億円／前期94.9億円は連結損益計算書から取得<span class="tag f">[事実]</span>。</p>
+
+<div class="chartbox">
+<h4>売上高・経常利益・営業CFの5年推移</h4>
+<canvas id="c1" height="115"></canvas>
+</div>
+
+<div class="card">
+<h4>推移の読み方</h4>
+<ul>
+<li>売上は5期で1.73倍。増加ペースは第44期以降に加速しており、当期の+26.6%が最大<span class="tag f">[事実]</span>。</li>
+<li>一方、営業CFは +222億／△45億／+47億／△139億／+71億 と符号が毎期のように反転する<span class="tag f">[事実]</span>。これは棚卸資産（販売用不動産・仕掛販売用不動産＝合計647.4億円、総資産の56.9%）の増減がそのまま営業CFに出る、用地仕入型ビジネスの構造そのもの<span class="tag i">[解釈]</span>。単年の営業CFで収益力を判断するのは適切でなく、複数期の累計で見る必要がある<span class="tag i">[解釈]</span>。</li>
+<li>利益（経常CAGR+12.1%）より売上（+14.7%）の伸びが速い期間が続いたが、当期はこれが逆転し利益率が改善した<span class="tag f">[事実]</span>。</li>
+<li>純資産CAGR+8.3%に対しEPS CAGR+12.1%。利益成長が自己資本の積み上がりを上回り、ROEは第45期9.2%→当期13.0%へ回復<span class="tag f">[事実]</span>。</li>
+<li>単体（提出会社）の売上高は2021年10月の持株会社移行に伴い601.9億円（第42期）→44.1億円（第46期）へ縮小しており、単体指標での趨勢比較は意味を持たない<span class="tag f">[事実]</span>。以降、本レポートは連結で記述する。</li>
+</ul>
+</div>
+
+<h3>2. 事業の内容 ― 事業系統図の言語化とビジネスモデル</h3>
+<div class="card">
+<p>当社グループは持株会社＋連結子会社7社（孫会社1社を含む）で構成される<span class="tag f">[事実]</span>。事業系統図を文章化すると、次の流れになる<span class="tag i">[解釈]</span>。</p>
+<ol>
+<li><strong>用地仕入・企画開発</strong>：㈱ＦＪネクスト（単身者向け「ガーラマンションシリーズ」）と㈱ＦＪネクストレジデンシャル（ファミリー向け「ガーラ・レジデンスシリーズ」）が首都圏で用地を取得し企画。持株会社自身も不動産特定共同事業許可を持ち、不動産の売買・賃貸を行う<span class="tag f">[事実]</span>。</li>
+<li><strong>建築</strong>：建築工事は外部の建設会社に発注する。ただしグループ内の㈱レジテックコーポレーション（特定建設業許可・一級建築士事務所登録）が躯体検査・設計・施工・リノベーションを担い、品質管理を内製化している<span class="tag f">[事実]</span>。</li>
+<li><strong>販売</strong>：主に資産運用目的の個人投資家に販売。アウトバウンド式マーケティング（電話等の能動的営業）を中心に、自社会員組織・セミナーを併用すると明記<span class="tag f">[事実]</span>。</li>
+<li><strong>販売後の囲い込み</strong>：㈱エフ・ジェー・コミュニティが区分所有者から賃貸管理（20,307戸）を、管理組合から建物管理（385棟・26,262戸）を受託<span class="tag f">[事実]</span>。</li>
+<li><strong>買取再販・仲介</strong>：オーナーの売却ニーズを受けて中古マンションを買取・仲介・再販。当期はこれが売上の最大項目になった<span class="tag f">[事実]</span>。</li>
+<li><strong>金融</strong>：㈱アライドライフが顧客およびマンション管理組合向けに融資等の金融サービスを提供<span class="tag f">[事実]</span>。</li>
+<li><strong>非中核</strong>：ＦＪリゾートマネジメント㈱が伊豆の温泉旅館4施設（伊東遊季亭、同 川奈別邸、玉峰館、清流荘）を運営。㈱伊東一碧管理サービスが伊豆の別荘地管理<span class="tag f">[事実]</span>。</li>
+</ol>
+<p><strong>ビジネスモデルの要点</strong>：「投資用ワンルームを売る」だけでなく、売った後の賃貸管理・建物管理を握り、さらにオーナーが手放すときに買い取って再販する。同じ物件から開発利益→管理フィー→再販利益と複数回収益を得る循環構造になっている<span class="tag i">[解釈]</span>。中古売買が伸びていること自体、過去に売った「ガーラ」のストック（オーナー母集団と管理戸数）が回転し始めた結果と読める<span class="tag i">[解釈]</span>。ただし有報はこの循環を明示的に説明していないため、中古の仕入元が自社販売済み物件にどの程度依存するかは有報からは判断できない<span class="tag q">[要確認]</span>。</p>
+</div>
+
+<h3>3. 収益柱の照合 ― 語りの大きさと利益の大きさ</h3>
+<table>
+<tr><th class="l">報告セグメント</th><th>売上高<br>（百万円）</th><th>売上<br>構成比</th><th>セグメント利益<br>（百万円）</th><th>利益<br>構成比</th><th>利益率<br>当期</th><th>利益率<br>前期</th></tr>
+<tr class="hl"><td class="l">不動産開発事業</td><td>127,725</td><td>89.7%</td><td>12,453</td><td>86.6%</td><td>9.7%</td><td>8.0%</td></tr>
+<tr><td class="l">不動産管理事業</td><td>4,284</td><td>3.0%</td><td>1,108</td><td>7.7%</td><td>23.7%</td><td>26.2%</td></tr>
+<tr><td class="l">建設事業</td><td>8,988</td><td>6.3%</td><td>829</td><td>5.8%</td><td>8.9%</td><td>4.1%</td></tr>
+<tr><td class="l">旅館事業</td><td>1,333</td><td>0.9%</td><td>△2</td><td>―</td><td>△0.2%</td><td>0.9%</td></tr>
+<tr><td class="l">その他（金融）</td><td>41</td><td>0.0%</td><td>22</td><td>0.2%</td><td>―</td><td>―</td></tr>
+<tr><td class="l">合計（調整前）</td><td>142,374</td><td>100%</td><td>14,410</td><td>100%</td><td>―</td><td>―</td></tr>
+</table>
+<p class="note">利益率はセグメント間内部売上を含む「計」ベースで算出（開発127,746／管理4,674／建設9,280）。推計値・保証なし。出所：注記事項（セグメント情報等）<span class="src">[③]</span></p>
+
+<div class="grid2">
+<div class="chartbox"><h4>売上構成比（当期）</h4><canvas id="c2" height="200"></canvas></div>
+<div class="chartbox"><h4>不動産開発事業の内訳（当期・百万円）</h4><canvas id="c3" height="200"></canvas></div>
+</div>
+
+<table>
+<tr><th class="l">開発事業の商品別（販売実績）</th><th>戸数</th><th>売上（百万円）</th><th>前年比</th><th>1戸単価（百万円）</th></tr>
+<tr><td class="l">ガーラマンションシリーズ（新築・単身向け）</td><td>652</td><td>20,216</td><td>136.3%</td><td>31.0</td></tr>
+<tr><td class="l">ガーラ・レジデンスシリーズ（新築・ファミリー向け）</td><td>341</td><td>17,184</td><td>196.8%</td><td>50.4</td></tr>
+<tr class="hl"><td class="l">中古マンション</td><td>2,885</td><td>83,170</td><td>119.2%</td><td>28.8</td></tr>
+<tr><td class="l">不動産賃貸収入</td><td>―</td><td>6,351</td><td>106.3%</td><td>―</td></tr>
+<tr><td class="l">その他収入</td><td>―</td><td>803</td><td>129.8%</td><td>―</td></tr>
+<tr><td class="l">開発事業 合計</td><td>3,878</td><td>127,725</td><td>127.9%</td><td>―</td></tr>
+</table>
+
+<div class="card">
+<h4>照合から見えること</h4>
+<ul>
+<li>売上の89.7%・利益の86.6%が不動産開発事業に集中する<strong>単一事業依存型</strong><span class="tag f">[事実]</span>。開発事業が不調な年は、他セグメントで補える構造ではない<span class="tag i">[解釈]</span>。</li>
+<li>利益率が最も高いのは<strong>不動産管理事業（23.7%）</strong>。ただし規模が小さく（利益11.1億円）、しかも当期は「IT投資によるシステム構築費やマンション管理員等の人件費上昇」で唯一の減益セグメントとなった<span class="tag f">[事実]</span>。ストック収益の利益率は26.2%→23.7%へ低下しており、コスト上昇を管理費に転嫁できていない<span class="tag i">[解釈]</span>。</li>
+<li>開発事業の利益率は8.0%→9.7%へ改善、建設事業は4.1%→8.9%へ倍増（工事件数増）<span class="tag f">[事実]</span>。</li>
+<li>旅館事業は売上13.3億円・セグメント損失2百万円で、前期の12百万円の利益から赤字転落<span class="tag f">[事実]</span>。理由は「低価格帯の宿へシフトする旅行者の傾向」による稼働率未達と説明されている<span class="tag f">[事実]</span>。規模は小さいが、後述のとおり減損の兆候が生じている資産グループでもある<span class="tag f">[事実]</span>。</li>
+<li>語りの配分との比較：【経営戦略等】はセグメントごとに4項目を並列に記述しており、売上の0.9%しかない旅館事業にも独立した段落が割かれている一方、売上の58%を占める中古マンションには1文しか割かれていない<span class="tag f">[事実]</span>。開示の分量配分が事業の重心と一致していない<span class="tag i">[解釈]</span>。</li>
+</ul>
+</div>
+
+<h3>4. 競争優位の所在（内製／外注・川上／川下）</h3>
+<div class="card">
+<p>川上（用地仕入・企画）と川下（販売・賃貸管理・買取再販・金融）は内製、中間の建築工事のみ外注、というバーベル型の垂直統合<span class="tag i">[解釈]</span>。有報から読み取れる優位の候補は次の3点<span class="tag i">[解釈]</span>。</p>
+<ul>
+<li><strong>顧客ストックと管理戸数</strong>：賃貸管理20,307戸・建物管理26,262戸というオーナー／物件の母集団<span class="tag f">[事実]</span>。買取再販の仕入経路と、次の販売先の両方をここから引ける<span class="tag i">[解釈]</span>。</li>
+<li><strong>ブランドの継続供給</strong>：1994年開始の「ガーラ」を30年以上継続<span class="tag f">[事実]</span>。有報は「安定した賃貸需要が見込める土地を厳選し、付加価値の高い商品を継続的に供給」と述べるが、競合との差別化要因を具体的な指標（入居率・賃料水準等）で示してはいない<span class="tag f">[事実]</span>。</li>
+<li><strong>財務体力</strong>：自己資本比率71.2%・有利子負債比率13.0%<span class="tag f">[事実]</span>。用地費・建築費が高騰し「収益性の見極めが一層重要」と自認する局面で、価格競争に無理をせず待てる余力を持つ<span class="tag i">[解釈]</span>。</li>
+</ul>
+<p>逆に、建築工事を外注しているため建築費インフレは直接コストに跳ね返る構造であり、これは有報のリスク⑥でも認識されている<span class="tag f">[事実]</span>。</p>
+</div>
+
+<h3>5. 関係会社 ― 支配構造とリスク</h3>
+<div class="card">
+<ul>
+<li>連結子会社7社はすべて議決権100%（㈱伊東一碧管理サービスは㈱ＦＪネクスト経由の間接100%）<span class="tag f">[事実]</span>。非100%の合弁・持分法適用会社は記載がない<span class="tag f">[事実]</span>。</li>
+<li>親会社は存在せず、海外子会社もない。為替・カントリーリスクは構造的に発生しない<span class="tag i">[解釈]</span>。</li>
+<li>㈱ＦＪネクストは特定子会社に該当し、開発事業セグメント売上の90%超を占めるため主要な損益情報の記載が省略されている<span class="tag f">[事実]</span>。すなわち<strong>グループの収益はほぼこの1社に集中</strong>している<span class="tag i">[解釈]</span>。</li>
+<li>全役員が子会社役員を兼任する体制（関係会社の関係内容欄すべてに「役員兼任あり」）<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+</section>
+
+<!-- ===================== II ===================== -->
+<section id="s2">
+<h2 class="chap">Ⅱ. 沿革</h2>
+
+<div class="note">本章のみ、有報の【沿革】に加えてWebリサーチによる肉付けを行っている。Web由来の記述には <span class="tag w">[web]</span> と出典名を付す。有報由来（<span class="tag f">[事実]</span>）と混在させていない。</div>
+
+<h3>時系列（有報【沿革】＋公式沿革ページ）</h3>
+<div class="card">
+<ul class="tl">
+<li class="big"><span class="yr">1980年7月</span>不動産販売事業を目的として<strong>不動住販株式会社</strong>を東京都新宿区西新宿七丁目に設立。資本金100万円<span class="tag f">[事実]</span>。創業者・肥田幸春氏（1952年5月生）は設立と同時に代表取締役に就任している<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">1980年9月</span>宅地建物取引業免許（東京都知事免許(1)第39749号）を取得し、マンション販売事業を開始<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">1983年8月</span>本社を新宿区新宿五丁目へ移転<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">1987年11月</span>不動産賃貸・管理事業を行うエフ・ジェー・管理株式会社を設立<span class="tag f">[事実]</span>。<em>販売単体から「売った後を持つ」構造への最初の一歩</em><span class="tag i">[解釈]</span>。</li>
+<li><span class="yr">1989年11月</span>株式会社フロム壱の株式を取得<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">1991年6月</span><strong>株式会社エフ・ジェー・ネクストに商号変更</strong><span class="tag f">[事実]</span>。</li>
+<li class="big"><span class="yr">1994年8月</span><strong>資産運用型マンション自社ブランド「ガーラマンションシリーズ」分譲開始</strong><span class="tag f">[事実]</span>。現在に至る主力商品の起点であり、この自社ブランド化が飛躍的成長の礎になったと紹介されている<span class="tag w">[web] FJネクストHD 公式サイト「沿革」／フィスコ Research Memo</span>。</li>
+<li><span class="yr">1995年12月</span>フロム壱を株式会社シティウィングに商号変更し、伊豆高原支店を静岡県伊東市に開設<span class="tag f">[事実]</span>。<em>伊豆エリアとの関係はこの時期に始まり、後の旅館事業・別荘地管理事業へ連なる</em><span class="tag i">[解釈]</span>。</li>
+<li><span class="yr">1998年9月</span>宅地建物取引業免許を建設大臣免許(1)第5806号へ切替（都知事免許から国土交通大臣免許相当へ）<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">1998年10月</span>横浜営業所を開設<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2002年4月</span>シティウィングの全株式を取得。<strong>㈱エフ・ジェー・コミュニティを設立</strong>（不動産賃貸・建物管理、資本金5,000万円<span class="tag w">[web] FJネクストHD 公式沿革</span>）<span class="tag f">[事実]</span>。同年7月、エフ・ジェー・管理の管理業務を同社に承継<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2003年5月</span>本社を新宿区西新宿六丁目（現在地）へ移転<span class="tag f">[事実]</span>。</li>
+<li class="big"><span class="yr">2004年12月</span><strong>ジャスダック証券取引所に株式を上場</strong><span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2005年12月</span>総合建設業の㈱レジテックコーポレーションを設立（資本金8,000万円<span class="tag w">[web] FJネクストHD 公式沿革</span>）<span class="tag f">[事実]</span>。<em>建築の品質管理を内部に取り込む動き</em><span class="tag i">[解釈]</span>。</li>
+<li><span class="yr">2007年3月</span>東京証券取引所市場第二部に上場<span class="tag f">[事実]</span>。</li>
+<li class="big"><span class="yr">2007年10月</span><strong>ファミリー層向け「ガーラ・レジデンスシリーズ」分譲開始</strong><span class="tag f">[事実]</span>。単身者向け投資用一本足からの商品多角化<span class="tag i">[解釈]</span>。</li>
+<li><span class="yr">2008年1月</span>旅館業のＦＪリゾートマネジメント㈱を設立<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2011年12月</span>金融サービス業の㈱アライドライフを設立<span class="tag f">[事実]</span>。<em>顧客の購入資金・管理組合の修繕資金まで面倒を見る体制</em><span class="tag i">[解釈]</span>。</li>
+<li><span class="yr">2013年5月</span>㈱エフ・ジェー不動産販売（旧シティウィング）を吸収合併し、伊豆高原支店を開設<span class="tag f">[事実]</span>。</li>
+<li class="big"><span class="yr">2013年10月</span><strong>東京証券取引所市場第一部に指定</strong><span class="tag f">[事実]</span>。同年11月、大和証券を割当先とする第三者割当増資（オーバーアロットメント関連、75万株・発行価格533.78円）を実施し、発行済株式数は34,646,500株となった。以後<strong>現在まで株式数は不変</strong><span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2015年3月</span>ＧＭＯクリック・インベストメント㈱の全株式を取得し㈱玉峰館に商号変更<span class="tag f">[事実]</span>。2016年8月にＦＪリゾートマネジメントが吸収合併<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2015年6月</span><strong>監査等委員会設置会社へ移行</strong><span class="tag f">[事実]</span>。</li>
+<li class="big"><span class="yr">2021年4月〜10月</span>㈱ＦＪネクストを設立（会社分割による持株会社体制移行に伴う100%子会社、資本金1億円<span class="tag w">[web] FJネクストHD 公式沿革</span>）、10月に<strong>持株会社体制へ移行し㈱ＦＪネクストホールディングスへ商号変更</strong>。不動産の企画開発・売買・仲介・賃貸事業を㈱ＦＪネクストへ承継<span class="tag f">[事実]</span>。有報は移行目的を「グループ経営機能と事業の執行機能を分離し、強固なガバナンス体制の構築を図ること」と説明している<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2022年4月</span>東証の新市場区分でプライム市場へ移行<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2023年2月</span>㈱ＦＪネクストが別荘地管理事業の㈱伊東一碧管理サービスの全株式を取得<span class="tag f">[事実]</span>。<strong>直近10年で唯一のM&amp;Aらしい取引</strong>だが、規模は資本金50百万円の小型案件<span class="tag i">[解釈]</span>。</li>
+<li><span class="yr">2023年4月</span>㈱ＦＪネクストレジデンシャルを設立し、ファミリー向け事業を分社<span class="tag f">[事実]</span>。</li>
+<li><span class="yr">2024年6月</span>肥田恵輔氏が代表取締役社長に就任（会長・肥田幸春氏の長女の配偶者）<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>どういう成り立ちの会社か</h3>
+<div class="card">
+<p>転換点を軸に読むと、次の4段階に整理できる<span class="tag i">[解釈]</span>。</p>
+<ol>
+<li><strong>1980〜1993：仕入れて売る販売会社</strong>。他社物件を含む不動産販売から出発。</li>
+<li><strong>1994〜2006：自社ブランド化と川下の内製化</strong>。「ガーラ」で商品を自社のものにし、管理会社・建設会社を作って売った後の価値連鎖を取り込む。この期間の途中（2004年）に上場。</li>
+<li><strong>2007〜2020：商品多角化と周辺事業</strong>。ファミリー向けブランド、旅館、金融サービス。ただし旅館・金融はいずれも当期でも売上1%未満にとどまり、多角化は収益構造を変えるには至らなかった<span class="tag i">[解釈]</span>。</li>
+<li><strong>2021〜：持株会社体制と機能分社</strong>。事業会社を機能・ブランド別に分け、持株会社が資源配分を担う形へ。2023年のレジデンシャル分社まで一貫している。</li>
+</ol>
+<p>特徴的なのは、<strong>45年間で主力事業の交代がない</strong>ことと、<strong>大型M&amp;Aによる非連続な成長を選んでこなかった</strong>こと<span class="tag i">[解釈]</span>。さらに2013年以降、発行済株式数が一度も増えていない＝希薄化を伴う資本調達を行っていない<span class="tag f">[事実]</span>。自己資本と借入だけで積み上げてきた、内部成長型の企業と読める<span class="tag i">[解釈]</span>。</p>
+</div>
+</section>
+
+<!-- ===================== III ===================== -->
+<section id="s3">
+<h2 class="chap">Ⅲ. 人的資本</h2>
+
+<h3>1. 従業員の構成</h3>
+<table>
+<tr><th class="l">セグメント</th><th>従業員数（人）</th><th>外、臨時雇用（人）</th><th>臨時比率</th></tr>
+<tr><td class="l">不動産開発事業</td><td>332</td><td>8</td><td>2.4%</td></tr>
+<tr><td class="l">不動産管理事業</td><td>127</td><td>533</td><td>419.7%</td></tr>
+<tr><td class="l">建設事業</td><td>44</td><td>3</td><td>6.8%</td></tr>
+<tr><td class="l">旅館事業</td><td>50</td><td>111</td><td>222.0%</td></tr>
+<tr><td class="l">その他</td><td>1</td><td>―</td><td>―</td></tr>
+<tr><td class="l">全社（持株会社）</td><td>46</td><td>2</td><td>4.3%</td></tr>
+<tr class="hl"><td class="l">合計</td><td>600</td><td>657</td><td>109.5%</td></tr>
+</table>
+<p class="note">出所：第1【企業の概況】5 従業員の状況等 <span class="src">[③]</span>。臨時比率は当方算出（推計値・保証なし）。</p>
+
+<div class="card">
+<ul>
+<li>正規600人に対し臨時657人と、<strong>臨時雇用のほうが多い</strong><span class="tag f">[事実]</span>。その大半は不動産管理事業（533人）と旅館事業（111人）に属し、マンション管理員・旅館スタッフと推定される<span class="tag i">[解釈]</span>。</li>
+<li>収益の柱である開発事業は332人＋臨時8人と、ほぼ正社員のみで構成される<span class="tag f">[事実]</span>。営業職中心の組織<span class="tag i">[解釈]</span>。</li>
+<li>労働組合は結成されていない（「労使関係は円満に推移」と記載）<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>2. 賃金・勤続</h3>
+<table>
+<tr><th class="l">会社</th><th>従業員数（人）</th><th>平均年齢</th><th>平均勤続年数</th><th>平均年間給与</th><th>前期比</th></tr>
+<tr><td class="l">㈱ＦＪネクストホールディングス（提出会社）</td><td>46（2）</td><td>36.2歳</td><td>11.0年</td><td>7,565千円</td><td>+2.9%</td></tr>
+<tr class="hl"><td class="l">㈱ＦＪネクスト（最大人員会社）</td><td>286（6）</td><td>33.9歳</td><td>10.6年</td><td>10,323千円</td><td>+6.0%</td></tr>
+<tr><td class="l">㈱エフ・ジェー・コミュニティ</td><td>123（529）</td><td>36.8歳</td><td>10.6年</td><td>5,720千円</td><td>+6.9%</td></tr>
+</table>
+<div class="card">
+<ul>
+<li>主力事業会社ＦＪネクストの平均年収1,032万円は、平均年齢33.9歳としては高い水準<span class="tag i">[解釈]</span>。有報は差異要因を「マンション販売実績に応じたインセンティブ制度を導入しているため」と明記している<span class="tag f">[事実]</span>。</li>
+<li>平均勤続年数は3社とも10.6〜11.0年と揃っており、平均年齢34〜37歳との差から<strong>新卒中心・定着型</strong>の人員構成と読める<span class="tag i">[解釈]</span>。歩合制の営業会社としては勤続が長い部類<span class="tag i">[解釈]</span>。</li>
+<li>給与決定方針として「実力主義」と「業績変動や外部環境の影響を受けにくい安定性」の2軸を明示。定期昇給＋夏冬賞与で安定性を、営業総合職のインセンティブと随時昇級で実力主義を担保すると説明している<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>3. 生産性（1人当たり）</h3>
+<div class="kpi">
+  <div><div class="k">1人当たり売上高（正規600人）</div><div class="v">237.3百万円</div><div class="n">前期192.5百万円（+23.3%）</div></div>
+  <div><div class="k">1人当たり営業利益（正規600人）</div><div class="v">24.0百万円</div><div class="n">前期16.3百万円（+47.7%）</div></div>
+  <div><div class="k">1人当たり売上（正規＋臨時1,257人）</div><div class="v">113.3百万円</div><div class="n">臨時を含めた実勢</div></div>
+  <div><div class="k">従業員数の5年変化</div><div class="v">558→600人</div><div class="n">+7.5%（同期間の売上は+73.1%）</div></div>
+</div>
+<div class="card">
+<p><strong>読み取り</strong>：5年で売上が1.73倍になる間、従業員は7.5%しか増えていない<span class="tag f">[事実]</span>。人員をほぼ増やさずに売上を伸ばした＝<strong>労働集約というより物件・単価で稼ぐ仕組み型</strong>に近い<span class="tag i">[解釈]</span>。ただしこれは「1戸あたり単価の上昇」と「中古の大口取引」が効いた結果でもあり、営業人員1人あたりの成約力が構造的に上がったのか、市況で単価が上がっただけなのかは有報からは分離できない<span class="tag q">[要確認]</span>。人的資本の章では「DX推進を経営の最重要課題の一つと位置づけ、IT専門部署を新設」と述べているが、DX投資の金額的裏付けは有報に開示がない（当期の設備投資総額は277百万円）<span class="tag f">[事実]</span>。</p>
+</div>
+<div class="chartbox"><h4>従業員数と1人当たり売上高の推移</h4><canvas id="c4" height="110"></canvas></div>
+
+<h3>4. 人材戦略と育成（サステナビリティ(4)人的資本と統合）</h3>
+<div class="card">
+<p>会社は人的資本を「重要な経営資源」と位置づけ、次の柱を挙げている<span class="tag f">[事実]</span>。</p>
+<ul>
+<li><strong>人材育成</strong>：資格取得支援制度と各種研修制度の充実、自律的なキャリア形成の後押しにより組織全体の専門性・生産性向上を目指す。</li>
+<li><strong>事業戦略連動の人材確保</strong>：DX推進を経営の最重要課題の一つと位置づけ、IT専門部署を新設し、DX推進を牽引する専門人材の確保を最優先。</li>
+<li><strong>女性活躍</strong>：課長代理・係長を「管理職候補者」と定義し、その層の女性の育成・登用を推進。</li>
+<li><strong>働き方</strong>：社宅制度等の福利厚生、年間休日数の拡充、<strong>定年年齢の60歳→65歳への引上げ</strong>を実施済み。</li>
+</ul>
+<h4>資格取得支援・教育研修の内容（有報記載）</h4>
+<table>
+<tr><th class="l">項目</th><th class="l">内容</th></tr>
+<tr><td class="l">スキルアップ支援</td><td class="l">「宅地建物取引士」「管理業務主任者」等の関連資格を対象に、模試試験の実施や学習テキストの割引販売</td></tr>
+<tr><td class="l">自己啓発支援</td><td class="l">ビジネススキル・デザイン・コミュニケーション等の講座をオンライン受講できる学習サービスの導入</td></tr>
+<tr><td class="l">コンプライアンス研修</td><td class="l">法令遵守・ハラスメント防止等を全役職員対象にeラーニングで定期実施</td></tr>
+<tr><td class="l">営業研修</td><td class="l">ロールプレイングや外部講師による講義を定期的に提供</td></tr>
+<tr><td class="l">情報セキュリティ研修</td><td class="l">ISO/IEC27001認証に基づくeラーニングを職層別に複数回実施、毎月理解確認テスト</td></tr>
+</table>
+<p class="note">研修の「一例」として具体名を挙げている点は定型文より踏み込んだ記述<span class="tag i">[解釈]</span>。ただし研修投資額・受講時間・資格取得者数といった投入量／成果の数値開示はない<span class="tag f">[事実]</span>。</p>
+</div>
+
+<h3>5. 人的資本指標（数値の提示）</h3>
+<h4>目標を設定している指標（連結）</h4>
+<table>
+<tr><th class="l">項目</th><th>2024/3期</th><th>2025/3期</th><th>2026/3期</th><th>目標</th></tr>
+<tr><td class="l">管理職候補者に占める女性労働者の割合</td><td>22.5%</td><td>22.2%</td><td>24.0%</td><td>30.0%</td></tr>
+<tr><td class="l">産休・育休取得後の復職率</td><td>100%</td><td>89.5%</td><td>100%</td><td>100%</td></tr>
+</table>
+<h4>法定開示指標（連結子会社・当事業年度）</h4>
+<table>
+<tr><th class="l">会社</th><th>管理職に占める<br>女性労働者の割合</th><th>男性労働者の<br>育児休業取得率</th><th>男女賃金差異<br>（全労働者）</th><th>正規<br>雇用</th><th>パート・<br>有期</th></tr>
+<tr><td class="l">㈱ＦＪネクスト</td><td>5.5%</td><td>50.0%</td><td>48.3%</td><td>50.7%</td><td>18.7%</td></tr>
+<tr><td class="l">㈱エフ・ジェー・コミュニティ</td><td>7.1%</td><td>対象者なし</td><td>87.0%</td><td>71.8%</td><td>80.5%</td></tr>
+<tr><td class="l">ＦＪリゾートマネジメント㈱</td><td>0.0%</td><td>対象者なし</td><td>―</td><td>―</td><td>―</td></tr>
+</table>
+<p class="note">提出会社は公表義務の対象外のため記載省略。会社は男女賃金差異の主因を「男性労働者の占める割合の高い営業職において、マンション販売実績に応じたインセンティブ制度を導入しているため。なお賃金基準は性別に関わらず同一」と説明している<span class="tag f">[事実]</span>。数値の提示にとどめ、優劣の評価は行わない。なお役員6名は全員男性（女性比率0%）<span class="tag f">[事実]</span>。</p>
+</section>
+
+<!-- ===================== IV ===================== -->
+<section id="s4">
+<h2 class="chap">Ⅳ. 経営者の世界観</h2>
+<p class="note">出所：第2【事業の状況】1 経営方針、経営環境及び対処すべき課題等 <span class="src">[③]</span></p>
+
+<h3>1. 経営方針と唯一の数値目標</h3>
+<div class="quote"><span class="qlabel">有報原文（経営方針）</span>「都市住空間への挑戦と創造を通して、豊かな社会づくりに貢献していく。」を企業理念として（中略）事業を通して社会の発展に貢献し利益を上げることで持続的な成長と企業価値の向上を図ることを基本的な方針としております。</div>
+<div class="quote"><span class="qlabel">有報原文（客観的な指標）</span>当社は、長期・安定的に成長していくことを基本方針に、<strong>売上高経常利益率</strong>を重視しております。開発プロジェクトの推進にあたっては、不動産業界を取り巻く環境の変化に的確に対応しながら、<strong>安易な拡大路線をとることなく採算性を重視する方針</strong>をとり、<strong>売上高経常利益率10％前後</strong>の安定的な達成を目指しております。</div>
+<div class="card">
+<ul>
+<li>有報上で公表されている経営目標は<strong>売上高経常利益率10%前後、この1指標のみ</strong><span class="tag f">[事実]</span>。売上規模・ROE・ROIC・配当性向などの数値目標は有報に記載がない<span class="tag f">[事実]</span>。</li>
+<li>当期実績は経常利益率10.1%（前期8.4%）で、経営者自身がMD&amp;Aで「目標として設定している売上高経常利益率10％を上回りました」と達成を明言している<span class="tag f">[事実]</span>。<strong>目標を掲げ、達成／未達を自分の言葉で判定している</strong>点は、指標が形式的でないことの傍証<span class="tag i">[解釈]</span>。</li>
+<li>過去5期の経常利益率を逆算すると11.0%／9.7%／9.4%／8.4%／10.1%（当方算出・推計値）。<strong>4期は目標未達だった</strong>ことになるが、有報は過去の未達期について明示的な言及をしていない<span class="tag i">[解釈]</span>。</li>
+<li>「中期経営計画」という語は、内部統制システム（子会社の中計を取締役会で承認）、監査等委員会の検討内容（中期・短期事業計画の遂行状況）、旅館の減損見積り（中計を基礎に将来CFを算出）の3か所に登場する<span class="tag f">[事実]</span>。<strong>中期経営計画は社内に存在するが、その数値目標は有報で開示されていない</strong><span class="tag i">[解釈]</span>。進捗・未達認識を読み取ることはできない<span class="tag q">[要確認]</span>。</li>
+</ul>
+</div>
+
+<h3>2. 経営環境の認識 ― 具体性の検証</h3>
+<div class="card">
+<p><strong>固有名詞・数値を伴う記述（＝定型文でない部分）</strong><span class="tag f">[事実]</span></p>
+<ul>
+<li>2025年度の首都圏マンション新規供給戸数は前年比2.6%減の<strong>21,659戸</strong>で、<strong>1973年度以降の最少を更新</strong>（株式会社不動産経済研究所調べ、と出典を明記）。</li>
+<li>平均初月契約率<strong>62.9%</strong>、好調の目安70%を<strong>3年連続</strong>下回る。</li>
+<li>用地費・施工費の高騰により「収益性の見極めが一層重要になる」。</li>
+</ul>
+<p><strong>定型的・一般論にとどまる記述</strong><span class="tag i">[解釈]</span></p>
+<ul>
+<li>「景気は緩やかな回復基調」「中東情勢の悪化などの地政学リスク」「先行きは不透明」といった、どの企業にも当てはまる表現。</li>
+<li>「単身者や少人数世帯を中心とした都心への人口移動の継続」「資産運用に対する社会的関心の高まり」は方向性の指摘のみで、自社の受注や契約単価と結びつけた数値は示されていない。</li>
+</ul>
+<div class="alert"><strong>市場認識と自社実績の非対称</strong>：会社は市場の逆風（供給最少・契約率3年連続70%割れ）を数値で提示しながら、自社の主力ブランド「ガーラ」の当期<strong>契約</strong>が前年比78.6%（戸数）・93.9%（金額）と減少した事実については、【経営環境】でも【MD&amp;A】でも要因を説明していない<span class="tag f">[事実]</span>。外部環境の説明は具体的だが、自社の先行指標の悪化には触れないという開示の非対称がある<span class="tag i">[解釈]</span>。</div>
+</div>
+
+<h3>3. 課題→打ち手の接続を一対一で検証</h3>
+<table>
+<tr><th class="l" style="width:26%">挙げられた課題</th><th class="l">記載されている打ち手</th><th style="width:13%">具体性</th></tr>
+<tr><td class="l">① 自社開発物件の安定的な供給の実現</td><td class="l">仕入・開発力の一層の強化。採算性重視を基本方針として両ブランドの開発用地の継続的・安定的な確保</td><td>方向性のみ<br>（数値目標なし）</td></tr>
+<tr><td class="l">② お客様の立場やニーズを尊重した販売・サービス体制の構築</td><td class="l">人的資本やDXへの投資を推進し、業務効率化とサービス品質の向上</td><td>方向性のみ</td></tr>
+<tr><td class="l">③ 財務基盤の維持・充実</td><td class="l">（打ち手の記述なし。「維持・充実を図る」と目的の再掲のみ）</td><td><span style="color:var(--red)">打ち手空白</span></td></tr>
+<tr><td class="l">④ コンプライアンスを遵守した経営の推進</td><td class="l">コーポレートガバナンスの強化、内部統制システムの整備・充実</td><td>方向性のみ</td></tr>
+<tr><td class="l">⑤ 人材育成の強化・推進</td><td class="l">採用・教育制度の整備、充実（→サステナビリティ(4)人的資本に具体策あり）</td><td>他章に具体策</td></tr>
+<tr><td class="l">⑥ リスクマネジメント体制の強化・推進</td><td class="l">事業継続体制の強化・推進（有事の出社抑制・営業停止の影響最小化）</td><td>方向性のみ</td></tr>
+</table>
+<div class="card">
+<ul>
+<li>6課題のうち、<strong>金額・期限・数値目標を伴う打ち手はゼロ</strong><span class="tag f">[事実]</span>。③財務基盤は課題名と打ち手が同語反復になっており、実質的に打ち手が空白<span class="tag i">[解釈]</span>。</li>
+<li>唯一、⑤人材育成はサステナビリティの章に研修メニュー・女性管理職候補比率の目標（30.0%）という検証可能な記述がある<span class="tag f">[事実]</span>。</li>
+<li>セグメント別経営戦略（4事業）も同様に定性的で、<strong>売上の58%を占める中古マンションに対する記述は「売却査定・買取りの体制を強化し、中古マンションの取引拡大を図ってまいります」の1文</strong><span class="tag f">[事実]</span>。事業の重心と記述量が対応していない<span class="tag i">[解釈]</span>。</li>
+<li>他方、「安易な拡大路線をとることなく採算性を重視する」という方針は、実際の行動（当期の設備投資277百万円、大型M&amp;Aなし、自己資本比率71.2%維持、有利子負債13%）と整合している<span class="tag i">[解釈]</span>。<strong>言っていることと財務行動は一致している</strong>タイプ<span class="tag i">[解釈]</span>。</li>
+</ul>
+</div>
+</section>
+
+<!-- ===================== V ===================== -->
+<section id="s5">
+<h2 class="chap">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+<p class="note">出所：第2【事業の状況】2 サステナビリティに関する考え方及び取組 <span class="src">[③]</span>。人的資本はⅢ章に統合済み。</p>
+
+<h3>1. ガバナンスとリスク管理の体制</h3>
+<div class="card">
+<ul>
+<li>気候関連を含む環境リスク・機会の分析・評価・対応は<strong>リスク・コンプライアンス委員会</strong>（委員長＝管理本部長、当社および子会社から選定された委員で構成）が担う<span class="tag f">[事実]</span>。</li>
+<li>同委員会は原則月1回開催。検討結果は委員長が必要に応じ経営会議・取締役会へ報告し、<strong>少なくとも年1回は気候変動シナリオ分析における定量数値を取締役会へ報告</strong><span class="tag f">[事実]</span>。</li>
+<li>別に「情報セキュリティ委員会」を常置し、ISO/IEC27001認証を取得済み<span class="tag f">[事実]</span>。</li>
+</ul>
+<p>サステナビリティ専任の委員会を置かず、既存のリスク委員会に統合している。専任組織がないことは体制の軽さを示すが、月1回開催・年1回の取締役会定量報告という頻度が明記されている点は、名目だけの体制よりは検証可能<span class="tag i">[解釈]</span>。</p>
+</div>
+
+<h3>2. 戦略接続 ― 本文と結びついているか</h3>
+<div class="card">
+<ul>
+<li>気候変動については、IEA・IPCCの1.5℃／4℃シナリオを参照し、2030年までの影響を考察。<strong>主力の不動産開発事業についてシナリオ分析を実施し、1.5℃シナリオの移行リスクは定量分析して連結財務数値への影響を試算した</strong>と記載<span class="tag f">[事実]</span>。</li>
+<li>ただし、<strong>試算した財務影響額そのものは有報本文に数値として記載されていない</strong>（PDF上は図表として掲載されており、テキストとしての金額は追えない）<span class="tag q">[要確認]</span>。</li>
+<li>指標はGHG総排出量（Scope1・2）を設定し、2025年度実績を掲載<span class="tag f">[事実]</span>。算定対象は「単体含め全グループ会社」<span class="tag f">[事実]</span>。</li>
+<li><strong>削減目標は未設定</strong>。原文は「削減目標においては、温室効果ガス排出量の削減に向けた取り組みを推進し、検討を進めております」と、検討中であることを認めている<span class="tag f">[事実]</span>。</li>
+<li>Scope3の開示、TCFD開示の有報内での詳細、人権・サプライチェーンに関する記述は有報には見当たらない<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>3. 検証可能性の評価</h3>
+<table>
+<tr><th class="l">項目</th><th class="l">目標</th><th class="l">期限</th><th class="l">実績開示</th><th class="l">検証可能性</th></tr>
+<tr><td class="l">GHG排出量（Scope1・2）</td><td class="l">未設定（検討中）</td><td class="l">―</td><td class="l">2025年度実績あり</td><td class="l">実績のみ・進捗判定不可</td></tr>
+<tr><td class="l">気候シナリオ分析</td><td class="l">―</td><td class="l">2030年まで考察</td><td class="l">定量試算実施と記載</td><td class="l">数値が本文にないため追跡不可</td></tr>
+<tr class="hl"><td class="l">女性管理職候補比率（人的資本）</td><td class="l">30.0%</td><td class="l">記載なし</td><td class="l">3期分（22.5→22.2→24.0%）</td><td class="l">追跡可能</td></tr>
+<tr><td class="l">産休・育休後の復職率（人的資本）</td><td class="l">100%</td><td class="l">―</td><td class="l">3期分</td><td class="l">追跡可能</td></tr>
+</table>
+<div class="card">
+<p><strong>まとめ</strong>：検証可能な目標－実績のセットが揃っているのは人的資本の2指標のみで、環境側は実績値の提示にとどまる<span class="tag i">[解釈]</span>。もっとも、当社は不動産開発（施工は外注）であり炭素集約的な装置産業ではないため、GHG目標の欠如が直ちに投資論点になるとは考えにくい<span class="tag i">[解釈]</span>。むしろ実務上の環境論点は、リスク⑤に記載された<strong>用地取得時の土壌汚染</strong>（事前調査と必要に応じた対策工事、契約後に発見された場合は追加費用・工期変更）であり、こちらは事業の収益性に直結する<span class="tag i">[解釈]</span>。</p>
+</div>
+</section>
+
+<!-- ===================== VI ===================== -->
+<section id="s6">
+<h2 class="chap">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+<p class="note">出所：第2【事業の状況】3 事業等のリスク（全10項目）／5 重要な契約等 <span class="src">[③]</span>。当期単年で評価し、前年比の増減は見ない。リスクの重要度・発生可能性のランク付けや、想定される財務影響額の開示はない<span class="tag f">[事実]</span>。</p>
+
+<h3>1. 固有リスクと定型リスクの仕分け</h3>
+<table>
+<tr><th class="l" style="width:30%">リスク項目</th><th style="width:12%">分類</th><th class="l">当社固有の内容として書かれていること</th></tr>
+<tr class="hl"><td class="l">① 法的規制等</td><td>固有</td><td class="l">グループ5社の免許・許認可を<strong>番号・有効期間付きの一覧表</strong>で開示。加えて東京特別区のワンルームマンション規制条例（25㎡以上への最低住戸面積引上げ、一定面積以上の住戸設置義務、狭小住戸集合住宅税）に言及</td></tr>
+<tr class="hl"><td class="l">② 資産運用型マンション販売事業</td><td>固有</td><td class="l">顧客の投資リスク（入居率悪化・家賃下落・金利上昇）が自社の事業リスクに転移する構造。営業職員の説明不足を起因とする顧客訴訟の可能性を明記</td></tr>
+<tr><td class="l">③ 国内外の経済状況等</td><td>準定型</td><td class="l">ただし「土地取得から建物完成・販売まで通常<strong>1年半〜3年</strong>を要する」という自社のリードタイムを数値で提示している点は固有</td></tr>
+<tr class="hl"><td class="l">④ 有利子負債への依存</td><td>固有</td><td class="l">連結総資産に対する有利子負債比率<strong>13.0%</strong>を明示。特定金融機関に依存せず案件ごとに融資了解を得てからプロジェクトを進行させる運用</td></tr>
+<tr class="hl"><td class="l">⑤ 事業用地の仕入れ</td><td>固有</td><td class="l">土壌汚染の事前調査実施と、調査で認識できない汚染が契約後に発見された場合の追加費用・スケジュール変更</td></tr>
+<tr class="hl"><td class="l">⑥ 建築工事の外注</td><td>固有</td><td class="l">施工は外部建設会社に発注。グループのレジテックコーポレーションが躯体検査を実施。発注先の経営不安・品質問題が開発計画に影響</td></tr>
+<tr><td class="l">⑦ 訴訟などの可能性</td><td>準定型</td><td class="l">建設中の騒音・日照・眺望問題、分譲後の契約不適合。周辺住民への事前説明会の実施に言及</td></tr>
+<tr><td class="l">⑧ 個人情報の管理</td><td>定型</td><td class="l">アクセス権限設定・暗号化・外部侵入防止システム</td></tr>
+<tr class="hl"><td class="l">⑨ 引渡し時期による業績変動</td><td>固有</td><td class="l">引渡基準のため四半期業績が竣工タイミングで変動し、「ある四半期の業績は必ずしも他の四半期や年次の業績を示唆しない」と明記</td></tr>
+<tr><td class="l">⑩ 自然災害、テロ、感染症等</td><td>定型</td><td class="l">安否確認システム、防災訓練</td></tr>
+</table>
+<p class="note">固有6項目／準定型2項目／定型2項目（当方の仕分け・推計値／保証なし）。定型2項目は他社と差し替えても成立する一般的記述<span class="tag i">[解釈]</span>。</p>
+
+<h3>2. 固有リスクの深掘り</h3>
+<div class="card">
+<h4>② 資産運用型マンション販売 ― 「顧客のリスク」が「自社のリスク」になる構造</h4>
+<p>他のデベロッパーと決定的に違うのは、<strong>買い手が実需ではなく投資家</strong>である点<span class="tag i">[解釈]</span>。有報は、入居率悪化・家賃下落・金利上昇という顧客側の運用リスクが顕在化した場合、「顧客の資産運用と密接な関係がある当社グループの事業にも影響を及ぼす」と、リスクの転移経路を自ら書いている<span class="tag f">[事実]</span>。さらに「一部営業職員の説明不足等が原因で投資リスクに対する理解が不十分なままマンションが購入されたこと等により、顧客からの訴訟等が発生した場合」という、営業手法に起因する評判リスクにも踏み込んでいる<span class="tag f">[事実]</span>。【経営戦略】で「アウトバウンド式マーケティングを中心として」と自認している販売手法と合わせて読むと、この記述は業界の一般論ではなく自社の営業モデルの弱点を指している<span class="tag i">[解釈]</span>。</p>
+</div>
+<div class="card">
+<h4>④ 有利子負債 ― 数値で開示された唯一のリスク</h4>
+<p>有利子負債147.5億円（1年内返済33.5億円＋長期114.0億円）、総資産の13.0%、平均利率1.131〜1.190%、返済期限2027年4月〜2030年3月<span class="tag f">[事実]</span>。インタレスト・カバレッジ・レシオは48.4倍（前期は営業CFマイナスのため記載なし）<span class="tag f">[事実]</span>。当期の支払利息は146百万円で前期78百万円から倍増している<span class="tag f">[事実]</span>。金利上昇局面では、借入残高が横ばいでも利息負担が増える段階に入っている<span class="tag i">[解釈]</span>。</p>
+</div>
+<div class="card">
+<h4>⑨ 引渡し時期 ― 四半期業績の非連続性を会社自身が警告</h4>
+<p>「ある四半期の業績は必ずしも他の四半期の業績や年次の業績を示唆するものではない」と明記<span class="tag f">[事実]</span>。四半期の数字だけで通期を推し量ることを、会社が明示的に否定している珍しい記述<span class="tag i">[解釈]</span>。</p>
+</div>
+
+<h3>3. 財務・他章との照合 ― 開示されていないリスク</h3>
+<div class="alert">
+<strong>照合① 中古マンション事業のリスクが立てられていない</strong><br>
+中古マンション売買は当期売上の58.4%（831.7億円・2,885戸）を占める最大の収益源<span class="tag f">[事実]</span>。しかしリスク10項目のいずれも、中古の<strong>買取価格の見誤り・在庫回転の悪化・査定リスク</strong>を独立項目として扱っていない<span class="tag f">[事実]</span>。②は自社分譲物件の顧客保護の話、③は経済一般の話であり、買取再販というビジネスに固有のリスクとは異なる<span class="tag i">[解釈]</span>。事業構成の変化にリスク開示が追随していない<span class="tag i">[解釈]</span>。
+</div>
+<div class="alert">
+<strong>照合② 旅館事業に減損の兆候があるのに、リスクの章に旅館事業の記載がない</strong><br>
+注記（重要な会計上の見積り）は「減損の兆候があった一部旅館については、割引前将来キャッシュ・フローが帳簿価額を上回っていることから、減損損失を認識しておりません」と記載<span class="tag f">[事実]</span>。旅館事業は当期セグメント損失2百万円で赤字転落<span class="tag f">[事実]</span>。にもかかわらずリスク10項目に旅館事業・観光市況への言及はない<span class="tag f">[事実]</span>。金額規模（有形固定資産のうち旅館関連 伊東遊季亭434＋清流荘547＋玉峰館250＝約12.3億円）は小さいが、兆候が出ている資産のリスクが未記載であることは開示の穴<span class="tag i">[解釈]</span>。
+</div>
+<div class="alert">
+<strong>照合③ 棚卸資産の積み上がりに対する言及がない</strong><br>
+販売用不動産254.3億円＋仕掛販売用不動産392.8億円＝647.4億円で、<strong>総資産の56.9%</strong><span class="tag f">[事実]</span>。販売用不動産は前期164.1億円から+90.2億円と55%増<span class="tag f">[事実]</span>。KAMも「販売用不動産25,431百万円は総資産の22.3%を占める」としてこれを主要な検討事項に選んでいる<span class="tag f">[事実]</span>。しかし【事業等のリスク】には棚卸資産の評価損リスクが独立項目としてはなく、③の中で「保有する棚卸資産の時価評価額が下落し評価損が発生する」と1行触れられるにとどまる<span class="tag i">[解釈]</span>。監査人が最重要視した論点と、会社のリスク開示の重み付けにギャップがある<span class="tag i">[解釈]</span>。
+</div>
+
+<h3>4. 経営上の重要な契約等</h3>
+<div class="card">
+<div class="quote"><span class="qlabel">有報原文（第2-5 重要な契約等）</span>該当事項はありません。</div>
+<p>重要な契約は存在しない<span class="tag f">[事実]</span>。特定の提携先・フランチャイズ・独占販売契約等への依存や、契約更新が業績の前提になっている構造はない<span class="tag i">[解釈]</span>。ただし販売面では、政策保有株式の保有目的として「当社グループの顧客が利用する住宅ローンの提携先」（㈱ジャックス）と記載されており、<strong>顧客の購入資金調達に関する提携関係は存在する</strong>が、契約としての重要性は認識されていない<span class="tag f">[事実]</span>。投資家向けマンション販売において提携ローンの供給が細れば販売に影響し得るため、契約の非重要性の判断根拠は有報からは追えない<span class="tag q">[要確認]</span>。</p>
+</div>
+</section>
+
+<!-- ===================== VII ===================== -->
+<section id="s7">
+<h2 class="chap">Ⅶ. 経営成績の分析（MD&amp;A）</h2>
+<p class="note">出所：第2【事業の状況】4 経営者による財政状態、経営成績及びキャッシュ・フローの状況の分析 <span class="src">[③]</span></p>
+
+<h3>1. 業績事実と要因</h3>
+<table>
+<tr><th class="l">項目（百万円）</th><th>第45期</th><th>第46期</th><th>増減額</th><th>増減率</th><th class="l">会社が挙げる要因</th></tr>
+<tr><td class="l">売上高</td><td>112,429</td><td>142,374</td><td>+29,944</td><td>+26.6%</td><td class="l">不動産開発事業が+27,824（+27.9%）</td></tr>
+<tr><td class="l">売上原価</td><td>91,785</td><td>115,507</td><td>+23,722</td><td>+25.8%</td><td class="l">売上増による</td></tr>
+<tr><td class="l">売上総利益</td><td>20,644</td><td>26,866</td><td>+6,222</td><td>+30.1%</td><td class="l">粗利率 18.4%→18.9%（+0.5pt）</td></tr>
+<tr><td class="l">販管費</td><td>11,155</td><td>12,464</td><td>+1,309</td><td>+11.7%</td><td class="l">広告宣伝費+402、給料手当及び賞与+293 等</td></tr>
+<tr class="hl"><td class="l">営業利益</td><td>9,488</td><td>14,402</td><td>+4,913</td><td>+51.8%</td><td class="l">営業利益率 8.4%→10.1%（+1.7pt）</td></tr>
+<tr><td class="l">経常利益</td><td>9,459</td><td>14,356</td><td>+4,897</td><td>+51.8%</td><td class="l">営業外は収益109／費用155（支払利息146）</td></tr>
+<tr><td class="l">当期純利益</td><td>6,483</td><td>10,010</td><td>+3,527</td><td>+54.4%</td><td class="l">法人税等4,345（実効税率30.3%）</td></tr>
+</table>
+
+<div class="card">
+<h4>増益のメカニズム（当方の分解）</h4>
+<ul>
+<li>営業増益+49.1億円を要因分解すると、①売上増による粗利増（前期粗利率18.4%で一定と置いた場合）+55.0億円、②粗利率改善（18.4%→18.9%）+7.2億円、③販管費増 △13.1億円（当方算出・推計値・保証なし）<span class="tag i">[解釈]</span>。売上が+26.6%伸びるなかで販管費の伸びが+11.7%にとどまったこと、すなわち<strong>オペレーティング・レバレッジ</strong>が増益の主因であり、粗利率改善の寄与（7.2億円）はその6分の1程度<span class="tag i">[解釈]</span>。</li>
+<li>販管費のうち広告宣伝費は1,751→2,153（+22.9%）と売上並みに増えている一方、給料手当及び賞与は4,004→4,297（+7.3%）にとどまる<span class="tag f">[事実]</span>。人員をほぼ増やさず、販売実績連動のインセンティブを含めても人件費の伸びが緩やかだったことが利益率改善に効いた<span class="tag i">[解釈]</span>。</li>
+<li>経営者自身の説明は「賃料が上昇傾向のなか、保有マンションの賃貸収入の好転やマンション販売価格の高まり」であり、<strong>市況要因</strong>を前面に置いている<span class="tag f">[事実]</span>。</li>
+<li>商品別の単価は、新築ガーラ31.0百万円／戸、レジデンス50.4百万円／戸、中古28.8百万円／戸（前期27.3百万円／戸、+5.5%）（当方算出・推計値）<span class="tag i">[解釈]</span>。中古の単価上昇も利益率に寄与した可能性がある<span class="tag i">[解釈]</span>。</li>
+</ul>
+</div>
+
+<h3>2. 先行指標 ― 契約実績と販売実績の逆転</h3>
+<div class="chartbox"><h4>不動産開発事業：契約実績（先行）と販売実績（当期計上）の比較</h4><canvas id="c5" height="120"></canvas></div>
+<table>
+<tr><th class="l">区分</th><th>前期 契約<br>戸数／金額</th><th>当期 契約<br>戸数／金額</th><th>当期契約<br>前年比（金額）</th></tr>
+<tr class="hl"><td class="l">ガーラマンションシリーズ</td><td>724／20,508</td><td>569／19,258</td><td style="color:var(--red)">93.9%</td></tr>
+<tr><td class="l">ガーラ・レジデンスシリーズ</td><td>235／11,897</td><td>304／15,376</td><td>129.2%</td></tr>
+<tr><td class="l">中古マンション</td><td>2,486／68,651</td><td>3,008／87,343</td><td>127.2%</td></tr>
+<tr><td class="l">その他（不動産）</td><td>―／24</td><td>―／40</td><td>167.5%</td></tr>
+<tr><td class="l">契約 合計</td><td>3,445／101,081</td><td>3,881／122,019</td><td>120.7%</td></tr>
+<tr><td class="l">（参考）販売 合計</td><td>3,249／99,901</td><td>3,878／127,725</td><td>127.9%</td></tr>
+</table>
+<div class="alert">
+前期は契約1,010.8億円が販売999.0億円を<strong>上回って</strong>いたが、当期は契約1,220.2億円が販売1,277.3億円を<strong>下回った</strong><span class="tag f">[事実]</span>。契約は将来の売上計上の源泉であるため、この逆転は翌期の売上成長率が当期を下回る方向に働く<span class="tag i">[解釈]</span>。特に主力の「ガーラマンションシリーズ」は契約戸数が724→569戸（78.6%）と2割超減っている<span class="tag f">[事実]</span>。有報はこの点に言及していない<span class="tag f">[事実]</span>。
+</div>
+
+<h3>3. 経営者が使う指標 ― 関心の所在</h3>
+<div class="card">
+<table>
+<tr><th class="l">経営者が言及する指標</th><th class="l">出現箇所</th><th class="l">読み取れる関心</th></tr>
+<tr><td class="l">売上高経常利益率（10%前後）</td><td class="l">経営方針・MD&amp;A</td><td class="l">規模より採算。唯一の公表目標</td></tr>
+<tr><td class="l">戸数と金額（商品別）</td><td class="l">MD&amp;A・契約実績・販売実績</td><td class="l">物件単位の積み上げで事業を管理</td></tr>
+<tr><td class="l">賃貸管理戸数・建物管理棟数</td><td class="l">MD&amp;A（管理事業）</td><td class="l">ストックの積み上げ</td></tr>
+<tr><td class="l">自己資本比率・時価ベース自己資本比率</td><td class="l">CF関連指標の推移</td><td class="l">財務健全性</td></tr>
+<tr><td class="l">CF対有利子負債比率・インタレストカバレッジ</td><td class="l">CF関連指標の推移</td><td class="l">借入返済能力</td></tr>
+</table>
+<p>ROE・ROIC・EPS成長率・株主資本コストへの言及は有報の記述情報中に見当たらない<span class="tag f">[事実]</span>。関心は<strong>採算率・戸数・財務健全性</strong>に置かれており、資本効率を軸にした経営管理の記述はない<span class="tag i">[解釈]</span>。</p>
+</div>
+
+<h3>4. キャッシュ・フローと資金の質</h3>
+<table>
+<tr><th class="l">項目（百万円）</th><th>第45期</th><th>第46期</th><th class="l">内訳・要因</th></tr>
+<tr><td class="l">営業CF</td><td>△13,880</td><td>7,103</td><td class="l">税前利益14,356、棚卸資産増△7,103、仕入債務増+1,681、法人税支払△3,055</td></tr>
+<tr><td class="l">投資CF</td><td>4,906</td><td>△3,452</td><td class="l">定期預金の増加△3,000、有形固定資産取得△277、投資有価証券取得△168</td></tr>
+<tr><td class="l">財務CF</td><td>3,841</td><td>△5,378</td><td class="l">長期借入+4,020、返済△7,500、配当△1,898</td></tr>
+<tr><td class="l">現金及び現金同等物 期末</td><td>24,418</td><td>22,690</td><td class="l">△1,727</td></tr>
+</table>
+<div class="card">
+<ul>
+<li>営業CFの内訳を見ると、税前利益143.6億円に対し<strong>棚卸資産の増加が71.0億円</strong>と、稼いだ利益のほぼ半分が在庫（次の物件）に再投資されている<span class="tag f">[事実]</span>。用地仕入型ビジネスでは、成長期に営業CFが利益を下回るのは構造的<span class="tag i">[解釈]</span>。</li>
+<li>投資CFのマイナス34.5億円の主因は<strong>定期預金の30億円増加</strong>であり、事業への投資ではない<span class="tag f">[事実]</span>。実質的な設備投資は2.8億円<span class="tag f">[事実]</span>。</li>
+<li>財務CFは借入40.2億円に対し返済75.0億円で<strong>有利子負債を34.8億円圧縮</strong>（182.3億円→147.5億円）<span class="tag f">[事実]</span>。増益局面で借入を減らし、配当を18.98億円支払っている<span class="tag f">[事実]</span>。</li>
+<li>資金の使途に関する会社の説明は「資金需要の主なものは不動産開発事業における用地取得費用であり、その調達手段は主として金融機関からの借入金」「用地取得費用以外の運転資金は自己資金で対応することを原則とし、金融費用を低減するよう努めている」<span class="tag f">[事実]</span>。使途と調達手段の対応が明示されており、定型文ではない<span class="tag i">[解釈]</span>。ただし調達余力（コミットメントライン、当座貸越枠）の開示はない<span class="tag q">[要確認]</span>。</li>
+</ul>
+<table>
+<tr><th class="l">CF関連指標</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th></tr>
+<tr><td class="l">自己資本比率（%）</td><td>71.3</td><td>70.9</td><td>71.4</td><td>69.1</td><td>71.2</td></tr>
+<tr><td class="l">時価ベース自己資本比率（%）</td><td>39.1</td><td>36.3</td><td>48.4</td><td>37.1</td><td>45.1</td></tr>
+<tr><td class="l">CF対有利子負債比率（%）</td><td>57.0</td><td>―</td><td>273.0</td><td>―</td><td>207.6</td></tr>
+<tr><td class="l">インタレスト・カバレッジ（倍）</td><td>267.4</td><td>―</td><td>101.8</td><td>―</td><td>48.4</td></tr>
+</table>
+<p class="note">「―」は営業CFがマイナスのため算出不能。5期のうち2期で営業CFがマイナスという事実が、この表からも読み取れる<span class="tag f">[事実]</span>。時価ベース自己資本比率が簿価ベースを大きく下回る（45.1% vs 71.2%）＝<strong>株式時価総額が総資産を下回っている</strong>状態が5期を通じて続いている<span class="tag i">[解釈]</span>。</p>
+</div>
+</section>
+
+<!-- ===================== VIII ===================== -->
+<section id="s8">
+<h2 class="chap">Ⅷ. 将来への投資（設備／研究開発）</h2>
+
+<h3>Ⅷ-a 設備の状況</h3>
+<p class="note">出所：第3【設備の状況】1〜3 <span class="src">[③]</span></p>
+<div class="kpi">
+  <div><div class="k">当期設備投資総額</div><div class="v">277百万円</div><div class="n">連結</div></div>
+  <div><div class="k">減価償却費</div><div class="v">373百万円</div><div class="n">投資／償却＝0.74倍</div></div>
+  <div><div class="k">販売用不動産からの振替</div><div class="v">2,008百万円</div><div class="n">建物1,274＋土地734</div></div>
+  <div><div class="k">重要な設備の新設・改修計画</div><div class="v">なし</div><div class="n">いずれも「該当事項はありません」</div></div>
+</div>
+<div class="card">
+<h4>拡張か維持か</h4>
+<p>純粋な設備投資（277百万円）は減価償却費（373百万円）の範囲内で、<strong>資産の維持水準にも届いていない</strong><span class="tag i">[解釈]</span>。重要な設備の新設・改修計画もいずれも「該当事項はありません」<span class="tag f">[事実]</span>。Ⅳ章の「安易な拡大路線をとることなく採算性を重視する」という方針、Ⅶ章の設備投資2.8億円という実績と整合する<span class="tag i">[解釈]</span>。</p>
+<p>ただし有形固定資産は前期109.7億円→当期130.1億円へ20.4億円増えている<span class="tag f">[事実]</span>。この増加の主因は設備投資ではなく、<strong>販売用不動産20.08億円（建物12.74億円＋土地7.34億円）の保有目的変更＝賃貸用への振替</strong><span class="tag f">[事実]</span>。すなわち「売る予定だった物件を、売らずに持って賃貸に回した」<span class="tag i">[解釈]</span>。当期の不動産賃貸収入63.5億円（前年比106.3%）と整合し、フロー（分譲）からストック（賃貸）へ一部をシフトさせる動きと読める<span class="tag i">[解釈]</span>。この振替の意図・今後の方針について有報に説明はない<span class="tag q">[要確認]</span>。</p>
+</div>
+<h4>主要な設備の内訳</h4>
+<table>
+<tr><th class="l">事業所（所在地）</th><th class="l">セグメント</th><th class="l">設備の内容</th><th>帳簿価額合計<br>（百万円）</th></tr>
+<tr class="hl"><td class="l">賃貸用不動産（東京都港区他）／提出会社</td><td class="l">不動産開発</td><td class="l">賃貸マンション等</td><td>11,214</td></tr>
+<tr><td class="l">清流荘（静岡県下田市）</td><td class="l">旅館</td><td class="l">宿泊施設等</td><td>547</td></tr>
+<tr><td class="l">伊東遊季亭・川奈別邸（静岡県伊東市）</td><td class="l">旅館</td><td class="l">宿泊施設等</td><td>434</td></tr>
+<tr><td class="l">玉峰館（静岡県賀茂郡）／ＦＪリゾートマネジメント</td><td class="l">旅館</td><td class="l">宿泊施設</td><td>250</td></tr>
+<tr><td class="l">賃貸用不動産（東京都港区他）／㈱ＦＪネクスト</td><td class="l">不動産開発</td><td class="l">賃貸マンション等</td><td>302</td></tr>
+<tr><td class="l">本社（東京都新宿区）</td><td class="l">不動産開発</td><td class="l">事務所</td><td>180</td></tr>
+</table>
+<div class="card">
+<ul>
+<li>固定資産のほとんどが<strong>賃貸用不動産（合計115.2億円）</strong>で、事業用の生産設備ではない<span class="tag f">[事実]</span>。装置産業ではなく、設備投資が競争力を左右する構造ではない<span class="tag i">[解釈]</span>。</li>
+<li>本社は<strong>賃借</strong>（新宿アイランドタワー、年間賃借料479百万円＋子会社分299百万円等）<span class="tag f">[事実]</span>。オフィスを持たない身軽さ<span class="tag i">[解釈]</span>。</li>
+<li>旅館3施設で合計12.3億円。売上13.3億円・セグメント損失2百万円の事業に、この規模の固定資産が張り付いている<span class="tag i">[解釈]</span>。減損の兆候が生じているのもこの資産グループ<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>Ⅷ-b 研究開発活動</h3>
+<div class="card">
+<div class="quote"><span class="qlabel">有報原文（第2-6 研究開発活動）</span>該当事項はありません。</div>
+<p>研究開発費の計上はゼロ<span class="tag f">[事実]</span>。不動産開発業として一般的であり、これ自体は異例ではない<span class="tag i">[解釈]</span>。ただし人的資本の章で「DX推進を経営の最重要課題の一つと位置づけ」「IT専門部署を新設」と述べ、不動産管理事業では「IT投資によるシステム構築費」がセグメント減益要因として挙げられている<span class="tag f">[事実]</span>。<strong>DX・IT投資が費用として実在するのに、その金額規模が有報のどこにも開示されていない</strong><span class="tag i">[解釈]</span>。無形固定資産は30百万円（前期34百万円）と極小で、システムは資産計上せず費用処理されている可能性が高い<span class="tag i">[解釈]</span>。DX投資の規模と回収見込みは有報では判断できない<span class="tag q">[要確認]</span>。</p>
+</div>
+</section>
+
+<!-- ===================== IX ===================== -->
+<section id="s9">
+<h2 class="chap">Ⅸ. 資本政策・株主還元</h2>
+<p class="note">出所：第4【提出会社の状況】1 株式等の状況／2 自己株式の取得等の状況／3 配当政策／4(5) 株式の保有状況 <span class="src">[③]</span></p>
+
+<h3>1. 配当 ― 累進配当を明文化</h3>
+<div class="quote"><span class="qlabel">有報原文（配当政策）</span>株主に対する利益還元を経営上重要施策の一つと認識し、内部留保と資本効率等を総合的に勘案のうえ、経営成績に応じた利益の配分を継続的かつ安定的に行うことを基本方針とし、<strong>中長期的な利益成長に合わせて増配していく累進配当</strong>を実施しております。</div>
+<table>
+<tr><th class="l">期</th><th>1株配当（円）</th><th class="l">内訳</th><th>EPS（円）</th><th>配当性向</th></tr>
+<tr><td class="l">第42期（2022/3）</td><td>48.00</td><td class="l">普通</td><td>193.93</td><td>24.8%</td></tr>
+<tr><td class="l">第43期（2023/3）</td><td>48.00</td><td class="l">普通</td><td>171.97</td><td>27.9%</td></tr>
+<tr><td class="l">第44期（2024/3）</td><td>50.00</td><td class="l">普通48＋特別2</td><td>197.31</td><td>25.3%</td></tr>
+<tr><td class="l">第45期（2025/3）</td><td>54.00</td><td class="l">普通48＋特別4＋記念2</td><td>198.11</td><td>27.3%</td></tr>
+<tr class="hl"><td class="l">第46期（2026/3）</td><td>66.00</td><td class="l">普通56＋特別10</td><td>305.73</td><td>21.6%</td></tr>
+</table>
+<p class="note">配当性向は連結EPSベースで当方算出（推計値・保証なし）。有報記載の配当性向（第46期113.11%）は<strong>単体</strong>EPSベースであり、持株会社移行後の単体利益は実態を表さないため、本表では連結で計算している。期末配当38円は2026年6月26日開催予定の定時株主総会の決議事項<span class="tag f">[事実]</span>。</p>
+<div class="card">
+<ul>
+<li>5期連続で減配なし、うち3期は増配<span class="tag f">[事実]</span>。「累進配当」の文言と実績は一致している<span class="tag i">[解釈]</span>。</li>
+<li>当期は普通配当を48円→56円へ引き上げたうえで特別配当10円を上乗せ<span class="tag f">[事実]</span>。<strong>普通配当のベースを切り上げた</strong>点は、一過性でない増配意思の表明と読める<span class="tag i">[解釈]</span>。</li>
+<li>ただし連結配当性向は21.6%と5期で最も低い<span class="tag f">[事実]</span>。利益の伸び（+54.4%）に配当の伸び（+22.2%）が追いついておらず、<strong>増益分の多くは内部留保に回っている</strong><span class="tag i">[解釈]</span>。</li>
+<li>配当以外の還元：当期の<strong>自己株式取得はゼロ</strong>（株主総会決議・取締役会決議いずれも「該当事項はありません」）<span class="tag f">[事実]</span>。総還元性向＝配当性向21.6%（推計値・保証なし）<span class="tag i">[解釈]</span>。</li>
+<li>自己株式の動きは、譲渡制限付株式報酬として20,800株（処分価額24,939千円）を処分したのみ<span class="tag f">[事実]</span>。期末保有自己株式1,894,315株＝発行済株式の5.47%<span class="tag i">[解釈]</span>。消却は行っていない<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+<div class="card">
+<h4>資本配分の全体像（Ⅳ成長投資・Ⅶ CFと接続）</h4>
+<p>当期に生み出した資金（営業CF 71.0億円）と当期に使った資金を並べると、<strong>①在庫（次の物件）への再投資 71.0億円 → ②有利子負債の圧縮 34.8億円 → ③配当 19.0億円 → ④定期預金 30.0億円 → ⑤設備投資 2.8億円</strong> という順序になる<span class="tag i">[解釈]</span>。株主還元より<strong>在庫積み増しと財務のさらなる保守化</strong>が優先されている<span class="tag i">[解釈]</span>。自己資本81.1億円×比率71.2%という水準は、事業リスク（用地仕入の在庫リスク）に対して過剰と見るか、市況悪化時の耐久力と見るかで評価が割れる<span class="tag i">[解釈]</span>。有報には資本コストや最適資本構成に関する記述がなく、この水準を選んでいる根拠は説明されていない<span class="tag q">[要確認]</span>。</p>
+</div>
+
+<h3>2. 株主構成と支配構造</h3>
+<div class="grid2">
+<div class="chartbox"><h4>所有者別 株式数比率</h4><canvas id="c6" height="200"></canvas></div>
+<div class="chartbox"><h4>大株主上位（発行済（自己株除く）に対する比率）</h4><canvas id="c7" height="200"></canvas></div>
+</div>
+<table>
+<tr><th class="l">大株主</th><th>所有株式数</th><th>比率</th><th class="l">性格</th></tr>
+<tr class="hl"><td class="l">㈱エム・エム・ヨーク</td><td>6,196,140</td><td>18.91%</td><td class="l">会長 肥田幸春氏が取締役を務める資産管理会社と推定<span class="tag i">[解釈]</span></td></tr>
+<tr class="hl"><td class="l">肥田 幸春</td><td>5,049,800</td><td>15.41%</td><td class="l">創業者・代表取締役会長</td></tr>
+<tr class="hl"><td class="l">㈱松濤投資倶楽部</td><td>4,824,000</td><td>14.72%</td><td class="l">会長 肥田幸春氏が取締役を務める資産管理会社と推定<span class="tag i">[解釈]</span></td></tr>
+<tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>2,121,800</td><td>6.47%</td><td class="l">信託（インデックス等）</td></tr>
+<tr><td class="l">BBH FOR FIDELITY LOW-PRICED STOCK FUND</td><td>1,134,849</td><td>3.46%</td><td class="l">海外アクティブファンド</td></tr>
+<tr><td class="l">京田 景子</td><td>540,500</td><td>1.65%</td><td class="l">㈱ＦＪネクストの取締役（前期に関連当事者取引あり）<span class="tag f">[事実]</span></td></tr>
+<tr><td class="l">日本カストディ銀行（信託口）</td><td>482,900</td><td>1.47%</td><td class="l">信託</td></tr>
+<tr><td class="l">GOLDMAN, SACHS &amp; CO. REG</td><td>465,000</td><td>1.41%</td><td class="l">海外</td></tr>
+<tr><td class="l">DFA INTL SMALL CAP VALUE PORTFOLIO</td><td>432,160</td><td>1.31%</td><td class="l">海外パッシブ／スマートベータ</td></tr>
+<tr><td class="l">柳澤 安慶</td><td>400,000</td><td>1.22%</td><td class="l">個人</td></tr>
+<tr><td class="l">上位10名 計</td><td>21,647,149</td><td>66.09%</td><td class="l">―</td></tr>
+</table>
+<div class="card">
+<ul>
+<li><strong>上位3者（エム・エム・ヨーク＋肥田幸春氏＋松濤投資倶楽部）で49.04%</strong><span class="tag f">[事実]</span>。有報は上位2社と会長の資本関係を明示していないが、会長が両社の取締役を「現任」として兼務している事実は役員略歴に記載されている<span class="tag f">[事実]</span>。実質的に創業家が過半に近い議決権を握る<strong>オーナー企業</strong>と読むのが自然<span class="tag i">[解釈]</span>。</li>
+<li>役員6名の所有株式合計は5,509,500株。うち会長個人が5,049,800株<span class="tag f">[事実]</span>。役員と株主の利害は形式上強く一致している<span class="tag i">[解釈]</span>。</li>
+<li>所有者別では個人その他43.46%、その他の法人32.87%、外国法人等13.03%、金融機関8.75%、金融商品取引業者1.87%<span class="tag f">[事実]</span>。株主数12,270人<span class="tag f">[事実]</span>。</li>
+<li>フィデリティ3社連名の大量保有報告（変更報告書、2025年2月28日基準で6.83%）が公衆縦覧に供されているが、実質所有株式数を確認できないため大株主の状況には含めていない旨を注記<span class="tag f">[事実]</span>。<strong>海外アクティブ投資家が相応に入っている</strong>ことがうかがえる<span class="tag i">[解釈]</span>。</li>
+<li><strong>少数株主の声の届き方</strong>：創業家が約半数を握るため、株主提案や議決権行使による経営への働きかけは構造的に通りにくい<span class="tag i">[解釈]</span>。一方で、累進配当の明文化やフィデリティ等の機関投資家の存在は、還元姿勢に一定の外部圧力が働いている可能性を示す<span class="tag i">[解釈]</span>。</li>
+</ul>
+</div>
+
+<h3>3. 政策保有株式</h3>
+<table>
+<tr><th class="l">区分</th><th>銘柄数</th><th>貸借対照表計上額（百万円）</th><th>純資産（81,127百万円）比</th></tr>
+<tr><td class="l">非上場株式</td><td>1</td><td>10</td><td>0.01%</td></tr>
+<tr><td class="l">非上場株式以外の株式</td><td>2</td><td>392</td><td>0.48%</td></tr>
+<tr class="hl"><td class="l">合計</td><td>3</td><td>402</td><td><strong>0.50%</strong></td></tr>
+</table>
+<table>
+<tr><th class="l">特定投資株式</th><th>当期株式数</th><th>前期株式数</th><th>計上額<br>（百万円）</th><th class="l">保有目的</th></tr>
+<tr><td class="l">㈱ジャックス</td><td>51,443</td><td>48,568</td><td>206</td><td class="l">顧客が利用する住宅ローンの提携先。取引先持株会を通じた取得で株式数増加</td></tr>
+<tr><td class="l">㈱日神グループホールディングス</td><td>263,900</td><td>―</td><td>186</td><td class="l">グループ会社間で取引関係があり、関係維持・取引関係の強化</td></tr>
+</table>
+<div class="card">
+<ul>
+<li>政策保有は純資産の<strong>0.50%</strong>と極小<span class="tag i">[解釈]</span>。資本効率を大きく毀損する規模ではない<span class="tag i">[解釈]</span>。</li>
+<li>ただし方向としては<strong>増加</strong>している。当期に2銘柄で168百万円を新規・追加取得し、減少した銘柄はゼロ<span class="tag f">[事実]</span>。とくに㈱日神グループホールディングス（同業のマンションデベロッパー）263,900株を当期に新規取得している<span class="tag f">[事実]</span>。政策保有縮減が市場の潮流であるなかで逆行しており、「グループ会社間で取引関係があり」という説明以上の具体的な取引内容・便益は開示されていない<span class="tag q">[要確認]</span>。</li>
+<li>定量的な保有効果は「記載が困難」として開示されず、検証方法の説明に代えられている<span class="tag f">[事実]</span>。定型的な代替記述<span class="tag i">[解釈]</span>。</li>
+</ul>
+</div>
+</section>
+
+<!-- ===================== X ===================== -->
+<section id="s10">
+<h2 class="chap">Ⅹ. ガバナンス</h2>
+<p class="note">出所：第4【提出会社の状況】4 コーポレート・ガバナンスの状況等 <span class="src">[③]</span>。役員の任期表記の一部は2026年7月23日提出の訂正報告書により訂正されている（監査等委員の任期「2026年6月まで」→「2027年6月まで」）<span class="tag f">[事実]</span>。</p>
+
+<h3>1. 体制の事実</h3>
+<div class="kpi">
+  <div><div class="k">機関設計</div><div class="v">監査等委員会設置会社</div><div class="n">2015年6月移行</div></div>
+  <div><div class="k">取締役会</div><div class="v">6名</div><div class="n">業務執行3＋監査等委員3</div></div>
+  <div><div class="k">社外取締役</div><div class="v">2名（33.3%）</div><div class="n">両名とも独立役員届出</div></div>
+  <div><div class="k">女性役員</div><div class="v">0名（0%）</div><div class="n">有報に明記</div></div>
+  <div><div class="k">取締役会開催</div><div class="v">16回</div><div class="n">全員出席率100%</div></div>
+  <div><div class="k">監査等委員会</div><div class="v">12回</div><div class="n">全員出席率100%</div></div>
+</div>
+<table>
+<tr><th class="l">役職</th><th class="l">氏名</th><th>生年</th><th class="l">当社での経歴上の特徴</th><th>所有株式数</th></tr>
+<tr class="hl"><td class="l">代表取締役会長 会長執行役員</td><td class="l">肥田 幸春</td><td>1952年</td><td class="l">1980年の創業者。在任46年。子会社4社の代表取締役等を兼務（ＦＪネクスト、ＦＪリゾートマネジメント等）。㈱エム・エム・ヨーク／㈱松濤投資倶楽部の取締役を現任</td><td>5,049,800</td></tr>
+<tr class="hl"><td class="l">代表取締役社長 社長執行役員</td><td class="l">肥田 恵輔</td><td>1982年</td><td class="l">2008年入社、経営企画室畑。2018年取締役、2024年6月社長就任（在任2年）。<strong>会長の長女の配偶者</strong>と有報に明記</td><td>57,500</td></tr>
+<tr><td class="l">取締役 専務執行役員</td><td class="l">益子 重男</td><td>1961年</td><td class="l">1991年入社の営業畑。㈱ＦＪネクスト専務取締役 営業本部長を現任</td><td>235,600</td></tr>
+<tr><td class="l">取締役（常勤監査等委員）</td><td class="l">鈴木 憲一</td><td>1961年</td><td class="l">会計事務所出身、1996年入社。経理部長・内部統制推進室長を経て2018年から監査等委員（社内出身）</td><td>14,000</td></tr>
+<tr><td class="l">取締役（監査等委員・社外）</td><td class="l">鈴木 清</td><td>1945年</td><td class="l">公認会計士・税理士。<strong>2000年6月から当社社外監査役→2015年から監査等委員（関与26年）</strong>。年齢80歳</td><td>151,600</td></tr>
+<tr><td class="l">取締役（監査等委員・社外）</td><td class="l">高場 大介</td><td>1956年</td><td class="l">弁護士。<strong>2004年6月から当社社外監査役→2015年から監査等委員（関与22年）</strong></td><td>1,000</td></tr>
+</table>
+
+<h3>2. 主要役員の属性を読む</h3>
+<div class="card">
+<ul>
+<li><strong>創業者会長＋娘婿社長という同族的な承継</strong>が有報に明記されている<span class="tag f">[事実]</span>。会長は代表権を持ったまま会長執行役員として残り、主要子会社の代表取締役も兼務している<span class="tag f">[事実]</span>。2024年に社長交代したが、<strong>実質的な影響力は会長に残っている構造</strong>と読める<span class="tag i">[解釈]</span>。この読みは、取締役報酬の個人別決定権が代表取締役 肥田幸春氏に委任されている事実（後述）とも整合する<span class="tag i">[解釈]</span>。</li>
+<li><strong>社外取締役2名の在任が極めて長い</strong>：鈴木清氏は2000年から26年、高場大介氏は2004年から22年、当社の社外役員（監査役→監査等委員）を務めている<span class="tag f">[事実]</span>。会計・法務の専門性という選任理由は明記されているが<span class="tag f">[事実]</span>、<strong>独立性は在任年数の長期化により実質的に弱まりうる</strong><span class="tag i">[解釈]</span>。有報は「社外取締役を選任するための独立性について特段の定めはありません」と、独立性基準を持たないことを自ら記載している<span class="tag f">[事実]</span>。</li>
+<li>社外取締役 鈴木清氏は当社株式151,600株を保有<span class="tag f">[事実]</span>。有報は「社外取締役両名と当社との間には、人的関係、上記以外の資本的関係又は取引関係その他の利害関係はありません」と記載しており、株式保有については開示したうえで独立役員として届け出ている<span class="tag f">[事実]</span>。</li>
+<li>取締役6名全員が男性、女性比率0%と有報に明記<span class="tag f">[事実]</span>。委任型執行役員2名のうち1名は女性<span class="tag f">[事実]</span>。</li>
+<li>取締役会16回・監査等委員会12回・指名委員会4回・報酬委員会2回、いずれも出席率100%<span class="tag f">[事実]</span>。任意の指名・報酬委員会は過半数を独立社外取締役とし、委員長も独立社外取締役<span class="tag f">[事実]</span>。ただし委員3名のうち1名は社長（肥田恵輔氏）であり、指名・報酬の対象者自身が委員に入っている<span class="tag i">[解釈]</span>。</li>
+<li>内部監査室は<strong>1名</strong>（代表取締役社長直属）<span class="tag f">[事実]</span>。連結600名・子会社7社を対象に定期監査を行う体制としては薄い<span class="tag i">[解釈]</span>。有報は「内部監査室長が内部監査の結果を取締役会に直接報告する仕組みはございません」と、デュアルレポーティングラインが未整備であることを明示している<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>3. 役員報酬（数値のみ）</h3>
+<table>
+<tr><th class="l">役員区分</th><th>報酬等の総額<br>（百万円）</th><th>基本報酬</th><th>非金銭報酬等<br>（譲渡制限付株式）</th><th>対象人数</th></tr>
+<tr><td class="l">取締役（監査等委員を除く）</td><td>255</td><td>246</td><td>9</td><td>3</td></tr>
+<tr><td class="l">取締役（監査等委員）</td><td>34</td><td>34</td><td>―</td><td>3</td></tr>
+<tr><td class="l">（うち社外取締役）</td><td>13</td><td>13</td><td>―</td><td>2</td></tr>
+<tr class="hl"><td class="l">合計</td><td>289</td><td>280</td><td>9</td><td>6</td></tr>
+</table>
+<table>
+<tr><th class="l">1億円以上の個別開示</th><th class="l">会社区分</th><th>連結報酬等の総額</th><th>基本報酬</th><th>非金銭報酬等</th></tr>
+<tr><td class="l">肥田 幸春（取締役）</td><td class="l">提出会社</td><td>178百万円</td><td>178百万円</td><td>―</td></tr>
+</table>
+<div class="card">
+<ul>
+<li>報酬総額289百万円は当期純利益100.1億円の2.89%（当方算出・推計値）<span class="tag i">[解釈]</span>。</li>
+<li>業務執行取締役3名分255百万円のうち、<strong>会長1名で178百万円</strong>＝69.8%を占める<span class="tag i">[解釈]</span>。</li>
+<li><strong>業績連動報酬は定めていない</strong>と有報に明記<span class="tag f">[事実]</span>。報酬は月例の固定報酬＋株式報酬（金銭報酬の概ね2割を超えない）で構成<span class="tag f">[事実]</span>。株式報酬の算出には「当社の業績の達成度合いを反映して決定する」とあり、事実上の業績連動要素はここに限られる<span class="tag i">[解釈]</span>。当期の非金銭報酬は9百万円で、報酬総額の3.1%<span class="tag i">[解釈]</span>。</li>
+<li>個人別報酬額の決定は<strong>代表取締役 肥田幸春氏に委任</strong>されている<span class="tag f">[事実]</span>。委任理由は「当社全体の業績を勘案しつつ各取締役の担当部門について評価を行うには代表取締役が適していると判断したため」<span class="tag f">[事実]</span>。歯止めとして、社外取締役を過半数で構成する報酬委員会の答申を踏まえる旨が定められている<span class="tag f">[事実]</span>。</li>
+<li>株主総会決議の報酬枠は取締役（監査等委員除く）年額700百万円、監査等委員年額100百万円以内（2015年6月決議）<span class="tag f">[事実]</span>。役員退職慰労金制度は2023年6月に廃止済み<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+</section>
+
+<!-- ===================== XI ===================== -->
+<section id="s11">
+<h2 class="chap">Ⅺ. 会計面の定性シグナル</h2>
+<p class="note">出所：第5【経理の状況】注記事項（重要な会計上の見積り）／独立監査人の監査報告書 <span class="src">[③]</span>、数値の裏取りは連結財務諸表 <span class="src">[①][③]</span></p>
+
+<h3>1. KAM（監査上の主要な検討事項）</h3>
+<div class="card">
+<h4>資産運用型マンションの評価 ― KAMは1件のみ</h4>
+<div class="quote"><span class="qlabel">監査報告書 原文（要旨）</span>会社は、連結貸借対照表において販売用不動産25,431百万円を計上しており当連結会計年度末における総資産113,869百万円の<strong>22.3%</strong>を占める。（中略）資産運用型マンションの評価は、収益還元法により算出された正味売却価額に基づいている。重要な仮定は<strong>還元利回り</strong>であり、還元利回りの変動に伴いその評価額も変動する。上記の重要な仮定は不確実性を伴い、経営者による判断を必要とすることから、当監査法人は当該事項を監査上の主要な検討事項とした。</div>
+<p><strong>何をなぜ重視したか</strong>：監査人は、金額規模（総資産の22.3%）と、評価が単一の主観的パラメータ（還元利回り）に依存することの2点をもってKAMに選定している<span class="tag i">[解釈]</span>。監査対応として「還元利回りについて参照可能な外部公表データと比較」「過去の見積りと実績を比較」「正味売却価額の再計算」を実施したと記載<span class="tag f">[事実]</span>。</p>
+<p><strong>見積り前提が楽観か保守か</strong>：会社は「当連結会計年度において、資産運用型マンションの正味売却価額は帳簿価額を上回っていることから、簿価の切下げを行っておりません」とし、棚卸資産の簿価切下げ額は前期・当期ともゼロ<span class="tag f">[事実]</span>。翌期への影響として「経済環境の悪化等により資産運用型マンションの購入需要が低迷した場合は、還元利回りが上昇し正味売却価額が低下するため、翌連結会計年度以降において簿価切下げが発生する可能性があります」と自ら記載している<span class="tag f">[事実]</span>。<strong>切下げ余地ゼロは、現行の賃料・利回り環境が続くことを前提にしている</strong>ということでもある<span class="tag i">[解釈]</span>。金利上昇→期待利回り上昇という経路が現実化した場合、この前提が最初に崩れる<span class="tag i">[解釈]</span>。なお、還元利回りの具体的な数値や感応度分析（利回り±0.1%で評価額がいくら動くか）の開示はない<span class="tag q">[要確認]</span>。</p>
+</div>
+
+<h3>2. もう一つの重要な見積り ― 固定資産の減損</h3>
+<div class="card">
+<table>
+<tr><th class="l">項目（百万円）</th><th>前期</th><th>当期</th></tr>
+<tr><td class="l">有形固定資産</td><td>10,973</td><td>13,011</td></tr>
+<tr><td class="l">無形固定資産</td><td>34</td><td>30</td></tr>
+<tr><td class="l">減損損失</td><td>―</td><td>―</td></tr>
+</table>
+<ul>
+<li>賃貸マンションには減損の兆候なし<span class="tag f">[事実]</span>。主要な仮定は稼働率および賃料相場<span class="tag f">[事実]</span>。</li>
+<li><strong>一部旅館には減損の兆候があった</strong>が、割引前将来キャッシュ・フローが帳簿価額を上回るため減損損失を認識していない<span class="tag f">[事実]</span>。その将来CFは「中期経営計画を基礎として」算出され、主要な仮定は<strong>集客人数と客単価</strong><span class="tag f">[事実]</span>。</li>
+<li>当期の旅館事業はセグメント損失2百万円で、稼働率は「想定を下回った」と会社自身が記載<span class="tag f">[事実]</span>。<strong>実績が想定を下回っている事業の中期経営計画を前提に、減損を回避している</strong>構図<span class="tag i">[解釈]</span>。金額規模は旅館関連の固定資産合計で約12.3億円と限定的だが、翌期以降の減損リスクとしては生きている<span class="tag i">[解釈]</span>。</li>
+</ul>
+</div>
+
+<h3>3. 本表から読む財務体質</h3>
+<div class="kpi">
+  <div><div class="k">総資産</div><div class="v">1,138.7億円</div><div class="n">前期比 +83.9億円</div></div>
+  <div><div class="k">棚卸資産合計</div><div class="v">647.4億円</div><div class="n">総資産の56.9%</div></div>
+  <div><div class="k">現金及び預金</div><div class="v">257.4億円</div><div class="n">総資産の22.6%</div></div>
+  <div><div class="k">有利子負債</div><div class="v">147.5億円</div><div class="n">総資産の13.0%</div></div>
+  <div><div class="k">純資産</div><div class="v">811.3億円</div><div class="n">自己資本比率71.2%</div></div>
+  <div><div class="k">利益剰余金</div><div class="v">761.9億円</div><div class="n">資本金27.7億円の27.5倍</div></div>
+</div>
+<div class="card">
+<h4>どんな財務体質の会社か</h4>
+<ul>
+<li><strong>B/Sの重さは「設備」ではなく「在庫」</strong>。総資産の56.9%が販売用・仕掛販売用不動産で、有形固定資産は11.4%にすぎない<span class="tag i">[解釈]</span>。デベロッパーの典型的なB/S構造だが、在庫の評価が損益を左右する（＝KAMがそこに立つ）ことの裏返しでもある<span class="tag i">[解釈]</span>。</li>
+<li><strong>実質ネットキャッシュ</strong>：現金及び預金257.4億円に対し有利子負債147.5億円で、差引109.9億円の手元超過<span class="tag i">[解釈]</span>。時価総額との比較で見れば財務的な下値抵抗になる<span class="tag i">[解釈]</span>。</li>
+<li><strong>回転</strong>：売上1,423.7億円÷棚卸資産647.4億円＝約2.2回転（推計値・保証なし）。用地取得から販売まで1年半〜3年というリードタイムの記述と整合<span class="tag i">[解釈]</span>。</li>
+<li><strong>利益の質</strong>：営業利益144.0億円に対し当期営業CF71.0億円。差の大半は在庫増加71.0億円で、利益が現金化されずに次の物件に化けている<span class="tag i">[解釈]</span>。5期のうち2期は営業CFがマイナス<span class="tag f">[事実]</span>。<strong>単年の利益とキャッシュ創出は一致しない</strong>ビジネスであることを、投資判断の前提に置く必要がある<span class="tag i">[解釈]</span>。</li>
+<li><strong>特殊な負債</strong>：固定負債に「企業結合に係る特定勘定」1,253百万円が前期から変動なく計上されている<span class="tag f">[事実]</span>。過去の企業結合（旅館事業の取得と推定<span class="tag i">[解釈]</span>）に伴う将来損失見込みで、内容の詳細は有報の当該注記からは追えない<span class="tag q">[要確認]</span>。</li>
+<li>退職給付に係る負債791百万円、長期預り敷金保証金2,095百万円<span class="tag f">[事実]</span>。</li>
+</ul>
+</div>
+
+<h3>4. GC・後発事象・偶発債務・関連当事者</h3>
+<table>
+<tr><th class="l">項目</th><th class="l">当期の状況</th></tr>
+<tr><td class="l">継続企業の前提（GC）に関する注記</td><td class="l">なし（監査報告書は無限定適正意見）<span class="tag f">[事実]</span></td></tr>
+<tr><td class="l">重要な後発事象</td><td class="l">「該当事項はありません」<span class="tag f">[事実]</span></td></tr>
+<tr><td class="l">偶発債務</td><td class="l">注記に記載なし<span class="tag f">[事実]</span></td></tr>
+<tr><td class="l">資産除去債務</td><td class="l">「該当事項はありません」<span class="tag f">[事実]</span></td></tr>
+<tr><td class="l">関連当事者取引</td><td class="l">当期は該当なし。前期は重要な子会社の役員（京田景子氏）との販売用不動産の売買35百万円（市場価格を勘案して価格決定）<span class="tag f">[事実]</span></td></tr>
+<tr><td class="l">会計監査人</td><td class="l">EY新日本有限責任監査法人、<strong>継続監査期間25年</strong>。監査報酬50百万円、非監査業務報酬ゼロ<span class="tag f">[事実]</span></td></tr>
+</table>
+<div class="card">
+<p>会計面での警戒シグナルは乏しい<span class="tag i">[解釈]</span>。あえて挙げれば、①監査法人の継続監査期間25年の長さ（担当公認会計士の継続関与は7年以内でローテーション済みと注記<span class="tag f">[事実]</span>）、②前期に子会社役員かつ大株主でもある個人との販売用不動産の相対取引があったこと（当期はなし）<span class="tag f">[事実]</span>、③在庫の簿価切下げが2期連続ゼロであること<span class="tag f">[事実]</span>、の3点<span class="tag i">[解釈]</span>。いずれも直ちに問題を示すものではない<span class="tag i">[解釈]</span>。</p>
+</div>
+</section>
+
+<!-- ===================== XII ===================== -->
+<section id="s12">
+<h2 class="chap">Ⅻ. 論点と未解明事項</h2>
+
+<h3>1. 買い材料になりうる記述と、その確からしさ</h3>
+<table>
+<tr><th class="l" style="width:30%">材料</th><th class="l">有報上の根拠</th><th style="width:16%">確からしさ</th></tr>
+<tr><td class="l">目標として掲げた採算指標を実際に達成し、経営者がそれを明言している</td><td class="l">売上高経常利益率10%前後の目標に対し当期10.1%。MD&amp;Aで達成を明記<span class="tag f">[事実]</span></td><td>高い（実績で確認可能）</td></tr>
+<tr><td class="l">累進配当の明文化と、普通配当ベースの引上げ</td><td class="l">配当政策に「累進配当を実施」と明記。普通48円→56円＋特別10円<span class="tag f">[事実]</span></td><td>高い（方針が文言で固定）</td></tr>
+<tr><td class="l">財務の耐久力：実質ネットキャッシュ、自己資本比率71.2%</td><td class="l">現預金257.4億円＞有利子負債147.5億円<span class="tag f">[事実]</span></td><td>高い（B/Sで確認可能）</td></tr>
+<tr><td class="l">オペレーティング・レバレッジ：人員を増やさず売上1.73倍（5年）</td><td class="l">従業員558→600人、売上822.6→1,423.7億円<span class="tag f">[事実]</span></td><td>中（単価上昇の寄与を分離できない）</td></tr>
+<tr><td class="l">ストック基盤：賃貸管理20,307戸、建物管理26,262戸</td><td class="l">MD&amp;A（不動産管理事業）<span class="tag f">[事実]</span></td><td>中（利益率は26.2%→23.7%に低下）</td></tr>
+<tr><td class="l">フローからストックへの一部シフト（販売用不動産20.1億円を賃貸用へ振替）</td><td class="l">第3【設備の状況】2<span class="tag f">[事実]</span></td><td>低〜中（意図・継続性の説明がない）<span class="tag q">[要確認]</span></td></tr>
+<tr><td class="l">希薄化のない資本構成（2013年以降 発行済株式数不変）</td><td class="l">発行済株式総数、資本金等の推移<span class="tag f">[事実]</span></td><td>高い</td></tr>
+</table>
+
+<h3>2. 懸念材料と、それが顕在化する条件</h3>
+<table>
+<tr><th class="l" style="width:28%">懸念</th><th class="l">根拠</th><th class="l" style="width:30%">顕在化する条件</th></tr>
+<tr class="hl"><td class="l">先行指標の悪化：主力ガーラの契約が戸数78.6%・金額93.9%と前年割れ、契約総額が売上総額を下回る</td><td class="l">契約実績 vs 販売実績<span class="tag f">[事実]</span>。有報に説明なし</td><td class="l">翌期の引渡し戸数が減る／中古の伸びで補えない場合、翌期の増収率が大きく鈍化</td></tr>
+<tr class="hl"><td class="l">中古依存：売上の58.4%が買取再販だが、戦略記述もリスク記述も薄い</td><td class="l">中古831.7億円・2,885戸。戦略は1文、固有リスク項目なし<span class="tag f">[事実]</span></td><td class="l">中古価格の下落・仕入競争激化で、買取価格を誤った在庫が滞留した場合</td></tr>
+<tr class="hl"><td class="l">在庫評価：販売用不動産の簿価切下げが2期連続ゼロ、KAMも同項目</td><td class="l">販売用不動産254.3億円（総資産の22.3%）、主要仮定は還元利回り<span class="tag f">[事実]</span></td><td class="l">金利上昇→期待利回り上昇で正味売却価額が簿価を下回った場合</td></tr>
+<tr><td class="l">増益の市況依存：経営者自身が「賃料上昇」「販売価格の高まり」を要因に挙げる</td><td class="l">MD&amp;A<span class="tag f">[事実]</span></td><td class="l">首都圏の賃料・分譲価格が頭打ちになった場合、同じ経路で利益率が剥落</td></tr>
+<tr><td class="l">支払利息の増加（78→146百万円）と借入の借換</td><td class="l">平均利率1.13〜1.19%、返済期限2027年4月〜2030年3月<span class="tag f">[事実]</span></td><td class="l">政策金利上昇下での借換時に調達コストが上昇</td></tr>
+<tr><td class="l">管理事業の利益率低下（26.2%→23.7%）</td><td class="l">IT投資と管理員人件費の上昇<span class="tag f">[事実]</span></td><td class="l">管理費への価格転嫁が進まない場合、ストック収益の質が落ちる</td></tr>
+<tr><td class="l">ガバナンス：創業家が実質約49%、社外取締役の在任22〜26年、独立性基準なし、内部監査室1名</td><td class="l">大株主の状況・役員略歴・監査の状況<span class="tag f">[事実]</span></td><td class="l">少数株主と利害が対立する意思決定（報酬・後継・関連当事者取引）が生じた場合の牽制力</td></tr>
+<tr><td class="l">旅館事業：赤字転落かつ減損の兆候あり</td><td class="l">セグメント損失2百万円、注記に「減損の兆候があった一部旅館」<span class="tag f">[事実]</span></td><td class="l">集客人数・客単価が中期経営計画を下回り続けた場合（影響額は約12.3億円が上限規模）</td></tr>
+<tr><td class="l">株主総利回りの市場劣後：5年で163.4%（TOPIX 202.2%）</td><td class="l">主要な経営指標等の推移<span class="tag f">[事実]</span></td><td class="l">―（過去の事実。PER5.1倍という評価水準の背景として認識が要る）</td></tr>
+</table>
+
+<h3>3. 有報だけでは判断できず、追加確認が要る事項</h3>
+<div class="card">
+<ol>
+<li><strong>ガーラマンションシリーズの契約減少の理由</strong>（用地取得の遅れか、意図的な価格重視の選別か、需要側の変化か）。→ 2026年3月期<strong>決算説明会資料</strong>および2027年3月期第1四半期決算短信（2026年7月31日開示）で確認<span class="tag q">[要確認]</span></li>
+<li><strong>中期経営計画の数値目標と進捗</strong>。有報には中計の存在（子会社中計の取締役会承認、監査等委員会での遂行状況確認、旅館の減損見積りの基礎）は書かれているが、目標値は開示されていない。→ <strong>決算説明会資料・中期経営計画資料</strong><span class="tag q">[要確認]</span></li>
+<li><strong>翌期（2027年3月期）の業績予想と前提</strong>。有報は将来予想を含まない。→ <strong>決算短信</strong><span class="tag q">[要確認]</span></li>
+<li><strong>中古マンションの仕入経路と在庫回転</strong>（自社販売済み物件のオーナーからの買取比率、平均在庫期間）。→ <strong>決算説明会資料</strong>／IR説明会<span class="tag q">[要確認]</span></li>
+<li><strong>販売用不動産の還元利回りの水準と感応度</strong>。→ 有報・短信いずれにも数値開示がないため、<strong>IRへの直接照会</strong>または<strong>統合報告書</strong><span class="tag q">[要確認]</span></li>
+<li><strong>用地仕入の進捗（開発用地の取得残高・パイプライン戸数）</strong>。仕掛販売用不動産392.8億円（前期比△40.4億円）の中身。→ <strong>決算説明会資料</strong><span class="tag q">[要確認]</span></li>
+<li><strong>DX・IT投資の金額と回収見込み</strong>。研究開発費ゼロ、無形固定資産30百万円と、投資の痕跡がB/Sに現れない。→ <strong>決算説明会資料</strong>／<strong>統合報告書</strong><span class="tag q">[要確認]</span></li>
+<li><strong>㈱日神グループホールディングス株式の新規取得（263,900株・約1.86億円）の狙いと取引関係の実態</strong>。→ <strong>適時開示</strong>の有無、IRへの照会<span class="tag q">[要確認]</span></li>
+<li><strong>資本配分方針</strong>（自己株式取得の考え方、目標自己資本比率、資本コストの認識）。→ <strong>コーポレート・ガバナンス報告書</strong>、東証「資本コストや株価を意識した経営の実現に向けた対応」の開示<span class="tag q">[要確認]</span></li>
+<li><strong>㈱エム・エム・ヨーク／㈱松濤投資倶楽部と創業家の資本関係</strong>。有報は役員略歴で会長の取締役兼務を記すのみで、支配関係は明示していない。→ <strong>大量保有報告書</strong>、コーポレート・ガバナンス報告書<span class="tag q">[要確認]</span></li>
+<li><strong>「企業結合に係る特定勘定」1,253百万円の内容と取崩条件</strong>。→ 過去の<strong>企業結合注記</strong>（取得年度の有報）<span class="tag q">[要確認]</span></li>
+</ol>
+</div>
+
+<div class="note" style="margin-top:24px">
+本レポートは有価証券報告書の記述情報の構造化を目的としており、売買推奨・目標株価の提示は行っていない。定量的な投資判断（バリュエーション・スクリーニング判定）は、同一銘柄フォルダ内の定量レポートを併せて参照されたい。
+</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+<h4>免責事項・データの前提</h4>
+<ul>
+<li><strong>データ取得日</strong>：2026年8月2日</li>
+<li><strong>対象事業年度</strong>：第46期（2025年4月1日〜2026年3月31日）／連結</li>
+<li><strong>主ソース</strong>：株式会社ＦＪネクストホールディングス 有価証券報告書（2026年6月25日 関東財務局長宛提出）<span class="src">[③]</span>、および訂正有価証券報告書（2026年7月23日提出。訂正内容は監査等委員である取締役の任期表記のみ）<span class="src">[③]</span>。数値の裏取りは同報告書の連結財務諸表<span class="src">[①][③]</span>。</li>
+<li><strong>予想ベース日</strong>：本レポートは将来予想を含まない。有報記載のリスク・将来に関する事項は、いずれも有価証券報告書提出日（2026年6月25日）現在における会社の判断による。</li>
+<li><strong>推計値</strong>：CAGR、構成比、利益率、配当性向、1人当たり指標、政策保有株式の純資産比、固有／定型リスクの仕分けは当方が算出・分類したものであり、<strong>推計値であって正確性・将来の実現を保証しない</strong>。</li>
+<li><strong>Web情報の扱い</strong>：Ⅱ. 沿革の章に限り、会社公式サイト「沿革」ページ等のWeb情報で肉付けし <span class="tag w">[web]</span> と出典名を付した。他章はすべて有価証券報告書に基づく。</li>
+<li>本レポートは投資判断の材料整理を目的とし、特定銘柄の売買を推奨するものではない。投資判断は自己責任で行うこと。</li>
+</ul>
+</footer>
+
+<script>
+const CHAPS=[["s0","0. エグゼクティブサマリー"],["s1","Ⅰ. 企業の輪郭"],["s2","Ⅱ. 沿革"],["s3","Ⅲ. 人的資本"],["s4","Ⅳ. 経営者の世界観"],["s5","Ⅴ. サステナビリティ"],["s6","Ⅵ. 事業等のリスク"],["s7","Ⅶ. 経営成績の分析"],["s8","Ⅷ. 将来への投資"],["s9","Ⅸ. 資本政策・株主還元"],["s10","Ⅹ. ガバナンス"],["s11","Ⅺ. 会計面の定性シグナル"],["s12","Ⅻ. 論点と未解明事項"]];
+const nav=document.getElementById('nav');
+CHAPS.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c[1];b.dataset.t=c[0];
+ if(i===0)b.classList.add('active');
+ b.onclick=()=>{document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(c[0]).classList.add('active');
+  nav.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});};
+ nav.appendChild(b);});
+
+const NAVY='#1c3a5e',NAVY2='#4a7ab0',GOLD='#b8860b',TEAL='#0f6b63',RED='#a32b2b',GRAY='#9aa7b4',AMB='#d99b2b';
+const yr=['2022/3','2023/3','2024/3','2025/3','2026/3'];
+Chart.defaults.font.family='"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif';
+Chart.defaults.font.size=11.5;
+
+new Chart(document.getElementById('c1'),{data:{labels:yr,datasets:[
+ {type:'bar',label:'売上高（百万円）',data:[82258,84688,100405,112429,142374],backgroundColor:'rgba(28,58,94,.75)',yAxisID:'y'},
+ {type:'line',label:'経常利益（百万円）',data:[9080,8219,9434,9459,14356],borderColor:GOLD,backgroundColor:GOLD,yAxisID:'y1',tension:.25,borderWidth:2.5},
+ {type:'line',label:'営業CF（百万円）',data:[22215,-4534,4671,-13880,7103],borderColor:TEAL,backgroundColor:TEAL,yAxisID:'y1',tension:.25,borderDash:[5,4],borderWidth:2}
+]},options:{responsive:true,interaction:{mode:'index',intersect:false},
+ scales:{y:{position:'left',title:{display:true,text:'売上高'}},y1:{position:'right',title:{display:true,text:'利益・CF'},grid:{drawOnChartArea:false}}},
+ plugins:{legend:{position:'bottom'}}}});
+
+new Chart(document.getElementById('c2'),{type:'doughnut',data:{labels:['不動産開発 89.7%','建設 6.3%','不動産管理 3.0%','旅館 0.9%'],
+ datasets:[{data:[127725,8988,4284,1333],backgroundColor:[NAVY,NAVY2,GOLD,GRAY]}]},
+ options:{plugins:{legend:{position:'bottom'}}}});
+
+new Chart(document.getElementById('c3'),{type:'doughnut',data:{labels:['中古マンション 83,170','新築ガーラ 20,216','ガーラ・レジデンス 17,184','賃貸収入 6,351','その他 803'],
+ datasets:[{data:[83170,20216,17184,6351,803],backgroundColor:[GOLD,NAVY,NAVY2,TEAL,GRAY]}]},
+ options:{plugins:{legend:{position:'bottom',labels:{boxWidth:12}}}}});
+
+new Chart(document.getElementById('c4'),{data:{labels:yr,datasets:[
+ {type:'bar',label:'従業員数（人）',data:[558,564,557,584,600],backgroundColor:'rgba(74,122,176,.65)',yAxisID:'y'},
+ {type:'line',label:'1人当たり売上高（百万円・推計）',data:[147.4,150.2,180.3,192.5,237.3],borderColor:GOLD,backgroundColor:GOLD,yAxisID:'y1',tension:.25,borderWidth:2.5}
+]},options:{scales:{y:{position:'left',min:500,title:{display:true,text:'従業員数'}},y1:{position:'right',title:{display:true,text:'百万円／人'},grid:{drawOnChartArea:false}}},
+ plugins:{legend:{position:'bottom'}}}});
+
+new Chart(document.getElementById('c5'),{type:'bar',data:{labels:['前期 契約','前期 販売','当期 契約','当期 販売'],
+ datasets:[
+ {label:'ガーラ（新築・単身）',data:[20508,14827,19258,20216],backgroundColor:NAVY},
+ {label:'ガーラ・レジデンス',data:[11897,8731,15376,17184],backgroundColor:NAVY2},
+ {label:'中古マンション',data:[68651,69750,87343,83170],backgroundColor:GOLD},
+ {label:'その他・賃貸等',data:[24,6592,40,7154],backgroundColor:GRAY}]},
+ options:{scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'百万円'}}},plugins:{legend:{position:'bottom'}}}});
+
+new Chart(document.getElementById('c6'),{type:'doughnut',data:{labels:['個人その他 43.46%','その他の法人 32.87%','外国法人等 13.03%','金融機関 8.75%','金融商品取引業者 1.87%'],
+ datasets:[{data:[43.46,32.87,13.03,8.75,1.87],backgroundColor:[NAVY,GOLD,NAVY2,TEAL,GRAY]}]},
+ options:{plugins:{legend:{position:'bottom',labels:{boxWidth:12}}}}});
+
+new Chart(document.getElementById('c7'),{type:'bar',indexAxis:'y',data:{
+ labels:['エム・エム・ヨーク','肥田 幸春','松濤投資倶楽部','日本マスタートラスト','フィデリティ系ファンド','その他上位（5社）'],
+ datasets:[{label:'持株比率（%）',data:[18.91,15.41,14.72,6.47,3.46,7.06],
+ backgroundColor:[AMB,AMB,AMB,NAVY2,NAVY2,GRAY]}]},
+ options:{plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'%'}}}}});
+</script>
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>新コスモス電機(6824) 定量分析レポート 2026-08-12</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #1a3a5c;
+  --accent:  #2e7d52;
+  --warn:    #b45309;
+  --danger:  #991b1b;
+  --pass:    #166534;
+  --bg:      #f8fafc;
+  --card:    #ffffff;
+  --border:  #e2e8f0;
+  --text:    #1e293b;
+  --muted:   #64748b;
+  --source:  #3b82f6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0; background: var(--bg); color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 14px; line-height: 1.6;
+}
+header {
+  background: var(--primary); color: #fff; padding: 20px 28px;
+}
+header h1 { margin: 0 0 4px 0; font-size: 22px; }
+header .sub { font-size: 13px; opacity: 0.85; }
+.tabs {
+  display: flex; flex-wrap: wrap; background: #0f2843; position: sticky; top: 0; z-index: 50;
+}
+.tab-btn {
+  flex: 1; min-width: 120px; padding: 12px 8px; text-align: center; color: #cbd5e1;
+  background: transparent; border: none; cursor: pointer; font-size: 13px; font-weight: 600;
+  border-bottom: 3px solid transparent;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.06); }
+.tab-btn.active { color: #fff; border-bottom-color: var(--accent); background: rgba(255,255,255,0.08); }
+main { max-width: 1180px; margin: 0 auto; padding: 20px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 20px; margin-bottom: 18px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.card h2 { margin-top: 0; font-size: 17px; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+.card h3 { font-size: 15px; color: var(--primary); margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+th { background: #eef2f7; color: var(--primary); font-weight: 600; }
+td.label, th.label { text-align: left; background: #f8fafc; font-weight: 600; }
+.h1-row td { background: #ecfdf3; color: var(--pass); }
+.forecast td { background: #eff6ff; color: #1d4ed8; font-style: italic; }
+.highlight td { background: #fffbeb; font-weight: 700; }
+.neg { color: var(--danger); }
+.src { font-size: 11px; color: var(--source); font-weight: 700; margin-left: 3px; }
+.citation { font-size: 12px; color: var(--source); font-weight: 600; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi-card {
+  background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center;
+}
+.kpi-card .v { font-size: 20px; font-weight: 700; color: var(--primary); }
+.kpi-card .l { font-size: 11px; color: var(--muted); margin-top: 2px;}
+.banner {
+  padding: 16px 20px; border-radius: 8px; font-size: 17px; font-weight: 700; text-align: center; margin-bottom: 16px;
+  background: #ecfdf3; color: var(--pass); border: 2px solid var(--pass);
+}
+.banner.warn { background: #fffbeb; color: var(--warn); border-color: var(--warn); }
+.banner.danger { background: #fef2f2; color: var(--danger); border-color: var(--danger); }
+.alert-box {
+  background: #fffbeb; border: 1px solid var(--warn); border-left: 5px solid var(--warn);
+  border-radius: 6px; padding: 12px 16px; margin: 10px 0; font-size: 13px;
+}
+.alert-box ul { margin: 6px 0 0 0; padding-left: 18px; }
+.chart-wrap { position: relative; height: 320px; margin: 14px 0; }
+.chart-wrap.short { height: 260px; }
+.seg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0; }
+.seg-box { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+.seg-box h4 { margin: 0 0 6px 0; color: var(--primary); font-size: 13px; }
+.risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.risk-card { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 12px; }
+.risk-card h4 { margin: 0 0 6px 0; color: var(--danger); font-size: 13px; }
+.cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.cat-card { background: #ecfdf3; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px; }
+.cat-card h4 { margin: 0 0 6px 0; color: var(--accent); font-size: 13px; }
+.footnote { font-size: 11px; color: var(--muted); margin-top: 8px; }
+.disclaimer { font-size: 11px; color: var(--muted); background: #f1f5f9; border-radius: 6px; padding: 12px 16px; }
+.pass-mark { color: var(--pass); font-weight: 700; }
+.warn-mark { color: var(--warn); font-weight: 700; }
+.fail-mark { color: var(--danger); font-weight: 700; }
+.badge { display:inline-block; padding:2px 8px; border-radius: 12px; font-size: 11px; font-weight:700; }
+.badge.pass { background:#dcfce7; color:var(--pass); }
+.badge.warn { background:#fef3c7; color:var(--warn); }
+@media (max-width: 800px) {
+  .kpi-grid, .seg-grid, .risk-grid, .cat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>新コスモス電機株式会社（6824） 定量分析レポート</h1>
+  <div class="sub">東証スタンダード・電気機器 ｜ 分析日：2026-08-12 ｜ 割安株・中期（3〜12ヶ月）投資判断用</div>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="t1">①総合評価</button>
+  <button class="tab-btn" data-tab="t2">②企業概要</button>
+  <button class="tab-btn" data-tab="t3">③財務分析</button>
+  <button class="tab-btn" data-tab="t4">④バリュエーション</button>
+  <button class="tab-btn" data-tab="t5">⑤カタリスト</button>
+  <button class="tab-btn" data-tab="t6">⑥リスク</button>
+  <button class="tab-btn" data-tab="t7">⑦投資結論</button>
+</div>
+
+<main>
+
+<!-- ============ Tab1 総合評価 ============ -->
+<div class="tab-panel active" id="t1">
+
+  <div class="banner warn">条件付き購入検討（スクリーニング8条件は全クリアだが、時価総額が上限600億円に接近しボーダー）</div>
+
+  <div class="card">
+    <h2>スクリーニング8条件 判定 <span class="citation">[⑤]</span></h2>
+    <table>
+      <tr><th class="label">#</th><th class="label">指標</th><th>基準値</th><th>実績値</th><th>判定</th><th>備考</th></tr>
+      <tr><td>①</td><td class="label">PER</td><td>≤15倍</td><td>11.21倍</td><td class="pass-mark">○</td><td>基準日2026-07-17・株価4,765円ベース</td></tr>
+      <tr><td>②</td><td class="label">PBR</td><td>≤1.5倍</td><td>1.09倍</td><td class="pass-mark">○</td><td>同上</td></tr>
+      <tr><td>③</td><td class="label">売上高CAGR</td><td>≥4%</td><td>+8.5%</td><td class="pass-mark">○</td><td>9年間で算出</td></tr>
+      <tr><td>④</td><td class="label">営業利益CAGR</td><td>≥4%</td><td>+17.3%</td><td class="pass-mark">○</td><td>9年間で算出</td></tr>
+      <tr><td>⑤</td><td class="label">自己資本比率</td><td>≥40%</td><td>72.7%</td><td class="pass-mark">○</td><td>FY2026/3期末（連結）</td></tr>
+      <tr><td>⑥</td><td class="label">時価総額</td><td>≤600億円</td><td>580億円</td><td class="pass-mark">○</td><td>上限に接近（本日8/12時点565億円）</td></tr>
+      <tr><td>⑦</td><td class="label">直近営業増益率</td><td>候補群 上位1/3</td><td>+42.6%</td><td class="pass-mark">○</td><td>母集団内 上位21%（境界+22%）</td></tr>
+      <tr><td>⑧</td><td class="label">6ヶ月モメンタム</td><td>候補群 上位1/3</td><td>+6.5%</td><td class="pass-mark">○</td><td>母集団内 上位25%（境界+3%）</td></tr>
+    </table>
+    <p class="footnote">判定：8/8条件クリア ★全条件通過（母集団：①〜⑥通過101銘柄／8条件通過11銘柄）。参考値：3ヶ月モメンタム-6.8%／12ヶ月モメンタム+83.3%／直近増収率+18.8%／営業利益率14.7%／売買代金57百万円。<span class="src">[⑤]</span> J-Quants API V2（<code>ctx.py</code>、基準日2026-07-17）出力をそのまま転記。</p>
+    <div class="alert-box">
+      <strong>注記（重要）：</strong>
+      <ul>
+        <li>上表は8条件を「基準クリア／未達」の二値で判定した公式スクリーニング結果 <span class="src">[⑤]</span>。一方、より詳細な「✅クリア／⚠️境界線／❌未達」の3段階評価（本書固定ロジック）では、⑥時価総額（580〜565億円、200〜600億円レンジの上限側）が<strong>⚠️境界線</strong>に該当する。上部の投資判断バナーはこの3段階評価に基づく。</li>
+        <li>⑤の800円台のPER評価には基準日の違いによる差異がある。<span class="src">[④]</span> kabutan（2026-08-12取得、予想EPS基準）ではPER 13.7倍であり、ctx.pyの11.21倍（EPS基準が異なる可能性）と一致しない。詳細はTab④参照。</li>
+        <li>irpocket公式IRデータExcelは404エラーで取得不可（<code>https://irpocket.com/6824/chartest/data.xlsx</code>）。本レポートの1株指標・財務推移は、代替一次情報として有価証券報告書<span class="src">[③]</span>「主要な経営指標等の推移」（5期分）と決算短信<span class="src">[③]</span>を使用した。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>主要KPI</h2>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="v">4,500円</div><div class="l">株価（2026/8/12）<span class="src">[④]</span></div></div>
+      <div class="kpi-card"><div class="v">13.7倍</div><div class="l">PER（予想）<span class="src">[④]</span></div></div>
+      <div class="kpi-card"><div class="v">1.04倍</div><div class="l">PBR<span class="src">[④]</span></div></div>
+      <div class="kpi-card"><div class="v">2.11%</div><div class="l">配当利回り<span class="src">[④]</span></div></div>
+      <div class="kpi-card"><div class="v">72.7%</div><div class="l">自己資本比率（FY26/3）<span class="src">[③]</span></div></div>
+      <div class="kpi-card"><div class="v">10.3%</div><div class="l">ROE（FY26/3実績）<span class="src">[③]</span></div></div>
+      <div class="kpi-card"><div class="v">10.8%</div><div class="l">ROA（経常利益ベース・独自算出）<span class="src">[③]</span></div></div>
+      <div class="kpi-card"><div class="v">565億円</div><div class="l">時価総額<span class="src">[④]</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>業績推移概観（売上高・経常利益） <span class="citation">[③]</span></h3>
+    <div class="chart-wrap"><canvas id="chartOverview"></canvas></div>
+    <p class="footnote">出所：<span class="src">[③]</span> 有価証券報告書「主要な経営指標等の推移」（FY22〜FY26実績）／決算短信（FY27予想、2026-08-10時点・修正なし）</p>
+  </div>
+
+  <div class="alert-box">
+    <strong>特記事項・アラート</strong>
+    <ul>
+      <li>FY27/3（今期）会社予想は<strong>大幅減益</strong>：営業利益6,000百万円（前期比-18.4%）、経常利益6,320百万円（-20.2%）、純利益3,985百万円（-23.5%）。2026-08-10公表のQ1決算短信で「直近に公表されている業績予想からの修正の無し」と確認済み。<span class="src">[③]</span></li>
+      <li>減配なし：FY27予想DPSは95.00円（期末のみ）で前期と同額を据え置き。<span class="src">[③]</span></li>
+      <li>現在PER13.7倍は、有報記載の過去5年間PER実績レンジ（6.4〜10.8倍）の上限を上回る水準で推移している。<span class="src">[③][④]</span> 詳細はTab④参照。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ Tab2 企業概要 ============ -->
+<div class="tab-panel" id="t2">
+  <div class="card">
+    <h2>会社基本情報 <span class="citation">[②][③]</span></h2>
+    <table>
+      <tr><td class="label">会社名</td><td>新コスモス電機株式会社（NEW COSMOS ELECTRIC CO., LTD.）</td><td class="label">証券コード</td><td>6824</td></tr>
+      <tr><td class="label">上場市場</td><td>東証スタンダード</td><td class="label">業種</td><td>電気機器</td></tr>
+      <tr><td class="label">創業</td><td>1934年（昭和9年）5月</td><td class="label">設立</td><td>1960年（昭和35年）6月15日</td></tr>
+      <tr><td class="label">本社所在地</td><td colspan="3">〒532-0036 大阪市淀川区三津屋中2-5-4</td></tr>
+      <tr><td class="label">資本金</td><td>14億6,000万円</td><td class="label">代表者</td><td>代表取締役社長 髙橋 良典</td></tr>
+      <tr><td class="label">連結従業員数</td><td>1,038人（うち平均臨時雇用者388人）2026年3月31日現在</td><td class="label">単体従業員数</td><td>498名（2026年3月31日現在）</td></tr>
+      <tr><td class="label">グループ会社数</td><td colspan="3">国内5社／海外10社（2026年4月1日現在）</td></tr>
+      <tr><td class="label">事業内容</td><td colspan="3">家庭用ガス警報器、住宅用火災警報器、工業用定置式ガス検知警報器、携帯用ガス検知器、ニオイセンサ、空気質検知等製品の研究・開発・製造・販売・メンテナンス</td></tr>
+    </table>
+    <p class="footnote">出所：<span class="src">[②]</span> 会社公式サイト「会社概要」「数字で見る新コスモス電機」／<span class="src">[③]</span> 有価証券報告書</p>
+  </div>
+
+  <div class="card">
+    <h3>企業理念</h3>
+    <table>
+      <tr><td class="label" style="width:120px;">使命</td><td>「コスモスはセンサテクノロジーで、安全・安心・快適な環境創りに貢献する」</td></tr>
+      <tr><td class="label">社是</td><td>自主・自力・創造・執念・感謝</td></tr>
+      <tr><td class="label">経営理念（コスモススピリット）</td><td>①未来を自らの手で創る人々の集団である ②常に未知の可能性に挑戦する創造と向上の精神を尊重する ③関係する全ての人々の利益を尊重し、全員の衆智によって経営される ④社員に自己の適性に応じた価値ある仕事と成長の場を与える ⑤常に価値ある商品を生み出し社会生活の向上に貢献する</td></tr>
+    </table>
+    <p class="footnote">出所：<span class="src">[②]</span> 会社公式サイト「企業理念」（会社公式の文言をそのまま記載）</p>
+  </div>
+
+  <div class="card">
+    <h3>事業セグメント（商品別、単一セグメント） <span class="citation">[③]</span></h3>
+    <p class="footnote">当社グループはガス警報器事業の単一セグメントであり、セグメント記載の代わりに商品別の概況を開示している。</p>
+    <div class="seg-grid">
+      <div class="seg-box"><h4>家庭用ガス警報器関連</h4>FY26/3売上高 29,606百万円（構成比59.0%／前期比+36.2%）。国内シェア48.9%でトップ。北米向け電池式メタン警報器が牽引。</div>
+      <div class="seg-box"><h4>工業用定置式ガス検知警報器関連</h4>FY26/3売上高 11,661百万円（構成比23.3%／前期比-2.8%）。半導体業界向けが軟調も、電力・化学業界向けは堅調。</div>
+      <div class="seg-box"><h4>業務用携帯型ガス検知器関連</h4>FY26/3売上高 7,145百万円（構成比14.3%／前期比+11.6%）。下水道業界向け・アルコール検知器が好調。</div>
+      <div class="seg-box"><h4>その他</h4>FY26/3売上高 1,680百万円（構成比3.4%／前期比-17.0%）。</div>
+    </div>
+    <div class="chart-wrap"><canvas id="chartSegment"></canvas></div>
+    <p class="footnote">出所：<span class="src">[③]</span> 有価証券報告書「セグメント情報等」商品別開示（FY25・FY26実績）</p>
+  </div>
+</div>
+
+<!-- ============ Tab3 財務分析 ============ -->
+<div class="tab-panel" id="t3">
+  <div class="card">
+    <h2>連結P&amp;Lサマリー <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">（百万円）</th><th>FY25/3実績</th><th>FY26/3実績</th><th>Q1 FY27/3実績</th><th>FY27/3会社予想</th></tr>
+      <tr><td class="label">売上高</td><td>42,154</td><td>50,092</td><td>10,810</td><td>51,000</td></tr>
+      <tr><td class="label">売上総利益</td><td>19,548</td><td>22,840</td><td>―</td><td>―</td></tr>
+      <tr><td class="label">販管費</td><td>14,393</td><td>15,489</td><td>―</td><td>―</td></tr>
+      <tr class="h1-row"><td class="label">営業利益</td><td>5,155</td><td>7,351</td><td>774</td><td class="forecast">6,000</td></tr>
+      <tr class="highlight"><td class="label">営業利益率</td><td>12.2%</td><td>14.7%</td><td>7.2%</td><td>11.8%</td></tr>
+      <tr><td class="label">経常利益</td><td>5,451</td><td>7,921</td><td>985</td><td class="forecast">6,320</td></tr>
+      <tr><td class="label">親会社株主純利益</td><td>3,377</td><td>5,209</td><td>412</td><td class="forecast">3,985</td></tr>
+      <tr><td class="label">前年（同期）比</td><td>+9.4%（純利益）</td><td>+54.2%（純利益）</td><td class="neg">-56.8%（純利益）</td><td class="neg">-23.5%（純利益）</td></tr>
+    </table>
+    <p class="footnote">緑行=H1（四半期）実績、青字斜体=会社予想。営業利益率は各期の営業利益÷売上高で算出。出所：<span class="src">[③]</span> 有価証券報告書・決算短信・第1四半期決算短信（2026-08-10開示）</p>
+  </div>
+
+  <div class="card">
+    <h3>売上高・利益推移（5期） <span class="citation">[③]</span></h3>
+    <div class="chart-wrap"><canvas id="chartPL"></canvas></div>
+    <p class="footnote">営業利益はFY25・FY26実績及びFY27会社予想の3点のみ一次情報から取得可能（有報5年表は経常利益ベースの掲載のため）。</p>
+  </div>
+
+  <div class="card">
+    <h2>1株指標（5期推移） <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">決算期</th><th>FY22/3<br>(第63期)</th><th>FY23/3<br>(第64期)</th><th>FY24/3<br>(第65期)</th><th>FY25/3<br>(第66期)</th><th>FY26/3<br>(第67期)</th></tr>
+      <tr><td class="label">EPS（連結・円）</td><td>304.93</td><td>302.75</td><td>239.62</td><td>273.24</td><td>424.88</td></tr>
+      <tr><td class="label">BPS（連結・円）</td><td>2,959.81</td><td>3,250.91</td><td>3,591.96</td><td>3,855.20</td><td>4,386.69</td></tr>
+      <tr><td class="label">DPS（単体・円）</td><td>37.00</td><td>47.00</td><td>48.00</td><td>60.00</td><td>95.00</td></tr>
+      <tr><td class="label">配当性向（単体）</td><td>23.9%</td><td>20.9%</td><td>25.8%</td><td>36.0%</td><td>47.6%</td></tr>
+      <tr><td class="label">ROE（連結）</td><td>10.8%</td><td>9.8%</td><td>7.0%</td><td>7.3%</td><td>10.3%</td></tr>
+      <tr><td class="label">ROA（経常利益/総資産・独自算出）</td><td>12.0%</td><td>11.4%</td><td>7.2%</td><td>8.1%</td><td>10.8%</td></tr>
+      <tr><td class="label">自己資本比率（連結）</td><td>72.8%</td><td>73.1%</td><td>66.4%</td><td>70.8%</td><td>72.7%</td></tr>
+      <tr><td class="label">PER（期末株価ベース）</td><td>6.4倍</td><td>7.1倍</td><td>10.0倍</td><td>9.2倍</td><td>10.8倍</td></tr>
+    </table>
+    <p class="footnote">ROAは経常利益÷期末総資産で本レポート独自算出（irpocket代替、算出方法を明記）。DPS・配当性向は提出会社（単体）ベース。出所：<span class="src">[③]</span> 有価証券報告書「主要な経営指標等の推移」</p>
+  </div>
+
+  <div class="chart-wrap short"><canvas id="chartRoe"></canvas></div>
+  <div class="chart-wrap short"><canvas id="chartEpsDps"></canvas></div>
+
+  <div class="card">
+    <h2>貸借対照表・キャッシュフロー <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">（百万円）</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th><th>Q1 FY27/3</th></tr>
+      <tr><td class="label">総資産</td><td>66,838</td><td>67,288</td><td>73,444</td><td>72,374</td></tr>
+      <tr><td class="label">純資産</td><td>47,650</td><td>51,261</td><td>57,443</td><td>56,817</td></tr>
+      <tr><td class="label">自己資本比率</td><td>66.4%</td><td>70.8%</td><td>72.7%</td><td>72.8%</td></tr>
+      <tr><td class="label">営業CF</td><td>2,549</td><td>4,888</td><td>5,960</td><td>929（四半期）</td></tr>
+      <tr><td class="label">投資CF</td><td class="neg">-2,323</td><td class="neg">-4,732</td><td class="neg">-2,205</td><td class="neg">-637（四半期）</td></tr>
+      <tr><td class="label">財務CF</td><td>4,266</td><td class="neg">-1,671</td><td class="neg">-2,359</td><td class="neg">-1,469（四半期）</td></tr>
+      <tr><td class="label">現金同等物期末残高</td><td>19,998</td><td>18,713</td><td>20,246</td><td>19,224</td></tr>
+    </table>
+    <p class="footnote">出所：<span class="src">[③]</span> 有価証券報告書・第1四半期決算短信</p>
+  </div>
+
+  <div class="card">
+    <h2>セグメント（商品別）売上高詳細 <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">（百万円）</th><th>FY25/3実績</th><th>FY26/3実績</th><th>Q1 FY27/3実績</th><th>FY28/3目標構成比</th></tr>
+      <tr><td class="label">家庭用ガス警報器関連</td><td>21,735（51.6%）</td><td>29,606（59.0%／+36.2%）</td><td>6,233（57.7%／-11.5%）</td><td>53%</td></tr>
+      <tr><td class="label">工業用定置式ガス検知警報器関連</td><td>11,993（28.4%）</td><td>11,661（23.3%／-2.8%）</td><td>2,536（23.4%／+21.6%）</td><td>34%</td></tr>
+      <tr><td class="label">業務用携帯型ガス検知器関連</td><td>6,400（15.2%）</td><td>7,145（14.3%／+11.6%）</td><td>1,686（15.6%／+14.5%）</td><td>8%</td></tr>
+      <tr><td class="label">その他</td><td>2,025（4.8%）</td><td>1,680（3.4%／-17.0%）</td><td>354（3.3%／-8.0%）</td><td>5%</td></tr>
+      <tr class="highlight"><td class="label">合計</td><td>42,154</td><td>50,092</td><td>10,810</td><td>100%</td></tr>
+    </table>
+    <h3>地域別売上高</h3>
+    <table>
+      <tr><th class="label">（百万円）</th><th>FY25/3</th><th>FY26/3</th><th>Q1 FY27/3</th></tr>
+      <tr><td class="label">日本</td><td>22,689</td><td>24,153</td><td>5,882</td></tr>
+      <tr><td class="label">北米</td><td>8,969</td><td>15,944</td><td>2,748</td></tr>
+      <tr><td class="label">アジア</td><td>9,953</td><td>9,332</td><td>1,967</td></tr>
+      <tr><td class="label">その他</td><td>544</td><td>663</td><td>211</td></tr>
+    </table>
+    <p class="footnote">出所：<span class="src">[③]</span> 有価証券報告書・第1四半期決算短信／FY28目標構成比は「中期経営計画2025-2027」開示資料</p>
+  </div>
+</div>
+
+<!-- ============ Tab4 バリュエーション ============ -->
+<div class="tab-panel" id="t4">
+  <div class="card">
+    <h2>現在バリュエーション <span class="citation">[④]</span></h2>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="v">13.7倍</div><div class="l">PER（予想）</div></div>
+      <div class="kpi-card"><div class="v">1.04倍</div><div class="l">PBR</div></div>
+      <div class="kpi-card"><div class="v">2.11%</div><div class="l">配当利回り</div></div>
+      <div class="kpi-card"><div class="v">―</div><div class="l">信用倍率（データなし）</div></div>
+    </div>
+    <p class="footnote">2026年8月12日 09:14時点、株価4,500円。出所：<span class="src">[④]</span> kabutan.jp直接フェッチ</p>
+  </div>
+
+  <div class="card">
+    <h3>PER推移（過去5期実績＋現在） <span class="citation">[③][④]</span></h3>
+    <div class="chart-wrap"><canvas id="chartPer"></canvas></div>
+    <p class="footnote">FY22〜FY26は有報記載の期末株価ベースPER（会社開示の確定値）。現在値は本日のkabutan予想PER。過去5年の実績レンジは6.4〜10.8倍であり、現在の13.7倍はこのレンジを上回る水準。<span class="src">[③][④]</span></p>
+  </div>
+
+  <div class="card">
+    <h3>PBR（実績・現在・中計目標） <span class="citation">[③][④]</span></h3>
+    <div class="chart-wrap short"><canvas id="chartPbr"></canvas></div>
+    <p class="footnote">irpocket Excelが404で取得不可のため、複数年のPBR時系列は一次情報から再現できない。表示している3点はいずれも会社開示ベースの実績値・目標値、または直近実測値：FY25実績0.7倍（中期経営計画2025-2027開示資料）、現在1.04倍（kabutan、2026-08-12）、FY28/3目標1.0倍以上（同中計資料）。<span class="src">[③][④]</span></p>
+  </div>
+
+  <div class="card">
+    <h2>理論PBR分析（ROEベース） <span class="citation">[③]</span></h2>
+    <p>ROE 10.3%（FY26/3実績）に対し、株式コストを仮定8%とすると、理論PBR ＝ ROE÷株式コスト ＝ 10.3% ÷ 8% ≈ <strong>1.29倍</strong>。現在PBR 1.04倍はこの理論値を下回り、ROE水準対比では割安の余地があるとも解釈できる。ただしFY27予想はROE低下（純利益-23.5%、自己資本増加）が見込まれ、予想ベースROEはこの水準を下回る可能性が高い点に留意。</p>
+    <p class="footnote">株式コスト8%は一般的な仮定値であり会社発表値ではない（推計・保証なし）。<span class="src">[③]</span></p>
+  </div>
+
+  <div class="card">
+    <h2>配当推移 <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">決算期</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th><th>FY27/3予</th></tr>
+      <tr><td class="label">DPS（円）</td><td>37.00</td><td>47.00</td><td>48.00</td><td>60.00</td><td>95.00</td><td class="forecast">95.00</td></tr>
+      <tr><td class="label">配当性向</td><td>23.9%</td><td>20.9%</td><td>25.8%</td><td>36.0%</td><td>47.6%</td><td>―</td></tr>
+      <tr><td class="label">期末株価比利回り</td><td>1.2%</td><td>1.7%</td><td>2.0%</td><td>2.4%</td><td>2.1%</td><td>2.11%（現在株価比）</td></tr>
+    </table>
+    <p class="footnote">期末株価比利回りは各期末DPS÷期末株価（有報記載PERから逆算した期末株価概算値）で算出した参考値。中期経営計画では配当性向30%を方針として掲げているが、FY26/3実績は既に47.6%とこれを上回っている。<span class="src">[③]</span></p>
+  </div>
+
+  <div class="card">
+    <h2>ピア比較</h2>
+    <p class="footnote">一次情報未取得のため省略（本プロジェクトの方針上、定量ピア比較は簡易言及のみ）。</p>
+  </div>
+</div>
+
+<!-- ============ Tab5 カタリスト ============ -->
+<div class="tab-panel" id="t5">
+  <div class="card">
+    <h2>中期経営計画2025-2027 数値目標 <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">指標</th><th>FY25/3実績</th><th>FY28/3目標</th></tr>
+      <tr><td class="label">連結売上高</td><td>421.5億円</td><td class="forecast">600億円以上</td></tr>
+      <tr><td class="label">海外売上高比率</td><td>46.2%</td><td class="forecast">50%以上</td></tr>
+      <tr><td class="label">営業利益率</td><td>12.2%</td><td class="forecast">12.5%以上</td></tr>
+      <tr><td class="label">PBR</td><td>0.7倍</td><td class="forecast">1.0倍</td></tr>
+      <tr><td class="label">ROE</td><td>7.3%</td><td class="forecast">8.5%</td></tr>
+      <tr><td class="label">ROIC</td><td>6.1%</td><td class="forecast">8.0%</td></tr>
+    </table>
+    <p>投資計画：3年間で約80億円（北米向け家庭用電池式メタン警報器の生産増対応、約20億円を含む）。配当計画：配当性向30％を目指す。</p>
+    <p class="footnote">出所：<span class="src">[③]</span> 「中期経営計画2025-2027」開示資料（3-13・3-14項）</p>
+  </div>
+
+  <div class="card">
+    <h3>前中期経営計画（2022-2024）の達成状況 <span class="citation">[③]</span></h3>
+    <table>
+      <tr><th class="label">指標</th><th>計画値（FY25/3）</th><th>実績値（FY25/3）</th><th>達成</th></tr>
+      <tr><td class="label">連結売上高</td><td>416.6億円</td><td>421.5億円</td><td class="pass-mark">達成</td></tr>
+      <tr><td class="label">海外売上高比率</td><td>40.0%以上</td><td>46.2%</td><td class="pass-mark">達成</td></tr>
+      <tr><td class="label">営業利益</td><td>41億円</td><td>51.5億円</td><td class="pass-mark">達成</td></tr>
+      <tr><td class="label">営業利益率</td><td>9.8%</td><td>12.2%</td><td class="pass-mark">達成</td></tr>
+      <tr><td class="label">ROE</td><td>5.3%</td><td>7.3%</td><td class="pass-mark">達成</td></tr>
+    </table>
+    <p class="footnote">前中計は定量目標を全て達成した実績があり、経営計画の信頼性は相対的に高いと評価できる。<span class="src">[③]</span></p>
+  </div>
+
+  <div class="card">
+    <h2>カタリスト <span class="citation">[③]</span></h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h4>北米向け電池式メタン警報器の拡大</h4>家庭用の主力成長ドライバー。淀川新工場・メキシコ工場の増設で供給体制を強化中。ただしニューヨーク市の設置期限延長で足元（Q1）は前年比-11.5%と一時的に減速。</div>
+      <div class="cat-card"><h4>欧州カーボンニュートラル市場開拓</h4>電池式LPガス警報器の開発を推進し、北米一極集中からの分散を図る「拡張」戦略。</div>
+      <div class="cat-card"><h4>データセンター向け半導体業界需要</h4>アジア向け半導体業界向けガス検知警報器・センサの需要が増加傾向（Q1実績+21.6%）。</div>
+      <div class="cat-card"><h4>3年間で約80億円の投資計画</h4>生産体制拡張・新製品開発・海外拠点整備・人材投資を計画的に実施。</div>
+      <div class="cat-card"><h4>配当性向30%目標</h4>FY26/3実績で既に47.6%まで上昇しており、株主還元姿勢は積極的。</div>
+      <div class="cat-card"><h4>62期連続黒字経営</h4>創業以来の高い財務健全性・事業安定性（自己資本比率72.7%）。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>H1（Q1）実績進捗 <span class="citation">[③]</span></h2>
+    <table>
+      <tr><th class="label">（百万円）</th><th>FY27/3通期予想</th><th>Q1実績</th><th>進捗率</th><th>前年同期比</th></tr>
+      <tr><td class="label">売上高</td><td>51,000</td><td>10,810</td><td>21.2%</td><td class="neg">-1.6%</td></tr>
+      <tr><td class="label">営業利益</td><td>6,000</td><td>774</td><td>12.9%</td><td class="neg">-51.5%</td></tr>
+      <tr><td class="label">経常利益</td><td>6,320</td><td>985</td><td>15.6%</td><td class="neg">-36.2%</td></tr>
+      <tr><td class="label">純利益</td><td>3,985</td><td>412</td><td>10.3%</td><td class="neg">-56.8%</td></tr>
+    </table>
+    <p class="footnote">四半期進捗率は季節性を伴うため単純な4倍換算で通期を判断すべきでないが、利益面の進捗率（10〜16%）は売上高進捗（21.2%）に比べ低く、Q1時点では減益方向に沿った着地となっている。<span class="src">[③]</span></p>
+  </div>
+</div>
+
+<!-- ============ Tab6 リスク ============ -->
+<div class="tab-panel" id="t6">
+  <div class="card">
+    <h2>事業等のリスク <span class="citation">[③]</span></h2>
+    <div class="risk-grid">
+      <div class="risk-card"><h4>①家庭用ガス警報器関連の事業環境</h4>設置有効期限延長（3年→5年）の経緯により交換需要サイクルに空白期間が残存。同業他社との価格・開発競争、主要販売先の保安政策変更の影響を受ける可能性。</div>
+      <div class="risk-card"><h4>②工業用定置式ガス検知警報器関連の事業環境</h4>設備投資需要の景気変動サイクルの影響大。リプレース頻度が低く新規顧客獲得も限定的。</div>
+      <div class="risk-card"><h4>③業務用携帯型ガス検知器関連の事業環境</h4>競争・新商品開発競争が激しく、新技術出現による陳腐化リスク。</div>
+      <div class="risk-card"><h4>④法的規制</h4>高圧ガス保安法・液石法・ガス事業法・労働安全衛生法・消防法など国内外の規制改廃の影響。</div>
+      <div class="risk-card"><h4>⑤品質問題</h4>リコール・製造物責任等の品質問題発生時、多額の費用負担や信用低下のリスク。</div>
+      <div class="risk-card"><h4>⑥研究開発</h4>研究開発投資が必ずしも業績に直結するとは限らない。</div>
+      <div class="risk-card"><h4>⑦知的財産権</h4>特許権が全て登録されるとは限らず、第三者の知財訴訟に巻き込まれる可能性。</div>
+      <div class="risk-card"><h4>⑧経済状況・社会情勢</h4>為替変動、米国・中国・台湾・韓国等の政治経済情勢、地政学リスクによる原材料不足・価格高騰。</div>
+      <div class="risk-card"><h4>⑨大規模災害・感染症</h4>国内拠点での災害・感染症蔓延による事業活動への支障。</div>
+      <div class="risk-card"><h4>⑩個人情報</h4>個人情報流出時の費用負担・信用低下リスク。</div>
+    </div>
+    <p class="footnote">出所：<span class="src">[③]</span> 有価証券報告書「事業等のリスク」（10項目、全て会社開示ベース）</p>
+  </div>
+
+  <div class="card">
+    <h2>財務面での留意点（本レポート独自分析） <span class="citation">[③][④]</span></h2>
+    <ul>
+      <li>FY27/3会社予想は営業利益-18.4%・経常利益-20.2%・純利益-23.5%と大幅減益であり、Q1実績（純利益-56.8%）は通期予想に対しても利益進捗が売上進捗を下回るペースで推移している。</li>
+      <li>現在PER13.7倍は過去5年間の実績PERレンジ（6.4〜10.8倍）を上回っており、減益予想局面にもかかわらずバリュエーションは歴史的に見て割高方向にある。</li>
+      <li>時価総額（565〜580億円）はスクリーニング基準の上限600億円に近接しており、株価上昇や増資により基準から外れる可能性がある。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ Tab7 投資結論 ============ -->
+<div class="tab-panel" id="t7">
+  <div class="banner warn">条件付き購入検討（スクリーニング8条件は全クリアだが、時価総額が上限600億円に接近しボーダー）</div>
+
+  <div class="card">
+    <h2>総合評価ナラティブ</h2>
+    <p>新コスモス電機は家庭用ガス警報器で国内シェア48.9%を握る首位企業であり<span class="src">[③]</span>、自己資本比率72.7%・62期連続黒字経営<span class="src">[②][③]</span>という高い財務健全性を持つ。スクリーニング8条件は全てクリアしており<span class="src">[⑤]</span>、PBR1.04倍・PER13.7倍という現在バリュエーション<span class="src">[④]</span>も割安株の目安内に収まっている。</p>
+    <p>一方で、FY27/3会社予想は売上高こそ微増（+1.8%）だが、営業利益-18.4%・経常利益-20.2%・純利益-23.5%という大幅減益を見込んでおり<span class="src">[③]</span>、2026-08-10開示のQ1決算短信でもこの予想に変更はないと確認されている。Q1実績の利益進捗率（10〜16%）も通期予想に対して見劣りする水準にある。加えて、現在のPER13.7倍は有報記載の過去5年間の実績PERレンジ（6.4〜10.8倍）の上限を上回っており<span class="src">[③][④]</span>、減益局面にもかかわらず市場評価は歴史的水準より高めに位置している点には注意が必要である。</p>
+    <p>中期経営計画2025-2027はFY28/3に向けて売上高600億円以上・ROE8.5%・PBR1.0倍を目標に掲げており<span class="src">[③]</span>、前中計（2022-2024）は全ての定量目標を達成した実績がある<span class="src">[③]</span>ため計画の信頼性は相対的に高い。ただし目標達成は3年後であり、短中期（3〜12ヶ月）の投資判断としてはFY27/3の減益進捗と現在のバリュエーション水準の整合性を見極める必要がある。</p>
+  </div>
+
+  <div class="card">
+    <h2>シナリオ分析（推計値・保証なし） <span class="citation">[③]</span></h2>
+    <p class="footnote"><strong>以下の目標株価は一次情報（会社予想EPS・過去の実績PERレンジ）から本レポートが独自に導出した推計値であり、実際の業績・株価を保証するものではない。</strong></p>
+    <table>
+      <tr><th class="label">ケース</th><th>想定確率</th><th>前提</th><th>想定EPS</th><th>想定PER</th><th>目標株価（推計）</th><th>現在比</th></tr>
+      <tr><td class="label">ベア</td><td>25%</td><td>FY27予想からさらに下振れ（EPS-15%、業績悪化継続）</td><td>278.3円</td><td>7.0倍（過去5年最低水準近辺）</td><td>1,948円</td><td class="neg">-56.7%</td></tr>
+      <tr><td class="label">ベース</td><td>50%</td><td>FY27会社予想どおり着地</td><td>327.5円</td><td>10.0倍（過去5年レンジ上限）</td><td>3,275円</td><td class="neg">-27.2%</td></tr>
+      <tr><td class="label">ブル</td><td>25%</td><td>Q2以降に持ち直し、上方修正（EPS+12.5%）</td><td>368.4円</td><td>12.0倍（現在水準からやや調整）</td><td>4,421円</td><td class="neg">-1.8%</td></tr>
+    </table>
+    <div class="chart-wrap short"><canvas id="chartScenario"></canvas></div>
+    <div class="alert-box">
+      <strong>重要な留意点：</strong> 3ケース全てで目標株価（推計）が現在株価4,500円を下回る。これは現在のPER13.7倍が過去5年の実績PERレンジ（6.4〜10.8倍）を上回っており、仮に業績が会社予想どおり、あるいはそれ以上に着地しても、PERが過去の水準へ回帰した場合には株価の下押し圧力になり得ることを示している。裏を返せば、現在の株価は「今後さらなる増益・レンジを超えた評価継続」を織り込んだ水準にあるとも解釈できる。新規購入を検討する場合は、このバリュエーション面の過熱感を十分に踏まえる必要がある。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>総合チェックリスト</h2>
+    <table>
+      <tr><th class="label">項目</th><th>評価</th></tr>
+      <tr><td class="label">スクリーニング8条件（公式判定）</td><td class="pass-mark">8/8 クリア <span class="src">[⑤]</span></td></tr>
+      <tr><td class="label">財務健全性（自己資本比率）</td><td class="pass-mark">72.7%と極めて高い <span class="src">[③]</span></td></tr>
+      <tr><td class="label">成長性（中計目標）</td><td class="pass-mark">前中計は全目標達成、現中計も進行中 <span class="src">[③]</span></td></tr>
+      <tr><td class="label">直近業績モメンタム</td><td class="fail-mark">FY27予想は大幅減益、Q1進捗も低調 <span class="src">[③]</span></td></tr>
+      <tr><td class="label">バリュエーション（歴史的PERレンジ対比）</td><td class="warn-mark">現在PERはレンジ上限超え、割高感あり <span class="src">[③][④]</span></td></tr>
+      <tr><td class="label">株主還元</td><td class="pass-mark">DPS据え置き・配当性向は目標30%を上回る47.6% <span class="src">[③]</span></td></tr>
+      <tr><td class="label">時価総額（基準余裕度）</td><td class="warn-mark">600億円上限にほぼ接近 <span class="src">[④][⑤]</span></td></tr>
+    </table>
+  </div>
+
+  <div class="disclaimer">
+    <strong>免責事項：</strong> 本レポートは一次情報・公式開示情報のみに基づく分析であり、投資助言を目的としたものではない。データ取得日：2026年8月12日（kabutan株価・指標<span class="src">[④]</span>）。有価証券報告書・決算短信の参照決算期：FY2026/3（開示日2026-05-15）、第1四半期決算短信：FY2027/3 Q1（開示日2026-08-10）<span class="src">[③]</span>。スクリーニング判定の基準日：2026-07-17<span class="src">[⑤]</span>。シナリオ分析中の目標株価は本レポート独自の推計値であり実際の業績・株価を保証しない。irpocket公式IRデータExcelは取得不可（404）のため、財務データは有価証券報告書・決算短信・中期経営計画資料で代替した。投資の最終判断はご自身の責任で行うこと。
+  </div>
+</div>
+
+</main>
+
+<script>
+const colors = {
+  primary: '#1a3a5c', accent: '#2e7d52', warn: '#b45309', danger: '#991b1b',
+  bar1: '#1a3a5c', bar2: '#2e7d52', line1: '#b45309', line2: '#3b82f6',
+  seg1: '#1a3a5c', seg2: '#2e7d52', seg3: '#b45309', seg4: '#94a3b8'
+};
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Tab1: 業績推移概観
+new Chart(document.getElementById('chartOverview'), {
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3予'],
+    datasets: [
+      { type: 'bar', label: '売上高（億円）', data: [343.4,372.1,385.5,421.5,500.9,510.0], backgroundColor: colors.bar1, yAxisID: 'y' },
+      { type: 'line', label: '経常利益（億円）', data: [60.5,62.7,48.1,54.5,79.2,63.2], borderColor: colors.line1, backgroundColor: colors.line1, yAxisID: 'y1', tension: 0.2 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { position: 'left', title: { display: true, text: '売上高（億円）' } },
+      y1: { position: 'right', title: { display: true, text: '経常利益（億円）' }, grid: { drawOnChartArea: false } }
+    }
+  }
+});
+
+// Tab2: セグメント積み上げ
+new Chart(document.getElementById('chartSegment'), {
+  type: 'bar',
+  data: {
+    labels: ['FY25/3','FY26/3'],
+    datasets: [
+      { label: '家庭用ガス警報器関連', data: [21735,29606], backgroundColor: colors.seg1 },
+      { label: '工業用定置式ガス検知警報器関連', data: [11993,11661], backgroundColor: colors.seg2 },
+      { label: '業務用携帯型ガス検知器関連', data: [6400,7145], backgroundColor: colors.seg3 },
+      { label: 'その他', data: [2025,1680], backgroundColor: colors.seg4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '売上高（百万円）' } } }
+  }
+});
+
+// Tab3: P&L推移（棒2本＋線）
+new Chart(document.getElementById('chartPL'), {
+  data: {
+    labels: ['FY25/3実績','FY26/3実績','FY27/3予想'],
+    datasets: [
+      { type: 'bar', label: '売上高（億円）', data: [421.5,500.9,510.0], backgroundColor: colors.bar1, yAxisID: 'y' },
+      { type: 'bar', label: '営業利益（億円）', data: [51.6,73.5,60.0], backgroundColor: colors.bar2, yAxisID: 'y' },
+      { type: 'line', label: '経常利益（億円）', data: [54.5,79.2,63.2], borderColor: colors.line1, backgroundColor: colors.line1, yAxisID: 'y', tension: 0.2 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: '億円' } } } }
+});
+
+// Tab3: ROE/ROA
+new Chart(document.getElementById('chartRoe'), {
+  type: 'line',
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+    datasets: [
+      { label: 'ROE（%）', data: [10.8,9.8,7.0,7.3,10.3], borderColor: colors.primary, backgroundColor: colors.primary, tension: 0.2 },
+      { label: 'ROA（経常利益ベース・%）', data: [12.0,11.4,7.2,8.1,10.8], borderColor: colors.accent, backgroundColor: colors.accent, tension: 0.2 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'ROE / ROA 推移' } } }
+});
+
+// Tab3: EPS/DPS
+new Chart(document.getElementById('chartEpsDps'), {
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+    datasets: [
+      { type: 'bar', label: 'EPS（連結・円）', data: [304.93,302.75,239.62,273.24,424.88], backgroundColor: colors.bar1, yAxisID: 'y' },
+      { type: 'line', label: 'DPS（単体・円）', data: [37.00,47.00,48.00,60.00,95.00], borderColor: colors.warn, backgroundColor: colors.warn, yAxisID: 'y', tension: 0.2 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'EPS / DPS 推移' } }, scales: { y: { title: { display: true, text: '円' } } } }
+});
+
+// Tab4: PER推移
+new Chart(document.getElementById('chartPer'), {
+  type: 'bar',
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','現在(2026/8/12)'],
+    datasets: [{ label: 'PER（倍）', data: [6.4,7.1,10.0,9.2,10.8,13.7], backgroundColor: (ctx) => ctx.dataIndex === 5 ? colors.danger : colors.primary }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: '倍' } } } }
+});
+
+// Tab4: PBR
+new Chart(document.getElementById('chartPbr'), {
+  type: 'bar',
+  data: {
+    labels: ['FY25/3実績','現在(2026/8/12)','FY28/3目標'],
+    datasets: [{ label: 'PBR（倍）', data: [0.7,1.04,1.0], backgroundColor: [colors.primary, colors.danger, colors.accent] }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: '倍' } } } }
+});
+
+// Tab7: シナリオ横棒
+new Chart(document.getElementById('chartScenario'), {
+  type: 'bar',
+  data: {
+    labels: ['ベア（推計）','現在株価','ベース（推計）','ブル（推計）'],
+    datasets: [{
+      label: '株価（円）',
+      data: [1948, 4500, 3275, 4421],
+      backgroundColor: [colors.danger, '#64748b', colors.warn, colors.accent]
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    scales: { x: { title: { display: true, text: '円' } } }
+  }
+});
+</script>
+
+</body>
+</html>

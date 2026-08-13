@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3611 マツオカコーポレーション ― 有価証券報告書 定性分析レポート（第70期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#1b2a41; --navy2:#2c3e57; --accent:#b8860b; --amber:#a86b00; --amberbg:#fdf6e3;
+  --red:#a4262c; --redbg:#fdf0f0; --teal:#0f6f6c; --tealbg:#eef7f6;
+  --gray:#5a6472; --line:#dfe3e8; --bg:#f7f8fa; --card:#ffffff; --quote:#f2f4f7;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+     background:var(--bg);color:#22272e;line-height:1.85;font-size:15px;}
+a{color:var(--navy2);}
+header.top{background:var(--navy);color:#fff;padding:22px 30px 18px;}
+header.top h1{margin:0 0 4px;font-size:20px;letter-spacing:.02em;}
+header.top .sub{font-size:13px;opacity:.8;}
+header.top .meta{margin-top:10px;font-size:12px;opacity:.72;line-height:1.7;}
+.legend{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;}
+.legend span{font-size:11.5px;padding:3px 9px;border-radius:3px;background:rgba(255,255,255,.12);}
+.wrap{display:flex;align-items:flex-start;}
+nav.side{width:236px;flex:0 0 236px;position:sticky;top:0;max-height:100vh;overflow-y:auto;
+     background:#fff;border-right:1px solid var(--line);padding:14px 0 40px;}
+nav.side button{display:block;width:100%;text-align:left;border:0;background:none;cursor:pointer;
+     padding:9px 16px 9px 20px;font-size:13.2px;color:var(--gray);border-left:3px solid transparent;
+     font-family:inherit;line-height:1.5;}
+nav.side button:hover{background:#f2f5f9;color:var(--navy);}
+nav.side button.on{background:#eef2f8;color:var(--navy);border-left-color:var(--accent);font-weight:700;}
+main{flex:1;padding:26px 34px 90px;max-width:1080px;min-width:0;}
+section{display:none;} section.on{display:block;}
+h2.sec{font-size:20px;color:var(--navy);border-bottom:2px solid var(--accent);
+     padding-bottom:8px;margin:0 0 20px;}
+h3{font-size:16px;color:var(--navy);margin:26px 0 10px;padding-left:9px;border-left:4px solid var(--navy2);}
+h4{font-size:14px;color:var(--navy2);margin:18px 0 7px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:17px 20px;margin:14px 0;}
+.card.warn{border-left:4px solid var(--red);background:var(--redbg);}
+.card.note{border-left:4px solid var(--amber);background:var(--amberbg);}
+.card.web{border-left:4px solid var(--teal);background:var(--tealbg);}
+.card h4:first-child{margin-top:0;}
+blockquote{margin:11px 0;padding:11px 16px;background:var(--quote);border-left:4px solid #b6bfcc;
+     font-size:13.6px;color:#3d4451;border-radius:0 4px 4px 0;}
+blockquote::before{content:"有報原文";display:block;font-size:10.5px;letter-spacing:.1em;
+     color:#8b95a3;margin-bottom:5px;font-weight:700;}
+table{border-collapse:collapse;width:100%;margin:13px 0;font-size:13.2px;background:#fff;}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:right;vertical-align:top;}
+th{background:#eef1f6;color:var(--navy);font-weight:700;text-align:center;}
+td.l,th.l{text-align:left;}
+tr.hl td{background:#fffbe9;font-weight:700;}
+.tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:3px;margin-left:5px;
+     white-space:nowrap;vertical-align:1px;font-weight:700;}
+.f{background:#e8ecf2;color:#3c4756;}
+.i{background:#f6e3bd;color:var(--amber);}
+.q{background:#f7d9da;color:var(--red);}
+.w{background:#cfe8e6;color:var(--teal);}
+ul,ol{padding-left:22px;margin:9px 0;} li{margin:5px 0;}
+.chart{position:relative;height:300px;margin:16px 0 6px;}
+.chart.sm{height:250px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:900px){.grid2{grid-template-columns:1fr;} nav.side{display:none;} main{padding:20px 16px 70px;}}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:14px 0;}
+.kpi div{background:#fff;border:1px solid var(--line);border-radius:6px;padding:11px 13px;}
+.kpi .k{font-size:11.5px;color:var(--gray);}
+.kpi .v{font-size:19px;font-weight:700;color:var(--navy);line-height:1.35;}
+.kpi .n{font-size:11px;color:var(--gray);}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;font-size:12px;color:var(--gray);}
+.src{font-size:11.5px;color:var(--gray);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>株式会社マツオカコーポレーション（3611・東証スタンダード／繊維製品）</h1>
+  <div class="sub">有価証券報告書 定性分析レポート ― 第70期（2025年4月1日〜2026年3月31日）</div>
+  <div class="meta">
+    主ソース：第70期 有価証券報告書（2026年6月23日提出・中国財務局長宛）<span class="tag f">③</span>／
+    数値裏取り：irpocket 公式IRデータ<span class="tag f">①</span>／
+    スクリーニング判定：J-Quants API V2<span class="tag f">⑤</span>（基準日 2026-07-17）<br>
+    分析実行日：2026年8月7日　｜　本レポートは売買推奨・目標株価を提示しません。
+  </div>
+  <div class="legend">
+    <span>[事実] 有報に記載あり</span>
+    <span>[解釈] 記載からの合理的推論</span>
+    <span>[要確認] 有報だけでは判断不能</span>
+    <span>[web] 外部Web（沿革章のみ）</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="side" id="nav"></nav>
+<main>
+
+<!-- ===== 0 ===== -->
+<section id="s0" class="on">
+<h2 class="sec">0. エグゼクティブサマリー</h2>
+
+<div class="card">
+<h4>この企業を一文で</h4>
+<p>アパレルOEMの製造受託専業で、国内工場をすべて閉じて中国・バングラデシュ・ベトナム・インドネシア・ミャンマーの5か国に自社工場21社を展開し、連結従業員21,086名のうち21,040名が海外工場に属する「本社177名・海外2万人」型の縫製グループ。<span class="tag f">[事実]</span></p>
+</div>
+
+<h3>記述情報から読み取れる最重要ポイント3点</h3>
+
+<div class="card">
+<h4>① 営業利益+401%の実態は「低すぎた前期からの復元」であって、水準回復ではない</h4>
+<p>当期営業利益21億74百万円（前期比+401.3%）は見出しとしては強烈だが、起点の前期が4億33百万円（営業利益率0.6%）という異常な低水準だった。8年前の2018年3月期は営業利益37億76百万円・営業利益率6.53%であり、当期の営業利益率2.93%は<strong>その半分にも届いていない</strong>。<span class="tag i">[解釈]</span> 実際、J-Quants基準の8年営業利益CAGRは<strong>△6.7%</strong>である。<span class="tag f">[事実]</span><span class="tag f">⑤</span></p>
+</div>
+
+<div class="card">
+<h4>② 連結経常利益53億91百万円のうち31億54百万円（58%）が為替差益</h4>
+<p>営業利益21億74百万円に対し、営業外収益の為替差益が31億54百万円と<strong>営業利益を上回る</strong>。会社自身がこの構造を認め、監査対象外の独自指標「為替差損益調整後営業利益」48億13百万円を併記している。<span class="tag f">[事実]</span> 本業の実力値を会社が営業利益で語れないこと自体が、この企業の損益構造の特徴を示す。<span class="tag i">[解釈]</span></p>
+</div>
+
+<div class="card">
+<h4>③ 当期から初めてセグメントを2区分に分けたが、同時にラミネーションフィルム事業の失速が露出した</h4>
+<p>第70期より「縫製事業」「ラミネーションフィルム事業」の2セグメント開示に変更。<span class="tag f">[事実]</span> 開示初年度にして、ラミ事業は売上82億21百万円（前期比△30.9%）・セグメント利益5億54百万円（同△67.9%）と大幅減。単一セグメント時代であれば縫製の好調に埋もれていた事象が、分割開示によって可視化された。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>最も注意すべき論点1点</h3>
+<div class="card warn">
+<h4>販売先の集中度が「リスク」の水準を超えて事業構造そのものになっている</h4>
+<p>有報のリスク章は、ファーストリテイリンググループ向けが<strong>直接約3割＋東レグループ等経由の間接約4割＝約7割</strong>と自認している。<span class="tag f">[事実]</span> 加えて主要販売先の東レインターナショナル21.0%・Toray Industries (H.K.)16.6%・ユニクロ15.9%で上位3社53.5%。<span class="tag f">[事実]</span> さらに東レは連結子会社TM Textiles & Garments (HK) Ltd.（出資65.3%）の合弁パートナー、ファーストリテイリング・蝶理・東レはPT.MATSUOKA INDUSTRIES INDONESIA（同55.3%）の合弁パートナーでもある。<span class="tag f">[事実]</span> <strong>顧客が同時に資本パートナーである</strong>ため、取引の安定性は高い一方、価格交渉力と事業ポートフォリオの自律性は構造的に制約される。<span class="tag i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ===== Ⅰ ===== -->
+<section id="s1">
+<h2 class="sec">Ⅰ. 企業の輪郭</h2>
+
+<h3>5年推移（連結）</h3>
+<table>
+<tr><th class="l">項目（百万円・円・％）</th><th>第66期<br>2022/3</th><th>第67期<br>2023/3</th><th>第68期<br>2024/3</th><th>第69期<br>2025/3</th><th>第70期<br>2026/3</th><th>4年CAGR</th></tr>
+<tr><td class="l">売上高</td><td>51,056</td><td>62,778</td><td>60,176</td><td>70,579</td><td>74,251</td><td>+9.8%</td></tr>
+<tr><td class="l">営業利益 <span class="tag f">①</span></td><td>181</td><td>67</td><td>792</td><td>433</td><td>2,174</td><td>+86.2%※</td></tr>
+<tr><td class="l">営業利益率</td><td>0.35%</td><td>0.11%</td><td>1.32%</td><td>0.61%</td><td>2.93%</td><td>―</td></tr>
+<tr><td class="l">経常利益</td><td>1,037</td><td>3,202</td><td>4,493</td><td>4,199</td><td>5,391</td><td>+51.0%</td></tr>
+<tr class="hl"><td class="l">親会社株主帰属当期純利益</td><td>559</td><td>1,676</td><td>2,457</td><td>2,600</td><td>3,117</td><td>+53.7%</td></tr>
+<tr><td class="l">EPS（円）</td><td>57.06</td><td>170.30</td><td>246.03</td><td>259.47</td><td>298.12</td><td>+51.2%</td></tr>
+<tr><td class="l">潜在株式調整後EPS（円）</td><td>56.84</td><td>157.15</td><td>211.32</td><td>223.73</td><td>275.91</td><td>―</td></tr>
+<tr><td class="l">ROE</td><td>2.2%</td><td>6.0%</td><td>7.8%</td><td>7.3%</td><td>8.0%</td><td>―</td></tr>
+<tr><td class="l">自己資本比率</td><td>51.8%</td><td>49.7%</td><td>50.6%</td><td>51.8%</td><td>53.1%</td><td>―</td></tr>
+<tr><td class="l">営業CF</td><td>821</td><td>△506</td><td>5,406</td><td>2,724</td><td>6,071</td><td>+64.9%</td></tr>
+<tr><td class="l">投資CF</td><td>△2,811</td><td>△6,197</td><td>△2,575</td><td>△2,034</td><td>△4,357</td><td>―</td></tr>
+<tr><td class="l">財務CF</td><td>3,149</td><td>4,909</td><td>△753</td><td>705</td><td>△1,925</td><td>―</td></tr>
+<tr><td class="l">総資産</td><td>51,879</td><td>59,295</td><td>65,697</td><td>72,453</td><td>75,174</td><td>+9.7%</td></tr>
+<tr><td class="l">純資産</td><td>29,444</td><td>32,305</td><td>36,061</td><td>40,529</td><td>43,558</td><td>+10.3%</td></tr>
+<tr><td class="l">BPS（円）</td><td>2,739.57</td><td>2,950.89</td><td>3,329.08</td><td>3,598.26</td><td>3,804.30</td><td>+8.6%</td></tr>
+<tr><td class="l">連結従業員数（名）</td><td>16,434</td><td>17,729</td><td>17,278</td><td>19,635</td><td>21,086</td><td>+6.4%</td></tr>
+</table>
+<p class="src">出所：第70期有報 第1-1【主要な経営指標等の推移】<span class="tag f">③</span>／営業利益は irpocket 公式IRデータ<span class="tag f">①</span>（有報の主要指標表は経常利益までのため）。CAGRは第66期→第70期の4年で当方算出（推計値・保証なし）。<br>
+※営業利益CAGRは起点181百万円が異常低水準のため<strong>参考値</strong>。より長い8年（2018/3→2026/3）では売上高CAGR+3.2%・営業利益CAGR△6.7%<span class="tag f">⑤</span>。</p>
+
+<div class="chart"><canvas id="c5y"></canvas></div>
+
+<div class="card note">
+<h4>この5年推移から読めること</h4>
+<ul>
+<li>売上・総資産・純資産・従業員数はいずれも一貫して拡大しており、<strong>規模の成長は事実</strong>。<span class="tag f">[事実]</span></li>
+<li>一方、営業利益率は5年を通じて0.11%〜2.93%のレンジにとどまり、<strong>一度も3%に到達していない</strong>。8年前の6.53%との差が埋まっていない。<span class="tag f">[事実]</span></li>
+<li>EPS（298.12円）と潜在株式調整後EPS（275.91円）の差は7.5%。転換社債の希薄化が継続的に効いている（→Ⅸ章）。<span class="tag f">[事実]</span></li>
+<li>営業CFは第67期に△506百万円まで沈み、第68期5,406→第69期2,724→第70期6,071と振れ幅が大きい。運転資本（棚卸資産・売掛債権）の変動に強く左右される構造。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>事業の内容 ― 事業系統図の言語化とビジネスモデル</h3>
+
+<div class="card">
+<h4>グループの構成</h4>
+<p>提出会社（マツオカコーポレーション）＋連結子会社21社＋持分法適用関連会社1社。<span class="tag f">[事実]</span> 提出会社は広島県福山市の本社177名のみで、生産機能を一切持たない。<span class="tag f">[事実]</span></p>
+<h4>商流（縫製事業）</h4>
+<ol>
+<li><strong>商品企画</strong>：提出会社がSPA・アパレルメーカーの要求に対しサンプル提案 → 受注獲得。生産工場は納期・縫製難易度・生産能力に応じて割り振る。</li>
+<li><strong>生地調達・生地生産</strong>：外部調達が基本。ただしインナーウェアのみ原糸を外部調達し、東レグループとの合弁子会社 TM Textiles &amp; Garments Ltd.（バングラデシュ）で<strong>生地から自製</strong>。</li>
+<li><strong>縫製加工</strong>：中国・バングラデシュ・ベトナム・インドネシア・ミャンマーの各拠点で検反→裁断→（プリーツ加工）→縫製→洗い→仕上げ。能力超過分は品質管理可能な外注工場を使用。</li>
+<li><strong>販売</strong>：各工場から梱包後、直接顧客へ出荷。</li>
+</ol>
+<h4>商流（ラミネーションフィルム事業）</h4>
+<ol>
+<li><strong>素材開発</strong>：透湿防水フィルムの性能設計。中国・ベトナム両工場に研究開発機能と試験設備。化学メーカーとの共同開発、機械メーカーとの生産設備開発。</li>
+<li><strong>原材料調達</strong>：表生地・フィルム用樹脂を外部素材メーカーから調達。</li>
+<li><strong>ラミネート加工等</strong>：中国・ベトナムの自社工場でフィルム製造→ラミネート／ボンディング／撥水加工。受入・中間・出荷前の3段階検査。</li>
+<li><strong>販売</strong>：アウトドア・スポーツウェア向けが中心、医療用品等にも供給。</li>
+</ol>
+<p class="src">出所：第1-3【事業の内容】<span class="tag f">③</span></p>
+</div>
+
+<div class="card note">
+<h4>ビジネスモデルの読み取り ― 「誰に何をどう届け、どこで利益を取るか」</h4>
+<p>顧客はSPA・アパレル専門小売店・商社・量販店。届けるのは<strong>完成したアパレル製品そのもの</strong>であり、ブランドも販売網も持たない。<span class="tag f">[事実]</span> したがって利益の源泉は「ブランド価値」でも「販売力」でもなく、<strong>①発注を受け止められる生産キャパシティ、②難易度の高いアイテムを歩留まりよく縫える技術、③5か国分散による地政学・関税・コスト変動への対応力</strong>の3点に限定される。<span class="tag i">[解釈]</span></p>
+<p>会社が経営環境章で「ODM生産への要請が拡大」「クイックレスポンス対応や多品種・小ロット生産へのニーズが一段と高まっている」と書いているのは、<strong>OEM（言われた通り作る）のままでは値段しか差別化軸が残らない</strong>という危機認識の表明と読める。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>収益柱の照合 ― 「語りの大きさ」と「利益の大きさ」</h3>
+
+<table>
+<tr><th class="l">セグメント（当期より新設）</th><th>売上高<br>(百万円)</th><th>構成比</th><th>前期比</th><th>セグメント利益<br>(百万円)</th><th>利益率</th><th>前期比</th></tr>
+<tr><td class="l">縫製事業</td><td>66,029</td><td>88.9%</td><td>+12.5%</td><td>5,959</td><td>9.0%</td><td>+67.6%</td></tr>
+<tr><td class="l">ラミネーションフィルム事業</td><td>8,221</td><td>11.1%</td><td>△30.9%</td><td>554</td><td>6.7%</td><td>△67.9%</td></tr>
+<tr class="hl"><td class="l">合計</td><td>74,251</td><td>100.0%</td><td>+5.2%</td><td>6,513</td><td>8.8%</td><td>―</td></tr>
+<tr><td class="l">（参考）連結営業利益</td><td colspan="3">―</td><td>2,174</td><td>2.9%</td><td>+401.3%</td></tr>
+</table>
+
+<div class="grid2">
+  <div class="chart sm"><canvas id="cseg"></canvas></div>
+  <div class="chart sm"><canvas id="ccountry"></canvas></div>
+</div>
+
+<div class="card warn">
+<h4>照合で浮かぶ論点：セグメント利益の合計と連結営業利益が4,339百万円乖離する</h4>
+<p>2セグメントのセグメント利益合計6,513百万円に対し、連結営業利益は2,174百万円。差額4,339百万円が全社費用・調整額として存在するはずだが、<strong>MD&amp;A本文にはその内訳の説明がない</strong>。<span class="tag f">[事実]</span> 提出会社の販管費規模（連結販管費6,581百万円）と比べても大きい。<span class="tag i">[解釈]</span></p>
+<p>加えて、会社独自指標「為替差損益調整後営業利益」ではセグメント別に縫製5,469百万円・ラミ586百万円（合計6,055百万円）とされ、<strong>セグメント利益（6,513）より小さい</strong>。為替差損益を「足す」調整をしているのに合計が減る関係は本文からは追えない。<span class="tag q">[要確認]</span> セグメント利益の定義（全社費用配賦前か、為替差損益を含むか）は決算説明資料または注記の確認が必要。</p>
+</div>
+
+<div class="card note">
+<h4>語りと利益の乖離</h4>
+<p>ラミネーションフィルム事業は、<strong>事業の内容章では縫製事業とほぼ同等の分量で記述され</strong>、素材開発・研究開発機能・化学メーカーとの共同開発など質的に手厚く語られる。<span class="tag f">[事実]</span> しかし売上構成比は11.1%、セグメント利益は554百万円（全体の8.5%）にすぎず、しかも当期は売上△30.9%・利益△67.9%。<span class="tag f">[事実]</span></p>
+<p>「語りの大きさ」＞「利益の大きさ」の典型で、経営が同事業を<strong>将来の差別化軸として位置づけている</strong>ことの表れと読める。ただし研究開発活動章は「該当事項はありません」であり（→Ⅷ章）、期待と資源投入の間に説明されていない断絶がある。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>生産国別の販売実績</h3>
+<table>
+<tr><th class="l">生産国</th><th>縫製<br>(百万円)</th><th>ラミ<br>(百万円)</th><th>合計<br>(百万円)</th><th>構成比</th><th>縫製前期比</th></tr>
+<tr><td class="l">バングラデシュ</td><td>23,167</td><td>―</td><td>23,167</td><td>31.2%</td><td>+24.8%</td></tr>
+<tr><td class="l">中国</td><td>18,093</td><td>6,049</td><td>24,142</td><td>32.5%</td><td>+11.1%</td></tr>
+<tr><td class="l">ベトナム</td><td>18,079</td><td>2,171</td><td>20,251</td><td>27.3%</td><td>+2.3%</td></tr>
+<tr><td class="l">インドネシア</td><td>3,755</td><td>―</td><td>3,755</td><td>5.1%</td><td>+27.3%</td></tr>
+<tr><td class="l">ミャンマー</td><td>2,933</td><td>―</td><td>2,933</td><td>4.0%</td><td>△8.7%</td></tr>
+<tr class="hl"><td class="l">合計</td><td>66,029</td><td>8,221</td><td>74,251</td><td>100.0%</td><td>+12.5%</td></tr>
+</table>
+<p class="src">出所：第2-4(1)③ｃ【生産国別の販売実績】<span class="tag f">③</span>。中国合計は前期比△6.1%（ラミ事業の落ち込みによる）。</p>
+
+<h3>競争優位の所在</h3>
+<div class="card note">
+<ul>
+<li><strong>内製／外注の位置</strong>：縫製工程は自社工場（内製）、生地は原則外部調達。<strong>唯一インナーウェアだけが生地から内製</strong>（TM Textiles &amp; Garments Ltd.）で、川上に一段だけ踏み込んでいる。<span class="tag f">[事実]</span> 川下（ブランド・小売）には一切出ていない。<span class="tag f">[事実]</span></li>
+<li><strong>優位の実体</strong>：「主要生産国における縫製工場（つくり場）の減少が続く」という経営環境認識が正しければ、5か国に自社工場を持ち21,086名を雇用していること自体が参入障壁になる。<span class="tag i">[解釈]</span> 実際、当期の粗利率改善（9.3%→11.8%）は「生産量の増加や生産効率の改善が寄与」と説明されており、稼働率がそのまま利益率に直結する装置産業に近い性格を持つ。<span class="tag f">[事実]</span></li>
+<li><strong>優位の限界</strong>：技術力を要するアイテムは中国拠点に集約し、量産はASEANへ移すという棲み分けを進めている。<span class="tag f">[事実]</span> しかし当期の縫製事業は売上+12.5%に対し販売枚数+22.1%で、<strong>1枚当たり単価が約1,128円→1,040円へ7.8%下落</strong>している（当方算出・推計値）。<span class="tag i">[解釈]</span> 単価下落を稼働率で吸収して利益率を上げた構図であり、優位が「価格」に効いている証拠は当期の数字からは読み取れない。</li>
+</ul>
+</div>
+
+<h3>関係会社 ― 支配構造とリスク</h3>
+<div class="card">
+<ul>
+<li><strong>親会社は存在しない。</strong>実質的な支配は創業家側（合同会社マツオカカンパニー16.91%＋松岡典之11.95%＝28.86%）にある。<span class="tag f">[事実]</span>（→Ⅸ章）</li>
+<li><strong>海外子会社の比重が極端に高い。</strong>連結子会社21社のうち日本法人はゼロ。売上・従業員・生産設備のほぼ全量が海外にある。<span class="tag f">[事実]</span></li>
+<li><strong>非100%子会社が主力に含まれる。</strong>
+  <ul>
+  <li>TM Textiles &amp; Garments (HK) Ltd. 65.3%（東麗〈東レ〉香港・上海鶴山針織服装との合弁）</li>
+  <li>PT.MATSUOKA INDUSTRIES INDONESIA 55.3%（ファーストリテイリング・蝶理・東レとの4社合弁）</li>
+  <li>嘉興徳永紡織品有限公司 97.8%／JDT VIETNAM CO.,LTD 97.8%</li>
+  </ul>
+  当期の非支配株主持分は646百万円増加している。<span class="tag f">[事実]</span></li>
+<li><strong>持分法適用関連会社</strong>：浙江舒海堂家紡制品有限公司 45.0%（1社のみ）。<span class="tag f">[事実]</span></li>
+<li><strong>清算手続中</strong>：MATSUOKA APPARELS LTD.（バングラデシュ・特定子会社）。<span class="tag f">[事実]</span></li>
+</ul>
+
+<h4>売上高10%超の子会社（有報が個別開示）</h4>
+<table>
+<tr><th class="l">会社</th><th>売上高</th><th>経常利益</th><th>経常利益率</th><th>当期純利益</th><th>純資産</th><th>総資産</th><th>出資比率</th></tr>
+<tr><td class="l">TM Textiles &amp; Garments (HK) Ltd.</td><td>15,899</td><td>1,063</td><td>6.7%</td><td>878</td><td>8,599</td><td>11,669</td><td>65.3%</td></tr>
+<tr><td class="l">茉織華実業(集団)有限公司</td><td>7,815</td><td>1,732</td><td>22.2%</td><td>1,623</td><td>8,069</td><td>9,535</td><td>100.0%</td></tr>
+</table>
+<p class="src">単位：百万円。出所：第1-4【関係会社の状況】注6<span class="tag f">③</span></p>
+</div>
+
+<div class="card note">
+<h4>この2社の対比が示すこと</h4>
+<p>中国・平湖の茉織華実業は売上7,815百万円で経常利益率22.2%と極めて高く、しかも100%子会社。一方、バングラデシュ生地生産を担うTM Textiles (HK)は売上15,899百万円と2倍の規模ながら経常利益率6.7%で、かつ34.7%が非支配株主に帰属する。<span class="tag f">[事実]</span></p>
+<p>会社の戦略は「中国からASEANへの生産地シフト」だが、<strong>利益率だけを見れば縮小方向の中国拠点のほうが圧倒的に高い</strong>。中国拠点が「サンプル作成や短納期対応など付加価値の高い領域」に特化した結果である可能性が高いが、<span class="tag i">[解釈]</span> シフト先のASEANで同等の利益率に到達する道筋は有報には書かれていない。<span class="tag q">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ===== Ⅱ ===== -->
+<section id="s2">
+<h2 class="sec">Ⅱ. 沿革</h2>
+
+<div class="card">
+<h4>1946〜1996：呉服店から繊維製造業へ</h4>
+<table>
+<tr><th class="l" style="width:120px">年月</th><th class="l">出来事</th></tr>
+<tr><td class="l">1946年4月</td><td class="l">広島県甲奴郡上下町（現 府中市）で<strong>松岡呉服店を創業</strong>、衣料品販売を開始</td></tr>
+<tr><td class="l">1956年4月</td><td class="l">資本金100万円で株式会社松岡呉服店を設立</td></tr>
+<tr><td class="l">1964年3月</td><td class="l">商号を<strong>松岡繊維工業株式会社</strong>に変更／各種繊維製品の製造加工に<strong>業態転換</strong></td></tr>
+<tr><td class="l">1982年4月</td><td class="l">韓国の協力工場に対して<strong>生産委託を開始</strong>（海外生産の起点）</td></tr>
+<tr><td class="l">1990年12月</td><td class="l">中国に浙江茉織華制衣有限公司を設立し生産開始</td></tr>
+<tr><td class="l">1993年8月</td><td class="l">中国に茉織華実業(集団)有限公司を現地法人との<strong>合弁</strong>で設立</td></tr>
+<tr><td class="l">1996年4月</td><td class="l">商号を<strong>株式会社マツオカコーポレーション</strong>に変更</td></tr>
+</table>
+<p class="src">出所：第1-2【沿革】<span class="tag f">③</span></p>
+</div>
+
+<div class="card">
+<h4>1998〜2016：国内生産の完全放棄と中国一極化、そしてASEAN分散の始まり</h4>
+<table>
+<tr><th class="l" style="width:120px">年月</th><th class="l">出来事</th></tr>
+<tr><td class="l">1998年3月</td><td class="l"><strong>国内工場を閉鎖、生産拠点を中国へ完全移管</strong></td></tr>
+<tr><td class="l">1998年4月</td><td class="l">額面変更・単位株制度導入のため司エステート株式会社を存続会社として吸収合併、商号を再度マツオカコーポレーションに</td></tr>
+<tr><td class="l">2003年10月</td><td class="l">嘉興徳永紡織品有限公司の出資持分を取得し連結子会社化（現・ラミネーションフィルム事業の中核）</td></tr>
+<tr><td class="l">2004年3月</td><td class="l">MYANMAR POSTARION CO.,LTD の持分取得、<strong>ミャンマーで生産開始</strong></td></tr>
+<tr><td class="l">2004年7月</td><td class="l">本社を広島県福山市宝町へ移転</td></tr>
+<tr><td class="l">2005年9月</td><td class="l">合弁を解消し茉織華実業(集団)有限公司を<strong>完全子会社化</strong></td></tr>
+<tr><td class="l">2006年2月</td><td class="l">浙江茉織華貿易有限公司を設立</td></tr>
+<tr><td class="l">2008年3月</td><td class="l">バングラデシュに MATSUOKA APPARELS LTD. を設立（※現在は清算手続中）</td></tr>
+<tr><td class="l">2009年5月</td><td class="l"><strong>東麗（香港）・上海鶴山針織服装との合弁</strong>で TM Textiles &amp; Garments (HK) Ltd. を設立</td></tr>
+<tr><td class="l">2009年7月</td><td class="l">バングラデシュに TM Textiles &amp; Garments Ltd. を設立、<strong>インナーウェアの生地生産を開始</strong></td></tr>
+<tr><td class="l">2010年8月</td><td class="l">バングラデシュに MK APPARELS LTD. を設立</td></tr>
+<tr><td class="l">2015年10月</td><td class="l">ベトナム・フート省に PHU THO MATSUOKA CO.,LTD を設立</td></tr>
+<tr><td class="l">2016年9月</td><td class="l">ベトナム・ビンズオン省（現ホーチミン市）に JDT VIETNAM CO.,LTD を設立</td></tr>
+</table>
+<p class="src">出所：第1-2【沿革】<span class="tag f">③</span></p>
+</div>
+
+<div class="card">
+<h4>2017〜2026：上場、生産5か国体制の完成、そして市場区分の降格</h4>
+<table>
+<tr><th class="l" style="width:120px">年月</th><th class="l">出来事</th></tr>
+<tr><td class="l">2017年8月</td><td class="l">ベトナム・バクザン省（現バクニン省）の VINA BIRZ CO.,LTD（現 BAC GIANG MATSUOKA）の持分取得</td></tr>
+<tr><td class="l">2017年12月</td><td class="l"><strong>東京証券取引所市場第一部に株式を上場</strong></td></tr>
+<tr><td class="l">2018年5月</td><td class="l">インドネシアに<strong>ファーストリテイリング・蝶理・東レ・当社の4社合弁</strong> PT.MATSUOKA INDUSTRIES INDONESIA を設立</td></tr>
+<tr><td class="l">2019年11月</td><td class="l">ベトナム・ゲアン省に AN NAM MATSUOKA GARMENT CO.,LTD を設立</td></tr>
+<tr><td class="l">2021年1月</td><td class="l">バングラデシュ・パブナ県の Roulin(BD) Ltd.（現 ISHWARDI MATSUOKA BANGLADESH.LTD.）の株式取得</td></tr>
+<tr><td class="l">2021年12月</td><td class="l">ベトナム・ゲアン省に THANH CHUONG MATSUOKA GARMENT CO.,LTD を設立</td></tr>
+<tr><td class="l">2022年4月</td><td class="l">市場区分見直しにより市場第一部から<strong>プライム市場へ移行</strong></td></tr>
+<tr><td class="l">2023年10月</td><td class="l"><strong>東京証券取引所スタンダード市場へ市場変更</strong></td></tr>
+<tr><td class="l">2025年11月</td><td class="l">本社を広島県福山市西町へ移転（新社屋）</td></tr>
+</table>
+<p class="src">出所：第1-2【沿革】<span class="tag f">③</span>。上場日については、東証スタンダード市場への上場日を2017年12月13日とする外部情報がある <span class="tag w">[web]</span>（株探）。</p>
+</div>
+
+<div class="card note">
+<h4>この沿革が描く「どういう成り立ちの会社か」</h4>
+<p><strong>転換点は4つ。</strong><span class="tag i">[解釈]</span></p>
+<ol>
+<li><strong>1964年の業態転換</strong>：呉服の「売る側」から繊維製品の「作る側」へ。以降62年間、一貫して製造受託を本業とし、自社ブランドへの回帰は一度も起きていない。</li>
+<li><strong>1998年の国内工場閉鎖</strong>：国内生産を残さず完全に中国へ移した。この決断が「日本に本社177名・海外に21,040名」という現在の極端な形の起点になっている。中途半端な国内残置をしなかったぶん、為替と現地労務が損益を直撃する体質も同時に確定した。</li>
+<li><strong>2009年の東レとの合弁</strong>：生地生産まで川上に踏み込むと同時に、<strong>主要顧客と資本で結ばれる関係</strong>が始まった。2018年のファーストリテイリング・蝶理・東レとの4社合弁でこの構造が決定的になる。取引の安定と引き換えに、顧客ポートフォリオの自律的な組み替えは難しくなった。</li>
+<li><strong>2022→2023年の市場区分の後退</strong>：プライム移行のわずか1年半後にスタンダードへ変更。<span class="tag f">[事実]</span> 有報は理由を記載していない<span class="tag q">[要確認]</span>が、時期はビジョン2025前半（第66期営業利益181百万円・第67期67百万円）の業績低迷期と重なる。<span class="tag i">[解釈]</span></li>
+</ol>
+<p>全体として、<strong>「生産地を替え続けることで生き延びてきた会社」</strong>である。韓国委託（1982）→中国（1990）→ミャンマー（2004）→バングラデシュ（2008）→ベトナム（2015）→インドネシア（2018）と、約10年ごとに主力生産地を追加してきた。現在の中計「BEYOND2028」がASEAN強化を掲げるのは、この60年の行動様式の延長線上にある。<span class="tag i">[解釈]</span></p>
+</div>
+
+<div class="card web">
+<h4>Web情報による補足（沿革章のみ許可）</h4>
+<ul>
+<li>公式サイトのドメインは <code>matuoka.co.jp</code>。<span class="tag w">[web]</span>（日経会社情報）</li>
+<li>東証スタンダード市場への上場日は2017年12月13日と記載されている。<span class="tag w">[web]</span>（株探）</li>
+</ul>
+<p class="src">※本章以外ではWeb情報を使用していません。上記は有報由来の <span class="tag f">[事実]</span>／<span class="tag i">[解釈]</span> とは区別して扱ってください。</p>
+</div>
+</section>
+
+<!-- ===== Ⅲ ===== -->
+<section id="s3">
+<h2 class="sec">Ⅲ. 人的資本（従業員＋サステナビリティ統合）</h2>
+
+<h3>従業員の状況</h3>
+<div class="kpi">
+  <div><div class="k">連結従業員数</div><div class="v">21,086 名</div><div class="n">前期19,635名・+7.4%</div></div>
+  <div><div class="k">うち縫製事業</div><div class="v">20,711 名</div><div class="n">全体の98.2%</div></div>
+  <div><div class="k">うちラミ事業</div><div class="v">329 名</div><div class="n">1.6%</div></div>
+  <div><div class="k">全社（共通）</div><div class="v">46 名</div><div class="n">0.2%</div></div>
+  <div><div class="k">提出会社</div><div class="v">177 名</div><div class="n">連結の0.84%</div></div>
+</div>
+
+<table>
+<tr><th class="l">提出会社の従業員指標（2026年3月31日現在）</th><th>値</th></tr>
+<tr><td class="l">従業員数</td><td>177名</td></tr>
+<tr><td class="l">平均年齢</td><td>42.4歳</td></tr>
+<tr><td class="l">平均勤続年数</td><td>8.4年</td></tr>
+<tr><td class="l">平均年間給与（賞与・基準外賃金含む）</td><td>5,552千円</td></tr>
+<tr class="hl"><td class="l">平均年間給与の対前事業年度増減率</td><td>+10.1%</td></tr>
+<tr><td class="l">内訳：縫製事業／ラミ事業／全社共通</td><td>131名／0名／46名</td></tr>
+</table>
+<p class="src">出所：第1-5(2)【従業員の状況】<span class="tag f">③</span></p>
+
+<div class="card note">
+<h4>提出会社の給与+10.1%が意味すること</h4>
+<p>提出会社の平均年間給与は前年比+10.1%と大幅増。同時に提出会社の当期純利益は1,298→4,490百万円（+246%）、自己資本利益率は5.7%→18.0%に急上昇している。<span class="tag f">[事実]</span> 賞与を含む平均給与であるため、<strong>単体業績の急回復が賞与を通じて処遇に反映された</strong>と読むのが自然。<span class="tag i">[解釈]</span> 従業員給与の決定方針でも「会社業績に応じた賞与原資の決定と、個人評価に基づく配分」と明記されている。<span class="tag f">[事実]</span></p>
+<p>ただし対象は177名であり、連結21,086名の99.2%を占める海外従業員の処遇動向は有報からは追えない。<span class="tag q">[要確認]</span></p>
+</div>
+
+<h3>生産性の推移（当方算出）</h3>
+<table>
+<tr><th class="l">指標</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th></tr>
+<tr><td class="l">連結従業員数（名）</td><td>16,434</td><td>17,729</td><td>17,278</td><td>19,635</td><td>21,086</td></tr>
+<tr><td class="l">1人当たり売上高（百万円）</td><td>3.11</td><td>3.54</td><td>3.48</td><td>3.59</td><td>3.52</td></tr>
+<tr class="hl"><td class="l">1人当たり営業利益（千円）</td><td>11</td><td>4</td><td>46</td><td>22</td><td>103</td></tr>
+<tr><td class="l">1人当たり経常利益（千円）</td><td>63</td><td>181</td><td>260</td><td>214</td><td>256</td></tr>
+</table>
+<p class="src">推計値・保証なし。連結売上高・利益<span class="tag f">①</span>を期末従業員数<span class="tag f">③</span>で除して当方算出。</p>
+
+<div class="chart sm"><canvas id="cprod"></canvas></div>
+
+<div class="card note">
+<h4>労働集約型か、仕組み型か</h4>
+<ul>
+<li>1人当たり売上高は3.11→3.52百万円（4年で+13%）だが、<strong>直近2年は3.59→3.52百万円へ低下</strong>している。<span class="tag f">[事実]</span> 従業員数+7.4%に対し売上+5.2%で、人員増が売上増を上回った。<span class="tag i">[解釈]</span></li>
+<li>これは会社の説明と整合する。バングラデシュで「生産ラインの増設を進め、生産体制の拡充に取り組みました」とあり、<strong>先に人を入れて後から稼働を上げる</strong>局面にある。<span class="tag f">[事実]</span></li>
+<li>1人当たり売上高が年3.5百万円という水準は、日本の製造業としては極めて低い。これは<strong>典型的な労働集約型</strong>であり、仕組み・自動化で人を代替する構造にはなっていない。<span class="tag i">[解釈]</span> 中計②で掲げるMES/ERP導入・スマートファクトリー化は、この構造を変えようとする施策と読める。</li>
+<li>ただし1人当たり営業利益は当期103千円。<strong>従業員1人が年間で生む営業利益が10万円強</strong>という水準であり、人件費の数%の変動が損益を左右する。KAMの監査手続で「主要な経費である人件費の見積りについては、当該国の物価上昇率との整合性を検討」とされているのは、この感応度の裏返しである。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>人的資本に関する指標（サステナビリティ章 第2-2(4)）</h3>
+<table>
+<tr><th class="l">指標</th><th class="l">実績・目標</th><th class="l">期限</th></tr>
+<tr><td class="l">連結従業員数</td><td class="l">21,086名（2026年3月末）</td><td class="l">―</td></tr>
+<tr class="hl"><td class="l">連結従業員数（目標）</td><td class="l"><strong>24,000人規模</strong>の体制構築</td><td class="l">2029年3月末</td></tr>
+<tr><td class="l">女性管理職比率（グループ）</td><td class="l">42%（2026年3月末）／現状水準の維持を方針</td><td class="l">期限の定めなし</td></tr>
+<tr><td class="l">男性育児休業取得率</td><td class="l"><strong>記載なし</strong></td><td class="l">―</td></tr>
+<tr><td class="l">男女の賃金の差異</td><td class="l"><strong>記載なし</strong></td><td class="l">―</td></tr>
+<tr><td class="l">役員に占める女性比率</td><td class="l">0%（男性13名・女性0名）</td><td class="l">―</td></tr>
+</table>
+<p class="src">出所：第2-2(4)【指標及び目標】、第4-4(2)【役員の状況】<span class="tag f">③</span>。数値の提示のみとし、優劣の評価は行いません。</p>
+
+<div class="card">
+<h4>人材戦略の基本方針（第1-5(1)）― 記述の中身</h4>
+<blockquote>当社の競争力の源泉は、海外自社工場における縫製技術、品質管理力、生産現場の運営力にあり、これらを支える人財の育成と組織力の強化が不可欠であるとの認識に立っております。</blockquote>
+<p>具体施策として記載されているもの：<span class="tag f">[事実]</span></p>
+<ul>
+<li><strong>技術移転</strong>：旗艦工場で培った縫製技術・品質管理ノウハウをグループ全体へ計画的に展開。技術者派遣により育成工場のスキルを段階的に引き上げる。</li>
+<li><strong>工場横断の改善活動</strong>：生産現場リーダー層の育成と組織力強化。</li>
+<li><strong>スマートファクトリー化</strong>：生産・在庫・収益情報をデジタルで可視化する仕組みを工場ごとに順次導入。これを活用できる人財の育成。</li>
+<li><strong>グローバル人事データベース</strong>：人事情報の整理・共通化を進め、適材適所の配置を行う人財マネジメント基盤の整備。</li>
+<li><strong>説明責任（Accountability）を重視した組織文化</strong>の醸成、管理部門を中心としたガバナンス強化・経営管理能力の向上。</li>
+</ul>
+<h4>評価</h4>
+<p>「旗艦工場から育成工場への技術者派遣」「工場ごとの可視化システム導入」は、<strong>この会社にしか書けない固有記述</strong>であり、ボイラープレートではない。<span class="tag i">[解釈]</span> 一方、これらの施策に<strong>数値目標・期限・進捗指標が一切付いていない</strong>点は、人的資本開示としては検証不能である。<span class="tag f">[事実]</span> 検証可能な期限付き数値目標は「2029年3月末に連結24,000人」だけで、これは<strong>人員数＝規模の目標であって、質・生産性の目標ではない</strong>。<span class="tag i">[解釈]</span></p>
+</div>
+
+<div class="card warn">
+<h4>沈黙している点</h4>
+<ul>
+<li><strong>離職率・定着率の開示がない。</strong>「人財定着を図る」と方針は書くが、実績値がない。<span class="tag f">[事実]</span> 縫製業で従業員2万人規模なら定着率は競争力の中核指標のはずで、これが無いのは開示上の空白と言える。<span class="tag i">[解釈]</span></li>
+<li><strong>賃金水準・最低賃金改定の影響に関する記述がない。</strong>バングラデシュ・ベトナム・インドネシアの最低賃金は近年繰り返し改定されているが、有報のリスク章にも独立項目がない。KAMの監査手続にだけ「当該国の物価上昇率」が現れる。<span class="tag q">[要確認]</span></li>
+<li><strong>人権デューデリジェンスの実施実績が定量化されていない。</strong>リスク章に「人権デューデリジェンスを実施」とあるが、対象範囲・件数・是正事例の記載はない。<span class="tag f">[事実]</span> ミャンマー2,045名・バングラデシュ9,897名という規模を踏まえると、投資判断上は実施実態の確認が要る。<span class="tag q">[要確認]</span></li>
+<li><strong>提出会社には労働組合が結成されていない</strong>が、縫製工員が在籍する連結子会社には労働組合がある旨のみ記載。労使協議の実態は不明。<span class="tag f">[事実]</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ===== Ⅳ ===== -->
+<section id="s4">
+<h2 class="sec">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+
+<h3>経営指針と行動基準</h3>
+<div class="card">
+<table>
+<tr><th class="l" style="width:150px">ビジョン</th><td class="l">あらゆる服づくりの舞台裏に私たちがいる</td></tr>
+<tr><th class="l">ミッション</th><td class="l">新たな道を切り拓き、未来を紡ぐ</td></tr>
+<tr><th class="l">原点（Values）</th><td class="l">お客様の全てのニーズに応える</td></tr>
+</table>
+<h4>行動基準（7項目）</h4>
+<ul>
+<li>事実を確認せよ（情報に惑わされるな 現物・現場・現実主義）</li>
+<li>決め打ちするな、選択肢を示せ</li>
+<li>すぐに断らず、諦めず、できる方法を考え抜け</li>
+<li>間違ってもよい、すぐに報告し改善せよ</li>
+<li>問題は起きる、原因を究明し再発を防げ</li>
+<li>情報を閉じ込めるな、早く広く共有せよ</li>
+<li>人とは違う発想で、新しい目標にチャレンジせよ</li>
+</ul>
+<p class="src">出所：第2-1(1)【経営指針等】<span class="tag f">③</span></p>
+</div>
+
+<div class="card note">
+<p>行動基準7項目のうち5項目が「報告・共有・原因究明・再発防止」という<strong>現場オペレーションの規律</strong>に関するもの。<span class="tag f">[事実]</span> 理念的な言葉（社会貢献・顧客第一など）ではなく工場運営の作法が並ぶ点は、5か国21工場を遠隔統括する会社の実務的な関心を反映している。<span class="tag i">[解釈]</span> 原点が「お客様の全てのニーズに応える」＝受託業としての立ち位置を明示していることも、自社ブランドへ向かわない経営方針と整合する。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>経営者が認識する市場環境</h3>
+<div class="card">
+<blockquote>アパレル市場においては、主要生産国における縫製工場（つくり場）の減少が続く中、地政学的リスクの高まりや各国の通商政策の変化を背景として、サプライチェーンの再構築を検討する動きが強まりました。また、需要の変動が大きい市況環境のもと、企画段階からの技術提案を含むODM生産への要請が拡大しているほか、販売動向を見極めながら発注量を調整するための、クイックレスポンス対応や多品種・小ロット生産へのニーズが一段と高まっております。</blockquote>
+<h4>具体性の評価</h4>
+<ul>
+<li><strong>アパレル市場部分は固有記述。</strong>「つくり場の減少」「ODM要請の拡大」「クイックレスポンス」「多品種・小ロット」は、この会社の顧客接点から得た情報でなければ書けない粒度。<span class="tag i">[解釈]</span></li>
+<li><strong>マクロ経済部分（世界経済・わが国経済）は完全なボイラープレート。</strong>「米国の通商政策及び金融政策を巡る不確実性」「中東地域における緊張の高まり」「雇用・所得環境の改善により個人消費は底堅く」は、どの日本企業の有報にも置換可能な文言で、固有名詞・数値・時期を一切伴わない。<span class="tag f">[事実]</span> しかも<strong>MD&amp;A冒頭にほぼ一字一句同じ段落が再掲</strong>されている。<span class="tag f">[事実]</span></li>
+<li>米国の通商政策（関税）に言及しながら、<strong>自社の生産5か国が関税対象になった場合の影響を一切定量化していない</strong>。生産のほぼ全量が中国・バングラデシュ・ベトナム・インドネシア・ミャンマーにあることを踏まえると、この沈黙は情報である。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>中期経営計画「ビジョン2025」（第66期〜第70期）― 最終年度の着地</h3>
+<table>
+<tr><th class="l">項目</th><th>計画（第70期）</th><th>実績</th><th>計画比</th></tr>
+<tr class="hl"><td class="l">売上高</td><td>740億円</td><td>742億51百万円</td><td>+0.3%</td></tr>
+<tr class="hl"><td class="l">経常利益</td><td>47億円</td><td>53億91百万円</td><td>+14.7%</td></tr>
+<tr><td class="l">営業利益</td><td colspan="3" class="l"><strong>計画値の開示なし</strong>（実績21億74百万円）</td></tr>
+</table>
+<p class="src">出所：第2-1(3)【経営戦略等】、第2-4(2)①ａ<span class="tag f">③</span></p>
+
+<div class="card note">
+<h4>「目標を上回った」という自己評価をどう読むか</h4>
+<p>会社は<strong>「いずれも中期経営計画で掲げた目標を上回る結果となりました」</strong>と明記している。<span class="tag f">[事実]</span> 数字上その通りである。</p>
+<p>ただし内訳を見ると、売上は計画比+0.3%（ほぼぴったり）、経常は+14.7%の上振れ。この上振れの原因は本文の説明順序から為替差益にある。<span class="tag i">[解釈]</span> 当期の為替差益は31億54百万円で、経常利益53億91百万円の58.5%を占める。<span class="tag f">[事実]</span> <strong>営業利益の計画値が開示されていない</strong>ため、本業がビジョン2025の想定通りだったかは有報からは検証できない。<span class="tag q">[要確認]</span></p>
+<p>なお計画期間5年のうち、営業利益は181→67→792→433→2,174百万円と推移した。<span class="tag f">①</span> 期間の大半で1,000百万円未満だった事実は、「目標を上回った」という総括からは読み取れない。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>新中期経営計画「BEYOND2028 〜Stitch the Future〜」（2026年度〜2028年度）</h3>
+<table>
+<tr><th class="l">指標</th><th>第70期実績<br>（2026/3）</th><th>目標<br>（2029/3）</th><th>必要な3年CAGR<br>（当方算出）</th></tr>
+<tr class="hl"><td class="l">売上高</td><td>742億51百万円</td><td>900億円</td><td>+6.6%</td></tr>
+<tr class="hl"><td class="l">経常利益</td><td>53億91百万円</td><td>60億円</td><td>+3.6%</td></tr>
+<tr class="hl"><td class="l">親会社株主帰属当期純利益</td><td>31億17百万円</td><td>40億円</td><td>+8.7%</td></tr>
+<tr><td class="l">ROE</td><td>8.0%</td><td>9%（長期10%）</td><td>―</td></tr>
+<tr><td class="l">連結従業員数</td><td>21,086名</td><td>24,000人規模</td><td>+4.4%</td></tr>
+<tr><td class="l">経常利益率（算出）</td><td>7.26%</td><td>6.67%</td><td><strong>△0.59pt</strong></td></tr>
+</table>
+<p class="src">CAGR・経常利益率は当方算出（推計値・保証なし）。出所：第2-1(3)(4)、第2-2(4)<span class="tag f">③</span></p>
+
+<div class="card warn">
+<h4>計画の内部整合について読み取れる3点</h4>
+<ol>
+<li><strong>増収率＞増益率＝利益率の低下を織り込んだ計画である。</strong>売上+6.6%/年に対し経常+3.6%/年で、経常利益率は7.26%→6.67%へ0.59pt低下する。<span class="tag i">[解釈]</span> 拡大局面で利益率が下がる計画を出すのは珍しく、<strong>当期の為替差益31億54百万円が剥落する前提</strong>を置いていると読むのが自然。その場合、営業利益は21億74百万円から大幅に伸ばす必要がある。ただし<strong>営業利益の目標値は開示されていない</strong>ため、この読みは検証できない。<span class="tag q">[要確認]</span></li>
+<li><strong>純利益/経常利益の比率が57.8%→66.7%へ上がる前提。</strong>税負担率の低下か非支配株主持分の減少がなければ成立しない。有報にはその説明がない。<span class="tag q">[要確認]</span></li>
+<li><strong>ROE9%は資本政策を伴わないと届きにくい。</strong>当期の自己資本は約399億円（総資産751億74百万円×自己資本比率53.1%、当方算出）。純利益40億円を3年積み上げ、配当性向30%を維持すると自己資本は約480億円規模になる。40億円÷480億円＝<strong>約8.3%</strong>で、目標9%には届かない計算になる。<span class="tag i">[解釈]</span>（推計値・保証なし） 施策③で「資本政策及びキャッシュマネジメントの高度化」と書かれているのは、この差を埋める必要性の示唆と読めるが、自社株買い等の具体策は記載されていない。<span class="tag q">[要確認]</span></li>
+</ol>
+</div>
+
+<h3>課題 → 打ち手の一対一照合</h3>
+<p>有報が挙げる環境変化（課題）と、重点施策4項目の対応関係を照合した。<span class="tag i">[解釈]</span></p>
+<table>
+<tr><th class="l" style="width:26%">認識している課題</th><th class="l" style="width:34%">紐づく重点施策</th><th class="l">接続の評価</th></tr>
+<tr>
+<td class="l">主要生産国における縫製工場（つくり場）の減少</td>
+<td class="l">① 生産規模を追求し、利益を最大化（拡大キャパの活用、アイテム・拠点の最適配置）</td>
+<td class="l"><strong>接続あり。</strong>ただし「つくり場の減少」は自社にとって供給者希少化＝追い風でもあり、課題として書きつつ打ち手は機会活用になっている。整理のねじれ。</td>
+</tr>
+<tr style="background:#fdf0f0">
+<td class="l"><strong>地政学リスクの高まり</strong></td>
+<td class="l">―</td>
+<td class="l"><strong>打ち手が空白。</strong>重点施策4項目のいずれにも生産地の分散・地域リスク対応が明示されていない。①はバングラデシュ・ベトナム・インドネシアという<strong>既存3か国の深掘り</strong>であって分散ではない。リスク章の取組み欄には「アジア地域以外への地域の進出を検討してまいります」とあるが、中計側には反映されていない。</td>
+</tr>
+<tr style="background:#fdf0f0">
+<td class="l"><strong>ODM生産への要請拡大</strong>（企画段階からの技術提案を含む）</td>
+<td class="l">② 「選ばれる工場」に向けた提供価値を磨く（QCDの高度化、MES/ERP導入、スマートファクトリー化）</td>
+<td class="l"><strong>接続が弱い。</strong>②は製造管理・現場可視化の高度化であって、企画・設計・提案力の強化ではない。ODMは「企画段階からの技術提案」を要するのに、<strong>研究開発活動は「該当事項はありません」</strong>（→Ⅷ章）。要請を認識しながら、それに応える資源投入が有報上に見当たらない。</td>
+</tr>
+<tr>
+<td class="l">クイックレスポンス対応・多品種／小ロット生産へのニーズ増加</td>
+<td class="l">② 納期短縮・安定供給・品質強化／① アイテム・拠点の最適配置</td>
+<td class="l"><strong>接続あり。</strong>MES/ERPによる可視化は多品種小ロットの管理コスト低減に直結する。施策と課題が具体レベルで噛み合っている数少ない例。</td>
+</tr>
+<tr>
+<td class="l">製造プロセスの透明性要求</td>
+<td class="l">② スマートファクトリー化によるサプライチェーン全体の透明性向上</td>
+<td class="l"><strong>接続あり。</strong>ただし透明性の到達水準（トレーサビリティの範囲、第三者認証等）は未記載。</td>
+</tr>
+<tr>
+<td class="l">（課題として明示されていない）資本効率</td>
+<td class="l">③ 資本効率を高める経営への転換（ROE9%）</td>
+<td class="l">課題認識の記述がないまま施策だけが立っている。PBR0.67倍<span class="tag f">⑤</span>という市場評価を踏まえた項目と推測されるが、有報本文に理由の記載はない。</td>
+</tr>
+<tr>
+<td class="l">（同上）人財育成・技術承継</td>
+<td class="l">④ 人的資本への重点取り組み</td>
+<td class="l">第1-5(1)人材戦略と整合。技術者派遣による旗艦工場→育成工場の技術移転は具体的（→Ⅲ章）。</td>
+</tr>
+</table>
+
+<div class="card warn">
+<h4>照合の結論</h4>
+<p>5つの環境変化のうち<strong>3つは打ち手と噛み合っているが、「地政学リスク」は打ち手が空白、「ODM要請」は打ち手の方向がずれている</strong>。<span class="tag i">[解釈]</span> この2つは、いずれも<strong>売上の7割を占める特定顧客グループとの関係</strong>（→Ⅵ章）に直結する論点である。地政学リスクが顕在化すれば生産地ごと失い、ODM対応ができなければ受託単価が下がる。中計が最も踏み込むべき2点で記述が薄いことは、投資判断上の重要な確認事項になる。<span class="tag q">[要確認]</span></p>
+<p>なお、<strong>未達を認める記述は当期の有報には存在しない</strong>。ビジョン2025は達成として総括されているため、誠実さを未達認識から測ることは今期はできない。<span class="tag f">[事実]</span></p>
+</div>
+</section>
+
+<!-- ===== Ⅴ ===== -->
+<section id="s5">
+<h2 class="sec">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+
+<div class="card">
+<h4>基本指針と体制</h4>
+<p>指針：<strong>「服を着る人も作る人も幸せになる社会をつくる」</strong><span class="tag f">[事実]</span></p>
+<blockquote>当社グループの生産地が日本を離れ、中国、ミャンマー、バングラデシュ、ベトナム、インドネシアへと展開し、『ものづくり』を続けた30年超の歴史と、各地で雇用を生み、地域経済を動かし、暮らしを支えることで得られた地域コミュニティや現地従業員との絆が、当社グループのサステナビリティ活動の基礎となり…</blockquote>
+<ul>
+<li><strong>ガバナンス</strong>：取締役会の諮問機関として<strong>サステナビリティ委員会</strong>を設置。委員長は代表取締役社長執行役員 松岡典之。活動方針の検討・実行状況の把握を所掌し、重要事項は戦略・計画に反映のうえ取締役会へ報告・監督。<span class="tag f">[事実]</span></li>
+<li><strong>リスク管理</strong>：重要事項の審議・方針決定は「コンプライアンス・リスク管理委員会」。その下でサステナビリティ委員会が優先対応リスクをモニタリング・評価し、重要事項を同委員会および取締役会へ報告。<span class="tag f">[事実]</span></li>
+</ul>
+</div>
+
+<h3>マテリアリティ3つと、当期の取り組み</h3>
+<table>
+<tr><th class="l" style="width:24%">マテリアリティ</th><th class="l">当期の取り組み（有報記載）</th></tr>
+<tr>
+<td class="l"><strong>1. 顧客が求める良質な製品を提供し続ける</strong></td>
+<td class="l">中国からASEAN諸国等への生産地シフト継続。ベトナム・バングラデシュ・インドネシアの生産キャパシティ拡大と生産体制の最適化。熟練オペレーターによる縫製技術の高度化、生産効率向上に向けた現場改善。2026年度からはBEYOND2028のもとスマートファクトリー化を推進。</td>
+</tr>
+<tr>
+<td class="l"><strong>2. 環境に配慮し生産地域と共存共栄する</strong></td>
+<td class="l">ラミネーションフィルム事業で<strong>非溶剤系・非フッ素系製品</strong>の開発を継続。化学品使用に関する各国環境規制に対応した素材開発・生産手法の研究。工場での省エネルギー設備導入。2029年3月に連結従業員24,000人規模の体制構築を目指し、地域での雇用創出を通じ共存共栄を進める。</td>
+</tr>
+<tr>
+<td class="l"><strong>3. 全てのグループ人財がいきいき働く</strong></td>
+<td class="l">2022年10月表明の「マツオカコーポレーション健康宣言」のもと健康経営を推進。2026年3月に<strong>4年連続で「健康経営優良法人2026」に認定</strong>。従業員が快適かつ生産性高く働ける環境整備を目的とした<strong>本社新社屋の建設・移転を完了</strong>。多様なバックグラウンド（国籍・文化・宗教等）の人財をワンチームとしてまとめる職場環境の整備。</td>
+</tr>
+</table>
+<p class="src">出所：第2-2(2)【戦略】<span class="tag f">③</span>。マテリアリティ特定はSDGs等を参考に課題を洗い出し、自社重要度とステークホルダーへの影響・期待を踏まえて抽出、サステナビリティ委員会での議論を経たと記載。</p>
+
+<h3>2軸評価</h3>
+
+<div class="card note">
+<h4>軸①：戦略接続 ― 本文と結びついているか、浮いた章か</h4>
+<p><strong>接続している。むしろ接続しすぎている。</strong><span class="tag i">[解釈]</span></p>
+<p>マテリアリティ1の記述内容（生産地シフト、キャパ拡大、技術高度化、スマートファクトリー化）は、第2-1経営戦略および第2-4 MD&amp;Aの記述と<strong>ほぼ同一</strong>である。<span class="tag f">[事実]</span> サステナビリティ章が事業戦略から浮いていないという意味では良い接続だが、裏返すと<strong>マテリアリティ1は「サステナビリティ課題」ではなく事業計画そのものの言い換え</strong>であり、独立した非財務課題としての実質を持たない。<span class="tag i">[解釈]</span></p>
+<p>マテリアリティ2も後半は「連結従業員24,000人規模」という人員目標であり、環境の話と雇用の話が1つの項目に同居している。<span class="tag f">[事実]</span> 環境負荷低減と地域雇用は本来別軸の課題で、統合の論理は本文からは読み取れない。<span class="tag q">[要確認]</span></p>
+</div>
+
+<div class="card warn">
+<h4>軸②：検証可能性 ― 目標に期限と実績があるか</h4>
+<table>
+<tr><th class="l">項目</th><th class="l">数値目標</th><th class="l">期限</th><th class="l">実績値</th><th>検証可能性</th></tr>
+<tr><td class="l">連結従業員数</td><td class="l">24,000人規模</td><td class="l">2029年3月末</td><td class="l">21,086名</td><td>○</td></tr>
+<tr><td class="l">女性管理職比率</td><td class="l">現状水準を維持</td><td class="l"><strong>なし</strong></td><td class="l">42%</td><td>△</td></tr>
+<tr><td class="l">非溶剤系・非フッ素系製品の開発</td><td class="l"><strong>なし</strong></td><td class="l"><strong>なし</strong></td><td class="l"><strong>なし</strong></td><td>×</td></tr>
+<tr><td class="l">工場の省エネルギー設備導入</td><td class="l"><strong>なし</strong></td><td class="l"><strong>なし</strong></td><td class="l"><strong>なし</strong></td><td>×</td></tr>
+<tr><td class="l">GHG排出量（Scope1/2/3）</td><td class="l" colspan="3"><strong>開示そのものがない</strong></td><td>×</td></tr>
+<tr><td class="l">TCFD／ISSB等の枠組み対応</td><td class="l" colspan="3"><strong>言及なし</strong></td><td>×</td></tr>
+</table>
+<p><strong>検証可能な期限付き数値目標は「2029年3月末に連結24,000人」の1つのみ。</strong><span class="tag f">[事実]</span> しかもこれは人員数＝規模の指標であり、環境・社会面の成果指標ではない。<span class="tag i">[解釈]</span></p>
+</div>
+
+<div class="card">
+<h4>気候変動・GHG・TCFDの扱いについて</h4>
+<p>本プレイブックの方針に従い、気候変動は投資論点に関わる場合のみ深掘りする。本社の業種（縫製・ラミネート加工）は装置産業ほど炭素集約的ではなく、規制リスクが直ちに損益を左右する構造ではない。<span class="tag i">[解釈]</span> したがって<strong>GHG開示の不在それ自体を重大な欠落とは位置づけない</strong>。</p>
+<p>ただし1点だけ留意点がある。売上の7割を占めるファーストリテイリンググループをはじめとする顧客側がScope3（購入した製品・サービス）の削減目標を強化した場合、<strong>サプライヤーである同社は顧客経由で開示・削減の要請を受ける立場になる</strong>。<span class="tag i">[解釈]</span> 有報にはこの経路に関する記述はなく、リスク章にも気候関連の独立項目はない。<span class="tag f">[事実]</span> 顧客要請の実態は決算説明資料・統合報告書での確認が要る。<span class="tag q">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ===== Ⅵ ===== -->
+<section id="s6">
+<h2 class="sec">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+
+<h3>リスク9項目の仕分け</h3>
+<table>
+<tr><th class="l" style="width:22%">リスク項目</th><th style="width:9%">区分</th><th class="l">要旨と、他章・財務数値との照合</th></tr>
+<tr><td class="l">経営環境の変化に起因するリスク</td><td>定型</td><td class="l">ファッショントレンド・気候変動・景気動向で受注量が減少しうる。取組みは「ワーキングウェアまで幅広い製品を生産」「生産工場と生産時期を柔軟に変化」。<span class="tag f">[事実]</span> どのアパレル企業にも当てはまる記述。</td></tr>
+<tr style="background:#fdf0f0"><td class="l"><strong>特定取引先への依存リスク</strong></td><td><strong>固有</strong></td><td class="l"><strong>本レポートで最重要。</strong>ファーストリテイリンググループへの<strong>直接販売が概ね3割、東レグループ等を通じた間接販売が概ね4割</strong>と明記。<span class="tag f">[事実]</span> 販売実績の注記と整合（東レインターナショナル21.0%／Toray Industries (H.K.)16.6%／ユニクロ15.9%＝上位3社53.5%）。<span class="tag f">[事実]</span></td></tr>
+<tr style="background:#fdf0f0"><td class="l"><strong>カントリーリスク</strong></td><td><strong>固有</strong></td><td class="l">進出先の地政学的リスク顕在化・国際情勢変動・法規則変更・現地マネジメントや雇用育成の停滞。<span class="tag f">[事実]</span> 生産国別売上（中国32.5%／バングラデシュ31.2%／ベトナム27.3%／インドネシア5.1%／ミャンマー4.0%）と接続する。<span class="tag i">[解釈]</span></td></tr>
+<tr style="background:#fdf0f0"><td class="l"><strong>為替リスク</strong></td><td><strong>固有</strong></td><td class="l">「グループ全体として多様な通貨で金融資産を保有しているため、機能通貨である円の為替変動によって<strong>金融損益が大きく変動</strong>する」。<span class="tag f">[事実]</span> 当期の為替差益31億54百万円＝経常利益の58.5%という数値と完全に整合。<span class="tag i">[解釈]</span> リスク章と損益実態が噛み合っている数少ない例。</td></tr>
+<tr><td class="l">自然災害等に関するリスク</td><td>定型</td><td class="l">地震・風水害・感染症拡大。取組みに「更なるグローバルな生産体制の確立を見据え、<strong>アジア地域以外への地域の進出を検討</strong>」とあり、これは中計に反映されていない（→Ⅳ章）。<span class="tag i">[解釈]</span></td></tr>
+<tr><td class="l">情報に関するリスク</td><td>定型</td><td class="l">重要機密情報の漏洩、外部からのハッキング。規程整備・教育・セキュリティ対策。固有名詞・具体的インシデントの記載なし。</td></tr>
+<tr style="background:#fdf0f0"><td class="l"><strong>特定人物への依存リスク</strong></td><td><strong>固有</strong></td><td class="l">代表取締役社長執行役員 <strong>松岡典之</strong>を実名で挙げ、依存を認めている。<span class="tag f">[事実]</span> 同氏は1980年入社・2000年から社長で在任26年、持株1,254,300株（11.95%）、役員報酬146百万円（→Ⅹ章）。取組みは「各部門を執行取締役が管掌することでチームによる経営執行体制を構築」。</td></tr>
+<tr style="background:#fdf0f0"><td class="l"><strong>人権に関わるリスク</strong></td><td><strong>固有</strong><br>（業種）</td><td class="l">グループ・取引先での人権侵害行為が信用低下→受注減につながる。人権研修・通報窓口の運用・<strong>人権デューデリジェンス</strong>を実施。<span class="tag f">[事実]</span> ミャンマー2,045名・バングラデシュ9,897名という雇用規模を踏まえると業種固有性が高い。実施件数・是正事例の定量開示はなし。<span class="tag q">[要確認]</span></td></tr>
+<tr style="background:#fdf0f0"><td class="l"><strong>固定資産に係る減損リスク</strong></td><td><strong>固有</strong></td><td class="l">海外生産設備の減損。<span class="tag f">[事実]</span> <strong>KAM「海外生産設備の評価」と完全に一致</strong>（有形固定資産20,987百万円・無形固定資産2,805百万円＝総資産の31.6%）。<span class="tag i">[解釈]</span> 当期は実際に子会社で減損損失が発生している（→Ⅶ・Ⅺ章）。リスク章・KAM・実績が三者整合する良い例。</td></tr>
+</table>
+<p class="src">出所：第2-3【事業等のリスク】<span class="tag f">③</span>。区分は当方判定<span class="tag i">[解釈]</span>。</p>
+
+<div class="kpi">
+  <div><div class="k">リスク項目数</div><div class="v">9 項目</div><div class="n">全項目に「主な取組み」を併記</div></div>
+  <div><div class="k">固有リスク</div><div class="v">6 項目</div><div class="n">66.7%</div></div>
+  <div><div class="k">定型リスク</div><div class="v">3 項目</div><div class="n">33.3%</div></div>
+  <div><div class="k">発生可能性・影響度の定量化</div><div class="v">なし</div><div class="n">優先順位付けも記載なし</div></div>
+</div>
+
+<div class="card note">
+<h4>リスク開示の質</h4>
+<p>固有リスクが6/9と比率が高く、しかも<strong>特定顧客の実名（株式会社ユニクロ／株式会社ファーストリテイリング／東レグループ）と依存度（3割＋4割）、特定人物の実名（松岡典之）を明記</strong>している点は、逃げのない開示と評価できる。<span class="tag i">[解釈]</span> 全項目に「主な取組み」欄を設け、リスクと対応を対にした構成も読み手に親切。<span class="tag f">[事実]</span></p>
+<p>一方で、<strong>発生可能性・影響度の定量化がなく、9項目に優先順位が付いていない</strong>。<span class="tag f">[事実]</span> 「特定取引先への依存（売上7割）」と「情報に関するリスク（一般論）」が同列に並んでおり、経営がどれを最重要と見ているかは読み取れない。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>財務数値・他章との照合で浮かぶ過小開示</h3>
+<div class="card warn">
+<ol>
+<li><strong>ミャンマー情勢が独立項目になっていない。</strong>カントリーリスクに包含されるのみ。<span class="tag f">[事実]</span> しかしMD&amp;A本文は「<strong>不安定な国内情勢が続く中でも</strong>、工場独自の新規顧客開拓を継続し受注を確保しました」と個別に言及しており、経営が特別視していることが窺える。<span class="tag i">[解釈]</span> 売上29億33百万円（4.0%）・従業員2,045名・設備帳簿価額263百万円という規模。<span class="tag f">[事実]</span></li>
+<li><strong>米国通商政策（関税）がリスク項目にない。</strong>経営環境章では「米国の通商政策及び金融政策を巡る不確実性」「各国の通商政策の変化を背景として、サプライチェーンの再構築を検討する動きが強まりました」と2度言及している。<span class="tag f">[事実]</span> にもかかわらず、リスク章に関税の独立項目はなく、生産5か国が関税対象となった場合の影響も定量化されていない。<strong>環境認識とリスク開示の間に断絶がある。</strong><span class="tag i">[解釈]</span></li>
+<li><strong>現地労務費・最低賃金上昇がリスク項目にない。</strong>1人当たり営業利益が103千円（→Ⅲ章）という薄い水準にもかかわらず、人件費上昇のリスク項目は存在しない。<span class="tag f">[事実]</span> ところが監査報告書のKAM対応手続には「<strong>主要な経費である人件費の見積りについては、当該国の物価上昇率との整合性を検討した</strong>」と明記されている。<span class="tag f">[事実]</span> <strong>監査人が重要と見ている変数が、会社のリスク章には現れていない。</strong><span class="tag i">[解釈]</span></li>
+<li><strong>転換社債の希薄化がリスク項目にない。</strong>残存24個・750百万円、転換価額934円に対し株価2,536円<span class="tag f">⑤</span>で深くイン・ザ・マネー。<span class="tag f">[事実]</span> EPS298.12円に対し潜在株式調整後EPS275.91円＝7.5%の希薄化が既に顕在化している。<span class="tag i">[解釈]</span>（→Ⅸ章）</li>
+<li><strong>合弁パートナー＝主要顧客という二重関係がリスク項目にない。</strong>特定取引先依存リスクは「販売先」としてのみ記載され、東レ・ファーストリテイリングが同時に連結子会社の共同出資者である点（TM Textiles (HK) 65.3%、PT.MATSUOKA INDUSTRIES INDONESIA 55.3%）には触れていない。<span class="tag f">[事実]</span> 取引解消が資本関係の解消と連動しうる構造は、依存リスクを増幅する。<span class="tag i">[解釈]</span></li>
+</ol>
+</div>
+
+<h3>経営上の重要な契約等（第2-5）</h3>
+<div class="card">
+<h4>(1) 日本政策投資銀行との資本業務提携契約（2022年9月9日締結）</h4>
+<ul>
+<li><strong>業務提携の内容</strong>：ａグループ経営の高度化（経営指標の見える化、将来的なROIC経営の導入検討を含む）、ｂ事業拡大・付加価値向上（M&amp;A・アライアンスの情報提供／戦略立案／案件遂行支援および資金提供の検討）、ｃサステナビリティ経営の強化。<span class="tag f">[事実]</span></li>
+<li><strong>資本提携の内容</strong>：第三者割当により第1回無担保転換社債型新株予約権付社債を発行。調達額15億円、転換価額934円、当初潜在株式1,605,900株、払込期日2022年9月28日。<span class="tag f">[事実]</span></li>
+<li><strong>その後</strong>：2025年3月7日に新株予約権の半数（24個）が行使され、普通株式411,200株を交付。<strong>当期末残存は24個・750百万円</strong>。償還期限2027年9月28日。<span class="tag f">[事実]</span></li>
+</ul>
+<h4>(2) SAHA PATHANA INTER-HOLDING PUBLIC COMPANY LIMITED（SPI・タイ）との資本提携（2022年12月16日締結）</h4>
+<ul>
+<li><strong>目的</strong>：SPIはタイ最大手の消費財企業グループの持株会社。アパレル・テキスタイル分野における新たなサプライチェーン構築を共同推進するための長期的・継続的な協業関係の構築。<span class="tag f">[事実]</span></li>
+<li><strong>内容</strong>：当社は第三者割当による自己株式処分でSPIに普通株式185,000株を割当（2023年1月12日完了）。同時にSPIグループのThanulux PCLが保有するSPI普通株式760,000株（総額約2億円）を相対取引で取得＝<strong>相互持合</strong>。<span class="tag f">[事実]</span></li>
+<li>SPI株は当期末1,140,000株・247百万円（株式分割による増加）として特定投資株式に計上。<span class="tag f">[事実]</span>（→Ⅸ章）</li>
+</ul>
+</div>
+
+<div class="card note">
+<h4>依存・更新リスクの読み取り</h4>
+<ul>
+<li><strong>DBJ提携：2027年9月28日という期限が実質的なイベント。</strong><span class="tag i">[解釈]</span> 転換価額934円に対し株価は2.7倍の水準にあるため、経済合理的には転換が進む。転換されれば約803千株（発行済の7.6%）が新規発行され、有利子負債750百万円が自己資本に振り替わる。逆に償還を選ばれれば750百万円の資金流出。いずれにせよ2027年9月までに決着する。<span class="tag i">[解釈]</span></li>
+<li><strong>DBJ提携の業務面は、成果が有報から確認できない。</strong>「ROIC経営の導入検討」が挙げられているが、中計BEYOND2028の経営指標はROE9%であってROICではない。<span class="tag f">[事実]</span> M&amp;A支援についても当期のM&amp;A実績は有報上ない。提携から3年半での業務面の到達点は<span class="tag q">[要確認]</span>。</li>
+<li><strong>SPI提携は「タイ」という6か国目の布石だが、当期時点で生産実績はない。</strong>生産国別販売実績にタイは登場しない。<span class="tag f">[事実]</span> 資本提携から3年半が経過しており、合弁会社の設立・運営が実際に進んでいるかは<span class="tag q">[要確認]</span>。なお、これが実現すれば「アジア地域以外への進出検討」ではないものの、生産地分散の一手にはなる。<span class="tag i">[解釈]</span></li>
+<li><strong>顧客との取引契約そのものは開示されていない。</strong>売上7割を占める取引について、契約期間・最低発注量・解約条項の記載はない。<span class="tag f">[事実]</span> 継続的取引が基本契約＋個別発注の形態であれば法定開示の対象外となるが、依存度の高さを踏まえると投資判断上は最も知りたい情報が空白のままである。<span class="tag i">[解釈]</span><span class="tag q">[要確認]</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ===== Ⅶ ===== -->
+<section id="s7">
+<h2 class="sec">Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+
+<h3>業績事実の要約</h3>
+<table>
+<tr><th class="l">損益（百万円）</th><th>2025/3</th><th>2026/3</th><th>増減</th><th>増減率</th><th class="l">会社が挙げる要因</th></tr>
+<tr><td class="l">売上高</td><td>70,579</td><td>74,251</td><td>+3,671</td><td>+5.2%</td><td class="l">生産能力の増強。特に中計で新設したベトナム・バングラデシュの<strong>工場3拠点</strong>を中心に稼働が進捗</td></tr>
+<tr><td class="l">売上原価</td><td>63,991</td><td>65,495</td><td>+1,504</td><td>+2.4%</td><td class="l">受注増加に伴う増加＋<strong>円安による工場コスト増加</strong></td></tr>
+<tr class="hl"><td class="l">売上総利益</td><td>6,588</td><td>8,756</td><td>+2,168</td><td>+32.9%</td><td class="l">粗利率 9.3%→<strong>11.8%（+2.5pt）</strong>。売上増で原価増を吸収＋生産量増加・生産効率改善</td></tr>
+<tr><td class="l">販管費</td><td>6,155</td><td>6,581</td><td>+426</td><td>+6.9%</td><td class="l">売上高増加の影響＋円安による工場コスト増加</td></tr>
+<tr class="hl"><td class="l">営業利益</td><td>433</td><td>2,174</td><td>+1,741</td><td><strong>+401.3%</strong></td><td class="l">上記の差引</td></tr>
+<tr><td class="l">営業外収益</td><td>4,233</td><td>3,671</td><td>△562</td><td>△13.3%</td><td class="l">うち<strong>為替差益3,154</strong>（ドル高現地通貨安）</td></tr>
+<tr><td class="l">営業外費用</td><td>466</td><td>454</td><td>△12</td><td>△2.7%</td><td class="l">前期計上の撤去費用48百万円が当期は不発生</td></tr>
+<tr class="hl"><td class="l">経常利益</td><td>4,199</td><td>5,391</td><td>+1,191</td><td>+28.4%</td><td class="l">中計計画47億円に対し<strong>+14.7%</strong></td></tr>
+<tr><td class="l">特別損益</td><td>―</td><td>―</td><td>△266</td><td>―</td><td class="l">特別利益は両期ともなし。特別損失は子会社の<strong>減損損失および投資有価証券売却損</strong>で前期比+266</td></tr>
+<tr><td class="l">税金等調整前当期純利益</td><td>―</td><td>5,125</td><td>―</td><td>―</td><td class="l">―</td></tr>
+<tr class="hl"><td class="l">親会社株主帰属当期純利益</td><td>2,600</td><td>3,117</td><td>+517</td><td>+19.9%</td><td class="l">―</td></tr>
+</table>
+<p class="src">出所：第2-4(1)①、(2)①ａ<span class="tag f">③</span>。前期の売上原価・販管費・売上総利益は増減額から当方逆算（推計値・保証なし）。</p>
+
+<h3>会社独自指標「為替差損益調整後営業利益」</h3>
+<div class="card warn">
+<table>
+<tr><th class="l">（百万円）</th><th>2025/3</th><th>2026/3</th><th>増減</th><th>増減率</th></tr>
+<tr><td class="l">営業利益</td><td>433</td><td>2,174</td><td>+1,741</td><td>+401.3%</td></tr>
+<tr><td class="l">為替差損益（合計）</td><td>3,638</td><td>3,154</td><td>△483</td><td>△13.3%</td></tr>
+<tr><td class="l">　うち営業取引から発生 ※</td><td>3,799</td><td>2,638</td><td>△1,161</td><td>△30.6%</td></tr>
+<tr><td class="l">　うち財務取引から発生 ※</td><td>△160</td><td>516</td><td>+677</td><td>―</td></tr>
+<tr class="hl"><td class="l">為替差損益調整後営業利益 ※</td><td>4,233</td><td>4,813</td><td>+579</td><td><strong>+13.7%</strong></td></tr>
+<tr><td class="l">経常利益</td><td>4,199</td><td>5,391</td><td>+1,191</td><td>+28.4%</td></tr>
+</table>
+<p class="src">※印は<strong>会計監査人の監査対象外</strong>と有報に明記。計算式：為替差損益調整後営業利益＝営業利益＋営業取引から発生した為替差損益。<span class="tag f">[事実]</span></p>
+
+<h4>この指標が示す構造</h4>
+<p>会社の説明はこうである。<span class="tag f">[事実]</span></p>
+<blockquote>当社グループの収支構造は、円安ドル高局面においては、海外子会社損益計算書の製造原価及び販管費の円換算額が大きくなるため連結営業利益が減少します。一方で取引先との個別契約等による為替変動リスクヘッジの効果は、日常的な営業取引決済等から発生する為替差損益として、連結損益計算書において営業外収益に計上されます。</blockquote>
+<p><strong>つまり、為替の影響がコスト側（営業利益をマイナス）とヘッジ側（営業外をプラス）に分かれて計上されるため、営業利益単独では本業の実力が見えない。</strong>この説明自体は会計処理上の必然として理解できる。<span class="tag i">[解釈]</span></p>
+<p>ただし投資判断上は次の2点に注意が要る。<span class="tag i">[解釈]</span></p>
+<ul>
+<li><strong>この指標で見ると成長率は+13.7%であって+401.3%ではない。</strong>営業利益の「4倍増」という見出しは、この会社の実力の伸びを表していない。会社自身がそう言っている。</li>
+<li><strong>監査対象外である。</strong>営業取引／財務取引の為替差損益の分類は会社の裁量による（分類方法は注記されているが、第三者検証を経ていない）。前期の営業取引由来3,799→当期2,638と30.6%減っている一方、財務取引由来は△160→+516へ転じており、<strong>分類の境界が損益の見え方を大きく変えうる</strong>。</li>
+</ul>
+</div>
+
+<h3>セグメント別の業績要因</h3>
+<div class="grid2">
+<div class="card">
+<h4>縫製事業：売上660億29百万円（+12.5%）／セグメント利益59億59百万円（+67.6%）</h4>
+<ul>
+<li>猛暑によるファン付きウェア需要増を背景に<strong>ワーキングウェアの受注が増加</strong>。<span class="tag f">[事実]</span></li>
+<li>インナーウェア・カットソーの需要増加により受注伸長。バングラデシュ工場で生産体制を拡充。<span class="tag f">[事実]</span></li>
+<li><strong>販売枚数は前期比+22.1%の6,350万枚。</strong><span class="tag f">[事実]</span></li>
+<li>受注増→工場稼働率上昇→生産性向上→粗利益率向上。<span class="tag f">[事実]</span></li>
+<li>為替差損益調整後営業利益は54億69百万円（+57.2%）。<span class="tag f">[事実]</span></li>
+</ul>
+<div class="card note" style="margin:10px 0 0">
+<p><strong>単価の低下</strong>：売上+12.5%に対し枚数+22.1%。1枚当たり単価は約1,128円→<strong>約1,040円（△7.9%）</strong>と当方算出（推計値・保証なし）。<span class="tag i">[解釈]</span> ワーキングウェア・インナーウェアという相対的に低単価と推測されるカテゴリの伸びが牽引しており、<strong>ミックスシフトによる単価下落を稼働率で吸収した</strong>のが当期の縫製事業の実像と読める。<span class="tag i">[解釈]</span> 単価下落が続く場合、稼働率のさらなる上積みか、ODM化による付加価値付与のどちらかが必要になる。</p>
+</div>
+</div>
+<div class="card">
+<h4>ラミネーションフィルム事業：売上82億21百万円（△30.9%）／セグメント利益5億54百万円（△67.9%）</h4>
+<ul>
+<li>前期の業績伸長に大きく寄与した<strong>顧客のヒット商品向け素材供給が一巡</strong>し、前々期並みの水準へ戻った。<span class="tag f">[事実]</span></li>
+<li>中国経済および個人消費の低迷により<strong>買い替え需要が発生しにくい状況</strong>が継続。<span class="tag f">[事実]</span></li>
+<li>一部顧客の在庫調整により発注数量・タイミングが変動。<span class="tag f">[事実]</span></li>
+<li><strong>販売ヤード数は前期比△25.2%の1,364万ヤード。</strong><span class="tag f">[事実]</span></li>
+<li>為替差損益調整後営業利益は5億86百万円（△66.0%）。<span class="tag f">[事実]</span></li>
+</ul>
+<div class="card note" style="margin:10px 0 0">
+<p><strong>単価も低下</strong>：売上△30.9%に対し数量△25.2%。1ヤード当たり単価は約652円→<strong>約603円（△7.6%）</strong>と当方算出（推計値・保証なし）。<span class="tag i">[解釈]</span> 数量減と単価減が同時に起きており、<strong>「ヒット商品の一巡」だけでは説明しきれない</strong>。中国拠点の売上は縫製+11.1%に対しラミ△35.8%で、地域と事業が交差する形で落ち込んでいる。<span class="tag i">[解釈]</span> 生産実績も製造原価ベースで△33.4%と大きく、稼働率低下が利益率を直撃したと読める。<span class="tag i">[解釈]</span></p>
+</div>
+</div>
+</div>
+
+<h3>生産・受注・販売の状況 ― 翌期への含意</h3>
+<table>
+<tr><th class="l">項目（百万円）</th><th class="l">縫製事業</th><th>前期比</th><th class="l">ラミ事業</th><th>前期比</th><th class="l">合計</th><th>前期比</th></tr>
+<tr><td class="l">生産実績（製造原価ベース）</td><td>60,610</td><td>+6.9%</td><td>6,313</td><td>△33.4%</td><td>66,923</td><td>+1.1%</td></tr>
+<tr class="hl"><td class="l">受注高</td><td>66,615</td><td>+6.3%</td><td>8,418</td><td>△24.9%</td><td>75,033</td><td><strong>+1.6%</strong></td></tr>
+<tr><td class="l">受注残高</td><td>21,340</td><td>+2.8%</td><td>2,884</td><td>+7.3%</td><td>24,225</td><td>+3.3%</td></tr>
+<tr><td class="l">（参考）売上高</td><td>66,029</td><td>+12.5%</td><td>8,221</td><td>△30.9%</td><td>74,251</td><td><strong>+5.2%</strong></td></tr>
+</table>
+<p class="src">出所：第2-4(1)③ａ・ｂ<span class="tag f">③</span></p>
+
+<div class="card warn">
+<h4>受注高の伸び（+1.6%）が売上の伸び（+5.2%）を大きく下回る</h4>
+<p>当期の売上高は+5.2%だが、<strong>受注高は+1.6%にとどまる</strong>。<span class="tag f">[事実]</span> 受注残高は+3.3%で積み上がっているため、当期の売上は前期からの繰越受注の消化によって押し上げられた面がある。<span class="tag i">[解釈]</span></p>
+<p>縫製事業に絞っても、受注高+6.3%に対し売上+12.5%。<span class="tag f">[事実]</span> <strong>翌期以降も同じペースで増収を続けるには、受注高の伸びを売上の伸びに追いつかせる必要がある。</strong><span class="tag i">[解釈]</span> 中計BEYOND2028が求める年+6.6%の増収は、受注高ベースでは当期実績（+1.6%）から4倍以上の加速を要する計算になる。<span class="tag i">[解釈]</span>（推計値・保証なし）</p>
+<p>なお、MD&amp;Aはこの受注高と売上高の乖離について言及していない。<span class="tag f">[事実]</span></p>
+</div>
+
+<h3>経営者が使う指標 ― 関心の所在</h3>
+<div class="card note">
+<p>MD&amp;A・経営戦略章で経営者が実際に使っている指標を抽出すると、次の通り。<span class="tag i">[解釈]</span></p>
+<ul>
+<li><strong>売上高・経常利益</strong>：中計の定量目標がこの2つ（＋純利益）。営業利益は目標に含まれない。</li>
+<li><strong>為替差損益調整後営業利益</strong>：会社が「本業における実力値を判断するために算出した」と明言する独自指標。全社・セグメント別の両方で開示。</li>
+<li><strong>販売枚数／販売ヤード数</strong>：物量指標。セグメント説明の中核。</li>
+<li><strong>ROE</strong>：BEYOND2028で初めて明示的な目標（2028年度9%、長期10%）。</li>
+<li><strong>連結従業員数</strong>：サステナビリティの指標及び目標として24,000人。</li>
+<li><strong>稼働率・生産性</strong>：定性的に繰り返し言及されるが、<strong>数値の開示はない</strong>。</li>
+</ul>
+<p><strong>関心の所在は「規模（売上・枚数・人数）」と「為替を除いた本業損益」の2点</strong>にある。<span class="tag i">[解釈]</span> 一方、営業利益率・稼働率・単価といった<strong>収益性の単位指標は目標にも実績開示にも現れない</strong>。<span class="tag f">[事実]</span> BEYOND2028でROEが初めて掲げられたのは、規模志向から資本効率志向への転換の第一歩と読めるが、その手前にある営業利益率の目標は依然として示されていない。<span class="tag i">[解釈]</span></p>
+</div>
+
+<h3>キャッシュ・フローの質</h3>
+<table>
+<tr><th class="l">キャッシュ・フロー（百万円）</th><th>2025/3</th><th>2026/3</th><th class="l">当期の主な要因</th></tr>
+<tr class="hl"><td class="l">営業活動</td><td>2,724</td><td><strong>6,071</strong></td><td class="l">税金等調整前当期純利益5,125／減価償却費2,063／棚卸資産の増加△1,386／法人税等の支払△1,307</td></tr>
+<tr><td class="l">投資活動</td><td>△2,034</td><td>△4,357</td><td class="l">有形固定資産の取得△2,856／定期預金の預入△1,457</td></tr>
+<tr><td class="l">財務活動</td><td>705</td><td>△1,925</td><td class="l">長期借入+3,590／短期借入金の純減△3,732／長期借入金の返済△1,004／配当金の支払△939</td></tr>
+<tr><td class="l">現金及び現金同等物 期末残高</td><td>19,386</td><td>19,506</td><td class="l">前期末比+120</td></tr>
+<tr><td class="l">（参考）フリーCF＝営業＋投資</td><td>690</td><td>1,714</td><td class="l">当方算出</td></tr>
+</table>
+<p class="src">出所：第2-4(1)②<span class="tag f">③</span></p>
+
+<div class="card note">
+<h4>CFの質の評価</h4>
+<ul>
+<li><strong>利益の裏付けがある。</strong>営業CF6,071百万円に対し当期純利益3,117百万円で、CF/純利益＝1.95倍。減価償却2,063百万円を主因とし、<strong>利益がキャッシュを伴っている</strong>。<span class="tag i">[解釈]</span></li>
+<li><strong>ただし運転資本は膨らんでいる。</strong>棚卸資産が1,386百万円増（B/S上は1,424百万円増）。<span class="tag f">[事実]</span> 増収局面では自然だが、売上+5.2%に対し棚卸資産の伸びが上回っていれば滞留の兆候になる。金額規模の記載はあるが残高・回転日数の記載はMD&amp;Aにない。<span class="tag q">[要確認]</span></li>
+<li><strong>財務CFは借入の質を入れ替えている。</strong>短期借入△3,732／長期借入+3,590と、ほぼ同額を<strong>短期から長期へ振り替えた</strong>。<span class="tag f">[事実]</span> 設備投資資金の調達は長期借入を基本とするという方針（資本の財源の項）と整合する。<span class="tag i">[解釈]</span> 金利上昇局面で長期化するのは合理的だが、調達コストへの言及はない。<span class="tag q">[要確認]</span></li>
+<li><strong>実質ネットキャッシュ。</strong>有利子負債（借入金＋リース債務）14,947百万円に対し現金及び現金同等物19,506百万円。<strong>ネットで4,559百万円のキャッシュ超過</strong>。<span class="tag f">[事実]</span> 自己資本比率53.1%と併せ、財務の安全性は高い。<span class="tag i">[解釈]</span></li>
+</ul>
+<h4>資本の財源に関する説明の実質性</h4>
+<p>有報の記載は「短期運転資金は自己資金及び金融機関からの短期借入を基本」「設備投資資金は金融機関からの長期借入を基本」という<strong>調達手段の方針にとどまる</strong>。<span class="tag f">[事実]</span> 中計BEYOND2028で必要となる成長投資の総額・年次配分、その財源内訳（営業CF／借入／資本）についての記述はない。<span class="tag f">[事実]</span> ネットキャッシュ4,559百万円をどう使うのかという<strong>資本配分の説明も存在しない</strong>。<span class="tag i">[解釈]</span> 施策③「資本政策及びキャッシュマネジメントの高度化」が具体化されれば、ここが最初に埋まるべき空白である。<span class="tag q">[要確認]</span></p>
+</div>
+
+<h3>財政状態</h3>
+<table>
+<tr><th class="l">（百万円）</th><th>前期末</th><th>当期末</th><th>増減</th><th class="l">主な要因</th></tr>
+<tr><td class="l">総資産</td><td>72,453</td><td>75,174</td><td>+2,720</td><td class="l">棚卸資産+1,424／現金及び預金+1,448</td></tr>
+<tr><td class="l">負債</td><td>31,923</td><td>31,615</td><td>△308</td><td class="l">長期借入金+2,519／支払手形及び買掛金+471／未払法人税等+350／<strong>短期借入金△3,764</strong></td></tr>
+<tr class="hl"><td class="l">純資産</td><td>40,529</td><td>43,558</td><td>+3,029</td><td class="l">利益剰余金+3,117／非支配株主持分+646／配当金の支払△939</td></tr>
+</table>
+<p class="src">出所：第2-4(2)①ｂ<span class="tag f">③</span></p>
+</section>
+
+<!-- ===== Ⅷ ===== -->
+<section id="s8">
+<h2 class="sec">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+
+<h3>Ⅷ-a　設備の状況</h3>
+
+<div class="kpi">
+  <div><div class="k">当期設備投資総額</div><div class="v">3,033 百万円</div><div class="n">縫製2,915／ラミ117</div></div>
+  <div><div class="k">減価償却費</div><div class="v">2,063 百万円</div><div class="n">営業CF内訳より</div></div>
+  <div><div class="k">投資 ÷ 償却</div><div class="v">1.47 倍</div><div class="n">当方算出</div></div>
+  <div><div class="k">有形+無形固定資産</div><div class="v">23,792 百万円</div><div class="n">総資産の31.6%</div></div>
+  <div><div class="k">重要な設備の新設等の計画</div><div class="v">該当なし</div><div class="n">除却等の計画も該当なし</div></div>
+</div>
+
+<div class="card">
+<h4>当期の設備投資の中身</h4>
+<blockquote>(1) 縫製事業　当連結会計年度の主な設備投資は、<strong>日本本社の新社屋建設</strong>及び海外工場における生産ラインの増設、生産効率向上のための設備等の購入を中心とする総額2,915百万円であります。<br>(2) ラミネーションフィルム事業　当連結会計年度の主な設備投資は、生産効率向上のための設備等の購入を中心とする総額117百万円であります。</blockquote>
+<p class="src">出所：第3-1【設備投資等の概要】<span class="tag f">③</span></p>
+</div>
+
+<div class="card warn">
+<h4>「投資÷償却＝1.47倍だから拡張投資」とは単純に言えない</h4>
+<p>設備投資3,033百万円は減価償却2,063百万円の1.47倍で、形式的には<strong>拡張投資</strong>に分類される。<span class="tag i">[解釈]</span> しかし内訳に<strong>日本本社の新社屋建設</strong>が含まれている点に注意が要る。<span class="tag f">[事実]</span></p>
+<p>提出会社（本社・広島県福山市）の設備は帳簿価額合計2,022百万円、うち建物及び構築物が1,137百万円。<span class="tag f">[事実]</span> 本社移転は2025年11月に完了しており、<span class="tag f">[事実]</span> 建物の相当部分が当期計上と推測される。<span class="tag i">[解釈]</span> 仮に建物1,137百万円が当期投資だとすると、設備投資3,033百万円の<strong>約37%が本社建物</strong>ということになり、<strong>生産能力に向かった投資は約1,900百万円＝減価償却2,063百万円を下回る</strong>計算になる。<span class="tag i">[解釈]</span>（推計値・保証なし。本社新社屋の当期計上額そのものは有報に記載がない <span class="tag q">[要確認]</span>）</p>
+<p>つまり<strong>生産設備ベースでは維持投資の水準にとどまっていた可能性</strong>がある。中計BEYOND2028が掲げる「拡大した生産キャパシティを最大限に活用」という表現は、<strong>新規増設ではなく既存キャパの稼働率を上げる</strong>という趣旨であり、この投資水準と整合する。<span class="tag i">[解釈]</span></p>
+</div>
+
+<div class="card warn">
+<h4>「重要な設備の新設等：該当事項はありません」が示すこと</h4>
+<p>第3-3【設備の新設、除却等の計画】は新設・除却とも<strong>「該当事項はありません」</strong>。<span class="tag f">[事実]</span> ビジョン2025期間中にベトナム・バングラデシュで工場3拠点を新設した会社が、翌期以降の設備新設計画をゼロと開示している。<span class="tag i">[解釈]</span></p>
+<p>これは2通りに読める。<span class="tag i">[解釈]</span></p>
+<ul>
+<li><strong>拡張局面が一巡した</strong>：設備を作る段階から、作った設備を回して利益を出す段階へ移行した。中計①「拡大した生産キャパシティを最大限に活用し、アイテム・拠点の最適配置を進めることで、稼働率向上と利益性の両立を図る」という表現と最も整合する読み方。</li>
+<li><strong>3年で売上900億円（+6.6%/年）を、新規設備なしで達成する計画である</strong>：現有キャパで年+6.6%の増収が可能かどうかは、稼働率の現状値が開示されていないため検証できない。<span class="tag q">[要確認]</span> 従業員を21,086→24,000名（+4.4%/年）に増やす目標があることから、<strong>設備ではなく人（ライン数ではなくシフト・要員）で増産する設計</strong>である可能性が高い。</li>
+</ul>
+</div>
+
+<h3>主要な設備の分布（在外子会社・2026年3月31日現在）</h3>
+<table>
+<tr><th class="l">会社（所在地）</th><th class="l">セグメント</th><th>建物<br>及び構築物</th><th>機械装置<br>及び運搬具</th><th>土地</th><th>その他</th><th>合計</th><th>従業員数<br>(名)</th></tr>
+<tr class="hl"><td class="l">AN NAM MATSUOKA GARMENT（ベトナム・ゲアン省）</td><td class="l">縫製</td><td>3,839</td><td>456</td><td>―</td><td>580</td><td><strong>4,877</strong></td><td>2,601</td></tr>
+<tr class="hl"><td class="l">TM Textiles &amp; Garments Ltd.（バングラデシュ・ダッカ）</td><td class="l">縫製</td><td>2,027</td><td>1,348</td><td>225</td><td>519</td><td><strong>4,121</strong></td><td><strong>4,792</strong></td></tr>
+<tr><td class="l">ISHWARDI MATSUOKA BANGLADESH（バングラデシュ・パブナ）</td><td class="l">縫製</td><td>1,864</td><td>622</td><td>―</td><td>457</td><td>2,945</td><td>3,438</td></tr>
+<tr><td class="l">嘉興徳永紡織品有限公司（中国・浙江省平湖市）</td><td class="l">ラミ</td><td>1,627</td><td>530</td><td>―</td><td>458</td><td>2,616</td><td>201</td></tr>
+<tr><td class="l">PHU THO MATSUOKA（ベトナム・フート省）</td><td class="l">縫製</td><td>1,075</td><td>165</td><td>―</td><td>182</td><td>1,423</td><td>2,191</td></tr>
+<tr><td class="l">PT.MATSUOKA INDUSTRIES INDONESIA（インドネシア・スバン県）</td><td class="l">縫製</td><td>272</td><td>250</td><td>―</td><td>853</td><td>1,376</td><td>2,078</td></tr>
+<tr><td class="l">THANH CHUONG MATSUOKA GARMENT（ベトナム・ゲアン省）</td><td class="l">縫製</td><td>622</td><td>216</td><td>―</td><td>173</td><td>1,012</td><td>771</td></tr>
+<tr><td class="l">JDT VIETNAM（ベトナム・ホーチミン市）</td><td class="l">ラミ</td><td>359</td><td>207</td><td>―</td><td>367</td><td>935</td><td>128</td></tr>
+<tr><td class="l">上海茉織華服飾（中国・上海市／倉庫）</td><td class="l">縫製</td><td>64</td><td>123</td><td>―</td><td>314</td><td>502</td><td>54</td></tr>
+<tr><td class="l">MK APPARELS（バングラデシュ・ダッカ）</td><td class="l">縫製</td><td>247</td><td>117</td><td>59</td><td>17</td><td>441</td><td>1,667</td></tr>
+<tr><td class="l">茉織華実業(集団)（中国・浙江省平湖市）</td><td class="l">縫製</td><td>154</td><td>96</td><td>―</td><td>145</td><td>396</td><td>144</td></tr>
+<tr><td class="l">MYANMAR POSTARION（ミャンマー・ヤンゴン）</td><td class="l">縫製</td><td>221</td><td>0</td><td>―</td><td>41</td><td>263</td><td>2,045</td></tr>
+<tr><td class="l">嘉興茉織華華為制衣（中国・浙江省平湖市）</td><td class="l">縫製</td><td>48</td><td>32</td><td>―</td><td>95</td><td>176</td><td>150</td></tr>
+<tr><td class="l">BAC GIANG MATSUOKA（ベトナム・バクニン省）</td><td class="l">縫製</td><td>45</td><td>69</td><td>―</td><td>4</td><td>119</td><td>263</td></tr>
+<tr><td class="l">宿遷茉織華服装（中国・江蘇省宿遷市）</td><td class="l">縫製</td><td>11</td><td>68</td><td>―</td><td>34</td><td>114</td><td>379</td></tr>
+<tr><td class="l">（参考）提出会社 本社（広島県福山市）</td><td class="l">縫製</td><td>1,137</td><td>34</td><td>279</td><td>570</td><td>2,022</td><td>131</td></tr>
+</table>
+<p class="src">単位：百万円。出所：第3-2【主要な設備の状況】<span class="tag f">③</span>。土地は自己所有分のみ。多くの拠点で土地使用権（外書き）を保有しており、自己所有の土地はバングラデシュ2社（TM Textiles 225／MK APPARELS 59）と提出会社本社（279）のみ。休止中の主要設備はなし。</p>
+
+<div class="card note">
+<h4>設備分布から読めること</h4>
+<ul>
+<li><strong>設備の重心はベトナムとバングラデシュにある。</strong>上位3拠点（AN NAM 4,877／TM Textiles 4,121／ISHWARDI 2,945＝計11,943百万円）がこの2か国に集中し、主要設備全体の約半分を占める。<span class="tag i">[解釈]</span> いずれもビジョン2025期間に新設・取得した拠点であり、<strong>「拡大した生産キャパシティ」の実体はここ</strong>。<span class="tag i">[解釈]</span></li>
+<li><strong>中国拠点は設備が軽い。</strong>茉織華実業は経常利益1,732百万円を稼ぐ（→Ⅰ章）のに設備帳簿価額は396百万円。<span class="tag f">[事実]</span> 償却が進んだ古い拠点で、高付加価値領域（サンプル作成・短納期対応）に特化しているという説明と整合する。<span class="tag i">[解釈]</span> 一方、中国のラミ事業（嘉興徳永2,616百万円）は設備が重く、当期の売上△35.8%は<strong>固定費負担の面で最も痛い落ち込み</strong>だったと読める。<span class="tag i">[解釈]</span></li>
+<li><strong>ミャンマーは設備263百万円に対し従業員2,045名。</strong><span class="tag f">[事実]</span> 機械装置及び運搬具はわずか0百万円（表示単位未満）。<span class="tag f">[事実]</span> 減損リスクという観点では、簿価が既に極小であるため<strong>情勢悪化時の会計インパクトは限定的</strong>と読める。<span class="tag i">[解釈]</span> ただし雇用2,045名の社会的責任と、売上29億33百万円の喪失リスクは別問題。</li>
+<li><strong>KAMとの接続</strong>：減損の判定は「主として会社別」にグルーピングされる。<span class="tag f">[事実]</span> 上表がそのままCF生成単位に近いとすれば、簿価が大きく従業員も多いバングラデシュ・ベトナムの新設拠点が、稼働率低下時に最も減損リスクが高い。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>Ⅷ-b　研究開発活動</h3>
+
+<div class="card warn">
+<h4>第2-6【研究開発活動】の記載は1行</h4>
+<blockquote>該当事項はありません。</blockquote>
+<p class="src">出所：第2-6【研究開発活動】<span class="tag f">③</span></p>
+<h4>この1行と、他章の記述の矛盾</h4>
+<p>本レポートで指摘すべき最も明確な不整合である。<span class="tag i">[解釈]</span> 同じ有報の中で、以下の記述が併存している。<span class="tag f">[事実]</span></p>
+<ul>
+<li>第1-3【事業の内容】ラミネーションフィルム事業①素材開発：「透湿防水フィルムの性能設計や生地との組み合わせ検討を行い、<strong>新規素材の開発・提案</strong>を実施します。<strong>中国・ベトナム両工場に研究開発機能を備え</strong>、各種試験設備を活用した機能性・耐久性等の品質評価を行っています。また、<strong>化学メーカーとの共同開発による新規樹脂の採用</strong>や、<strong>機械メーカーと連携した生産設備の開発</strong>を通じて、より高度なフィルム開発を推進しています。」</li>
+<li>第1-3：「素材開発においては、国内外のアウトドアウェアメーカーやアパレルメーカーと連携し、消費者ニーズに応じた高品質な素材の開発を進めております。」</li>
+<li>第2-2サステナビリティ マテリアリティ2：「ラミネーションフィルム事業において<strong>環境負荷の少ない非溶剤系・非フッ素系製品の開発を継続</strong>するとともに、化学品使用に関する各国の環境規制に対応した<strong>素材開発や生産手法の研究</strong>を進めました。」</li>
+<li>第2-1経営環境：「<strong>企画段階からの技術提案を含むODM生産への要請が拡大</strong>している」</li>
+</ul>
+<p><strong>「研究開発機能を備え」「新規樹脂の採用」「素材開発や生産手法の研究」と3か所で書きながら、研究開発費は開示対象となる金額として計上されていない。</strong><span class="tag i">[解釈]</span></p>
+<h4>考えられる説明と、確認すべきこと</h4>
+<ul>
+<li>会計上の研究開発費（研究開発費等に係る会計基準の定義）に該当する支出がなく、実態は<strong>製造原価内の技術活動・顧客との共同開発</strong>として処理されている可能性。<span class="tag i">[解釈]</span> OEM/ODMでは顧客負担・顧客主導の開発が多く、自社の研究開発費として立たない構造はあり得る。</li>
+<li>ただしその場合、<strong>ODM要請への対応力を自社で積み上げているとは言いにくい</strong>。中計②が製造管理の高度化（MES/ERP）に寄っており、企画・設計側の強化施策が見当たらないこと（→Ⅳ章）と符合する。<span class="tag i">[解釈]</span></li>
+<li>ラミネーションフィルム事業は「技術的優位性の強化につなげました」と経営戦略章で語られる事業だが、その優位性を支える投資額が有報上ゼロである。<strong>優位性の実体と持続性は有報だけでは判断できない。</strong><span class="tag q">[要確認]</span> 決算説明資料での開発テーマ・投資額の確認が要る。</li>
+</ul>
+</div>
+</section>
+
+<!-- ===== Ⅸ ===== -->
+<section id="s9">
+<h2 class="sec">Ⅸ. 資本政策・株主還元</h2>
+
+<h3>配当政策</h3>
+<div class="card">
+<blockquote>当社は、剰余金の処分につきましては、事業の持続的成長のための新規投資や、財務の健全性、経営環境の変化に耐え得る経営基盤充実のための内部留保とのバランスを総合的に考慮しながら、<strong>連結配当性向30％を目安</strong>に経営成績に応じた配当を行うことを基本方針としております。</blockquote>
+<table>
+<tr><th class="l">項目</th><th class="l">内容</th></tr>
+<tr><td class="l">当期の配当</td><td class="l">1株当たり<strong>100円</strong>（普通配当90円＋<strong>設立70周年記念配当10円</strong>）</td></tr>
+<tr><td class="l">配当金の総額</td><td class="l">1,049百万円</td></tr>
+<tr><td class="l">決議</td><td class="l">2026年6月26日 定時株主総会決議（予定）</td></tr>
+<tr><td class="l">配当回数</td><td class="l">年1回の期末配当が基本。中間配当は取締役会決議により可能（定款に規定）だが、直近5期はいずれも中間配当なし</td></tr>
+<tr class="hl"><td class="l">連結配当性向（当方算出）</td><td class="l">100円 ÷ EPS298.12円 ＝ <strong>33.5%</strong>（方針30%目安をやや上回る）</td></tr>
+<tr><td class="l">単体配当性向（有報記載）</td><td class="l">23.29%</td></tr>
+</table>
+<h4>1株当たり配当額の推移</h4>
+<table>
+<tr><th class="l">期</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th></tr>
+<tr><td class="l">1株当たり配当額（円）</td><td>40</td><td>40</td><td>50</td><td>90</td><td><strong>100</strong></td></tr>
+<tr><td class="l">連結EPS（円）</td><td>57.06</td><td>170.30</td><td>246.03</td><td>259.47</td><td>298.12</td></tr>
+<tr><td class="l">連結配当性向（当方算出）</td><td>70.1%</td><td>23.5%</td><td>20.3%</td><td>34.7%</td><td>33.5%</td></tr>
+<tr><td class="l">単体配当性向（有報記載）</td><td>―</td><td>17.15%</td><td>14.61%</td><td>69.46%</td><td>23.29%</td></tr>
+</table>
+<p class="src">出所：第4-3【配当政策】、第1-1(2)【提出会社の経営指標等】<span class="tag f">③</span>。連結配当性向は当方算出（推計値・保証なし）。</p>
+</div>
+
+<div class="card note">
+<h4>資本配分の規律をどう読むか</h4>
+<ul>
+<li><strong>方針は守られている。</strong>連結配当性向30%目安に対し当期33.5%。2025/3期34.7%と2期連続で方針をやや上回る水準。<span class="tag i">[解釈]</span> 2022/3期（EPS57.06円）でも40円配当を据え置き、性向70.1%まで許容している。<span class="tag f">[事実]</span> <strong>減益局面でも配当を減らさなかった</strong>点は、方針の一貫性として評価できる。<span class="tag i">[解釈]</span></li>
+<li><strong>記念配当10円の扱いに注意。</strong>当期100円のうち10円は「設立70周年記念」であり、<strong>翌期は普通配当90円が基準になる</strong>と読むのが自然。<span class="tag i">[解釈]</span> 増益が続かない限り、見かけの1株配当は減る可能性がある。</li>
+<li><strong>自社株買いはゼロ。</strong>株主総会決議・取締役会決議による自己株式取得はいずれも「該当事項はありません」。取得自己株式の処分もゼロ。<span class="tag f">[事実]</span> 保有自己株式は95,162株（発行済の0.90%）で、これは過去の単元未満株買取の累積とみられる。<span class="tag i">[解釈]</span></li>
+<li><strong>したがって総還元＝配当のみ＝総還元性向33.5%。</strong><span class="tag i">[解釈]</span> ネットキャッシュ4,559百万円（→Ⅶ章）を抱え、PBR0.67倍<span class="tag f">⑤</span>という評価にありながら、中計③「資本効率を高める経営への転換」の具体策に自社株買いは含まれていない。<span class="tag f">[事実]</span> ROE9%目標との整合（→Ⅳ章）を考えると、この空白は投資判断上の論点になる。<span class="tag q">[要確認]</span></li>
+</ul>
+</div>
+
+<h3>株主構成と支配構造</h3>
+
+<div class="grid2">
+  <div class="chart sm"><canvas id="cowner"></canvas></div>
+  <div class="chart sm"><canvas id="ctop"></canvas></div>
+</div>
+
+<table>
+<tr><th class="l">大株主（2026年3月31日現在）</th><th class="l">住所</th><th>所有株式数<br>(千株)</th><th>比率<br>(％)</th></tr>
+<tr class="hl"><td class="l"><strong>合同会社マツオカカンパニー</strong></td><td class="l">広島県福山市宝町4-14</td><td>1,775</td><td><strong>16.91</strong></td></tr>
+<tr class="hl"><td class="l"><strong>松岡典之</strong>（代表取締役社長執行役員）</td><td class="l">広島県福山市</td><td>1,254</td><td><strong>11.95</strong></td></tr>
+<tr><td class="l">上田八木短資株式会社</td><td class="l">大阪府大阪市中央区</td><td>316</td><td>3.01</td></tr>
+<tr><td class="l">日本生命保険相互会社</td><td class="l">東京都千代田区</td><td>250</td><td>2.38</td></tr>
+<tr><td class="l">倉敷紡績株式会社</td><td class="l">大阪府大阪市中央区</td><td>250</td><td>2.38</td></tr>
+<tr><td class="l">三菱UFJキャピタル株式会社</td><td class="l">東京都中央区</td><td>225</td><td>2.14</td></tr>
+<tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td class="l">東京都港区</td><td>204</td><td>1.94</td></tr>
+<tr><td class="l">株式会社日本カストディ銀行（信託口）</td><td class="l">東京都中央区</td><td>202</td><td>1.93</td></tr>
+<tr><td class="l">UBS AG SINGAPORE</td><td class="l">スイス・バーゼル</td><td>185</td><td>1.76</td></tr>
+<tr><td class="l">株式会社ジェイ・ウィル・インベストメント</td><td class="l">東京都千代田区</td><td>166</td><td>1.58</td></tr>
+<tr class="hl"><td class="l">上位10名 計</td><td class="l">―</td><td>4,828</td><td><strong>45.99</strong></td></tr>
+</table>
+<p class="src">出所：第4-1(6)【大株主の状況】<span class="tag f">③</span>。比率は発行済株式（自己株式を除く）に対する割合。なお2024年1月5日付変更報告書でスパークス・アセット・マネジメントが391千株（3.88%）保有と記載されているが、当社として2026年3月31日現在の実質所有株式数を確認できないため大株主の状況には含めていない旨の注記あり。<span class="tag f">[事実]</span></p>
+
+<table>
+<tr><th class="l">所有者別状況（単元ベース・2026年3月31日現在）</th><th>株主数(人)</th><th>所有株式数(単元)</th><th>比率(％)</th></tr>
+<tr><td class="l">個人その他</td><td>6,403</td><td>47,049</td><td>44.51</td></tr>
+<tr><td class="l">その他の法人</td><td>86</td><td>36,344</td><td>34.38</td></tr>
+<tr><td class="l">金融機関</td><td>8</td><td>9,086</td><td>8.60</td></tr>
+<tr><td class="l">外国法人等（法人）</td><td>60</td><td>8,458</td><td>8.00</td></tr>
+<tr><td class="l">金融商品取引業者</td><td>20</td><td>4,696</td><td>4.44</td></tr>
+<tr><td class="l">外国法人等（個人）</td><td>17</td><td>72</td><td>0.07</td></tr>
+<tr class="hl"><td class="l">計</td><td>6,594</td><td>105,705</td><td>100.00</td></tr>
+</table>
+<p class="src">出所：第4-1(5)【所有者別状況】<span class="tag f">③</span>。自己株式95,162株は「個人その他」に951単元、「単元未満株式」に62株含まれる。発行済株式総数10,593,600株、総株主の議決権104,754個。</p>
+
+<div class="card note">
+<h4>支配構造の読み取り</h4>
+<ul>
+<li><strong>実質支配者は創業家。</strong>合同会社マツオカカンパニー16.91%＋松岡典之11.95%＝<strong>28.86%</strong>。<span class="tag i">[解釈]</span> マツオカカンパニーの所在地（広島県福山市宝町4-14）は<strong>移転前の旧本社所在地と一致</strong>しており、<span class="tag f">[事実]</span> 資産管理会社と推測される。<span class="tag i">[解釈]</span> 単独では過半に届かないが、上場企業の実務としては安定株主として十分に機能する水準。<span class="tag i">[解釈]</span></li>
+<li><strong>事業会社・取引先の持株が厚い。</strong>「その他の法人」34.38%は個人（44.51%）に次ぐ規模。<span class="tag f">[事実]</span> 大株主に倉敷紡績（2.38%・紡績＝原材料側）、三菱UFJキャピタル、ジェイ・ウィル・インベストメントが並ぶ。<span class="tag f">[事実]</span> 倉敷紡績は当社の政策保有先でもあり<strong>相互持合</strong>の関係にある（後述）。<span class="tag f">[事実]</span></li>
+<li><strong>機関投資家の比率は低い。</strong>金融機関8.60%＋外国法人等8.07%＝16.67%。<span class="tag f">[事実]</span> 信託口（マスタートラスト1.94%、カストディ1.93%）を合わせても4%弱。<span class="tag i">[解釈]</span> 時価総額266億円<span class="tag f">⑤</span>・売買代金84百万円<span class="tag f">⑤</span>という流動性を踏まえると、機関投資家が入りにくい規模である。<span class="tag i">[解釈]</span></li>
+<li><strong>少数株主の声の届き方</strong>：創業家28.86%＋事業法人の安定株主層に対し、明確な物言う株主は大株主リストに見当たらない。<span class="tag i">[解釈]</span> スパークス・アセット・マネジメントの3.88%は会社が実質所有を確認できないとして掲載を見送っている。<span class="tag f">[事実]</span> 資本効率（PBR0.67倍）への外部からの圧力は限定的な構造と読める。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>潜在株式による希薄化 ― 転換社債</h3>
+<div class="card warn">
+<table>
+<tr><th class="l">項目</th><th class="l">内容</th></tr>
+<tr><td class="l">銘柄</td><td class="l">第1回無担保転換社債型新株予約権付社債（日本政策投資銀行あて第三者割当）</td></tr>
+<tr><td class="l">発行年月日／償還期限</td><td class="l">2022年9月28日／<strong>2027年9月28日</strong></td></tr>
+<tr><td class="l">当期末残高</td><td class="l"><strong>750百万円</strong>（新株予約権24個）／利率 ―（ゼロクーポン）／無担保</td></tr>
+<tr><td class="l">転換価額</td><td class="l"><strong>934円</strong>（発行当初1,500百万円・潜在株式1,605,900株）</td></tr>
+<tr><td class="l">既行使分</td><td class="l">2025年3月7日に半数（24個）行使、普通株式411,200株を交付</td></tr>
+<tr class="hl"><td class="l">残存潜在株式数（当方算出）</td><td class="l">750百万円 ÷ 934円 ≒ <strong>約803千株</strong>＝発行済10,593,600株の<strong>約7.6%</strong></td></tr>
+<tr class="hl"><td class="l">実際の希薄化（有報数値）</td><td class="l">EPS 298.12円 → 潜在株式調整後EPS 275.91円＝<strong>△7.5%</strong></td></tr>
+</table>
+<p class="src">出所：第2-5【重要な契約等】、第5【経理の状況】社債明細表、第1-1【主要な経営指標等の推移】<span class="tag f">③</span>。残存潜在株式数は当方算出（推計値・保証なし）。</p>
+
+<h4>投資判断上の含意</h4>
+<ul>
+<li><strong>転換価額934円に対し、株価は2,536円</strong>（2026年7月17日基準）<span class="tag f">⑤</span>で<strong>2.7倍</strong>。深くイン・ザ・マネーであり、経済合理性から見て転換される可能性が高い。<span class="tag i">[解釈]</span></li>
+<li>転換されれば約803千株が新規発行され、有利子負債750百万円が自己資本へ振り替わる。<strong>自己資本比率とROEの分母は改善方向、EPSは希薄化方向</strong>に働く。<span class="tag i">[解釈]</span></li>
+<li>希薄化は<strong>すでに顕在化している</strong>。潜在株式調整後EPSは第68期211.32円（対EPS△14.1%）、第69期223.73円（同△13.8%）、第70期275.91円（同△7.5%）と、半数行使後に希薄化幅が縮小している。<span class="tag f">[事実]</span></li>
+<li>償還期限2027年9月28日までに決着する事象であり、<strong>中計BEYOND2028の期間中に自己資本構成が変動する</strong>。ROE9%目標（→Ⅳ章）の計算前提に転換の織り込みがあるかは有報からは不明。<span class="tag q">[要確認]</span></li>
+<li>加えて、当社の選択による取得条項（2026年9月28日〜2027年6月10日に通知可能、取得期日2027年9月10日）や、組織再編・支配権変動・上場廃止事由等による繰上償還請求権が社債権者に付与されている。<span class="tag f">[事実]</span> 支配権変動事由は「特定株主グループの株券等保有割合が50%超」と定義されており、<strong>創業家28.86%の水準では該当しない</strong>。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>政策保有株式</h3>
+<table>
+<tr><th class="l">区分</th><th>銘柄数</th><th>貸借対照表計上額<br>(百万円)</th></tr>
+<tr><td class="l">非上場株式</td><td>9</td><td>194</td></tr>
+<tr><td class="l">非上場株式以外の株式</td><td>2</td><td>262</td></tr>
+<tr class="hl"><td class="l">合計</td><td>11</td><td><strong>456</strong></td></tr>
+<tr><td class="l">純投資目的である投資株式</td><td colspan="2" class="l">該当事項なし</td></tr>
+</table>
+
+<table>
+<tr><th class="l">特定投資株式</th><th>当期<br>株式数(株)</th><th>当期<br>簿価(百万円)</th><th>前期<br>簿価</th><th class="l">保有目的・増加理由</th><th>当社株式の<br>保有の有無</th></tr>
+<tr><td class="l">SAHA PATHANA INTER-HOLDING PUBLIC COMPANY LIMITED</td><td>1,140,000</td><td>247</td><td>207</td><td class="l">タイ国での新たなサプライチェーンの構築を目的とし、2022年12月16日に資本提携。株式数の増加は<strong>株式分割</strong>による</td><td><strong>有</strong></td></tr>
+<tr><td class="l">倉敷紡績株式会社</td><td>1,744</td><td>14</td><td>9</td><td class="l">原材料調達等の営業取引に係る関係維持・強化のため。株式数の増加は同社の<strong>取引先持株会</strong>を通じた取得</td><td><strong>有</strong></td></tr>
+</table>
+<p class="src">出所：第4-4(5)【株式の保有状況】<span class="tag f">③</span></p>
+
+<div class="card note">
+<h4>純資産に占める割合（当方算出・推計値・保証なし）</h4>
+<table>
+<tr><th class="l">分母</th><th>金額(百万円)</th><th>政策保有456百万円の比率</th></tr>
+<tr><td class="l">連結純資産</td><td>43,558</td><td>1.05%</td></tr>
+<tr><td class="l">連結自己資本（総資産75,174×自己資本比率53.1%）</td><td>約39,917</td><td>1.14%</td></tr>
+<tr><td class="l">提出会社純資産</td><td>26,847</td><td>1.70%</td></tr>
+</table>
+<h4>評価</h4>
+<ul>
+<li><strong>金額としては極めて小さい。</strong>純資産比1.05%であり、資本効率を毀損する規模ではない。<span class="tag i">[解釈]</span></li>
+<li><strong>ただし2銘柄とも相互持合である。</strong>上場2銘柄はいずれも「当社の株式の保有の有無：有」。<span class="tag f">[事実]</span> 倉敷紡績は当社の第5位大株主（250千株・2.38%）でもある。<span class="tag f">[事実]</span> 金額の小ささに比して、<strong>構造としての持合いは存在している</strong>。<span class="tag i">[解釈]</span></li>
+<li><strong>定量的な保有効果は開示されていない。</strong>「銘柄ごとの定量的な保有効果の記載は困難であるため記載しておりません」との注記。<span class="tag f">[事実]</span> 検証は取締役会等での定性的な妥当性判断に委ねられている。<span class="tag f">[事実]</span></li>
+<li><strong>非上場9銘柄194百万円の中身は不明。</strong>個別開示義務がないため銘柄名・保有目的の記載はない。<span class="tag f">[事実]</span> 海外子会社の合弁パートナー関連である可能性があるが、有報からは確認できない。<span class="tag q">[要確認]</span></li>
+<li><strong>売却の実績がある。</strong>当期の特別損失に「投資有価証券売却損」が計上されている（→Ⅶ章）。<span class="tag f">[事実]</span> 保有方針の「保有の妥当性が認められない場合は、株価や市場動向を考慮して適時・適切に売却をすすめる」が実際に運用されていることの傍証と読める。<span class="tag i">[解釈]</span> ただし売却銘柄・金額の内訳は記載がない。<span class="tag q">[要確認]</span></li>
+</ul>
+</div>
+
+<h3>役員・創業家の持株 ― 株主との利害一致</h3>
+<table>
+<tr><th class="l">役職・氏名</th><th>所有株式数(株)</th><th>発行済比(％)</th></tr>
+<tr class="hl"><td class="l">代表取締役社長執行役員 松岡典之</td><td>1,254,300</td><td>11.84</td></tr>
+<tr><td class="l">取締役上席執行役員 松岡辰徳</td><td>80,000</td><td>0.76</td></tr>
+<tr><td class="l">取締役上席執行役員 馬場誠</td><td>40,000</td><td>0.38</td></tr>
+<tr><td class="l">取締役常務執行役員 渡邉篤史</td><td>39,900</td><td>0.38</td></tr>
+<tr><td class="l">監査役（常勤）栗山文宏</td><td>20,000</td><td>0.19</td></tr>
+<tr><td class="l">取締役上席執行役員 金子浩幸（CFO）</td><td>500</td><td>0.00</td></tr>
+<tr><td class="l">取締役 田村保治</td><td>―</td><td>―</td></tr>
+<tr class="hl"><td class="l">社外取締役3名（江島貴志／中川康明／ニクライ ペーテル）</td><td><strong>いずれも 0</strong></td><td>―</td></tr>
+</table>
+<p class="src">出所：第4-4(2)【役員の状況】<span class="tag f">③</span>。発行済比は10,593,600株に対する当方算出。</p>
+
+<div class="card note">
+<p><strong>社内取締役の持株は利害一致の観点で十分に厚い。</strong>社長11.84%に加え、事業部門を担う取締役3名も4〜8万株を保有。<span class="tag i">[解釈]</span> ただしCFO（金子浩幸）は500株のみで、財務・資本政策の責任者と株主の利害一致は薄い。<span class="tag i">[解釈]</span></p>
+<p><strong>社外取締役3名は全員0株。</strong><span class="tag f">[事実]</span> 独立性の観点では持株ゼロが望ましいという考え方もあり、一概に評価はできない。ただし<strong>役員報酬が全額固定・株式報酬ゼロ</strong>（→Ⅹ章）であることと併せると、<strong>この会社の役員は株価に対する経済的エクスポージャーを、社長の既存持株を除いてほとんど持っていない</strong>。<span class="tag i">[解釈]</span> PBR0.67倍・ROE9%目標という文脈では、この点が資本効率へのインセンティブ設計上の論点になる。<span class="tag q">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ===== Ⅹ ===== -->
+<section id="s10">
+<h2 class="sec">Ⅹ. ガバナンス</h2>
+
+<h3>体制の事実</h3>
+<table>
+<tr><th class="l" style="width:24%">項目</th><th class="l">内容（2026年6月23日・有報提出日現在）</th></tr>
+<tr><td class="l">機関設計</td><td class="l"><strong>監査役会設置会社</strong>（指名委員会等設置会社・監査等委員会設置会社ではない）</td></tr>
+<tr class="hl"><td class="l">取締役会</td><td class="l"><strong>9名（うち社外取締役3名＝33.3%）</strong>。原則として月1回以上開催＋必要に応じ臨時。当事業年度の開催回数15回。監査役が出席</td></tr>
+<tr class="hl"><td class="l">監査役会</td><td class="l"><strong>4名（常勤監査役1名・常勤社外監査役1名・社外監査役2名＝社外3名／75%）</strong>。原則毎月1回＋臨時。当事業年度<strong>15回</strong>開催、1回あたり所要時間<strong>約1時間</strong></td></tr>
+<tr><td class="l">経営会議</td><td class="l">代表取締役・取締役・執行役員をメンバーとし毎月開催。グループ全体の経営基本方針・経営活動の推進、重要事項の協議検討、取締役会への具申</td></tr>
+<tr class="hl"><td class="l">指名報酬委員会</td><td class="l"><strong>取締役会の任意の諮問機関。過半数を社外役員で構成。</strong>取締役・監査役の指名、取締役の報酬額の決定等について評価・決定プロセスを透明化・客観化。取締役会からの諮問を受けて検討し答申</td></tr>
+<tr><td class="l">サステナビリティ委員会</td><td class="l">取締役会の諮問機関。委員長＝代表取締役社長執行役員 松岡典之</td></tr>
+<tr><td class="l">コンプライアンス・リスク管理委員会</td><td class="l">委員長＝代表取締役社長執行役員。取締役・執行役員等を委員とし、全社的リスクの把握と対応方針の検討</td></tr>
+<tr><td class="l">内部監査室</td><td class="l"><strong>代表取締役社長執行役員 直轄。</strong>内部監査規程に基づき法令・定款・社内規程の遵守状況等を定期監査。監査役・会計監査人と情報交換・連携</td></tr>
+<tr><td class="l">会計監査人報酬</td><td class="l">提出会社 監査証明業務<strong>64百万円</strong>（前期65）／非監査業務 0（前期2＝コンフォートレター作成）。同一ネットワークに属する組織→連結子会社 <strong>60百万円</strong>（前期61）。<strong>合計124百万円</strong></td></tr>
+</table>
+<p class="src">出所：第4-4(1)(3)(4)【コーポレート・ガバナンスの状況等】<span class="tag f">③</span></p>
+
+<h4>役員の出席状況</h4>
+<div class="grid2">
+<div class="card">
+<h5 style="margin:0 0 6px;font-size:13px;color:#5a6472">監査役会（15回開催）</h5>
+<table>
+<tr><th class="l">役職名</th><th class="l">氏名</th><th>開催</th><th>出席</th></tr>
+<tr><td class="l">監査役（常勤）</td><td class="l">栗山 文宏</td><td>15</td><td>15</td></tr>
+<tr><td class="l">監査役（常勤）</td><td class="l">郷 英訓 ※退任</td><td>4</td><td>4</td></tr>
+<tr><td class="l">独立社外監査役（常勤）</td><td class="l">上野 健次 ※就任</td><td>11</td><td>11</td></tr>
+<tr><td class="l">独立社外監査役</td><td class="l">岡 耕一郎</td><td>15</td><td>15</td></tr>
+<tr><td class="l">独立社外監査役</td><td class="l">松本 久幸</td><td>15</td><td>15</td></tr>
+</table>
+</div>
+<div class="card">
+<h5 style="margin:0 0 6px;font-size:13px;color:#5a6472">取締役会（社外取締役・15回開催）</h5>
+<table>
+<tr><th class="l">役職名</th><th class="l">氏名</th><th>開催</th><th>出席</th></tr>
+<tr><td class="l">独立社外取締役</td><td class="l">江島 貴志</td><td>15</td><td>15</td></tr>
+<tr><td class="l">独立社外取締役</td><td class="l">中川 康明</td><td>15</td><td>15</td></tr>
+<tr><td class="l">独立社外取締役</td><td class="l">ニクライ ペーテル ※就任</td><td>11</td><td>11</td></tr>
+</table>
+<p class="src" style="margin-top:8px">※郷英訓は2025年6月27日第69回定時株主総会で任期満了退任。上野健次・ニクライペーテルは同総会で新任。<strong>出席率はいずれも100%。</strong><span class="tag f">[事実]</span></p>
+</div>
+</div>
+
+<h3>役員報酬 ― 数値</h3>
+<table>
+<tr><th class="l">役員区分</th><th>報酬等の総額<br>(百万円)</th><th>基本報酬</th><th>賞与</th><th>譲渡制限付<br>株式報酬</th><th>対象人員<br>(名)</th><th>1人当たり<br>(百万円)</th></tr>
+<tr class="hl"><td class="l">取締役（社外取締役を除く）</td><td><strong>235</strong></td><td>235</td><td><strong>―</strong></td><td><strong>―</strong></td><td>7</td><td>33.6</td></tr>
+<tr><td class="l">監査役（社外監査役を除く）</td><td>19</td><td>19</td><td>―</td><td>―</td><td>2</td><td>9.5</td></tr>
+<tr><td class="l">社外取締役</td><td>19</td><td>19</td><td>―</td><td>―</td><td>3</td><td>6.3</td></tr>
+<tr><td class="l">社外監査役</td><td>21</td><td>21</td><td>―</td><td>―</td><td>3</td><td>7.0</td></tr>
+<tr class="hl"><td class="l">合計</td><td><strong>294</strong></td><td>294</td><td>―</td><td>―</td><td>15</td><td>―</td></tr>
+</table>
+
+<table>
+<tr><th class="l">連結報酬等の総額が1億円以上である者</th><th>連結報酬等<br>の総額</th><th>役員区分</th><th>会社区分</th><th>基本報酬</th><th>賞与</th><th>譲渡制限付<br>株式報酬</th></tr>
+<tr class="hl"><td class="l"><strong>松岡 典之</strong></td><td><strong>146</strong></td><td>取締役</td><td>提出会社</td><td>146</td><td>―</td><td>―</td></tr>
+</table>
+<p class="src">単位：百万円。出所：第4-4(4)②③【役員の報酬等】<span class="tag f">③</span>。1人当たりは当方算出（推計値・保証なし）。使用人兼務役員の使用人給与のうち重要なものは該当なし。監査役の報酬限度額は2017年6月28日 第61回定時株主総会で年額50百万円と決議。</p>
+
+<div class="chart sm"><canvas id="cpay"></canvas></div>
+
+<div class="card warn">
+<h4>報酬構造から読めること</h4>
+<ol>
+<li><strong>業績連動報酬がゼロ。</strong>賞与も譲渡制限付株式報酬も全区分で「―」。<span class="tag f">[事実]</span> 報酬決定方針の本文には「基本報酬及び賞与と非金銭報酬との割合の決定については、各報酬の限度額の範囲内で、経営状況や各取締役の職責等を総合的に勘案して、金額配分を行う」と<strong>賞与・非金銭報酬の存在を前提とした記述がある</strong>にもかかわらず、当期の実績はすべて基本報酬である。<span class="tag i">[解釈]</span> 制度としては用意されているが当期は使われなかった、と読める。<span class="tag q">[要確認]</span></li>
+<li><strong>営業利益+401%、経常利益+28.4%、当期純利益+19.9%という増益局面で賞与ゼロ。</strong><span class="tag f">[事実]</span> 一方、提出会社の従業員の平均年間給与は+10.1%（→Ⅲ章）。<strong>従業員の処遇には業績が反映され、役員の処遇には反映されていない</strong>という非対称がある。<span class="tag i">[解釈]</span></li>
+<li><strong>社長1名で取締役報酬の62%を占める。</strong>松岡典之146百万円 ÷ 取締役（社外除く）7名235百万円＝62.1%。<span class="tag i">[解釈]</span> 残る6名で89百万円（1人平均約14.8百万円）。社長と他の取締役の報酬格差は約10倍。<span class="tag i">[解釈]</span>（推計値・保証なし）</li>
+<li><strong>報酬額の決定が社長に再一任されている。</strong>有報の記載は次の通り。<span class="tag f">[事実]</span>
+<blockquote>会社経営の最高責任者である代表取締役社長執行役員 松岡典之氏が当社における長年の経営実績により、当社の事情に最も精通していることから、各取締役の具体的な報酬等（非金銭報酬等以外）の額、その算定方法に関する方針を決定しております。</blockquote>
+歯止めとして「社外取締役及び社外監査役が構成員の過半数を占める任意の指名報酬委員会が、取締役会の諮問に基づき、答申された内容を基に、代表取締役社長執行役員である松岡典之氏が報酬額を決定」する仕組みを置いている。<span class="tag f">[事実]</span> ただし<strong>自らの報酬146百万円も同じ枠組みの中にある</strong>点は構造上の論点として残る。<span class="tag i">[解釈]</span></li>
+<li><strong>社外役員の報酬水準は低い。</strong>社外取締役1人当たり6.3百万円、社外監査役7.0百万円。<span class="tag i">[解釈]</span> 取締役会15回・監査役会15回への出席率100%という稼働と併せて見る必要がある。<span class="tag f">[事実]</span></li>
+</ol>
+</div>
+
+<h3>主要役員の属性</h3>
+<div class="card">
+<h4>代表者：松岡典之（1957年1月24日生・1980年4月当社入社）</h4>
+<table>
+<tr><th class="l" style="width:110px">1980年4月</th><td class="l">当社入社</td></tr>
+<tr><th class="l">1983年4月</th><td class="l">当社営業部長</td></tr>
+<tr><th class="l">1991年5月</th><td class="l">当社取締役営業部長</td></tr>
+<tr><th class="l">1995年1月</th><td class="l">当社専務取締役営業部長</td></tr>
+<tr><th class="l">2000年6月</th><td class="l"><strong>当社代表取締役社長</strong></td></tr>
+<tr><th class="l">2001年6月〜</th><td class="l">茉織華実業(集団)有限公司 董事長（現任）ほか中国子会社の董事長を歴任</td></tr>
+<tr><th class="l">2009年5月〜</th><td class="l">TM Textiles &amp; Garments (HK) Ltd. President（現任）／同 Ltd. Director（現任）</td></tr>
+<tr><th class="l">2024年4月</th><td class="l">当社代表取締役社長執行役員（現任）</td></tr>
+</table>
+<p><strong>在任26年（社長就任2000年6月〜）、勤続46年、現在69歳。</strong><span class="tag i">[解釈]</span> 重要な兼職として茉織華実業(集団)有限公司 董事長、嘉興徳永紡織品有限公司 董事長、TM Textiles &amp; Garments (HK) Ltd. President を現任。<span class="tag f">[事実]</span></p>
+<p><strong>キャリアが「営業」から始まっている</strong>点は、顧客との関係が同社の生命線であること（売上7割が特定グループ）と符合する。<span class="tag i">[解釈]</span> 同時に、主要生産子会社の董事長を自ら兼任しており、<strong>営業と生産の両方の最終判断が1人に集約されている</strong>。<span class="tag i">[解釈]</span> リスク章が「特定人物への依存リスク」を実名で挙げ、対策として「それぞれの部門を執行取締役が管掌することでチームによる経営執行体制を構築」と書くのは、この集約を認識しているためと読める。<span class="tag i">[解釈]</span> ただし後継者計画（サクセッションプラン）の記載は有報にない。<span class="tag q">[要確認]</span></p>
+</div>
+
+<div class="card">
+<h4>社外取締役3名の専門性と独立性</h4>
+<table>
+<tr><th class="l" style="width:16%">氏名</th><th class="l" style="width:10%">生年</th><th class="l">経歴の要点</th><th class="l" style="width:16%">当社での在任</th></tr>
+<tr><td class="l">江島 貴志</td><td class="l">1971年</td><td class="l">オカノハイテック（現オー・エイチ・ティー）入社→同社取締役検査システム事業本部→<strong>同社代表取締役</strong>→同社取締役営業本部長→株式会社誠和 事業統括本部長→株式会社シモヱ 取締役副社長（2023年8月）</td><td class="l">2015年6月監査役<br>→<strong>2017年6月取締役（9年）</strong></td></tr>
+<tr><td class="l">中川 康明</td><td class="l">1954年</td><td class="l">樫山（現オンワードホールディングス）入社→オンワード商事 企画統括部長→同社取締役SP事業本部長→同社取締役国際部部長</td><td class="l"><strong>2019年6月取締役（7年）</strong></td></tr>
+<tr><td class="l">ニクライ ペーテル</td><td class="l">1973年</td><td class="l">クレディ・スイス証券ジャパン→シェーンコーポレーションジャパン→ベルリッツコーポレーション→産業革新機構（現INCJ）マネージングディレクター→JICキャピタル→INCJ→<strong>ルネサス エレクトロニクス シニアダイレクター</strong>（2025年5月〜・現任）</td><td class="l"><strong>2025年6月取締役（1年）</strong></td></tr>
+</table>
+<h4>読み取り</h4>
+<ul>
+<li><strong>専門性の配置は「経営経験・アパレル業界・金融/投資」の3軸。</strong><span class="tag i">[解釈]</span> 江島は製造業の経営者経験、中川はアパレル商社の国際部門、ニクライは投資ファンド・グローバル企業の実務。<strong>アパレル業界・海外・資本の3方向をカバーしており、事業内容に対する適合性は高い</strong>。<span class="tag i">[解釈]</span></li>
+<li><strong>中川康明の出身企業（オンワード）と、社内取締役 田村保治の出身企業が同じ。</strong><span class="tag f">[事実]</span> 田村保治は1982年樫山入社→オンワード商事 代表取締役社長・代表取締役会長→オンワードホールディングス専務執行役員／特別顧問を経て<strong>2023年3月に当社入社</strong>、2023年6月取締役。<span class="tag f">[事実]</span> 中川は同社取締役国際部部長として在籍していた時期が重なる可能性がある。<span class="tag i">[解釈]</span> 独立社外取締役として指定されており形式的な独立性要件は満たすが、<strong>社内取締役と同一企業出身である点は独立性の実質を見るうえで留意事項</strong>。<span class="tag q">[要確認]</span></li>
+<li><strong>在任期間の長期化。</strong>江島は監査役時代（2015年〜）を含めると当社との関わりが11年、取締役として9年。<span class="tag f">[事実]</span> 中川は7年。<span class="tag i">[解釈]</span> 2025年6月にニクライを新任し、同時に常勤社外監査役（上野健次）も新任しており、<strong>社外役員の入れ替えは進んでいる</strong>。<span class="tag f">[事実]</span></li>
+<li><strong>社外監査役の1名が常勤である点</strong>（上野健次・東レ出身）は、海外21社を統括する体制の監視という観点で実効性を高める設計と読める。<span class="tag i">[解釈]</span> ただし東レは主要販売先（東レインターナショナル21.0%＋Toray Industries (H.K.)16.6%＝37.6%）かつ合弁パートナーであり、<strong>出身企業と当社の取引関係は極めて濃い</strong>。<span class="tag f">[事実]</span> 独立社外監査役として指定されているが、独立性の実質は確認事項になる。<span class="tag q">[要確認]</span></li>
+<li><strong>役員13名全員が男性（女性比率0%）。</strong><span class="tag f">[事実]</span> グループの女性管理職比率42%（→Ⅲ章）との対比が大きい。<span class="tag i">[解釈]</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ===== Ⅺ ===== -->
+<section id="s11">
+<h2 class="sec">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+
+<h3>監査上の主要な検討事項（KAM）</h3>
+<div class="card warn">
+<h4>KAM：<strong>海外生産設備の評価</strong>（連結財務諸表・財務諸表とも同一項目）</h4>
+<h5 style="color:#5a6472;font-size:13px;margin:12px 0 4px">内容および決定理由（監査人の記述）</h5>
+<ul>
+<li>会社グループの製造は中国・ベトナム・バングラデシュ・インドネシア・ミャンマーの子会社工場で行われ、<strong>連結貸借対照表に計上されている有形固定資産20,987百万円、無形固定資産2,805百万円の大半がこれら子会社工場の生産設備等</strong>である。<span class="tag f">[事実]</span></li>
+<li>会社は<strong>主として各子会社を最小のキャッシュ・フロー生成単位</strong>として減損の要否を検討している。<span class="tag f">[事実]</span></li>
+<li>減損の兆候が認められた資産グループについて、<strong>取締役会で承認された事業計画等</strong>に基づき将来キャッシュ・フローを見積る。</li>
+<li><strong>重要な仮定は、事業計画等における「得意先からの受注見込み」と「主に人件費を中心とした経費の見積り」。</strong><span class="tag f">[事実]</span></li>
+<li>正味売却価額の算定および将来CFの見積りは<strong>不確実性を伴い、経営者の判断が必要</strong>であることから、KAMに該当すると判断。</li>
+</ul>
+<h5 style="color:#5a6472;font-size:13px;margin:14px 0 4px">監査上の対応（実施された手続）</h5>
+<ul>
+<li>固定資産の減損処理に関連する内部統制の整備・運用状況の有効性評価（各子会社の事業計画作成者の経験と能力、基礎データの網羅性・正確性を担保する方法、経営者による重要な仮定の査閲・承認の仕組み）</li>
+<li>会社が見積った将来CFと取締役会承認の事業計画等との整合性の検討</li>
+<li><strong>過年度における事業計画とそれらの実績を比較することにより、将来計画の見積りの精度を評価</strong></li>
+<li>販売計画について、<strong>直近の得意先からの受注状況との整合性</strong>を検討するとともに、<strong>工員数の状況を踏まえた生産能力との整合性</strong>を検討</li>
+<li><strong>主要な経費である人件費の見積りについて、当該国の物価上昇率との整合性</strong>を検討</li>
+</ul>
+<p class="src">出所：独立監査人の監査報告書（連結・単体）<span class="tag f">③</span></p>
+</div>
+
+<div class="card note">
+<h4>KAMが指す項目とその理由をどう読むか</h4>
+<ul>
+<li><strong>監査人が最も重要と見たのは「海外に置いた設備が計画通り回るか」である。</strong>これはリスク章の「固定資産に係る減損リスク」、重要な会計上の見積りの「固定資産の減損」と<strong>三者一致</strong>している。<span class="tag i">[解釈]</span> 会社・監査人・リスク開示の認識がずれていないという意味で、開示の整合性は高い。<span class="tag i">[解釈]</span></li>
+<li><strong>重要な仮定が「得意先からの受注見込み」であることの含意。</strong>売上の7割が特定顧客グループである以上（→Ⅵ章）、<strong>減損の可否は実質的にファーストリテイリング／東レグループの発注動向に依存する</strong>。<span class="tag i">[解釈]</span> 会計上のリスクと事業上のリスクが同じ一点に収束している。</li>
+<li><strong>もう一つの重要な仮定が「人件費」であることの含意。</strong>1人当たり営業利益103千円（→Ⅲ章）という薄い水準を踏まえると、進出国の賃金上昇は将来CFを直接に押し下げる。<span class="tag i">[解釈]</span> 監査人がわざわざ「当該国の物価上昇率との整合性」を検証手続に挙げているのは、<strong>会社の見積りが楽観に振れやすい変数だと認識している</strong>ことの表れと読める。<span class="tag i">[解釈]</span> しかし前述の通り、この変数は<strong>会社のリスク章には独立項目として存在しない</strong>（→Ⅵ章）。<span class="tag f">[事実]</span></li>
+<li><strong>「過年度の事業計画と実績を比較して見積り精度を評価」という手続が入っている点。</strong><span class="tag f">[事実]</span> これは標準的な手続ではあるが、ビジョン2025期間中の営業利益が181→67→792→433→2,174百万円と大きく振れたことを踏まえると<span class="tag f">①</span>、<strong>子会社レベルの事業計画の精度は必ずしも高くない可能性がある</strong>。<span class="tag i">[解釈]</span> 監査人の結論（無限定適正意見）は出ているため問題は解消されていると読むべきだが、見積り前提が楽観か保守かの判断材料は有報からは得られない。<span class="tag q">[要確認]</span></li>
+<li><strong>当期は実際に減損損失が発生している。</strong>特別損失として子会社の減損損失および投資有価証券売却損が計上され、前期比+266百万円。<span class="tag f">[事実]</span> ただし<strong>減損損失の金額・対象拠点は本レポートで参照した範囲の本文には記載がない</strong>。<span class="tag q">[要確認]</span> どの拠点で発生したかは、ASEAN新設拠点の立ち上がり状況を測るうえで重要な情報。</li>
+</ul>
+</div>
+
+<h3>本表の財務特徴 ― どんな財務体質の会社か</h3>
+<div class="kpi">
+  <div><div class="k">自己資本比率</div><div class="v">53.1%</div><div class="n">5年で51.8→53.1%</div></div>
+  <div><div class="k">ネットキャッシュ</div><div class="v">+4,559 百万円</div><div class="n">現金19,506－有利子負債14,947</div></div>
+  <div><div class="k">総資産回転率</div><div class="v">0.99 回</div><div class="n">売上74,251÷総資産75,174</div></div>
+  <div><div class="k">固定資産比重</div><div class="v">31.6%</div><div class="n">有形20,987＋無形2,805</div></div>
+  <div><div class="k">ROE</div><div class="v">8.0%</div><div class="n">5年で2.2→8.0%</div></div>
+  <div><div class="k">営業CF÷純利益</div><div class="v">1.95 倍</div><div class="n">6,071÷3,117</div></div>
+</div>
+
+<div class="card">
+<h4>財務体質の描写</h4>
+<ol>
+<li><strong>B/Sは「重すぎず軽すぎない」。</strong>固定資産比重31.6%は装置産業（50%超が普通）ほど重くないが、ファブレスやサービス業のような軽さでもない。<span class="tag i">[解釈]</span> 総資産回転率0.99回は、<strong>1年で総資産と同額の売上を立てる</strong>水準で、製造業としては標準的。<span class="tag i">[解釈]</span></li>
+<li><strong>レバレッジは低く、実質無借金に近い。</strong>自己資本比率53.1%、有利子負債14,947百万円に対し現金19,506百万円で<strong>ネットキャッシュ</strong>。<span class="tag f">[事実]</span> 流動比率216.9%・当座比率147.9%（2024/3実績）<span class="tag f">①</span>と短期支払能力にも余裕がある。<span class="tag i">[解釈]</span> 5か国に生産を分散し地政学リスクを抱える事業構造に対して、<strong>財務側を厚くして耐性を確保する設計</strong>と読める。<span class="tag i">[解釈]</span></li>
+<li><strong>利益の質には留保が必要。</strong>営業CF/純利益は1.95倍と高く<strong>キャッシュの裏付けはある</strong>が、その純利益を生んでいる経常利益の58.5%が為替差益である（→Ⅶ章）。<span class="tag i">[解釈]</span> つまり<strong>「キャッシュは伴っているが、そのキャッシュの源泉が本業か為替かは営業利益からは判別できない」</strong>という構造。<span class="tag i">[解釈]</span> 会社が独自指標を作らざるを得なかった理由もここにある。</li>
+<li><strong>資本効率は改善途上。</strong>ROEは2.2%→8.0%へ5年で改善したが、これは主に純利益の増加（559→3,117百万円）による。<span class="tag f">[事実]</span> 自己資本も26,853→約39,917百万円へ膨らんでおり<span class="tag f">①</span>、<strong>分母の圧縮（自社株買い等）は行われていない</strong>（→Ⅸ章）。<span class="tag i">[解釈]</span> PBR0.67倍<span class="tag f">⑤</span>という市場評価は、この資本の積み上がりに対する評価と読める余地がある。<span class="tag i">[解釈]</span></li>
+<li><strong>棚卸資産の増加が継続。</strong>当期+1,424百万円。<span class="tag f">[事実]</span> 増収局面では自然だが、受注高の伸び（+1.6%）が売上の伸び（+5.2%）を下回る状況（→Ⅶ章）と併せると、<strong>翌期に在庫の滞留として現れないかは注視点</strong>。<span class="tag i">[解釈]</span> 残高・回転日数の開示がないため判断できない。<span class="tag q">[要確認]</span></li>
+</ol>
+</div>
+
+<h3>GC注記・後発事象・偶発債務</h3>
+<table>
+<tr><th class="l" style="width:32%">項目</th><th class="l">記載内容</th></tr>
+<tr><td class="l">継続企業の前提に関する注記（GC）</td><td class="l"><strong>記載なし</strong>（監査報告書にも重要な不確実性に関する言及なし）</td></tr>
+<tr><td class="l">重要な後発事象</td><td class="l"><strong>「該当事項はありません」</strong></td></tr>
+<tr><td class="l">監査意見</td><td class="l">連結・単体とも<strong>無限定適正意見</strong>。「その他の記載内容に関して、当監査法人が報告すべき事項はない」</td></tr>
+<tr><td class="l">社債</td><td class="l">第1回無担保転換社債型新株予約権付社債 当期末残高750百万円／利率 ―（ゼロクーポン）／<strong>無担保社債</strong>／償還期限2027年9月28日</td></tr>
+</table>
+<p class="src">出所：第5【経理の状況】注記事項・連結附属明細表【社債明細表】、独立監査人の監査報告書<span class="tag f">③</span></p>
+
+<div class="card note">
+<p><strong>会計面での赤信号は見当たらない。</strong>GC注記なし、重要な後発事象なし、無限定適正意見、社債は無担保（担保提供による資産拘束がない）。<span class="tag i">[解釈]</span> KAMも1項目のみで、しかもリスク章と整合している。<span class="tag i">[解釈]</span></p>
+<p>注意すべきは「異常がない」ことではなく、<strong>KAMが指す一点（海外生産設備の回収可能性）が、事業上の最重要リスク（特定顧客への依存）と同じ根に繋がっている</strong>ことである。<span class="tag i">[解釈]</span> 受注が細れば、稼働率低下→利益率低下→将来CF見積りの下方修正→減損、という一本の経路で財務に到達する。財務の厚み（ネットキャッシュ・自己資本比率53.1%）はその衝撃を吸収する余力として機能する。<span class="tag i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ===== Ⅻ ===== -->
+<section id="s12">
+<h2 class="sec">Ⅻ. 論点と未解明事項</h2>
+
+<h3>買い材料になりうる記述と、その確からしさ</h3>
+<table>
+<tr><th class="l" style="width:30%">記述・事実</th><th class="l" style="width:14%">出所</th><th class="l">確からしさの評価</th></tr>
+<tr>
+<td class="l"><strong>粗利率が9.3%→11.8%へ2.5pt改善</strong>し、営業利益率が0.61%→2.93%へ回復</td>
+<td class="l">MD&amp;A <span class="tag f">③</span></td>
+<td class="l"><strong>高い。</strong>売上総利益8,756百万円（+32.9%）という実額の裏付けがあり、要因（生産量増加・生産効率改善・稼働率上昇）も具体的。<span class="tag i">[解釈]</span> ただし8年前の営業利益率6.53%とはなお大きな差があり、「回復」の到達点がどこかは示されていない。</td>
+</tr>
+<tr>
+<td class="l"><strong>ビジョン2025を計画超過で着地</strong>（売上計画比+0.3%、経常計画比+14.7%）</td>
+<td class="l">経営戦略 <span class="tag f">③</span></td>
+<td class="l"><strong>中程度。</strong>数字は事実。<span class="tag f">[事実]</span> ただし経常の上振れ分は為替差益に由来する可能性が高く、営業利益の計画値が非開示のため本業の達成度は検証できない。<span class="tag q">[要確認]</span></td>
+</tr>
+<tr>
+<td class="l"><strong>ASEANの新設3拠点が立ち上がり、バングラデシュ+24.8%・インドネシア+27.3%</strong></td>
+<td class="l">生産国別販売実績 <span class="tag f">③</span></td>
+<td class="l"><strong>高い。</strong>生産国別の実績値として開示されており、設備の帳簿価額分布（AN NAM 4,877／TM Textiles 4,121／ISHWARDI 2,945百万円）とも整合。<span class="tag i">[解釈]</span> 拡張投資が売上に転化しつつあることの証跡になる。</td>
+</tr>
+<tr>
+<td class="l"><strong>財務の厚み</strong>（自己資本比率53.1%、ネットキャッシュ4,559百万円）</td>
+<td class="l">主要指標・MD&amp;A <span class="tag f">①③</span></td>
+<td class="l"><strong>高い。</strong>5年間一貫して自己資本比率50%前後を維持。<span class="tag f">[事実]</span> 地政学リスクを抱える事業に対する耐性として機能する。<span class="tag i">[解釈]</span></td>
+</tr>
+<tr>
+<td class="l"><strong>減益局面でも配当を維持した実績</strong>（2022/3期 性向70.1%）と当期100円配当</td>
+<td class="l">配当政策・主要指標 <span class="tag f">③</span></td>
+<td class="l"><strong>高い。</strong>方針（連結性向30%目安）と実績（33.5%）が整合し、5年の推移でも一貫。<span class="tag i">[解釈]</span> ただし当期100円のうち10円は70周年記念配当であり、翌期の基準は90円と読むのが自然。<span class="tag i">[解釈]</span></td>
+</tr>
+<tr>
+<td class="l"><strong>スクリーニング条件</strong>：PER 8.51倍・PBR 0.67倍・自己資本比率53.1%・時価総額266億円で4条件クリア</td>
+<td class="l">J-Quants <span class="tag f">⑤</span></td>
+<td class="l"><strong>数値としては確実。</strong>ただし売上高CAGR+3.2%・営業利益CAGR△6.7%（いずれも8年）は基準（4%）未達で、8条件中4条件クリアにとどまる。<span class="tag f">[事実]</span> 直近営業増益率+402.1%は全銘柄内で上位2%だが、①〜⑥未通過のため母集団外の参考値。<span class="tag f">[事実]</span></td>
+</tr>
+</table>
+
+<h3>懸念材料と、それが顕在化する条件</h3>
+<table>
+<tr><th class="l" style="width:26%">懸念</th><th class="l" style="width:34%">顕在化する条件</th><th class="l">観測すべき指標</th></tr>
+<tr style="background:#fdf0f0">
+<td class="l"><strong>特定顧客グループへの依存（約7割）</strong></td>
+<td class="l">ファーストリテイリング／東レグループの生産戦略変更、調達先の分散方針、内製化、他国サプライヤーへのシフト</td>
+<td class="l">相手先別販売実績の構成比推移（東レインターナショナル21.0%／Toray (H.K.)16.6%／ユニクロ15.9%）、受注残高の増減</td>
+</tr>
+<tr style="background:#fdf0f0">
+<td class="l"><strong>為替前提の反転</strong></td>
+<td class="l">円高・現地通貨高への転換。当期の為替差益3,154百万円が消えると、経常利益は21億円台まで低下する計算<span class="tag i">[解釈]</span>（推計値・保証なし）</td>
+<td class="l">為替差損益調整後営業利益（会社独自指標・監査対象外）の推移、営業利益率</td>
+</tr>
+<tr style="background:#fdf0f0">
+<td class="l"><strong>受注高の伸び鈍化</strong></td>
+<td class="l">受注高+1.6%が売上+5.2%を下回る状態が続けば、受注残の取り崩しが尽きた時点で増収が止まる</td>
+<td class="l">受注高（75,033百万円）・受注残高（24,225百万円）の前期比、セグメント別</td>
+</tr>
+<tr style="background:#fdf0f0">
+<td class="l"><strong>海外生産設備の減損</strong></td>
+<td class="l">受注見込みの下方修正、または進出国の人件費上昇。KAMの重要な仮定がこの2つ</td>
+<td class="l">有形固定資産20,987百万円の推移、特別損失の内訳、拠点別の稼働状況</td>
+</tr>
+<tr>
+<td class="l"><strong>単価の下落継続</strong></td>
+<td class="l">縫製1枚当たり△7.9%、ラミ1ヤード当たり△7.6%（当方算出）の下落が続き、稼働率上昇で吸収できなくなる</td>
+<td class="l">売上高伸び率と販売枚数／ヤード数伸び率の差、粗利率</td>
+</tr>
+<tr>
+<td class="l"><strong>ラミネーションフィルム事業の構造的失速</strong></td>
+<td class="l">「ヒット商品の一巡」が一時要因でなく、中国消費低迷が長期化した場合。設備帳簿価額2,616百万円（嘉興徳永）＋935百万円（JDT）の固定費負担</td>
+<td class="l">同セグメントの売上・利益・販売ヤード数、中国のラミ売上（6,049百万円）</td>
+</tr>
+<tr>
+<td class="l"><strong>ODM移行の遅れ</strong></td>
+<td class="l">顧客のODM要請が強まる一方、研究開発費ゼロ・企画機能への投資が見えない状態が続く場合</td>
+<td class="l">研究開発活動の記載、決算説明資料の開発テーマ、ODM比率の開示有無</td>
+</tr>
+<tr>
+<td class="l"><strong>転換社債の希薄化</strong></td>
+<td class="l">転換価額934円に対し株価2,536円で深いイン・ザ・マネー。2027年9月28日までに約803千株（7.6%）が発行されうる</td>
+<td class="l">潜在株式調整後EPS、発行済株式総数、社債残高</td>
+</tr>
+<tr>
+<td class="l"><strong>資本効率へのインセンティブ不在</strong></td>
+<td class="l">ROE9%目標に対し、自社株買いなし・業績連動報酬なし・株式報酬なしの状態が続く場合</td>
+<td class="l">役員報酬の種類別内訳、自己株式の取得状況、総還元性向</td>
+</tr>
+<tr>
+<td class="l"><strong>特定人物への依存</strong></td>
+<td class="l">代表取締役社長（69歳・在任26年）に営業と主要生産子会社の董事長職が集約。後継者計画が非開示</td>
+<td class="l">役員構成の変化、執行役員の権限委譲、サクセッションプランの開示</td>
+</tr>
+</table>
+
+<h3>有報だけでは判断できず、追加確認が必要な事項</h3>
+<div class="card warn">
+<table>
+<tr><th class="l" style="width:44%">確認事項</th><th class="l">確認先（具体名）</th></tr>
+<tr><td class="l"><strong>セグメント利益合計6,513百万円と連結営業利益2,174百万円の差額4,339百万円の内訳</strong>（全社費用か、調整額か）。および「為替差損益調整後営業利益」がセグメント利益より小さくなる関係</td><td class="l">2026年3月期 <strong>決算説明資料</strong>／有報 第5【経理の状況】セグメント情報注記</td></tr>
+<tr><td class="l"><strong>当期の減損損失の金額と対象拠点</strong>（特別損失に計上されているが本文に内訳の記載なし）</td><td class="l">有報 第5【経理の状況】特別損失・減損損失の注記／<strong>決算短信</strong></td></tr>
+<tr><td class="l"><strong>本社新社屋の当期計上額</strong>（設備投資3,033百万円のうち生産設備向けがいくらか）</td><td class="l"><strong>決算説明資料</strong>／適時開示（本社移転に関するリリース）</td></tr>
+<tr><td class="l"><strong>中計BEYOND2028の営業利益目標</strong>と、経常60億円の為替前提（為替差益をどれだけ織り込んでいるか）</td><td class="l"><strong>中期経営計画「BEYOND2028〜Stitch the Future〜」説明資料</strong>／決算説明会 質疑</td></tr>
+<tr><td class="l"><strong>ROE9%達成の道筋</strong>（自社株買いを含む資本政策の具体策の有無）</td><td class="l">中計説明資料／<strong>コーポレート・ガバナンス報告書</strong>／資本コストや株価を意識した経営の実現に向けた対応の開示</td></tr>
+<tr><td class="l"><strong>工場稼働率の実績値</strong>（「稼働率向上」が繰り返し語られるが数値開示なし）</td><td class="l"><strong>決算説明資料</strong>／IR説明会資料</td></tr>
+<tr><td class="l"><strong>棚卸資産の残高と回転日数</strong>（増加額のみ開示）</td><td class="l">有報 第5【経理の状況】連結貸借対照表／irpocket IRデータ <span class="tag f">①</span></td></tr>
+<tr><td class="l"><strong>主要顧客との取引契約の条件</strong>（契約期間・最低発注量・解約条項）</td><td class="l">開示されていない可能性が高い。<strong>決算説明会 質疑</strong>での確認</td></tr>
+<tr><td class="l"><strong>ODM比率および企画機能への投資</strong>（研究開発費ゼロとの整合）</td><td class="l"><strong>決算説明資料</strong>／統合報告書（発行の有無自体が要確認）</td></tr>
+<tr><td class="l"><strong>SPI（タイ）との合弁会社の設立・運営の進捗</strong>（資本提携から3年半、生産実績は未計上）</td><td class="l"><strong>適時開示</strong>／決算説明資料</td></tr>
+<tr><td class="l"><strong>日本政策投資銀行との業務提携の成果</strong>（ROIC経営の導入検討、M&amp;A支援）</td><td class="l">中計説明資料／<strong>コーポレート・ガバナンス報告書</strong></td></tr>
+<tr><td class="l"><strong>離職率・定着率、進出国の賃金動向</strong>（人的資本の質的指標が未開示）</td><td class="l"><strong>統合報告書</strong>／サステナビリティサイト</td></tr>
+<tr><td class="l"><strong>人権デューデリジェンスの実施範囲・件数・是正事例</strong></td><td class="l"><strong>サステナビリティサイト</strong>／統合報告書</td></tr>
+<tr><td class="l"><strong>GHG排出量・気候関連開示</strong>（有報に記載なし。顧客のScope3要請への対応状況）</td><td class="l">サステナビリティサイト／<strong>コーポレート・ガバナンス報告書</strong></td></tr>
+<tr><td class="l"><strong>後継者計画（サクセッションプラン）</strong></td><td class="l"><strong>コーポレート・ガバナンス報告書</strong></td></tr>
+<tr><td class="l"><strong>社外役員の独立性の実質</strong>（中川康明と社内取締役 田村保治のオンワード出身重複、常勤社外監査役 上野健次の東レ出身と取引関係）</td><td class="l"><strong>コーポレート・ガバナンス報告書</strong>（独立性判断基準・該当性の説明）</td></tr>
+<tr><td class="l"><strong>2023年10月のプライム市場→スタンダード市場変更の理由</strong>（有報に記載なし）</td><td class="l">2023年の<strong>適時開示</strong>／当時の決算説明資料</td></tr>
+</table>
+</div>
+
+<div class="card note">
+<h4>本レポートの総括的な論点</h4>
+<p>第70期の有価証券報告書からは、<strong>「規模の拡大は確実に進み、財務は厚く、利益率は回復途上、ただし収益の質と顧客集中という2つの構造課題には手が付いていない」</strong>という像が読み取れる。<span class="tag i">[解釈]</span></p>
+<p>開示姿勢としては、<strong>顧客名と依存度（3割＋4割）、社長の実名、為替に依存する損益構造とその調整指標を自ら開示している点で、逃げのない部類</strong>に入る。<span class="tag i">[解釈]</span> 一方で、営業利益の計画値、稼働率、減損の内訳、棚卸資産の残高、後継者計画といった<strong>「示せば議論が具体化する数値」が体系的に欠けている</strong>。<span class="tag i">[解釈]</span> これらは決算説明資料・コーポレート・ガバナンス報告書での確認を要する。</p>
+<p>中計BEYOND2028が示す2029年3月期の姿（売上900億円・経常60億円・ROE9%）は、増収率＞増益率という利益率低下を織り込んだ計画であり、<span class="tag i">[解釈]</span> かつ受注高の当期実績（+1.6%）からは4倍以上の加速を要する。<span class="tag i">[解釈]</span>（推計値・保証なし） この計画の実現可能性を判断するうえで最も重要な変数は、<strong>営業利益ベースの目標が何であるか</strong>であり、それは有報からは読み取れない。<span class="tag q">[要確認]</span></p>
+</div>
+</section>
+
+<footer>
+<p><strong>免責事項</strong></p>
+<ul>
+<li>本レポートは、株式会社マツオカコーポレーション（証券コード3611）が2026年6月23日に中国財務局長宛に提出した<strong>第70期（2025年4月1日〜2026年3月31日）有価証券報告書</strong>の記述情報を一次情報として、経営の実像と開示姿勢を構造化したものです。<strong>売買推奨・目標株価の提示を目的としません。</strong></li>
+<li><strong>データ取得日：</strong>有価証券報告書PDF 2026年7月20日取得／irpocket 公式IRデータ 2026年7月20日取得／J-Quants API V2 基準日 2026年7月17日／<strong>分析実行日 2026年8月7日</strong>。</li>
+<li><strong>対象事業年度：</strong>第70期（2025年4月1日〜2026年3月31日）。原則として単年完結とし、前年度との差分分析は行っていません。5年推移は方向性の客観提示を目的とした参考情報です。</li>
+<li><strong>予想ベース日：</strong>本レポートは会社予想・アナリスト予想を一切使用していません。中期経営計画「BEYOND2028〜Stitch the Future〜」の数値目標は、第70期有価証券報告書（2026年6月23日提出日現在の会社判断）に記載された会社自身の目標値です。</li>
+<li><strong>推計値について：</strong>CAGR、1人当たり指標、単価、配当性向、政策保有株式の純資産比、潜在株式数、ROE試算、前期の売上原価・販管費など「当方算出」と付記した数値は、有報記載値からの計算値であり<strong>推計値・保証なし</strong>です。会社開示値と一致しない場合があります。</li>
+<li><strong>ラベルについて：</strong><span class="tag f">[事実]</span> は有報に記載がある事項、<span class="tag i">[解釈]</span> は有報記載からの合理的推論、<span class="tag q">[要確認]</span> は有報だけでは判断できず追加資料を要する事項、<span class="tag w">[web]</span> は外部Web由来（沿革章のみ）を示します。</li>
+<li><strong>出所記号：</strong><span class="tag f">①</span> irpocket 公式IRデータ（Excel）／<span class="tag f">②</span> 会社公式IRページ／<span class="tag f">③</span> 会社公式開示PDF（有価証券報告書）／<span class="tag f">④</span> kabutan.jp／<span class="tag f">⑤</span> J-Quants API V2（JPX公式）。</li>
+<li>「為替差損益調整後営業利益」は会社独自指標であり、有報に<strong>会計監査人の監査対象外</strong>と明記されています。</li>
+<li>本レポートは特定の証券の売買を推奨するものではなく、投資判断は利用者ご自身の責任において行ってください。</li>
+</ul>
+<p style="margin-top:14px">生成日：2026年8月7日｜jp_stock プロジェクト 有報定性分析レポート v1.0</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+const SECTIONS=[
+ ["s0","0. エグゼクティブサマリー"],
+ ["s1","Ⅰ. 企業の輪郭"],
+ ["s2","Ⅱ. 沿革"],
+ ["s3","Ⅲ. 人的資本"],
+ ["s4","Ⅳ. 経営者の世界観"],
+ ["s5","Ⅴ. サステナビリティ"],
+ ["s6","Ⅵ. 事業等のリスク／重要な契約"],
+ ["s7","Ⅶ. 経営成績の分析（MD&A）"],
+ ["s8","Ⅷ. 将来への投資（設備・研究開発）"],
+ ["s9","Ⅸ. 資本政策・株主還元"],
+ ["s10","Ⅹ. ガバナンス"],
+ ["s11","Ⅺ. 会計面の定性シグナル"],
+ ["s12","Ⅻ. 論点と未解明事項"]
+];
+const nav=document.getElementById('nav');
+SECTIONS.forEach(([id,label],i)=>{
+  if(!document.getElementById(id))return;
+  const b=document.createElement('button');
+  b.textContent=label; b.dataset.t=id; if(i===0)b.className='on';
+  b.onclick=()=>{
+    document.querySelectorAll('main section').forEach(s=>s.classList.remove('on'));
+    document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));
+    document.getElementById(id).classList.add('on'); b.classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  nav.appendChild(b);
+});
+
+const NAVY='#1b2a41', GOLD='#b8860b', TEAL='#0f6f6c', RED='#a4262c', GRAY='#8b95a3';
+const YRS=['2022/3','2023/3','2024/3','2025/3','2026/3'];
+const baseOpt={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:11}}}}};
+
+new Chart(document.getElementById('c5y'),{data:{labels:YRS,datasets:[
+ {type:'bar',label:'売上高(百万円)',data:[51056,62778,60176,70579,74251],backgroundColor:'rgba(27,42,65,.72)',yAxisID:'y',order:3},
+ {type:'line',label:'営業利益(百万円)',data:[181,67,792,433,2174],borderColor:GOLD,backgroundColor:GOLD,yAxisID:'y1',tension:.25,order:1},
+ {type:'line',label:'経常利益(百万円)',data:[1037,3202,4493,4199,5391],borderColor:TEAL,backgroundColor:TEAL,yAxisID:'y1',tension:.25,order:2}
+]},options:{...baseOpt,plugins:{...baseOpt.plugins,title:{display:true,text:'売上高と利益の5年推移（連結）'}},
+ scales:{y:{position:'left',title:{display:true,text:'売上高'}},y1:{position:'right',title:{display:true,text:'利益'},grid:{drawOnChartArea:false}}}}});
+
+new Chart(document.getElementById('cseg'),{type:'doughnut',data:{labels:['縫製事業 66,029','ラミネーションフィルム 8,221'],
+ datasets:[{data:[66029,8221],backgroundColor:[NAVY,GOLD]}]},
+ options:{...baseOpt,plugins:{...baseOpt.plugins,title:{display:true,text:'セグメント別売上構成（第70期・百万円）'}}}});
+
+new Chart(document.getElementById('ccountry'),{type:'bar',data:{labels:['バングラデシュ','中国','ベトナム','インドネシア','ミャンマー'],
+ datasets:[{label:'縫製',data:[23167,18093,18079,3755,2933],backgroundColor:NAVY},
+           {label:'ラミ',data:[0,6049,2171,0,0],backgroundColor:GOLD}]},
+ options:{...baseOpt,plugins:{...baseOpt.plugins,title:{display:true,text:'生産国別販売実績（百万円）'}},
+ scales:{x:{stacked:true},y:{stacked:true}}}});
+
+new Chart(document.getElementById('cprod'),{data:{labels:YRS,datasets:[
+ {type:'bar',label:'連結従業員数(名)',data:[16434,17729,17278,19635,21086],backgroundColor:'rgba(27,42,65,.55)',yAxisID:'y'},
+ {type:'line',label:'1人当たり売上高(百万円)',data:[3.11,3.54,3.48,3.59,3.52],borderColor:RED,backgroundColor:RED,yAxisID:'y1',tension:.25}
+]},options:{...baseOpt,plugins:{...baseOpt.plugins,title:{display:true,text:'従業員数と1人当たり売上高（推計値・保証なし）'}},
+ scales:{y:{position:'left'},y1:{position:'right',grid:{drawOnChartArea:false},suggestedMin:2.8,suggestedMax:3.8}}}});
+
+new Chart(document.getElementById('cowner'),{type:'doughnut',
+ data:{labels:['個人その他 44.51%','その他の法人 34.38%','金融機関 8.60%','外国法人等 8.07%','金融商品取引業者 4.44%'],
+ datasets:[{data:[44.51,34.38,8.60,8.07,4.44],backgroundColor:[NAVY,GOLD,TEAL,'#6b7a8f','#c9a227']}]},
+ options:{...baseOpt,plugins:{...baseOpt.plugins,title:{display:true,text:'所有者別状況（単元ベース・2026/3末）'},legend:{position:'right',labels:{font:{size:10}}}}}});
+
+new Chart(document.getElementById('ctop'),{type:'bar',
+ data:{labels:['マツオカカンパニー','松岡典之','上田八木短資','日本生命','倉敷紡績','三菱UFJキャピタル','マスタートラスト','日本カストディ','UBS AG SG','ジェイ・ウィル'],
+ datasets:[{label:'所有比率(％)',data:[16.91,11.95,3.01,2.38,2.38,2.14,1.94,1.93,1.76,1.58],
+ backgroundColor:['#a4262c','#a4262c',NAVY,NAVY,NAVY,NAVY,NAVY,NAVY,NAVY,NAVY]}]},
+ options:{...baseOpt,indexAxis:'y',plugins:{...baseOpt.plugins,legend:{display:false},
+ title:{display:true,text:'大株主上位10（赤＝創業家側 計28.86%）'}},scales:{y:{ticks:{font:{size:10}}}}}});
+
+new Chart(document.getElementById('cpay'),{type:'bar',
+ data:{labels:['取締役(社外除く)7名','監査役(社外除く)2名','社外取締役3名','社外監査役3名'],
+ datasets:[{label:'基本報酬',data:[235,19,19,21],backgroundColor:NAVY},
+           {label:'賞与',data:[0,0,0,0],backgroundColor:GOLD},
+           {label:'譲渡制限付株式報酬',data:[0,0,0,0],backgroundColor:TEAL}]},
+ options:{...baseOpt,plugins:{...baseOpt.plugins,title:{display:true,text:'役員報酬の種類別内訳（百万円）― 賞与・株式報酬はゼロ'}},
+ scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'百万円'}}}}});
+</script>
+</body>
+</html>

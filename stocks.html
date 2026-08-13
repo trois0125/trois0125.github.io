@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>value_invest — 個別銘柄レポート一覧</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --border: #dcdcdc;
+      --border-strong: #111111;
+      --radius: 2px;
+      --neg: #b42318;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0b0b;
+        --fg: #f2f2f2;
+        --border: #2b2b2b;
+        --border-strong: #f2f2f2;
+        --neg: #ff6b5e;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                   "Yu Gothic", "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 980px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .topbar a { text-decoration: none; }
+    .topbar .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .topbar .mark .sq { width: 8px; height: 8px; background: var(--fg); flex: none; }
+    .topbar .meta { font-variant-numeric: tabular-nums; opacity: .6; }
+
+    .head { max-width: 980px; margin: 0 auto; padding: 56px 24px 32px; }
+    .head .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border-strong); border-radius: var(--radius);
+      padding: 5px 12px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .head .badge .sq { width: 6px; height: 6px; background: var(--fg); flex: none; }
+    .head h1 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
+    .head p { opacity: .62; font-size: 15px; max-width: 620px; }
+
+    .toolbar {
+      max-width: 980px; margin: 0 auto; padding: 0 24px 20px;
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    }
+    .toolbar input {
+      flex: 1; min-width: 200px; font: inherit; font-size: 13px;
+      padding: 9px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius);
+      background: var(--bg); color: var(--fg);
+    }
+    .toolbar input::placeholder { opacity: .45; }
+    .toolbar .count { font-size: 11px; opacity: .5; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    .section { padding: 0 24px 80px; }
+    .section-inner { max-width: 980px; margin: 0 auto; }
+
+    .rows { border-top: 1px solid var(--border-strong); }
+    .row {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .row .code { font-size: 13px; font-variant-numeric: tabular-nums; opacity: .5; }
+    .row .name { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+    .row .links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .rlink {
+      display: inline-flex; align-items: baseline; gap: 6px;
+      border: 1px solid var(--border-strong); border-radius: var(--radius);
+      padding: 6px 12px; font-size: 12px; font-weight: 700; text-decoration: none;
+      transition: background .12s, color .12s;
+    }
+    .rlink:hover { background: var(--fg); color: var(--bg); }
+    .rlink .d { font-weight: 400; opacity: .55; font-variant-numeric: tabular-nums; font-size: 11px; }
+    .rlink:hover .d { opacity: .8; }
+    .rlink.missing {
+      border-color: var(--border); opacity: .35; cursor: default; pointer-events: none;
+    }
+
+    .empty { padding: 60px 4px; text-align: center; opacity: .5; font-size: 13px; }
+
+    footer {
+      max-width: 980px; margin: 0 auto; padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; opacity: .5;
+    }
+
+    @media (max-width: 640px) {
+      .topbar .meta { display: none; }
+      .row { grid-template-columns: 1fr; gap: 8px; }
+      .row .code { order: 1; }
+      .row .name { order: 2; }
+      .row .links { order: 3; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="index.html"><div class="mark"><span class="sq"></span>VALUE INVEST</div></a>
+    <div class="meta">JP EQUITIES <span style="opacity:.6">/ STOCKS</span></div>
+  </div>
+
+  <div class="head">
+    <div class="badge"><span class="sq"></span>個別銘柄</div>
+    <h1>個別銘柄レポート一覧</h1>
+    <p>スクリーニング通過銘柄を中心に作成した、定量レポート（財務・バリュエーション）と
+       有価証券報告書の定性分析レポートの一覧。銘柄コード・社名で絞り込めます。</p>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="銘柄コード・社名で絞り込み（例：6145 / NITTOKU）">
+    <div class="count" id="count"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="rows" id="rows"></div>
+      <div class="empty" id="empty" style="display:none">該当する銘柄が見つかりません。</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>value_invest — 個人投資・学習目的。投資の助言ではありません。一次情報（有報・決算資料・JPX公式データ）のみを使用。</p>
+  </footer>
+
+<script>
+let STOCKS = [];
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function linkHtml(code, kind, date, label) {
+  if (!date) return `<span class="rlink missing">${label}<span class="d">未作成</span></span>`;
+  return `<a class="rlink" href="reports/stocks/${code}/${kind}.html" target="_blank">${label}<span class="d">${date}</span></a>`;
+}
+
+function render() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const filtered = STOCKS.filter(s =>
+    !q || s.code.includes(q) || s.name.toLowerCase().includes(q)
+  );
+  document.getElementById('count').textContent = `${filtered.length} / ${STOCKS.length} 銘柄`;
+  document.getElementById('empty').style.display = filtered.length ? 'none' : 'block';
+
+  document.getElementById('rows').innerHTML = filtered.map(s => `
+    <div class="row">
+      <div class="code">${esc(s.code)}</div>
+      <div class="name">${esc(s.name)}</div>
+      <div class="links">
+        ${linkHtml(s.code, 'report', s.report_date, '定量')}
+        ${linkHtml(s.code, 'qualitative_report', s.qualitative_date, '有報')}
+      </div>
+    </div>
+  `).join('');
+}
+
+fetch('stocks.json')
+  .then(r => r.json())
+  .then(data => { STOCKS = data.stocks || []; render(); })
+  .catch(() => {
+    document.getElementById('rows').innerHTML = '';
+    document.getElementById('empty').textContent = 'データの読み込みに失敗しました。';
+    document.getElementById('empty').style.display = 'block';
+  });
+
+document.getElementById('q').addEventListener('input', render);
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{
+  "generated": true,
+  "stocks": [
+    {
+      "code": "5757",
+      "name": "CKサンエツ",
+      "report_date": "2026-08-13",
+      "qualitative_date": "2026-08-11"
+    },
+    {
+      "code": "5644",
+      "name": "メタルアート",
+      "report_date": null,
+      "qualitative_date": "2026-08-12"
+    },
+    {
+      "code": "6824",
+      "name": "新コスモス電機",
+      "report_date": "2026-08-12",
+      "qualitative_date": "2026-08-08"
+    },
+    {
+      "code": "6391",
+      "name": "加地テック",
+      "report_date": "2026-08-11",
+      "qualitative_date": "2026-08-07"
+    },
+    {
+      "code": "8935",
+      "name": "FJネクストホールディングス",
+      "report_date": "2026-08-09",
+      "qualitative_date": "2026-08-02"
+    },
+    {
+      "code": "3611",
+      "name": "マツオカコーポレーション",
+      "report_date": "2026-07-26",
+      "qualitative_date": "2026-08-07"
+    },
+    {
+      "code": "6145",
+      "name": "NITTOKU",
+      "report_date": "2026-07-20",
+      "qualitative_date": "2026-07-25"
+    },
+    {
+      "code": "1435",
+      "name": "robot_home",
+      "report_date": "2026-05-31",
+      "qualitative_date": null
+    },
+    {
+      "code": "3359",
+      "name": "cotta",
+      "report_date": "2026-05-31",
+      "qualitative_date": null
+    },
+    {
+      "code": "2304",
+      "name": "CSSホールディングス",
+      "report_date": "2026-05-27",
+      "qualitative_date": null
+    }
+  ]
+}

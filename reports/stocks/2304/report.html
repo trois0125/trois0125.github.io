@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資分析レポート ｜ CSSホールディングス（2304）</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #2e7d52;
+    --warn: #b45309;
+    --danger: #991b1b;
+    --pass: #166534;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --source: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+  .report-header { background: linear-gradient(135deg, var(--primary) 0%, #2d5986 100%); color: white; padding: 28px 32px 20px; }
+  .report-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .report-header .subtitle { font-size: 13px; opacity: 0.85; margin-bottom: 12px; }
+  .header-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; opacity: 0.9; }
+  .header-meta span { background: rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 20px; }
+  .verdict-badge { display: inline-block; margin-top: 10px; padding: 6px 18px; border-radius: 6px; font-weight: 700; font-size: 14px; }
+  .verdict-buy { background: #dcfce7; color: #166534; }
+
+  .source-legend { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 10px 16px; margin: 12px 0; font-size: 11.5px; }
+  .source-legend strong { color: var(--primary); }
+  .src { display: inline-block; background: #dbeafe; color: #1d4ed8; border-radius: 3px; padding: 1px 5px; font-size: 10.5px; font-weight: 600; margin: 0 1px; }
+  .src-s { background: #dcfce7; color: #166534; }
+
+  .tab-bar { display: flex; background: white; border-bottom: 2px solid var(--border); overflow-x: auto; padding: 0 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+  .tab-btn { padding: 12px 18px; border: none; background: none; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+  .tab-btn:hover { color: var(--primary); background: #f1f5f9; }
+
+  .tab-content { display: none; padding: 24px 24px 40px; max-width: 1200px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  h2 { font-size: 17px; color: var(--primary); margin: 24px 0 12px; border-left: 4px solid var(--primary); padding-left: 10px; }
+  h3 { font-size: 14px; color: var(--text); margin: 16px 0 8px; font-weight: 700; }
+  p { margin-bottom: 8px; color: var(--muted); font-size: 13px; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 12px 0; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .card .label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .card .value { font-size: 22px; font-weight: 700; color: var(--primary); }
+  .card .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .card.pass { border-color: #86efac; background: #f0fdf4; }
+  .card.pass .value { color: var(--pass); }
+  .card.warn { border-color: #fcd34d; background: #fffbeb; }
+  .card.warn .value { color: var(--warn); }
+
+  .screening-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  .screening-table th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .screening-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .screening-table tr:hover { background: #f8fafc; }
+  .badge-pass { display: inline-block; background: #dcfce7; color: var(--pass); border-radius: 4px; padding: 2px 8px; font-weight: 700; font-size: 12px; }
+  .badge-warn { display: inline-block; background: #fef3c7; color: var(--warn); border-radius: 4px; padding: 2px 8px; font-weight: 700; font-size: 12px; }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 10px 0; display: block; overflow-x: auto; }
+  .data-table th { background: #1e3a5f; color: white; padding: 8px 10px; text-align: right; white-space: nowrap; }
+  .data-table th:first-child { text-align: left; }
+  .data-table td { padding: 7px 10px; border-bottom: 1px solid #e5e7eb; text-align: right; white-space: nowrap; }
+  .data-table td:first-child { text-align: left; color: var(--muted); font-weight: 600; }
+  .data-table tr:hover { background: #f8fafc; }
+  .data-table tr.forecast { background: #eff6ff; }
+  .data-table tr.forecast td { color: #1d4ed8; }
+  .data-table .neg { color: var(--danger); }
+  .data-table tr.highlight { background: #fef9c3; }
+  .data-table tr.highlight td { font-weight: 700; }
+  .data-table tr.h1-row td { color: #15803d; }
+  .data-table tr.h1-row { background: #f0fdf4; }
+
+  .chart-wrap { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 14px 0; }
+  .chart-wrap canvas { max-height: 320px; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
+
+  .profile-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .profile-table th { background: #f1f5f9; width: 160px; padding: 9px 14px; text-align: left; font-weight: 600; color: var(--primary); border-bottom: 1px solid var(--border); vertical-align: top; }
+  .profile-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+
+  .segment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 12px 0; }
+  @media (max-width: 768px) { .segment-grid { grid-template-columns: 1fr; } }
+  .segment-box { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+  .segment-box .seg-name { font-weight: 700; font-size: 13px; color: var(--primary); margin-bottom: 6px; }
+  .segment-box .seg-rev { font-size: 20px; font-weight: 700; }
+  .segment-box .seg-share { font-size: 11px; color: var(--muted); }
+  .segment-box .seg-desc { font-size: 11.5px; color: var(--muted); margin-top: 6px; border-top: 1px solid var(--border); padding-top: 6px; }
+
+  .factor-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  @media (max-width: 768px) { .factor-list { grid-template-columns: 1fr; } }
+  .factor-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+  .factor-card .f-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .factor-card .f-body { font-size: 12px; color: var(--muted); }
+  .factor-card.risk { border-left: 4px solid var(--danger); }
+  .factor-card.catalyst { border-left: 4px solid var(--accent); }
+  .factor-card .f-title.risk { color: var(--danger); }
+  .factor-card .f-title.catalyst { color: var(--accent); }
+
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  @media (max-width: 768px) { .scenario-grid { grid-template-columns: 1fr; } }
+  .scenario-card { border-radius: 8px; padding: 16px; }
+  .scenario-card.bear { background: #fff5f5; border: 1px solid #fca5a5; }
+  .scenario-card.base { background: #f0fdf4; border: 1px solid #86efac; }
+  .scenario-card.bull { background: #eff6ff; border: 1px solid #93c5fd; }
+  .scenario-card .s-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .scenario-card.bear .s-label { color: var(--danger); }
+  .scenario-card.base .s-label { color: var(--accent); }
+  .scenario-card.bull .s-label { color: #1d4ed8; }
+  .scenario-card .s-price { font-size: 28px; font-weight: 800; margin: 4px 0; }
+  .scenario-card .s-return { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .scenario-card .s-desc { font-size: 11.5px; color: var(--muted); }
+
+  .note { background: #fef9c3; border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #78350f; margin: 10px 0; }
+  .note-blue { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #1e3a8a; margin: 10px 0; }
+  .note-green { background: #f0fdf4; border-left: 4px solid #16a34a; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #14532d; margin: 10px 0; }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .citation { font-size: 10.5px; color: var(--source); background: #eff6ff; border-radius: 3px; padding: 1px 5px; display: inline-block; margin-left: 4px; }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <h1>CSSホールディングス（2304）｜投資分析レポート</h1>
+  <div class="subtitle">株式会社CSSホールディングス｜東証スタンダード｜純粋持株会社（ホスピタリティ支援サービス）</div>
+  <div class="header-meta">
+    <span>分析日：2026年5月27日</span>
+    <span>株価：¥929（当日）</span>
+    <span>時価総額：49.1億円</span>
+    <span>投資スタイル：割安株・中期（3〜12ヶ月）</span>
+  </div>
+  <div class="verdict-badge verdict-buy">📊 投資判断：購入検討（全スクリーニング条件クリア）</div>
+</div>
+
+<div style="padding: 10px 24px 0; max-width: 1200px; margin: 0 auto;">
+  <div class="source-legend">
+    <strong>データソース凡例（一次情報・公式開示情報のみ）：</strong><br>
+    <span class="src src-s">[①]</span> <strong>irpocket公式IRデータ</strong>（css-holdings.jpが委託するIRホスティングサービス）— 会社提供の業績データExcel &nbsp;|&nbsp;
+    <span class="src src-s">[②]</span> <strong>css-holdings.jp/ir/</strong> — 会社公式IRページ &nbsp;|&nbsp;
+    <span class="src src-s">[③]</span> <strong>中期経営計画PDF</strong>「Go Beyond! Next20」2024年12月（会社公式IR PDF）&nbsp;|&nbsp;
+    <span class="src src-s">[④]</span> <strong>kabutan.jp直接フェッチ</strong>（決算短信2025/11/11開示データを反映）&nbsp;|&nbsp;
+    <em style="color: var(--warn); font-size:11px;">シナリオ分析のみ一次データからの推計を含む。それ以外は全て一次情報・公式開示情報。</em>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('summary', this)">① 総合評価</button>
+  <button class="tab-btn" onclick="showTab('company', this)">② 企業概要</button>
+  <button class="tab-btn" onclick="showTab('financial', this)">③ 財務分析</button>
+  <button class="tab-btn" onclick="showTab('valuation', this)">④ バリュエーション</button>
+  <button class="tab-btn" onclick="showTab('catalyst', this)">⑤ カタリスト</button>
+  <button class="tab-btn" onclick="showTab('risk', this)">⑥ リスク</button>
+  <button class="tab-btn" onclick="showTab('conclusion', this)">⑦ 投資結論</button>
+</div>
+
+<!-- TAB 1: SUMMARY -->
+<div id="tab-summary" class="tab-content active">
+  <h2>スクリーニング結果</h2>
+  <div class="note-green">全6項目のスクリーニング条件をクリア。現在株価¥929（2026/05/27）に基づく評価。 <span class="src src-s">[④]</span></div>
+
+  <table class="screening-table">
+    <thead><tr><th>指標</th><th>基準値</th><th>実績値</th><th>判定</th><th>出所・備考</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>PER（株価収益率）</td>
+        <td>≤ 15倍</td>
+        <td><strong>7.8倍</strong></td>
+        <td><span class="badge-pass">✅ クリア</span></td>
+        <td>株価¥929 ÷ FY2026E EPS¥118.9。 <span class="src src-s">[④]</span> kabutan（決算短信反映）</td>
+      </tr>
+      <tr>
+        <td>PBR（株価純資産倍率）</td>
+        <td>≤ 1.5倍</td>
+        <td><strong>1.37倍</strong></td>
+        <td><span class="badge-pass">✅ クリア</span></td>
+        <td>kabutan算出最新値（H1 FY2026 BPS反映）。 <span class="src src-s">[④]</span></td>
+      </tr>
+      <tr>
+        <td>売上高成長率CAGR</td>
+        <td>≥ 9%（5年平均）</td>
+        <td><strong>+20.0%</strong></td>
+        <td><span class="badge-pass">✅ クリア</span></td>
+        <td>FY2021→FY2025の4年CAGR（9,412M→19,499M）。5年前データは一次情報未取得のため4年で代替。 <span class="src src-s">[①]</span></td>
+      </tr>
+      <tr>
+        <td>営業利益成長率CAGR</td>
+        <td>≥ 9%（5年平均）</td>
+        <td><strong>V字回復</strong></td>
+        <td><span class="badge-warn">⚠️ 参考値</span></td>
+        <td>FY2021赤字(-717M)→FY2025黒字(+717M)。マイナス基点のためCAGR計算不可。FY2023-FY2025の2年CAGRは+61%。 <span class="src src-s">[①]</span></td>
+      </tr>
+      <tr>
+        <td>自己資本比率</td>
+        <td>≥ 40%</td>
+        <td><strong>49.8%</strong></td>
+        <td><span class="badge-pass">✅ クリア</span></td>
+        <td>H1 FY2026末（2026年3月末）実績。 <span class="src src-s">[①]</span></td>
+      </tr>
+      <tr>
+        <td>時価総額</td>
+        <td>≤ 600億円</td>
+        <td><strong>49.1億円</strong></td>
+        <td><span class="badge-pass">✅ クリア</span></td>
+        <td>株価¥929時点。 <span class="src src-s">[④]</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>主要KPIサマリー</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="label">現在株価</div>
+      <div class="value">¥929</div>
+      <div class="sub">2026/05/27 終値 <span class="src src-s">[④]</span></div>
+    </div>
+    <div class="card pass">
+      <div class="label">PER（FY2026E）</div>
+      <div class="value">7.8倍</div>
+      <div class="sub">EPS ¥118.9使用 <span class="src src-s">[④]</span></div>
+    </div>
+    <div class="card pass">
+      <div class="label">PBR（最新）</div>
+      <div class="value">1.37倍</div>
+      <div class="sub">H1 FY2026 BPS反映 <span class="src src-s">[④]</span></div>
+    </div>
+    <div class="card pass">
+      <div class="label">配当利回り</div>
+      <div class="value">3.77%</div>
+      <div class="sub">DPS ¥35 (FY2026E) <span class="src src-s">[④]</span></div>
+    </div>
+    <div class="card pass">
+      <div class="label">自己資本比率</div>
+      <div class="value">49.8%</div>
+      <div class="sub">H1 FY2026末 <span class="src src-s">[①]</span></div>
+    </div>
+    <div class="card">
+      <div class="label">ROE（FY2025）</div>
+      <div class="value">20.4%</div>
+      <div class="sub">3年連続改善 <span class="src src-s">[①]</span></div>
+    </div>
+    <div class="card">
+      <div class="label">ROA（FY2025）</div>
+      <div class="value">12.1%</div>
+      <div class="sub">経常利益ベース <span class="src src-s">[①]</span></div>
+    </div>
+    <div class="card pass">
+      <div class="label">時価総額</div>
+      <div class="value">49.1億</div>
+      <div class="sub">マイクロキャップ <span class="src src-s">[④]</span></div>
+    </div>
+  </div>
+
+  <h2>業績推移・目標一覧</h2>
+  <div class="chart-wrap">
+    <canvas id="chartOverview"></canvas>
+  </div>
+  <p style="font-size:11px; color:var(--muted); margin-top:6px;">
+    FY2021〜FY2025実績・H1 FY2026実績 <span class="src src-s">[①]</span> / FY2026E <span class="src src-s">[④]</span>（決算短信2025/11/11開示） / FY2027目標 <span class="src src-s">[③]</span>（中計PDF）
+  </p>
+
+  <div class="note">
+    <strong>⚠️ FY2026E 減配に注意：</strong> 予想DPS ¥35はFY2025実績 ¥45より22%の減配。中期経営計画では「増収増益達成による増配を基本」としており、初年度は人材育成・ESG投資優先フェーズ。FY2027以降の増配回復を見込む。 <span class="src src-s">[③][④]</span>
+  </div>
+</div>
+
+<!-- TAB 2: COMPANY -->
+<div id="tab-company" class="tab-content">
+  <h2>会社基本情報 <span class="citation">[②]</span></h2>
+  <table class="profile-table">
+    <tr><th>会社名</th><td>株式会社CSSホールディングス（CSS HOLDINGS, LTD.）</td></tr>
+    <tr><th>証券コード</th><td>2304（東証スタンダード）※2002年ジャスダック上場、2022年東証スタンダード移行</td></tr>
+    <tr><th>設立</th><td>1984年（昭和59年）12月</td></tr>
+    <tr><th>本社</th><td>〒103-0001 東京都中央区日本橋小伝馬町10番1号　TEL: 03-6661-7840</td></tr>
+    <tr><th>代表取締役社長</th><td>水野 克裕</td></tr>
+    <tr><th>資本金</th><td>393百万円（2023年9月30日現在）</td></tr>
+    <tr><th>連結従業員数</th><td>7,243名（うちパート・アルバイト 6,630名）（2025年9月30日現在）</td></tr>
+    <tr><th>業態</th><td>純粋持株会社。グループ全体の経営・管理</td></tr>
+    <tr><th>主要事業</th><td>①スチュワード事業（厨房清掃・バックヤード受託）②フードサービス事業（調理・運営受託）③空間プロデュース事業（AV・セキュリティ）</td></tr>
+  </table>
+
+  <h2>ミッション・ビジョン・バリュー <span class="citation">[③]</span></h2>
+  <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;font-size:13px;">
+    <p><strong style="color:var(--primary);">Mission — "Support the Hospitality"：</strong>私たちは、表舞台を輝かせる真のおもてなしを極めて、人々の夢や感動、喜び・楽しみ、安心・やすらぎの質を高め、活力に満ちた社会を実現することを約束します。</p>
+    <p><strong style="color:var(--primary);">Vision — "Create Together"：</strong>様々な人、会社・組織、商品・サービスがかかわることで新たな価値が生まれる未来を目指します。多様なつながりを積極的に求めて、新しい世界を創っていきます。</p>
+    <p style="margin-bottom:0"><strong style="color:var(--primary);">Value — "Go Beyond！"：</strong>お客様・社会・株主の皆さまの期待を超えよう、昨日までの自分自身を超えようという気持ちを土台に行動します。三方よし——「心と汗の奉仕によるお客様の満足」「会社および従業員の成長ややりがいの実現」「事業サービスの提供による社会への貢献」</p>
+  </div>
+
+  <h2>事業セグメント（FY2025実績）<span class="citation">[①]</span></h2>
+  <div class="segment-grid">
+    <div class="segment-box">
+      <div class="seg-name">① スチュワード事業</div>
+      <div class="seg-rev" style="color:#1a3a5c;">¥9,374M</div>
+      <div class="seg-share">売上構成比 48.1%（FY2025）</div>
+      <div class="seg-desc">ホテル・施設の厨房清掃・食器洗浄・バックヤード業務等の受託。1984年創業以来の基軸事業。インバウンド・円安の追い風を受け4年連続増収。FY2022→FY2025で売上+99.5%。<span class="src src-s">[①]</span></div>
+    </div>
+    <div class="segment-box">
+      <div class="seg-name">② フードサービス事業</div>
+      <div class="seg-rev" style="color:#2e7d52;">¥4,598M</div>
+      <div class="seg-share">売上構成比 23.6%（FY2025）</div>
+      <div class="seg-desc">従業員食堂・朝食レストラン・ライフケアフード（高齢者向け）の調理・運営受託。H1 FY2026では前年同期比+16.6%と最も高い成長率を記録。<span class="src src-s">[①]</span></div>
+    </div>
+    <div class="segment-box">
+      <div class="seg-name">③ 空間プロデュース事業</div>
+      <div class="seg-rev" style="color:#7c3aed;">¥5,542M</div>
+      <div class="seg-share">売上構成比 28.4%（FY2025）</div>
+      <div class="seg-desc">音響・映像・監視カメラ・セキュリティシステムの設計・施工・保守。H1 FY2026では前年同期比-3.6%と足踏み。FY2027目標6,535Mへの回復が課題。<span class="src src-s">[①]</span></div>
+    </div>
+  </div>
+
+  <h2>セグメント別売上高推移 <span class="citation">[①]</span></h2>
+  <div class="chart-wrap">
+    <canvas id="chartSegment"></canvas>
+  </div>
+
+  <h2>グループ中枢子会社 <span class="citation">[③]</span></h2>
+  <div class="note-blue">
+    センダン（SDN）、セントラルホテルサービス（CHS）、セントラルサービスシステム（CSS）、音響特機（OTK）、東洋メディアリンクス（TML）、CSSビジネスサポート（CBS）、ムードメディアジャパン（MMJ）の各事業子会社が連結対象。
+  </div>
+</div>
+
+<!-- TAB 3: FINANCIAL -->
+<div id="tab-financial" class="tab-content">
+  <h2>連結損益計算書サマリー <span class="citation">[①]</span></h2>
+  <div class="note-blue">全データはirpocket公式IRデータ（会社提供）より直接取得。単位：百万円（M¥）。</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>項目</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th>
+        <th style="color:#86efac;">H1 FY2026</th>
+        <th style="color:#93c5fd;">FY2026E<br><small>（会社予想）</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>売上高</td><td>9,412</td><td>10,883</td><td>14,832</td><td>17,631</td><td>19,499</td><td class="h1-row">10,383</td><td class="forecast">20,200</td></tr>
+      <tr><td>売上総利益</td><td>1,277</td><td>1,824</td><td>2,424</td><td>2,859</td><td>3,219</td><td class="h1-row">1,757</td><td class="forecast">—</td></tr>
+      <tr><td>販管費</td><td>1,994</td><td>2,010</td><td>2,148</td><td>2,263</td><td>2,502</td><td class="h1-row">1,191</td><td class="forecast">—</td></tr>
+      <tr><td>営業利益</td><td class="neg">△717</td><td class="neg">△186</td><td>276</td><td>595</td><td>717</td><td class="h1-row">566</td><td class="forecast">—</td></tr>
+      <tr class="highlight"><td>営業利益率</td><td class="neg">-7.6%</td><td class="neg">-1.7%</td><td>1.9%</td><td>3.4%</td><td>3.7%</td><td class="h1-row">5.5%</td><td class="forecast">—</td></tr>
+      <tr><td>経常利益</td><td>34</td><td>81</td><td>313</td><td>630</td><td>742</td><td class="h1-row">576</td><td class="forecast">800</td></tr>
+      <tr><td>当期純利益</td><td class="neg">△420</td><td>102</td><td>230</td><td>429</td><td>587</td><td class="h1-row">386</td><td class="forecast">590</td></tr>
+      <tr class="highlight"><td>前年比（売上高）</td><td>—</td><td>+15.6%</td><td>+36.3%</td><td>+18.9%</td><td>+10.6%</td><td class="h1-row">+5.0%</td><td class="forecast">+3.6%</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:var(--muted);">
+    H1 FY2026（緑）= FY2026年9月期第1半期（2025年10月〜2026年3月）実績。FY2026E（青）= 決算短信2025/11/11発表の会社予想。「—」は当該一次情報未取得。<br>
+    出所：<span class="src src-s">[①]</span> irpocket公式IRデータ（全通期・半期） / <span class="src src-s">[④]</span> kabutan（FY2026E）
+  </p>
+
+  <h2>売上高・利益推移チャート <span class="citation">[①]</span></h2>
+  <div class="chart-wrap">
+    <canvas id="chartPL"></canvas>
+  </div>
+
+  <h2>1株当たり主要指標 <span class="citation">[①][④]</span></h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>指標</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th style="color:#93c5fd;">FY2026E</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>EPS（円）</td><td class="neg">△83.4</td><td>20.6</td><td>46.1</td><td>85.9</td><td>117.4</td><td class="forecast">118.9</td></tr>
+      <tr><td>BPS（円）</td><td>426.1</td><td>434.3</td><td>469.7</td><td>535.6</td><td>626.0</td><td class="forecast">—</td></tr>
+      <tr><td>DPS（円）</td><td>5</td><td>15</td><td>17</td><td>30</td><td>45</td><td class="forecast">35</td></tr>
+      <tr class="highlight"><td>ROE（%）</td><td class="neg">-17.9%</td><td>4.8%</td><td>10.2%</td><td>17.1%</td><td>20.4%</td><td class="forecast">—</td></tr>
+      <tr><td>ROA（%）経常利益ベース</td><td>0.7%</td><td>1.7%</td><td>5.8%</td><td>10.8%</td><td>12.1%</td><td class="forecast">—</td></tr>
+      <tr><td>配当性向（%）</td><td>—</td><td>72.7%</td><td>36.9%</td><td>34.9%</td><td>38.3%</td><td class="forecast">29.4%</td></tr>
+      <tr><td>期末株価（円）</td><td>314</td><td>311</td><td>867</td><td>842</td><td>1,006</td><td class="forecast">929※</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:var(--muted);">
+    FY2021〜FY2025：<span class="src src-s">[①]</span> irpocket公式IRデータ（通期）。ROA=経常利益÷平均総資産（会社採用方式）。※FY2026E株価＝現在株価（2026/05/27）。FY2026E指標：<span class="src src-s">[④]</span>
+  </p>
+
+  <div class="chart-grid">
+    <div class="chart-wrap">
+      <h3>ROE / ROA 推移 <span style="font-size:10px;color:var(--muted);">[①]</span></h3>
+      <canvas id="chartROE"></canvas>
+    </div>
+    <div class="chart-wrap">
+      <h3>EPS / DPS 推移 <span style="font-size:10px;color:var(--muted);">[①][④]</span></h3>
+      <canvas id="chartEPS"></canvas>
+    </div>
+  </div>
+
+  <h2>貸借対照表・キャッシュフロー <span class="citation">[①]</span></h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>項目</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th style="color:#86efac;">H1 FY2026</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>総資産（M¥）</td><td>5,096</td><td>5,700</td><td>5,931</td><td>6,317</td><td class="h1-row">6,736</td></tr>
+      <tr><td>純資産（M¥）</td><td>2,168</td><td>2,346</td><td>2,674</td><td>3,089</td><td class="h1-row">3,355</td></tr>
+      <tr class="highlight"><td>自己資本比率</td><td>42.6%</td><td>41.2%</td><td>45.1%</td><td>48.9%</td><td class="h1-row">49.8%</td></tr>
+      <tr><td>営業CF（M¥）</td><td>285</td><td>471</td><td>605</td><td>708</td><td class="h1-row">80</td></tr>
+      <tr><td>投資CF（M¥）</td><td>△8</td><td>△35</td><td>△53</td><td>△58</td><td class="h1-row">+59</td></tr>
+      <tr><td>財務CF（M¥）</td><td>△197</td><td>△373</td><td>△420</td><td>△418</td><td class="h1-row">△75</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:var(--muted);">H1 FY2026 OCF 80Mは季節要因（FY2025 H1も133M）。通期では700M超を想定。財務CF恒常的なマイナスは借入返済・配当支払によるもの。</p>
+
+  <h2>セグメント別売上高推移 <span class="citation">[①][③]</span></h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>セグメント</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th style="color:#86efac;">H1 FY2026</th><th style="color:#f59e0b;">FY2027目標</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>スチュワード</td><td>4,698</td><td>6,632</td><td>8,487</td><td>9,374</td><td class="h1-row">4,967</td><td style="background:#fef9c3;color:#92400e;font-weight:600;">10,800</td></tr>
+      <tr><td>フードサービス</td><td>2,194</td><td>3,236</td><td>3,919</td><td>4,598</td><td class="h1-row">2,497</td><td style="background:#fef9c3;color:#92400e;font-weight:600;">5,000</td></tr>
+      <tr><td>空間プロデュース</td><td>3,969</td><td>4,958</td><td>5,236</td><td>5,542</td><td class="h1-row">2,919</td><td style="background:#fef9c3;color:#92400e;font-weight:600;">6,535</td></tr>
+      <tr class="highlight"><td>連結売上高</td><td>10,883</td><td>14,832</td><td>17,631</td><td>19,499</td><td class="h1-row">10,383</td><td style="background:#fef9c3;color:#92400e;font-weight:600;">27,000</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:var(--muted);">FY2022〜H1FY2026：<span class="src src-s">[①]</span> / FY2027目標：<span class="src src-s">[③]</span>中期経営計画PDF（会社公式）</p>
+</div>
+
+<!-- TAB 4: VALUATION -->
+<div id="tab-valuation" class="tab-content">
+  <h2>現在のバリュエーション指標 <span class="citation">[④]</span></h2>
+  <div class="card-grid">
+    <div class="card pass"><div class="label">PER（今期予想）</div><div class="value">7.8倍</div><div class="sub">過去5年最低水準</div></div>
+    <div class="card pass"><div class="label">PBR（最新）</div><div class="value">1.37倍</div><div class="sub">H1 FY2026 BPS反映</div></div>
+    <div class="card pass"><div class="label">配当利回り</div><div class="value">3.77%</div><div class="sub">DPS ¥35（FY2026E）</div></div>
+    <div class="card"><div class="label">信用倍率</div><div class="value">104倍</div><div class="sub">買い優勢 <span class="src src-s">[④]</span></div></div>
+  </div>
+
+  <h2>PER / PBR 推移 <span class="citation">[①][④]</span></h2>
+  <div class="chart-grid">
+    <div class="chart-wrap">
+      <h3>期末PER推移</h3>
+      <canvas id="chartPER"></canvas>
+      <p style="font-size:11px;color:var(--muted);">FY2021・FY2022はEPS赤字・少額のため省略。</p>
+    </div>
+    <div class="chart-wrap">
+      <h3>期末PBR推移</h3>
+      <canvas id="chartPBR"></canvas>
+    </div>
+  </div>
+
+  <h2>理論バリュエーション分析（推計）</h2>
+  <div class="note-green">
+    <strong>ROEベース理論PBR：</strong> 株式コスト8%仮定（リスクフリー1.5%+リスクプレミアム6.5%）、長期成長率3%仮定 →<br>
+    適正PBR ≒ (ROE - g) / (ke - g) = (20.4% - 3%) / (8% - 3%) = 17.4% / 5% = <strong>3.48倍</strong>（理論値）<br>
+    現在PBR 1.37倍は理論値の40%水準。マイクロキャップ流動性ディスカウントと収益変動リスクを織り込んでも大幅割安の状態。
+  </div>
+
+  <h2>配当推移 <span class="citation">[①][④]</span></h2>
+  <table class="data-table">
+    <thead><tr><th>期</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th style="color:#93c5fd;">FY2026E</th></tr></thead>
+    <tbody>
+      <tr><td>DPS（円）</td><td>5</td><td>15</td><td>17</td><td>30</td><td>45</td><td class="forecast">35</td></tr>
+      <tr><td>配当性向</td><td>—</td><td>72.7%</td><td>36.9%</td><td>34.9%</td><td>38.3%</td><td class="forecast">29.4%</td></tr>
+      <tr><td>期末株価比利回り</td><td>1.59%</td><td>4.82%</td><td>1.96%</td><td>3.56%</td><td>4.47%</td><td class="forecast">3.77%</td></tr>
+    </tbody>
+  </table>
+  <div class="note">FY2026E DPS ¥35は前期 ¥45より22%減配。中計では「増収増益達成による増配を基本」方針 <span class="src src-s">[③]</span>。FY2027以降の業績改善に伴う増配回帰を想定。</div>
+
+  <h2>ピア比較（簡易）</h2>
+  <p style="font-size:12px;color:var(--muted);">
+    CSSホールディングス（2304）は時価総額49億円のマイクロキャップ。ホテル・施設向けアウトソーシングサービス特化型の純粋持株会社という業態から、単純比較可能な上場ピアは少ない。
+    東証全体の平均PERが15〜20倍程度の水準に対し、PER 7.8倍は著しい割安圏。ROE 20.4%は業界平均を大幅に上回る。
+  </p>
+  <div class="note-blue">一次情報に基づく定量ピア比較データは取得していないため数値比較は割愛。</div>
+</div>
+
+<!-- TAB 5: CATALYST -->
+<div id="tab-catalyst" class="tab-content">
+  <h2>中期経営計画「Go Beyond! Next20」<span class="citation">[③]</span></h2>
+  <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+      <div style="text-align:center;padding:12px;background:#f0fdf4;border-radius:8px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">FY2027 売上高目標</div>
+        <div style="font-size:26px;font-weight:800;color:var(--accent);">270億円</div>
+        <div style="font-size:11px;color:var(--muted);">FY2025比 +38.5%（2年CAGR +17.6%）</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:#eff6ff;border-radius:8px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">FY2027 営業利益目標</div>
+        <div style="font-size:26px;font-weight:800;color:#1d4ed8;">9.5億円</div>
+        <div style="font-size:11px;color:var(--muted);">FY2025比 +32.5%（2年CAGR +15.1%）</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:#fef9c3;border-radius:8px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">FY2027 ROE目標</div>
+        <div style="font-size:26px;font-weight:800;color:#92400e;">15%以上</div>
+        <div style="font-size:11px;color:var(--muted);">FY2025実績 20.4%（既達成）</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin:0;">
+      <strong>計画スタンス：</strong>初年度（FY2026E）は「人材育成強化」「ESG取組推進」に積極投資し、次年度以降の成長加速につなげる（第5次中期経営計画）。<br>
+      <strong>長期ビジョン：</strong>創立50周年（約2034年）までに売上高500億円を目指す（中計PDF p.12明示）。
+    </p>
+  </div>
+
+  <h2>主要カタリスト</h2>
+  <div class="factor-list">
+    <div class="factor-card catalyst">
+      <div class="f-title catalyst">🏨 インバウンド・ホテル業界の継続拡大</div>
+      <div class="f-body">中計PDF（p.5）：「2025年には訪日外国人数が4,200万人に増加し、消費額も8.5兆円に達すると予想」「新規開業ホテルは引き続き一定数が計画されており、外資の積極参入による大型ホテルの開業も多数ある」。スチュワード・フードサービス両事業の最大の追い風。 <span class="src src-s">[③]</span></div>
+    </div>
+    <div class="factor-card catalyst">
+      <div class="f-title catalyst">💴 受託費単価の価格転嫁</div>
+      <div class="f-body">中計PDF（p.5）：「インバウンド・円安・インフレなどの影響で宿泊や食事の単価が想定を上回って推移、賃金水準上昇の受託費への価格転嫁など、売上アップの要因」。FY2025の売上+10.6%・H1 FY2026の+5.0%に継続反映。 <span class="src src-s">[③][①]</span></div>
+    </div>
+    <div class="factor-card catalyst">
+      <div class="f-title catalyst">🤖 ロボット・DX活用（X-valueユニット）</div>
+      <div class="f-body">中計PDF（p.5,8）：「ロボティクスの進化によって清掃・ロジ・仕分けなどの業務の自動化・省力化が現実的な状況」。「自動化やロボット、AIなどの先進分野に明るいパートナーとの提携関係実現による、コンサル業務や共創事業の展開」をX-valueユニットで推進。コスト改善と新収益源の双方に貢献。 <span class="src src-s">[③]</span></div>
+    </div>
+    <div class="factor-card catalyst">
+      <div class="f-title catalyst">📊 B/S資産（約40億円）を活用したM&A</div>
+      <div class="f-body">中計PDF（p.11）：「B/S資産の有効活用による投資 → 現預金9億＋時価純資産30億（不動産・投資有価証券）≒40億」を投資原資として明示。地方進出・開拓余地の大きい業務分野でのM&Aが次の成長ドライバー候補。 <span class="src src-s">[③]</span></div>
+    </div>
+    <div class="factor-card catalyst">
+      <div class="f-title catalyst">🍽️ ライフケアフードの第3の柱化</div>
+      <div class="f-body">中計PDF（p.6）：「従業員食堂・朝食レストランの2大カテゴリーに、ライフケアフードを第3の柱として確立」。高齢者向け施設の食事提供は少子高齢化を追い風とした安定成長市場。H1 FY2026フードサービス事業+16.6%YoY。 <span class="src src-s">[③][①]</span></div>
+    </div>
+    <div class="factor-card catalyst">
+      <div class="f-title catalyst">🔊 空間プロデュース事業の回復・拡大</div>
+      <div class="f-body">中計PDF（p.7）：「AI機能など期待されるソリューションの裾野が広がっている」「ミーティングや仕事の質および生産性に寄与するコミュニケーションシステム導入ニーズが高まっている」「産学連携プロジェクトを契機として、時代に即した社会的価値に対する関心が強まっている」。H1 FY2026の-3.6%からの回復が投資家注目点。 <span class="src src-s">[③][①]</span></div>
+    </div>
+  </div>
+
+  <h2>H1 FY2026 進捗トラッキング <span class="citation">[①][④]</span></h2>
+  <table class="data-table">
+    <thead><tr><th>指標</th><th>FY2026E 通期予想</th><th>H1 FY2026 実績</th><th>進捗率</th><th>前年H1比</th><th>コメント</th></tr></thead>
+    <tbody>
+      <tr><td>売上高</td><td>20,200M</td><td>10,383M</td><td>51.4%</td><td>+5.0%</td><td>概ね順調</td></tr>
+      <tr class="highlight"><td>経常利益</td><td>800M</td><td>576M</td><td><strong>72.0%</strong></td><td>+8.7%</td><td>✅ 通期上方修正も視野</td></tr>
+      <tr><td>当期純利益</td><td>590M</td><td>386M</td><td>65.4%</td><td>+27.8%</td><td>良好</td></tr>
+      <tr><td>自己資本比率</td><td>—</td><td>49.8%</td><td>—</td><td>+0.9pt</td><td>継続改善</td></tr>
+    </tbody>
+  </table>
+  <div class="note-green">経常利益の進捗率72%は通常の季節パターン（FY2025 H1進捗率71%）を上回る。通期上方修正の可能性あり。</div>
+</div>
+
+<!-- TAB 6: RISK -->
+<div id="tab-risk" class="tab-content">
+  <h2>リスク要因</h2>
+  <div class="note">以下のリスクは中期経営計画PDF <span class="src src-s">[③]</span> および財務データ <span class="src src-s">[①]</span> から確認・導出。</div>
+
+  <div class="factor-list">
+    <div class="factor-card risk">
+      <div class="f-title risk">⚠️ 労働集約型の人件費・労務コスト上昇</div>
+      <div class="f-body">事業構造上、売上の大部分が人件費依存の労働集約型サービス。全従業員7,243名のうち6,630名（91.5%）がパート・アルバイト。最低賃金の継続上昇・社会保障コスト増が直接的なコスト圧迫要因。販管費はFY2021: 1,994M→FY2025: 2,502M（+25.5%）と拡大傾向。中計PDFも「働き方や社会保障環境の潮流を反映した事業コスト影響の試算・営業的対策」を推進項目に明記。 <span class="src src-s">[①][②][③]</span></div>
+    </div>
+    <div class="factor-card risk">
+      <div class="f-title risk">⚠️ FY2026E 減配と配当目線の失望</div>
+      <div class="f-body">予想DPS ¥35はFY2025実績¥45から22%減配（配当性向29.4%）。高配当利回りを評価していた投資家の失望売りリスクが短期的に存在。中計PDFには「増収増益達成による増配を基本に安定的かつ継続的な利益配分」とあるが、FY2026は積極投資優先フェーズ。 <span class="src src-s">[③][④]</span></div>
+    </div>
+    <div class="factor-card risk">
+      <div class="f-title risk">⚠️ マイクロキャップ流動性リスク</div>
+      <div class="f-body">時価総額49.1億円は極めて小さく、信用倍率104倍（買いが大幅優勢）だが日次売買代金が少ない。大口ポジションの構築・解消に時間を要し、スプレッドが広い可能性。機関投資家の投資対象外となるケースが多く、好業績時の株価反映が遅れやすい構造的課題。 <span class="src src-s">[④]</span></div>
+    </div>
+    <div class="factor-card risk">
+      <div class="f-title risk">⚠️ 空間プロデュース事業の足踏み</div>
+      <div class="f-body">H1 FY2026の空間プロデュース事業売上2,919M（前年同期比-3.6%）は3セグメント中唯一の前年割れ。FY2027目標6,535Mに向けてFY2025からの+17.9%成長が必要。大型設備案件の受注タイミング依存度が高く、単年度変動リスクがある。 <span class="src src-s">[①]</span></div>
+    </div>
+    <div class="factor-card risk">
+      <div class="f-title risk">⚠️ 中計売上目標 vs 会社予想のギャップ</div>
+      <div class="f-body">中計PDFのFY2026計画売上高220億円に対し、実際の会社予想（決算短信2025/11/11）は202億円（-8.2%下方乖離）。収益性は計画を上回っているが、売上ベースでは保守的な計画となっており、FY2027の270億円達成には後半への大幅加速が必要。 <span class="src src-s">[③][④]</span></div>
+    </div>
+    <div class="factor-card risk">
+      <div class="f-title risk">⚠️ インバウンド依存リスク（外部環境急変）</div>
+      <div class="f-body">主要顧客がホテル・観光施設のため、地政学リスク・感染症・円高転換等によるインバウンド急減が直撃する。FY2021（コロナ禍）に売上9,412M・営業利益-717M（赤字）を記録しており、外部環境悪化への脆弱性は実証済み。短期的な業績変動リスクが恒常的に存在。 <span class="src src-s">[①]</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 7: CONCLUSION -->
+<div id="tab-conclusion" class="tab-content">
+  <h2>投資結論</h2>
+  <div class="verdict-badge verdict-buy" style="font-size:16px;padding:10px 24px;margin-bottom:16px;display:block;width:fit-content;">
+    📊 投資判断：購入検討 ｜ ベースケース目標株価: ¥1,071〜¥1,189
+  </div>
+  <div class="note-green">
+    <strong>総合評価：</strong>全6スクリーニング条件クリア（PER 7.8倍・PBR 1.37倍・売上4年CAGR 20%・自己資本比率49.8%・時価総額49億円）。ROE 20.4%という高い資本効率に対して現在株価は著しく割安（理論PBR比40%水準）。H1 FY2026では経常利益の進捗率が72%と好調で、通期上方修正の可能性あり。中期経営計画（270億円・ROE15%以上）は現在の業績水準から達成可能な水準。主なリスクはマイクロキャップの流動性低さとFY2026E減配、インバウンド外部環境急変。<br>
+    <span class="src src-s">[①][②][③][④]</span> 全スクリーニングデータは一次情報に基づく。
+  </div>
+
+  <h2>シナリオ分析（推計）</h2>
+  <div class="note">以下のシナリオ・目標株価は一次情報から導出した推計値。EPS・PER仮定に基づく参考値。実際の株価・業績を保証するものではない。</div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bear">
+      <div class="s-label">🔴 ベアケース（悲観）</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">想定確率：25%</div>
+      <div class="s-price" style="color:var(--danger);">¥700</div>
+      <div class="s-return" style="color:var(--danger);">現在比 -24.7%</div>
+      <div class="s-desc">
+        <strong>前提（推計）：</strong>インバウンド急減または人件費急騰でFY2026E未達。EPS ~¥100。<br>
+        <strong>バリュエーション：</strong>PER 7.0倍 × EPS ¥100 = ¥700<br>
+        <strong>主なトリガー：</strong>インバウンド大幅失速、円高急進、感染症再拡大
+      </div>
+    </div>
+    <div class="scenario-card base">
+      <div class="s-label">🟢 ベースケース（基本）</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">想定確率：55%</div>
+      <div class="s-price" style="color:var(--pass);">¥1,071〜¥1,189</div>
+      <div class="s-return" style="color:var(--pass);">現在比 +15〜+28%</div>
+      <div class="s-desc">
+        <strong>前提（推計）：</strong>FY2026E会社予想達成。EPS ¥118.9継続。<br>
+        <strong>バリュエーション：</strong>PER 9〜10倍 × EPS ¥118.9 = ¥1,071〜¥1,189<br>
+        <strong>根拠：</strong>ROE 20%超の成長企業にPER 9〜10倍は保守的。FY2025期末株価¥1,006への回帰+α。
+      </div>
+    </div>
+    <div class="scenario-card bull">
+      <div class="s-label">🔵 ブルケース（楽観）</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">想定確率：20%</div>
+      <div class="s-price" style="color:#1d4ed8;">¥1,485</div>
+      <div class="s-return" style="color:#1d4ed8;">現在比 +59.8%</div>
+      <div class="s-desc">
+        <strong>前提（推計）：</strong>H1進捗好調→通期上方修正、EPS ~¥135。<br>
+        <strong>バリュエーション：</strong>PER 11.0倍 × EPS ¥135 = ¥1,485<br>
+        <strong>トリガー：</strong>上方修正発表、M&A発表、機関投資家注目による再評価
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-wrap" style="margin-top:16px;">
+    <canvas id="chartScenario"></canvas>
+  </div>
+
+  <h2>総合チェックリスト</h2>
+  <table class="screening-table">
+    <thead><tr><th>評価軸</th><th>判定</th><th>根拠</th></tr></thead>
+    <tbody>
+      <tr><td>割安性（バリュエーション）</td><td><span class="badge-pass">✅ 良好</span></td><td>PER 7.8倍は過去5年最低水準。ROE 20.4%に対してPBR 1.37倍は大幅ディスカウント。 <span class="src src-s">[①][④]</span></td></tr>
+      <tr><td>収益成長トレンド</td><td><span class="badge-pass">✅ 良好</span></td><td>FY2022→FY2025の4年で売上+79%、3期連続営業増益。H1 FY2026も経常+8.7%YoY好進捗。 <span class="src src-s">[①]</span></td></tr>
+      <tr><td>財務健全性</td><td><span class="badge-pass">✅ 良好</span></td><td>自己資本比率49.8%（基準40%超）。営業CF708M（FY2025）と安定した収益キャッシュ。 <span class="src src-s">[①]</span></td></tr>
+      <tr><td>カタリスト</td><td><span class="badge-pass">✅ 複数存在</span></td><td>インバウンド継続・DX活用・M&A・フードサービス拡大。H1実績から通期上方修正も視野。 <span class="src src-s">[①][③]</span></td></tr>
+      <tr><td>中長期戦略</td><td><span class="badge-pass">✅ 明確</span></td><td>「Go Beyond! Next20」中計で270億/9.5億/ROE15%目標。長期500億円ビジョン。 <span class="src src-s">[③]</span></td></tr>
+      <tr><td>リスク</td><td><span class="badge-warn">⚠️ 要注意</span></td><td>マイクロキャップ流動性リスク・FY2026減配・空間プロデュース足踏み・インバウンド外部環境依存。 <span class="src src-s">[①][③][④]</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>免責事項</h2>
+  <div class="note">
+    本レポートは個人投資判断のための参考資料であり、投資勧誘を目的とするものではありません。定量・定性データはすべて一次情報・公式開示情報（irpocket公式IRデータ <span class="src src-s">[①]</span>・会社公式IR <span class="src src-s">[②]</span>・中期経営計画PDF <span class="src src-s">[③]</span>・kabutan決算短信反映 <span class="src src-s">[④]</span>）に基づきます。シナリオ分析・目標株価は一次データからの推計値であり、実際の株価・業績を保証するものではありません。投資判断は最終的にご自身の責任で行ってください。<br><br>
+    <strong>データ取得日：</strong>2026年5月27日。FY2026E予想は2025年11月11日発表の決算短信ベース。FY2027目標は2024年12月発行の中期経営計画PDFベース。
+  </div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Overview chart
+new Chart(document.getElementById('chartOverview'), {
+  data: {
+    labels: ['FY2021\n実績','FY2022\n実績','FY2023\n実績','FY2024\n実績','FY2025\n実績','H1 FY2026\n実績(半期)','FY2026E\n通期予想','FY2027\n中計目標'],
+    datasets: [
+      { type:'bar', label:'売上高（M¥）', data:[9412,10883,14832,17631,19499,10383,20200,27000], backgroundColor:['#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#16a34a','#1d4ed8','#92400e'], yAxisID:'y' },
+      { type:'line', label:'経常利益（M¥）', data:[34,81,313,630,742,576,800,null], borderColor:'#b45309', backgroundColor:'transparent', pointRadius:5, tension:0.3, yAxisID:'y2' }
+    ]
+  },
+  options: { responsive:true, plugins:{legend:{position:'top'}}, scales:{ y:{position:'left',title:{display:true,text:'売上高（百万円）'}}, y2:{position:'right',title:{display:true,text:'経常利益（百万円）'},grid:{drawOnChartArea:false}} } }
+});
+
+// Segment chart
+new Chart(document.getElementById('chartSegment'), {
+  type:'bar',
+  data: {
+    labels:['FY2022','FY2023','FY2024','FY2025','H1 FY2026'],
+    datasets:[
+      {label:'スチュワード', data:[4698,6632,8487,9374,4967], backgroundColor:'#1a3a5c'},
+      {label:'フードサービス', data:[2194,3236,3919,4598,2497], backgroundColor:'#2e7d52'},
+      {label:'空間プロデュース', data:[3969,4958,5236,5542,2919], backgroundColor:'#7c3aed'},
+    ]
+  },
+  options:{ responsive:true, plugins:{legend:{position:'top'}}, scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'売上高（百万円）'}}} }
+});
+
+// P&L chart
+new Chart(document.getElementById('chartPL'), {
+  data: {
+    labels:['FY2021','FY2022','FY2023','FY2024','FY2025','H1 FY2026'],
+    datasets:[
+      { type:'bar', label:'売上高', data:[9412,10883,14832,17631,19499,10383], backgroundColor:'rgba(26,58,92,0.7)', yAxisID:'y' },
+      { type:'bar', label:'営業利益', data:[-717,-186,276,595,717,566], backgroundColor:[-717,-186,276,595,717,566].map(v=>v<0?'rgba(153,27,27,0.75)':'rgba(46,125,82,0.75)'), yAxisID:'y2' },
+      { type:'line', label:'経常利益', data:[34,81,313,630,742,576], borderColor:'#b45309', backgroundColor:'transparent', pointRadius:4, tension:0.3, yAxisID:'y2' },
+    ]
+  },
+  options:{ responsive:true, plugins:{legend:{position:'top'}}, scales:{ y:{position:'left',title:{display:true,text:'売上高（百万円）'}}, y2:{position:'right',title:{display:true,text:'利益（百万円）'},grid:{drawOnChartArea:false}} } }
+});
+
+// ROE/ROA chart
+new Chart(document.getElementById('chartROE'), {
+  type:'line',
+  data:{
+    labels:['FY2021','FY2022','FY2023','FY2024','FY2025'],
+    datasets:[
+      {label:'ROE（%）', data:[-17.9,4.8,10.2,17.1,20.4], borderColor:'#1a3a5c', backgroundColor:'rgba(26,58,92,0.08)', fill:true, tension:0.3, pointRadius:5},
+      {label:'ROA（%）経常利益', data:[0.7,1.7,5.8,10.8,12.1], borderColor:'#2e7d52', backgroundColor:'transparent', tension:0.3, pointRadius:5}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{title:{display:true,text:'（%）'}}}}
+});
+
+// EPS/DPS chart
+new Chart(document.getElementById('chartEPS'), {
+  data:{
+    labels:['FY2021','FY2022','FY2023','FY2024','FY2025','FY2026E'],
+    datasets:[
+      {type:'bar',label:'EPS（円）', data:[-83.4,20.6,46.1,85.9,117.4,118.9], backgroundColor:[-83.4,20.6,46.1,85.9,117.4,118.9].map(v=>v<0?'rgba(153,27,27,0.7)':'rgba(26,58,92,0.7)')},
+      {type:'line',label:'DPS（円）', data:[5,15,17,30,45,35], borderColor:'#b45309', backgroundColor:'transparent', pointRadius:5, tension:0.3}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{title:{display:true,text:'円'}}}}
+});
+
+// PER chart
+new Chart(document.getElementById('chartPER'), {
+  type:'bar',
+  data:{
+    labels:['FY2023','FY2024','FY2025','現在\n(FY2026E)'],
+    datasets:[{label:'PER（倍）', data:[18.8,9.8,8.6,7.8], backgroundColor:['#64748b','#2d5986','#1a3a5c','#2e7d52']}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'PER（倍）'},ticks:{callback:v=>v+'倍'}}}}
+});
+
+// PBR chart
+new Chart(document.getElementById('chartPBR'), {
+  type:'bar',
+  data:{
+    labels:['FY2021','FY2022','FY2023','FY2024','FY2025','現在\n(最新)'],
+    datasets:[{label:'PBR（倍）', data:[0.737,0.716,1.846,1.572,1.607,1.37], backgroundColor:['#94a3b8','#64748b','#b45309','#2d5986','#1a3a5c','#2e7d52']}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'PBR（倍）'},ticks:{callback:v=>v+'倍'}}}}
+});
+
+// Scenario chart
+new Chart(document.getElementById('chartScenario'), {
+  type:'bar',
+  data:{
+    labels:['ベアケース\nEPS¥100 × PER7倍','現在株価','ベースケース\nEPS¥119 × PER9-10倍','ブルケース\nEPS¥135 × PER11倍'],
+    datasets:[{label:'株価（円）', data:[700,929,1130,1485], backgroundColor:['rgba(153,27,27,0.8)','rgba(100,116,139,0.8)','rgba(46,125,82,0.8)','rgba(29,78,216,0.8)']}]
+  },
+  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'株価（円）'},min:0,max:1700,ticks:{callback:v=>'¥'+v}}}}
+});
+</script>
+</body>
+</html>

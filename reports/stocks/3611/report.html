@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マツオカコーポレーション(3611) 投資分析レポート | 2026-07-26</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--primary:#1a3a5c;--accent:#2e7d52;--warn:#b45309;--danger:#991b1b;--pass:#166534;--bg:#f8fafc;--card:#ffffff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--source:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 16px 80px}
+header{background:var(--primary);color:#fff;padding:28px 24px;border-radius:10px;margin-bottom:20px}
+header h1{font-size:24px;font-weight:700;letter-spacing:.02em}
+header .sub{opacity:.85;font-size:13px;margin-top:6px}
+header .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+header .meta span{background:rgba(255,255,255,.13);padding:4px 12px;border-radius:20px;font-size:12px}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px;border-bottom:2px solid var(--border)}
+.tab{padding:11px 16px;cursor:pointer;border:none;background:transparent;font-size:13.5px;font-weight:600;color:var(--muted);border-radius:8px 8px 0 0;font-family:inherit}
+.tab:hover{background:#eef2f7;color:var(--primary)}
+.tab.active{background:var(--primary);color:#fff}
+.panel{display:none;animation:fade .25s}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:18px}
+.card h2{font-size:17px;color:var(--primary);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.card h3{font-size:14.5px;color:var(--primary);margin:18px 0 10px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+th,td{padding:8px 10px;border:1px solid var(--border);text-align:right}
+th{background:#f1f5f9;color:var(--primary);font-weight:700;text-align:center}
+td:first-child,th:first-child{text-align:left}
+tr:nth-child(even) td{background:#fbfcfd}
+.h1-row td{background:#e8f5ee!important;color:var(--pass);font-weight:600}
+.forecast td{background:#e8f1fb!important;color:#1d4ed8;font-style:italic}
+.target td{background:#fef7e0!important;color:var(--warn);font-weight:600}
+.highlight td{background:#fffbea!important;font-weight:700}
+.neg{color:var(--danger)}
+.pos{color:var(--pass)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:18px}
+.kpi div{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:8px;padding:12px 14px}
+.kpi .l{font-size:11.5px;color:var(--muted)}
+.kpi .v{font-size:21px;font-weight:700;color:var(--primary);line-height:1.3}
+.kpi .n{font-size:11px;color:var(--muted)}
+.banner{padding:18px 22px;border-radius:10px;font-size:17px;font-weight:700;margin-bottom:18px;color:#fff}
+.banner.caution{background:var(--warn)}
+.banner .d{font-size:13px;font-weight:400;margin-top:6px;opacity:.95}
+.alert{border-left:4px solid var(--warn);background:#fffbeb;padding:13px 16px;border-radius:6px;margin:14px 0;font-size:13px}
+.alert.danger{border-color:var(--danger);background:#fef2f2}
+.alert.ok{border-color:var(--accent);background:#f0fdf4}
+.alert b{display:block;margin-bottom:4px;color:var(--primary)}
+.src{color:var(--source);font-size:11px;font-weight:600;white-space:nowrap}
+.citation{color:var(--source);font-size:12px;font-weight:500}
+.chart{position:relative;height:320px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.box{border:1px solid var(--border);border-radius:8px;padding:14px;background:#fcfdfe}
+.box h4{font-size:13.5px;color:var(--primary);margin-bottom:6px}
+.box p{font-size:12.5px;color:var(--text)}
+.box .num{font-size:18px;font-weight:700;color:var(--accent);margin:4px 0}
+.note{font-size:11.5px;color:var(--muted);margin-top:8px}
+.judge{text-align:center;font-weight:700}
+.j-ok{color:var(--pass)}.j-warn{color:var(--warn)}.j-ng{color:var(--danger)}
+ul.clean{list-style:none;font-size:13px}
+ul.clean li{padding:5px 0 5px 18px;position:relative}
+ul.clean li:before{content:"▪";position:absolute;left:2px;color:var(--accent)}
+.disc{font-size:11.5px;color:var(--muted);background:#f1f5f9;padding:16px;border-radius:8px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>株式会社マツオカコーポレーション（3611）投資分析レポート</h1>
+  <div class="sub">アパレルOEM／縫製・ラミネーションフィルム｜東証スタンダード｜繊維製品</div>
+  <div class="meta">
+    <span>分析日：2026年7月26日</span>
+    <span>株価基準：2026年7月24日終値 2,490円</span>
+    <span>予想ベース：2026年5月14日開示 会社予想</span>
+    <span>投資スタイル：割安株・中期（3〜12ヶ月）</span>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab active" data-t="t1">① 総合評価</button>
+  <button class="tab" data-t="t2">② 企業概要</button>
+  <button class="tab" data-t="t3">③ 財務分析</button>
+  <button class="tab" data-t="t4">④ バリュエーション</button>
+  <button class="tab" data-t="t5">⑤ カタリスト</button>
+  <button class="tab" data-t="t6">⑥ リスク</button>
+  <button class="tab" data-t="t7">⑦ 投資結論</button>
+</div>
+
+<!-- ============ TAB 1 ============ -->
+<div class="panel active" id="t1">
+
+  <div class="banner caution">見送り（スクリーニング基準未達：③④成長フィルタが2条件とも未達）
+    <div class="d">バリュエーション（PER 8.51倍／PBR 0.67倍）・財務健全性（自己資本比率53.1%）・時価総額（266億円）は8条件のうち①②⑤⑥の4条件をクリア。一方、③売上高CAGR（+3.2%）・④営業利益CAGR（-6.7%）はいずれも新基準（≥4%）に届かず、8条件中4/8のクリアにとどまる。③④は「高成長を選ぶ」条件ではなく「減収・減益企業を除外する」ためのフィルタであり、この2条件を落としていることは無視できないシグナル。直近1年の営業利益は急回復（+402.1%）しているが、これは5年前の起点（コロナ禍でも営業利益率8.5%という異例の高収益期）との比較で歪みが生じている面もある。</div>
+  </div>
+
+  <div class="kpi">
+    <div><div class="l">株価（26/7/24終値）</div><div class="v">2,490円</div><div class="n">前日比 -53円（-2.08%） <span class="src">[④]</span></div></div>
+    <div><div class="l">予想PER</div><div class="v">7.7倍</div><div class="n">FY2027/3 会社予想EPS 323.9円 <span class="src">[④]</span></div></div>
+    <div><div class="l">PBR</div><div class="v">0.65倍</div><div class="n">BPS 3,804.30円 <span class="src">[①][④]</span></div></div>
+    <div><div class="l">予想配当利回り</div><div class="v">4.62%</div><div class="n">FY2027/3 予想DPS 115円 <span class="src">[③][④]</span></div></div>
+    <div><div class="l">自己資本比率</div><div class="v">53.1%</div><div class="n">FY2026/3末 <span class="src">[①]</span></div></div>
+    <div><div class="l">ROE</div><div class="v">8.0%</div><div class="n">FY2026/3実績 <span class="src">[①]</span></div></div>
+    <div><div class="l">ROA（総資産経常利益率）</div><div class="v">7.3%</div><div class="n">FY2026/3実績 <span class="src">[①]</span></div></div>
+    <div><div class="l">時価総額</div><div class="v">264億円</div><div class="n">発行済 10,593,600株 <span class="src">[④]</span></div></div>
+  </div>
+
+  <div class="card">
+    <h2>スクリーニング判定（8条件・J-Quants全銘柄相対評価） <span class="citation">[⑤]</span></h2>
+    <table>
+      <thead><tr><th>#</th><th>指標</th><th>基準</th><th>実績値</th><th>判定</th><th>出所</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>PER</td><td>≤ 15倍</td><td>8.51倍<br><span class="note">実績EPS 298.12円ベース</span></td><td class="judge j-ok">✅ クリア</td><td>[⑤]</td></tr>
+        <tr><td>2</td><td>PBR</td><td>≤ 1.5倍</td><td>0.67倍</td><td class="judge j-ok">✅ クリア</td><td>[⑤]</td></tr>
+        <tr><td>3</td><td>売上高CAGR</td><td>≥ 4%</td><td class="neg">+3.2%<br><span class="note">8年で算出（J-Quants）</span></td><td class="judge j-ng">❌ 未達</td><td>[⑤]</td></tr>
+        <tr><td>4</td><td>営業利益CAGR</td><td>≥ 4%</td><td class="neg">-6.7%<br><span class="note">8年で算出（J-Quants）</span></td><td class="judge j-ng">❌ 未達</td><td>[⑤]</td></tr>
+        <tr><td>5</td><td>自己資本比率</td><td>≥ 40%</td><td>53.1%</td><td class="judge j-ok">✅ クリア</td><td>[⑤]</td></tr>
+        <tr><td>6</td><td>時価総額</td><td>≤ 600億円</td><td>266億円</td><td class="judge j-ok">✅ クリア</td><td>[⑤]</td></tr>
+        <tr><td>7</td><td>直近営業増益率</td><td>候補群 上位1/3</td><td>+402.1%<br><span class="note">全銘柄内 上位2%</span></td><td class="judge j-warn">─ 母集団外</td><td>[⑤]</td></tr>
+        <tr><td>8</td><td>6ヶ月株価モメンタム</td><td>候補群 上位1/3</td><td>+1.4%<br><span class="note">全銘柄内 上位42%</span></td><td class="judge j-warn">─ 母集団外</td><td>[⑤]</td></tr>
+      </tbody>
+    </table>
+    <div class="note">判定：4/8条件クリア（基準日2026-07-17・株価2,536円・参照決算2026-03-31開示2026-05-14）。⑦⑧は①〜⑥をすべて通過した銘柄群の中での相対順位を示す条件のため、本銘柄のように①〜⑥を通過していない場合は「母集団外」として参考値のみ表示する。母集団：①〜⑥通過101銘柄／8条件通過11銘柄。参考：3ヶ月モメンタム+15.8%／12ヶ月+40.4%／直近増収率+5.2%／営業利益率2.9%／売買代金84百万円。 <span class="src">[⑤]</span></div>
+  </div>
+
+  <div class="alert danger"><b>③④未達の中身：起点年度の特殊性と、フィルタの趣旨</b>
+    J-Quants基準の8年CAGRでは売上高+3.2%・営業利益-6.7%といずれも基準未達。会社公式データブックで5年（FY2021/3→FY2026/3）を計算すると売上高CAGR+6.61%・営業利益CAGR-13.78%となり、期間の取り方で数値は変動するが、営業利益CAGRがマイナスである点は共通している。起点となるFY2021/3期はコロナ禍で売上が落ち込む一方、営業利益率8.46%という同社史上まれな高収益を記録した特殊な期であり、そこからの比較のためCAGRが歪んでいる面はある。ただし、③④は「高成長銘柄を選ぶ」条件ではなく「減収・減益企業を除外する」ためのフィルタとして設計されている（プロジェクト方針）。直近の回復トレンドを考慮してもなお、系統的スクリーニングの結果としては2条件が未達である事実は変わらない。<span class="src">[①][③][⑤]</span>
+  </div>
+
+  <div class="alert ok"><b>直近のトレンドは明確な回復局面</b>
+    営業利益はFY2023/3期 0.7億円 → FY2026/3期 21.7億円（3年CAGR +219%）。FY2027/3期は会社計画34.0億円（+56.3%）。為替差損益調整後営業利益もFY2022/3期5.6億円 → FY2026/3期48.1億円と4期連続で増加している。<span class="src">[①][③]</span>
+  </div>
+
+  <div class="alert"><b>特記事項：配当・株主還元</b>
+    29期連続配当を実施中。FY2026/3期は普通配当90円＋設立70周年記念配当10円＝100円。FY2027/3期は記念配当が剥落するものの、新たに配当性向35%を目安とする方針を導入し1株当たり115円（+15円）を予定。減配リスクは中期経営計画上は織り込まれていない。<span class="src">[③]</span>
+  </div>
+
+  <div class="card">
+    <h2>業績推移概観（売上高・経常利益） <span class="citation">[①][③]</span></h2>
+    <div class="chart"><canvas id="c_overview"></canvas></div>
+    <div class="note">FY2027/3期は会社予想 <span class="src">[③][④]</span>、FY2029/3期は中期経営計画「BEYOND 2028」目標値 <span class="src">[③]</span>。</div>
+  </div>
+
+</div>
+
+
+<!-- ============ TAB 2 ============ -->
+<div class="panel" id="t2">
+
+  <div class="card">
+    <h2>会社基本情報 <span class="citation">[②][③]</span></h2>
+    <table>
+      <tbody>
+        <tr><td>会社名</td><td style="text-align:left">株式会社マツオカコーポレーション（MATSUOKA CORPORATION）</td></tr>
+        <tr><td>証券コード / 上場市場</td><td style="text-align:left">3611／東証スタンダード市場</td></tr>
+        <tr><td>設立年</td><td style="text-align:left">1956年（広島県で呉服屋として創業）</td></tr>
+        <tr><td>代表者</td><td style="text-align:left">代表取締役社長執行役員 松岡 典之</td></tr>
+        <tr><td>本社</td><td style="text-align:left">広島県福山市西町二丁目8番19号（東京・大阪に事務所）</td></tr>
+        <tr><td>資本金</td><td style="text-align:left">6億3,302万円（2026年3月31日現在）</td></tr>
+        <tr><td>連結売上高</td><td style="text-align:left">742億円（FY2026/3期）</td></tr>
+        <tr><td>従業員数</td><td style="text-align:left">単体 177名／連結 21,086名（2026年3月31日現在）</td></tr>
+        <tr><td>事業内容</td><td style="text-align:left">縫製事業（カジュアル・インナー・ワーキングウェア等の縫製、洗い加工、プリーツ加工、生地開発と生産）／ラミネーションフィルム事業（フィルム生産及びラミネート加工、生地・加工技術の研究開発）／各事業にかかる貿易業務</td></tr>
+        <tr><td>生産拠点</td><td style="text-align:left">中国・ベトナム・バングラデシュ・ミャンマー・インドネシア</td></tr>
+      </tbody>
+    </table>
+    <div class="note">出所：<span class="src">[②]</span> 会社公式サイト 会社概要ページ／<span class="src">[③]</span> 2026年3月期 決算説明資料（2026年5月29日）</div>
+  </div>
+
+  <div class="card">
+    <h2>VISION / MISSION / VALUES <span class="citation">[③]</span></h2>
+    <div class="grid2">
+      <div class="box"><h4>VISION</h4><p>あらゆる服づくりの舞台裏に私たちがいる</p></div>
+      <div class="box"><h4>MISSION</h4><p>新たな道を切り拓き、未来を紡ぐ</p></div>
+      <div class="box"><h4>VALUES</h4><p>お客様の全てのニーズに応える</p></div>
+      <div class="box"><h4>目指す姿</h4><p>「選ばれる工場」になる — 変化する顧客の要望に常に応え、服づくりの未来を支え続ける。工場・製造を可視化することで、責任ある服づくりを貫く。</p></div>
+    </div>
+    <div class="note">出所：決算説明資料 P25-26（会社公式文言をそのまま引用） <span class="src">[③]</span></div>
+  </div>
+
+  <div class="card">
+    <h2>事業セグメント（FY2026/3期実績） <span class="citation">[①][③]</span></h2>
+    <div class="grid2">
+      <div class="box">
+        <h4>縫製事業（Garment Business）</h4>
+        <div class="num">売上高 660.3億円（構成比 88.9%）</div>
+        <p>セグメント利益（経常利益ベース）59.6億円・利益率9.02%。前期比 売上+12.5%／利益+67.6%。海外自社工場で現場を直接マネジメントし、高品質・低コスト・正確な納期を実現。販売枚数6,350万枚（+22.1%）。</p>
+      </div>
+      <div class="box">
+        <h4>ラミネーションフィルム事業（Lamination Film Business）</h4>
+        <div class="num">売上高 82.2億円（構成比 11.1%）</div>
+        <p>セグメント利益5.5億円・利益率6.75%。前期比 売上-30.9%／利益-67.9%。織布に機能性フィルムを貼り合わせアウトドア素材等に適した生地を製造。顧客のヒット商品剥落と中国市況低迷が響いた。販売1,364万ヤード（-25.2%）。</p>
+      </div>
+      <div class="box">
+        <h4>調整額</h4>
+        <div class="num">-11.2億円</div>
+        <p>各報告セグメントに配分していない当社管理部門の販管費、為替差損及びその他営業外損益を含む。</p>
+      </div>
+      <div class="box">
+        <h4>生産地ポートフォリオ</h4>
+        <div class="num">ASEAN諸国等比率 67.5%</div>
+        <p>中国32.5%／バングラデシュ31.2%／ベトナム27.3%／インドネシア5.1%／ミャンマー4.0%。縫製事業のみで算出するとASEAN諸国等比率は72.6%。</p>
+      </div>
+    </div>
+    <div class="chart"><canvas id="c_segment"></canvas></div>
+    <div class="chart"><canvas id="c_area"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>品目別売上高 <span class="citation">[①][③]</span></h2>
+    <table>
+      <thead><tr><th>セグメント／品目</th><th>FY2025/3</th><th>FY2026/3</th><th>増減</th><th>増減率</th><th>構成比</th></tr></thead>
+      <tbody>
+        <tr><td>縫製事業 計</td><td>58,685</td><td>66,029</td><td class="pos">+7,343</td><td class="pos">+12.5%</td><td>88.9%</td></tr>
+        <tr><td>　カジュアルウェア</td><td>40,538</td><td>39,459</td><td class="neg">-1,079</td><td class="neg">-2.7%</td><td>53.1%</td></tr>
+        <tr><td>　ワーキングウェア</td><td>4,632</td><td>6,897</td><td class="pos">+2,265</td><td class="pos">+48.9%</td><td>9.3%</td></tr>
+        <tr><td>　インナーウェア・カットソー</td><td>13,513</td><td>15,567</td><td class="pos">+2,053</td><td class="pos">+15.2%</td><td>21.0%</td></tr>
+        <tr><td>　その他</td><td>0</td><td>4,105</td><td class="pos">+4,105</td><td>—</td><td>5.5%</td></tr>
+        <tr><td>ラミネーションフィルム事業</td><td>11,893</td><td>8,221</td><td class="neg">-3,671</td><td class="neg">-30.9%</td><td>11.1%</td></tr>
+        <tr class="highlight"><td>合計</td><td>70,579</td><td>74,251</td><td>+3,671</td><td>+5.2%</td><td>100%</td></tr>
+      </tbody>
+    </table>
+    <div class="note">単位：百万円。ワーキングウェアは猛暑対策のファン付きウェア需要拡大を受け大幅増収。カジュアルウェアの微減は一部中国工場での生産アイテム構成変更により、当該分が「その他」に計上されたことによる。 <span class="src">[③]</span></div>
+  </div>
+
+</div>
+
+<!-- ============ TAB 3 ============ -->
+<div class="panel" id="t3">
+
+  <div class="card">
+    <h2>連結損益計算書サマリー <span class="citation">[①][③][④]</span></h2>
+    <table>
+      <thead><tr><th>項目（百万円）</th><th>FY2023/3</th><th>FY2024/3</th><th>FY2025/3</th><th>FY2026/3</th><th>FY2027/3<br>会社予想</th></tr></thead>
+      <tbody>
+        <tr><td>売上高</td><td>62,778</td><td>60,176</td><td>70,579</td><td>74,251</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">80,000</td></tr>
+        <tr><td>　前年比</td><td class="pos">+23.0%</td><td class="neg">-4.1%</td><td class="pos">+17.3%</td><td class="pos">+5.2%</td><td class="pos">+7.7%</td></tr>
+        <tr><td>営業利益</td><td>67</td><td>792</td><td>433</td><td>2,174</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">3,400</td></tr>
+        <tr class="highlight"><td>営業利益率</td><td>0.11%</td><td>1.32%</td><td>0.61%</td><td>2.93%</td><td>4.25%</td></tr>
+        <tr><td>為替差損益調整後営業利益</td><td>1,890</td><td>3,247</td><td>4,233</td><td>4,813</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">5,300</td></tr>
+        <tr><td>経常利益</td><td>3,202</td><td>4,493</td><td>4,199</td><td>5,391</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">4,900</td></tr>
+        <tr class="highlight"><td>経常利益率</td><td>5.10%</td><td>7.47%</td><td>5.95%</td><td>7.26%</td><td>6.13%</td></tr>
+        <tr><td>親会社株主に帰属する当期純利益</td><td>1,676</td><td>2,457</td><td>2,600</td><td>3,117</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">3,400</td></tr>
+        <tr><td>　前年比</td><td class="pos">+199.8%</td><td class="pos">+46.6%</td><td class="pos">+5.8%</td><td class="pos">+19.9%</td><td class="pos">+9.1%</td></tr>
+      </tbody>
+    </table>
+    <div class="alert"><b>「為替差損益調整後営業利益」に注意</b>
+      同社は売上収入の約7割が米ドル建て。取引先との個別契約による為替ヘッジ効果は営業外損益の為替差損益に計上されるため、会計上の営業利益は本業実態を過小に表示しやすい。会社は「営業利益＋営業取引から発生した為替差損益」を実態指標として開示している。FY2026/3期は営業利益21.7億円に対し調整後48.1億円。<span class="src">[③]</span>
+    </div>
+    <div class="chart"><canvas id="c_pl"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>1株指標・収益性 <span class="citation">[①]</span></h2>
+    <table>
+      <thead><tr><th>項目</th><th>FY2022/3</th><th>FY2023/3</th><th>FY2024/3</th><th>FY2025/3</th><th>FY2026/3</th><th>FY2027/3予</th></tr></thead>
+      <tbody>
+        <tr><td>EPS（円）</td><td>57.06</td><td>170.30</td><td>246.03</td><td>259.47</td><td>298.12</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">323.90</td></tr>
+        <tr><td>BPS（円）</td><td>2,739.57</td><td>2,950.89</td><td>3,329.08</td><td>3,598.26</td><td>3,804.30</td><td>—</td></tr>
+        <tr><td>DPS（円）</td><td>40.00</td><td>40.00</td><td>50.00</td><td>90.00</td><td>100.00</td><td class="forecast" style="background:#e8f1fb;color:#1d4ed8;font-style:italic">115.00</td></tr>
+        <tr><td>配当性向</td><td>70.1%</td><td>23.5%</td><td>20.3%</td><td>34.7%</td><td>33.5%</td><td>35.0%</td></tr>
+        <tr><td>ROE</td><td>2.2%</td><td>6.0%</td><td>7.8%</td><td>7.3%</td><td>8.0%</td><td>—</td></tr>
+        <tr><td>ROA（総資産経常利益率）</td><td>2.2%</td><td>5.8%</td><td>7.2%</td><td>6.1%</td><td>7.3%</td><td>—</td></tr>
+        <tr><td>期末株価（円）</td><td>1,172</td><td>1,410</td><td>1,605</td><td>1,801</td><td>2,106</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="grid2">
+      <div><div class="chart"><canvas id="c_roe"></canvas></div></div>
+      <div><div class="chart"><canvas id="c_eps"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>貸借対照表・キャッシュフロー <span class="citation">[①][③]</span></h2>
+    <table>
+      <thead><tr><th>項目（百万円）</th><th>FY2022/3</th><th>FY2023/3</th><th>FY2024/3</th><th>FY2025/3</th><th>FY2026/3</th></tr></thead>
+      <tbody>
+        <tr><td>総資産</td><td>51,879</td><td>59,295</td><td>65,697</td><td>72,453</td><td>75,174</td></tr>
+        <tr><td>自己資本</td><td>26,853</td><td>29,470</td><td>33,263</td><td>37,556</td><td>39,939</td></tr>
+        <tr class="highlight"><td>自己資本比率</td><td>51.8%</td><td>49.7%</td><td>50.6%</td><td>51.8%</td><td>53.1%</td></tr>
+        <tr><td>有利子負債</td><td>9,610</td><td>14,843</td><td>14,846</td><td>16,236</td><td>14,947</td></tr>
+        <tr><td>D/Eレシオ（倍）</td><td>0.41</td><td>0.59</td><td>0.55</td><td>0.56</td><td>0.48</td></tr>
+        <tr><td>流動比率</td><td>221.7%</td><td>214.3%</td><td>216.9%</td><td>210.5%</td><td>252.8%</td></tr>
+        <tr><td>営業CF</td><td>821</td><td class="neg">-506</td><td>5,406</td><td>2,724</td><td>6,071</td></tr>
+        <tr><td>投資CF</td><td class="neg">-2,811</td><td class="neg">-6,197</td><td class="neg">-2,575</td><td class="neg">-2,034</td><td class="neg">-4,357</td></tr>
+        <tr><td>財務CF</td><td>3,149</td><td>4,909</td><td class="neg">-753</td><td>705</td><td class="neg">-1,925</td></tr>
+        <tr><td>フリーCF</td><td class="neg">-1,990</td><td class="neg">-6,703</td><td>2,830</td><td>690</td><td>1,713</td></tr>
+        <tr><td>現金及び現金同等物 期末残高</td><td>15,205</td><td>14,480</td><td>17,178</td><td>19,386</td><td>19,506</td></tr>
+        <tr><td>設備投資額</td><td>2,568</td><td>6,313</td><td>2,516</td><td>2,120</td><td>3,033</td></tr>
+        <tr><td>減価償却費</td><td>1,288</td><td>1,846</td><td>2,129</td><td>2,140</td><td>2,063</td></tr>
+      </tbody>
+    </table>
+    <div class="note">FY2027/3期の設備投資は約80.3億円を計画（インドネシア新工場約30億円、バングラデシュ工場拡大約5億円、工場設備・買換え等約40億円、MES導入ソフトウェア約2億円）。減価償却費見通しは20.5億円。 <span class="src">[③]</span></div>
+  </div>
+
+  <div class="card">
+    <h2>生産地域別売上高 <span class="citation">[①][③]</span></h2>
+    <table>
+      <thead><tr><th>生産地域（百万円）</th><th>FY2022/3</th><th>FY2023/3</th><th>FY2024/3</th><th>FY2025/3</th><th>FY2026/3</th><th>構成比</th></tr></thead>
+      <tbody>
+        <tr><td>中国</td><td>25,217</td><td>26,696</td><td>21,652</td><td>25,709</td><td>24,142</td><td>32.5%</td></tr>
+        <tr><td>バングラデシュ</td><td>14,235</td><td>17,314</td><td>15,733</td><td>18,562</td><td>23,167</td><td>31.2%</td></tr>
+        <tr><td>ベトナム</td><td>8,010</td><td>12,481</td><td>16,226</td><td>20,143</td><td>20,251</td><td>27.3%</td></tr>
+        <tr><td>インドネシア</td><td>1,586</td><td>3,405</td><td>3,480</td><td>2,950</td><td>3,755</td><td>5.1%</td></tr>
+        <tr><td>ミャンマー</td><td>2,005</td><td>2,881</td><td>3,082</td><td>3,213</td><td>2,933</td><td>4.0%</td></tr>
+        <tr class="highlight"><td>連結計</td><td>51,056</td><td>62,778</td><td>60,176</td><td>70,579</td><td>74,251</td><td>100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============ TAB 4 ============ -->
+<div class="panel" id="t4">
+
+  <div class="card">
+    <h2>現在のバリュエーション <span class="citation">[④]</span></h2>
+    <div class="kpi">
+      <div><div class="l">予想PER</div><div class="v">7.7倍</div><div class="n">2,490円 ÷ 323.9円</div></div>
+      <div><div class="l">PBR</div><div class="v">0.65倍</div><div class="n">2,490円 ÷ 3,804.30円</div></div>
+      <div><div class="l">予想配当利回り</div><div class="v">4.62%</div><div class="n">DPS 115円</div></div>
+      <div><div class="l">信用倍率</div><div class="v">139倍</div><div class="n">売り残4.4千株／買い残614.8千株（26/7/17）</div></div>
+      <div><div class="l">PSR</div><div class="v">0.36倍</div><div class="n">時価総額264億円／FY2026/3売上742.5億円</div></div>
+      <div><div class="l">実績PER（FY2026/3期末）</div><div class="v">7.06倍</div><div class="n">期末株価2,106円ベース</div></div>
+    </div>
+    <div class="alert danger"><b>信用買い残の偏り</b>
+      信用倍率139倍（買い残614.8千株／売り残4.4千株、2026年7月17日時点）。買い残は発行済株式数の約5.8%に相当し、上値では戻り売り圧力になりやすい。株価上昇局面での需給の重石として認識すべき。<span class="src">[④]</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>PER・PBR推移 <span class="citation">[①][④]</span></h2>
+    <div class="grid2">
+      <div><div class="chart"><canvas id="c_per"></canvas></div></div>
+      <div><div class="chart"><canvas id="c_pbr"></canvas></div></div>
+    </div>
+    <div class="note">FY2018/3〜FY2026/3は各期末株価ベースの実績値（会社開示データブック <span class="src">[①]</span>）。「現在」は2026年7月24日終値2,490円・FY2027/3期会社予想EPS 323.9円・FY2026/3期末BPS 3,804.30円で算出 <span class="src">[④]</span>。</div>
+  </div>
+
+  <div class="card">
+    <h2>理論PBR分析（ROEベース・推計） </h2>
+    <table>
+      <thead><tr><th>シナリオ</th><th>想定ROE</th><th>株式コスト仮定</th><th>理論PBR（ROE÷株式コスト）</th><th>理論株価（BPS 3,804円）</th><th>現在比</th></tr></thead>
+      <tbody>
+        <tr><td>FY2026/3実績ROE</td><td>8.0%</td><td>8.0%</td><td>1.00倍</td><td>3,804円</td><td class="pos">+50.0%</td></tr>
+        <tr><td>中計FY2029/3目標ROE</td><td>9.0%</td><td>8.0%</td><td>1.13倍</td><td>4,280円</td><td class="pos">+68.8%</td></tr>
+        <tr><td>長期目標ROE</td><td>10.0%</td><td>8.0%</td><td>1.25倍</td><td>4,755円</td><td class="pos">+87.5%</td></tr>
+        <tr><td>株式コストを保守的に設定</td><td>8.0%</td><td>10.0%</td><td>0.80倍</td><td>3,043円</td><td class="pos">+20.0%</td></tr>
+      </tbody>
+    </table>
+    <div class="alert"><b>推計値であることの注記</b>
+      上記は残余利益モデルの簡易形（理論PBR = ROE ÷ 株式コスト）に基づく推計であり、株式コストは仮定値。実際の株価水準を保証するものではない。なお会社は中期経営計画において「PBR1倍以上を目指すための資本効率と企業価値を高める経営への転換」を明示しており、PBR1.0倍（＝3,804円水準）が会社自身の当面の目標ラインとなる。<span class="src">[③]</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>配当推移 <span class="citation">[①][③]</span></h2>
+    <table>
+      <thead><tr><th>決算期</th><th>DPS（円）</th><th>配当性向</th><th>期末株価（円）</th><th>期末株価ベース利回り</th></tr></thead>
+      <tbody>
+        <tr><td>FY2021/3</td><td>40</td><td>14.4%</td><td>1,926</td><td>2.08%</td></tr>
+        <tr><td>FY2022/3</td><td>40</td><td>70.1%</td><td>1,172</td><td>3.41%</td></tr>
+        <tr><td>FY2023/3</td><td>40</td><td>23.5%</td><td>1,410</td><td>2.84%</td></tr>
+        <tr><td>FY2024/3</td><td>50</td><td>20.3%</td><td>1,605</td><td>3.12%</td></tr>
+        <tr><td>FY2025/3</td><td>90</td><td>34.7%</td><td>1,801</td><td>5.00%</td></tr>
+        <tr><td>FY2026/3</td><td>100<span class="note">（普通90＋記念10）</span></td><td>33.5%</td><td>2,106</td><td>4.75%</td></tr>
+        <tr class="forecast"><td>FY2027/3（予想）</td><td>115</td><td>35.0%</td><td>2,490<span class="note">（26/7/24終値）</span></td><td>4.62%</td></tr>
+        <tr class="target"><td>FY2028/3・FY2029/3（中計）</td><td>—</td><td>35.0%目安</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="note">29期連続配当実施中。FY2027/3期より配当性向35%を目安とする方針を導入。財政状態や株価の状況に合わせ機動的な還元強化を検討するとしている。<span class="src">[③]</span></div>
+  </div>
+
+  <div class="card">
+    <h2>ピア比較</h2>
+    <p style="font-size:13px">同業他社の定量データについて一次情報（各社公式開示）を取得していないため、本レポートでは定量ピア比較を省略する。株探の「比較される銘柄」としてシキボウ・グンゼ・ダイドーが挙げられているが、いずれも事業構成が異なるため単純比較は適当でない <span class="src">[④]</span>。</p>
+  </div>
+
+</div>
+
+<!-- ============ TAB 5 ============ -->
+<div class="panel" id="t5">
+
+  <div class="card">
+    <h2>中期経営計画「BEYOND 2028 〜Stitch the Future〜」経営目標 <span class="citation">[③]</span></h2>
+    <table>
+      <thead><tr><th>区分</th><th>指標</th><th>FY2026/3（実績）</th><th>FY2027/3（予想）</th><th>FY2029/3（目標）</th><th>対FY2026/3比</th></tr></thead>
+      <tbody>
+        <tr><td>成長性</td><td>売上高（百万円）</td><td>74,251</td><td>80,000</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">90,000</td><td class="pos">+21.2%</td></tr>
+        <tr><td rowspan="3">収益性</td><td>経常利益（百万円）</td><td>5,391</td><td>4,900</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">6,000</td><td class="pos">+11.3%</td></tr>
+        <tr><td>純利益（百万円）</td><td>3,117</td><td>3,400</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">4,000</td><td class="pos">+28.3%</td></tr>
+        <tr><td>ROE</td><td>8.0%</td><td>—</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">9.0%以上</td><td class="pos">+1.0p</td></tr>
+        <tr><td>財務健全性</td><td>自己資本比率</td><td>53.1%</td><td>—</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">45〜55%維持</td><td>—</td></tr>
+        <tr><td>雇用創出</td><td>連結従業員数</td><td>21,086人</td><td>—</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">24,000人</td><td class="pos">+14.6%</td></tr>
+        <tr><td rowspan="2">生産量</td><td>縫製事業（衣類）</td><td>63百万枚</td><td>70百万枚</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">78百万枚</td><td class="pos">+22.8%</td></tr>
+        <tr><td>ラミネーションフィルム事業</td><td>13百万ヤード</td><td>15百万ヤード</td><td class="target" style="background:#fef7e0;color:#b45309;font-weight:600">15百万ヤード</td><td class="pos">+10.0%</td></tr>
+      </tbody>
+    </table>
+    <div class="note">FY2027/3期は想定為替レートUSD/JPY=151.3円、FY2029/3期は同148.0円を使用。長期的にはROE10%以上を目標に掲げる。 <span class="src">[③]</span></div>
+  </div>
+
+  <div class="card">
+    <h2>カタリスト（一次情報から抽出） <span class="citation">[①][③]</span></h2>
+    <div class="grid2">
+      <div class="box">
+        <h4>① 会社自身がPBR1倍を経営目標に明示</h4>
+        <p>財務戦略③として「PBR1倍以上を目指すための資本効率と企業価値を高める経営への転換」を掲げ、資本コスト超過を出発点とした資本政策の高度化、投資評価制度の運用高度化、IR発信強化を重点施策に設定。現在PBR0.65倍からの再評価余地が経営課題として公式に認識されている。</p>
+      </div>
+      <div class="box">
+        <h4>② 配当性向35%方針の新規導入と増配</h4>
+        <p>FY2027/3期より配当性向35%を目安とする方針を導入し、DPS 115円を予定。29期連続配当を継続中。中計期間中（FY2027/3〜FY2029/3）は35%目安を維持する計画。純利益がFY2029/3期40億円に達すれば配当原資も拡大する。</p>
+      </div>
+      <div class="box">
+        <h4>③ 縫製事業の生産性改善が利益に直結し始めた</h4>
+        <p>FY2026/3期の縫製事業は売上+12.5%に対しセグメント利益+67.6%、利益率6.06%→9.02%。生産アイテムの最適配置と従業員の習熟度向上が奏功。営業利益は全社ベースで+401.3%。</p>
+      </div>
+      <div class="box">
+        <h4>④ 生産キャパシティ拡大投資（FY2027/3〜FY2029/3で約105億円）</h4>
+        <p>3ヵ年で工場拡大投資71.5億円、工場維持投資26.7億円、システム投資6.8億円を計画。成長投資比率75%。インドネシア第2期工場新設、バングラデシュTMBD/IMBD工場拡張、ベトナム・アンナム工場の稼働最大化。</p>
+      </div>
+      <div class="box">
+        <h4>⑤ ワーキングウェアの需要拡大</h4>
+        <p>猛暑対策のファン付きウェア需要拡大により、FY2026/3期のワーキングウェア売上は前期比+48.9%（46.3億円→69.0億円）。バングラデシュIMBD第2期工場の生産ライン拡大につながり、生産枚数が大幅増加。</p>
+      </div>
+      <div class="box">
+        <h4>⑥ スマートファクトリー化（MES/ERP導入）</h4>
+        <p>IMBD工場（バングラデシュ・従業員3,264名）とタンチュオン工場（ベトナム・従業員768名）をパイロットとして2026年から検証稼働→本稼働。2027年以降α・β・γ工場へ展開。生産・在庫・収益の可視化により納期短縮・コスト削減・品質強化を狙う。</p>
+      </div>
+      <div class="box">
+        <h4>⑦ 前中計「ビジョン2025」を前倒し達成した実績</h4>
+        <p>FY2026/3期の目標（当初計画 売上700億／経常35億、最終目標 売上740億／経常47億）に対し、実績は売上742.5億円・経常53.9億円で上回って着地。計画遂行力に一定の実績がある。</p>
+      </div>
+      <div class="box">
+        <h4>⑧ ラミネーションフィルム事業の底打ち可能性</h4>
+        <p>FY2026/3期は売上-30.9%・利益-67.9%と大幅減。会社はFY2027/3期について「維持または増収を目指す」とし、米国向け顧客のベトナム移管（中国74%→45%）と中国国内新規顧客開拓、上海・ホーチミンへの営業事務所開設を進める。減益要因の一巡が利益改善余地となる。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>四半期業績の進捗トレンド <span class="citation">[①][④]</span></h2>
+    <table>
+      <thead><tr><th>四半期</th><th>売上高</th><th>営業益</th><th>経常益</th><th>最終益</th><th>EPS（円）</th><th>営業利益率</th></tr></thead>
+      <tbody>
+        <tr><td>FY2025/3 1Q（24.04-06）</td><td>15,175</td><td class="neg">-190</td><td>1,423</td><td>780</td><td>78.1</td><td class="neg">-1.3%</td></tr>
+        <tr><td>FY2025/3 2Q（24.07-09）</td><td>20,062</td><td>239</td><td>531</td><td>268</td><td>26.8</td><td>1.2%</td></tr>
+        <tr><td>FY2025/3 3Q（24.10-12）</td><td>17,607</td><td>638</td><td>1,680</td><td>1,051</td><td>105.2</td><td>3.6%</td></tr>
+        <tr><td>FY2025/3 4Q（25.01-03）</td><td>17,735</td><td class="neg">-254</td><td>565</td><td>501</td><td>50.0</td><td class="neg">-1.4%</td></tr>
+        <tr class="h1-row"><td>FY2026/3 1Q（25.04-06）</td><td>16,956</td><td>206</td><td>765</td><td>337</td><td>32.3</td><td>1.2%</td></tr>
+        <tr class="h1-row"><td>FY2026/3 2Q（25.07-09）</td><td>17,872</td><td>767</td><td>1,779</td><td>883</td><td>84.6</td><td>4.3%</td></tr>
+        <tr class="h1-row"><td>FY2026/3 3Q（25.10-12）</td><td>19,458</td><td>390</td><td>1,250</td><td>810</td><td>77.6</td><td>2.0%</td></tr>
+        <tr class="h1-row"><td>FY2026/3 4Q（26.01-03）</td><td>19,965</td><td>811</td><td>1,597</td><td>1,087</td><td>104.0</td><td>4.1%</td></tr>
+      </tbody>
+    </table>
+    <div class="note">緑行はFY2026/3期（直近通期）の四半期実績。全4四半期で営業黒字を確保し、前期の1Q・4Q営業赤字から明確に改善。次回決算発表予定日は2026年8月7日（FY2027/3期 1Q）。<span class="src">[④]</span></div>
+  </div>
+
+</div>
+
+<!-- ============ TAB 6 ============ -->
+<div class="panel" id="t6">
+
+  <div class="card">
+    <h2>リスク要因（一次情報から確認されたもののみ） <span class="citation">[①][③]</span></h2>
+    <div class="grid2">
+      <div class="box">
+        <h4>① 為替変動リスク（構造的・最大の変動要因）</h4>
+        <p>売上収入の約7割が米ドル建て、グループ現預金残高の約5割が米ドル。会計上の営業利益と実態（為替差損益調整後営業利益）が大きく乖離する。FY2027/3期は経常利益が前期比-9.1%（53.9億円→49.0億円）となる会社計画だが、これは主にドル資産等の換算替えによる為替差損を想定したもの。想定期末レート152.0円に対し円高が進めば、さらに経常段階での下振れ要因となる。<span class="src">[③]</span></p>
+      </div>
+      <div class="box">
+        <h4>② ラミネーションフィルム事業の急減速</h4>
+        <p>FY2026/3期は売上-30.9%（118.9億円→82.2億円）、セグメント利益-67.9%（17.3億円→5.5億円）。利益率も14.53%→6.75%へ低下。顧客のヒット商品剥落と中国市況低迷が要因で、買い替え需要が生じにくく足元の需要も鈍化している。全社売上の11%だが、従来は高利益率セグメントとして利益を支えていた。<span class="src">[③]</span></p>
+      </div>
+      <div class="box">
+        <h4>③ 地政学的リスク・関税リスク</h4>
+        <p>会社自ら「地政学的リスクの拡大」を業界の構造変化として認識。ラミネーションフィルム事業では米国の対中関税を受けて中国からの調達回避が進行しており、生産・技術のベトナム移管を進めている（中国比率74%→45%）。生産拠点はミャンマー（売上比4.0%）を含み、同国の情勢リスクも内在する。<span class="src">[③]</span></p>
+      </div>
+      <div class="box">
+        <h4>④ 新興国での人件費上昇・労働力確保の難易度上昇</h4>
+        <p>会社が人財戦略の外部環境として「技能人財の確保難」「技術承継問題」「人件費の高騰」を明示。連結従業員21,086名の大半が海外工場勤務（バングラデシュ9,897名、ベトナム5,954名、ミャンマー2,045名、インドネシア2,078名、中国935名）で、労務コスト上昇はダイレクトに原価を押し上げる。<span class="src">[③]</span></p>
+      </div>
+      <div class="box">
+        <h4>⑤ 会計上の営業利益率の低さ</h4>
+        <p>FY2026/3期の営業利益率は2.93%。改善しつつあるがFY2023/3期0.11%、FY2025/3期0.61%と極めて薄い水準が続いてきた。売上変動や原価上昇に対する損益分岐点の耐性が低く、わずかな環境悪化で営業赤字に転落し得る構造。実際、FY2025/3期は1Q・4Qが営業赤字だった。<span class="src">[①]</span></p>
+      </div>
+      <div class="box">
+        <h4>⑥ 大型設備投資による資金負担</h4>
+        <p>中計3ヵ年で約105億円の設備投資を計画（うちFY2027/3期は約80.3億円で単年としては過去最大規模）。過去にはFY2023/3期に設備投資63.1億円を実施した結果、フリーCFが-67.0億円となった実績がある。投資回収が計画通り進まない場合、CF悪化と有利子負債増加のリスクがある。<span class="src">[①][③]</span></p>
+      </div>
+      <div class="box">
+        <h4>⑦ 信用買い残の需給重石</h4>
+        <p>信用倍率139倍、買い残614.8千株（2026年7月17日時点）。発行済株式数10,593,600株の約5.8%に相当。株価上昇局面で戻り売り圧力となりやすい。<span class="src">[④]</span></p>
+      </div>
+      <div class="box">
+        <h4>⑧ 東証スタンダード市場・低流動性</h4>
+        <p>時価総額264億円、直近月間出来高489,100株（26年7月）。売買代金は日次84百万円程度（26/7/17）。機関投資家の参入余地が限定的で、まとまった売買で価格が動きやすい。<span class="src">[④][⑤]</span></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ TAB 7 ============ -->
+<div class="panel" id="t7">
+
+  <div class="banner caution">見送り（スクリーニング基準未達）
+    <div class="d">8条件中4条件クリア（①PER・②PBR・⑤自己資本比率・⑥時価総額）。③売上高CAGR・④営業利益CAGRの成長フィルタ2条件が未達で、⑦⑧は母集団外。バリュエーションと財務健全性は明確な強みだが、系統的スクリーニングの結果としては見送り水準。</div>
+  </div>
+
+  <div class="card">
+    <h2>総合評価</h2>
+    <p style="font-size:13.5px">マツオカコーポレーション（3611）は、PER 7.7倍・PBR 0.65倍・予想配当利回り4.62%と、割安株スクリーニングのバリュエーション条件を大きな余裕をもってクリアしている <span class="src">[④]</span>。自己資本比率53.1%、D/Eレシオ0.48倍、流動比率252.8%と財務健全性も高く、現金及び現金同等物195.1億円は時価総額264億円の約7割に相当する <span class="src">[①]</span>。</p>
+    <p style="font-size:13.5px;margin-top:10px">一方、J-Quants基準の8年CAGRでは売上高+3.2%・営業利益-6.7%といずれも新基準（≥4%）を下回り、8条件中③④の2条件が未達（4/8クリア）。この2条件は「高成長を選ぶ」ためではなく「減収・減益企業を除外する」フィルタとして設計されており、その趣旨に照らすと本銘柄は系統的スクリーニングの見送り対象にあたる <span class="src">[⑤]</span>。会社公式データ（5年、FY2021/3→FY2026/3）でも営業利益CAGRは-13.78%とマイナスで、起点となるFY2021/3期がコロナ禍でも営業利益率8.46%という同社史上まれな高収益期だった特殊性はあるものの、マイナスである事実自体は期間の取り方によらず共通している <span class="src">[①]</span>。</p>
+    <p style="font-size:13.5px;margin-top:10px">直近のトレンドは明確に改善方向にある。FY2026/3期の営業利益は前期比+401.3%（4.3億円→21.7億円）、縫製事業のセグメント利益率は6.06%→9.02%へ上昇し、生産性向上と生産体制最適化が数字に現れ始めた <span class="src">[③]</span>。FY2027/3期会社計画は売上800億円（+7.7%）・営業利益34億円（+56.3%）・純利益34億円（+9.1%）。ただし経常利益は為替差損想定により49億円（-9.1%）と減益計画である点は留意が必要 <span class="src">[③][④]</span>。</p>
+    <p style="font-size:13.5px;margin-top:10px">株主還元面では29期連続配当を継続し、FY2027/3期より配当性向35%目安の方針を新規導入、DPS 115円を予定 <span class="src">[③]</span>。加えて中期経営計画「BEYOND 2028」において「PBR1倍以上を目指す」ことを経営目標として明示しており、現在のPBR 0.65倍からの是正が会社の公式アジェンダになっている点は、割安株投資の観点で注目すべきカタリストとなる <span class="src">[③]</span>。ただし、成長フィルタが2条件未達という系統的スクリーニングの結果を踏まえると、現時点では新規購入は見送り、③④の改善（次期以降のCAGR回復）や中計進捗を確認したうえでの再評価が妥当と考える。</p>
+    <p style="font-size:13.5px;margin-top:10px">株価は2026年7月24日終値2,490円（前日比-53円、-2.08%）。過去12ヶ月では上昇したが、直近6ヶ月モメンタムは+1.4%と全銘柄内で上位42%にとどまり、突出した動きは見られない <span class="src">[④][⑤]</span>。</p>
+  </div>
+
+  <div class="card">
+    <h2>シナリオ分析（3ケース・推計） </h2>
+    <div class="alert danger"><b>推計値であることの明示</b>
+      以下の目標株価は、一次情報（会社開示の業績予想・過去PERレンジ・BPS）から導出した<b>推計値</b>であり、実際の業績・株価を保証するものではない。想定確率も分析者の主観的な仮定である。
+    </div>
+    <table>
+      <thead><tr><th>シナリオ</th><th>想定確率</th><th>想定EPS</th><th>想定PER</th><th>目標株価</th><th>現在比</th><th>前提・トリガー</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>ベアケース</td><td>25%</td><td>275円<br><span class="note">会社予想比-15%</span></td><td>6.5倍</td><td class="neg">1,790円</td><td class="neg">-28.1%</td>
+          <td style="text-align:left;font-size:12px">円高進行による為替差損拡大、ラミネーションフィルム事業のさらなる悪化、縫製事業の受注鈍化。PERはFY2024/3期末の6.52倍水準（過去5年の最低圏）を想定。</td>
+        </tr>
+        <tr>
+          <td>ベースケース</td><td>55%</td><td>324円<br><span class="note">会社予想 323.9円</span></td><td>9.0倍</td><td>2,915円</td><td class="pos">+17.1%</td>
+          <td style="text-align:left;font-size:12px">FY2027/3期の会社ガイダンス達成。中計の資本効率改善方針とPBR1倍目標が一定の再評価を呼び、PERが過去レンジ（6.5〜8.3倍）の上限をやや上抜ける水準に。配当115円（利回り4.6%）を含めたトータルリターンは約+22%。</td>
+        </tr>
+        <tr>
+          <td>ブルケース</td><td>20%</td><td>363円<br><span class="note">会社予想比+12%</span></td><td>11.0倍</td><td class="pos">3,990円</td><td class="pos">+60.2%</td>
+          <td style="text-align:left;font-size:12px">上方修正の発表、ラミネーションフィルム事業の回復、PBR1倍（BPS 3,804円）到達に向けた株主還元強化や資本政策の具体化。中計最終年度FY2029/3期の目標純利益40億円（EPS約382円）への到達確度が高まるケース。</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart"><canvas id="c_scenario"></canvas></div>
+    <div class="note">期待値（確率加重）＝ 1,790×0.25 + 2,915×0.55 + 3,990×0.20 = 2,849円（現在比 +14.4%）。これも推計値であり保証はない。</div>
+  </div>
+
+  <div class="card">
+    <h2>総合チェックリスト</h2>
+    <table>
+      <thead><tr><th>観点</th><th>評価</th><th>コメント</th></tr></thead>
+      <tbody>
+        <tr><td>バリュエーション</td><td class="judge j-ok">◎</td><td style="text-align:left">PER 7.7倍・PBR 0.65倍・PSR 0.36倍。会社自身がPBR1倍を目標に掲げている。</td></tr>
+        <tr><td>財務健全性</td><td class="judge j-ok">◎</td><td style="text-align:left">自己資本比率53.1%・D/E 0.48倍・流動比率252.8%。現金195億円は時価総額の約7割。</td></tr>
+        <tr><td>株主還元</td><td class="judge j-ok">○</td><td style="text-align:left">29期連続配当、予想利回り4.62%、配当性向35%目安の方針を新規導入。</td></tr>
+        <tr><td>売上成長（8年・スクリーニング基準）</td><td class="judge j-ng">×</td><td style="text-align:left">J-Quants基準8年CAGR +3.2%で基準4%未達。会社データ5年では+6.61%。</td></tr>
+        <tr><td>利益成長（8年・スクリーニング基準）</td><td class="judge j-ng">×</td><td style="text-align:left">J-Quants基準8年CAGR -6.7%（会社データ5年では-13.78%）。起点年度の特殊性はあるが基準未達は事実。</td></tr>
+        <tr><td>利益成長（直近）</td><td class="judge j-ok">◎</td><td style="text-align:left">FY2026/3期 営業利益 +401.3%。4四半期連続で営業黒字を確保。</td></tr>
+        <tr><td>収益性の水準</td><td class="judge j-warn">△</td><td style="text-align:left">営業利益率2.93%と依然として薄い。ROE 8.0%（中計目標9%以上、長期10%）。</td></tr>
+        <tr><td>事業ポートフォリオ</td><td class="judge j-warn">△</td><td style="text-align:left">縫製事業88.9%に集中。高利益率のラミネーションフィルム事業が急減速中。</td></tr>
+        <tr><td>為替感応度</td><td class="judge j-warn">△</td><td style="text-align:left">売上の約7割がドル建て。会計上の利益と実態が乖離し、業績の見通しにくさにつながる。</td></tr>
+        <tr><td>需給・流動性</td><td class="judge j-warn">△</td><td style="text-align:left">信用倍率139倍。日次売買代金84百万円程度で流動性は限定的。</td></tr>
+        <tr><td>株価モメンタム</td><td class="judge j-warn">△</td><td style="text-align:left">12ヶ月 +40.4%だが直近6ヶ月は+1.4%（全銘柄内上位42%）と勢いは限定的。</td></tr>
+        <tr><td>計画遂行力</td><td class="judge j-ok">○</td><td style="text-align:left">前中計「ビジョン2025」を当初計画を上回って達成（売上742.5億円 vs 当初700億円）。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>免責事項</h2>
+    <div class="disc">
+      <p><b>データ取得日：</b>2026年7月26日</p>
+      <p><b>株価基準日：</b>2026年7月24日終値 2,490円（株探、15分ディレイ）／スクリーニング判定は2026年7月17日終値 2,536円時点のJ-Quantsデータに基づく</p>
+      <p><b>予想ベース日：</b>2026年5月14日開示のFY2027/3期 会社業績予想／2026年5月29日発表の決算説明資料および中期経営計画「BEYOND 2028」（前回作成時2026年7月20日から新規開示なし）</p>
+      <p><b>財務データ基準：</b>FY2026/3期（2026年3月期）連結実績。会社公式データブック（databook_202603.xlsx、2018年3月期〜2026年3月期）による。</p>
+      <p style="margin-top:10px"><b>出所一覧</b><br>
+      <span class="src">[①]</span> 会社公式IRデータ（マツオカコーポレーション「データ一括ダウンロード」内 databook_202603.xlsx）｜※本銘柄はirpocketに業績データExcelの登録がないため、会社公式サイトの一括ダウンロードデータで代替した<br>
+      <span class="src">[②]</span> 会社公式サイト 会社概要ページ（https://www.matuoka.co.jp/about/company/）<br>
+      <span class="src">[③]</span> 会社公式開示PDF「2026年３月期 決算説明資料」（2026年5月29日）<br>
+      <span class="src">[④]</span> 株探（kabutan.jp）銘柄ページ・財務ページ・月足時系列ページ 直接取得（2026年7月24日時点）<br>
+      <span class="src">[⑤]</span> J-Quants API V2（JPX公式）／プロジェクト内スクリーニング基盤（universe_latest.csv、基準日2026-07-17）</p>
+      <p style="margin-top:10px">本レポートは公開されている一次情報・公式開示情報のみに基づき作成した分析資料であり、特定の有価証券の売買を推奨・勧誘するものではありません。シナリオ分析および理論PBR分析に記載した数値はすべて一定の仮定に基づく推計値であり、将来の業績や株価を保証するものではありません。投資に関する最終的な決定は、ご自身の判断と責任において行ってください。記載された情報の正確性・完全性について、作成者は責任を負いません。</p>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.t).classList.add('active');
+}));
+
+const P='#1a3a5c', A='#2e7d52', W='#b45309', D='#991b1b', M='#64748b';
+Chart.defaults.font.family='-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif';
+Chart.defaults.font.size=11;
+const yen=v=>v.toLocaleString();
+
+new Chart(document.getElementById('c_overview'),{data:{
+ labels:['FY18/3','FY19/3','FY20/3','FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3予','FY29/3中計'],
+ datasets:[
+  {type:'bar',label:'売上高(百万円)',data:[57830,63402,57112,53928,51056,62778,60176,70579,74251,80000,90000],backgroundColor:'rgba(26,58,92,.75)',yAxisID:'y'},
+  {type:'line',label:'経常利益(百万円)',data:[3525,3248,2523,4073,1037,3202,4493,4199,5391,4900,6000],borderColor:A,backgroundColor:A,borderWidth:2.5,tension:.25,yAxisID:'y1'}
+ ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+ scales:{y:{position:'left',title:{display:true,text:'売上高'},ticks:{callback:yen}},y1:{position:'right',title:{display:true,text:'経常利益'},grid:{drawOnChartArea:false},ticks:{callback:yen}}}}});
+
+new Chart(document.getElementById('c_segment'),{type:'bar',data:{
+ labels:['FY2025/3','FY2026/3'],
+ datasets:[
+  {label:'縫製事業',data:[58685,66029],backgroundColor:P},
+  {label:'ラミネーションフィルム事業',data:[11893,8221],backgroundColor:A}
+ ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'セグメント別売上高（百万円・積み上げ）'}},
+ scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:yen}}}}});
+
+new Chart(document.getElementById('c_area'),{type:'bar',data:{
+ labels:['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+ datasets:[
+  {label:'中国',data:[25217,26696,21652,25709,24142],backgroundColor:'#1a3a5c'},
+  {label:'バングラデシュ',data:[14235,17314,15733,18562,23167],backgroundColor:'#2e7d52'},
+  {label:'ベトナム',data:[8010,12481,16226,20143,20251],backgroundColor:'#b45309'},
+  {label:'インドネシア',data:[1586,3405,3480,2950,3755],backgroundColor:'#3b82f6'},
+  {label:'ミャンマー',data:[2005,2881,3082,3213,2933],backgroundColor:'#94a3b8'}
+ ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'生産地域別売上高（百万円・積み上げ）'}},
+ scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:yen}}}}});
+
+new Chart(document.getElementById('c_pl'),{data:{
+ labels:['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3予'],
+ datasets:[
+  {type:'bar',label:'売上高',data:[51056,62778,60176,70579,74251,80000],backgroundColor:'rgba(26,58,92,.7)',yAxisID:'y'},
+  {type:'bar',label:'営業利益',data:[181,67,792,433,2174,3400],backgroundColor:'rgba(46,125,82,.85)',yAxisID:'y1'},
+  {type:'line',label:'為替差損益調整後営業利益',data:[563,1890,3247,4233,4813,5300],borderColor:W,backgroundColor:W,borderWidth:2.5,tension:.25,yAxisID:'y1'},
+  {type:'line',label:'経常利益',data:[1037,3202,4493,4199,5391,4900],borderColor:D,backgroundColor:D,borderWidth:2,borderDash:[5,4],tension:.25,yAxisID:'y1'}
+ ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+ scales:{y:{position:'left',title:{display:true,text:'売上高(百万円)'},ticks:{callback:yen}},y1:{position:'right',title:{display:true,text:'利益(百万円)'},grid:{drawOnChartArea:false},ticks:{callback:yen}}}}});
+
+new Chart(document.getElementById('c_roe'),{type:'line',data:{
+ labels:['FY18/3','FY19/3','FY20/3','FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+ datasets:[
+  {label:'ROE(%)',data:[12.9,16.2,5.3,11.9,2.2,6.0,7.8,7.3,8.0],borderColor:P,backgroundColor:P,borderWidth:2.5,tension:.25},
+  {label:'ROA(%)',data:[8.9,7.4,5.7,9.3,2.2,5.8,7.2,6.1,7.3],borderColor:A,backgroundColor:A,borderWidth:2.5,tension:.25}
+ ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'ROE / ROA 推移'}},scales:{y:{ticks:{callback:v=>v+'%'}}}}});
+
+new Chart(document.getElementById('c_eps'),{data:{
+ labels:['FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3予'],
+ datasets:[
+  {type:'bar',label:'EPS(円)',data:[277.91,57.06,170.30,246.03,259.47,298.12,323.90],backgroundColor:'rgba(26,58,92,.75)',yAxisID:'y'},
+  {type:'line',label:'DPS(円)',data:[40,40,40,50,90,100,115],borderColor:W,backgroundColor:W,borderWidth:2.5,tension:.25,yAxisID:'y1'}
+ ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'EPS / DPS 推移'}},
+ scales:{y:{position:'left',title:{display:true,text:'EPS'}},y1:{position:'right',title:{display:true,text:'DPS'},grid:{drawOnChartArea:false}}}}});
+
+new Chart(document.getElementById('c_per'),{type:'bar',data:{
+ labels:['FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','現在'],
+ datasets:[{label:'PER(倍)',data:[6.93,20.54,8.28,6.52,6.94,7.06,7.69],backgroundColor:['#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#b45309']}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'PER推移（各期末株価ベース／現在は予想EPS・26/7/24終値）'}}}});
+
+new Chart(document.getElementById('c_pbr'),{type:'bar',data:{
+ labels:['FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','現在'],
+ datasets:[{label:'PBR(倍)',data:[0.78,0.43,0.48,0.48,0.50,0.55,0.65],backgroundColor:['#2e7d52','#2e7d52','#2e7d52','#2e7d52','#2e7d52','#2e7d52','#b45309']}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'PBR推移（各期末株価ベース）'}}}});
+
+new Chart(document.getElementById('c_scenario'),{type:'bar',data:{
+ labels:['ベアケース','現在株価','ベースケース','ブルケース','PBR1.0倍水準'],
+ datasets:[{label:'株価(円)',data:[1790,2490,2915,3990,3804],backgroundColor:[D,M,A,'#166534',W]}]
+},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'シナリオ別 目標株価（推計値・保証なし）'}},scales:{x:{ticks:{callback:v=>v.toLocaleString()+'円'}}}}});
+</script>
+</body>
+</html>

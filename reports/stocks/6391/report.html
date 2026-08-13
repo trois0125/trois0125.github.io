@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加地テック（6391）定量分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #1a3a5c;
+  --accent:  #2e7d52;
+  --warn:    #b45309;
+  --danger:  #991b1b;
+  --pass:    #166534;
+  --bg:      #f8fafc;
+  --card:    #ffffff;
+  --border:  #e2e8f0;
+  --text:    #1e293b;
+  --muted:   #64748b;
+  --source:  #3b82f6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+header {
+  background: var(--primary);
+  color: #fff;
+  padding: 20px 24px;
+}
+header h1 { margin: 0 0 4px; font-size: 22px; }
+header .sub { font-size: 13px; color: #cbd8e6; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 16px 60px; }
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 18px 0 0;
+  border-bottom: 2px solid var(--border);
+}
+.tab-btn {
+  background: #eef2f6;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+.tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.tab-panel { display: none; padding: 22px 0 10px; }
+.tab-panel.active { display: block; }
+h2 { color: var(--primary); font-size: 19px; border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 30px;}
+h2:first-child { margin-top: 0; }
+h3 { color: var(--primary); font-size: 15.5px; margin-top: 22px; }
+.citation { font-size: 12px; color: var(--source); font-weight: 500; }
+.src { font-size: 11px; color: var(--source); font-weight: 700; margin-left: 3px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.grid { display: grid; gap: 14px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+.kpi { text-align: center; }
+.kpi .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.kpi .value { font-size: 24px; font-weight: 700; color: var(--primary); }
+.kpi .value.pos { color: var(--pass); }
+.kpi .value.neg { color: var(--danger); }
+.kpi .note { font-size: 10.5px; color: var(--muted); margin-top: 4px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th, td { border: 1px solid var(--border); padding: 7px 9px; text-align: right; }
+th { background: #eef2f6; color: var(--primary); text-align: center; font-size: 12.5px; }
+td:first-child, th:first-child { text-align: left; }
+tr.h1-row td { background: #eafaf1; color: var(--pass); }
+tr.forecast td { background: #eaf2fd; color: #1e4a8a; font-style: italic; }
+tr.chuki td { background: #fdf6e3; color: #7a4a12; }
+tr.highlight td { background: #fdf7d8; font-weight: 700; }
+td.neg { color: var(--danger); }
+.table-wrap { overflow-x: auto; }
+
+.badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
+.badge.pass { background: #dcfce7; color: var(--pass); }
+.badge.warn { background: #fef3c7; color: var(--warn); }
+.badge.fail { background: #fee2e2; color: var(--danger); }
+
+.banner {
+  border-radius: 10px;
+  padding: 18px 22px;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 14px 0 20px;
+  border: 2px solid var(--warn);
+  background: #fffbeb;
+  color: #7a4a12;
+}
+.banner .sub { font-size: 12.5px; font-weight: 400; color: var(--muted); margin-top: 4px; }
+
+.alert {
+  border-left: 4px solid var(--warn);
+  background: #fffbeb;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.note-box {
+  border-left: 4px solid var(--source);
+  background: #eff6ff;
+  padding: 10px 14px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-top: 10px;
+  color: #1e3a5f;
+}
+
+.chart-wrap { position: relative; height: 320px; margin-top: 14px; }
+.chart-wrap.short { height: 260px; }
+
+.risk-card { border-top: 3px solid var(--danger); }
+.risk-card h4 { margin: 0 0 6px; font-size: 14px; color: var(--danger); }
+.risk-card p { font-size: 12.5px; margin: 0; color: var(--text); }
+
+.cat-card { border-top: 3px solid var(--accent); }
+.cat-card h4 { margin: 0 0 6px; font-size: 13.5px; color: var(--accent); }
+.cat-card p { font-size: 12px; margin: 0; color: var(--text); }
+
+footer.disclaimer {
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding-top: 14px;
+}
+.source-legend {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 30px;
+  background: #eef2f6;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>株式会社加地テック（6391） 定量分析レポート</h1>
+  <div class="sub">東証スタンダード市場 ／ 機械（圧縮機製造・非連結） ／ 分析日：2026年8月11日</div>
+</header>
+
+<div class="container">
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="t1">①総合評価</button>
+  <button class="tab-btn" data-tab="t2">②企業概要</button>
+  <button class="tab-btn" data-tab="t3">③財務分析</button>
+  <button class="tab-btn" data-tab="t4">④バリュエーション</button>
+  <button class="tab-btn" data-tab="t5">⑤カタリスト</button>
+  <button class="tab-btn" data-tab="t6">⑥リスク</button>
+  <button class="tab-btn" data-tab="t7">⑦投資結論</button>
+</div>
+
+<!-- ============ TAB 1 総合評価 ============ -->
+<div class="tab-panel active" id="t1">
+
+  <div class="banner">
+    条件付き購入検討（1条件がボーダー：売上高CAGR）
+    <div class="sub">スクリーニング8条件は8/8クリア。ただし社内グレーディング基準（ANALYSIS_PLAYBOOK §3）に照らすと、売上高CAGRが「クリア」帯（≥8%）でなく「境界線」帯（4〜8%）にとどまるため、無条件の「購入検討」ではなく1条件ボーダーの扱いとした。</div>
+  </div>
+
+  <h2>スクリーニング8条件判定 <span class="citation">[⑤]</span></h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>#</th><th>指標</th><th>基準値</th><th>実績値</th><th>判定</th><th>備考</th></tr>
+    <tr><td>①</td><td>PER</td><td>≤15倍</td><td>9.82倍</td><td><span class="badge pass">○</span></td><td>ctx.py基準日2026-07-17。現在株価ベースは10.4倍<span class="src src-s">[④]</span></td></tr>
+    <tr><td>②</td><td>PBR</td><td>≤1.5倍</td><td>0.84倍</td><td><span class="badge pass">○</span></td><td>現在株価ベースは0.89倍<span class="src src-s">[④]</span></td></tr>
+    <tr><td>③</td><td>売上高CAGR（5年平均）</td><td>≥4%</td><td>+4.9%</td><td><span class="badge pass">○</span></td><td>9年で算出（データ最長期間で代替）</td></tr>
+    <tr><td>④</td><td>営業利益CAGR（5年平均）</td><td>≥4%</td><td>+11.0%</td><td><span class="badge pass">○</span></td><td>—</td></tr>
+    <tr><td>⑤</td><td>自己資本比率</td><td>≥40%</td><td>68.9%</td><td><span class="badge pass">○</span></td><td>FY2026/3期末。直近Q1（2026年6月末）は73.4%<span class="src src-s">[③]</span></td></tr>
+    <tr><td>⑥</td><td>時価総額</td><td>≤600億円</td><td>71億円</td><td><span class="badge pass">○</span></td><td>現在株価ベースは78.7億円<span class="src src-s">[④]</span></td></tr>
+    <tr><td>⑦</td><td>直近1期の営業増益率</td><td>候補群の上位1/3</td><td>+49.2%</td><td><span class="badge pass">○</span></td><td>母集団内 上位19%（境界+22%）</td></tr>
+    <tr><td>⑧</td><td>6ヶ月株価モメンタム</td><td>候補群の上位1/3</td><td>+14.4%</td><td><span class="badge pass">○</span></td><td>母集団内 上位13%（境界+3%）</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--muted);">判定：<b>8/8条件クリア</b>（★全条件通過）。母集団：①〜⑥通過101銘柄／8条件通過11銘柄。基準日2026-07-17、参照決算期2026-03-31（開示2026-04-30）。<span class="src src-s">[⑤]</span> 出所：J-Quants API V2（<code>ctx.py</code>出力）。</p>
+
+  <h2>主要KPI</h2>
+  <div class="grid grid-4">
+    <div class="card kpi"><div class="label">株価<span class="src src-s">[④]</span></div><div class="value">4,580円</div><div class="note">前日比 +80円（+1.78%）</div></div>
+    <div class="card kpi"><div class="label">PER<span class="src src-s">[④]</span></div><div class="value pos">10.4倍</div><div class="note">予想EPS 441.29円ベース</div></div>
+    <div class="card kpi"><div class="label">PBR<span class="src src-s">[④]</span></div><div class="value pos">0.89倍</div><div class="note">BPS 5,123.55円ベース</div></div>
+    <div class="card kpi"><div class="label">配当利回り<span class="src src-s">[④]</span></div><div class="value">1.53%</div><div class="note">予想DPS 70円</div></div>
+    <div class="card kpi"><div class="label">自己資本比率<span class="src src-s">[③]</span></div><div class="value pos">68.9%</div><div class="note">FY2026/3期末（Q1は73.4%）</div></div>
+    <div class="card kpi"><div class="label">ROE<span class="src src-s">[③]</span></div><div class="value">8.9%</div><div class="note">FY2026/3</div></div>
+    <div class="card kpi"><div class="label">ROA（総資産経常利益率）<span class="src src-s">[③]</span></div><div class="value">8.2%</div><div class="note">FY2026/3・会社採用方式</div></div>
+    <div class="card kpi"><div class="label">時価総額<span class="src src-s">[④]</span></div><div class="value">78.7億円</div><div class="note">発行済株式1,718千株ベース</div></div>
+  </div>
+
+  <h2>業績推移概観（売上高・経常利益） <span class="citation">[①→③代替][④]</span></h2>
+  <div class="alert">irpocket公式IRデータ Excelは<b>404で取得不能</b>（<code>https://irpocket.com/6391/chartest/data.xlsx</code>）。本レポートの過去実績は有価証券報告書「主要な経営指標等の推移」<span class="src src-s">[③]</span>および決算短信<span class="src src-s">[③]</span>で代替した（出所記号[①]は本レポートでは未使用）。</div>
+  <div class="card">
+    <div class="chart-wrap"><canvas id="overviewChart"></canvas></div>
+  </div>
+  <p style="font-size:11.5px;color:var(--muted);">FY2027/3は会社予想。中期経営計画「26中計」最終年度（FY2028/3）目標は営業利益11億円（利益率14%）——詳細はTab⑤参照。</p>
+
+  <h2>特記事項</h2>
+  <div class="alert">
+    <b>Q1（2026年4-6月期）は減収増益：</b>複数の圧縮機本体案件が第2四半期以降へ納期変更となったことで売上高は前年同期比▲17.5%の1,077百万円となったが、アフターサービス好調・原価低減・研究開発費減少により営業利益は同+307.9%の183百万円と急拡大した<span class="src src-s">[③]</span>。単発の受注タイミングによる期ズレであり、通期会社予想（2026年4月30日公表）に変更はない<span class="src src-s">[③]</span>。
+  </div>
+  <div class="note-box">
+    無配・減配のリスクは低い。DPSはFY2022〜2025の40円据え置きからFY2026実績60円、FY2027予想70円へと2期連続増配基調にある<span class="src src-s">[③]</span>。同銘柄は<b>親会社</b>である株式会社三井E&S（議決権所有割合51.38%）の傘下にあり、当社製品の販売・部品仕入・資金取引を行っている（取引条件は一般取引先と同様と開示）<span class="src src-s">[③]</span>。
+  </div>
+</div>
+
+<!-- ============ TAB 2 企業概要 ============ -->
+<div class="tab-panel" id="t2">
+
+  <h2>会社基本情報 <span class="citation">[③]</span></h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th style="width:26%;">項目</th><td>内容</td></tr>
+    <tr><th>会社名</th><td>株式会社加地テック（英訳名：KAJI TECHNOLOGY CORPORATION）</td></tr>
+    <tr><th>証券コード</th><td>6391</td></tr>
+    <tr><th>上場市場</th><td>東京証券取引所 スタンダード市場（2022年4月、市場第二部から移行）</td></tr>
+    <tr><th>創業／設立</th><td>創業1905年5月（加地鉄工所）／株式会社化1934年2月（資本金30万円）</td></tr>
+    <tr><th>本店所在地</th><td>大阪府堺市美原区菩提６番地</td></tr>
+    <tr><th>代表者</th><td>代表取締役社長　松岡 克憲</td></tr>
+    <tr><th>資本金</th><td>1,440,000千円</td></tr>
+    <tr><th>発行済株式総数</th><td>1,718,000株（うち自己株式63,836株）</td></tr>
+    <tr><th>従業員数</th><td>207名（ほか臨時雇用者平均33名）／2026年3月31日現在</td></tr>
+    <tr><th>親会社</th><td>株式会社三井E&S（東京都中央区、資本金8,846百万円、議決権所有割合51.38%）</td></tr>
+    <tr><th>事業内容</th><td>圧縮機（空気・ガス圧縮機等の風水力機械）の製造販売、圧縮充填・関連工事請負等。単一セグメント（圧縮機事業）で開示<span class="src src-s">[③]</span>。</td></tr>
+  </table>
+  </div>
+
+  <h2>長期ビジョン・経営方針 <span class="citation">[③]</span></h2>
+  <div class="card">
+    <h3 style="margin-top:0;">経営の基本方針</h3>
+    <p style="font-size:13px;">「技術に立脚し社会が求める優れた商品及びサービスを提供することにより、全てのステークホルダーの繁栄並びに経済・社会の発展に貢献すること、及び常に技術の研究開発に努め、グローバル化の時代に即した国際競争力のある企業体質を涵養し、世界の企業として発展すること」</p>
+    <h3>長期経営計画「KAJI 2030VISION」（2030年のありたい姿）</h3>
+    <p style="font-size:13px;"><b>「超高圧技術でカーボンニュートラル社会の実現に貢献する『モノづくり』＆『ソリューションサービス』企業」</b></p>
+    <p style="font-size:12.5px;color:var(--muted);">基本方針：①超高圧技術での市場リード　②既存事業のQCD強化　③アフターサービス拡大による収益力向上　④海外市場での存在感確立</p>
+  </div>
+
+  <h2>事業ライン（会計上は単一セグメント） <span class="citation">[③]</span></h2>
+  <p style="font-size:12.5px;color:var(--muted);">当社は「圧縮機事業」の単一セグメントであり、財務諸表上のセグメント別開示はない<span class="src src-s">[③]</span>。ただし経営戦略上は下記2つの事業ラインを軸に運営されている（金額非開示のため定性説明のみ）。</p>
+  <div class="grid grid-3">
+    <div class="card cat-card">
+      <h4>圧縮機本体事業</h4>
+      <p>空気・ガス圧縮機等の風水力機械を製造販売。水素ステーション向け超高圧圧縮機は2014年の市場投入以来、国内トップシェアを走る。カーボンニュートラル関連の大口案件が業績を左右しやすい。</p>
+    </div>
+    <div class="card cat-card">
+      <h4>アフターサービス（A/S）事業</h4>
+      <p>納入済み圧縮機の保守・部品供給等。近年業績が伸長しており、「26中計」でも収益源として最重点強化領域に位置付けられている。</p>
+    </div>
+    <div class="card cat-card">
+      <h4>親会社との取引</h4>
+      <p>親会社（三井E&S）およびその子会社に対する製品販売・部品仕入・資金取引を実施。価格その他取引条件は一般取引先と同様と開示されている。</p>
+    </div>
+  </div>
+
+  <h3>売上高5年推移（単一セグメントのため事業全体） <span class="citation">[③]</span></h3>
+  <div class="card">
+    <div class="chart-wrap short"><canvas id="revTrendChart"></canvas></div>
+  </div>
+</div>
+
+<!-- ============ TAB 3 財務分析 ============ -->
+<div class="tab-panel" id="t3">
+
+  <h2>連結P&Lサマリー <span class="citation">[③]</span></h2>
+  <p style="font-size:11.5px;color:var(--muted);">当社は連結財務諸表を作成していないため非連結（単体）ベース。単位：百万円。</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>決算期</th><th>売上高</th><th>売上総利益</th><th>販管費</th><th>営業利益</th><th>営業利益率</th><th>経常利益</th><th>純利益</th><th>前年比（売上）</th></tr>
+    <tr><td>FY2024/3</td><td>7,261</td><td>―</td><td>―</td><td>767</td><td>―</td><td>818</td><td>578</td><td>+21.5%</td></tr>
+    <tr><td>FY2025/3</td><td>7,004</td><td>2,035</td><td>1,415</td><td>620</td><td>8.9%</td><td>770</td><td>579</td><td class="neg">▲3.5%</td></tr>
+    <tr class="h1-row"><td>FY2026/3</td><td>7,800</td><td>2,412</td><td>1,486</td><td>925</td><td class="highlight">11.9%</td><td>978</td><td>724</td><td>+11.4%</td></tr>
+    <tr class="h1-row"><td>Q1 FY2027/3（4-6月実績）</td><td>1,077</td><td>520</td><td>337</td><td>183</td><td>17.0%</td><td>185</td><td>136</td><td class="neg">▲17.5%</td></tr>
+    <tr class="forecast"><td>FY2027/3（会社予想）</td><td>7,100</td><td>―</td><td>―</td><td>970</td><td>13.7%</td><td>1,020</td><td>730</td><td class="neg">▲9.0%</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">FY2024/3の売上総利益・販管費は本レポートの一次資料（yuho・決算短信）に個別開示がないため空欄。出所：<span class="src src-s">[③]</span>有価証券報告書「主要な経営指標等の推移」「経理の状況」、決算短信（2026年4月30日・2026年7月31日開示）。</p>
+
+  <h3>売上高・利益推移</h3>
+  <div class="card">
+    <div class="chart-wrap"><canvas id="plChart"></canvas></div>
+  </div>
+
+  <h2>1株指標 <span class="citation">[③]</span></h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>決算期</th><th>EPS（円）</th><th>BPS（円）</th><th>DPS（円）</th><th>ROE</th><th>ROA<sup>※1</sup></th><th>配当性向</th><th>期末株価<sup>※2</sup></th></tr>
+    <tr><td>FY2022/3</td><td>186.97</td><td>3,972.76</td><td>40.00</td><td>4.8%</td><td>―</td><td>21.4%</td><td>4,300円</td></tr>
+    <tr><td>FY2023/3</td><td>174.35</td><td>4,106.48</td><td>40.00</td><td>4.3%</td><td>―</td><td>22.9%</td><td>3,365円</td></tr>
+    <tr><td>FY2024/3</td><td>349.55</td><td>4,415.99</td><td>40.00</td><td>8.2%</td><td>―</td><td>11.4%</td><td>5,243円</td></tr>
+    <tr><td>FY2025/3</td><td>349.92</td><td>4,725.93</td><td>40.00</td><td>7.7%</td><td>6.6%</td><td>11.4%</td><td>3,464円</td></tr>
+    <tr class="h1-row"><td>FY2026/3</td><td>437.46</td><td>5,123.55</td><td>60.00</td><td class="highlight">8.9%</td><td>8.2%</td><td>13.7%</td><td>4,856円</td></tr>
+    <tr class="forecast"><td>FY2027/3（予想）</td><td>441.29</td><td>―</td><td>70.00</td><td>―</td><td>―</td><td>15.9%</td><td>―</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">※1 ROA（総資産経常利益率、平均総資産ベース）は決算短信ベースで直近2期のみ開示のため、それ以前は空欄とした。※2 期末株価は有報開示のPER・EPSから逆算（PER×EPS）した参考値。実際の終値と若干のずれが生じ得る。現在値（2026年8月11日時点）は4,580円<span class="src src-s">[④]</span>。</p>
+
+  <h3>ROE・ROA推移</h3>
+  <div class="card"><div class="chart-wrap short"><canvas id="roeRoaChart"></canvas></div></div>
+
+  <h3>EPS・DPS推移</h3>
+  <div class="card"><div class="chart-wrap short"><canvas id="epsDpsChart"></canvas></div></div>
+
+  <h2>貸借対照表・キャッシュフロー <span class="citation">[③]</span></h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>決算期</th><th>総資産</th><th>純資産</th><th>自己資本比率</th><th>営業CF</th><th>投資CF</th><th>財務CF</th><th>FCF<sup>※</sup></th><th>現金期末残高</th></tr>
+    <tr><td>FY2022/3</td><td>9,684</td><td>6,574</td><td>67.9%</td><td>786</td><td class="neg">△1,767</td><td>932</td><td class="neg">△981</td><td>771</td></tr>
+    <tr><td>FY2023/3</td><td>10,991</td><td>6,795</td><td>61.8%</td><td>381</td><td class="neg">△611</td><td>431</td><td class="neg">△231</td><td>972</td></tr>
+    <tr><td>FY2024/3</td><td>11,810</td><td>7,306</td><td>61.9%</td><td>843</td><td class="neg">△155</td><td class="neg">△135</td><td>688</td><td>1,524</td></tr>
+    <tr><td>FY2025/3</td><td>11,559</td><td>7,818</td><td>67.6%</td><td>542</td><td class="neg">△246</td><td class="neg">△148</td><td>296</td><td>1,672</td></tr>
+    <tr class="h1-row"><td>FY2026/3</td><td>12,301</td><td>8,475</td><td class="highlight">68.9%</td><td>1,027</td><td class="neg">△479</td><td class="neg">△149</td><td>548</td><td>2,071</td></tr>
+    <tr class="h1-row"><td>Q1 FY2027/3（6月末）</td><td>11,604</td><td>8,512</td><td class="highlight">73.4%</td><td>―<sup>※2</sup></td><td>―</td><td>―</td><td>―</td><td>―</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">単位：百万円。※FCF＝営業CF＋投資CF（本レポートでの算出値）。※2 第1四半期の四半期キャッシュ・フロー計算書は作成されていない（決算短信の注記事項に基づく簡便法採用のため）<span class="src src-s">[③]</span>。</p>
+
+  <h2>セグメント情報</h2>
+  <p style="font-size:12.5px;">当社は「圧縮機事業」の単一セグメントであるため、セグメント別の売上高・利益等の開示は省略されている（決算短信・有価証券報告書とも記載省略）<span class="src src-s">[③]</span>。</p>
+</div>
+
+<!-- ============ TAB 4 バリュエーション ============ -->
+<div class="tab-panel" id="t4">
+
+  <h2>現在バリュエーション <span class="citation">[④]</span></h2>
+  <div class="grid grid-4">
+    <div class="card kpi"><div class="label">PER</div><div class="value pos">10.4倍</div><div class="note">5年平均15.5倍対比で割安</div></div>
+    <div class="card kpi"><div class="label">PBR</div><div class="value pos">0.89倍</div><div class="note">1倍割れ継続</div></div>
+    <div class="card kpi"><div class="label">配当利回り</div><div class="value">1.53%</div><div class="note">予想DPS70円ベース</div></div>
+    <div class="card kpi"><div class="label">信用倍率</div><div class="value">―</div><div class="note">データなし（kabutan掲載なし）</div></div>
+  </div>
+
+  <h3>PER推移（5年＋現在） <span class="citation">[③][④]</span></h3>
+  <div class="card"><div class="chart-wrap short"><canvas id="perChart"></canvas></div></div>
+  <p style="font-size:11px;color:var(--muted);">FY2022〜2026は有価証券報告書「主要な経営指標等の推移」の株価収益率（開示値）。「現在」は2026年8月11日時点の予想EPSベースPER<span class="src src-s">[④]</span>。</p>
+
+  <h3>PBR推移（5年＋現在） <span class="citation">[③][④]</span></h3>
+  <div class="card"><div class="chart-wrap short"><canvas id="pbrChart"></canvas></div></div>
+  <p style="font-size:11px;color:var(--muted);">FY2022〜2026は有報開示のPER×EPSから期末株価を逆算し、当該BPSで除した参考値（irpocket Excelが404のため直接のPBR時系列データなし）。「現在」はkabutan掲載値<span class="src src-s">[④]</span>。</p>
+
+  <h2>理論PBR分析（ROEベース） <span class="citation">[③]</span></h2>
+  <div class="card">
+    <p style="font-size:13px;">サステナブル成長モデルの簡便式　<b>適正PBR ＝ ROE ÷ 株主資本コスト</b>を用いる。株主資本コストを8%（26中計のROE目標と同水準の保守的仮定）とおくと：</p>
+    <ul style="font-size:13px;">
+      <li>FY2026/3実績ROE 8.9% → 理論PBR ≈ <b>1.11倍</b>（8.9% ÷ 8%）</li>
+      <li>26中計 FY2028/3目標ROE 8.0% → 理論PBR ≈ <b>1.00倍</b></li>
+      <li>現在PBR 0.89倍は上記いずれの水準に対しても<b>割安方向</b>に位置する</li>
+    </ul>
+    <p style="font-size:11px;color:var(--muted);">※株主資本コスト8%は本レポートの仮定値であり、確定的な算定根拠ではない。感応度：資本コストを7%とすればFY2026実績ROEに対する理論PBRは約1.27倍、9%とすれば約0.99倍となる。</p>
+  </div>
+
+  <h2>配当推移 <span class="citation">[③]</span></h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>決算期</th><th>DPS</th><th>配当性向</th><th>期末株価比利回り<sup>※</sup></th></tr>
+    <tr><td>FY2022/3</td><td>40.00円</td><td>21.4%</td><td>0.93%</td></tr>
+    <tr><td>FY2023/3</td><td>40.00円</td><td>22.9%</td><td>1.19%</td></tr>
+    <tr><td>FY2024/3</td><td>40.00円</td><td>11.4%</td><td>0.76%</td></tr>
+    <tr><td>FY2025/3</td><td>40.00円</td><td>11.4%</td><td>1.15%</td></tr>
+    <tr class="h1-row"><td>FY2026/3</td><td>60.00円</td><td>13.7%</td><td>1.24%</td></tr>
+    <tr class="forecast"><td>FY2027/3（予想）</td><td>70.00円</td><td>15.9%</td><td>1.53%<sup>※2</sup></td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">※期末株価比利回り＝DPS÷Tab③の逆算期末株価（参考値）。※2 FY2027/3予想欄は現在株価4,580円ベースの実利回り（kabutan掲載値）。26中計は最終年度FY2028/3の配当性向20%を目標として掲げている<span class="src src-s">[③]</span>。</p>
+
+  <h2>ピア比較</h2>
+  <p style="font-size:12.5px;color:var(--muted);">一次情報（同業他社の開示データ）を個別取得していないため、定量的なピア比較は省略する。CLAUDE.mdの運用方針上、本プロジェクトではピア比較は簡易言及にとどめる。</p>
+</div>
+
+<!-- ============ TAB 5 カタリスト ============ -->
+<div class="tab-panel" id="t5">
+
+  <h2>中期経営計画「26中計」数値目標（2026年度〜2028年度） <span class="citation">[③]</span></h2>
+  <div class="grid grid-4">
+    <div class="card kpi"><div class="label">売上高（FY2028目標）</div><div class="value">78億円</div><div class="note">FY2026実績比 ほぼ横ばい</div></div>
+    <div class="card kpi"><div class="label">営業利益（FY2028目標）</div><div class="value pos">11億円</div><div class="note">利益率14%／FY2026実績9.3億円比+18%</div></div>
+    <div class="card kpi"><div class="label">純利益（FY2028目標）</div><div class="value">7.8億円</div><div class="note">—</div></div>
+    <div class="card kpi"><div class="label">ROE／ROIC（FY2028目標）</div><div class="value">8.0%／7.0%</div><div class="note">配当性向20%目標</div></div>
+  </div>
+  <p style="font-size:11.5px;color:var(--muted);">水素ステーション普及の遅れを想定し、26中計期間は本体売上の大きな伸長を見込まず、アフターサービス（A/S）拡大で収益力向上を図り、「KAJI 2030VISION」の営業利益目標11億円を2年前倒しで達成することを目指す<span class="src src-s">[③]</span>。</p>
+
+  <h2>長期ビジョン「KAJI 2030VISION」</h2>
+  <p style="font-size:13px;">2030年に向けて<b>「超高圧技術でカーボンニュートラル社会の実現に貢献する『モノづくり』＆『ソリューションサービス』企業」</b>を目指す。基本方針：①超高圧技術で新市場を先行商品化　②既存事業のQCD強化　③アフターサービス拡大による収益力向上　④海外市場での存在感確立<span class="src src-s">[③]</span>。</p>
+
+  <h2>カタリスト <span class="citation">[③]</span></h2>
+  <div class="grid grid-4">
+    <div class="card cat-card"><h4>① A/S（アフターサービス）拡大</h4><p>26中計で最も注力する「稼ぐ力の最大化」の中核施策。プラント市場強化・商材多角化・短工期化を推進。</p></div>
+    <div class="card cat-card"><h4>② 品質プロセス改革</h4><p>品質ガバナンス強化と真因追及力向上により、苦情費・不適合発生を削減し収益性を改善。</p></div>
+    <div class="card cat-card"><h4>③ コスト力強化</h4><p>DFM（製造容易性設計）視点での設計段階からのコスト作り込み、生産技術導入によるコスト低減。</p></div>
+    <div class="card cat-card"><h4>④ 水素領域ブランド強化</h4><p>水素ステーション向け超高圧圧縮機で国内トップシェア。製品ラインナップ拡充とブランド浸透を推進。</p></div>
+    <div class="card cat-card"><h4>⑤ 新市場開発・海外展開</h4><p>カーボンニュートラル関連市場の拡大、海外プラント・インフラ市場（韓国向け案件等）の開拓。</p></div>
+    <div class="card cat-card"><h4>⑥ DXによる生産性革新</h4><p>全社DX戦略の策定・推進により「稼ぐ力の最大化」を支援し、生産性を向上。</p></div>
+    <div class="card cat-card"><h4>⑦ 資本効率経営（ROIC浸透）</h4><p>ポートフォリオマネジメント推進、キャッシュ・アロケーション最適化でROIC7%目標を目指す。</p></div>
+    <div class="card cat-card"><h4>⑧ 株主還元強化</h4><p>26中計3ヵ年累計で株主還元4.1億円を計画。配当性向20%（FY2028目標）へ段階的引き上げ。実績もFY2025の40円→FY2026の60円→FY2027予想70円と2期連続増配。</p></div>
+  </div>
+
+  <h2>H1（Q1）実績進捗 <span class="citation">[③]</span></h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>項目</th><th>通期予想</th><th>Q1実績（4-6月）</th><th>進捗率</th><th>前年同期比</th></tr>
+    <tr><td>売上高</td><td>7,100百万円</td><td>1,077百万円</td><td>15.2%</td><td class="neg">▲17.5%</td></tr>
+    <tr><td>営業利益</td><td>970百万円</td><td>183百万円</td><td>18.9%</td><td>+307.9%</td></tr>
+    <tr><td>経常利益</td><td>1,020百万円</td><td>185百万円</td><td>18.1%</td><td>+320.0%</td></tr>
+    <tr><td>純利益</td><td>730百万円</td><td>136百万円</td><td>18.6%</td><td>+143.6%</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">売上高の進捗率が低いのは、複数の圧縮機本体案件がQ2以降へ納期変更されたことによる期ズレが主因（需要そのものの減退ではない）。利益面は原価低減・研究開発費減少により大幅に先行進捗している<span class="src src-s">[③]</span>。会社は通期予想を据え置き（2026年4月30日公表から変更なし）。</p>
+</div>
+
+<!-- ============ TAB 6 リスク ============ -->
+<div class="tab-panel" id="t6">
+
+  <h2>事業等のリスク <span class="citation">[③]</span></h2>
+  <p style="font-size:12px;color:var(--muted);">有価証券報告書「事業等のリスク」に開示されている8項目をそのまま掲載する。</p>
+  <div class="grid grid-4">
+    <div class="card risk-card"><h4>① 材料価格高騰</h4><p>鋼材・部材の調達価格が市況変動で高騰すると収益を圧迫する可能性。新規調達先開拓・調達仕様見直しで対応中。</p></div>
+    <div class="card risk-card"><h4>② 品質問題</h4><p>製造過程での予期せぬ欠陥・不具合が業績に影響する可能性。ISO9001体制のもと品質向上に注力。</p></div>
+    <div class="card risk-card"><h4>③ 設備投資動向</h4><p>顧客企業の設備投資状況に販売動向が左右される。各業界の投資動向把握と新規需要開拓で対応。</p></div>
+    <div class="card risk-card"><h4>④ 製品販売価格</h4><p>他社との競合により受注価格が下落するリスク。高付加価値製品の提供でリスク低減を図る。</p></div>
+    <div class="card risk-card"><h4>⑤ 製品（PL）リスク</h4><p>製造物責任賠償を求められる可能性。製造物責任賠償保険に加入済みだが、多額賠償発生時は業績に影響し得る。</p></div>
+    <div class="card risk-card"><h4>⑥ 人材の確保・育成</h4><p>専門的技術・知識を持つ人材の採用・育成計画が遅れると競争力が低下する可能性。賃金・評価・教育制度改革を推進中。</p></div>
+    <div class="card risk-card"><h4>⑦ 情報システム</h4><p>コンピュータウイルス等で情報システムに支障が生じた場合、事業遂行に影響する可能性。情報セキュリティ強化中。</p></div>
+    <div class="card risk-card"><h4>⑧ 自然災害等</h4><p>地震等の大規模災害や感染症流行等、想定を超えた事象による事業遂行への影響。安否確認システム・災害対応マニュアル整備。</p></div>
+  </div>
+
+  <h2>その他の留意点（本レポート作成時の付記）</h2>
+  <div class="grid grid-3">
+    <div class="card risk-card">
+      <h4>受注タイミング依存の業績変動</h4>
+      <p>圧縮機本体は大口案件の納期・計上時期によって四半期業績が大きく振れやすい（Q1実績で確認済み）<span class="src src-s">[③]</span>。</p>
+    </div>
+    <div class="card risk-card">
+      <h4>親会社（三井E&S）傘下での独立性</h4>
+      <p>議決権51.38%を親会社が保有。取引条件は一般取引先と同様と開示されているが、支配株主が存在する統治構造である点は留意<span class="src src-s">[③]</span>。</p>
+    </div>
+    <div class="card risk-card">
+      <h4>小型・流動性の低さ</h4>
+      <p>時価総額78.7億円<span class="src src-s">[④]</span>、参考売買代金は約29百万円/日<span class="src src-s">[⑤]</span>と小型・薄商いであり、値動きが荒くなりやすい。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 7 投資結論 ============ -->
+<div class="tab-panel" id="t7">
+
+  <div class="banner">
+    条件付き購入検討（1条件がボーダー：売上高CAGR）
+    <div class="sub">スクリーニング8/8クリア。ただし社内グレーディング上、売上高CAGR（+4.9%、9年）が「クリア」帯（≥8%）でなく「境界線」帯（4〜8%）に該当。</div>
+  </div>
+
+  <h2>総合評価ナラティブ</h2>
+  <p style="font-size:13.5px;">
+  加地テック（6391）は8つのスクリーニング条件全てをクリアし<span class="src src-s">[⑤]</span>、PER10.4倍・PBR0.89倍という割安な株価水準にある<span class="src src-s">[④]</span>。自己資本比率はFY2026/3期末で68.9%、直近Q1（2026年6月末）では73.4%まで上昇しており財務健全性は高い<span class="src src-s">[③]</span>。直近1期の営業増益率+49.2%、6ヶ月株価モメンタム+14.4%はいずれも母集団内で上位1割台に位置し、業績・株価のいずれも足元は良好なモメンタムにある<span class="src src-s">[⑤]</span>。
+  </p>
+  <p style="font-size:13.5px;">
+  Q1（2026年4-6月期）は圧縮機本体案件の納期がQ2以降へシフトしたことで売上高が前年同期比▲17.5%となったが、これは受注タイミングの期ズレであり需要減退ではない。収益性はアフターサービス好調・原価低減・研究開発費減少により大幅改善し、営業利益は同+307.9%と急拡大した<span class="src src-s">[③]</span>。会社は通期予想を据え置いている。
+  </p>
+  <p style="font-size:13.5px;">
+  中期経営計画「26中計」（2026〜2028年度）は、水素ステーション普及の遅れを踏まえ本体売上の大幅な伸長を前提とせず、アフターサービス拡大による収益力向上とROIC経営の浸透（FY2028目標：売上高78億円、営業利益11億円・利益率14%、ROE8%、ROIC7%、配当性向20%）を掲げている<span class="src src-s">[③]</span>。株主還元は2期連続増配（FY2025年40円→FY2026年60円→FY2027年予想70円）とすでに強化方向にある<span class="src src-s">[③]</span>。
+  </p>
+  <p style="font-size:13.5px;">
+  一方で、①単一セグメント・特定顧客（水素ステーション向け等）依存による受注の期ズレリスク、②親会社（三井E&S、議決権51.38%）傘下という統治構造、③時価総額78.7億円・売買代金約29百万円/日という小型・低流動性、の3点には留意が必要である<span class="src src-s">[③][④][⑤]</span>。総合的には、割安なバリュエーションと足元の増益モメンタムを評価しつつも、売上高成長率が「クリア」水準に届いていない点を勘案し、<b>条件付き購入検討</b>と判断する。
+  </p>
+
+  <h2>シナリオ分析（推計値・保証なし）</h2>
+  <div class="alert">以下の目標株価は一次情報から導出した<b>推計値</b>である。実際の業績・株価を保証するものではない。</div>
+  <div class="table-wrap">
+  <table>
+    <tr><th>シナリオ</th><th>想定確率</th><th>前提</th><th>想定EPS</th><th>想定PER</th><th>目標株価</th><th>現在比</th></tr>
+    <tr><td>ベア</td><td>25%</td><td>今期ガイダンス未達（EPS▲20%、推計）</td><td>353.03円</td><td>7倍</td><td>2,471円</td><td class="neg">▲46.0%</td></tr>
+    <tr class="highlight"><td>ベース</td><td>55%</td><td>今期会社予想（EPS441.29円）達成</td><td>441.29円</td><td>10〜11倍</td><td>4,413〜4,854円</td><td>▲3.6%〜+6.0%</td></tr>
+    <tr><td>ブル</td><td>20%</td><td>上方修正・受注拡大（EPS+15%、推計）</td><td>507.48円</td><td>12倍</td><td>6,090円</td><td>+33.0%</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">現在株価4,580円（2026年8月11日時点）<span class="src src-s">[④]</span>を基準に算出。PER7倍は過去5年レンジの下限近傍（FY2025/3の9.9倍を下回る保守設定）、10〜11倍は直近実績PER（11.1倍）近傍、12倍は好業績再評価シナリオとして設定した仮定値。</p>
+
+  <div class="card"><div class="chart-wrap short"><canvas id="scenarioChart"></canvas></div></div>
+
+  <h2>総合チェックリスト</h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>チェック項目</th><th>結果</th></tr>
+    <tr><td>スクリーニング8条件</td><td><span class="badge pass">8/8クリア</span></td></tr>
+    <tr><td>PER・PBRの割安性（現在値）</td><td><span class="badge pass">クリア</span>（10.4倍・0.89倍）</td></tr>
+    <tr><td>財務健全性（自己資本比率）</td><td><span class="badge pass">高い</span>（68.9%〜73.4%）</td></tr>
+    <tr><td>増益モメンタム</td><td><span class="badge pass">強い</span>（直近期+49.2%、母集団上位19%）</td></tr>
+    <tr><td>株価モメンタム（6ヶ月）</td><td><span class="badge pass">強い</span>（+14.4%、母集団上位13%）</td></tr>
+    <tr><td>売上高成長性（5年/9年CAGR）</td><td><span class="badge warn">ボーダー</span>（+4.9%、内部基準4〜8%帯）</td></tr>
+    <tr><td>株主還元姿勢</td><td><span class="badge pass">強化中</span>（2期連続増配、26中計で配当性向20%目標）</td></tr>
+    <tr><td>流動性・ガバナンス留意点</td><td><span class="badge warn">要留意</span>（小型・親会社支配構造）</td></tr>
+  </table>
+  </div>
+
+  <div class="source-legend">
+    出所記号：<span class="src src-s">[①]</span> irpocket公式IRデータ（本銘柄は404のため未使用）／<span class="src src-s">[②]</span> 会社公式IRページ（JSレンダリングのため一次データ取得不能、代わりに③を使用）／<span class="src src-s">[③]</span> 会社公式開示PDF（有価証券報告書・決算短信・中期経営計画資料）／<span class="src src-s">[④]</span> kabutan.jp直接フェッチ／<span class="src src-s">[⑤]</span> J-Quants API V2（ctx.py出力）
+  </div>
+
+  <footer class="disclaimer">
+    <p><b>免責事項：</b>本レポートは株式会社加地テック（6391）の公式開示情報（有価証券報告書・決算短信・中期経営計画資料）およびkabutan.jp・J-Quants APIの一次情報のみに基づき作成した個人投資判断参考資料であり、投資助言・勧誘を目的とするものではありません。シナリオ分析欄の目標株価・リターン試算はすべて推計値であり、将来の業績・株価を保証するものではありません。</p>
+    <p>データ取得日：irpocket確認・有価証券報告書取得 2026年8月7日／決算短信・中期経営計画資料取得 2026年8月10日／kabutan株価・バリュエーション取得 2026年8月11日／J-Quantsスクリーニング判定基準日 2026年7月17日（参照決算期2026年3月期、開示日2026年4月30日）。予想ベース日：会社側業績予想は2026年4月30日公表（2026年7月31日開示のQ1決算短信で「変更なし」を確認）。</p>
+    <p>作成：jp_stock 定量分析プロジェクト（日次自動生成タスク） ／ 分析日 2026年8月11日</p>
+  </footer>
+</div>
+
+</div>
+
+<script>
+const kajiRed = '#991b1b', kajiGreen='#2e7d52', kajiBlue='#1a3a5c', kajiAmber='#b45309', kajiMuted='#94a3b8';
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+const commonOpts = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } },
+  scales: { y: { beginAtZero: false } }
+};
+
+// Tab1: overview chart (revenue bar + ordinary income line)
+new Chart(document.getElementById('overviewChart'), {
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3(予)'],
+    datasets: [
+      { type: 'bar', label: '売上高（百万円）', data: [4578,5976,7261,7004,7800,7100], backgroundColor: kajiBlue, order: 2, yAxisID: 'y' },
+      { type: 'line', label: '経常利益（百万円）', data: [455,297,818,770,978,1020], borderColor: kajiGreen, backgroundColor: kajiGreen, tension: 0.25, order: 1, yAxisID: 'y1' }
+    ]
+  },
+  options: { ...commonOpts,
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: '売上高（百万円）' } },
+      y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: '経常利益（百万円）' } }
+    }
+  }
+});
+
+// Tab2: revenue trend (5yr)
+new Chart(document.getElementById('revTrendChart'), {
+  type: 'bar',
+  data: { labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+    datasets: [{ label: '売上高（百万円）', data: [4578,5976,7261,7004,7800], backgroundColor: kajiBlue }] },
+  options: { ...commonOpts, plugins: { legend: { display: false } } }
+});
+
+// Tab3: P&L composite (rev bar, op-income bar, ordinary income line)
+new Chart(document.getElementById('plChart'), {
+  data: {
+    labels: ['FY23/3','FY24/3','FY25/3','FY26/3','FY27/3(予)'],
+    datasets: [
+      { type: 'bar', label: '売上高', data: [5976,7261,7004,7800,7100], backgroundColor: kajiBlue, yAxisID: 'y' },
+      { type: 'bar', label: '営業利益', data: [237,767,620,925,970], backgroundColor: kajiGreen, yAxisID: 'y' },
+      { type: 'line', label: '経常利益', data: [297,818,770,978,1020], borderColor: kajiAmber, backgroundColor: kajiAmber, tension: 0.25, yAxisID: 'y' }
+    ]
+  },
+  options: { ...commonOpts, scales: { y: { beginAtZero: true, title: { display: true, text: '百万円' } } } }
+});
+
+// ROE/ROA
+new Chart(document.getElementById('roeRoaChart'), {
+  type: 'line',
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+    datasets: [
+      { label: 'ROE（%）', data: [4.8,4.3,8.2,7.7,8.9], borderColor: kajiBlue, backgroundColor: kajiBlue, tension: 0.25 },
+      { label: 'ROA・総資産経常利益率（%）', data: [null,null,null,6.6,8.2], borderColor: kajiAmber, backgroundColor: kajiAmber, tension: 0.25, spanGaps: false }
+    ]
+  },
+  options: commonOpts
+});
+
+// EPS/DPS
+new Chart(document.getElementById('epsDpsChart'), {
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3(予)'],
+    datasets: [
+      { type: 'bar', label: 'EPS（円）', data: [186.97,174.35,349.55,349.92,437.46,441.29], backgroundColor: kajiBlue, yAxisID: 'y' },
+      { type: 'line', label: 'DPS（円）', data: [40,40,40,40,60,70], borderColor: kajiGreen, backgroundColor: kajiGreen, tension: 0.25, yAxisID: 'y1' }
+    ]
+  },
+  options: { ...commonOpts,
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'EPS（円）' } },
+      y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'DPS（円）' } }
+    }
+  }
+});
+
+// PER
+new Chart(document.getElementById('perChart'), {
+  type: 'bar',
+  data: { labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','現在'],
+    datasets: [{ label: 'PER（倍）', data: [23.0,19.3,15.0,9.9,11.1,10.4],
+      backgroundColor: ['#94a3b8','#94a3b8','#94a3b8','#94a3b8','#94a3b8', kajiBlue] }] },
+  options: { ...commonOpts, plugins: { legend: { display: false } } }
+});
+
+// PBR
+new Chart(document.getElementById('pbrChart'), {
+  type: 'bar',
+  data: { labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','現在'],
+    datasets: [{ label: 'PBR（倍）', data: [1.08,0.82,1.19,0.73,0.95,0.89],
+      backgroundColor: ['#94a3b8','#94a3b8','#94a3b8','#94a3b8','#94a3b8', kajiGreen] }] },
+  options: { ...commonOpts, plugins: { legend: { display: false } } }
+});
+
+// Scenario horizontal bar
+new Chart(document.getElementById('scenarioChart'), {
+  type: 'bar',
+  data: {
+    labels: ['ベア（25%）','現在株価','ベース（55%・中央値）','ブル（20%）'],
+    datasets: [{ label: '株価（円）', data: [2471,4580,4634,6090],
+      backgroundColor: [kajiRed, kajiMuted, kajiGreen, kajiBlue] }]
+  },
+  options: { ...commonOpts, indexAxis: 'y', plugins: { legend: { display: false } } }
+});
+</script>
+
+</body>
+</html>

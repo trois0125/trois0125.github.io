@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8935 ＦＪネクストホールディングス 投資分析レポート（2026-08-09）</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --primary:#1a3a5c; --accent:#2e7d52; --warn:#b45309; --danger:#991b1b;
+  --pass:#166534; --bg:#f8fafc; --card:#ffffff; --border:#e2e8f0;
+  --text:#1e293b; --muted:#64748b; --source:#3b82f6;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:14px;line-height:1.7;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 60px;}
+header{background:var(--primary);color:#fff;padding:26px 0 22px;}
+header .wrap{padding-bottom:0;}
+h1{margin:0 0 6px;font-size:23px;letter-spacing:.02em;}
+.subhead{font-size:12.5px;opacity:.88;}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 22px;border-bottom:2px solid var(--border);}
+.tab{padding:10px 15px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;}
+.tab:hover{color:var(--primary);}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary);background:#fff;}
+.panel{display:none;} .panel.active{display:block;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:18px;}
+h2{font-size:17px;color:var(--primary);margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);}
+h3{font-size:14.5px;color:var(--primary);margin:20px 0 10px;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:8px;}
+th,td{border:1px solid var(--border);padding:7px 9px;text-align:right;}
+th{background:#f1f5f9;color:var(--primary);font-weight:600;text-align:center;}
+td.l,th.l{text-align:left;}
+tr.h1-row td{background:#ecfdf5;color:#065f46;}
+tr.forecast td{background:#eff6ff;color:#1d4ed8;font-style:italic;}
+tr.target td{background:#fef9c3;color:#854d0e;}
+tr.highlight td{background:#fefce8;font-weight:700;}
+td.neg{color:var(--danger);}
+.src{font-size:10px;color:var(--source);font-weight:700;vertical-align:super;margin-left:2px;}
+.citation{font-size:11px;color:var(--source);font-weight:600;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:6px;}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:7px;padding:12px 13px;}
+.kpi .lab{font-size:11px;color:var(--muted);}
+.kpi .val{font-size:21px;font-weight:700;color:var(--primary);line-height:1.3;}
+.kpi .sub{font-size:10.5px;color:var(--muted);}
+.banner{border-radius:8px;padding:15px 18px;margin-bottom:18px;font-weight:700;font-size:15px;}
+.banner.go{background:#ecfdf5;border:2px solid var(--accent);color:var(--pass);}
+.banner.cond{background:#fffbeb;border:2px solid var(--warn);color:var(--warn);}
+.banner .note{display:block;font-weight:400;font-size:12.5px;color:var(--text);margin-top:6px;}
+.alert{border-left:4px solid var(--warn);background:#fffbeb;padding:12px 15px;border-radius:0 6px 6px 0;margin-bottom:14px;font-size:12.5px;}
+.alert.danger{border-left-color:var(--danger);background:#fef2f2;}
+.alert.info{border-left-color:var(--source);background:#eff6ff;}
+.alert b{color:var(--primary);}
+.pass{color:var(--pass);font-weight:700;}
+.warnc{color:var(--warn);font-weight:700;}
+.fail{color:var(--danger);font-weight:700;}
+.chart-box{position:relative;height:310px;margin:12px 0 4px;}
+.chart-box.tall{height:360px;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;}
+.boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.box{border:1px solid var(--border);border-radius:7px;padding:13px 15px;background:#fff;}
+.box h4{margin:0 0 6px;font-size:13.5px;color:var(--primary);}
+.box .num{font-size:17px;font-weight:700;color:var(--accent);}
+.box p{margin:6px 0 0;font-size:12px;color:var(--text);}
+.box.risk{border-left:4px solid var(--danger);}
+.box.cat{border-left:4px solid var(--accent);}
+.note{font-size:11px;color:var(--muted);margin-top:6px;}
+.foot{font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;margin-top:24px;}
+ul{margin:6px 0 6px 18px;padding:0;} li{margin-bottom:4px;font-size:12.5px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>8935 株式会社ＦＪネクストホールディングス</h1>
+    <div class="subhead">東証プライム／不動産業｜割安株・中期（3〜12ヶ月）投資判断レポート｜作成日 2026年8月9日</div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="tabs">
+  <button class="tab active" data-t="t1">① 総合評価</button>
+  <button class="tab" data-t="t2">② 企業概要</button>
+  <button class="tab" data-t="t3">③ 財務分析</button>
+  <button class="tab" data-t="t4">④ バリュエーション</button>
+  <button class="tab" data-t="t5">⑤ カタリスト</button>
+  <button class="tab" data-t="t6">⑥ リスク</button>
+  <button class="tab" data-t="t7">⑦ 投資結論</button>
+</div>
+
+<!-- ============ TAB 1 ============ -->
+<section class="panel active" id="t1">
+  <div class="banner cond">条件付き購入検討（時価総額が基準超過。他7条件はクリア）
+    <span class="note">スクリーニング判定日（2026-07-17・株価1,781円）時点では8条件すべてを通過していたが <span class="src">[⑤]</span>、
+    その後の株価上昇（2026-08-07終値1,922円 <span class="src">[④]</span>）により時価総額が665.9億円となり、条件⑥「時価総額≤600億円」を超過した。</span>
+  </div>
+
+  <div class="alert danger">
+    <b>⚠ 最重要・時価総額の基準超過：</b> 1,922円 × 34,646,500株 ＝ <b>665.9億円</b>（&gt; 600億円）。
+    600億円に収まる株価は 約1,732円まで。<b>現値から約9.9％下</b>にあたる。
+    小型株フィルタを厳格に運用する場合、現水準は買い場ではなく「押し目待ち」の局面と整理される <span class="src">[④]</span>。
+  </div>
+
+  <div class="alert">
+    <b>特記事項（減配なし・むしろ大幅増配）：</b> 2026年3月期の年間配当は66円（普通28＋特別10＋中間28）、
+    2027年3月期予想は<b>80円</b>（前期比＋14円）。会社は「中長期的な利益成長に合わせて増配していく<b>累進配当</b>」を明記 <span class="src">[③]</span>。
+    ただし80円のうち特別配当の有無は非開示で、予想配当性向は25.0％ <span class="src">[③]</span>。
+  </div>
+
+  <h2>主要KPI <span class="citation">[④][①相当：短信][⑤]</span></h2>
+  <div class="kpis">
+    <div class="kpi"><div class="lab">株価（2026/08/07終値・未調整）</div><div class="val">1,922円</div><div class="sub">前日比 −16円（−0.83％）<span class="src">[④]</span></div></div>
+    <div class="kpi"><div class="lab">予想PER（2027/3期）</div><div class="val">6.00倍</div><div class="sub">1,922 ÷ 320.59円<span class="src">[③][④]</span></div></div>
+    <div class="kpi"><div class="lab">PBR（Q1末BPS基準）</div><div class="val">0.75倍</div><div class="sub">1,922 ÷ 2,557.30円<span class="src">[③]</span></div></div>
+    <div class="kpi"><div class="lab">予想配当利回り</div><div class="val">4.16％</div><div class="sub">年間80円予想<span class="src">[③][④]</span></div></div>
+    <div class="kpi"><div class="lab">自己資本比率（Q1末）</div><div class="val">72.3％</div><div class="sub">83,757 ÷ 115,849百万円<span class="src">[③]</span></div></div>
+    <div class="kpi"><div class="lab">ROE（2026/3期実績）</div><div class="val">13.0％</div><div class="sub">前期9.2％から大幅改善<span class="src">[③]</span></div></div>
+    <div class="kpi"><div class="lab">ROA（総資産経常利益率）</div><div class="val">13.1％</div><div class="sub">2026/3期<span class="src">[③]</span></div></div>
+    <div class="kpi"><div class="lab">時価総額</div><div class="val fail">665.9億円</div><div class="sub">基準600億円を超過<span class="src">[④]</span></div></div>
+  </div>
+
+  <div class="card">
+    <h2>スクリーニング8条件 判定 <span class="citation">[⑤] J-Quants API V2（JPX公式）／基準日 2026-07-17</span></h2>
+    <table>
+      <thead><tr><th class="l">#</th><th class="l">条件</th><th>基準</th><th>実測値<br>（判定日基準）</th><th>判定</th><th>現在株価<br>1,922円で再計算</th><th class="l">出所</th></tr></thead>
+      <tbody>
+        <tr><td class="l">①</td><td class="l">PER</td><td>≤ 15倍</td><td>5.83倍</td><td class="pass">○</td><td class="pass">6.00倍 ○</td><td class="l">[⑤][④]</td></tr>
+        <tr><td class="l">②</td><td class="l">PBR</td><td>≤ 1.5倍</td><td>0.72倍</td><td class="pass">○</td><td class="pass">0.75倍 ○</td><td class="l">[⑤][④]</td></tr>
+        <tr><td class="l">③</td><td class="l">売上高CAGR</td><td>≥ 4％</td><td>+9.8％（9年）</td><td class="pass">○</td><td class="pass">同左 ○</td><td class="l">[⑤]</td></tr>
+        <tr><td class="l">④</td><td class="l">営業利益CAGR</td><td>≥ 4％</td><td>+6.7％</td><td class="pass">○</td><td class="pass">同左 ○</td><td class="l">[⑤]</td></tr>
+        <tr><td class="l">⑤</td><td class="l">自己資本比率</td><td>≥ 40％</td><td>71.2％</td><td class="pass">○</td><td class="pass">72.3％（Q1末）○</td><td class="l">[⑤][③]</td></tr>
+        <tr class="highlight"><td class="l">⑥</td><td class="l">時価総額</td><td>≤ 600億円</td><td>583億円</td><td class="pass">○</td><td class="fail">665.9億円 ✕</td><td class="l">[⑤][④]</td></tr>
+        <tr><td class="l">⑦</td><td class="l">直近営業増益率</td><td>候補群 上位1/3</td><td>+51.8％<br>（上位17％・境界+22％）</td><td class="pass">○</td><td class="pass">同左 ○</td><td class="l">[⑤]</td></tr>
+        <tr><td class="l">⑧</td><td class="l">6ヶ月株価モメンタム</td><td>候補群 上位1/3</td><td>+20.2％<br>（上位8％・境界+3％）</td><td class="pass">○</td><td class="pass">同左 ○</td><td class="l">[⑤]</td></tr>
+      </tbody>
+    </table>
+    <p class="note">判定日 2026-07-17／参照決算 2026-03-31（開示 2026-05-12）／母集団：①〜⑥通過101銘柄・8条件通過11銘柄 <span class="src">[⑤]</span>。
+    参考値：3ヶ月モメンタム +14.2％／12ヶ月 +49.8％／直近増収率 +26.6％／営業利益率 10.1％／売買代金 130百万円 <span class="src">[⑤]</span>。</p>
+    <p class="note">※ 現在株価での再計算はデータ取得日 2026-08-09、株価は 2026-08-07 終値（未調整）を使用。⑦⑧は母集団の相対順位のため判定日の値をそのまま表示している。</p>
+  </div>
+
+  <div class="card">
+    <h2>業績推移概観（売上高・経常利益） <span class="citation">[③] 決算短信／有価証券報告書</span></h2>
+    <div class="chart-box tall"><canvas id="cOverview"></canvas></div>
+    <p class="note">2027/3期は会社予想（2026年5月12日公表・第1四半期短信で据置） <span class="src">[③]</span>。</p>
+  </div>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section class="panel" id="t2">
+  <div class="card">
+    <h2>会社基本情報 <span class="citation">[②] 会社公式IRサイト（会社概要）／[③] 有価証券報告書</span></h2>
+    <table>
+      <tbody>
+        <tr><th class="l" style="width:150px">商号</th><td class="l">株式会社ＦＪネクストホールディングス（FJ Next Holdings Co., Ltd.）<span class="src">[②]</span></td></tr>
+        <tr><th class="l">証券コード／市場</th><td class="l">8935／東京証券取引所プライム市場<span class="src">[②]</span></td></tr>
+        <tr><th class="l">設立</th><td class="l">1980年（昭和55年）7月<span class="src">[②]</span></td></tr>
+        <tr><th class="l">資本金</th><td class="l">27億7,440万円<span class="src">[②]</span></td></tr>
+        <tr><th class="l">代表者</th><td class="l">代表取締役会長 肥田 幸春／代表取締役社長 肥田 恵輔<span class="src">[②]</span></td></tr>
+        <tr><th class="l">本社</th><td class="l">東京都新宿区西新宿六丁目5番1号 新宿アイランドタワー<span class="src">[②]</span></td></tr>
+        <tr><th class="l">事業年度</th><td class="l">4月1日〜3月31日<span class="src">[②]</span></td></tr>
+        <tr><th class="l">事業内容</th><td class="l">グループ会社の経営管理、不動産特定共同事業、不動産の売買・賃貸<span class="src">[②]</span></td></tr>
+        <tr><th class="l">従業員数</th><td class="l">600名（連結）／46名（単体）　※2026年3月31日現在<span class="src">[②]</span><br>
+          <span style="font-size:11.5px;color:var(--muted)">有報記載：連結600名（外、平均臨時雇用者数657名）<span class="src">[③]</span></span></td></tr>
+        <tr><th class="l">発行済株式数</th><td class="l">34,646,500株（うち自己株式 1,894,315株・2026年3月末）<span class="src">[③]</span></td></tr>
+        <tr><th class="l">主要免許</th><td class="l">宅地建物取引業 国土交通大臣（6）第5806号／賃貸住宅管理業 国土交通大臣（01）第004272号／不動産特定共同事業 東京都知事 第156号<span class="src">[②]</span></td></tr>
+        <tr><th class="l">持株会社移行</th><td class="l">2021年10月1日付で持株会社体制へ移行（不動産開発事業は㈱ＦＪネクストが承継）<span class="src">[③]</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>報告セグメント（4事業） <span class="citation">[③] 2026年3月期 決算短信 セグメント情報</span></h2>
+    <div class="boxes">
+      <div class="box"><h4>不動産開発事業</h4>
+        <div class="num">1,277.25億円（89.7％）</div>
+        <p>首都圏のワンルーム／ファミリーマンションの開発・販売・仲介・賃貸、伊豆地域の不動産事業。ブランドは「ガーラマンションシリーズ」「ガーラ・レジデンスシリーズ」。セグメント利益124.53億円（前期比+56.5％）<span class="src">[③]</span></p></div>
+      <div class="box"><h4>不動産管理事業</h4>
+        <div class="num">42.84億円（3.0％）</div>
+        <p>マンション区分所有者からの賃貸管理、管理組合からの建物管理、別荘地管理。賃貸管理20,307戸／建物管理385棟（26,262戸）。セグメント利益11.08億円（前期比−7.8％）<span class="src">[③]</span></p></div>
+      <div class="box"><h4>建設事業</h4>
+        <div class="num">89.88億円（6.3％）</div>
+        <p>㈱レジテックコーポレーション。マンション等建築物の設計・施工・検査・リノベーション。セグメント利益8.29億円（前期比+184.1％）<span class="src">[③]</span></p></div>
+      <div class="box"><h4>旅館事業</h4>
+        <div class="num">13.33億円（0.9％）</div>
+        <p>静岡県伊豆エリアで温泉旅館「伊東遊季亭」「伊東遊季亭 川奈別邸」「玉峰館」「清流荘」を経営。セグメント損失0.02億円（前期は0.12億円の利益）<span class="src">[③]</span></p></div>
+    </div>
+    <p class="note">※ 構成比は外部顧客への売上高142,374百万円に対する比率。上記4事業のほか「その他」（金融サービス事業）0.41億円がある <span class="src">[③]</span>。</p>
+
+    <h3>セグメント別売上高 推移</h3>
+    <div class="chart-box"><canvas id="cSeg"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>経営戦略の骨子 <span class="citation">[③] 2026年3月期 決算補足説明資料（2026年5月12日）</span></h2>
+    <ul>
+      <li><b>供給エリアの段階的拡大：</b>「都心エリア（資産性の高いエリア）」→「都心近接エリア（交通・生活の利便性が高いエリア）」→「周辺成長エリア（再開発・人口流入など需要拡大が期待されるエリア）」<span class="src">[③]</span></li>
+      <li><b>3事業連携：</b>不動産開発（GALAブランドを活かした新築・中古マンションの供給・流通拡大）×不動産管理（管理戸数拡大によるストック収益の積み上げ）×建設（受注拡大と品質向上による供給力の強化）→「収益基盤の拡充→持続的成長」<span class="src">[③]</span></li>
+      <li><b>重点的な取り組み：</b>用地取得力の強化／建設・人員体制の強化／販売チャネルの強化／管理戸数の拡大（他社管理物件の管理受託拡大）<span class="src">[③]</span></li>
+      <li><b>供給実績（2026年3月末）：</b>新築として供給した資産運用型マンション 全313棟・23,354戸。神奈川県75棟6,773戸（横浜市43棟4,233戸・川崎市32棟2,540戸）ほか<span class="src">[③]</span></li>
+    </ul>
+    <p class="note">※ 会社は数値目標を伴う中期経営計画を開示していない。上記は決算補足説明資料に記載された定性的な成長方針である <span class="src">[③]</span>。</p>
+  </div>
+</section>
+
+<!-- ============ TAB 3 ============ -->
+<section class="panel" id="t3">
+  <div class="card">
+    <h2>連結損益計算書サマリー <span class="citation">[③] 有価証券報告書（主要な経営指標等の推移）／決算短信</span></h2>
+    <table>
+      <thead><tr><th class="l">項目（百万円）</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>2027/3 Q1</th><th>2027/3 予想</th></tr></thead>
+      <tbody>
+        <tr><td class="l">売上高</td><td>82,258</td><td>84,688</td><td>100,405</td><td>112,429</td><td>142,374</td><td>40,236</td><td>152,000</td></tr>
+        <tr><td class="l">前期比</td><td>—</td><td>+3.0％</td><td>+18.6％</td><td>+12.0％</td><td>+26.6％</td><td>+27.8％</td><td>+6.8％</td></tr>
+        <tr><td class="l">営業利益</td><td>9,095</td><td>8,250</td><td>9,431</td><td>9,488</td><td>14,402</td><td>5,683</td><td>15,000</td></tr>
+        <tr class="highlight"><td class="l">営業利益率</td><td>11.1％</td><td>9.7％</td><td>9.4％</td><td>8.4％</td><td>10.1％</td><td>14.1％</td><td>9.9％</td></tr>
+        <tr><td class="l">経常利益</td><td>9,080</td><td>8,219</td><td>9,434</td><td>9,459</td><td>14,356</td><td>5,671</td><td>15,000</td></tr>
+        <tr><td class="l">親会社株主に帰属する当期純利益</td><td>6,338</td><td>5,621</td><td>6,453</td><td>6,483</td><td>10,010</td><td>3,912</td><td>10,500</td></tr>
+        <tr><td class="l">営業利益 前期比</td><td>—</td><td class="neg">−9.3％</td><td>+14.3％</td><td>+0.6％</td><td>+51.8％</td><td>+88.0％</td><td>+4.2％</td></tr>
+      </tbody>
+    </table>
+    <p class="note">2022/3期の営業利益（9,095百万円）は当時の決算短信開示値 <span class="src">[④]</span>。2027/3 Q1（2026年4〜6月）は第1四半期決算短信（2026年7月31日開示）<span class="src">[③]</span>。
+    2027/3期予想は会社予想（第1四半期短信で修正なし）<span class="src">[③]</span>。</p>
+
+    <div class="chart-box tall"><canvas id="cPL"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>1株指標・資本効率 <span class="citation">[③] 有価証券報告書 主要な経営指標等の推移</span></h2>
+    <table>
+      <thead><tr><th class="l">項目</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>2027/3 予想</th></tr></thead>
+      <tbody>
+        <tr><td class="l">EPS（円）</td><td>193.93</td><td>171.97</td><td>197.31</td><td>198.11</td><td>305.73</td><td>320.59</td></tr>
+        <tr><td class="l">BPS（円）</td><td>1,802.55</td><td>1,928.17</td><td>2,079.57</td><td>2,227.90</td><td>2,477.00</td><td>2,557.30<br><span style="font-size:10px">（Q1末実績）</span></td></tr>
+        <tr><td class="l">DPS（円）</td><td>48.00</td><td>48.00</td><td>50.00</td><td>54.00</td><td>66.00</td><td>80.00</td></tr>
+        <tr><td class="l">ROE（％）</td><td>11.2</td><td>9.2</td><td>9.8</td><td>9.2</td><td>13.0</td><td>12.54<span class="src">[④]</span></td></tr>
+        <tr><td class="l">総資産経常利益率（％）</td><td>—</td><td>—</td><td>—</td><td>9.4</td><td>13.1</td><td>9.06<span class="src">[④]</span></td></tr>
+        <tr><td class="l">配当性向（連結・％）</td><td>24.8</td><td>27.9</td><td>25.3</td><td>27.3</td><td>21.6</td><td>25.0</td></tr>
+        <tr><td class="l">株価収益率（期末・倍）</td><td>5.1</td><td>5.7</td><td>7.2</td><td>6.0</td><td>5.1</td><td>6.00<br><span style="font-size:10px">（8/7終値）</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">2022/3〜2024/3の配当性向はDPS÷EPSで算出した参考値。2025/3・2026/3・2027/3予想は短信記載値 <span class="src">[③]</span>。
+    2027/3のROE・総資産経常利益率は kabutan 掲載の予想ベース <span class="src">[④]</span>。</p>
+
+    <div class="grid2">
+      <div><h3>ROE 推移</h3><div class="chart-box"><canvas id="cROE"></canvas></div></div>
+      <div><h3>EPS・DPS 推移</h3><div class="chart-box"><canvas id="cEPS"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>貸借対照表・キャッシュフロー <span class="citation">[③] 有価証券報告書／決算短信</span></h2>
+    <table>
+      <thead><tr><th class="l">項目（百万円）</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>2027/3 Q1</th></tr></thead>
+      <tbody>
+        <tr><td class="l">総資産</td><td>82,659</td><td>88,938</td><td>95,281</td><td>105,477</td><td>113,869</td><td>115,849</td></tr>
+        <tr><td class="l">純資産</td><td>58,917</td><td>63,022</td><td>68,031</td><td>72,922</td><td>81,127</td><td>83,757</td></tr>
+        <tr class="highlight"><td class="l">自己資本比率（％）</td><td>71.3</td><td>70.9</td><td>71.4</td><td>69.1</td><td>71.2</td><td>72.3</td></tr>
+        <tr><td class="l">営業CF</td><td>22,215</td><td class="neg">△4,534</td><td>4,671</td><td class="neg">△13,880</td><td>7,103</td><td>—</td></tr>
+        <tr><td class="l">投資CF</td><td>7</td><td>1,933</td><td class="neg">△5,036</td><td>4,906</td><td class="neg">△3,452</td><td>—</td></tr>
+        <tr><td class="l">フリーCF</td><td>22,222</td><td class="neg">△2,601</td><td class="neg">△365</td><td class="neg">△8,974</td><td>3,651</td><td>—</td></tr>
+        <tr><td class="l">財務CF</td><td class="neg">△9,675</td><td class="neg">△738</td><td class="neg">△2,289</td><td>3,841</td><td class="neg">△5,378</td><td>—</td></tr>
+        <tr><td class="l">現金及び現金同等物 期末残高</td><td>35,543</td><td>32,204</td><td>29,550</td><td>24,418</td><td>22,690</td><td>—</td></tr>
+        <tr><td class="l">有利子負債／総資産（％）</td><td>—</td><td>—</td><td>—</td><td>—</td><td>13.0</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="alert info">
+      <b>営業CFの振れについて：</b> 当社の営業CFは棚卸資産（販売用不動産・仕掛販売用不動産）の増減に強く左右される。
+      2025/3期の△138.8億円は仕入拡大に伴うもので、販売用不動産＋仕掛販売用不動産の残高は22/3期の30,287百万円から26/3期の64,712百万円へ拡大している <span class="src">[③]</span>。
+      2026/3期はこれが+71.0億円に転じFCFも黒字化した。自己資本比率71〜72％・有利子負債／総資産13.0％と財務は保守的 <span class="src">[③]</span>。
+    </div>
+
+    <h3>販売用不動産・仕掛販売用不動産 残高推移（百万円） <span class="citation">[③] 決算補足説明資料</span></h3>
+    <div class="chart-box"><canvas id="cInv"></canvas></div>
+    <p class="note">2026年3月期末：販売用不動産 39,281百万円／仕掛販売用不動産 25,431百万円。45のプロジェクトが進行中 <span class="src">[③]</span>。</p>
+  </div>
+
+  <div class="card">
+    <h2>不動産開発事業 売上高内訳 <span class="citation">[③] 決算短信・第1四半期決算短信</span></h2>
+    <table>
+      <thead><tr><th class="l">区分</th><th>2025/3 戸数</th><th>2025/3 金額<br>（百万円）</th><th>2026/3 戸数</th><th>2026/3 金額<br>（百万円）</th><th>前年比</th><th>2027/3 Q1 戸数</th><th>2027/3 Q1 金額<br>（百万円）</th></tr></thead>
+      <tbody>
+        <tr><td class="l">ガーラマンションシリーズ</td><td>516</td><td>14,827</td><td>652</td><td>20,216</td><td>136.3％</td><td>339</td><td>10,822</td></tr>
+        <tr><td class="l">ガーラ・レジデンスシリーズ</td><td>182</td><td>8,731</td><td>341</td><td>17,184</td><td>196.8％</td><td>47</td><td>2,528</td></tr>
+        <tr><td class="l">中古マンション</td><td>2,551</td><td>69,750</td><td>2,885</td><td>83,170</td><td>119.2％</td><td>670</td><td>20,528</td></tr>
+        <tr><td class="l">不動産賃貸収入</td><td>—</td><td>5,973</td><td>—</td><td>6,351</td><td>106.3％</td><td>—</td><td>1,711</td></tr>
+        <tr><td class="l">その他収入</td><td>—</td><td>618</td><td>—</td><td>803</td><td>129.8％</td><td>—</td><td>142</td></tr>
+        <tr class="highlight"><td class="l">合計</td><td>3,249</td><td>99,901</td><td>3,878</td><td>127,725</td><td>127.9％</td><td>1,056</td><td>35,733</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Q1（2026年4〜6月）は前年同四半期比 戸数938→1,056戸、金額 27,899→35,733百万円（+28.1％）<span class="src">[③]</span>。</p>
+  </div>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section class="panel" id="t4">
+  <div class="card">
+    <h2>現在バリュエーション <span class="citation">[④] kabutan.jp（2026年8月7日終値ベース）</span></h2>
+    <div class="kpis">
+      <div class="kpi"><div class="lab">予想PER</div><div class="val">6.00倍</div><div class="sub">kabutan掲載値 6.0倍<span class="src">[④]</span></div></div>
+      <div class="kpi"><div class="lab">PBR</div><div class="val">0.75倍</div><div class="sub">kabutan掲載値 0.75倍<span class="src">[④]</span></div></div>
+      <div class="kpi"><div class="lab">予想配当利回り</div><div class="val">4.16％</div><div class="sub">年間80円予想<span class="src">[④]</span></div></div>
+      <div class="kpi"><div class="lab">信用倍率</div><div class="val">7.25倍</div><div class="sub">2026/7/31時点<span class="src">[④]</span></div></div>
+    </div>
+    <p class="note">検証：1,922円 ÷ 320.59円 ＝ 5.996倍（PER）／1,922円 ÷ 2,557.30円 ＝ 0.752倍（PBR、2027/3 Q1末BPS基準）。
+    2026/3期末BPS 2,477.00円を用いると 0.776倍。kabutan掲載0.75倍は直近Q1末BPSを反映した値と整合する <span class="src">[③][④]</span>。</p>
+    <p class="note">売買代金 81百万円（2026/8/7）・単元株数100株・売買最低代金 192,200円 <span class="src">[④]</span>。流動性は小さく、スクリーニング判定時の売買代金は130百万円 <span class="src">[⑤]</span>。</p>
+  </div>
+
+  <div class="card">
+    <h2>PER・PBR の推移 <span class="citation">[③] 有価証券報告書（株価収益率・BPS）</span></h2>
+    <div class="grid2">
+      <div><h3>期末PER（倍）</h3><div class="chart-box"><canvas id="cPER"></canvas></div></div>
+      <div><h3>期末PBR（倍・推計）</h3><div class="chart-box"><canvas id="cPBR"></canvas></div></div>
+    </div>
+    <p class="note">PERは有報記載の「株価収益率」<span class="src">[③]</span>。
+    PBRは有報に直接記載がないため、<b>期末株価 ≒ 株価収益率 × EPS</b> で逆算し BPS で除して算出した<b>推計値</b>である（22/3≈989円→0.55倍／23/3≈980円→0.51倍／24/3≈1,421円→0.68倍／25/3≈1,189円→0.53倍／26/3≈1,559円→0.63倍）。
+    有報の株価収益率が小数第1位までの丸め値であるため、期末株価の逆算には数円〜十数円の誤差を含む。</p>
+    <p class="note">株価レンジ（提出会社ベース・年間最高／最低）<span class="src">[③]</span>：22/3 1,128／958、23/3 1,097／935、24/3 1,425／972、25/3 1,415／1,077、26/3 1,948／1,032。</p>
+  </div>
+
+  <div class="card">
+    <h2>理論PBR分析（ROEベース）</h2>
+    <table>
+      <thead><tr><th class="l">前提</th><th>株式コスト 7％</th><th>株式コスト 8％</th><th>株式コスト 9％</th></tr></thead>
+      <tbody>
+        <tr><td class="l">ROE 13.0％（2026/3期実績）</td><td>1.86倍</td><td>1.62倍</td><td>1.44倍</td></tr>
+        <tr><td class="l">ROE 12.5％（2027/3期予想）</td><td>1.79倍</td><td>1.57倍</td><td>1.39倍</td></tr>
+        <tr><td class="l">ROE 9.2％（2025/3期・改善前）</td><td>1.31倍</td><td>1.15倍</td><td>1.02倍</td></tr>
+        <tr class="highlight"><td class="l">実際のPBR（2026/8/7）</td><td colspan="3">0.75倍</td></tr>
+      </tbody>
+    </table>
+    <p class="note"><b>推計値・保証なし：</b> 理論PBR＝ROE÷株式コスト（残余利益がゼロ成長で永続すると置いた簡便法）。株式コストは仮定値であり会社の開示ではない。
+    ROEが改善前の9.2％水準に戻ったとしても理論値1.0〜1.3倍に対し実際は0.75倍で、市場は<b>2026/3期のROE改善を一過性と見ている</b>可能性が読み取れる。</p>
+  </div>
+
+  <div class="card">
+    <h2>配当推移 <span class="citation">[③] 有価証券報告書／決算短信</span></h2>
+    <table>
+      <thead><tr><th class="l">決算期</th><th>年間DPS（円）</th><th>内訳</th><th>配当性向（％）</th><th>期末株価（円）</th><th>期末株価ベース利回り（％）</th></tr></thead>
+      <tbody>
+        <tr><td class="l">2022/3</td><td>48.00</td><td class="l">普通48</td><td>24.8</td><td>≈989</td><td>4.85</td></tr>
+        <tr><td class="l">2023/3</td><td>48.00</td><td class="l">普通48</td><td>27.9</td><td>≈980</td><td>4.90</td></tr>
+        <tr><td class="l">2024/3</td><td>50.00</td><td class="l">普通48＋特別2</td><td>25.3</td><td>≈1,421</td><td>3.52</td></tr>
+        <tr><td class="l">2025/3</td><td>54.00</td><td class="l">普通48＋特別4＋記念2</td><td>27.3</td><td>≈1,189</td><td>4.54</td></tr>
+        <tr><td class="l">2026/3</td><td>66.00</td><td class="l">中間28＋期末38（普通28＋特別10）</td><td>21.6</td><td>≈1,559</td><td>4.23</td></tr>
+        <tr class="forecast"><td class="l">2027/3（予想）</td><td>80.00</td><td class="l">中間40＋期末40</td><td>25.0</td><td>1,922（8/7終値）</td><td>4.16</td></tr>
+      </tbody>
+    </table>
+    <p class="note">期末株価は上記の逆算による推計値。会社は「中長期的な利益成長に合わせて増配していく<b>累進配当</b>」を基本方針として明記している <span class="src">[③]</span>。
+    普通配当ベースでは 48円（22/3〜25/3）→28円×2＝56円相当（26/3）→80円（27/3予想）で、前期比+24円の普通配当増額となる <span class="src">[③]</span>。</p>
+  </div>
+
+  <div class="card">
+    <h2>ピア比較</h2>
+    <p style="font-size:12.5px;">kabutan の「比較される銘柄」欄にはミガロＨＤ・タスキＨＤ・グッドコムＡが挙げられている <span class="src">[④]</span>。
+    ただし本レポートの方針上、<b>各社の定量データを一次情報として取得していないため、定量的なピア比較は省略する</b>。</p>
+  </div>
+</section>
+
+<!-- ============ TAB 5 ============ -->
+<section class="panel" id="t5">
+  <div class="card">
+    <h2>2027年3月期 会社計画 <span class="citation">[③] 決算短信／決算補足説明資料</span></h2>
+    <table>
+      <thead><tr><th class="l">項目</th><th>2026/3 実績</th><th>2027/3 会社予想</th><th>前期比</th></tr></thead>
+      <tbody>
+        <tr><td class="l">売上高（百万円）</td><td>142,374</td><td>152,000</td><td>+6.8％</td></tr>
+        <tr><td class="l">営業利益（百万円）</td><td>14,402</td><td>15,000</td><td>+4.2％</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>14,356</td><td>15,000</td><td>+4.5％</td></tr>
+        <tr><td class="l">親会社株主に帰属する当期純利益（百万円）</td><td>10,010</td><td>10,500</td><td>+4.9％</td></tr>
+        <tr><td class="l">EPS（円）</td><td>305.73</td><td>320.59</td><td>+4.9％</td></tr>
+        <tr class="highlight"><td class="l">営業利益率</td><td>10.1％</td><td>9.9％</td><td>−0.2pt</td></tr>
+        <tr class="target"><td class="l">マンション販売計画戸数</td><td>3,878戸（実績）</td><td>4,000戸（過去最多計画）</td><td>+3.1％</td></tr>
+      </tbody>
+    </table>
+    <p class="note">会社は数値目標を伴う中期経営計画を開示していない。上表は2027年3月期の単年度計画である <span class="src">[③]</span>。
+    「ガーラ・レジデンスシリーズ343戸を含む」「原材料価格上昇を見込み営業利益率9.9％」と明記 <span class="src">[③]</span>。</p>
+  </div>
+
+  <div class="card">
+    <h2>第1四半期 進捗 <span class="citation">[③] 2027年3月期 第1四半期決算短信（2026年7月31日）</span></h2>
+    <table>
+      <thead><tr><th class="l">項目（百万円）</th><th>2027/3 通期予想</th><th>2027/3 Q1 実績</th><th>進捗率</th><th>2026/3 Q1 実績</th><th>前年同期比</th></tr></thead>
+      <tbody>
+        <tr class="h1-row"><td class="l">売上高</td><td>152,000</td><td>40,236</td><td>26.5％</td><td>31,494</td><td>+27.8％</td></tr>
+        <tr class="h1-row"><td class="l">営業利益</td><td>15,000</td><td>5,683</td><td><b>37.9％</b></td><td>3,022</td><td><b>+88.0％</b></td></tr>
+        <tr class="h1-row"><td class="l">経常利益</td><td>15,000</td><td>5,671</td><td>37.8％</td><td>3,001</td><td>+89.0％</td></tr>
+        <tr class="h1-row"><td class="l">親会社株主に帰属する四半期純利益</td><td>10,500</td><td>3,912</td><td>37.3％</td><td>2,057</td><td>+90.2％</td></tr>
+        <tr class="h1-row"><td class="l">EPS（円）</td><td>320.59</td><td>119.46</td><td>37.3％</td><td>62.85</td><td>+90.1％</td></tr>
+      </tbody>
+    </table>
+    <p class="note">通期予想は据置（修正なし）。当社は物件引渡し時点で売上計上されるため四半期業績に偏重が生じる旨が短信に明記されている <span class="src">[③]</span>。</p>
+  </div>
+
+  <div class="card">
+    <h2>カタリスト（一次情報で確認できるもの）</h2>
+    <div class="boxes">
+      <div class="box cat"><h4>1. Q1営業利益の通期進捗37.9％</h4>
+        <p>通期営業利益予想15,000百万円に対しQ1で5,683百万円（前年同期比+88.0％）。前年Q1の進捗（3,022÷9,488＝31.9％相当）を上回る。上方修正の可能性を織り込む余地がある <span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>2. 業績予想の上方修正実績</h4>
+        <p>2026年2月3日および2026年4月21日に「通期連結業績予想及び期末配当予想の修正に関するお知らせ」を開示。同期は年度内に2回の予想修正を行っている <span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>3. 累進配当と大幅増配</h4>
+        <p>年間配当 66円（26/3）→80円（27/3予想・+14円、普通配当比では+24円）。会社は「中長期的な利益成長に合わせて増配していく累進配当」を基本方針として明記 <span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>4. マンション販売 過去最多4,000戸計画</h4>
+        <p>2026/3期の3,878戸（過去最多）に続き、2027/3期は4,000戸を計画（ガーラ・レジデンスシリーズ343戸含む）<span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>5. 中古マンション事業の回転の速さ</h4>
+        <p>2026/3期の中古マンション販売日数平均32.0日（業界平均82.5日＝東日本不動産流通機構公表の2025年登録〜成約日数、会社資料内比較）。買取2,618→3,033件、販売2,551→2,885戸 <span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>6. 賃貸管理のストック拡大</h4>
+        <p>賃貸管理戸数 20,307戸（26/3末）→20,447戸（26/6末）、建物管理385棟26,262戸→389棟26,641戸。入居率99.1％を継続 <span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>7. 建設事業の受注拡大</h4>
+        <p>2026/3期 売上89.88億円（+28.8％）・セグメント利益8.29億円（+184.1％）。Q1も売上30.65億円（+36.4％）・利益3.07億円（+135.3％）と大型案件の受注比率上昇が続く <span class="src">[③]</span>。</p></div>
+      <div class="box cat"><h4>8. 新規契約時の賃料増額</h4>
+        <p>2025年10月〜2026年3月の新規契約で新旧契約の賃料差額 平均+4,033円。賃貸収入売上高は6,543百万円（26/3期）<span class="src">[③]</span>。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 6 ============ -->
+<section class="panel" id="t6">
+  <div class="card">
+    <h2>リスク（一次情報で確認されたもののみ）</h2>
+
+    <div class="alert danger">
+      <b>投資判断上、最も重い論点：</b> 時価総額665.9億円は当スクリーニングの上限600億円を超過している <span class="src">[④]</span>。
+      さらに、2026/3期の急伸（営業利益+51.8％）は中古マンション販売の急拡大（2,551→2,885戸）に大きく依存しており、
+      会社自身の2027/3期計画は営業利益+4.2％と<b>成長率の急減速</b>を織り込んでいる <span class="src">[③]</span>。
+    </div>
+
+    <div class="boxes">
+      <div class="box risk"><h4>1. 業績成長率の急減速（会社計画ベース）</h4>
+        <p>2026/3期の営業利益+51.8％に対し2027/3期計画は+4.2％。売上も+26.6％→+6.8％。会社は「各セグメントにおいて原材料価格や施工費の高騰が見込まれる」とし、営業利益率を10.1％→9.9％と見込む <span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>2. 引渡し時期による業績変動</h4>
+        <p>有報「事業等のリスク」⑨：マンション等は<b>顧客への引渡しをもって売上計上</b>されるため、竣工や引渡しのタイミングにより四半期の売上高・利益が変動する。「ある四半期の業績は必ずしも他の四半期や年次の業績を示唆しない」と明記。工期遅延で引渡しが期末を越えた場合、業績が変動する <span class="src">[③]</span>。<b>Q1の高進捗をそのまま通期に外挿できない根拠</b>となる。</p></div>
+
+      <div class="box risk"><h4>3. 国内外の経済状況・金利動向</h4>
+        <p>有報リスク③：主力の不動産開発事業は景気動向・<b>金利動向</b>・販売価格動向・住宅税制の影響を受けやすい。大幅な金利上昇や供給過剰による販売価格下落が発生した場合、購買者の購入意欲低下や<b>棚卸資産の評価損</b>が生じうる。土地取得から完成・販売まで通常1年半〜3年を要し、その間の建築費高騰・不動産市況変動でプロジェクト収益性が低下する可能性がある <span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>4. 有利子負債への依存</h4>
+        <p>有報リスク④：事業用地の仕入資金を主として金融機関からの借入で調達。<b>連結総資産に対する有利子負債比率は2026年3月期13.0％</b>。市場金利上昇局面や不動産業界・当社のリスクプレミアム上昇時には支払利息が増加し業績に影響しうる <span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>5. 棚卸資産の積み上がりと営業CFの不安定性</h4>
+        <p>販売用不動産＋仕掛販売用不動産は22/3期30,287百万円→26/3期64,712百万円へ拡大 <span class="src">[③]</span>。
+        営業CFは 22/3 +222億→23/3 △45億→24/3 +47億→25/3 △139億→26/3 +71億と大きく振れる。
+        短信の参考指標でも「2023年3月期及び2025年3月期のキャッシュ・フロー対有利子負債比率等は<b>営業CFがマイナスのため記載していない</b>」と注記されている <span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>6. 事業用地の仕入れ</h4>
+        <p>有報リスク⑤：十分な不動産関連情報の入手が困難となった場合や仕入資金が調達できない場合、業績・財政状態に影響。契約後に事前調査で認識できない<b>土壌汚染</b>が発見された場合、追加費用やスケジュール変更が発生しうる <span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>7. 建築工事の外注依存</h4>
+        <p>有報リスク⑥：建築工事は建設会社へ発注。発注先が経営不安に陥った場合や物件の品質問題が発生した場合、計画どおりの開発に支障をきたす <span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>8. 法的規制・免許の更新</h4>
+        <p>有報リスク①：宅建業法・建築基準法・都市計画法等の規制下にあり、免許・許認可の取消し等があった場合は主要な事業活動に支障をきたす。㈱ＦＪネクストの宅建業者免許は<b>有効期間 2021年8月11日〜2026年8月10日</b>（有報提出日 2026年6月25日時点の記載）<span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>9. 旅館事業の赤字</h4>
+        <p>2026/3期の旅館事業はセグメント損失0.02億円（前期は0.12億円の利益）。「低価格帯の宿へシフトする旅行者の傾向」で客室稼働率が想定を下回った。2027/3期Q1も0.54億円の損失（前年同期も同額の損失）<span class="src">[③]</span>。</p></div>
+
+      <div class="box risk"><h4>10. 流動性・信用需給</h4>
+        <p>売買代金81百万円（2026/8/7）・信用倍率7.25倍（買残151.6千株／売残20.9千株、2026/7/31）<span class="src">[④]</span>。
+        小型株ゆえの流動性リスクに加え、買い長の信用需給は戻り売り圧力となりうる。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 7 ============ -->
+<section class="panel" id="t7">
+  <div class="banner cond">条件付き購入検討（時価総額が基準超過。他7条件はクリア）
+    <span class="note">スクリーニング8条件のうち7条件をクリアするが、株価上昇により条件⑥「時価総額≤600億円」を超過（665.9億円）。</span>
+  </div>
+
+  <div class="card">
+    <h2>総合評価</h2>
+    <p style="font-size:13px;">
+    <b>割安性は依然として明確である。</b> 予想PER 6.00倍、PBR 0.75倍、予想配当利回り4.16％。自己資本比率72.3％（2027/3期Q1末）、有利子負債／総資産13.0％で財務は保守的 <span class="src">[③][④]</span>。
+    ROEは2026/3期に13.0％まで改善したにもかかわらずPBRは0.75倍にとどまり、ROE÷株式コストの簡便法で見た理論値（株式コスト8％で1.62倍）との乖離は大きい。
+    </p>
+    <p style="font-size:13px;">
+    <b>足元のモメンタムも強い。</b> 2027/3期Q1は売上+27.8％・営業利益+88.0％、通期営業利益予想に対する進捗は37.9％で、前年同期の進捗（31.9％相当）を上回る <span class="src">[③]</span>。
+    6ヶ月株価モメンタムは+20.2％（母集団上位8％）、12ヶ月は+49.8％ <span class="src">[⑤]</span>。配当は66円→80円へ増配予想で、会社は累進配当を明記している <span class="src">[③]</span>。
+    </p>
+    <p style="font-size:13px;">
+    <b>一方で、3つの留保がある。</b> 第一に、時価総額665.9億円は当スクリーニングの上限を11％超過しており、600億円以内に収まる株価は約1,732円（現値から約9.9％下）である <span class="src">[④]</span>。
+    第二に、会社自身の2027/3期計画は営業利益+4.2％と大幅な減速を織り込んでおり、2026/3期の+51.8％は中古マンション販売の急拡大に依存した水準である <span class="src">[③]</span>。
+    第三に、当社の売上は物件引渡し時点で計上されるため四半期業績の偏重が構造的に生じる旨が有報に明記されており、Q1の高進捗を通期に単純外挿することはできない <span class="src">[③]</span>。
+    </p>
+    <p style="font-size:13px;">
+    したがって、<b>バリュエーション面では明確に割安だが、スクリーニング規律上は現水準では「見送り、押し目待ち」が整合的</b>である。判定を「条件付き購入検討」とするのは、超過している条件が
+    ファンダメンタルズの毀損ではなく<b>株価上昇そのものによる時価総額の膨張</b>であるため、規律の運用方針（時価総額上限の解釈）を投資家自身が決める必要があるという意味においてである。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>シナリオ分析（推計値・保証なし）</h2>
+    <div class="alert">
+      <b>注記：</b> 以下の目標株価は一次情報から導出した<b>推計値</b>であり、実際の業績・株価を保証するものではない。
+      PER倍率は当社の過去5年の期末PERレンジ（5.1〜7.2倍）<span class="src">[③]</span> を参照して設定した仮定値である。確率はレポート作成者の主観的な想定であり、会社の開示に基づくものではない。
+    </div>
+    <table>
+      <thead><tr><th class="l">シナリオ</th><th>想定確率</th><th>想定EPS（円）</th><th>想定PER</th><th>目標株価（円）</th><th>現在比</th><th class="l">前提・トリガー</th></tr></thead>
+      <tbody>
+        <tr><td class="l"><b>ベア</b></td><td>25％</td><td>272<br><span style="font-size:10px">（予想比 −15％）</span></td><td>5.1倍</td><td><b>1,387</b></td><td class="neg">−27.8％</td>
+          <td class="l">金利上昇や販売価格下落で中古マンションの回転が鈍化。引渡し遅延で通期未達。PERは過去最低水準の5.1倍へ回帰。</td></tr>
+        <tr><td class="l"><b>ベース</b></td><td>55％</td><td>320.59<br><span style="font-size:10px">（会社予想）</span></td><td>6.0倍</td><td><b>1,924</b></td><td>+0.1％</td>
+          <td class="l">会社予想を達成。PERは現在水準（6.0倍）を維持。増配（80円）は実施。現在株価はほぼこのシナリオを織り込んだ水準にある。</td></tr>
+        <tr><td class="l"><b>ブル</b></td><td>20％</td><td>369<br><span style="font-size:10px">（予想比 +15％）</span></td><td>7.2倍</td><td><b>2,657</b></td><td>+38.2％</td>
+          <td class="l">Q1の高進捗が持続し上方修正（2026年2月・4月の実績あり）。累進配当の継続でインカム系資金が流入。PERは過去5年の上限7.2倍へ。</td></tr>
+      </tbody>
+    </table>
+    <p class="note">加重平均目標株価（推計）＝ 1,387×0.25 ＋ 1,924×0.55 ＋ 2,657×0.20 ＝ <b>約1,936円</b>（現在比 +0.7％）。</p>
+    <div class="chart-box"><canvas id="cScen"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>総合チェックリスト</h2>
+    <table>
+      <thead><tr><th class="l">項目</th><th>評価</th><th class="l">根拠</th></tr></thead>
+      <tbody>
+        <tr><td class="l">バリュエーション（PER・PBR）</td><td class="pass">◎</td><td class="l">PER 6.00倍・PBR 0.75倍。ROE13.0％に対しPBR1倍割れ <span class="src">[③][④]</span></td></tr>
+        <tr><td class="l">財務健全性</td><td class="pass">◎</td><td class="l">自己資本比率72.3％・有利子負債／総資産13.0％ <span class="src">[③]</span></td></tr>
+        <tr><td class="l">成長性（過去実績）</td><td class="pass">○</td><td class="l">売上CAGR +9.8％（9年）・営業利益CAGR +6.7％ <span class="src">[⑤]</span></td></tr>
+        <tr><td class="l">成長性（先行き）</td><td class="warnc">△</td><td class="l">会社計画は営業利益+4.2％と急減速 <span class="src">[③]</span></td></tr>
+        <tr><td class="l">足元モメンタム</td><td class="pass">◎</td><td class="l">Q1営業利益+88.0％・進捗37.9％／6ヶ月株価+20.2％ <span class="src">[③][⑤]</span></td></tr>
+        <tr><td class="l">株主還元</td><td class="pass">◎</td><td class="l">年間配当 66→80円・累進配当を明記・利回り4.16％ <span class="src">[③]</span></td></tr>
+        <tr><td class="l">時価総額（小型株フィルタ）</td><td class="fail">✕</td><td class="l">665.9億円（上限600億円を超過）<span class="src">[④]</span></td></tr>
+        <tr><td class="l">業績の期ズレ・変動性</td><td class="warnc">△</td><td class="l">引渡基準による四半期偏重を有報が明記 <span class="src">[③]</span></td></tr>
+        <tr><td class="l">キャッシュフローの安定性</td><td class="warnc">△</td><td class="l">営業CFは棚卸資産増減で年により大きく振れる <span class="src">[③]</span></td></tr>
+        <tr><td class="l">流動性</td><td class="warnc">△</td><td class="l">売買代金81百万円・信用倍率7.25倍 <span class="src">[④]</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>免責事項・データ出所</h2>
+    <p style="font-size:12px;">
+    <b>データ取得日：</b>2026年8月9日<br>
+    <b>株価基準日：</b>2026年8月7日（終値1,922円・未調整終値）<span class="src">[④]</span><br>
+    <b>業績予想ベース日：</b>2026年5月12日公表の2027年3月期通期連結業績予想（2026年7月31日の第1四半期決算短信で修正なし）<span class="src">[③]</span><br>
+    <b>スクリーニング判定基準日：</b>2026年7月17日（J-Quants API V2・JPX公式）<span class="src">[⑤]</span><br>
+    <b>参照決算：</b>2026年3月31日期（開示 2026年5月12日）／2027年3月期第1四半期（開示 2026年7月31日）
+    </p>
+    <p style="font-size:12px;">
+    <b>出所一覧：</b><br>
+    <span class="src">[①]</span> irpocket 公式IRデータ（Excel）… <b>本銘柄は irpocket に未登録（https://irpocket.com/8935/chartest/data.xlsx が404）のため取得できず。</b>代替として <span class="src">[③]</span> の会社公式開示PDF（有価証券報告書・決算短信）から同等のP&amp;L／B/S／CF／1株指標を取得した。<br>
+    <span class="src">[②]</span> 会社公式IRページ … https://www.fjnext-hd.co.jp/corporate/corporate_profile.html （会社概要・従業員数）<br>
+    <span class="src">[③]</span> 会社公式開示PDF（XJ Storage 経由の適時開示） … 2026年3月期 決算短信〔日本基準〕（連結）（2026/05/12）／2026年3月期 決算補足説明資料（2026/05/12）／2027年3月期 第1四半期決算短信（2026/07/31）／有価証券報告書 第46期（2026/06/25提出）<br>
+    <span class="src">[④]</span> kabutan.jp 直接フェッチ … https://kabutan.jp/stock/?code=8935 および /stock/finance?code=8935<br>
+    <span class="src">[⑤]</span> J-Quants API V2（JPX公式）… スクリーニング8条件の判定・母集団内相対順位
+    </p>
+    <p style="font-size:12px;">
+    本レポートは公式開示情報（一次情報）のみに基づいて作成された<b>個人の投資判断の参考資料</b>であり、特定の銘柄の売買を推奨するものではない。
+    シナリオ分析・理論PBR・期末株価およびPBRの推移は、記載のとおり<b>一次情報から導出した推計値</b>であり、将来の業績・株価を保証しない。
+    投資判断は利用者自身の責任において行われたい。Claudeは金融アドバイザーではない。
+    </p>
+    <div class="foot">
+      作成：2026年8月9日／8935 株式会社ＦＪネクストホールディングス（東証プライム・不動産業）<br>
+      同銘柄フォルダ内の関連ファイル：20260809_tanshin.pdf ／ 20260809_tanshin_q1.pdf ／ 20260809_kessan_setsumei.pdf ／ 20260802_yuho.pdf ／ 20260802_qualitative_report.html
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.t).classList.add('active');
+  });
+});
+const P='#1a3a5c', A='#2e7d52', W='#b45309', D='#991b1b', S='#3b82f6';
+const yen={ticks:{callback:v=>v.toLocaleString()}};
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{boxWidth:12,font:{size:11}}}}};
+
+new Chart(document.getElementById('cOverview'),{data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+    {type:'bar',label:'売上高（百万円）',data:[82258,84688,100405,112429,142374,152000],backgroundColor:P+'cc',yAxisID:'y'},
+    {type:'line',label:'経常利益（百万円）',data:[9080,8219,9434,9459,14356,15000],borderColor:A,backgroundColor:A,borderWidth:2.5,tension:.25,yAxisID:'y1'}
+  ]},options:{...base,scales:{y:{position:'left',title:{display:true,text:'売上高'},...yen},y1:{position:'right',title:{display:true,text:'経常利益'},grid:{drawOnChartArea:false},...yen}}}});
+
+new Chart(document.getElementById('cSeg'),{type:'bar',data:{
+  labels:['2025/3','2026/3'],
+  datasets:[
+    {label:'不動産開発',data:[99901,127725],backgroundColor:P},
+    {label:'不動産管理',data:[4214,4284],backgroundColor:A},
+    {label:'建設',data:[6976,8988],backgroundColor:W},
+    {label:'旅館',data:[1297,1333],backgroundColor:S},
+    {label:'その他',data:[39,41],backgroundColor:'#94a3b8'}
+  ]},options:{...base,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'外部顧客への売上高（百万円）'},...yen}}}});
+
+new Chart(document.getElementById('cPL'),{data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+    {type:'bar',label:'売上高',data:[82258,84688,100405,112429,142374,152000],backgroundColor:P+'aa',yAxisID:'y'},
+    {type:'bar',label:'営業利益',data:[9095,8250,9431,9488,14402,15000],backgroundColor:A+'dd',yAxisID:'y'},
+    {type:'line',label:'営業利益率（％）',data:[11.1,9.7,9.4,8.4,10.1,9.9],borderColor:W,backgroundColor:W,borderWidth:2.5,tension:.25,yAxisID:'y1'}
+  ]},options:{...base,scales:{y:{title:{display:true,text:'百万円'},...yen},y1:{position:'right',title:{display:true,text:'％'},grid:{drawOnChartArea:false},min:0,max:14}}}});
+
+new Chart(document.getElementById('cROE'),{type:'line',data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+    {label:'ROE（％）',data:[11.2,9.2,9.8,9.2,13.0,12.54],borderColor:P,backgroundColor:P,borderWidth:2.5,tension:.25},
+    {label:'総資産経常利益率（％）',data:[null,null,null,9.4,13.1,9.06],borderColor:A,backgroundColor:A,borderWidth:2.5,tension:.25,borderDash:[5,4]}
+  ]},options:{...base,scales:{y:{beginAtZero:true,title:{display:true,text:'％'}}}}});
+
+new Chart(document.getElementById('cEPS'),{data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+    {type:'bar',label:'EPS（円）',data:[193.93,171.97,197.31,198.11,305.73,320.59],backgroundColor:P+'cc',yAxisID:'y'},
+    {type:'line',label:'DPS（円）',data:[48,48,50,54,66,80],borderColor:W,backgroundColor:W,borderWidth:2.5,tension:.25,yAxisID:'y1'}
+  ]},options:{...base,scales:{y:{title:{display:true,text:'EPS'}},y1:{position:'right',title:{display:true,text:'DPS'},grid:{drawOnChartArea:false},beginAtZero:true}}}});
+
+new Chart(document.getElementById('cInv'),{type:'bar',data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+  datasets:[
+    {label:'販売用不動産',data:[19025,26489,28159,43324,39281],backgroundColor:P},
+    {label:'仕掛販売用不動産',data:[11262,11130,12491,16414,25431],backgroundColor:A}
+  ]},options:{...base,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'百万円'},...yen}}}});
+
+new Chart(document.getElementById('cPER'),{type:'bar',data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在'],
+  datasets:[{label:'PER（倍）',data:[5.1,5.7,7.2,6.0,5.1,6.00],
+    backgroundColor:['#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#1a3a5c','#b45309']}]},
+  options:{...base,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,title:{display:true,text:'倍'}}}}});
+
+new Chart(document.getElementById('cPBR'),{type:'bar',data:{
+  labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在'],
+  datasets:[{label:'PBR（倍）',data:[0.55,0.51,0.68,0.53,0.63,0.75],
+    backgroundColor:['#2e7d52','#2e7d52','#2e7d52','#2e7d52','#2e7d52','#b45309']}]},
+  options:{...base,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:1.6,title:{display:true,text:'倍'}}}}});
+
+new Chart(document.getElementById('cScen'),{type:'bar',data:{
+  labels:['ベア（推計）','現在株価','ベース（推計）','ブル（推計）'],
+  datasets:[{label:'株価（円）',data:[1387,1922,1924,2657],
+    backgroundColor:[D,'#64748b',P,A]}]},
+  options:{...base,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'円（推計値・保証なし）'},...yen}}}});
+</script>
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ＣＫサンエツ（5757）定量分析レポート｜2026-08-13</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --primary:#1a3a5c; --accent:#2e7d52; --warn:#b45309; --danger:#991b1b;
+  --pass:#166534; --bg:#f8fafc; --card:#ffffff; --border:#e2e8f0;
+  --text:#1e293b; --muted:#64748b; --source:#3b82f6;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+ font-size:14px;line-height:1.7;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 60px;}
+header{background:var(--primary);color:#fff;padding:26px 0 20px;}
+header .wrap{padding-bottom:0;}
+header h1{margin:0 0 4px;font-size:24px;letter-spacing:.02em;}
+header .sub{opacity:.85;font-size:13px;}
+header .meta{margin-top:10px;font-size:12px;opacity:.75;}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 0;border-bottom:2px solid var(--border);}
+.tab{padding:9px 15px;cursor:pointer;border:1px solid var(--border);border-bottom:none;
+ background:#eef2f6;color:var(--muted);border-radius:6px 6px 0 0;font-size:13px;font-weight:600;
+ user-select:none;transition:.15s;}
+.tab:hover{background:#e2e8f0;}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.panel{display:none;padding-top:22px;}
+.panel.active{display:block;}
+h2{font-size:18px;color:var(--primary);border-left:5px solid var(--primary);
+ padding-left:10px;margin:30px 0 12px;}
+h2:first-of-type{margin-top:6px;}
+h3{font-size:15px;color:var(--primary);margin:22px 0 8px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:16px;}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13px;margin-bottom:8px;}
+th,td{border:1px solid var(--border);padding:7px 9px;text-align:right;}
+th{background:#eef2f6;color:var(--primary);font-weight:600;text-align:center;}
+td:first-child,th:first-child{text-align:left;}
+tr.h1-row td{background:#eaf7ef;color:var(--pass);font-weight:600;}
+tr.forecast td{background:#eef4fd;color:#1d4ed8;font-style:italic;font-weight:600;}
+tr.highlight td{background:#fefce8;font-weight:700;}
+td.neg{color:var(--danger);}
+.src{color:var(--source);font-size:10px;vertical-align:super;font-weight:700;margin-left:2px;}
+.citation{color:var(--source);font-size:11px;font-weight:600;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+.kpi .l{font-size:11px;color:var(--muted);}
+.kpi .v{font-size:22px;font-weight:700;color:var(--primary);line-height:1.25;}
+.kpi .n{font-size:11px;color:var(--muted);}
+.banner{border-radius:8px;padding:15px 18px;margin:14px 0;font-weight:700;font-size:16px;color:#fff;}
+.banner.cond{background:var(--warn);}
+.banner .s{display:block;font-size:12px;font-weight:400;opacity:.95;margin-top:4px;}
+.alert{border-left:5px solid var(--warn);background:#fffbeb;padding:12px 15px;border-radius:0 6px 6px 0;margin-bottom:12px;}
+.alert.dgr{border-color:var(--danger);background:#fef2f2;}
+.alert.ok{border-color:var(--accent);background:#f0fdf4;}
+.alert b{display:block;margin-bottom:3px;color:var(--primary);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px;}
+.box{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);
+ border-radius:0 7px 7px 0;padding:12px 15px;}
+.box.risk{border-left-color:var(--danger);}
+.box h4{margin:0 0 5px;font-size:13.5px;color:var(--primary);}
+.box p{margin:0;font-size:12.5px;color:var(--text);}
+.chart{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;height:340px;}
+.pass{color:var(--pass);font-weight:700;}
+.bord{color:var(--warn);font-weight:700;}
+.fail{color:var(--danger);font-weight:700;}
+.note{font-size:11.5px;color:var(--muted);margin:4px 0 16px;}
+.disc{background:#f1f5f9;border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:11.5px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>株式会社ＣＫサンエツ（5757）｜定量分析レポート</h1>
+    <div class="sub">東証プライム・非鉄金属／純粋持株会社（伸銅・精密部品・配管鍍金）</div>
+    <div class="meta">
+      データ取得日：2026-08-13（株価 11:07 時点）／会社予想ベース日：2026-05-13（2027年3月期 期初予想）／
+      直近開示：2026-08-07（2027年3月期 第1四半期決算）
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <div class="tab active" data-t="t1">① 総合評価</div>
+    <div class="tab" data-t="t2">② 企業概要</div>
+    <div class="tab" data-t="t3">③ 財務分析</div>
+    <div class="tab" data-t="t4">④ バリュエーション</div>
+    <div class="tab" data-t="t5">⑤ カタリスト</div>
+    <div class="tab" data-t="t6">⑥ リスク</div>
+    <div class="tab" data-t="t7">⑦ 投資結論</div>
+  </div>
+
+<!-- ============ TAB 1 ============ -->
+<div class="panel active" id="t1">
+  <div class="banner cond">条件付き購入検討（1条件がボーダー）
+    <span class="s">スクリーニング8条件は 8/8 通過 <span class="citation">[⑤]</span>。ただし時価総額446億円は「200〜600億円」の境界帯に位置し、また営業利益と経常利益の乖離（デリバティブヘッジ構造）の理解が前提となる。</span>
+  </div>
+
+  <h2>主要KPI <span class="citation">[③][④]</span></h2>
+  <div class="kpis">
+    <div class="kpi"><div class="l">株価（2026-08-13 11:07）<span class="src">[④]</span></div><div class="v">5,030円</div><div class="n">前日比 −20円（−0.40%）</div></div>
+    <div class="kpi"><div class="l">予想PER<span class="src">[④]</span></div><div class="v">6.4倍</div><div class="n">5,030 ÷ 786.5（27/3会社予想EPS）</div></div>
+    <div class="kpi"><div class="l">PBR<span class="src">[④]</span></div><div class="v">0.74倍</div><div class="n">Q1末BPS 約6,787円ベース</div></div>
+    <div class="kpi"><div class="l">配当利回り<span class="src">[④]</span></div><div class="v">1.99%</div><div class="n">27/3予想DPS 100円</div></div>
+    <div class="kpi"><div class="l">自己資本比率<span class="src">[③]</span></div><div class="v">56.3%</div><div class="n">2026/3期末（Q1末は49.9%<span class="src">[④]</span>）</div></div>
+    <div class="kpi"><div class="l">ROE<span class="src">[③]</span></div><div class="v">6.7%</div><div class="n">2026/3実績（27/3予想 11.6%<span class="src">[④]</span>）</div></div>
+    <div class="kpi"><div class="l">ROA<span class="src">[④]</span></div><div class="v">3.89%</div><div class="n">2026/3実績</div></div>
+    <div class="kpi"><div class="l">時価総額<span class="src">[④]</span></div><div class="v">446億円</div><div class="n">5,030円 × 8,867,000株（未調整終値）</div></div>
+  </div>
+
+  <h2>スクリーニング8条件 判定 <span class="citation">[⑤]</span></h2>
+  <p class="note">判定は J-Quants API V2（JPX公式）を用いた <code>ctx.py</code> の出力をそのまま採用。基準日 2026-07-17／参照決算 2026-03-31（開示 2026-05-13）。母集団：①〜⑥通過 101銘柄、8条件通過 11銘柄。</p>
+  <table>
+    <thead><tr><th>#</th><th>条件</th><th>基準</th><th>実績値</th><th>判定</th><th>出所</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td style="text-align:left">PER</td><td>≤ 15倍</td><td>12.01倍</td><td class="pass">✅ クリア</td><td>[⑤]</td></tr>
+      <tr><td>②</td><td style="text-align:left">PBR</td><td>≤ 1.5倍</td><td>0.78倍</td><td class="pass">✅ クリア</td><td>[⑤]</td></tr>
+      <tr><td>③</td><td style="text-align:left">売上高CAGR</td><td>≥ 4%</td><td>+9.1%（9年で算出）</td><td class="pass">✅ クリア</td><td>[⑤]</td></tr>
+      <tr><td>④</td><td style="text-align:left">営業利益CAGR</td><td>≥ 4%</td><td>+13.9%</td><td class="pass">✅ クリア</td><td>[⑤]</td></tr>
+      <tr><td>⑤</td><td style="text-align:left">自己資本比率</td><td>≥ 40%</td><td>56.3%</td><td class="pass">✅ クリア</td><td>[⑤][③]</td></tr>
+      <tr><td>⑥</td><td style="text-align:left">時価総額</td><td>≤ 600億円</td><td>428億円（基準日）／446億円（8/13）</td><td class="bord">⚠️ 境界帯（200〜600億）</td><td>[⑤][④]</td></tr>
+      <tr><td>⑦</td><td style="text-align:left">直近1期の営業増益率</td><td>候補群 上位1/3</td><td>+38.0%（母集団内 上位22%／境界 +22%）</td><td class="pass">✅ クリア</td><td>[⑤]</td></tr>
+      <tr><td>⑧</td><td style="text-align:left">6ヶ月株価モメンタム</td><td>候補群 上位1/3</td><td>+21.5%（母集団内 上位6%／境界 +3%）</td><td class="pass">✅ クリア</td><td>[⑤]</td></tr>
+    </tbody>
+  </table>
+  <p class="note">
+    参考 <span class="citation">[⑤]</span>：3ヶ月モメンタム +19.0%／12ヶ月 +39.0%／直近増収率 +19.4%／営業利益率 9.5%／売買代金 56百万円。<br>
+    ①のPER 12.01倍は基準日（2026-07-17、株価5,190円）に前期実績EPS 432.19円を用いた <code>ctx.py</code> の値。
+    2026-08-13時点の会社予想EPS 786.5円ベースでは 6.4倍 <span class="citation">[④]</span>。いずれも基準を満たす。
+  </p>
+
+  <h2>業績推移概観（売上高・経常利益）<span class="citation">[③][④]</span></h2>
+  <div class="chart"><canvas id="cOverview"></canvas></div>
+
+  <h2>特記事項</h2>
+  <div class="alert dgr"><b>営業利益と経常利益が大きく乖離する損益構造</b>
+    2026年3月期は営業利益141億61百万円（前期比+38.0%）に対し、経常利益は56億36百万円（同−32.8%）。
+    差の主因は営業外費用に計上されたデリバティブ損失 89億36百万円・デリバティブ評価損 2億51百万円 <span class="citation">[③]</span>。
+    会社は銅・亜鉛相場の変動が営業利益に与える影響を打ち消すためデリバティブ取引を行っており、
+    <b style="display:inline">経営指標として経常利益を採用</b>している <span class="citation">[③]</span>。営業利益だけを見ると実力を過大評価する。
+  </div>
+  <div class="alert"><b>Q1末に自己資本比率が49.9%へ低下</b>
+    2026/3期末 56.3% → 2026年6月末 49.9%。総資産が975億20百万円→1,121億93百万円へ増加し、
+    有利子負債倍率も 0.24倍→0.43倍に上昇 <span class="citation">[④]</span>。スクリーニング基準（≥40%）は満たすが、
+    運転資本の膨張（銅相場高止まりに伴う棚卸資産・売掛金増）が続く点は継続監視が必要。
+  </div>
+  <div class="alert"><b>フリーCFが2026年3月期にマイナス転落</b>
+    営業CF 29億65百万円に対し投資CF −48億31百万円で、フリーCF −18億66百万円 <span class="citation">[④]</span>。
+    棚卸資産の増加66億56百万円と、三谷伸銅の子会社化（取得支出13億51百万円）・設備投資37億97百万円が要因 <span class="citation">[③]</span>。
+  </div>
+  <div class="alert ok"><b>減配なし。2027年3月期より「累進配当」方針を採用</b>
+    2026年3月期の年間配当は90円（中間45円＋期末45円）で前期と同額を維持。
+    加えて「減配せず、配当を維持または増加させる累進配当方針を2027年3月期より採用する」ことを決定 <span class="citation">[③]</span>。
+    2027年3月期の予想DPSは100円 <span class="citation">[④]</span>。
+  </div>
+</div>
+
+<!-- ============ TAB 2 ============ -->
+<div class="panel" id="t2">
+  <h2>会社基本情報 <span class="citation">[③]</span></h2>
+  <table>
+    <tbody>
+      <tr><td>会社名</td><td style="text-align:left">株式会社ＣＫサンエツ（ＣＫ ＳＡＮ−ＥＴＳＵ Ｃｏ.,Ｌｔｄ.）</td></tr>
+      <tr><td>証券コード／市場</td><td style="text-align:left">5757／東京証券取引所プライム市場（単元100株）</td></tr>
+      <tr><td>業種</td><td style="text-align:left">非鉄金属 <span class="src">[⑤]</span></td></tr>
+      <tr><td>設立</td><td style="text-align:left">1963年7月1日（実質上の存続会社である旧サンエツ金属は1937年12月25日設立）</td></tr>
+      <tr><td>本店所在地</td><td style="text-align:left">富山県高岡市守護町二丁目12番1号</td></tr>
+      <tr><td>代表者</td><td style="text-align:left">代表取締役社長 釣谷 宏行</td></tr>
+      <tr><td>資本金</td><td style="text-align:left">2,756百万円（提出会社）</td></tr>
+      <tr><td>発行済株式総数</td><td style="text-align:left">8,867,000株（2026年3月31日／提出日現在）</td></tr>
+      <tr><td>連結従業員数</td><td style="text-align:left">1,015人（2026年3月31日現在／臨時従業員は総数の10%未満のため記載省略）</td></tr>
+      <tr><td>企業形態</td><td style="text-align:left">純粋持株会社（2011年10月移行）。提出会社の従業員は0人。子会社14社で構成</td></tr>
+      <tr><td>主要子会社</td><td style="text-align:left">サンエツ金属(100%)／シーケー金属(89.0%)／日本伸銅(55.5%)／三谷伸銅(94.06%)／リケンＣＫＪＶ ほか</td></tr>
+    </tbody>
+  </table>
+  <p class="note">出所：<span class="src">[③]</span> 有価証券報告書（2026年3月期・2026年6月24日提出、北陸財務局長宛）</p>
+
+  <h2>経営理念・方針 <span class="citation">[③]</span></h2>
+  <div class="card">
+    <p style="margin:0 0 8px"><b>経営理念（有報記載の文言）</b></p>
+    <p style="margin:0 0 4px">① 良いものだけを、安く、早く、たくさん生産することで、社会に貢献します。</p>
+    <p style="margin:0 0 4px">② 努力するに値するプロの仕事と、努力して働くほど報われる働きがいのある職場を提供することで、社会に貢献します。</p>
+    <p style="margin:0 0 10px">③ 期待され、期待に応え、期待を超えるため、弛みない努力を重ねます。</p>
+    <p style="margin:0 0 10px">これらを掲げ、<b>『地味だけど凄い価値の創造』</b>を目指しております。</p>
+    <p style="margin:0;font-size:12.5px;color:var(--muted)">
+      主力の「伸銅事業」と「配管・鍍金事業」はいずれも国内市場が成熟し、今後とも需要が漸減すると会社は想定。
+      これに対し<b>新製品の開発による市場開拓</b>と<b>M&amp;Aによる事業拡張</b>に注力する方針を明示している。
+      経営状況を判断するための客観的指標は<b>経常利益</b>としている。
+    </p>
+  </div>
+
+  <h2>事業セグメント <span class="citation">[③]</span></h2>
+  <div class="grid2">
+    <div class="box">
+      <h4>伸銅（売上構成比 88.0%）</h4>
+      <p>黄銅棒・黄銅線・黄銅管。自動車・家電・水栓金具等の素材。鉛やカドミウム等の環境負荷物質を使わない環境対応合金を実用化し多数の特許を取得。<br>
+      FY2026/3 外部売上 131,442百万円（+23.5%）／セグメント利益 11,177百万円（+57.7%）／販売量 100,389トン（+11.7%）／従業員 591人<br>
+      生産拠点：サンエツ金属 砺波工場・高岡事業所・新日東工場、日本伸銅 堺工場、三谷伸銅 本社工場</p>
+    </div>
+    <div class="box">
+      <h4>精密部品（売上構成比 4.0%）</h4>
+      <p>黄銅製カメラマウント（一眼レフの本体・レンズ着脱部品）、シンクロリング（MTのシンクロナイザーリング部品）、水栓金具等の鍛造・切削加工。<br>
+      FY2026/3 外部売上 6,009百万円（+6.6%）／セグメント利益 906百万円（+45.2%）／従業員 102人<br>
+      生産拠点：サンエツ金属 プレシジョン工場（富山県砺波市）</p>
+    </div>
+    <div class="box">
+      <h4>配管・鍍金（売上構成比 8.0%）</h4>
+      <p>水道・ガス配管用継手の生産、および鋼材の溶融亜鉛鍍金。塩化ビニールを一切使わない脱塩ビ継手、透明被覆継手（グッドデザイン賞）。環境対応鍍金「CKeめっきスーパー」はNETIS登録の特許技術。<br>
+      FY2026/3 外部売上 11,985百万円（−8.2%）／セグメント利益 1,872百万円（−15.2%）／従業員 322人<br>
+      生産拠点：リケンＣＫＪＶ、シーケー金属（いずれも富山県高岡市）</p>
+    </div>
+  </div>
+
+  <h2>セグメント別売上高推移 <span class="citation">[③]</span></h2>
+  <div class="chart"><canvas id="cSeg"></canvas></div>
+</div>
+
+<!-- ============ TAB 3 ============ -->
+<div class="panel" id="t3">
+  <h2>連結損益計算書サマリー <span class="citation">[③][④]</span></h2>
+  <table>
+    <thead><tr><th>（百万円）</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>26.4-6（Q1）</th><th>2027/3 会社予想</th></tr></thead>
+    <tbody>
+      <tr><td>売上高</td><td>123,838</td><td>111,433</td><td>125,108</td><td>149,438</td><td>48,939</td><td>180,000</td></tr>
+      <tr><td>前年比</td><td>+7.4%</td><td class="neg">−10.0%</td><td>+12.3%</td><td>+19.4%</td><td>+38.1%</td><td>+20.5%</td></tr>
+      <tr><td>営業利益</td><td>8,279</td><td>7,929</td><td>10,263</td><td>14,161</td><td>5,606</td><td>10,000</td></tr>
+      <tr class="highlight"><td>営業利益率</td><td>6.69%</td><td>7.12%</td><td>8.20%</td><td>9.48%</td><td>11.45%</td><td>5.56%</td></tr>
+      <tr><td>経常利益</td><td>8,655</td><td>6,094</td><td>8,383</td><td>5,636</td><td>2,628</td><td>10,000</td></tr>
+      <tr><td>前年比</td><td>—</td><td class="neg">−29.6%</td><td>+37.6%</td><td class="neg">−32.8%</td><td>+0.1%</td><td>+77.4%</td></tr>
+      <tr><td>親会社株主に帰属する当期純利益</td><td>5,318</td><td>3,815</td><td>5,207</td><td>3,587</td><td>1,551</td><td>6,500</td></tr>
+      <tr><td>前年比</td><td>—</td><td class="neg">−28.3%</td><td>+36.5%</td><td class="neg">−31.1%</td><td class="neg">−16.2%</td><td>+81.2%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">
+    Q1（2026年4-6月）は 2026-08-07 開示 <span class="citation">[④]</span>。通期は会社予想（2026-05-13 公表、Q1時点で据え置き）<span class="citation">[④]</span>。<br>
+    <b>営業利益と経常利益の関係：</b> 2026/3期の営業外費用合計 9,397百万円のうち デリバティブ損失 8,936、デリバティブ評価損 251、支払利息 140 <span class="citation">[③]</span>。
+    会社は「銅や亜鉛の相場変動によって生じる損益への影響を打ち消すために行っているデリバティブ取引による営業外費用」と説明している <span class="citation">[③]</span>。
+  </p>
+
+  <h3>2026年3月期 経常利益の増減要因 <span class="citation">[③]</span></h3>
+  <table>
+    <thead><tr><th>要因</th><th>金額</th></tr></thead>
+    <tbody>
+      <tr><td>数量・構成</td><td>+31.6億円</td></tr>
+      <tr><td>相場差損益</td><td>+21.1億円</td></tr>
+      <tr><td>デリバティブ損益</td><td class="neg">−67.6億円</td></tr>
+      <tr><td>その他</td><td class="neg">−12.5億円</td></tr>
+      <tr class="highlight"><td>合計（経常利益 前期比）</td><td class="neg">−27.5億円（8,383 → 5,636）</td></tr>
+    </tbody>
+  </table>
+
+  <h2>売上高・利益推移 <span class="citation">[③][④]</span></h2>
+  <div class="chart"><canvas id="cPL"></canvas></div>
+
+  <h2>1株指標・収益性 <span class="citation">[③][④]</span></h2>
+  <table>
+    <thead><tr><th>指標</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>2027/3 予想</th></tr></thead>
+    <tbody>
+      <tr><td>EPS（円）</td><td>517.19</td><td>644.39</td><td>458.22</td><td>616.11</td><td>432.19</td><td>786.5</td></tr>
+      <tr><td>BPS（円）</td><td>4,649.01</td><td>5,240.76</td><td>5,663.62</td><td>6,137.67</td><td>6,651.37</td><td>—</td></tr>
+      <tr><td>DPS（円）</td><td>70</td><td>70</td><td>70</td><td>90</td><td>90</td><td>100</td></tr>
+      <tr><td>配当性向</td><td>13.5%</td><td>10.9%</td><td>15.3%</td><td>14.6%</td><td>20.8%</td><td>12.7%</td></tr>
+      <tr><td>ROE</td><td>11.7%</td><td>13.0%</td><td>8.4%</td><td>10.4%</td><td>6.7%</td><td>11.60%</td></tr>
+      <tr><td>ROA</td><td>—</td><td>—</td><td>—</td><td>6.35%</td><td>3.89%</td><td>5.79%</td></tr>
+      <tr><td>期末株価（円・PERから逆算）</td><td>3,822</td><td>4,350</td><td>3,973</td><td>3,808</td><td>4,153</td><td>—</td></tr>
+      <tr><td>期末PER（倍）</td><td>7.39</td><td>6.75</td><td>8.67</td><td>6.18</td><td>9.61</td><td>6.40（8/13現在）</td></tr>
+    </tbody>
+  </table>
+  <p class="note">EPS・BPS・ROE・期末PERは有報「主要な経営指標等の推移」<span class="citation">[③]</span>、ROEおよびROAの2025/3以降と2027/3予想は kabutan <span class="citation">[④]</span>。
+  期末株価は EPS×期末PER で逆算した参考値（推計・未調整終値ベース）。配当性向は DPS÷EPS で算出。</p>
+
+  <div class="chart"><canvas id="cROE"></canvas></div>
+  <div class="chart"><canvas id="cEPS"></canvas></div>
+
+  <h2>貸借対照表・キャッシュフロー <span class="citation">[③][④]</span></h2>
+  <table>
+    <thead><tr><th>（百万円）</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>26.4-6（Q1末）</th></tr></thead>
+    <tbody>
+      <tr><td>総資産</td><td>77,140</td><td>86,975</td><td>97,520</td><td>112,193</td></tr>
+      <tr><td>純資産</td><td>53,608</td><td>59,038</td><td>62,648</td><td>—</td></tr>
+      <tr><td>自己資本</td><td>47,436</td><td>52,264</td><td>54,915</td><td>56,032</td></tr>
+      <tr class="highlight"><td>自己資本比率</td><td>61.5%</td><td>60.1%</td><td>56.3%</td><td>49.9%</td></tr>
+      <tr><td>利益剰余金</td><td>40,017</td><td>44,517</td><td>47,320</td><td>48,473</td></tr>
+      <tr><td>有利子負債倍率（倍）</td><td>0.17</td><td>0.16</td><td>0.24</td><td>0.43</td></tr>
+      <tr><td>営業CF</td><td>3,698</td><td>5,312</td><td>2,965</td><td>—</td></tr>
+      <tr><td>投資CF</td><td class="neg">−2,680</td><td class="neg">−2,321</td><td class="neg">−4,831</td><td>—</td></tr>
+      <tr><td>財務CF</td><td class="neg">−1,071</td><td class="neg">−279</td><td class="neg">−539</td><td>—</td></tr>
+      <tr class="highlight"><td>フリーCF</td><td>1,018</td><td>2,991</td><td class="neg">−1,866</td><td>—</td></tr>
+      <tr><td>現金及び現金同等物 期末残高</td><td>981</td><td>3,696</td><td>1,292</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="note">
+    自己資本比率の検算 <span class="citation">[③][④]</span>：54,915 ÷ 97,520 = 56.3%（2026/3）、56,032 ÷ 112,193 = 49.9%（Q1末）。<br>
+    2026/3期の営業CF減少要因：棚卸資産の増加66億56百万円、法人税等の支払25億23百万円。投資CFの内訳：有形固定資産取得 −37億97百万円、連結範囲変更を伴う子会社株式取得 −13億51百万円 <span class="citation">[③]</span>。
+  </p>
+
+  <h2>セグメント別実績 <span class="citation">[③]</span></h2>
+  <table>
+    <thead><tr><th>（百万円）</th><th>2025/3 外部売上</th><th>2026/3 外部売上</th><th>前年比</th><th>2025/3 セグ利益</th><th>2026/3 セグ利益</th><th>前年比</th></tr></thead>
+    <tbody>
+      <tr><td>伸銅</td><td>106,407</td><td>131,442</td><td>+23.5%</td><td>7,089</td><td>11,177</td><td>+57.7%</td></tr>
+      <tr><td>精密部品</td><td>5,638</td><td>6,009</td><td>+6.6%</td><td>624</td><td>906</td><td>+45.2%</td></tr>
+      <tr><td>配管・鍍金</td><td>13,061</td><td>11,985</td><td class="neg">−8.2%</td><td>2,209</td><td>1,872</td><td class="neg">−15.2%</td></tr>
+      <tr class="highlight"><td>合計</td><td>125,108</td><td>149,438</td><td>+19.4%</td><td>9,923</td><td>13,955</td><td>+40.6%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">セグメント利益は営業利益ベース <span class="citation">[③]</span>。合計は調整前の報告セグメント単純合計。連結営業利益（14,161百万円）とは全社費用等の調整額の分だけ差異がある。</p>
+
+  <h3>CAGR検算 <span class="citation">[③][④]</span></h3>
+  <table>
+    <thead><tr><th>指標</th><th>期間</th><th>始点</th><th>終点</th><th>CAGR</th></tr></thead>
+    <tbody>
+      <tr><td>売上高（スクリーニング採用値）</td><td>9年 <span class="src">[⑤]</span></td><td>—</td><td>—</td><td class="pass">+9.1%</td></tr>
+      <tr><td>営業利益（スクリーニング採用値）</td><td>5年 <span class="src">[⑤]</span></td><td>—</td><td>—</td><td class="pass">+13.9%</td></tr>
+      <tr><td>売上高（クロスチェック）</td><td>4年</td><td>115,343（2022/3）</td><td>149,438（2026/3）</td><td>+6.7%</td></tr>
+      <tr><td>営業利益（クロスチェック）</td><td>4年</td><td>10,771（2022/3）</td><td>14,161（2026/3）</td><td>+7.1%</td></tr>
+      <tr><td>経常利益（参考）</td><td>4年</td><td>6,571（2022/3）</td><td>5,636（2026/3）</td><td class="fail">−3.8%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">スクリーニング判定は <code>ctx.py</code> の値 <span class="citation">[⑤]</span> を採用。クロスチェックは有報・kabutan の実額から算出（期間が異なるため値も異なる）。
+  <b>経常利益ベースでは4年CAGRがマイナス</b>である点は、会社自身が経常利益を経営指標としていることを踏まえると重要な留意点。</p>
+</div>
+
+<!-- ============ TAB 4 ============ -->
+<div class="panel" id="t4">
+  <h2>現在のバリュエーション <span class="citation">[④]</span></h2>
+  <div class="kpis">
+    <div class="kpi"><div class="l">予想PER</div><div class="v">6.4倍</div><div class="n">5,030 ÷ 786.5</div></div>
+    <div class="kpi"><div class="l">PBR</div><div class="v">0.74倍</div><div class="n">Q1末BPS 約6,787円</div></div>
+    <div class="kpi"><div class="l">配当利回り</div><div class="v">1.99%</div><div class="n">予想DPS 100円</div></div>
+    <div class="kpi"><div class="l">信用倍率</div><div class="v">84.00倍</div><div class="n">買い残に大きく偏る</div></div>
+  </div>
+  <p class="note">
+    <b>検算 <span class="citation">[③][④]</span>：</b>
+    PER = 5,030 ÷ 786.5 = 6.40倍／
+    PBR = 5,030 ÷ 6,787 = 0.741倍（2026/3期末BPS 6,651.37円で計算すると 0.756倍）／
+    時価総額 = 5,030円 × 8,867,000株 = 446.0億円（kabutan表示446億円と一致）。<br>
+    自己株控除後株数の推定 = 自己資本54,915百万円 ÷ BPS 6,651.37円 = 約8,256千株。Q1末BPS = 56,032百万円 ÷ 8,256千株 ≒ 6,787円。<br>
+    <b>PBRが kabutan値（0.74）と 2026/3末BPSベース（0.76）で乖離する理由：</b>kabutan は Q1末（2026年6月末）の自己資本を反映しているため。本レポートは kabutan 値を採用。
+  </p>
+
+  <h2>PER推移 <span class="citation">[③][④]</span></h2>
+  <div class="chart"><canvas id="cPER"></canvas></div>
+  <p class="note">2022/3〜2026/3 は有報「主要な経営指標等の推移」の株価収益率（各期末・未調整終値ベース）<span class="citation">[③]</span>。現在は 2026-08-13 株価 ÷ 2027/3 会社予想EPS <span class="citation">[④]</span>。過去5期末の平均は 7.72倍。</p>
+
+  <h2>PBR推移 <span class="citation">[③][④]</span></h2>
+  <div class="chart"><canvas id="cPBR"></canvas></div>
+  <p class="note">各期末PBRは「EPS×期末PER ÷ BPS」で算出した推計値（未調整終値ベース）。現在値は kabutan 表示値 <span class="citation">[④]</span>。5期を通じて 0.62〜0.83倍のレンジで推移しており、1倍割れが常態化している。</p>
+
+  <h2>理論PBR分析（ROEベース・推計）</h2>
+  <table>
+    <thead><tr><th>前提</th><th>ROE</th><th>株式コスト仮定</th><th>理論PBR = ROE ÷ 株式コスト</th><th>現在PBR</th><th>評価</th></tr></thead>
+    <tbody>
+      <tr><td>2026/3 実績ベース</td><td>6.7% <span class="src">[③]</span></td><td>8.0%</td><td>0.84倍</td><td>0.74倍</td><td class="pass">やや割安</td></tr>
+      <tr><td>2027/3 会社予想ベース</td><td>11.60% <span class="src">[④]</span></td><td>8.0%</td><td>1.45倍</td><td>0.74倍</td><td class="pass">割安</td></tr>
+      <tr><td>過去5期平均ROE</td><td>9.84% <span class="src">[③]</span></td><td>8.0%</td><td>1.23倍</td><td>0.74倍</td><td class="pass">割安</td></tr>
+    </tbody>
+  </table>
+  <p class="note"><b>これは推計値であり、実際の株価水準を保証しない。</b>株式コスト8.0%は本レポートの仮定であって会社開示値ではない。
+  過去5期平均ROEは有報記載の自己資本利益率（11.7／13.0／8.4／10.4／6.7）の単純平均。</p>
+
+  <h2>配当推移 <span class="citation">[③][④]</span></h2>
+  <table>
+    <thead><tr><th>期</th><th>DPS（円）</th><th>うち中間</th><th>EPS（円）</th><th>配当性向</th><th>期末株価（推計・円）</th><th>期末株価比 利回り</th></tr></thead>
+    <tbody>
+      <tr><td>2022/3</td><td>70</td><td>30</td><td>517.19</td><td>13.5%</td><td>3,822</td><td>1.83%</td></tr>
+      <tr><td>2023/3</td><td>70</td><td>30</td><td>644.39</td><td>10.9%</td><td>4,350</td><td>1.61%</td></tr>
+      <tr><td>2024/3</td><td>70</td><td>35</td><td>458.22</td><td>15.3%</td><td>3,973</td><td>1.76%</td></tr>
+      <tr><td>2025/3</td><td>90</td><td>45</td><td>616.11</td><td>14.6%</td><td>3,808</td><td>2.36%</td></tr>
+      <tr><td>2026/3</td><td>90</td><td>45</td><td>432.19</td><td>20.8%</td><td>4,153</td><td>2.17%</td></tr>
+      <tr class="forecast"><td>2027/3 予想</td><td>100</td><td>50</td><td>786.5</td><td>12.7%</td><td>5,030（8/13現在）</td><td>1.99%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">中間配当の内訳は有報記載 <span class="citation">[③]</span>。2026/3期の配当総額は中間388百万円＋期末398百万円 <span class="citation">[③]</span>。
+  配当性向は10〜21%と低位で、増配余力は大きい。<b>2027年3月期より累進配当方針を採用</b><span class="citation">[③]</span>。</p>
+
+  <h2>ピア比較</h2>
+  <div class="card"><p style="margin:0">kabutan が「比較される銘柄」として挙げる日伸銅（5753）・古河機金（5715）・三井金属（5706）について、
+  本レポートでは一次情報を取得していないため<b>定量ピア比較は省略</b>する <span class="citation">[④]</span>。
+  なお日本伸銅（5753）は当社の連結子会社（議決権55.5%）であり <span class="citation">[③]</span>、独立したピアとしては扱えない点に留意。</p></div>
+</div>
+
+<!-- ============ TAB 5 ============ -->
+<div class="panel" id="t5">
+  <h2>会社が掲げる数値目標 <span class="citation">[③][④]</span></h2>
+  <table>
+    <thead><tr><th>項目</th><th>2026/3 実績</th><th>2027/3 目標・会社予想</th><th>増減</th><th>出所</th></tr></thead>
+    <tbody>
+      <tr class="forecast"><td>経常利益（会社の経営指標）</td><td>5,636百万円</td><td>10,000百万円</td><td>+77.4%</td><td>[③][④]</td></tr>
+      <tr class="forecast"><td>売上高</td><td>149,438百万円</td><td>180,000百万円</td><td>+20.5%</td><td>[④]</td></tr>
+      <tr class="forecast"><td>営業利益</td><td>14,161百万円</td><td>10,000百万円</td><td class="neg">−29.4%</td><td>[④]</td></tr>
+      <tr class="forecast"><td>親会社株主に帰属する当期純利益</td><td>3,587百万円</td><td>6,500百万円</td><td>+81.2%</td><td>[④]</td></tr>
+      <tr class="forecast"><td>EPS</td><td>432.19円</td><td>786.5円</td><td>+82.0%</td><td>[④]</td></tr>
+      <tr class="forecast"><td>DPS</td><td>90円</td><td>100円</td><td>+11.1%</td><td>[④]</td></tr>
+      <tr class="forecast"><td>ROE</td><td>6.7%</td><td>11.60%</td><td>+4.9pt</td><td>[③][④]</td></tr>
+    </tbody>
+  </table>
+  <p class="note">有報に「2027年3月期の経常利益の目標は100億円としております」と明記されており <span class="citation">[③]</span>、
+  会社予想（2026-05-13公表）の経常利益100億円と一致する。中期経営計画としての複数年の数値目標は、会社IRサイト上に公表資料が確認できなかったため記載しない。
+  会社予想の営業利益が前期比−29.4%となっているのは、デリバティブ損益を含めた経常利益段階での安定化を前提に置いているため <span class="citation">[③]</span>。</p>
+
+  <h2>カタリスト</h2>
+  <div class="grid2">
+    <div class="box"><h4>① 累進配当方針の採用（2027年3月期より）</h4>
+      <p>「減配せず、配当を維持または増加させる累進配当方針を2027年3月期より採用する」と有報で明示 <span class="citation">[③]</span>。
+      配当性向は直近5期で10.9〜20.8%と低く、増配余力は大きい。バリュー投資家の資金流入要因になり得る。</p></div>
+    <div class="box"><h4>② 三谷伸銅の連結子会社化によるシナジー</h4>
+      <p>2025年4月1日に三谷伸銅（旧・三井金属保有）を取得し連結化 <span class="citation">[③]</span>。
+      会社は「小ロット品種の双方向OEM生産による生産拠点集約」「設備投資の重複回避による減価償却費負担軽減」「原料・副資材の共同購買による原価低減」を効果として挙げる <span class="citation">[③]</span>。
+      FY2026/3 の伸銅セグメント利益 +57.7% は連結効果の一部を反映。</p></div>
+    <div class="box"><h4>③ 経常利益の正常化（100億円目標）</h4>
+      <p>FY2026/3 はデリバティブ損益 −67.6億円が経常利益を圧迫 <span class="citation">[③]</span>。
+      銅相場が高値横ばいまたは反落局面に移ればヘッジ損は縮小し、経常利益が会社目標の100億円へ回帰する余地がある。
+      Q1（4-6月）経常益 2,628百万円は通期予想比 26.3%の進捗 <span class="citation">[④]</span>。</p></div>
+    <div class="box"><h4>④ Q1で営業利益が前年同期比2.8倍</h4>
+      <p>26.4-6期の売上 48,939百万円（+38.1%）、営業益 5,606百万円（前年同期比2.8倍）、売上営業利益率 11.5% <span class="citation">[④]</span>。
+      売上進捗27.2%は通期予想180,000百万円に対して順調。</p></div>
+    <div class="box"><h4>⑤ M&amp;Aを明示した成長戦略</h4>
+      <p>会社は「市場が成熟・縮小している分野ではM&amp;Aによる業容の維持拡大と新製品開発による市場開拓に努める。今後とも引き続きM&amp;Aと製品開発に注力する」と方針を明記 <span class="citation">[③]</span>。
+      過去にも住友金属鉱山伸銅の黄銅棒・線事業譲受、日本伸銅・三谷伸銅の子会社化と実績がある <span class="citation">[③]</span>。</p></div>
+    <div class="box"><h4>⑥ 自己株式取得の実績</h4>
+      <p>FY2026/3 の財務CFに自己株式の取得による支出 12億66百万円を計上 <span class="citation">[③]</span>。
+      配当と併せた株主還元姿勢が継続すれば、低PBRの是正圧力となり得る。</p></div>
+    <div class="box"><h4>⑦ 環境対応製品の特許ポジション</h4>
+      <p>鉛・カドミウム不使用の環境対応合金、脱塩ビ継手、NETIS登録の「CKeめっきスーパー」等、多数の特許を取得 <span class="citation">[③]</span>。
+      環境規制強化局面では差別化要因になり得る。</p></div>
+    <div class="box"><h4>⑧ 6ヶ月モメンタムが母集団上位6%</h4>
+      <p>6ヶ月株価モメンタム +21.5%（母集団内 上位6%、境界+3%）、12ヶ月 +39.0%、3ヶ月 +19.0% <span class="citation">[⑤]</span>。
+      バリュエーションの割安さと価格モメンタムが両立している状態。</p></div>
+  </div>
+
+  <h2>2027年3月期 第1四半期 進捗 <span class="citation">[④]</span></h2>
+  <table>
+    <thead><tr><th>（百万円）</th><th>通期会社予想</th><th>Q1実績（26.4-6）</th><th>進捗率</th><th>前年同期（25.4-6）</th><th>前年同期比</th></tr></thead>
+    <tbody>
+      <tr class="h1-row"><td>売上高</td><td>180,000</td><td>48,939</td><td>27.2%</td><td>35,427</td><td>+38.1%</td></tr>
+      <tr class="h1-row"><td>営業利益</td><td>10,000</td><td>5,606</td><td>56.1%</td><td>1,990</td><td>2.8倍</td></tr>
+      <tr class="h1-row"><td>経常利益</td><td>10,000</td><td>2,628</td><td>26.3%</td><td>2,625</td><td>+0.1%</td></tr>
+      <tr class="h1-row"><td>親会社株主に帰属する四半期純利益</td><td>6,500</td><td>1,551</td><td>23.9%</td><td>1,850</td><td>−16.2%</td></tr>
+      <tr class="h1-row"><td>EPS（円）</td><td>786.5</td><td>187.8</td><td>23.9%</td><td>220.0</td><td>−14.6%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">上半期（26.4-9）の会社予想は非開示（配当予想50円のみ公表）<span class="citation">[④]</span>。
+  営業利益の進捗56.1%は高いが、これは通期予想の営業利益が経常利益と同額の100億円に置かれている（＝デリバティブ費用を営業外で吸収する前提）ことによる見かけ上の高進捗であり、
+  実質的な進捗は<b>経常利益26.3%・純利益23.9%</b>で判断すべき。</p>
+</div>
+
+<!-- ============ TAB 6 ============ -->
+<div class="panel" id="t6">
+  <h2>リスク <span class="citation">[③][④]</span></h2>
+  <p class="note">以下は有価証券報告書「事業等のリスク」（全16項目）および財務データから確認されたもののみを記載。会社が開示していない推測は含まない。</p>
+  <div class="grid2">
+    <div class="box risk"><h4>① 材料価格変動リスク（最重要）</h4>
+      <p>銅・亜鉛は国際相場商品。相場が乱高下すると保有原料・仕掛品等の棚卸資産に含み損益が発生する。原料価格が高騰し続けた場合、販売先で黄銅以外の代替材への材質変更が行われ需要が減少する可能性がある <span class="citation">[③]</span>。
+      FY2026/3 は銅建値がLME高騰と円安により2026年1月13日に1トン219万円まで上昇した <span class="citation">[③]</span>。</p></div>
+    <div class="box risk"><h4>② デリバティブ損益の変動が経常利益を左右する</h4>
+      <p>相場リスクのヘッジ目的で締結するデリバティブ取引の損益が営業外に計上される。FY2026/3 はデリバティブ損失 8,936百万円＋評価損 251百万円で経常利益が−32.8%となった <span class="citation">[③]</span>。
+      ヘッジは営業利益の変動を打ち消す設計だが、期ずれにより<b>単年度の経常利益は大きく振れる</b>。Q1も経常益は前年同期比+0.1%にとどまった <span class="citation">[④]</span>。</p></div>
+    <div class="box risk"><h4>③ 運転資本膨張と財務レバレッジの上昇</h4>
+      <p>Q1末の自己資本比率は49.9%（2026/3期末56.3%）、有利子負債倍率は0.43倍（同0.24倍）<span class="citation">[④]</span>。
+      FY2026/3 は棚卸資産が94億23百万円、売掛金が54億55百万円増加した <span class="citation">[③]</span>。銅相場が高止まりする限り資金負担は継続する。</p></div>
+    <div class="box risk"><h4>④ フリーCFのマイナス</h4>
+      <p>FY2026/3 のフリーCFは−18億66百万円（前期+29億91百万円）<span class="citation">[④]</span>。
+      現金及び現金同等物期末残高は12億92百万円（前期36億96百万円）まで減少 <span class="citation">[③]</span>。現金比率1.32% <span class="citation">[④]</span>。</p></div>
+    <div class="box risk"><h4>⑤ 国内市場の成熟・需要漸減</h4>
+      <p>会社自身が「主力事業である伸銅事業と配管・鍍金事業は、いずれも国内市場が成熟し、今後とも需要が漸減するものと推測されています」と有報に明記 <span class="citation">[③]</span>。
+      成長はM&amp;Aと新製品開発に依存する構造。実際、配管・鍍金セグメントは FY2026/3 に売上−8.2%・利益−15.2% <span class="citation">[③]</span>。</p></div>
+    <div class="box risk"><h4>⑥ M&amp;Aで見込んだ効果が得られないリスク</h4>
+      <p>成長戦略の中核がM&amp;Aであるため、この失敗は成長シナリオそのものを毀損する。会社も「予期し得ない経済情勢、環境変化等により、当初意図した成果が得られない可能性があります」とリスク開示している <span class="citation">[③]</span>。</p></div>
+    <div class="box risk"><h4>⑦ 電力供給不安・自然災害</h4>
+      <p>電気炉で銅・亜鉛を溶解するため、電力供給事情の悪化は直接生産障害につながる <span class="citation">[③]</span>。
+      主要生産拠点が富山県（砺波・高岡）に集中しており、大規模地震等の地理的集中リスクがある。会社はBCPを策定しグループ内他工場での代替生産体制を想定 <span class="citation">[③]</span>。</p></div>
+    <div class="box risk"><h4>⑧ 代替製品・海外拠点・その他</h4>
+      <p>伸銅品はアルミニウム・ステンレス・樹脂等と競合関係にあり、予期し得ない代替製品の登場リスクがある <span class="citation">[③]</span>。
+      また中国・台湾に現地法人を持ち、各国政治当局の規則・制限による事業制約リスクを開示している <span class="citation">[③]</span>。</p></div>
+    <div class="box risk"><h4>⑨ 流動性・需給リスク</h4>
+      <p>売買代金は56百万円と小さく <span class="citation">[⑤]</span>、信用倍率は84.00倍で買い残に大きく偏っている <span class="citation">[④]</span>。
+      需給悪化時の戻り売り圧力と、まとまった売買での価格インパクトに留意が必要。</p></div>
+  </div>
+</div>
+
+<!-- ============ TAB 7 ============ -->
+<div class="panel" id="t7">
+  <div class="banner cond">条件付き購入検討（1条件がボーダー）
+    <span class="s">8条件は全通過 <span class="citation">[⑤]</span>。時価総額446億円が200〜600億円の境界帯にあることと、経常利益の変動性が判断の分かれ目。</span>
+  </div>
+
+  <h2>総合評価</h2>
+  <div class="card">
+    <p><b>割安性は明確。</b>予想PER 6.4倍・PBR 0.74倍 <span class="citation">[④]</span>は、スクリーニング基準（PER≤15倍、PBR≤1.5倍）を大きく下回る。
+    PBRは過去5期を通じて0.62〜0.83倍のレンジにあり <span class="citation">[③]</span>、1倍割れが常態化している。
+    ROEベースの理論PBR（株式コスト8%仮定・推計）は2027/3会社予想ROE 11.60%で1.45倍となり、現在の0.74倍とは乖離がある。</p>
+
+    <p><b>財務は健全。</b>自己資本比率56.3%（2026/3期末）<span class="citation">[③]</span>、有利子負債倍率0.24倍 <span class="citation">[④]</span>、利益剰余金473億20百万円 <span class="citation">[④]</span>。
+    ただしQ1末は自己資本比率49.9%・有利子負債倍率0.43倍まで低下しており <span class="citation">[④]</span>、銅相場高止まりに伴う運転資本の膨張が進行中である。</p>
+
+    <p><b>最大の論点は「どの利益を見るか」。</b>FY2026/3 の営業利益は141億61百万円（+38.0%）と過去最高だが、経常利益は56億36百万円（−32.8%）にとどまった <span class="citation">[③]</span>。
+    差はデリバティブ損益−67.6億円 <span class="citation">[③]</span>。会社は<b>経常利益を経営指標として明示</b>しており <span class="citation">[③]</span>、営業利益の増益率だけで評価すると実態を過大評価する。
+    経常利益ベースの4年CAGRは−3.8%であり、スクリーニング④（営業利益CAGR +13.9% <span class="citation">[⑤]</span>）とは逆の姿になる。</p>
+
+    <p><b>カタリストは配当方針の転換。</b>2027年3月期より累進配当方針を採用 <span class="citation">[③]</span>。配当性向は直近5期で10.9〜20.8%と低く <span class="citation">[③]</span>、
+    増配余力は大きい。予想DPS 100円（利回り1.99%）<span class="citation">[④]</span>は絶対水準としては高くないが、方針転換自体が再評価のきっかけになり得る。</p>
+
+    <p><b>モメンタムも良好。</b>6ヶ月+21.5%（母集団上位6%）、12ヶ月+39.0% <span class="citation">[⑤]</span>。割安性と価格モメンタムが両立する局面にある。
+    一方で信用倍率84.00倍 <span class="citation">[④]</span>は買い残偏重を示し、短期の需給は重い。</p>
+  </div>
+
+  <h2>シナリオ分析（推計）</h2>
+  <div class="alert dgr"><b>以下の目標株価は一次情報から導出した推計値であり、実際の業績・株価を保証しない。</b>
+  PER仮定は過去5期末PER（7.39／6.75／8.67／6.18／9.61、平均7.72倍 <span class="citation">[③]</span>）のレンジを参照して本レポートが設定したもので、会社開示値ではない。</div>
+  <table>
+    <thead><tr><th>シナリオ</th><th>想定確率</th><th>前提</th><th>想定EPS</th><th>PER仮定</th><th>目標株価</th><th>現在比</th></tr></thead>
+    <tbody>
+      <tr><td>ベア</td><td>25%</td><td style="text-align:left">銅相場急落によりデリバティブ損益・棚卸資産評価が悪化し、会社予想未達（EPS −20%）</td><td>629円</td><td>6.0倍</td><td>3,775円</td><td class="neg">−24.9%</td></tr>
+      <tr><td>ベース</td><td>55%</td><td style="text-align:left">2027/3 会社予想（経常100億円）を達成。PERは過去5期末平均近傍まで回復</td><td>786円</td><td>7.5倍</td><td>5,899円</td><td class="pass">+17.3%</td></tr>
+      <tr><td>ブル</td><td>20%</td><td style="text-align:left">上方修正・累進配当による再評価・追加M&amp;A（EPS +12%）。PERは過去レンジ上限近傍</td><td>881円</td><td>9.0倍</td><td>7,928円</td><td class="pass">+57.6%</td></tr>
+    </tbody>
+  </table>
+  <div class="chart" style="height:290px"><canvas id="cScen"></canvas></div>
+  <p class="note">期待値（確率加重・推計）：3,775×0.25 + 5,899×0.55 + 7,928×0.20 = <b>5,777円（現在比 +14.8%）</b>。あくまで上記仮定に基づく計算結果であり、保証を伴わない。</p>
+
+  <h2>総合チェックリスト</h2>
+  <table>
+    <thead><tr><th>観点</th><th>評価</th><th>根拠</th></tr></thead>
+    <tbody>
+      <tr><td>割安性（PER）</td><td class="pass">✅ 良好</td><td style="text-align:left">予想PER 6.4倍（基準≤15倍、良好水準≤12倍）<span class="src">[④]</span></td></tr>
+      <tr><td>割安性（PBR）</td><td class="pass">✅ 良好</td><td style="text-align:left">PBR 0.74倍（基準≤1.5倍、良好水準≤1.2倍）<span class="src">[④]</span></td></tr>
+      <tr><td>成長性（売上）</td><td class="pass">✅ 良好</td><td style="text-align:left">売上CAGR +9.1%（9年）<span class="src">[⑤]</span>／FY2026/3 +19.4%</td></tr>
+      <tr><td>成長性（利益）</td><td class="bord">⚠️ 要注意</td><td style="text-align:left">営業利益CAGR +13.9%<span class="src">[⑤]</span> だが、会社の経営指標である経常利益は4年CAGR −3.8%</td></tr>
+      <tr><td>財務健全性</td><td class="pass">✅ 良好</td><td style="text-align:left">自己資本比率56.3%<span class="src">[③]</span>／有利子負債倍率0.24倍<span class="src">[④]</span>（Q1末はそれぞれ49.9%・0.43倍）</td></tr>
+      <tr><td>キャッシュ創出力</td><td class="bord">⚠️ 要注意</td><td style="text-align:left">FY2026/3 フリーCF −18億66百万円／現金残高12億92百万円<span class="src">[④]</span></td></tr>
+      <tr><td>時価総額</td><td class="bord">⚠️ 境界帯</td><td style="text-align:left">446億円（基準≤600億円、良好水準≤200億円）<span class="src">[④]</span></td></tr>
+      <tr><td>直近営業増益率</td><td class="pass">✅ 良好</td><td style="text-align:left">+38.0%、母集団内 上位22%（境界+22%）<span class="src">[⑤]</span></td></tr>
+      <tr><td>株価モメンタム</td><td class="pass">✅ 良好</td><td style="text-align:left">6ヶ月 +21.5%、母集団内 上位6%（境界+3%）<span class="src">[⑤]</span></td></tr>
+      <tr><td>株主還元</td><td class="pass">✅ 良好</td><td style="text-align:left">2027/3期より累進配当方針を採用<span class="src">[③]</span>／配当性向12.7%予想で増配余力大</td></tr>
+      <tr><td>需給・流動性</td><td class="bord">⚠️ 要注意</td><td style="text-align:left">売買代金56百万円<span class="src">[⑤]</span>／信用倍率84.00倍<span class="src">[④]</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>免責事項</h2>
+  <div class="disc">
+    <p style="margin:0 0 8px"><b>データ取得日：</b>2026年8月13日（株価は同日 11:07 時点の未調整終値ベース）。<br>
+    <b>会社予想ベース日：</b>2026年5月13日公表の 2027年3月期 通期会社予想（2026年8月7日の第1四半期決算時点で据え置き）。<br>
+    <b>参照決算：</b>2026年3月期（有価証券報告書 2026年6月24日提出）、2027年3月期 第1四半期（2026年8月7日開示）。<br>
+    <b>スクリーニング判定基準日：</b>2026年7月17日（J-Quants API V2）。</p>
+    <p style="margin:0 0 8px"><b>データ出所：</b>
+    <span class="src">[①]</span> irpocket 公式IRデータExcel — <b>本銘柄は未登録（HTTP 404）のため取得できず、本レポートでは使用していない</b>。
+    代替として有価証券報告書 <span class="src">[③]</span> と kabutan <span class="src">[④]</span> から同等の項目を取得した。／
+    <span class="src">[②]</span> 会社公式IRページ（www.cksanetu.co.jp）— 決算説明資料・中期経営計画のPDFは公開が確認できなかったため、数値目標は有報記載値を採用。／
+    <span class="src">[③]</span> 株式会社ＣＫサンエツ 有価証券報告書（2026年3月期、EDINET提出、E01321）／
+    <span class="src">[④]</span> kabutan.jp（5757 基本情報・業績財務推移、2026-08-13 取得）／
+    <span class="src">[⑤]</span> J-Quants API V2（JPX公式）に基づくスクリーニング判定。</p>
+    <p style="margin:0 0 8px"><b>推計値の扱い：</b>期末株価（EPS×期末PERで逆算）、期末PBR、Q1末BPS、理論PBR、シナリオ分析の目標株価はいずれも本レポートによる推計であり、会社開示値ではない。表中で推計と明記している。</p>
+    <p style="margin:0"><b>本レポートは特定銘柄の売買を推奨するものではない。</b>投資判断は利用者自身の責任において行うこと。
+    記載されたデータは一次情報・公式開示情報のみに基づくが、正確性・完全性を保証するものではない。</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.t).classList.add('active');
+  });
+});
+
+const C={p:'#1a3a5c',a:'#2e7d52',w:'#b45309',d:'#991b1b',b:'#3b82f6',g:'#94a3b8'};
+const baseOpt={responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{labels:{font:{size:11}}}},
+  scales:{y:{ticks:{font:{size:11}}},x:{ticks:{font:{size:11}}}}};
+
+new Chart(document.getElementById('cOverview'),{
+ data:{labels:['2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+   {type:'bar',label:'売上高（百万円）',data:[123838,111433,125108,149438,180000],backgroundColor:C.p+'cc',yAxisID:'y'},
+   {type:'line',label:'経常利益（百万円）',data:[8655,6094,8383,5636,10000],borderColor:C.w,backgroundColor:C.w,borderWidth:3,tension:.25,yAxisID:'y1'}
+  ]},
+ options:Object.assign({},baseOpt,{scales:{
+   y:{position:'left',title:{display:true,text:'売上高'},ticks:{font:{size:10}}},
+   y1:{position:'right',title:{display:true,text:'経常利益'},grid:{drawOnChartArea:false},ticks:{font:{size:10}}},
+   x:{ticks:{font:{size:11}}}}})
+});
+
+new Chart(document.getElementById('cSeg'),{
+ type:'bar',
+ data:{labels:['2025/3','2026/3'],
+  datasets:[
+   {label:'伸銅',data:[106407,131442],backgroundColor:C.p},
+   {label:'精密部品',data:[5638,6009],backgroundColor:C.a},
+   {label:'配管・鍍金',data:[13061,11985],backgroundColor:C.w}
+  ]},
+ options:Object.assign({},baseOpt,{scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'外部顧客への売上高（百万円）'}}}})
+});
+
+new Chart(document.getElementById('cPL'),{
+ data:{labels:['2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+   {type:'bar',label:'売上高',data:[123838,111433,125108,149438,180000],backgroundColor:C.p+'aa',yAxisID:'y'},
+   {type:'bar',label:'営業利益',data:[8279,7929,10263,14161,10000],backgroundColor:C.a,yAxisID:'y1'},
+   {type:'line',label:'経常利益',data:[8655,6094,8383,5636,10000],borderColor:C.d,backgroundColor:C.d,borderWidth:3,tension:.25,yAxisID:'y1'}
+  ]},
+ options:Object.assign({},baseOpt,{scales:{
+   y:{position:'left',title:{display:true,text:'売上高（百万円）'},ticks:{font:{size:10}}},
+   y1:{position:'right',title:{display:true,text:'利益（百万円）'},grid:{drawOnChartArea:false},ticks:{font:{size:10}}},
+   x:{ticks:{font:{size:11}}}}})
+});
+
+new Chart(document.getElementById('cROE'),{
+ type:'line',
+ data:{labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+   {label:'ROE（%）',data:[11.7,13.0,8.4,10.4,6.7,11.60],borderColor:C.p,backgroundColor:C.p,borderWidth:3,tension:.25},
+   {label:'ROA（%）',data:[null,null,null,6.35,3.89,5.79],borderColor:C.a,backgroundColor:C.a,borderWidth:3,tension:.25}
+  ]},
+ options:Object.assign({},baseOpt,{scales:{y:{title:{display:true,text:'%'},beginAtZero:true},x:{}}})
+});
+
+new Chart(document.getElementById('cEPS'),{
+ data:{labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'],
+  datasets:[
+   {type:'bar',label:'EPS（円）',data:[517.19,644.39,458.22,616.11,432.19,786.5],backgroundColor:C.p+'cc',yAxisID:'y'},
+   {type:'line',label:'DPS（円）',data:[70,70,70,90,90,100],borderColor:C.w,backgroundColor:C.w,borderWidth:3,tension:.2,yAxisID:'y1'}
+  ]},
+ options:Object.assign({},baseOpt,{scales:{
+   y:{position:'left',title:{display:true,text:'EPS'},ticks:{font:{size:10}}},
+   y1:{position:'right',title:{display:true,text:'DPS'},grid:{drawOnChartArea:false},beginAtZero:true,ticks:{font:{size:10}}},
+   x:{}}})
+});
+
+new Chart(document.getElementById('cPER'),{
+ type:'bar',
+ data:{labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在(8/13)'],
+  datasets:[{label:'PER（倍）',data:[7.39,6.75,8.67,6.18,9.61,6.40],
+   backgroundColor:[C.p,C.p,C.p,C.p,C.p,C.a]}]},
+ options:Object.assign({},baseOpt,{plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'倍'},beginAtZero:true},x:{}}})
+});
+
+new Chart(document.getElementById('cPBR'),{
+ type:'bar',
+ data:{labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在(8/13)'],
+  datasets:[{label:'PBR（倍）',data:[0.82,0.83,0.70,0.62,0.62,0.74],
+   backgroundColor:[C.p,C.p,C.p,C.p,C.p,C.a]}]},
+ options:Object.assign({},baseOpt,{plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'倍'},beginAtZero:true,suggestedMax:1.2},x:{}}})
+});
+
+new Chart(document.getElementById('cScen'),{
+ type:'bar',
+ data:{labels:['ベア（推計）','現在','ベース（推計）','ブル（推計）'],
+  datasets:[{label:'株価（円）',data:[3775,5030,5899,7928],
+   backgroundColor:[C.d,C.g,C.a,C.p]}]},
+ options:Object.assign({},baseOpt,{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'円'},beginAtZero:true},y:{}}})
+});
+</script>
+</body>
+</html>

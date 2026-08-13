@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新コスモス電機(6824) 有価証券報告書 定性分析レポート ｜ 第67期(2026年3月期)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#1c3557; --navy-l:#2f4f7d; --accent:#c98a1e; --accent-l:#fdf6e7;
+  --red:#b3382c; --red-l:#fbeeec; --teal:#1f7a6b; --teal-l:#e9f5f2;
+  --gray:#5b6672; --line:#dfe3e8; --bg:#f6f7f9; --card:#ffffff; --ink:#1f2429;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+  font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+header{background:linear-gradient(135deg,var(--navy),var(--navy-l));color:#fff;padding:26px 28px 18px}
+header .code{font-size:13px;letter-spacing:.14em;opacity:.8}
+header h1{margin:4px 0 6px;font-size:25px;letter-spacing:.02em}
+header .sub{font-size:13.5px;opacity:.9}
+.legend{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;font-size:12px}
+.legend span{background:rgba(255,255,255,.13);padding:3px 11px;border-radius:12px;border:1px solid rgba(255,255,255,.22)}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);
+  display:flex;overflow-x:auto;padding:0 10px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+nav button{flex:0 0 auto;background:none;border:none;padding:13px 14px;font-size:13.5px;color:var(--gray);
+  cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;white-space:nowrap}
+nav button:hover{color:var(--navy);background:#fafbfc}
+nav button.on{color:var(--navy);border-bottom-color:var(--accent);font-weight:700}
+main{max-width:1080px;margin:0 auto;padding:26px 18px 70px}
+section{display:none} section.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+h2{font-size:21px;color:var(--navy);border-left:5px solid var(--accent);padding-left:12px;margin:6px 0 18px}
+h3{font-size:16.5px;color:var(--navy);margin:26px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+h4{font-size:14.5px;color:var(--navy-l);margin:18px 0 7px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:14px 0;
+  box-shadow:0 1px 3px rgba(20,30,45,.05)}
+.card.warn{border-left:4px solid var(--red);background:var(--red-l)}
+.card.note{border-left:4px solid var(--accent);background:var(--accent-l)}
+.card.ok{border-left:4px solid var(--teal);background:var(--teal-l)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px 15px}
+.kpi .l{font-size:11.5px;color:var(--gray);letter-spacing:.04em}
+.kpi .v{font-size:22px;font-weight:700;color:var(--navy);line-height:1.35}
+.kpi .n{font-size:11.5px;color:var(--gray)}
+table{width:100%;border-collapse:collapse;font-size:13.2px;margin:10px 0;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#eef1f5;color:var(--navy);font-weight:700;text-align:center}
+td.l,th.l{text-align:left}
+tbody tr:nth-child(even){background:#fbfcfd}
+.tw{overflow-x:auto}
+blockquote{margin:11px 0;padding:11px 15px;background:#f3f5f8;border-left:4px solid var(--navy-l);
+  font-size:13.6px;color:#333;border-radius:0 5px 5px 0}
+blockquote .src{display:block;font-size:11.5px;color:var(--gray);margin-top:6px}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:5px;
+  vertical-align:middle;font-weight:700;white-space:nowrap}
+.t-f{background:#e7ebf1;color:var(--navy)}
+.t-i{background:#f7e6c2;color:#7d5610}
+.t-c{background:#f6d9d5;color:var(--red)}
+.t-w{background:#d5eae5;color:var(--teal)}
+.src-cite{font-size:11.5px;color:var(--gray)}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:5px 0}
+.chart{position:relative;height:300px;margin:12px 0}
+.chart.sm{height:250px}
+.pill{display:inline-block;background:#eef1f5;color:var(--navy);border-radius:11px;padding:2px 10px;
+  font-size:12px;margin:2px 4px 2px 0}
+.pill.r{background:var(--red-l);color:var(--red)}
+.pill.g{background:var(--teal-l);color:var(--teal)}
+footer{background:var(--navy);color:#cfd8e3;padding:24px 28px;font-size:12.2px;line-height:1.85}
+footer b{color:#fff}
+.small{font-size:12.3px;color:var(--gray)}
+.divider{height:1px;background:var(--line);margin:22px 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="code">証券コード 6824 ／ 東証スタンダード ／ 電気機器</div>
+  <h1>新コスモス電機株式会社 ― 有価証券報告書 定性分析レポート</h1>
+  <div class="sub">対象事業年度：第67期（2025年4月1日〜2026年3月31日） ／ 有報提出日 2026年6月26日 ／ 分析実行日 2026年8月8日</div>
+  <div class="legend">
+    <span>[事実]＝有報に記載あり</span>
+    <span>[解釈]＝記載からの推論</span>
+    <span>[要確認]＝有報だけでは判断不能</span>
+    <span>[web]＝外部Web（沿革章のみ）</span>
+    <span>出所 [①]irpocket [②]会社IR [③]公式開示PDF [④]kabutan [⑤]J-Quants</span>
+  </div>
+</header>
+
+<nav id="nav"></nav>
+<main id="main">
+
+<!-- ========== 0. サマリー ========== -->
+<section id="s0" class="on" data-t="0. サマリー">
+<h2>0. エグゼクティブサマリー</h2>
+
+<div class="card note">
+<p style="font-size:16px;margin:0"><b>一文で言えば</b> ―
+半導体式ガスセンサを自社で作れる大阪の独立系メーカーで、国内の家庭用ガス警報器で長年築いた土台の上に、いま北米向け電池式メタン警報器という一本の輸出商材が急拡大して業績を押し上げている会社。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>記述情報から読み取れる最重要ポイント3点</h3>
+<div class="card">
+<p><b>① 「単一セグメント」の裏で、収益構造が北米に急速に寄った</b><br>
+有報上のセグメントは「ガス警報器事業」の単一だが、商品別開示では家庭用ガス警報器関連が前期比 +36.2%、売上構成比 59.0% に拡大。地域別では北米が 8,968百万円→15,944百万円（<b>+77.8%</b>）と1年で倍近くになり、海外売上高比率は 51.8%（前期比 +5.6pt）と初めて過半を超えた。会社自身も「海外売上高比率」と「営業利益率」を経営の重要指標と明示している。<span class="tag t-f">[事実]</span> 単一セグメント開示のため、この北米急拡大が<b>どれだけ利益に効いたかは有報から分離できない</b>。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card">
+<p><b>② 中期経営計画の数値目標に対し、初年度で「売上は前倒し・利益率は達成済み・PBRとROEは道半ば」という凸凹</b><br>
+中計2025-2027は 2028年3月期に連結売上 600億円以上／海外比率 50%以上／営業利益率 12.5%以上／ROE 8.5%／ROIC 8.0%／PBR 1.0 を掲げる。初年度の第67期実績は売上 500.9億円・海外 51.8%・営業利益率 14.7%・ROE 10.3% と、<b>PBR以外の主要目標を初年度で実質クリア</b>している。<span class="tag t-f">[事実]</span> ただし有報の【対処すべき課題】は中計の戦略4本柱を再掲するのみで、<b>この大幅な前倒し達成を受けて目標を見直すのかどうかへの言及がない</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<p><b>③ 財務は極端に厚く、資本の使い方が最大の論点</b><br>
+自己資本比率 72.7%、現預金 22,270百万円に対し借入金は 4,020百万円のみ。純資産 57,443百万円に対して政策保有株式（非上場含む）は 9,297百万円＝<b>連結純資産の16.2%</b>を占める（提出会社純資産比では25.6%）。当期は200,000株・608百万円の自己株式取得と35円増配（年95円）を実施したが、連結配当性向は 22.4%（会社記載）にとどまり、中計目標の30%には未達。総還元性向は約25.9%。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>最も注意すべき論点</h3>
+<div class="card warn">
+<p><b>成長の源泉が「北米の家庭用電池式メタン警報器」という単一商材・単一地域に強く依存していること</b>、そしてその北米事業の生産管理を、筆頭株主でもある岩谷産業と組んだ新合弁会社（Iwatani New Cosmos America Inc.、2026年6月15日設立・重要な後発事象）に担わせる構造に移りつつあることである。<span class="tag t-f">[事実]</span><br>
+一方で【事業等のリスク】10項目には、<b>「特定商材・特定地域への集中」というリスク項目が立っていない</b>。①〜③は商品カテゴリ別の事業環境リスク、⑧で海外地域の政情・為替に触れるにとどまり、当期の業績を最も左右した要因が最も薄く書かれている。過小開示の疑いがある。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>スクリーニング判定（参考・定量）</h3>
+<div class="card">
+<p class="small">下表は本プロジェクトの割安株スクリーニング8条件の判定結果。定性分析の対象外だが、本レポートを読む前提として掲げる。基準日 2026-07-17。<span class="tag t-f">[事実]</span> <span class="src-cite">出所 [⑤] J-Quants API V2（JPX公式）</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">条件</th><th>実測</th><th>基準</th><th>判定</th></tr></thead>
+<tbody>
+<tr><td class="l">① PER</td><td>11.21倍</td><td>≤15倍</td><td>○</td></tr>
+<tr><td class="l">② PBR</td><td>1.09倍</td><td>≤1.5倍</td><td>○</td></tr>
+<tr><td class="l">③ 売上高CAGR（9年）</td><td>+8.5%</td><td>≥4%</td><td>○</td></tr>
+<tr><td class="l">④ 営業利益CAGR</td><td>+17.3%</td><td>≥4%</td><td>○</td></tr>
+<tr><td class="l">⑤ 自己資本比率</td><td>72.7%</td><td>≥40%</td><td>○</td></tr>
+<tr><td class="l">⑥ 時価総額</td><td>580億円</td><td>≤600億円</td><td>○</td></tr>
+<tr><td class="l">⑦ 直近営業増益率</td><td>+42.6%（上位21%）</td><td>上位1/3</td><td>○</td></tr>
+<tr><td class="l">⑧ 6ヶ月モメンタム</td><td>+6.5%（上位25%）</td><td>上位1/3</td><td>○</td></tr>
+</tbody></table></div>
+<p class="small" style="margin-top:6px">→ <b>8/8 条件通過</b>（母集団：①〜⑥通過101銘柄／8条件通過11銘柄）。株価4,765円・売買代金57百万円。<span class="tag t-f">[事実]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅰ. 企業の輪郭 ========== -->
+<section id="s1" data-t="Ⅰ. 企業の輪郭">
+<h2>Ⅰ. 企業の輪郭</h2>
+
+<h3>1-1. 5年推移（連結）</h3>
+<p class="small">第1【企業の概況】1 主要な経営指標等の推移より。CAGRは第63期→第67期の4年での年率換算（当方算出・<b>推計値ではなく開示値からの計算値</b>）。<span class="tag t-f">[事実]</span> <span class="src-cite">出所 [③] 有価証券報告書（第1【企業の概況】1）。<b>本銘柄は irpocket [①] にデータが存在しない（404）ため、財務数値の裏取りは有報の本表・注記で行った</b></span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">指標</th><th>第63期<br>2022/3</th><th>第64期<br>2023/3</th><th>第65期<br>2024/3</th><th>第66期<br>2025/3</th><th>第67期<br>2026/3</th><th>4年CAGR</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高（百万円）</td><td>34,336</td><td>37,207</td><td>38,546</td><td>42,154</td><td><b>50,092</b></td><td>+9.9%</td></tr>
+<tr><td class="l">経常利益（百万円）</td><td>6,045</td><td>6,270</td><td>4,809</td><td>5,451</td><td><b>7,921</b></td><td>+7.0%</td></tr>
+<tr><td class="l">EPS（円）</td><td>304.93</td><td>302.75</td><td>239.62</td><td>273.24</td><td><b>424.88</b></td><td>+8.7%</td></tr>
+<tr><td class="l">ROE（%）</td><td>10.8</td><td>9.8</td><td>7.0</td><td>7.3</td><td><b>10.3</b></td><td>―</td></tr>
+<tr><td class="l">自己資本比率（%）</td><td>72.8</td><td>73.1</td><td>66.4</td><td>70.8</td><td><b>72.7</b></td><td>―</td></tr>
+<tr><td class="l">営業CF（百万円）</td><td>3,303</td><td>2,620</td><td>2,549</td><td>4,888</td><td><b>5,960</b></td><td>+15.9%</td></tr>
+<tr><td class="l">1株純資産（円）</td><td>2,959.81</td><td>3,250.91</td><td>3,591.96</td><td>3,855.20</td><td><b>4,386.69</b></td><td>+10.3%</td></tr>
+<tr><td class="l">従業員数（人）</td><td>855</td><td>906</td><td>947</td><td>987</td><td><b>1,038</b></td><td>+5.0%</td></tr>
+</tbody></table></div>
+<div class="grid2">
+  <div class="card"><div class="chart"><canvas id="c_rev"></canvas></div></div>
+  <div class="card"><div class="chart"><canvas id="c_prof"></canvas></div></div>
+</div>
+<div class="card note">
+<p><b>方向の客観提示</b>：売上は4年で+9.9%/年と一貫して伸びているが、利益は一直線ではない。第65期（2024/3）に経常利益が 6,270→4,809百万円へ<b>23%落ち込む谷</b>があり、ROEも7.0%まで低下、自己資本比率も66.4%へ一時低下している。同期は総資産が54,930→66,838百万円へ急膨張し、財務CFが+4,266百万円とこの5年で唯一のプラス（借入による調達）である。<b>淀川工場・メキシコ工場という大型投資の実行期</b>にあたり、前中計（2022-2024）の「投資」フェーズが利益とバランスシートに現れた形と読める。<span class="tag t-i">[解釈]</span><br>
+逆に言えば第67期の急伸は、その投資の回収局面（会社の言う「展開」）に入ったことを示す。営業CFのCAGR +15.9% が売上CAGRを上回っており、利益の現金化は伴っている。<span class="tag t-i">[解釈]</span></p>
+</div>
+<p class="small">単体との乖離：提出会社単体の売上は 28,418百万円で連結の 56.7%、単体経常利益 2,880百万円は連結の 36.4% にとどまる。<b>利益の6割強が子会社側（とりわけ北米販社と製造子会社）で生まれている</b>点は、単体だけを見ると実像を取り違えるため注意を要する。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+
+<h3>1-2. 事業の内容 ― 事業系統の言語化</h3>
+<p class="small">第1【企業の概況】3 事業の内容より。当社＋子会社13社（うち非連結3社）＋関連会社3社（うち持分法非適用1社）で構成。<span class="tag t-f">[事実]</span></p>
+<blockquote>当社グループが営む事業の内容は、各種ガスセンサの研究開発・製造及び販売、ガス警報器・検知器の商品開発・製造及び販売並びにメンテナンスであります。なお、当社グループの事業は、ガス警報器事業の単一セグメントであります。
+<span class="src">有報 第1【企業の概況】3【事業の内容】</span></blockquote>
+<div class="card">
+<h4>商流を文章化すると</h4>
+<ol>
+<li><b>センサを作る／商品を設計する</b> ― 中核のガスセンサ研究開発・製造と、ガス警報器・検知器の商品開発は<b>当社本体とフィガロ技研（66.6%子会社）</b>が担う。この2社が「生産管理・品質管理・販売の中枢」と明記されており、グループの頭脳はここに集中している。<span class="tag t-f">[事実]</span></li>
+<li><b>組み立てる</b> ― 組立・検査の中枢は<b>イスズ電機（80%子会社）</b>。海外では中国（新考思莫施電子（上海）／新考思莫施智能装備（遼寧）／持分法の天津費加羅電子）と欧州（New Cosmos-BIE B.V.）が製造を担う。<span class="tag t-f">[事実]</span></li>
+<li><b>売る</b> ― 海外は FIGARO USA／費加羅傳感科技（上海）／New Cosmos USA／台湾新宇宙電機／Kyung-Woon Trading 経由。国内の一部地域は新潟コスモスへ委託。<span class="tag t-f">[事実]</span></li>
+<li><b>保守する</b> ― 新コスモス電機サービス（100%）、上海法人、韓国法人、New Cosmos-BIE がメンテナンスを担当。<span class="tag t-f">[事実]</span></li>
+</ol>
+<p><b>ビジネスモデルの要約</b>：ガスセンサという<b>コア部品を自社で握り</b>、それを警報器・検知器という完成品に仕立てて、家庭（ガス事業者経由）・プラント／半導体工場・作業現場という3つの顧客層に売り、<b>設置後の保守点検で継続収益を取る</b>。利益の源泉は「センサの内製」と「法規制に支えられた交換需要」の2点にあると読める。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>1-3. 収益柱の照合 ― 語りの大きさと利益の大きさ</h3>
+<div class="grid2">
+  <div class="card"><div class="chart sm"><canvas id="c_mix"></canvas></div>
+  <p class="small" style="margin:4px 0 0">商品別売上構成（第67期）</p></div>
+  <div class="card"><div class="chart sm"><canvas id="c_geo"></canvas></div>
+  <p class="small" style="margin:4px 0 0">地域別売上（前期 vs 当期）</p></div>
+</div>
+<div class="tw"><table>
+<thead><tr><th class="l">商品区分</th><th>売上高（千円）</th><th>構成比</th><th>前期比</th><th>生産実績（千円）</th><th>生産前期比</th></tr></thead>
+<tbody>
+<tr><td class="l">家庭用ガス警報器関連</td><td>29,605,675</td><td>59.0%</td><td><b>+36.2%</b></td><td>22,585,045</td><td>+14.7%</td></tr>
+<tr><td class="l">工業用定置式ガス検知警報器関連</td><td>11,661,149</td><td>23.3%</td><td>△2.8%</td><td>6,774,773</td><td>△6.6%</td></tr>
+<tr><td class="l">業務用携帯型ガス検知器関連</td><td>7,145,034</td><td>14.3%</td><td>+11.6%</td><td>4,505,274</td><td>+17.1%</td></tr>
+<tr><td class="l">その他</td><td>1,679,685</td><td>3.4%</td><td>△17.0%</td><td>1,413,745</td><td>+0.4%</td></tr>
+<tr><td class="l"><b>合計</b></td><td><b>50,091,543</b></td><td>100.0%</td><td><b>+18.8%</b></td><td>35,278,839</td><td>+9.6%</td></tr>
+</tbody></table></div>
+<div class="card warn">
+<p><b>ここに重要な数字の非対称がある。</b>家庭用の<b>売上は+36.2%伸びたが、生産実績は+14.7%しか伸びていない</b>。<span class="tag t-f">[事実]</span> 生産実績は販売価格ベースで集計されているため（有報注記）、この差は ①前期からの在庫取り崩し、②連結生産実績に含まれない外部委託（メキシコ工場は生産委託先である旨が第3【設備の状況】に明記）による供給、③価格改定、のいずれか、あるいは組み合わせで説明されるはずだが、<b>有報はこの差に一切触れていない</b>。<span class="tag t-i">[解釈]</span><br>
+なお棚卸資産は商品及び製品が 2,497→4,123百万円へ +65% 増えており、単純な在庫取り崩しでは説明できない。<b>外部委託生産の比重が上がった</b>と読むのが自然だが、有報からは委託比率を確認できない。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card">
+<p><b>語りと利益の乖離について</b>：単一セグメントのため<b>商品別の利益は開示されていない</b>。したがって「語りの大きさ（＝家庭用・北米の話が中計でも有報でも最も紙幅を取る）」が「利益の大きさ」と一致するかは、<b>有報からは検証できない</b>。<span class="tag t-c">[要確認]</span><br>
+唯一の手がかりは関係会社の主要損益情報である。New Cosmos USA,Inc. は単体で売上 11,118百万円・経常利益 <b>2,470百万円（経常利益率22.2%）</b>、FIGARO USA,INC. は売上 5,141百万円・経常利益 211百万円（同4.1%）。<b>グループ連結経常利益 7,921百万円の31%を、北米販社1社が稼いでいる</b>計算になる（内部取引消去前の単純比較のため参考値）。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>1-4. 競争優位はどこにあるか</h3>
+<div class="card">
+<p>有報は競争優位を直接語らないが、事業系統図と設備の状況から次のように推定できる。<span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>川上（センサ素子）の内製</b> ― コスモスセンサセンター（三木市、帳簿価額2,010百万円）と2025年1月開所の淀川工場（同4,551百万円）というセンサ専用の生産拠点を国内に2つ持ち、加えてセンサ専業のフィガロ技研を子会社化している。ガス警報器メーカーでありながら<b>センサ素子から作れる</b>ことが競争上の核と考えられる。実際、有報の研究成果はすべてセンサ／検知技術由来である。</li>
+<li><b>川下（保守）の内製</b> ― 新コスモス電機サービスが23事務所・従業員182名を抱え、有形固定資産をほとんど持たない（土地154百万円＋工具器具備品15百万円）人的サービス組織として全国に張り付いている。工業用・携帯型のリプレース／点検需要を自社で取り込む構造。</li>
+<li><b>組立は外へ出す</b> ― 組立・検査の中枢はイスズ電機（80%子会社、資本金2,000万円、帳簿価額84百万円）で、北米向けはメキシコの外部委託先。<b>資本を寝かせるのは「センサ」だけで、労働集約的な組立は関係会社と委託先に振っている</b>という資本配分が読み取れる。</li>
+</ul>
+<p>逆に脆弱性は、この優位が<b>「規制で守られた国内の交換需要」＋「センサ内製」</b>という古い組み合わせに立脚してきた点にある。北米の電池式メタン警報器は、当社にとって<b>規制の追い風が自国外で起きた初めての大型商材</b>であり、その追い風の持続性については有報に説明がない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+
+<h3>1-5. 関係会社 ― 支配構造とそこに潜むリスク</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">親会社の有無</div><div class="v">なし</div><div class="n">ただし岩谷産業が28.37%を直接保有し「その他の関係会社」に位置付け</div></div>
+  <div class="kpi"><div class="l">海外売上高比率</div><div class="v">51.8%</div><div class="n">前期46.2%から+5.6pt。初の過半</div></div>
+  <div class="kpi"><div class="l">非100%子会社</div><div class="v">2社</div><div class="n">イスズ電機80.0%／フィガロ技研66.6%</div></div>
+</div>
+<div class="card">
+<ul>
+<li><b>「その他の関係会社」岩谷産業（28.37%）</b> ― 有報上は親会社ではないが、議決権28.37%を直接保有する筆頭株主であり、かつ「当社製品の販売」という取引関係と役員兼任1名を持つ。さらに後発事象として米国合弁の設立相手でもある。<b>資本・販売・海外展開の三方向で結びついた実質的な支配的影響力を持つ株主</b>と評価できる。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+<li><b>フィガロ技研（66.6%）</b> ― 資本金99百万円ながら帳簿価額1,286百万円の設備と従業員165名を抱えるセンサ製造の中核。持分法の天津費加羅（27.3%）・上海松江費加羅（20.0%）を通じた中国生産網もこの傘下にある。<b>非支配株主持分33.4%が残っており、稼いだ利益の3分の1は連結純利益に入らない</b>。当期の非支配株主に帰属する当期純利益は542百万円（連結当期純利益5,751百万円の9.4%）。<span class="tag t-f">[事実]</span></li>
+<li><b>New Cosmos USA,Inc.（100%）／FIGARO USA,INC.（66.6%）</b> ― いずれも連結売上の10%超を占めるため主要損益情報が個別開示されている。前者の経常利益2,470百万円は連結経常利益の31%相当。<b>米国1カ国の政策・関税・為替が連結利益に直接効く構造</b>。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+<li><b>中国拠点の比重</b> ― 上海・遼寧の製造2社と天津・上海松江の持分法2社。米中間の通商環境の変化が「センサ／完成品を中国で作り北米で売る」導線に影響しうるが、<b>有報のリスク⑧は地域名を列挙するにとどまり、この導線を名指しした記述はない</b>。<span class="tag t-c">[要確認]</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ========== Ⅱ. 沿革 ========== -->
+<section id="s2" data-t="Ⅱ. 沿革">
+<h2>Ⅱ. 沿革 ― どういう成り立ちの会社か</h2>
+<div class="card note">
+<p>本章のみ、有報の【沿革】を骨格としつつ外部Web情報で肉付けしている。Web由来の記述には <span class="tag t-w">[web]</span> と出典名を付し、有報由来と混ぜない。<span class="src-cite">出所 [③]有報 第1【企業の概況】2【沿革】／[web] 会社公式「コスモスヒストリー」・Wikipedia</span></p>
+</div>
+
+<h3>2-1. 4つの転換点で読む</h3>
+<div class="card">
+<h4>転換点① 1960年設立 ― 出発点は「可変抵抗器メーカー」だった</h4>
+<p>1960年6月設立。当初の主要製品は<b>可変抵抗器を主とする電機器具部品の製造・販売・修理</b>であり、ガス警報器の会社ではなかった。<span class="tag t-f">[事実]</span> 家庭用可燃性ガス警報器の発売は1964年12月、設立から4年半後である。<span class="tag t-f">[事実]</span><br>
+1960年代前半、LPガスの家庭普及に伴いガス漏れ警報器の開発に着手。1964年に接触燃焼式センサ搭載の「A-3型」を出したが高価で普及に至らなかった。<span class="tag t-w">[web]</span><span class="src-cite">（出典：新コスモス電機 公式「会社の歴史／コスモスヒストリー」）</span></p>
+</div>
+<div class="card">
+<h4>転換点② 1969年 ― 岩谷産業との販売権契約と、半導体式センサへの賭け</h4>
+<p>有報の記載はこうである。<span class="tag t-f">[事実]</span></p>
+<blockquote>1969年2月　岩谷産業株式会社と販売権契約を締結し、半導体ガスセンサを応用した家庭用ガス警報器の生産を開始。<span class="src">有報 第1【企業の概況】2【沿革】</span></blockquote>
+<p>この一行が、現在まで続く<b>会社の骨格を決めた</b>。①接触燃焼式から半導体式センサへ原理を切り替えて部品点数を減らし価格をA-3型の約1/3に抑えたこと、②自社販売ではなくガス事業者の販売網を持つ岩谷産業に販売を委ねたこと、の2つが同時に起きている。製品は岩谷から「みはり」（CZ-102）の名で売られた。<span class="tag t-w">[web]</span><span class="src-cite">（出典：新コスモス電機 公式「コスモスヒストリー」）</span><br>
+<b>設立から57年後の現在も、岩谷産業は議決権28.37%の筆頭株主であり、かつ米国合弁のパートナーである。</b>1969年の販売権契約が資本関係へと固定化され、今日の支配構造そのものになっている。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<h4>転換点③ 1996年〜2004年 ― 上場と、住宅用火災警報器という第二の柱</h4>
+<p>1996年11月に株式を店頭登録（日本証券業協会）。2004年12月に店頭登録を取消してジャスダック証券取引所へ上場、<b>同じ2004年12月に住宅用火災警報器を発売</b>している。<span class="tag t-f">[事実]</span> 2004年は消防法改正により住宅用火災警報器の設置が義務化される流れが決まった時期であり、<b>規制の新設に商品投入を合わせる</b>という当社の型がここでも現れている。<span class="tag t-i">[解釈]</span><br>
+その後、2010年に大証JASDAQ、2013年に東証JASDAQ（スタンダード）、2022年4月の市場再編で東証スタンダード市場へ、と<b>上場市場は一貫してスタンダード区分にとどまっている</b>。<span class="tag t-f">[事実]</span></p>
+</div>
+<div class="card">
+<h4>転換点④ 2010年代 ― 海外M&Aの試行錯誤と、フィガロ技研の取り込み</h4>
+<p>2010年代は海外展開の実験期と言ってよい。<span class="tag t-i">[解釈]</span></p>
+<ul>
+<li>1997年 中国・上海に合弁「上海新宇宙煤気監控設備有限公司」設立 → <b>2013年12月清算</b><span class="tag t-f">[事実]</span></li>
+<li>2010年5月 スウェーデンのSenseAir株式取得 → <b>2017年3月売却</b><span class="tag t-f">[事実]</span></li>
+<li>2011年2月 オランダの Bionics Instrument Europe B.V.（現 New Cosmos-BIE B.V.）を子会社化 → 現在も欧州の製造・保守拠点として継続<span class="tag t-f">[事実]</span></li>
+<li><b>2016年7月 フィガロ技研の株式66.6%を取得しグループ会社化</b> ― 現在に至るまで最大の買収。センサ専業メーカーを取り込み、センサ内製体制を二重化した<span class="tag t-f">[事実]</span><span class="tag t-w">[web]</span><span class="src-cite">（出典：Wikipedia「新コスモス電機」）</span></li>
+<li>2016年12月 韓国法人、<b>2019年2月 New Cosmos USA,Inc.（イリノイ州シカゴ）</b>設立、2019年2月 タイ事務所、2022年4月 中国・遼寧法人、2023年2月 パリ事務所、2023年7月 台湾法人<span class="tag t-f">[事実]</span></li>
+</ul>
+<p><b>撤退（上海合弁の清算・SenseAir売却）と継続（BIE・フィガロ・USA）が明確に分かれている</b>のがこの時期の特徴。そして2019年に設立された New Cosmos USA が、7年後の第67期には連結経常利益の3割を稼ぐ拠点に育った。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>2-2. 直近5年 ― 生産能力への集中投資</h3>
+<div class="card">
+<ul>
+<li>2014年9月 兵庫県三木市に「COSMOS SENSOR CENTER」竣工（センサの中核施設）<span class="tag t-f">[事実]</span></li>
+<li>2022年4月 東証スタンダード市場へ移行／中国・遼寧に現地法人設立<span class="tag t-f">[事実]</span></li>
+<li>2023年5月 兵庫県三木市に火災実験の見学施設「PLUSCO Lab.（プラシオラボ）」開所<span class="tag t-f">[事実]</span></li>
+<li>2023年7月 台湾・新竹市に現地法人設立<span class="tag t-f">[事実]</span></li>
+<li>2024年4月 メンテナンス2社を合併し「新コスモス電機サービス株式会社」へ<span class="tag t-f">[事実]</span></li>
+<li><b>2025年1月 大阪市にガスセンサ工場「淀川工場」開所</b><span class="tag t-f">[事実]</span></li>
+</ul>
+<p>沿革の最後の3年は<b>ほぼすべてが生産能力と拠点の話</b>で、商品や技術の話が出てこない。前中計（2022-2024）を会社自身が「投資」の期間と位置付けている（中計資料）ことと整合する。第65期の利益の谷と自己資本比率の一時低下は、この沿革の並びと表裏である。<span class="tag t-i">[解釈]</span><span class="src-cite">出所 [③] 中期経営計画2025-2027</span></p>
+</div>
+<div class="card note">
+<p><b>沿革から見える会社の性格</b>：①<b>センサの原理を切り替えることで市場を作った会社</b>（1969年の半導体式）であり、いま再び MEMSガスセンサへの原理転換を掲げている。②<b>販売は他社の網に乗せる</b>のが基本形（岩谷産業／ガス事業者／現在の北米合弁）。③<b>規制が新設される場所に商品を置く</b>（1969年LPガス、2004年住宅用火災警報器、現在の北米メタン規制と欧州水素）。この3つの型は60年以上変わっていない。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅲ. 人的資本 ========== -->
+<section id="s3" data-t="Ⅲ. 人的資本">
+<h2>Ⅲ. 人的資本 ― 従業員の状況＋サステナビリティの人的資本情報</h2>
+<p class="small">第1【企業の概況】5【従業員の状況等】（第67期より「人材戦略に関する基本方針等」が同綱目に統合）および第2【事業の状況】2【サステナビリティ】(5)より。<span class="src-cite">出所 [③] 有価証券報告書</span></p>
+
+<h3>3-1. 人員構成</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">区分（連結・部門別）</th><th>従業員数（人）</th><th>臨時雇用（外書・年間平均）</th><th>構成比</th></tr></thead>
+<tbody>
+<tr><td class="l">営業部門</td><td>457</td><td>55</td><td>44.0%</td></tr>
+<tr><td class="l">生産部門</td><td>225</td><td>233</td><td>21.7%</td></tr>
+<tr><td class="l">全社共通</td><td>356</td><td>100</td><td>34.3%</td></tr>
+<tr><td class="l"><b>合計</b></td><td><b>1,038</b></td><td><b>388</b></td><td>100.0%</td></tr>
+</tbody></table></div>
+<div class="card">
+<p><b>読み取れること</b>：正社員では営業部門が最大（44.0%）だが、<b>臨時雇用388名のうち233名（60%）が生産部門に集中</b>している。生産部門は正社員225名＋臨時233名でほぼ1:1、つまり<b>生産の頭数の半分は非正規で吸収する設計</b>である。需要変動を人員の固定費化なしに受け止める構造で、北米向けの急増産に対して国内正社員を増やさずに対応できたことと整合する。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="grid3">
+  <div class="kpi"><div class="l">提出会社 従業員数</div><div class="v">498<span style="font-size:13px">人</span></div><div class="n">外、臨時196人</div></div>
+  <div class="kpi"><div class="l">平均年齢 / 平均勤続</div><div class="v">41.8歳 / 15.4年</div><div class="n">新卒定着型の年齢構成<span class="tag t-i">[解釈]</span></div></div>
+  <div class="kpi"><div class="l">平均年間給与</div><div class="v">7,487<span style="font-size:13px">千円</span></div><div class="n">前期比 +3.1%（賞与・基準外含む）</div></div>
+</div>
+
+<h3>3-2. 生産性 ― 増収は人を増やして作ったのか</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">年度</th><th>売上高（百万円）</th><th>連結従業員（人）</th><th>1人当たり売上（万円）</th></tr></thead>
+<tbody>
+<tr><td class="l">第63期 2022/3</td><td>34,336</td><td>855</td><td>4,016</td></tr>
+<tr><td class="l">第64期 2023/3</td><td>37,207</td><td>906</td><td>4,107</td></tr>
+<tr><td class="l">第65期 2024/3</td><td>38,546</td><td>947</td><td>4,070</td></tr>
+<tr><td class="l">第66期 2025/3</td><td>42,154</td><td>987</td><td>4,271</td></tr>
+<tr><td class="l"><b>第67期 2026/3</b></td><td><b>50,092</b></td><td><b>1,038</b></td><td><b>4,826</b></td></tr>
+</tbody></table></div>
+<div class="chart sm" style="max-width:720px"><canvas id="c_prod"></canvas></div>
+<div class="card ok">
+<p><b>結論：仕組み型に振れた。</b>第63〜66期の1人当たり売上は 4,016→4,271万円と4年で+6.4%（年率1.6%）とほぼ横ばい、つまり<b>この間の増収はおおむね人員増（年率5.0%）で作られていた</b>。ところが第67期は 4,271→4,826万円と<b>1年で+13.0%</b>跳ねている。従業員は+5.2%しか増えていない。<span class="tag t-f">[事実]</span><br>
+1人当たり営業利益はさらに顕著で、522万円（第66期）→<b>708万円（第67期）と+35.6%</b>。<b>労働集約型から、設備と海外販路が効くレバレッジ型へ性格が変わった1年</b>と読める。ただしこれが淀川工場・メキシコ委託という<b>投資の一巡による一時的な段差</b>なのか、恒常的な生産性水準の切り上がりなのかは、単年の有報からは判別できない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+
+<h3>3-3. 人材戦略の記述（サステナビリティ統合）</h3>
+<div class="card">
+<h4>基本方針として書かれていること</h4>
+<blockquote>「中期経営計画2025-2027」では、（略）人材戦略としては、多様な人材の活躍と多様なアイデアや経験を活かすことができる組織風土の醸成や人的資本経営による組織体質の強化を推進しております。
+<span class="src">有報 第1-5(1)【人材戦略に関する基本方針等】</span></blockquote>
+<p>この段落自体は<b>どの企業にも書ける定型文</b>である。<span class="tag t-i">[解釈]</span> ただし当社の記述には、定型文で終わらない<b>固有の具体性を持つ部分が2つ</b>ある。</p>
+<ul>
+<li><b>職能資格等級制度の詳細開示</b> ― 上級職M-1〜M-3、中堅職S-1〜S-3、一般職J-1〜J-3の<b>9区分</b>を明示し、一定等級到達時に上司との対話を通じて「管理職」か「専門職」かの<b>キャリアステージを社員自身が選択</b>する仕組みを説明している。制度の粒度をここまで書く企業は多くない。<span class="tag t-f">[事実]</span></li>
+<li><b>定年再雇用制度の改定</b> ― 「2026年4月より定年再雇用制度を改定し、報酬体系や評価・処遇制度を刷新」と<b>時期を特定して</b>記載。平均勤続15.4年・平均年齢41.8歳という構成と、シニア層の処遇見直しは整合的である。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+</ul>
+<p><b>沈黙している点</b>：人材戦略に<b>数値目標が一つもない</b>。「女性管理職の登用については、現在の人員数より増員することを目標としております」（サステナビリティ(5)）という記述はあるが、<b>目標値も期限もない</b>。中計の財務目標が数値で明確なのと対照的である。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>3-4. 人的資本指標（数値の提示）</h3>
+<p class="small">第1-5(2)④より。本レポートは<b>数値の提示のみ</b>を行い、水準の優劣評価は行わない。<span class="tag t-f">[事実]</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">会社</th><th>管理職に占める<br>女性比率</th><th>男性育休<br>取得率</th><th>男女賃金差異<br>全労働者</th><th>同<br>正規雇用</th><th>同<br>パート・有期</th></tr></thead>
+<tbody>
+<tr><td class="l">提出会社（新コスモス電機）</td><td>4.8%</td><td>54.5%</td><td>63.4%</td><td>81.1%</td><td>78.2%</td></tr>
+<tr><td class="l">フィガロ技研</td><td>18.8%</td><td>―</td><td>―</td><td>―</td><td>―</td></tr>
+<tr><td class="l">新コスモス電機サービス</td><td>5.6%</td><td>―</td><td>―</td><td>―</td><td>―</td></tr>
+</tbody></table></div>
+<p class="small">※連結子会社2社の育休取得率・賃金差異は公表義務の対象外のため記載省略（有報注記）。役員19名中女性1名（5.3%）。労働組合はジェイエイエム所属・組合員334名、連結子会社に労働組合なし。<span class="tag t-f">[事実]</span></p>
+</section>
+
+<!-- ========== Ⅳ. 経営者の世界観 ========== -->
+<section id="s4" data-t="Ⅳ. 経営者の世界観">
+<h2>Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+
+<h3>4-1. 課題→打ち手の一対一照合</h3>
+<p class="small">有報の当該綱目は、中計2025-2027の成長戦略4本柱をそのまま「対処すべき課題」として提示する構成になっている。以下、各柱に紐づく<b>具体施策の有無</b>を照合する。<span class="src-cite">出所 [③] 有報 第2-1／中期経営計画2025-2027</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l" style="width:26%">掲げられた課題（成長戦略）</th><th class="l" style="width:44%">紐づく具体施策（有報の記載）</th><th class="l" style="width:30%">照合結果</th></tr></thead>
+<tbody>
+<tr><td class="l">① グローバル市場におけるエリア別戦略の推進</td><td class="l">北米＝電池式メタン警報器の販売強化・冷媒漏えい検知モジュールの普及拡大／アジア（日本含む）＝産業用ガス検知警報器・家庭用電池式ガス警報器の普及／欧州＝カーボンニュートラル（水素）市場の基盤づくり。加えて「売上拡大に対応した生産体制拡張と自動化の推進」</td><td class="l"><b>接続あり・具体的</b>。エリアと商材が一対一で対応し、当期実績（北米+77.8%）とも整合<span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">② 新製品・サービス戦略の推進</td><td class="l">MEMSガスセンサ搭載警報器のラインナップ拡充、新エネルギー市場向け商品開発、CO検知機能付き火災警報器（プラシオ）等の差別化商品、メンテナンス事業の質向上</td><td class="l"><b>接続あり</b>。ただし「メンテナンス事業のさらなる質の向上」は<b>手段が空白</b><span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">③ 新市場開拓のための協業体制および土台作り</td><td class="l">欧州カーボンニュートラル市場の基盤づくり、半導体市場での売上拡大、火災予兆検知・ヘルスケアの新市場開拓に「グループ会社とともに取り組む」</td><td class="l"><b>打ち手が薄い</b>。「協業体制」と言いながら<b>協業相手も、体制の中身も書かれていない</b>。とりわけ<b>ヘルスケアは有報中でここ1回しか出てこない</b><span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">④ 次世代に対応したセンシング技術の確立／MEMSガスセンサの質・量の充実</td><td class="l">2030年に向けた新技術として光・映像・AIを活用したガス検知器の開発、MEMS技術の高度化によるセンサラインナップ拡充</td><td class="l"><b>接続あり</b>。第2-6【研究開発活動】のARレーザーガス可視化装置が「光・映像」に対応しており、記述が裏付けを持つ<span class="tag t-i">[解釈]</span></td></tr>
+</tbody></table></div>
+<div class="card warn">
+<p><b>打ち手が空白の課題</b>は③である。「新市場開拓のための協業体制および土台作り」は課題名に「協業体制」を含みながら、<b>誰と、どういう形で組むのかが一切書かれていない</b>。皮肉なことに、当期の最大の協業案件（岩谷産業との米国合弁 Iwatani New Cosmos America Inc. の設立、2026年6月15日）は<b>この章ではなく、連結財務諸表の【重要な後発事象】に置かれている</b>。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+また半導体市場については、当期の工業用定置式が<b>「半導体業界向けガス検知警報器およびガスセンサの販売が低調」（MD&amp;A）で前期比△2.8%の減収</b>だったにもかかわらず、【対処すべき課題】側は「半導体市場における売上拡大」と書くのみで、<b>低調の理由にも、それを踏まえた方針転換にも触れていない</b>。課題認識と当期実績が接続していない箇所である。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>4-2. 経営環境認識の具体性 ― 固有記述か、ボイラープレートか</h3>
+<div class="card">
+<p>MD&amp;A冒頭の経営環境認識は次の通り。</p>
+<blockquote>当連結会計年度におけるわが国経済は、企業収益や雇用・所得環境の改善などを背景に、景気は緩やかな回復基調をたどりました。一方で、長期化する物価上昇が個人消費に与える影響や、各国の金融政策の転換に伴う為替相場の変動に加え、中東地域等の不安定な国際情勢といった様々な不透明要因があり、引き続き注視していく必要があります。
+<span class="src">有報 第2-4(1)①</span></blockquote>
+<p><b>これは典型的なボイラープレートである。</b>固有名詞は「中東地域」のみで、数値も時期も自社への影響経路もない。<b>海外売上比率が51.8%に達し、北米が売上の31.8%を占める会社の経営環境認識としては、明らかに解像度が低い。</b>米国の規制動向・関税・LNG／メタン政策といった、<b>当社の主力商材の需要を直接左右する事項への言及がゼロ</b>である。<span class="tag t-i">[解釈]</span><br>
+一方、<b>成長戦略の記述側は具体的</b>である。「北米では電池式メタン警報器」「欧州ではカーボンニュートラル（水素）」「冷媒漏えい検知モジュール」と商材とエリアが特定されており、こちらは定型文ではない。<b>「何を売るか」は具体的に書けるが、「なぜそれが売れるか（＝市場環境）」は書かない</b>という開示の偏りがある。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>4-3. 中期経営計画 ― 進捗と、未達認識の有無</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">中計2025-2027 定量目標</th><th>2025/3期<br>（計画策定時実績）</th><th>2028/3期<br>目標</th><th>2026/3期<br>実績（初年度）</th><th class="l">進捗評価</th></tr></thead>
+<tbody>
+<tr><td class="l">連結売上高</td><td>421.5億円</td><td>600億円以上</td><td><b>500.9億円</b></td><td class="l">3年で+178億の計画に対し初年度で+79億＝<b>44%消化</b><span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">海外売上高比率</td><td>46.2%</td><td>50%以上</td><td><b>51.8%</b></td><td class="l"><b>初年度で達成</b></td></tr>
+<tr><td class="l">営業利益率</td><td>12.2%</td><td>12.5%以上</td><td><b>14.7%</b></td><td class="l"><b>初年度で達成・超過</b></td></tr>
+<tr><td class="l">ROE</td><td>7.3%</td><td>8.5%</td><td><b>10.3%</b></td><td class="l"><b>初年度で達成・超過</b></td></tr>
+<tr><td class="l">ROIC</td><td>6.1%</td><td>8.0%</td><td>―（有報に記載なし）</td><td class="l">当方試算では約8.7%だが<b>会社開示なし</b><span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">PBR</td><td>0.7</td><td>1.0</td><td>1.09（2026/7/17時点）<span class="src-cite">[⑤]</span></td><td class="l">株価要因で到達。<b>ただし有報にPBR目標への言及なし</b></td></tr>
+<tr><td class="l">配当性向（連結）</td><td>―</td><td>30%を目指す</td><td><b>22.4%</b>（会社記載）</td><td class="l"><b>未達</b>。目標との差は約7.6pt</td></tr>
+</tbody></table></div>
+<div class="chart sm" style="max-width:760px"><canvas id="c_mtp"></canvas></div>
+<div class="card warn">
+<p><b>誠実さの観点で見ると、ここには問題がある。</b><span class="tag t-i">[解釈]</span></p>
+<ul>
+<li>有報の【対処すべき課題】は、<b>中計の定性目標と成長戦略4本柱を再掲するだけ</b>で、<b>定量目標の数値も、初年度の進捗率も、一切書かれていない</b>。中計の数値目標は別途の開示PDFにしか存在せず、有報単体を読む投資家は<b>会社が何を約束したのかを知ることができない</b>。<span class="tag t-f">[事実]</span></li>
+<li>未達を認めているか、という問いには<b>「未達も達成も、そもそも進捗を語っていない」</b>が答えになる。実績が目標を大きく上回った項目（ROE、営業利益率）についても、超過達成の事実に触れず、目標を引き上げるのかどうかも述べていない。<b>都合の良い数字も悪い数字も等しく書かない</b>という点で一貫はしているが、開示としては薄い。<span class="tag t-i">[解釈]</span></li>
+<li>唯一、配当については【配当政策】の中で「『中期経営計画2025-2027』において配当性向（連結）30％を目指すことを掲げており」と自ら目標を引用し、当期実績22.4%を併記している。<b>目標と実績を並べた記述は有報中でここだけ</b>である。<span class="tag t-f">[事実]</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ========== Ⅴ. サステナビリティ ========== -->
+<section id="s5" data-t="Ⅴ. サステナ">
+<h2>Ⅴ. サステナビリティ（人的資本を除く）</h2>
+<p class="small">第2【事業の状況】2より。人的資本情報はⅢ章に統合済み。本章は<b>戦略接続</b>と<b>検証可能性</b>の2軸に絞る。<span class="src-cite">出所 [③] 有価証券報告書</span></p>
+
+<h3>5-1. 記載されている内容（原文の骨格）</h3>
+<div class="card">
+<p><b>基本方針／サステナビリティ目標</b>：「豊かな地球を子孫に残す」<span class="tag t-f">[事実]</span></p>
+<p><b>ガバナンス</b>：2022年4月より経営企画室にSDGs担当を設置、各本部と連携。取締役会および代表取締役の監督の下で推進。<span class="tag t-f">[事実]</span></p>
+<p><b>戦略（マテリアリティ3項目）</b><span class="tag t-f">[事実]</span></p>
+<ul>
+<li>世界中のガス事故をなくす</li>
+<li>安全・安心・快適な環境創りに貢献</li>
+<li>多様な人材が活躍でき、多様なアイデアや経験を活かすことができる土壌づくり</li>
+</ul>
+<p><b>リスク管理</b>：リスク管理規程に基づき、執行役員または取締役が委員長を務めるリスク管理委員会を設置。全社的なリスクの認識・評価・選別・対応策の検討を行い、取締役会へ報告。環境マネジメントシステムを通じ環境管理委員会が環境リスク・機会を評価。<span class="tag t-f">[事実]</span></p>
+<p><b>指標及び目標（気候変動）</b><span class="tag t-f">[事実]</span></p>
+<ul>
+<li>2037年までに Scope1,2 のCO2排出量をゼロ</li>
+<li>2050年までに Scope3 を含むカーボンニュートラル達成に取り組む</li>
+</ul>
+</div>
+
+<h3>5-2. 軸① 戦略接続 ― 本文と結びついているか</h3>
+<div class="card ok">
+<p><b>マテリアリティの1つ目「世界中のガス事故をなくす」は、本業とほぼ同義である。</b>これは珍しい。多くの企業のマテリアリティが本業から浮いた社会貢献項目になるのに対し、当社の場合はガス警報器を売ること自体がそのままマテリアリティの実行になる。中計の定性目標「MEMSガスセンサ技術を軸にグローバルに展開し、<b>ガス事故ゼロとカーボンニュートラル社会の実現に貢献する</b>」とも文言レベルで一致している。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+<p><b>カーボンニュートラルについても、当社は「規制される側」ではなく「規制で商売が増える側」に立っている。</b>欧州の水素市場向け警報器、北米の冷媒漏えい検知モジュール、家庭用電池式水素警報器（英国SGN社のグリーン水素プロジェクトに採用）はいずれも、脱炭素の進展そのものが需要になる商材である。サステナビリティ章と成長戦略が<b>同じ方向を向いている稀なケース</b>と言える。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<p>ただし、<b>接続が明示されているわけではない</b>。サステナビリティ章は「基本方針・ガバナンス・戦略・リスク管理・指標及び目標」という法定の枠に沿って書かれるだけで、<b>この章の中で「だから当社のこの商品が伸びる」という接続を自ら述べていない</b>。読者が第2-1（成長戦略）と第2-6（研究開発活動）を突き合わせて初めて接続が見える構造になっている。<b>実態としては接続しているが、開示としては接続を語っていない。</b><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>5-3. 軸② 検証可能性 ― 目標に期限と実績があるか</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">目標</th><th class="l">期限</th><th class="l">当期実績の開示</th><th class="l">検証可能性</th></tr></thead>
+<tbody>
+<tr><td class="l">Scope1,2 のCO2排出量ゼロ</td><td class="l">2037年（明示あり）</td><td class="l"><b>なし</b>（有報にScope1,2の実排出量の記載なし）</td><td class="l"><b>低</b>。期限はあるが起点も進捗も不明<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">Scope3含むカーボンニュートラル</td><td class="l">2050年（明示あり）</td><td class="l"><b>なし</b></td><td class="l"><b>低</b><span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">女性管理職の増員</td><td class="l"><b>なし</b></td><td class="l">あり（4.8%）</td><td class="l"><b>低</b>。「現在の人員数より増員」とのみで目標値なし</td></tr>
+<tr><td class="l">マテリアリティ3項目</td><td class="l"><b>なし</b></td><td class="l"><b>なし</b>（KPI設定なし）</td><td class="l"><b>不能</b>。定性の表明にとどまる</td></tr>
+</tbody></table></div>
+<div class="card warn">
+<p><b>検証可能性は総じて低い。</b>気候変動目標は2037年・2050年と期限だけが具体的だが、<b>Scope1,2の現在の排出量が有報に書かれていない</b>ため、ゼロまでの距離が測れない。TCFD提言に沿った「ガバナンス・戦略・リスク管理・指標及び目標」の4分類の器は満たしているが、<b>指標の中身が空</b>である。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+<p><b>ただし投資論点としての重みは限定的</b>と考える。当社は電気機器・組立産業であり、炭素集約度は低く、有形固定資産11,663百万円のうち機械装置は2,143百万円にすぎない。気候規制が直接コストとして効く業種ではなく、むしろ<b>脱炭素が需要側に効く立場</b>である。したがって本章の開示の薄さは、ガバナンスの姿勢を示す情報としては読むべきだが、<b>キャッシュフローの見通しを左右する論点ではない</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅵ. リスク ========== -->
+<section id="s6" data-t="Ⅵ. リスク">
+<h2>Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+<p class="small">第2【事業の状況】3より。当期のリスク項目は<b>全10項目</b>。以下、固有リスクと定型リスクに仕分ける。<span class="src-cite">出所 [③] 有価証券報告書</span></p>
+
+<h3>6-1. 仕分け</h3>
+<div class="grid2">
+<div class="card ok">
+<h4>固有リスク（4項目・当社の商売の構造に根ざす）</h4>
+<ul>
+<li><b>① 家庭用ガス警報器関連の事業環境</b> ― 有効期限を3年→5年に延長した経緯があり、<b>その2年の延長期間が交換需要のない空白期間として今も残っている</b></li>
+<li><b>② 工業用定置式ガス検知警報器関連</b> ― 設備投資サイクルへの依存、プラント・半導体工場向けで<b>リプレース頻度が極端に低い</b>ため新規ユーザー獲得頻度が他業界比で低い</li>
+<li><b>③ 業務用携帯型ガス検知器関連</b> ― 新商品開発競争が激しく、新技術の出現で現行商品が陳腐化すれば価格下落</li>
+<li><b>④ 法的規制</b> ― 高圧ガス保安法／液石法／ガス事業法／労働安全衛生法／消防法を<b>法律名まで列挙</b>し、国内外の法規制の新設・改廃の影響を明示</li>
+</ul>
+</div>
+<div class="card">
+<h4>定型リスク（6項目・大半の製造業に共通）</h4>
+<ul>
+<li>⑤ 品質問題（リコール・PL）</li>
+<li>⑥ 研究開発が業績に寄与するとは限らない</li>
+<li>⑦ 知的財産権（出願が全て登録されるとは限らない／第三者訴訟）</li>
+<li>⑧ 経済状況・社会情勢（設備投資動向／海外の政治経済／為替／地政学に起因する原材料不足・価格高騰）</li>
+<li>⑨ 大規模災害及び感染症等の蔓延</li>
+<li>⑩ 個人情報の流出</li>
+</ul>
+<p class="small" style="margin-top:8px"><b>定型比率：6/10＝60%。</b>固有4項目のうち3つは「商品カテゴリ別の事業環境」という同一フォーマットの繰り返しであり、<b>実質的に独立した固有リスクは①の有効期限サイクルと④の法規制の2つ</b>と見るのが妥当。<span class="tag t-i">[解釈]</span></p>
+</div>
+</div>
+
+<h3>6-2. 固有リスク①の深掘り ― 「5年サイクルの穴」とは何か</h3>
+<div class="card">
+<blockquote>当商品のうち、家庭用都市ガス警報器は、当社グループの主力商品ですが、過去に有効期限を３年から現在の５年に延ばした経緯があります。この２年の延長期間が期限切れによる交換需要のない期間となり、以来このサイクルが残ったまま現在に至っております。
+<span class="src">有報 第2-3【事業等のリスク】①</span></blockquote>
+<p><b>これは当社にしか書けない、極めて具体的なリスク開示である。</b>交換需要で回る商売において、製品寿命を3年から5年へ延ばした瞬間に<b>2年分の需要の空白</b>が生じ、それが恒久的な需要の波として残り続けている、という構造を認めている。<span class="tag t-f">[事実]</span><br>
+実際、第65期（2024/3）の経常利益の谷（△23%）はこの波と投資負担の重なりで説明できる可能性があるが、<b>有報はリスク①と第65期の実績を結びつけて説明していない</b>。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span><br>
+現在この波の位相がどこにあるのか（次の谷はいつ来るのか）は、<b>有報からは全く読み取れない</b>。国内家庭用が当期好調だった（「国内市場の都市ガス用警報器の販売も好調」）ことから山の局面にある可能性はあるが、確認できない。<span class="tag t-c">[要確認]</span></p>
+</div>
+
+<h3>6-3. 財務数値・他章との照合 ― 過小開示の指摘</h3>
+<div class="card warn">
+<h4>指摘1：売上の31.8%を占める北米集中が、リスク項目として立っていない</h4>
+<p>当期の北米売上は 15,944百万円＝<b>連結売上の31.8%</b>、前期比+77.8%。New Cosmos USA 単体の経常利益 2,470百万円は<b>連結経常利益の31%相当</b>。にもかかわらず、リスク⑧が「アメリカおよび中国、台湾、韓国を中心としたアジア地域は拡大傾向にあります」と地域名を並べるだけで、<b>「特定商材（電池式メタン警報器）・特定地域（北米）への集中」という項目が存在しない</b>。<b>当期の増収額7,938百万円のうち、北米の増加分6,976百万円が88%を占める</b>という事実に照らすと、リスク開示の重心が実態からずれている。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card warn">
+<h4>指摘2：外部委託生産への依存が、リスク項目に現れていない</h4>
+<p>第3【設備の状況】では New Cosmos USA,Inc. の事業所として「本社（米国）／<b>製造委託先（メキシコ）</b>」が明記され、生産部門として位置付けられている。家庭用の売上+36.2%に対し連結生産実績+14.7%というギャップも、委託生産の比重上昇を示唆する。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+しかし<b>リスク章に「外部委託先への依存」「サプライチェーン寸断」の項目はない</b>。中計では基盤戦略に「サプライチェーンの強化」を掲げているのに、リスク章では対応する記述がない。<b>戦略として認識している事項が、リスクとしては開示されていない</b>という非対称である。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card warn">
+<h4>指摘3：政策保有株式の価格変動リスクが立っていない</h4>
+<p>純資産57,443百万円に対し投資有価証券は9,580百万円（純資産比16.7%）。うち上場株式24銘柄・7,605百万円。当期のその他有価証券評価差額金の増加は1,370百万円で、<b>純資産増加額6,182百万円の22%</b>を占める。<span class="tag t-f">[事実]</span> これだけの規模の上場株を保有しながら、<b>株価下落による純資産・包括利益の変動がリスク項目に挙がっていない</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card note">
+<h4>照合できた点（矛盾なし）</h4>
+<p>リスク②「工業用定置式は設備投資サイクルの影響が顕著」は、当期の工業用定置式が前期比△2.8%・生産実績△6.6%と減少し、MD&amp;Aが「半導体業界向け（略）の販売が低調」と説明していることと<b>整合している</b>。リスク③の携帯型は逆に+11.6%と好調で、リスクが顕在化しなかった年であることが確認できる。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>6-4. 経営上の重要な契約等（第2-5）</h3>
+<div class="card">
+<blockquote>５【重要な契約等】　該当事項はありません。<span class="src">有報 第2-5</span></blockquote>
+<p><b>「該当事項なし」である。</b><span class="tag t-f">[事実]</span> ただしこれは<b>額面通りには受け取りにくい</b>。1969年2月に岩谷産業と締結した販売権契約は【沿革】に明記されており、岩谷産業は現在も議決権28.37%の筆頭株主かつ「当社製品の販売」の関係を持つ。<b>この販売権契約が現在も有効なのか、失効・変更されたのかは有報から判断できない</b>。<span class="tag t-c">[要確認]</span><br>
+また北米の製造委託（メキシコ工場）についても契約の記載はない。<b>依存・更新リスクを評価する材料が、有報には存在しない</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅶ. MD&A ========== -->
+<section id="s7" data-t="Ⅶ. 経営成績の分析">
+<h2>Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+
+<h3>7-1. 業績事実の要約</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">売上高</div><div class="v">50,092<span style="font-size:13px">百万円</span></div><div class="n">前期比 +18.8%</div></div>
+  <div class="kpi"><div class="l">営業利益</div><div class="v">7,351<span style="font-size:13px">百万円</span></div><div class="n">前期比 +42.6%／営業利益率 14.7%</div></div>
+  <div class="kpi"><div class="l">経常利益</div><div class="v">7,921<span style="font-size:13px">百万円</span></div><div class="n">前期比 +45.3%</div></div>
+  <div class="kpi"><div class="l">親会社株主に帰属する当期純利益</div><div class="v">5,209<span style="font-size:13px">百万円</span></div><div class="n">前期比 +54.2%</div></div>
+  <div class="kpi"><div class="l">営業CF</div><div class="v">5,960<span style="font-size:13px">百万円</span></div><div class="n">前期比 +21.9%</div></div>
+  <div class="kpi"><div class="l">総資産 / 純資産</div><div class="v">73,444 / 57,443</div><div class="n">百万円。自己資本比率72.7%（+1.9pt）</div></div>
+</div>
+<div class="card">
+<h4>増益の要因分解（損益計算書から）</h4>
+<div class="tw"><table>
+<thead><tr><th class="l">項目（千円）</th><th>第66期</th><th>第67期</th><th>増減</th><th>対売上比の変化</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高</td><td>42,153,556</td><td>50,091,543</td><td>+7,937,987</td><td>―</td></tr>
+<tr><td class="l">売上原価</td><td>22,605,263</td><td>27,251,496</td><td>+4,646,233</td><td>53.6%→54.4%（+0.8pt）</td></tr>
+<tr><td class="l"><b>売上総利益</b></td><td>19,548,293</td><td>22,840,046</td><td>+3,291,753</td><td><b>46.4%→45.6%（△0.8pt）</b></td></tr>
+<tr><td class="l">販管費合計</td><td>14,393,002</td><td>15,489,000</td><td>+1,095,998</td><td><b>34.1%→30.9%（△3.2pt）</b></td></tr>
+<tr><td class="l">　うち給料及び手当</td><td>4,407,786</td><td>4,841,982</td><td>+434,196</td><td>10.5%→9.7%</td></tr>
+<tr><td class="l">　うち試験研究費</td><td>2,494,452</td><td>2,722,563</td><td>+228,111</td><td>5.9%→5.4%</td></tr>
+<tr><td class="l"><b>営業利益</b></td><td>5,155,290</td><td>7,351,046</td><td><b>+2,195,756</b></td><td><b>12.2%→14.7%（+2.5pt）</b></td></tr>
+<tr><td class="l">営業外損益（純）</td><td>+296,121</td><td>+570,248</td><td>+274,127</td><td>うち為替差益 233,215（前期は差損58,792）</td></tr>
+<tr><td class="l"><b>経常利益</b></td><td>5,451,411</td><td>7,921,295</td><td>+2,469,884</td><td>12.9%→15.8%</td></tr>
+<tr><td class="l">非支配株主に帰属する当期純利益</td><td>431,002</td><td>542,112</td><td>+111,110</td><td>フィガロ技研等の33.4%分</td></tr>
+</tbody></table></div>
+<p><b>ここが重要である。粗利率はむしろ0.8pt悪化している。</b>営業利益率の+2.5pt改善は、ほぼ全額が<b>販管費の対売上比が34.1%→30.9%へ3.2pt下がったこと</b>で説明される。販管費の絶対額は+1,096百万円（+7.6%）増えているが、売上が+18.8%伸びたため比率が下がった。つまり<b>固定費レバレッジが効いた1年</b>であって、原価率の改善（＝製品競争力や生産効率の向上）によるものではない。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+これは裏返すと<b>減収局面では逆回転する</b>ことを意味する。会社側は「人的資本への投資や研究開発の促進、生産体制の強化などによりコストは全体として増加したものの、販売の増加や収益性向上の効果が上回り」と説明しているが、<b>「収益性向上」の中身が粗利率ではなく費用比率であった点は、有報の記述からは読み取れない</b>。<span class="tag t-i">[解釈]</span><br>
+なお経常段階では為替差益233百万円（前期は差損59百万円）という<b>292百万円の振れ</b>があり、経常増益2,470百万円の12%を占める。海外比率51.8%の会社として、為替は今後も損益の振れ要因になる。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>7-2. 財政状態</h3>
+<div class="card">
+<p><b>総資産 +6,156百万円（+9.1%）</b>の内訳として会社が挙げるのは、現金及び預金の増加2,296百万円、投資有価証券の増加2,012百万円、棚卸資産の増加1,186百万円。<b>負債はほぼ横ばい（△26百万円）</b>で、電子記録債務△754百万円・長期借入金△869百万円の返済を、繰延税金負債+764百万円・仕入債務+423百万円が相殺した形。純資産は+6,182百万円（+12.1%）。<span class="tag t-f">[事実]</span></p>
+<p><b>注目すべきは資産の増え方である。</b>増えた6,156百万円のうち<b>現預金と投資有価証券で4,308百万円（70%）</b>を占め、事業用の有形固定資産はむしろ<b>11,963→11,663百万円と300百万円減っている</b>。<b>稼いだ金が事業資産ではなく金融資産に積み上がった1年</b>であり、これはⅨ章の資本配分の論点に直結する。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>7-3. 経営者が使う指標 ― 関心の所在</h3>
+<div class="card">
+<p>有報中で会社が「経営の重要な指標」と自ら述べているのは次の2つだけである。</p>
+<blockquote>なお、当社グループは<b>海外売上高比率や営業利益率</b>を経営の重要な指標と位置付けており、当連結会計年度は海外売上高比率51.8%（前期比5.6ポイント増）、営業利益率14.7%（前期比2.4ポイント増）となりました。
+<span class="src">有報 第2-4(1)①ｂ</span></blockquote>
+<p><b>この2指標の選び方は、経営の関心が「海外へ出ること」と「率を保つこと」にあることを示す。</b>売上高や利益額そのものではなく、比率で管理している。中計目標も海外比率50%以上・営業利益率12.5%以上と<b>同じ2指標が主軸</b>であり、一貫している。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+一方、<b>中計ではROE 8.5%・ROIC 8.0%・PBR 1.0も目標に掲げているのに、有報のMD&amp;Aではこれらに一切触れていない</b>。資本効率指標は「外向けの資料には書くが、法定開示の業績分析では使わない」という扱いになっている。<b>経営の日常の関心が資本効率にはまだ置かれていない可能性</b>を示唆する。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>7-4. CFの質と、資本の財源の説明</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">項目（百万円）</th><th>第63期</th><th>第64期</th><th>第65期</th><th>第66期</th><th>第67期</th></tr></thead>
+<tbody>
+<tr><td class="l">営業CF</td><td>3,303</td><td>2,620</td><td>2,549</td><td>4,888</td><td><b>5,960</b></td></tr>
+<tr><td class="l">投資CF</td><td>△2,199</td><td>△1,488</td><td>△2,323</td><td>△4,732</td><td>△2,205</td></tr>
+<tr><td class="l"><b>フリーCF</b></td><td>1,104</td><td>1,132</td><td>226</td><td>156</td><td><b>3,754</b></td></tr>
+<tr><td class="l">財務CF</td><td>△991</td><td>△1,011</td><td><b>+4,266</b></td><td>△1,671</td><td>△2,359</td></tr>
+<tr><td class="l">現金及び現金同等物期末残高</td><td>14,572</td><td>15,138</td><td>19,998</td><td>18,713</td><td><b>20,246</b></td></tr>
+</tbody></table></div>
+<div class="chart sm" style="max-width:760px"><canvas id="c_cf"></canvas></div>
+<div class="card ok">
+<p><b>CFの質は高い。</b>営業CF 5,960百万円に対し、税金等調整前当期純利益は 7,914百万円。差額の主因は法人税等の支払 2,399百万円と、棚卸資産の増加△1,100百万円・売上債権の増加△632百万円・仕入債務の減少△443百万円という<b>運転資本の膨張（合計△2,175百万円）</b>である。これに減価償却費1,635百万円が加わり、小計8,130百万円は税前利益を上回っている。<b>利益が現金化されないタイプの増益ではない</b>。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+運転資本が2,175百万円膨らんだのは<b>成長期の企業として自然</b>だが、棚卸資産（商品及び製品 2,497→4,123百万円、+65%）の増え方は売上増(+18.8%)を大きく超えており、<b>北米向けの在庫積み増しか、需要見込みのズレか</b>の判別が要る。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card">
+<h4>資本の財源の説明は実質的か</h4>
+<blockquote>当社グループの運転資金需要のうち主なものは、試験研究費のほか、原材料費、製造費、販売費及び一般管理費等の営業費用であります。（略）短期運転資金は自己資金及び金融機関からの短期借入を基本としており、設備投資や長期運転資金の調達につきましては、金融機関からの長期借入を基本としております。（略）当連結会計年度末における借入金の残高は4,020百万円となっております。また、当連結会計年度末における現金及び現金同等物の残高は20,245百万円となっております。
+<span class="src">有報 第2-4(2)④</span></blockquote>
+<p><b>説明として実質を欠く。</b>「自己資金と借入で賄う」は<b>ほぼ全ての企業に当てはまる定型文</b>であり、当社固有の情報は末尾の借入金残高と現預金残高の2つの数字だけである。<span class="tag t-i">[解釈]</span><br>
+より重要な問いは、<b>現預金20,246百万円と借入金4,020百万円を同時に持っている理由</b>である。ネットキャッシュは16,226百万円＝時価総額580億円の約28%に相当する。中計は3年で約80億円の投資を計画しているが、当期の設備投資は1,376百万円にとどまり、<b>手元資金だけで3年分の投資計画を優に賄える</b>。にもかかわらず借入を維持し、現預金を積み増している理由の説明はない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅷ. 将来への投資 ========== -->
+<section id="s8" data-t="Ⅷ. 将来への投資">
+<h2>Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+
+<h3>Ⅷ-a. 設備の状況（第3）</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">当期設備投資額</div><div class="v">1,376<span style="font-size:13px">百万円</span></div><div class="n">建築設備・生産設備・研究開発用設備・ソフトウェア</div></div>
+  <div class="kpi"><div class="l">減価償却費</div><div class="v">1,635<span style="font-size:13px">百万円</span></div><div class="n">連結CF計算書より</div></div>
+  <div class="kpi"><div class="l">投資／償却 比率</div><div class="v">0.84<span style="font-size:13px">倍</span></div><div class="n"><b>維持水準を下回る</b></div></div>
+</div>
+<div class="card note">
+<p><b>拡張／維持の判定：当期は「維持未満」である。</b>設備投資1,376百万円は減価償却費1,635百万円を<b>259百万円下回っており</b>、有形固定資産の帳簿価額も 11,963→11,663百万円へ減少している。第3-3【設備の新設、除却等の計画】も「特記事項はありません」で、<b>翌期以降の新規設備計画が有報に一つも書かれていない</b>。<span class="tag t-f">[事実]</span></p>
+<p><b>しかしこれは投資を止めたという意味ではない。</b>前期（第66期）の投資CFは△4,732百万円、有形固定資産の取得による支出は4,179百万円と当期の3倍あった。淀川工場（2025年1月開所）とメキシコ工場という大型投資が前期までに完了しており、<b>当期は投資一巡後の踊り場</b>と読むのが自然。<span class="tag t-i">[解釈]</span></p>
+<p><b>ただし中計との整合には疑問が残る。</b>中計2025-2027は「北米向け家庭用電池式メタン警報器の生産増への対応（約20億円）」を含む<b>3年間で約80億円の投資</b>を計画している（[③] 中計資料）。初年度である当期の設備投資は13.8億円で、<b>3年80億に対する消化率は17%</b>にとどまる。残り2年で66億円を投じる計画になるが、<b>有報の設備計画欄は「特記事項なし」である</b>。中計の投資計画と法定開示の設備計画が接続していない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+<h4>資産集約度と拠点配置</h4>
+<p class="small">当社は電気機器・組立産業であり、装置産業ではない。総資産73,444百万円に対し有形固定資産は11,663百万円＝<b>15.9%</b>にとどまる。以下は主要拠点の帳簿価額。<span class="tag t-f">[事実]</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">拠点</th><th class="l">部門</th><th>建物及び構築物</th><th>機械装置及び運搬具</th><th>土地</th><th>合計（千円）</th><th>従業員（人）</th></tr></thead>
+<tbody>
+<tr><td class="l">淀川工場（大阪市淀川区）</td><td class="l">生産</td><td>2,851,181</td><td>690,047</td><td>973,272</td><td><b>4,550,855</b></td><td>66（外27）</td></tr>
+<tr><td class="l">コスモスセンサセンター（三木市）</td><td class="l">生産・開発</td><td>1,038,321</td><td>395,032</td><td>446,484</td><td><b>2,010,285</b></td><td>95（外70）</td></tr>
+<tr><td class="l">フィガロ技研（箕面市）</td><td class="l">生産</td><td>359,424</td><td>597,338</td><td>257,195</td><td>1,286,359</td><td>165（外79）</td></tr>
+<tr><td class="l">技術開発本部・品質管理本部（淀川区）</td><td class="l">開発・品管</td><td>72,527</td><td>22,129</td><td>853,034</td><td>975,087</td><td>147（外4）</td></tr>
+<tr><td class="l">本社（淀川区）</td><td class="l">全社・営業</td><td>167,138</td><td>1,557</td><td>422,709</td><td>621,583</td><td>168（外20）</td></tr>
+<tr><td class="l">新コスモス電機サービス（23事務所）</td><td class="l">営業</td><td>225,368</td><td>―</td><td>154,031</td><td>394,106</td><td>182（外61）</td></tr>
+<tr><td class="l">New Cosmos USA（米国＋メキシコ委託先）</td><td class="l">生産</td><td>58,168</td><td>119,654</td><td>―</td><td>178,342</td><td>16（外1）</td></tr>
+<tr><td class="l">新考思莫施智能装備（遼寧）</td><td class="l">生産</td><td>134,747</td><td>32,751</td><td>―</td><td>167,861</td><td>24（外2）</td></tr>
+<tr><td class="l">イスズ電機（尼崎市）</td><td class="l">生産</td><td>41,084</td><td>12,247</td><td>27,730</td><td>83,966</td><td>23（外42）</td></tr>
+<tr><td class="l">新考思莫施電子（上海）</td><td class="l">生産</td><td>1,134</td><td>32,679</td><td>―</td><td>47,728</td><td>93（外7）</td></tr>
+</tbody></table></div>
+<div class="card">
+<p><b>設備の配置から読めること</b><span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>金は国内のセンサ拠点に集中している。</b>淀川工場＋コスモスセンサセンター＋フィガロ技研の3拠点で 7,847百万円＝主要設備の大半を占める。<b>センサは自分で作る、という方針が資本配分として実行されている。</b></li>
+<li><b>北米は「軽い」。</b>連結売上の31.8%を稼ぐ北米は、設備としては New Cosmos USA の178百万円のみ、従業員16名。<b>製造をメキシコの委託先に、生産管理を新設合弁に任せる、資産を持たないモデル</b>。資本効率は高いが、委託先の交渉力・供給リスクを抱える構造でもある。</li>
+<li><b>中国拠点は上海が従業員93名に対し設備48百万円と極端に労働集約的</b>、遼寧は逆に設備168百万円・従業員24名。役割が分かれている。</li>
+<li><b>建設仮勘定847百万円（前期778百万円）が帳簿価額に含まれない</b>旨が注記されており、次の投資の仕込みは進んでいる。<span class="tag t-f">[事実]</span></li>
+</ul>
+</div>
+
+<h3>Ⅷ-b. 研究開発活動（第2-6）</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">研究開発費（当期）</div><div class="v">3,034<span style="font-size:13px">百万円</span></div><div class="n">前期比 +8.7%</div></div>
+  <div class="kpi"><div class="l">対売上高比</div><div class="v">6.1<span style="font-size:13px">%</span></div><div class="n">会社記載値。前期は約6.6%<span class="tag t-i">[解釈]</span></div></div>
+  <div class="kpi"><div class="l">販管費の試験研究費</div><div class="v">2,723<span style="font-size:13px">百万円</span></div><div class="n">対売上5.4%（差額311百万円は製造原価等に算入）</div></div>
+</div>
+<div class="card">
+<p><b>金額は増えているが、対売上比は下がっている。</b>研究開発費は 2,791百万円相当（前期比+8.7%からの逆算）→3,034百万円と+8.7%増だが、売上が+18.8%伸びたため<b>対売上比は約6.6%→6.1%へ0.5pt低下</b>。売上急増に研究開発投資が追いついていない構図である。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span> 電気機器業種としては6%台は低くない水準であり、<b>仕込みを止めたわけではないが、加速もしていない</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+<h4>当期の研究成果 ― テーマの具体性</h4>
+<div class="grid2">
+<div class="card">
+<h4 style="margin-top:0">家庭用ガス警報器関連</h4>
+<ul>
+<li><b>家庭用電池式水素警報器を開発し、イギリス・SGN社のグリーン水素プロジェクトに採用</b><span class="tag t-f">[事実]</span></li>
+<li>北米向けに <b>LoRaWANネットワーク搭載</b>の家庭用電池式ガス警報器を開発<span class="tag t-f">[事実]</span></li>
+</ul>
+<p class="small">→ 中計の「欧州＝水素市場の基盤づくり」「北米＝電池式の市場拡大」に<b>一対一で対応</b>。しかも英国SGN社という<b>実在の採用先を固有名詞で開示</b>している。研究開発の記述としては具体性が高い。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<h4 style="margin-top:0">工業用定置式／業務用携帯型</h4>
+<ul>
+<li>半導体工場向けガス検知部用センサとして<b>熱分解コンバータ一体型の硫化カルボニル用センサ</b>を開発<span class="tag t-f">[事実]</span></li>
+<li>防爆性能「ib ⅡB T3」対応の防爆ファン付きウェア「AIR FLOW PRO」<span class="tag t-f">[事実]</span></li>
+<li>携帯型ガス検知器の日常点検装置「Xai STATION Ⅱ」を<b>大阪ガスネットワーク</b>と共同リニューアル<span class="tag t-f">[事実]</span></li>
+<li>ARレーザーガス可視化装置「Laser Gas Visualizer」を<b>ENEOSグローブ・東京ガスエンジニアリングソリューションズ・NeoRealX</b>と共同開発<span class="tag t-f">[事実]</span></li>
+</ul>
+<p class="small">→ 共同開発の相手先を<b>すべて実名で開示</b>。ガス事業者・エネルギー商社と組む型は1969年の岩谷産業以来の同社の作法と一致する。<span class="tag t-i">[解釈]</span></p>
+</div>
+</div>
+<div class="card note">
+<p><b>成長ドライバーとしての仕込み姿勢</b>：研究開発の記述は<b>有報の中で最も具体的な章</b>である。採用先・共同開発先・規格名・技術方式が固有名詞で書かれ、ボイラープレートがほぼない。中計の成長戦略④「光・映像・AIを活用したガス検知器」に対しては<b>ARレーザーガス可視化装置が既に形になっている</b>。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+一方、中計が最重要に掲げる<b>MEMSガスセンサそのものの当期の研究成果は、この章に記載がない</b>。「MEMSガスセンサの質・量の充実」は成長戦略の柱でありながら、研究開発活動の成果としては報告されていない。開発段階なのか、成果を非開示にしているのかは判断できない。<span class="tag t-c">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅸ. 資本政策 ========== -->
+<section id="s9" data-t="Ⅸ. 資本政策・株主還元">
+<h2>Ⅸ. 資本政策・株主還元</h2>
+
+<h3>9-1. 資本配分の規律 ― 稼いだ金はどこへ行ったか</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">当期のキャッシュの使い道（百万円）</th><th>金額</th><th class="l">性格</th></tr></thead>
+<tbody>
+<tr><td class="l">営業CFで得た資金</td><td><b>5,960</b></td><td class="l">原資</td></tr>
+<tr><td class="l">△ 有形固定資産の取得</td><td>1,364</td><td class="l">成長／維持投資</td></tr>
+<tr><td class="l">△ 無形固定資産の取得</td><td>176</td><td class="l">同上</td></tr>
+<tr><td class="l">△ 投資有価証券の取得</td><td>13</td><td class="l">政策保有の買い増し（3銘柄）</td></tr>
+<tr><td class="l">△ 長期借入金の返済</td><td>870</td><td class="l">財務健全化</td></tr>
+<tr><td class="l">△ 配当金の支払</td><td>741</td><td class="l">株主還元</td></tr>
+<tr><td class="l">△ 自己株式の取得</td><td><b>608</b></td><td class="l">株主還元</td></tr>
+<tr><td class="l">△ 非支配株主への配当</td><td>107</td><td class="l">―</td></tr>
+<tr><td class="l"><b>= 現金及び現金同等物の純増</b></td><td><b>+1,533</b></td><td class="l">手元に積み上がった分</td></tr>
+</tbody></table></div>
+<div class="card">
+<h4>還元の水準</h4>
+<div class="grid3">
+  <div class="kpi"><div class="l">1株当たり配当（当期）</div><div class="v">95<span style="font-size:13px">円</span></div><div class="n">前期60円から<b>+35円増配</b>（年1回・期末）</div></div>
+  <div class="kpi"><div class="l">連結配当性向</div><div class="v">22.4<span style="font-size:13px">%</span></div><div class="n">会社記載値。中計目標30%に<b>未達</b></div></div>
+  <div class="kpi"><div class="l">総還元性向（当方算出）</div><div class="v">25.9<span style="font-size:13px">%</span></div><div class="n">（支払配当741＋自社株608）÷親会社純利益5,209<span class="tag t-i">[解釈]</span></div></div>
+</div>
+<p style="margin-top:12px"><b>方針通りか。</b>【配当政策】は「業績及び配当性向等を総合的に勘案して安定的かつ継続的な配当を行う」を基本方針とし、当期の増配理由を<b>「当期の業績が期初予想を上回ったこと、また財政状態や今後の事業計画等を総合的に勘案した結果」</b>と説明している。<span class="tag t-f">[事実]</span> 業績連動で増配したという説明は実績と整合する。<span class="tag t-i">[解釈]</span><br>
+ただし<b>配当性向は前期36.0%（単体ベース）から当期47.6%（同）へ上がった一方、連結ベースでは22.4%</b>という<b>二重の見え方</b>になっている。主要な経営指標等の推移（提出会社）に載る配当性向47.6%は単体当期純利益に対する比率であり、連結利益の6割強が子会社発である当社では<b>単体基準の配当性向が実力より高く見える</b>。会社が中計で目標に掲げるのは連結30%であり、<b>そちらでは22.4%と未達</b>。読者が取り違えやすい構造である。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card note">
+<h4>自己株式取得の性格</h4>
+<p>2025年9月10日の取締役会決議で 220,000株・668.8百万円を上限とし、翌9月11日に<b>ToSTNeT-3（立会外買付）で200,000株・608百万円を1日で取得して終了</b>している（残存決議枠20,000株・9.1%は未行使）。<span class="tag t-f">[事実]</span><br>
+<b>ToSTNeT-3を決議翌日に1回で執行して終える形は、市場からの継続的な買い付けではなく、特定の売り手からのまとまった株数の受け皿である可能性が高い。</b>売り手が誰かは有報に記載がない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span> 期末の保有自己株式は391,999株＝発行済株式総数の<b>3.12%</b>。<b>消却は行われていない</b>（【取得自己株式の処理状況】の「消却の処分を行った取得自己株式」は0）。<span class="tag t-f">[事実]</span> 別途、譲渡制限付株式報酬として8,200株・12.7百万円を処分している。<span class="tag t-f">[事実]</span></p>
+</div>
+<div class="card warn">
+<p><b>資本配分の全体像として</b>：営業CF 5,960百万円のうち、成長投資（有形＋無形）は1,540百万円＝<b>26%</b>、株主還元は1,349百万円＝<b>23%</b>、借入返済870百万円＝15%、<b>残り約26%が手元現金として積み上がった</b>。<span class="tag t-i">[解釈]</span><br>
+その結果、期末のネットキャッシュは現預金22,270百万円－借入金4,020百万円＝<b>18,250百万円</b>となり、<b>時価総額580億円の約31%</b>に相当する。中計は3年で約80億円の投資と配当性向30%を掲げるが、<b>両方を実行しても手元資金は減らない計算</b>になる。<b>資本を厚く持ち続けること自体は方針として明示されていない</b>ため、意図的な備えなのか、使い道が決まっていないのかは有報から判断できない。<b>本銘柄の最大の定性論点はここにある。</b><span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+
+<h3>9-2. 株主構成と支配構造</h3>
+<div class="grid2">
+<div class="card"><div class="chart sm"><canvas id="c_own"></canvas></div>
+<p class="small" style="margin:4px 0 0">所有者別状況（単元ベース・2026年3月31日現在）</p></div>
+<div class="card">
+<div class="tw"><table>
+<thead><tr><th class="l">大株主（上位10）</th><th>持株数（千株）</th><th>比率</th></tr></thead>
+<tbody>
+<tr><td class="l"><b>岩谷産業株式会社</b></td><td>3,452</td><td><b>28.37%</b></td></tr>
+<tr><td class="l">有限会社アール・ケイ</td><td>572</td><td>4.70%</td></tr>
+<tr><td class="l">新コスモス電機取引先持株会</td><td>502</td><td>4.13%</td></tr>
+<tr><td class="l">大阪瓦斯株式会社</td><td>442</td><td>3.63%</td></tr>
+<tr><td class="l">新コスモス電機従業員持株会</td><td>439</td><td>3.61%</td></tr>
+<tr><td class="l">齋賀 優子</td><td>371</td><td>3.05%</td></tr>
+<tr><td class="l">重盛 徹志</td><td>322</td><td>2.65%</td></tr>
+<tr><td class="l">第一生命保険株式会社</td><td>270</td><td>2.22%</td></tr>
+<tr><td class="l">リンナイ株式会社</td><td>251</td><td>2.07%</td></tr>
+<tr><td class="l">国立大学法人大阪大学</td><td>250</td><td>2.05%</td></tr>
+<tr><td class="l"><b>上位10名 計</b></td><td><b>6,873</b></td><td><b>56.48%</b></td></tr>
+</tbody></table></div>
+</div>
+</div>
+<div class="card">
+<h4>支配構造の読み方 <span class="tag t-i">[解釈]</span></h4>
+<ul>
+<li><b>実質的な支配者は岩谷産業である。</b>単独28.37%は、定款の特別決議要件（議決権の1/3以上の出席・その2/3以上の賛成）に照らすと、<b>出席率次第で単独で特別決議を左右しうる水準</b>。加えて所有者別状況で「その他の法人」が<b>50.55%</b>と過半を占めており、事業法人による持ち合い的な安定株主構造が確認できる。</li>
+<li><b>取引先・従業員持株会（合計7.74%）＋大阪瓦斯・リンナイ（合計5.70%）</b>を加えると、<b>安定株主だけで4割超</b>に達する。少数株主の意向が経営に反映される余地は構造的に小さい。</li>
+<li><b>個人その他が38.94%</b>と一定の厚みを持つが、この中には自己株式3,919単元（3.12%相当）が含まれる旨が注記されている。<span class="tag t-f">[事実]</span></li>
+<li><b>金融機関5.79%・外国法人等4.20%と機関投資家比率は低い。</b>売買代金57百万円/日という流動性の薄さ<span class="src-cite">[⑤]</span>と整合し、<b>株価がPBR0.7倍に長く放置されていた（中計の起点値）背景</b>と考えられる。</li>
+<li><b>個人大株主の存在</b>：齋賀優子氏3.05%・重盛徹志氏2.65%、および有限会社アール・ケイ（本店所在地が<b>当社本社と同一住所</b>）4.70%。創業家ないし関係者の資産管理会社である可能性が高いが、<b>有報にはその旨の記載がない</b>。<span class="tag t-c">[要確認]</span></li>
+<li><b>役員の利害一致</b>：役員19名の所有株式数合計は231,016株＝発行済株式の<b>1.84%</b>。うち代表取締役社長 髙橋良典氏が51,400株（0.41%）。譲渡制限付株式報酬制度により毎年付与される設計で、株主との利害一致を図る仕組みは導入されている。<span class="tag t-f">[事実]</span></li>
+</ul>
+</div>
+
+<h3>9-3. 政策保有株式</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">非上場株式</div><div class="v">3<span style="font-size:13px">銘柄</span></div><div class="n">1,691,715千円</div></div>
+  <div class="kpi"><div class="l">非上場株式以外</div><div class="v">24<span style="font-size:13px">銘柄</span></div><div class="n">7,605,479千円</div></div>
+  <div class="kpi"><div class="l">合計</div><div class="v">9,297<span style="font-size:13px">百万円</span></div><div class="n">27銘柄</div></div>
+</div>
+<div class="card warn">
+<h4>純資産に占める割合（当方算出）</h4>
+<div class="tw"><table>
+<thead><tr><th class="l">分母</th><th>純資産</th><th>政策保有合計</th><th>比率</th></tr></thead>
+<tbody>
+<tr><td class="l">連結純資産</td><td>57,443百万円</td><td>9,297百万円</td><td><b>16.2%</b></td></tr>
+<tr><td class="l">連結純資産（上場株のみ）</td><td>57,443百万円</td><td>7,605百万円</td><td>13.2%</td></tr>
+<tr><td class="l">提出会社（単体）純資産</td><td>36,374百万円</td><td>9,297百万円</td><td><b>25.6%</b></td></tr>
+</tbody></table></div>
+<p><b>政策保有株式は保有主体が提出会社であるため、実質的な負担は単体純資産比25.6%で見るのが妥当である。</b>4分の1が事業と直接関係しない持ち合い株に張り付いている計算になる。<span class="tag t-i">[解釈]</span><br>
+主な銘柄は、日本酸素ホールディングス（2,652百万円）、能美防災（1,365百万円）、大阪瓦斯（935百万円）、リンナイ（524百万円）、大丸エナウィン（337百万円）、西部ガスHD（321百万円）、東邦瓦斯（298百万円）、西川計測（254百万円）など<b>ガス事業者・ガス機器・防災の取引先が中心</b>。<b>24銘柄中18銘柄が「当社の株式の保有の有無：有」＝相互保有</b>である。<span class="tag t-f">[事実]</span></p>
+<p><b>縮減の姿勢は見られない。</b>当期は<b>売却ゼロ、3銘柄で13,430千円の買い増し</b>（日本酸素HD、西部ガスHD、北海道瓦斯）。理由はいずれも「取引関係の維持・強化のため」。<span class="tag t-f">[事実]</span> 銘柄数も前期から変わっていない。三菱UFJフィナンシャル・グループ、第一生命HD、野村HDという<b>「安定的な金融取引の維持強化のため」と説明される純金融株3銘柄（合計235百万円）も継続保有</b>されている。<span class="tag t-f">[事実]</span><br>
+検証プロセスとして「原則として年1回、取締役会において（略）検証」と記載する一方、注記1では「<b>四半期毎に</b>、個別の政策保有株式について、取締役会において保有に関する合理性を検証」と記されており、<b>頻度の記載が本文と注記で食い違っている</b>。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span> また「定量的な保有効果の記載は困難であります」として、<b>27銘柄すべてについて保有効果の定量開示を行っていない</b>。<span class="tag t-f">[事実]</span></p>
+<p><b>資本効率との関係</b>：中計はROE 8.5%・ROIC 8.0%・PBR 1.0を目標に掲げる。政策保有株式9,297百万円は分母を膨らませる一方で、受取配当金176百万円（利回り約1.9%）しか生まない。<b>これを縮減すればROEは機械的に改善するが、有報にはその検討の形跡がない。</b>取締役会では「政策保有株式に係る議決権行使などのガバナンス関連の審議」を行ったと記載されているが、<b>審議されたのは「議決権行使」であって「保有継続の是非」ではない</b>と読める。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅹ. ガバナンス ========== -->
+<section id="s10" data-t="Ⅹ. ガバナンス">
+<h2>Ⅹ. ガバナンス</h2>
+
+<h3>10-1. 体制の事実</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">機関設計</div><div class="v">監査役会設置会社</div><div class="n">委員会設置会社ではない</div></div>
+  <div class="kpi"><div class="l">取締役</div><div class="v">14<span style="font-size:13px">名</span></div><div class="n">うち社外4名（28.6%）／定款上限15名</div></div>
+  <div class="kpi"><div class="l">監査役</div><div class="v">4<span style="font-size:13px">名</span></div><div class="n">常勤2名・社外2名／補欠監査役1名選任</div></div>
+  <div class="kpi"><div class="l">取締役の任期</div><div class="v">1<span style="font-size:13px">年</span></div><div class="n">毎期株主総会で選任</div></div>
+  <div class="kpi"><div class="l">役員に占める女性</div><div class="v">1<span style="font-size:13px">名 / 19名</span></div><div class="n">5.3%</div></div>
+  <div class="kpi"><div class="l">取締役会 開催回数</div><div class="v">12<span style="font-size:13px">回</span></div><div class="n">2025年4月〜2026年3月</div></div>
+</div>
+<div class="card">
+<p><b>任意の委員会（指名委員会・報酬委員会）は設置されていない。</b>有報のガバナンス概要に記載がなく、報酬決定も「取締役会決議に基づき代表取締役社長が委任を受ける」構造である。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+<p><b>実質的な意思決定機関は「本部長会議」</b>。代表取締役社長 髙橋良典氏を長として原則毎月開催し、「法令等で定められた事項や経営方針、予算の策定、各議案の審議、業務執行状況等の監督等、経営に関する重要な事項を決定」すると記載されている。取締役・執行役員で構成。<span class="tag t-f">[事実]</span> 執行役員は16名。<span class="tag t-f">[事実]</span><br>
+<b>「決定」という語が本部長会議に使われている点は注意を要する。</b>社外役員が入らない場（取締役・執行役員のみ）が実質的な決定機能を持ち、取締役会はそこへの報告と承認の場になっている可能性がある。<span class="tag t-i">[解釈]</span></p>
+<p><b>内部監査</b>：内部監査室（室長 仲谷行雄氏）を設置。業務監査と財務報告に係る内部統制評価を実施し、<b>代表取締役社長・監査役会・取締役会に直接報告する複数経路</b>を持つと明記。監査役会・会計監査人との連携も記載。<span class="tag t-f">[事実]</span> <b>デュアルレポーティングを明示している点は、この規模の監査役会設置会社としては相対的にしっかりした設計</b>である。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<h4>取締役会・監査役の出席状況（2025年度・全12回）</h4>
+<p class="small">全19名中、17名が100%出席。例外は期中就任・退任によるもの。<span class="tag t-f">[事実]</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">区分</th><th class="l">氏名</th><th>出席</th><th class="l">備考</th></tr></thead>
+<tbody>
+<tr><td class="l">代表取締役</td><td class="l">髙橋 良典</td><td>12/12</td><td class="l">―</td></tr>
+<tr><td class="l">取締役（社内・9名）</td><td class="l">松原義幸／西上佳典／金井隆生／前川正利／小栁章／佐久間啓一／山田芳穂／中村直人／宇高利浩</td><td>各12/12</td><td class="l">全員100%</td></tr>
+<tr><td class="l">社外取締役</td><td class="l">手島 肇</td><td>12/12</td><td class="l">2017年6月就任</td></tr>
+<tr><td class="l">社外取締役</td><td class="l">柳澤 有廣</td><td>12/12</td><td class="l">2023年6月就任</td></tr>
+<tr><td class="l">社外取締役</td><td class="l">篠原 祥哲</td><td>7/8（88%）</td><td class="l">2025年6月27日就任</td></tr>
+<tr><td class="l">社外取締役</td><td class="l">大川 格</td><td>4/4</td><td class="l">2025年6月27日 任期満了退任</td></tr>
+<tr><td class="l">監査役（常勤）</td><td class="l">村田泰造／飯森龍</td><td>各12/12</td><td class="l">―</td></tr>
+<tr><td class="l">社外監査役</td><td class="l">山岸和彦／林紀美代</td><td>各12/12</td><td class="l">林紀美代氏が唯一の女性役員<span class="tag t-i">[解釈]</span></td></tr>
+</tbody></table></div>
+<p class="small">※近藤賢二氏は2026年6月に社外取締役就任のため当期の出席実績なし。2025年度の取締役会では「政策保有株式に係る議決権行使などのガバナンス関連の審議」「中期経営計画の策定」「海外展開に向けた生産能力増強に係る設備投資」「新製品の開発投資」「業務効率化に向けたシステム導入」を審議したと記載。<span class="tag t-f">[事実]</span></p>
+</div>
+
+<h3>10-2. 役員報酬（数値のみ）</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">役員区分</th><th>報酬等の総額</th><th>固定報酬</th><th>業績連動報酬</th><th>非金銭報酬等</th><th>対象人員</th><th>1人平均</th></tr></thead>
+<tbody>
+<tr><td class="l">取締役（社外除く）</td><td>246,475千円</td><td>160,856</td><td>64,792</td><td>20,826</td><td>9名</td><td>27,386千円</td></tr>
+<tr><td class="l">監査役（社外除く）</td><td>24,000千円</td><td>24,000</td><td>―</td><td>―</td><td>2名</td><td>12,000千円</td></tr>
+<tr><td class="l">社外役員</td><td>28,200千円</td><td>28,200</td><td>―</td><td>―</td><td>6名</td><td>4,700千円</td></tr>
+</tbody></table></div>
+<div class="grid2">
+<div class="card"><div class="chart sm"><canvas id="c_pay"></canvas></div>
+<p class="small" style="margin:4px 0 0">業務執行取締役の報酬構成（第67期実績）</p></div>
+<div class="card">
+<h4>報酬制度の事実</h4>
+<ul>
+<li>報酬限度額：取締役 年額300百万円以内（うち社外30百万円以内、2022年6月改定）、監査役 年額50百万円以内（2009年6月決定）<span class="tag t-f">[事実]</span></li>
+<li>2019年6月に<b>役員退職慰労金制度を廃止</b>し、譲渡制限付株式報酬制度を導入（限度額 年額50百万円以内・報酬限度額とは別枠）<span class="tag t-f">[事実]</span></li>
+<li>業績連動報酬の指標は<b>経常利益の目標値に対する達成度</b>。算出額は<b>翌事業年度に月例の固定報酬として支給</b><span class="tag t-f">[事実]</span></li>
+<li>構成比率の目安：基本報酬45〜95%／業績連動0〜40%／非金銭5〜15%<span class="tag t-f">[事実]</span></li>
+<li>実績構成比（当方算出）：固定65.3%／業績連動26.3%／非金銭8.4%<span class="tag t-i">[解釈]</span></li>
+<li>個人別報酬額は<b>取締役会決議に基づき代表取締役社長に委任</b>。原案は「代表取締役社長および同社長の指名を受けた取締役の協議」で作成<span class="tag t-f">[事実]</span></li>
+</ul>
+</div>
+</div>
+<div class="card note">
+<p><b>制度の設計上、注目される2点</b><span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>業績連動報酬が「翌事業年度の月例固定報酬」として支給される</b>という設計は珍しい。賞与として一時に払わず翌期の毎月に均して払うため、<b>当期の実績が翌期の固定費として繰り越される</b>。会計上の期間帰属と、インセンティブとしての即時性の双方で独特である。</li>
+<li><b>報酬の原案作成も個人別配分の決定も、代表取締役社長に集中している。</b>報酬委員会が存在せず、社外取締役が原案作成プロセスに関与する旨の記載もない。取締役会は「答申内容を尊重し、決定方針に沿うものと判断」する立場と書かれており、<b>チェック機能の実効性は文面からは確認できない</b>。<span class="tag t-c">[要確認]</span></li>
+</ul>
+</div>
+
+<h3>10-3. 主要役員の属性</h3>
+<div class="card">
+<ul>
+<li><b>代表取締役社長 髙橋良典氏（1953年4月生・73歳）</b>：1977年4月入社の<b>生え抜き</b>。技術開発本部長（2009年執行役員）→取締役上席執行役員（2010年）→常務（2013年）→副社長（2014年）→<b>2017年4月から代表取締役社長（在任9年）</b>。<b>技術畑出身のトップ</b>である。<span class="tag t-f">[事実]</span> 所有株式51,400株。取締役会出席12/12。<br>
+<b>73歳・在任9年という組み合わせは、後継者計画が論点になる水準</b>だが、有報に後継者計画（サクセッションプラン）への言及はない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></li>
+<li><b>社内取締役の同質性</b>：西上佳典氏（1994年入社）、金井隆生氏（1979年入社）、前川正利氏（1986年入社）はいずれも生え抜きで、品質管理・営業・技術開発の各本部を歴任。<b>例外は小栁章氏</b>で、1988年に<b>東京ガス入社</b>、根岸LNG基地所長を経て2022年4月に当社へ出向、2023年6月から取締役上席執行役員（業務センター担当兼東日本支社長兼DX推進室長）。<b>主要顧客であるガス事業者からの人材受け入れ</b>という当社の性格が役員構成にも現れている。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+</ul>
+<h4>社外取締役4名の専門性（有報の説明より）</h4>
+<div class="tw"><table>
+<thead><tr><th class="l">氏名</th><th class="l">就任</th><th class="l">会社が挙げる専門性</th><th class="l">独立性の評価</th></tr></thead>
+<tbody>
+<tr><td class="l">手島 肇</td><td class="l">2017年6月（在任9年）</td><td class="l">長年にわたる企業経営で培われた高い見識</td><td class="l"><b>在任9年</b>。独立性基準は未策定<span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">柳澤 有廣</td><td class="l">2023年6月</td><td class="l">事業戦略に関する豊富な経験や実績</td><td class="l">―</td></tr>
+<tr><td class="l">篠原 祥哲</td><td class="l">2025年6月</td><td class="l"><b>公認会計士</b>としての財務・会計の知見＋事業会社取締役経験</td><td class="l">財務・会計の専門家が取締役会に在籍<span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">近藤 賢二</td><td class="l">2026年6月</td><td class="l">知的財産戦略・産業振興に関する豊富な<b>行政経験</b>＋大手電機メーカー経験</td><td class="l">当期の取締役会出席実績なし</td></tr>
+</tbody></table></div>
+<p><b>独立性について、有報は明確にこう書いている。</b><span class="tag t-f">[事実]</span></p>
+<blockquote>社外取締役又は社外監査役を選任するための独立性に関する基準又は方針として明確に定めたものはありません。
+<span class="src">有報 第4-4(1)②【社外役員の状況】</span></blockquote>
+<p>ただし続けて「当社は以上の社外取締役及び社外監査役との間に特別の利害関係はなく、一般株主と利益相反のおそれがない」と記載している。<span class="tag t-f">[事実]</span> <b>基準を定めずに「利益相反のおそれがない」と結論だけを述べる構成であり、判断の根拠は開示されていない。</b><span class="tag t-i">[解釈]</span><br>
+社外4名の構成を見ると、<b>財務・会計（篠原氏）と知財・行政（近藤氏）という専門性が2025年・2026年に相次いで補充されている</b>。海外比率が過半を超え、知財訴訟リスクをリスク章に掲げる会社として、スキルの補充方向は事業実態と整合的である。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅺ. 会計面の定性シグナル ========== -->
+<section id="s11" data-t="Ⅺ. 会計シグナル">
+<h2>Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+
+<h3>11-1. 監査人とKAM</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">監査法人</div><div class="v" style="font-size:18px">協立監査法人</div><div class="n">大阪事務所。業務執行社員 古村永子郎氏・手島達哉氏</div></div>
+  <div class="kpi"><div class="l">継続監査期間</div><div class="v">32<span style="font-size:13px">年</span></div><div class="n">補助者：公認会計士14名</div></div>
+  <div class="kpi"><div class="l">監査報酬</div><div class="v">19,850<span style="font-size:13px">千円</span></div><div class="n">前期と同額。非監査報酬ゼロ／連結子会社分ゼロ</div></div>
+</div>
+<div class="card note">
+<p><b>監査体制について事実として押さえるべき点</b><span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>継続監査期間32年</b>。大手4大監査法人ではなく中堅の協立監査法人（大阪）が長期にわたり担当している。監査人交代の予定に関する記載はない。</li>
+<li><b>監査報酬19,850千円は前期と完全に同額</b>。売上が18.8%増え、海外子会社が北米で急拡大した年に監査報酬が1円も変わっていない。</li>
+<li><b>連結子会社に対する監査証明業務の報酬がゼロ</b>と記載されている。海外子会社9社（うち北米2社は連結売上の10%超）を含むグループで、監査報酬が提出会社分のみという構成。海外子会社の監査を誰がどう行っているかは有報から読み取れない。<span class="tag t-c">[要確認]</span></li>
+<li>監査役会は「監査計画の内容、会計監査の職務執行状況及び報酬見積りの算出根拠等が適切であるかどうかについて必要な検証を行った」として報酬に同意。ただし<b>報酬決定方針は「具体的定めはありません」</b>と明記。<span class="tag t-f">[事実]</span></li>
+</ul>
+<p class="small">※上記は事実の提示であり、監査の品質そのものを評価するものではない。ただし<b>企業規模の急拡大に対して監査資源の投入量が変わっていないという事実</b>は、開示情報の1つとして認識しておく価値がある。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<h4>KAM（監査上の主要な検討事項）：1項目のみ</h4>
+<p><b>「工業用定置式ガス検知警報器関連の収益認識について」</b><span class="tag t-f">[事実]</span></p>
+<blockquote>工業用定置式ガス検知警報器関連の売上高には、<b>機器のみの受注取引と立会調整を含む一式受注取引</b>があり、顧客に引渡時に収益を認識する取引と<b>検収時</b>に収益を認識する取引が混在している。取引によって収益認識時点が異なることにより不適切な売上金額の計上及び期間配分が行われるリスクが存在する。
+<span class="src">独立監査人の監査報告書（2026年6月25日）／KAM</span></blockquote>
+<p><b>監査人の対応</b>：販売プロセスの内部統制の整備・運用状況の評価、期末の多額な売上取引および期中の営業所往査時に抽出した売上取引の証憑照合（期間配分の適切性・金額の正確性）、3月末基準日の売掛金残高確認。<span class="tag t-f">[事実]</span></p>
+<p><b>ここが興味深い。</b>KAMに選ばれたのは<b>当期最も伸びた家庭用（+36.2%）でも北米でもなく、唯一減収だった工業用定置式（△2.8%、売上構成比23.3%）</b>である。<span class="tag t-i">[解釈]</span><br>
+理由は金額の大きさではなく<b>収益認識の複雑さ</b>にあると監査人自身が説明している。「機器だけ売る」取引と「据付・立会調整まで含む一式」の取引が混在し、前者は引渡時、後者は検収時に売上が立つ。<b>期末をまたぐ案件の計上時期がズレると期間損益が動く</b>という、プロジェクト型ビジネス特有の論点である。<span class="tag t-i">[解釈]</span><br>
+裏を返せば、<b>家庭用・北米の収益認識は「出荷して終わり」の単純な取引であり、監査上の論点にならない</b>ということでもある。急拡大している事業ほど会計的にはシンプルという構図。<span class="tag t-i">[解釈]</span> 提出会社（単体）の監査報告書のKAMも、連結と同一の論点を引用している。<span class="tag t-f">[事実]</span></p>
+</div>
+<div class="card ok">
+<h4>重要な会計上の見積り：「該当事項はありません」</h4>
+<p>連結・単体とも<b>「重要な会計上の見積り」の注記が該当事項なし</b>である。<span class="tag t-f">[事実]</span><br>
+これは<b>会計上の判断に依存する部分が少ない、素直な財務諸表であることを示す</b>と読める。のれん707百万円（純資産比1.23%）、退職給付、繰延税金資産564百万円といった見積り項目はあるが、いずれも「翌年度の財務諸表に重要な影響を及ぼすリスクがある」水準には達していないという経営者の判断である。<span class="tag t-i">[解釈]</span> 見積りの楽観・保守を論じる材料自体が存在しない、という意味で<b>会計面のリスクは低い</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>11-2. 本表から見る財務体質</h3>
+<div class="grid2">
+<div class="card">
+<h4>B/Sの構造（2026年3月31日）</h4>
+<div class="tw"><table>
+<thead><tr><th class="l">項目</th><th>金額（百万円）</th><th>総資産比</th></tr></thead>
+<tbody>
+<tr><td class="l">現金及び預金</td><td>22,270</td><td><b>30.3%</b></td></tr>
+<tr><td class="l">売上債権（受取手形・売掛金＋電子記録債権）</td><td>10,537</td><td>14.3%</td></tr>
+<tr><td class="l">棚卸資産（商製品＋仕掛品＋原材料）</td><td><b>13,327</b></td><td><b>18.1%</b></td></tr>
+<tr><td class="l">流動資産合計</td><td>46,878</td><td>63.8%</td></tr>
+<tr><td class="l">有形固定資産</td><td>11,663</td><td>15.9%</td></tr>
+<tr><td class="l">のれん</td><td>707</td><td>1.0%</td></tr>
+<tr><td class="l">投資有価証券</td><td>9,580</td><td>13.0%</td></tr>
+<tr><td class="l"><b>総資産</b></td><td><b>73,444</b></td><td>100%</td></tr>
+<tr><td class="l">有利子負債（短期50＋1年内737＋長期3,233）</td><td>4,021</td><td>5.5%</td></tr>
+<tr><td class="l">負債合計</td><td>16,001</td><td>21.8%</td></tr>
+<tr><td class="l"><b>純資産</b></td><td><b>57,443</b></td><td>78.2%</td></tr>
+</tbody></table></div>
+</div>
+<div class="card">
+<h4>どんな財務体質の会社か <span class="tag t-i">[解釈]</span></h4>
+<ul>
+<li><b>「軽くて、極端に緩い」B/S。</b>有形固定資産は総資産の15.9%しかなく、装置産業ではない。一方で現預金30.3%＋投資有価証券13.0%＝<b>金融資産が総資産の43%</b>を占める。<b>事業のためのB/Sというより、事業と貯蓄が同居したB/S</b>である。</li>
+<li><b>レバレッジはほぼゼロ。</b>有利子負債4,021百万円は自己資本の<b>0.07倍</b>、現預金の18%にすぎない。実質無借金。ネットキャッシュ18,250百万円。</li>
+<li><b>回転は速くない。</b>棚卸資産13,327百万円は売上原価27,251百万円に対して<b>5.9ヶ月分</b>。組立産業としては重い水準で、当期は商品及び製品が+65%増えている。センサという長納期部品を内製し、多品種の警報器を在庫で持つビジネスの性格を反映していると考えられるが、<b>北米急増産に伴う一時的な積み増しの可能性もあり、単年では判別できない</b>。<span class="tag t-c">[要確認]</span></li>
+<li><b>利益の質は良い。</b>特別損益はほぼゼロ（特別損失は固定資産除却損7.6百万円のみ、特別利益なし）。営業利益7,351百万円→経常利益7,921百万円→税前7,914百万円と、<b>一過性要因で膨らんだ利益ではない</b>。持分法投資利益35百万円、受取配当金176百万円と非事業収益の寄与も小さい。</li>
+<li><b>のれん707百万円は小さい。</b>フィガロ技研（2016年取得）由来と推定され、償却額135百万円／年で残存約5年。<b>減損リスクは軽微</b>。当期の減損損失はゼロ。<span class="tag t-f">[事実]</span></li>
+<li><b>純資産増加6,182百万円の内訳が示唆的。</b>利益剰余金+4,466百万円に対し、<b>その他有価証券評価差額金+1,370百万円（22%）</b>と非支配株主持分+454百万円。<b>純資産の増加の2割強は、事業ではなく保有株式の値上がりで説明される。</b>株式市場が下落すれば同じ経路で純資産・BPSが目減りする。</li>
+</ul>
+</div>
+</div>
+
+<h3>11-3. GC注記・後発事象・偶発債務</h3>
+<div class="grid2">
+<div class="card ok">
+<h4>継続企業の前提（GC）</h4>
+<p><b>注記なし。</b>監査報告書にも重要な不確実性の記載はない。自己資本比率72.7%・実質無借金・営業CF黒字継続に照らし、当然の結果。<span class="tag t-f">[事実]</span></p>
+<h4>偶発債務</h4>
+<p><b>連結貸借対照表関係の注記に偶発債務の記載なし。</b>訴訟・保証債務の開示もない。<span class="tag t-f">[事実]</span></p>
+<h4>未適用の会計基準</h4>
+<p>「リースに関する会計基準」（企業会計基準第34号）を<b>2028年3月期の期首から適用予定</b>。影響額は「現時点で評価中」。<span class="tag t-f">[事実]</span> 23事務所を賃借する新コスモス電機サービスや海外拠点の賃借を抱えるため、使用権資産・リース負債の計上により総資産が増える方向に働く可能性がある（自己資本比率は低下方向）。<b>ただし規模は不明</b>。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card warn">
+<h4>重要な後発事象 ― これが最も重い開示</h4>
+<blockquote>当社は、岩谷産業株式会社と米国における家庭用ガス警報器の生産管理業務を目的とした新しい合弁会社（<b>Iwatani New Cosmos America Inc.</b>）を<b>2026年6月15日</b>に設立いたしました。なお、これによる連結財務諸表への影響は現在精査中です。
+<span class="src">有報 連結財務諸表【重要な後発事象】／個別財務諸表にも同旨</span></blockquote>
+<p><b>この3行が、当社の今後を左右しうる。</b><span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>対象は当期の成長エンジンそのもの</b>（北米の家庭用ガス警報器）であり、その<b>生産管理業務</b>を新会社に移す。</li>
+<li><b>相手は議決権28.37%の筆頭株主</b>である岩谷産業。1969年の販売権契約から続く関係が、57年後に海外生産の領域へ拡張された形。</li>
+<li><b>開示されていない事項が多すぎる。</b>出資比率、連結子会社になるのか持分法適用になるのか、資本金、取引条件、既存の New Cosmos USA との役割分担 ― <b>いずれも記載がない</b>。「連結財務諸表への影響は現在精査中」で終わっている。<span class="tag t-c">[要確認]</span></li>
+<li>出資比率次第では、<b>連結売上の31.8%を稼ぐ北米事業の利益の一部が非支配株主（＝岩谷産業）に帰属する</b>可能性がある。フィガロ技研で既に非支配株主持分542百万円が発生している構造と同型のリスク。<span class="tag t-i">[解釈]</span></li>
+<li>逆に、生産管理を岩谷と分担することで<b>北米の供給制約が緩み、成長が加速する可能性</b>もある。どちらに転ぶかは有報からは判断できない。<span class="tag t-c">[要確認]</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ========== Ⅻ. 論点と未解明事項 ========== -->
+<section id="s12" data-t="Ⅻ. 論点と未解明">
+<h2>Ⅻ. 論点と未解明事項</h2>
+<div class="card note"><p class="small">本章は判断材料と論点の提示に徹する。<b>売買推奨・目標株価は提示しない。</b>以下の「確からしさ」は有報の記述の裏付け度合いに対する当方の評価であり、将来の業績を保証するものではない。<span class="tag t-i">[解釈]</span></p></div>
+
+<h3>12-1. 買い材料になりうる記述と、その確からしさ</h3>
+<div class="tw"><table>
+<thead><tr><th class="l" style="width:28%">材料</th><th class="l" style="width:47%">有報上の裏付け</th><th class="l" style="width:25%">確からしさ</th></tr></thead>
+<tbody>
+<tr><td class="l"><b>北米事業が利益率の高い成長エンジンとして機能している</b></td><td class="l">北米売上 8,969→15,944百万円（+77.8%）。New Cosmos USA 単体で経常利益2,470百万円（経常利益率22.2%）＝連結経常利益の31%相当。海外比率51.8%<span class="tag t-f">[事実]</span></td><td class="l"><b>高い。</b>関係会社の主要損益情報として個別に数値開示されており、推測ではない</td></tr>
+<tr><td class="l"><b>中計の主要目標を初年度で前倒し達成</b></td><td class="l">売上500.9億（目標600億の3年計画に対し初年度で44%消化）、海外51.8%（目標50%超）、営業利益率14.7%（目標12.5%超）、ROE10.3%（目標8.5%超）<span class="tag t-f">[事実]</span></td><td class="l"><b>高い（事実として）。</b>ただし有報側に進捗の言及がなく、会社が上方修正するかは不明<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l"><b>センサ内製という構造的な優位</b></td><td class="l">淀川工場＋コスモスセンサセンター＋フィガロ技研で主要設備7,847百万円。研究開発費3,034百万円（対売上6.1%）。研究成果が全てセンサ／検知技術由来<span class="tag t-f">[事実]</span></td><td class="l"><b>中〜高。</b>資本配分として実行されている。ただし競合比較の材料は有報にない</td></tr>
+<tr><td class="l"><b>脱炭素が需要側に効く立場</b></td><td class="l">英国SGN社グリーン水素プロジェクトへの家庭用電池式水素警報器の採用、冷媒漏えい検知モジュール、欧州カーボンニュートラル市場の基盤づくり<span class="tag t-f">[事実]</span></td><td class="l"><b>中。</b>採用実績は固有名詞で確認できるが、<b>売上規模の開示がない</b><span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l"><b>資本余力が極めて大きい</b></td><td class="l">ネットキャッシュ18,250百万円（時価総額の約31%）。自己資本比率72.7%。政策保有株9,297百万円<span class="tag t-f">[事実]</span></td><td class="l"><b>高い（残高として）。</b>ただしこれが株主に還元される保証はない。<b>むしろ現状は積み上がる方向</b></td></tr>
+<tr><td class="l">還元姿勢の変化</td><td class="l">35円増配（60→95円）＋608百万円の自己株式取得（前期は375千円のみ）。総還元性向25.9%<span class="tag t-f">[事実]</span></td><td class="l"><b>中。</b>単年の動き。中計の連結配当性向30%目標には<b>依然未達</b></td></tr>
+</tbody></table></div>
+
+<h3>12-2. 懸念材料と、それが顕在化する条件</h3>
+<div class="card warn">
+<h4>懸念① 成長が単一商材・単一地域に集中している</h4>
+<p><b>事実</b>：当期の増収額7,938百万円のうち、北米の増加分6,976百万円が<b>88%</b>を占める。商品別では家庭用が+7,870百万円で増収のほぼ全額。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+<b>顕在化する条件</b>：北米の電池式メタン警報器の需要が一巡または鈍化した場合、あるいは米国の規制・関税・調達方針が変わった場合。Ⅶ章で見た通り<b>営業利益率の改善は固定費レバレッジによるもので粗利率改善ではない</b>ため、減収局面では利益率が逆回転で悪化しやすい。<span class="tag t-i">[解釈]</span><br>
+<b>有報の扱い</b>：この集中は<b>リスク項目として立てられていない</b>。リスク⑧が地域名を列挙するにとどまる。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card warn">
+<h4>懸念② 資本の使い道が示されていない</h4>
+<p><b>事実</b>：営業CF5,960百万円のうち成長投資26%・還元23%・借入返済15%で、<b>約26%が手元に残った</b>。有形固定資産は減少、設備投資は減価償却の0.84倍。設備計画は「特記事項なし」。政策保有株は売却ゼロ・買い増し3銘柄。<span class="tag t-f">[事実]</span><br>
+<b>顕在化する条件</b>：これは既に顕在化している状態と言える。中計はROE8.5%・ROIC8.0%・PBR1.0を掲げるが、<b>有報のMD&amp;Aでは資本効率指標に一切触れていない</b>。分子（利益）が伸びても分母（自己資本・金融資産）が同時に膨らむ限り、資本効率の改善は業績依存になる。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card warn">
+<h4>懸念③ 岩谷産業との関係が深まる方向にある</h4>
+<p><b>事実</b>：議決権28.37%の筆頭株主であり、1969年以来の販売関係を持ち、2026年6月に米国合弁を共同設立。所有者別で「その他の法人」が50.55%。<span class="tag t-f">[事実]</span><br>
+<b>顕在化する条件</b>：合弁の出資比率や取引条件が当社に不利な場合、北米の利益が社外に流出する。また少数株主にとっては、<b>ガバナンス上の牽制が効きにくい構造（任意の指名・報酬委員会なし／独立性基準未策定／報酬決定が社長に集中）</b>と組み合わさることで、利益相反の検証が難しくなる。<span class="tag t-i">[解釈]</span><br>
+<b>有報の扱い</b>：合弁の詳細は「精査中」、重要な契約等は「該当事項なし」。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card warn">
+<h4>懸念④ 「5年サイクルの穴」と国内主力事業の構造</h4>
+<p><b>事実</b>：家庭用都市ガス警報器の有効期限を3年→5年に延ばした結果、<b>2年分の交換需要の空白が恒久的な波として残っている</b>と会社自身がリスク章に明記。<span class="tag t-f">[事実]</span><br>
+<b>顕在化する条件</b>：この波の谷が北米の成長鈍化と重なった場合。<b>現在の位相が有報から読み取れない</b>ことが、この懸念を評価不能にしている。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card warn">
+<h4>懸念⑤ 生産実績と売上の乖離／在庫の積み上がり</h4>
+<p><b>事実</b>：家庭用の売上+36.2%に対し生産実績+14.7%。商品及び製品は2,497→4,123百万円（+65%）。棚卸資産全体で売上原価の5.9ヶ月分。<span class="tag t-f">[事実]</span><br>
+<b>顕在化する条件</b>：積み増した在庫が需要見込みのズレによるものだった場合、翌期以降の評価損や生産調整に繋がる。<b>有報はこの乖離に一切触れていない</b>ため、外部委託生産の増加によるものか在庫リスクかを判別できない。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card">
+<h4>懸念⑥ 開示体制の相対的な薄さ（小さいが積み上がる論点）</h4>
+<ul>
+<li>単一セグメントのため<b>商品別・地域別の利益が開示されない</b>。成長の質を外部から検証できない<span class="tag t-c">[要確認]</span></li>
+<li>中計の数値目標が<b>有報に転記されていない</b>。法定開示だけを読む投資家には進捗が見えない<span class="tag t-f">[事実]</span></li>
+<li>ROIC・PBR目標を掲げながら<b>MD&amp;Aで言及しない</b><span class="tag t-f">[事実]</span></li>
+<li>政策保有株式の検証頻度が<b>本文（年1回）と注記（四半期毎）で食い違う</b><span class="tag t-f">[事実]</span></li>
+<li>Scope1,2排出量の<b>実績値が有報にない</b>（2037年ゼロ目標のみ）<span class="tag t-f">[事実]</span></li>
+<li>売買代金57百万円/日<span class="src-cite">[⑤]</span>、機関投資家比率が低く（金融機関5.79%・外国法人等4.20%）、<b>開示改善への外部圧力が働きにくい株主構成</b><span class="tag t-i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>12-3. 有報だけでは判断できず、追加確認が必要な事項</h3>
+<div class="tw"><table>
+<thead><tr><th class="l" style="width:42%">確認したいこと</th><th class="l" style="width:33%">確認先（具体名）</th><th class="l" style="width:25%">なぜ必要か</th></tr></thead>
+<tbody>
+<tr><td class="l"><b>Iwatani New Cosmos America Inc. の出資比率・連結上の扱い・役割分担</b></td><td class="l">適時開示（合弁会社設立に関するお知らせ）／2027年3月期 第1四半期決算短信および四半期報告書／岩谷産業側の開示</td><td class="l">北米利益の帰属先が変わる可能性。<b>最優先</b><span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">商品別・地域別の<b>利益</b>（単一セグメントで非開示）</td><td class="l">決算説明資料（2026年3月期 決算説明会資料）／統合報告書</td><td class="l">成長の質と、北米依存度の実態把握<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">北米向け電池式メタン警報器の<b>需要の背景（規制・普及率・想定期間）</b></td><td class="l">決算説明資料／中期経営計画2025-2027の補足資料／IR説明会Q&amp;A</td><td class="l">成長の持続性の根拠。有報の経営環境認識が定型文のため<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">メキシコ<b>委託生産の比率と契約条件</b></td><td class="l">決算説明資料／IR取材</td><td class="l">生産実績と売上の乖離、供給リスクの評価<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">家庭用都市ガス警報器の<b>「5年サイクル」の現在の位相</b></td><td class="l">決算説明資料／IR取材</td><td class="l">国内主力事業の需要の谷がいつ来るか<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">棚卸資産（商品及び製品+65%）の<b>増加要因</b></td><td class="l">2027年3月期 四半期報告書での在庫推移／決算説明資料</td><td class="l">戦略的積み増しか、需要見込みのズレか<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">中計の<b>投資計画80億円の残り2年の内訳</b>と、上方修正の有無</td><td class="l">2027年3月期 決算短信の業績予想／中計進捗説明資料</td><td class="l">初年度で主要目標を達成済み。目標据置なら実質的な減速宣言に<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l"><b>政策保有株式の縮減方針</b>の有無</td><td class="l">コーポレート・ガバナンス報告書／統合報告書／株主総会招集通知</td><td class="l">単体純資産の25.6%。ROE改善余地の最大項目<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">2025年9月のToSTNeT-3による自己株式取得の<b>売り手</b></td><td class="l">大量保有報告書（変更報告書）／自己株式取得結果の適時開示</td><td class="l">安定株主構成の変化の有無<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">代表取締役社長（73歳・在任9年）の<b>後継者計画</b></td><td class="l">コーポレート・ガバナンス報告書／統合報告書</td><td class="l">有報に記載なし<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">Scope1,2の<b>実排出量</b>と2037年ゼロへの道筋</td><td class="l">サステナビリティ報告書／統合報告書／会社ウェブサイト</td><td class="l">目標の検証可能性<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">海外子会社の<b>監査体制</b>（連結子会社の監査報酬ゼロ）</td><td class="l">IR取材／監査役会の監査報告</td><td class="l">グループ監査のカバレッジ<span class="tag t-c">[要確認]</span></td></tr>
+</tbody></table></div>
+
+<h3>12-4. 総括 ― この有報から読み取れたこと</h3>
+<div class="card note">
+<p><b>実像</b>：新コスモス電機は、<b>センサを自社で作れることを60年以上の一貫した競争軸としてきた大阪の独立系メーカー</b>である。販売は他社の網に乗せ、規制が新設される場所に商品を置く、という型を1969年（岩谷産業・半導体式センサ）から2004年（住宅用火災警報器）を経て現在（北米メタン規制・欧州水素）まで繰り返している。<span class="tag t-i">[解釈]</span></p>
+<p>第67期は、前中計で投じた淀川工場・メキシコ委託という生産能力への投資が北米需要と噛み合い、<b>1人当たり売上が1年で+13%、1人当たり営業利益が+36%跳ねた</b>、質的な転換の年だった。労働集約型からレバレッジ型へ性格が変わったことが、数字にはっきり出ている。<span class="tag t-i">[解釈]</span></p>
+<p><b>開示姿勢</b>：研究開発活動（採用先・共同開発先を実名で開示）とリスク①（有効期限5年化による需要の空白という自社固有の弱点の告白）は、<b>具体性の高い、誠実な開示</b>である。一方で、経営環境認識・資本の財源・サステナビリティ指標はボイラープレートで、<b>中計の数値目標と進捗が有報に一切転記されていない</b>。<b>「作っているもの」については具体的に書き、「経営としてどこへ向かうか」については書かない</b>という偏りがある。<span class="tag t-i">[解釈]</span></p>
+<p><b>最大の論点</b>：業績は良く、財務は強く、株価指標も割安圏にある。だが有報から見える限り、<b>会社は増えた資本の使い道を示していない</b>。ネットキャッシュ18,250百万円と政策保有株9,297百万円が積み上がる一方、設備投資は減価償却を下回り、翌期の設備計画は「特記事項なし」で、政策保有株の売却はゼロである。<b>成長の質を問うなら北米集中の持続性を、資本効率を問うなら余剰資本の行き先を、それぞれ有報の外（決算説明資料・ガバナンス報告書・IR取材）で確認する必要がある。</b><span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<p><b>■ 本レポートについて</b><br>
+本レポートは、新コスモス電機株式会社（証券コード6824）が2026年6月26日に近畿財務局長へ提出した<b>第67期（2025年4月1日〜2026年3月31日）有価証券報告書</b>の記述情報を一次情報として、経営の実像と開示姿勢を構造化したものです。作成要領は本プロジェクトの『有価証券報告書 定性分析レポート 作成要領マニュアル v1.0』に準拠しています。</p>
+<p><b>■ データ取得日・基準日</b><br>
+・分析実行日／HTML作成日：<b>2026年8月8日</b><br>
+・有価証券報告書の対象事業年度：<b>第67期（2025年4月1日〜2026年3月31日）</b>／提出日 2026年6月26日／監査報告書日 2026年6月25日<br>
+・スクリーニング判定値 <b>[⑤]</b> の基準日：2026年7月17日（株価4,765円）。参照決算 2026年3月31日（開示 2026年5月15日）<br>
+・中期経営計画2025-2027 <b>[③]</b>：2025年5月15日公表<br>
+・本レポートは<b>予想値・業績予想を用いていません</b>（単年完結・実績ベース）</p>
+<p><b>■ 出所記号</b><br>
+[①] irpocket 公式IRデータ（<b>本銘柄は未収録のため本レポートでは不使用</b>） ／ [②] 会社公式IRページ ／ [③] 会社公式開示PDF（有価証券報告書・中期経営計画） ／ [④] kabutan.jp ／ [⑤] J-Quants API V2（JPX公式） ／ [web] 外部Web（<b>沿革章のみ</b>：新コスモス電機 公式「会社の歴史／コスモスヒストリー」、Wikipedia「新コスモス電機」）</p>
+<p><b>■ ラベルの意味</b><br>
+[事実]＝有価証券報告書に記載のある事項 ／ [解釈]＝有報の記載から当方が行った合理的推論 ／ [要確認]＝有報だけでは判断できず追加資料が必要な事項 ／ [web]＝外部Web由来（沿革章のみ・出典明示）</p>
+<p><b>■ 推計値・保証なしに関する注記</b><br>
+本レポート中のCAGR・1人当たり売上／利益・総還元性向・政策保有株式の純資産比・ROIC等の比率は、開示された数値をもとに当方が算出した<b>計算値</b>です。四捨五入により合計が一致しない場合があります。また、これらの数値や本文中の[解釈]は<b>推計・見解であり、将来の業績・株価を保証するものではありません</b>。関係会社の主要損益情報（New Cosmos USA,Inc. 等）は内部取引消去前の個別数値であり、連結値との単純比較は参考値です。</p>
+<p><b>■ 免責事項</b><br>
+本レポートは<b>投資判断のための材料と論点の整理を目的とした資料</b>であり、特定の有価証券の売買を推奨・勧誘するものではありません。<b>売買推奨および目標株価は一切提示していません。</b>記載内容は作成時点の公開情報に基づくものであり、その完全性・正確性を保証するものではありません。投資に関する最終的な判断はご自身の責任において行ってください。当方は本レポートの利用により生じたいかなる損害についても責任を負いません。</p>
+</footer>
+
+<script>
+// ---------- タブ生成 ----------
+(function(){
+  var secs = document.querySelectorAll('main > section');
+  var nav = document.getElementById('nav');
+  secs.forEach(function(s,i){
+    var b = document.createElement('button');
+    b.textContent = s.dataset.t;
+    if(i===0) b.className='on';
+    b.onclick = function(){
+      document.querySelectorAll('nav button').forEach(function(x){x.className='';});
+      b.className='on';
+      secs.forEach(function(x){x.className='';});
+      s.className='on';
+      window.scrollTo({top:0,behavior:'smooth'});
+      built.forEach(function(fn){fn();});
+    };
+    nav.appendChild(b);
+  });
+})();
+
+// ---------- Chart.js ----------
+var NAVY='#1c3557', NAVYL='#2f4f7d', ACC='#c98a1e', TEAL='#1f7a6b', RED='#b3382c', GRAY='#8b95a1';
+Chart.defaults.font.family='"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif';
+Chart.defaults.font.size=11.5;
+Chart.defaults.plugins.legend.labels.boxWidth=12;
+var YRS=['22/3','23/3','24/3','25/3','26/3'];
+var made={};
+function mk(id, cfg){
+  return function(){
+    var el=document.getElementById(id);
+    if(!el || made[id]) return;
+    if(el.offsetParent===null) return;
+    made[id]=new Chart(el, cfg);
+  };
+}
+var built=[];
+function reg(f){built.push(f); f();}
+
+reg(mk('c_rev',{type:'bar',data:{labels:YRS,datasets:[
+ {label:'売上高（百万円）',data:[34336,37207,38546,42154,50092],backgroundColor:NAVY,order:2},
+ {label:'従業員数（人・右軸）',data:[855,906,947,987,1038],type:'line',borderColor:ACC,backgroundColor:ACC,yAxisID:'y1',tension:.3,order:1}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'売上高と従業員数の推移'}},
+ scales:{y:{beginAtZero:true,title:{display:true,text:'百万円'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'人'}}}}}));
+
+reg(mk('c_prof',{type:'bar',data:{labels:YRS,datasets:[
+ {label:'経常利益（百万円）',data:[6045,6270,4809,5451,7921],backgroundColor:NAVYL,order:3},
+ {label:'ROE（%・右軸）',data:[10.8,9.8,7.0,7.3,10.3],type:'line',borderColor:RED,backgroundColor:RED,yAxisID:'y1',tension:.3,order:1},
+ {label:'自己資本比率（%・右軸）',data:[72.8,73.1,66.4,70.8,72.7],type:'line',borderColor:TEAL,backgroundColor:TEAL,yAxisID:'y1',borderDash:[5,4],tension:.3,order:2}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'経常利益・ROE・自己資本比率'}},
+ scales:{y:{beginAtZero:true,title:{display:true,text:'百万円'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'%'},suggestedMax:80}}}}));
+
+reg(mk('c_mix',{type:'doughnut',data:{labels:['家庭用ガス警報器 59.0%','工業用定置式 23.3%','業務用携帯型 14.3%','その他 3.4%'],
+ datasets:[{data:[29605.7,11661.1,7145.0,1679.7],backgroundColor:[NAVY,NAVYL,ACC,GRAY]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'商品別売上構成（第67期・計50,092百万円）'},legend:{position:'bottom'}}}}));
+
+reg(mk('c_geo',{type:'bar',data:{labels:['日本','北米','アジア','その他'],datasets:[
+ {label:'第66期 2025/3',data:[22689,8969,9953,544],backgroundColor:GRAY},
+ {label:'第67期 2026/3',data:[24153,15944,9332,663],backgroundColor:NAVY}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'地域別売上高（百万円）'}},scales:{y:{beginAtZero:true}}}}));
+
+reg(mk('c_prod',{type:'line',data:{labels:YRS,datasets:[
+ {label:'1人当たり売上（万円）',data:[4016,4107,4070,4271,4826],borderColor:NAVY,backgroundColor:'rgba(28,53,87,.08)',fill:true,tension:.25}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'1人当たり売上高の推移（当方算出）'}},scales:{y:{beginAtZero:false,suggestedMin:3800}}}}));
+
+reg(mk('c_mtp',{type:'bar',data:{labels:['海外売上高比率(%)','営業利益率(%)','ROE(%)','配当性向・連結(%)'],datasets:[
+ {label:'2025/3期（中計起点）',data:[46.2,12.2,7.3,null],backgroundColor:GRAY},
+ {label:'2026/3期 実績',data:[51.8,14.7,10.3,22.4],backgroundColor:NAVY},
+ {label:'中計目標（2028/3期）',data:[50.0,12.5,8.5,30.0],backgroundColor:ACC}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'中期経営計画2025-2027 目標と初年度実績'}},scales:{y:{beginAtZero:true}}}}));
+
+reg(mk('c_cf',{type:'bar',data:{labels:YRS,datasets:[
+ {label:'営業CF',data:[3303,2620,2549,4888,5960],backgroundColor:TEAL},
+ {label:'投資CF',data:[-2199,-1488,-2323,-4732,-2205],backgroundColor:RED},
+ {label:'財務CF',data:[-991,-1011,4266,-1671,-2359],backgroundColor:GRAY},
+ {label:'フリーCF',data:[1104,1132,226,156,3754],type:'line',borderColor:NAVY,backgroundColor:NAVY,tension:.25}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'キャッシュ・フローの推移（百万円）'}},scales:{y:{title:{display:true,text:'百万円'}}}}}));
+
+reg(mk('c_own',{type:'doughnut',data:{labels:['その他の法人 50.55%','個人その他 38.94%（自己株3.12%含む）','金融機関 5.79%','外国法人等 4.20%','金融商品取引業者 0.52%'],
+ datasets:[{data:[50.55,38.94,5.79,4.20,0.52],backgroundColor:[NAVY,ACC,NAVYL,TEAL,GRAY]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'所有者別状況（単元ベース）'},legend:{position:'bottom',labels:{font:{size:10.5}}}}}}));
+
+reg(mk('c_pay',{type:'doughnut',data:{labels:['固定報酬 160,856千円（65.3%）','業績連動報酬 64,792千円（26.3%）','非金銭報酬 20,826千円（8.4%）'],
+ datasets:[{data:[160856,64792,20826],backgroundColor:[NAVY,ACC,TEAL]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'取締役（社外除く9名）の報酬構成'},legend:{position:'bottom',labels:{font:{size:10.5}}}}}}));
+</script>
+</body>
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ＣＫサンエツ(5757) 有価証券報告書 定性分析レポート ｜ 2026年3月期</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#1c3557; --navy-l:#2f4f7d; --accent:#c98a1e; --accent-l:#fdf6e7;
+  --red:#b3382c; --red-l:#fbeeec; --teal:#1f7a6b; --teal-l:#e9f5f2;
+  --gray:#5b6672; --line:#dfe3e8; --bg:#f6f7f9; --card:#ffffff; --ink:#1f2429;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+  font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+header{background:linear-gradient(135deg,var(--navy),var(--navy-l));color:#fff;padding:26px 28px 18px}
+header .code{font-size:13px;letter-spacing:.14em;opacity:.8}
+header h1{margin:4px 0 6px;font-size:25px;letter-spacing:.02em}
+header .sub{font-size:13.5px;opacity:.9}
+.legend{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;font-size:12px}
+.legend span{background:rgba(255,255,255,.13);padding:3px 11px;border-radius:12px;border:1px solid rgba(255,255,255,.22)}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);
+  display:flex;overflow-x:auto;padding:0 10px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+nav button{flex:0 0 auto;background:none;border:none;padding:13px 14px;font-size:13.5px;color:var(--gray);
+  cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;white-space:nowrap}
+nav button:hover{color:var(--navy);background:#fafbfc}
+nav button.on{color:var(--navy);border-bottom-color:var(--accent);font-weight:700}
+main{max-width:1080px;margin:0 auto;padding:26px 18px 70px}
+section{display:none} section.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+h2{font-size:21px;color:var(--navy);border-left:5px solid var(--accent);padding-left:12px;margin:6px 0 18px}
+h3{font-size:16.5px;color:var(--navy);margin:26px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+h4{font-size:14.5px;color:var(--navy-l);margin:18px 0 7px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:14px 0;
+  box-shadow:0 1px 3px rgba(20,30,45,.05)}
+.card.warn{border-left:4px solid var(--red);background:var(--red-l)}
+.card.note{border-left:4px solid var(--accent);background:var(--accent-l)}
+.card.ok{border-left:4px solid var(--teal);background:var(--teal-l)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px 15px}
+.kpi .l{font-size:11.5px;color:var(--gray);letter-spacing:.04em}
+.kpi .v{font-size:22px;font-weight:700;color:var(--navy);line-height:1.35}
+.kpi .n{font-size:11.5px;color:var(--gray)}
+table{width:100%;border-collapse:collapse;font-size:13.2px;margin:10px 0;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#eef1f5;color:var(--navy);font-weight:700;text-align:center}
+td.l,th.l{text-align:left}
+tbody tr:nth-child(even){background:#fbfcfd}
+.tw{overflow-x:auto}
+blockquote{margin:11px 0;padding:11px 15px;background:#f3f5f8;border-left:4px solid var(--navy-l);
+  font-size:13.6px;color:#333;border-radius:0 5px 5px 0}
+blockquote .src{display:block;font-size:11.5px;color:var(--gray);margin-top:6px}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:5px;
+  vertical-align:middle;font-weight:700;white-space:nowrap}
+.t-f{background:#e7ebf1;color:var(--navy)}
+.t-i{background:#f7e6c2;color:#7d5610}
+.t-c{background:#f6d9d5;color:var(--red)}
+.t-w{background:#d5eae5;color:var(--teal)}
+.src-cite{font-size:11.5px;color:var(--gray)}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:5px 0}
+.chart{position:relative;height:300px;margin:12px 0}
+.chart.sm{height:250px}
+.pill{display:inline-block;background:#eef1f5;color:var(--navy);border-radius:11px;padding:2px 10px;
+  font-size:12px;margin:2px 4px 2px 0}
+.pill.r{background:var(--red-l);color:var(--red)}
+.pill.g{background:var(--teal-l);color:var(--teal)}
+footer{background:var(--navy);color:#cfd8e3;padding:24px 28px;font-size:12.2px;line-height:1.85}
+footer b{color:#fff}
+.small{font-size:12.3px;color:var(--gray)}
+.divider{height:1px;background:var(--line);margin:22px 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="code">証券コード 5757 ／ 東証プライム ／ 非鉄金属（伸銅品）</div>
+  <h1>株式会社ＣＫサンエツ ― 有価証券報告書 定性分析レポート</h1>
+  <div class="sub">対象事業年度：2026年3月期（2025年4月1日〜2026年3月31日） ／ 有報提出日 2026年6月24日 ／ 分析実行日 2026年8月11日</div>
+  <div class="legend">
+    <span>[事実]＝有報に記載あり</span>
+    <span>[解釈]＝記載からの推論</span>
+    <span>[要確認]＝有報だけでは判断不能</span>
+    <span>[web]＝外部Web（沿革章のみ）</span>
+    <span>出所 [①]irpocket [②]会社IR [③]公式開示PDF [④]kabutan [⑤]J-Quants</span>
+  </div>
+</header>
+
+<nav id="nav"></nav>
+<main id="main">
+
+<!-- ========== 0. サマリー ========== -->
+<section id="s0" class="on" data-t="0. サマリー">
+<h2>0. エグゼクティブサマリー</h2>
+
+<div class="card note">
+<p style="font-size:16px;margin:0"><b>一文で言えば</b> ―
+富山発祥、黄銅（銅と亜鉛の合金）の棒・線・部品を核に、水道配管や自動車部品、精密機器へ用途を広げてきた持株会社制の非鉄金属メーカーで、M&amp;Aで同業を取り込みながら国内成熟市場を業容拡大でしのぐ一方、主原料の相場変動リスクをヘッジするデリバティブ取引の損益が経常利益を大きく振らす、という構造を持つ会社。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>記述情報から読み取れる最重要ポイント3点</h3>
+<div class="card">
+<p><b>① 営業利益は最高益でも、経常利益・EPSは5年で目減りしている</b><br>
+2026年3月期の売上高は1,494億38百万円（前期比+19.4%）、営業利益は141億61百万円（同+38.0%）と、いずれも三谷伸銅株式会社の連結子会社化と銅相場高を背景に大きく伸びた。<span class="tag t-f">[事実]</span> ところが経常利益は56億36百万円（同△32.8%）へ減少し、5年前（2022年3月期・65億71百万円）と比べても年率約△3.8%で目減りしている。EPSも5年で517.19円→432.19円（年率約△4.4%）、ROEも11.7%→6.7%へ低下した。<span class="tag t-f">[事実]</span> 原因は営業外費用に計上されたデリバティブ損失89億36百万円＋デリバティブ評価損2億51百万円で、これが営業利益の伸びをほぼ相殺している。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<p><b>② 経常利益100億円という次期目標を掲げるが、達成の道筋は書かれていない</b><br>
+【経営方針、経営環境及び対処すべき課題等】は「2027年3月期の経常利益の目標は100億円としております」と数値目標を明示している。<span class="tag t-f">[事実]</span> 当期実績56億36百万円から1年で約1.8倍にする計画だが、当期の経常利益を最も押し下げたのはデリバティブ損益という財務要因であり、それをどう改善して目標に到達するのか、有報の同章には具体的な説明がない。<span class="tag t-c">[要確認]</span></p>
+</div>
+<div class="card">
+<p><b>③ 資本配分は保守的で、累進配当方針を次期から正式採用</b><br>
+自己資本比率56.3%、有利子負債131億47百万円に対し現預金は12億92百万円と、無借金経営ではないが財務は健全。<span class="tag t-f">[事実]</span> 当期は自己株式取得（20万株・7億60百万円）と1株90円配当（年間配当総額786百万円、総還元性向約43.1%＝当方算出）を実施し、「減配せず配当を維持または増加させる累進配当方針」を2027年3月期より正式採用すると表明した。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>最も注意すべき論点</h3>
+<div class="card warn">
+<p><b>「相場変動リスクをヘッジするためのデリバティブ取引」という説明と、当期その取引が経常利益を32.8%押し下げたという結果が食い違っている。</b><span class="tag t-f">[事実]</span><br>
+会社は【経営方針】で「営業利益が変動するリスクをヘッジするためのデリバティブ取引を行うことで経常利益段階での利益を安定化させている」と述べる一方、【事業等のリスク】(1)材料価格変動のリスクでは同じデリバティブ取引を「当該リスクを緩和する対応」として位置付けている。<span class="tag t-f">[事実]</span> しかし当期は銅相場がLME高騰・円安で1トン219万円まで上昇する局面で、デリバティブ損益は逆に大きなマイナスとなった。<b>「安定化させる」はずの仕組みが、相場が大きく動いた年にむしろ利益変動の主因になっている</b>。ヘッジの対象・比率・会計処理（ヘッジ会計の採用有無）についての詳細は、経理の状況の注記を精査しても価格変動リスクの定性説明に留まり、当期のデリバティブ損失の発生メカニズムまでは有報から追い切れない。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+
+<h3>スクリーニング判定（参考・定量）</h3>
+<div class="card">
+<p class="small">下表は本プロジェクトの割安株スクリーニング8条件の判定結果。定性分析の対象外だが、本レポートを読む前提として掲げる。基準日 2026-07-17。<span class="tag t-f">[事実]</span> <span class="src-cite">出所 [⑤] J-Quants API V2（JPX公式）</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">条件</th><th>実測</th><th>基準</th><th>判定</th></tr></thead>
+<tbody>
+<tr><td class="l">① PER</td><td>12.01倍</td><td>≤15倍</td><td>○</td></tr>
+<tr><td class="l">② PBR</td><td>0.78倍</td><td>≤1.5倍</td><td>○</td></tr>
+<tr><td class="l">③ 売上高CAGR（9年）</td><td>+9.1%</td><td>≥4%</td><td>○</td></tr>
+<tr><td class="l">④ 営業利益CAGR（9年）</td><td>+13.9%</td><td>≥4%</td><td>○</td></tr>
+<tr><td class="l">⑤ 自己資本比率</td><td>56.3%</td><td>≥40%</td><td>○</td></tr>
+<tr><td class="l">⑥ 時価総額</td><td>428億円</td><td>≤600億円</td><td>○</td></tr>
+<tr><td class="l">⑦ 直近営業増益率</td><td>+38.0%（上位22%）</td><td>上位1/3</td><td>○</td></tr>
+<tr><td class="l">⑧ 6ヶ月モメンタム</td><td>+21.5%（上位6%）</td><td>上位1/3</td><td>○</td></tr>
+</tbody></table></div>
+<p class="small" style="margin-top:6px">→ <b>8/8 条件通過</b>（母集団：①〜⑥通過101銘柄／8条件通過11銘柄）。株価5,190円・売買代金56百万円。<span class="tag t-f">[事実]</span><br>
+③④は9年CAGRのため直近の経常利益減益（本レポート主論点）とは時間軸が異なる点に注意。スクリーニングは売上高・<b>営業</b>利益ベースであり、当期落ち込んだのは<b>経常</b>利益であるため、8条件通過とⅠ章の経常利益トレンドは矛盾しない。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅰ. 企業の輪郭 ========== -->
+<section id="s1" data-t="Ⅰ. 企業の輪郭">
+<h2>Ⅰ. 企業の輪郭</h2>
+
+<h3>1-1. 5年推移（連結）</h3>
+<p class="small">第1【企業の概況】1 主要な経営指標等の推移より。CAGRは2022年3月期→2026年3月期の4年での年率換算（当方算出）。<span class="tag t-f">[事実]</span> <span class="src-cite">出所 [③] 有価証券報告書（第1【企業の概況】1）。<b>irpocket [①] は本銘柄のデータを保有しておらず（404）</b>、数値の裏取りは有報本表・注記自体で行った</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">指標</th><th>2022/3期</th><th>2023/3期</th><th>2024/3期</th><th>2025/3期</th><th>2026/3期</th><th>4年CAGR</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高（百万円）</td><td>115,343</td><td>123,838</td><td>111,433</td><td>125,108</td><td><b>149,438</b></td><td>+6.7%</td></tr>
+<tr><td class="l">経常利益（百万円）</td><td>6,571</td><td>8,655</td><td>6,094</td><td>8,383</td><td><b>5,636</b></td><td>△3.8%</td></tr>
+<tr><td class="l">EPS（円）</td><td>517.19</td><td>644.39</td><td>458.22</td><td>616.11</td><td><b>432.19</b></td><td>△4.4%</td></tr>
+<tr><td class="l">ROE（%）</td><td>11.7</td><td>13.0</td><td>8.4</td><td>10.4</td><td><b>6.7</b></td><td>―</td></tr>
+<tr><td class="l">自己資本比率（%）</td><td>54.2</td><td>57.5</td><td>61.5</td><td>60.1</td><td><b>56.3</b></td><td>―</td></tr>
+<tr><td class="l">営業CF（百万円）</td><td>6,280</td><td>3,243</td><td>3,698</td><td>5,312</td><td><b>2,965</b></td><td>△17.1%</td></tr>
+<tr><td class="l">従業員数（人・連結）</td><td>928</td><td>928</td><td>924</td><td>912</td><td><b>1,015</b></td><td>+2.2%</td></tr>
+</tbody></table></div>
+<div class="grid2">
+  <div class="card"><div class="chart"><canvas id="c_rev"></canvas></div></div>
+  <div class="card"><div class="chart"><canvas id="c_prof"></canvas></div></div>
+</div>
+<div class="card note">
+<p><b>方向の客観提示</b>：売上高は5年で山谷を伴いながらも+29.6%（2022→2026、年率+6.7%）と拡大基調にある一方、<b>経常利益・EPS・営業CFはいずれも4年CAGRがマイナス</b>。ROEも11.7%→6.7%へ4.7〜5.0pt低下した。自己資本比率だけは54.2%→56.3%とわずかに改善している（2024年3月期61.5%をピークに直近2期は低下）。<span class="tag t-f">[事実]</span><br>
+売上と利益系指標の方向が食い違う最大の要因は、当期のデリバティブ損益（△89億36百万円）に代表される<b>営業外損益のブレの大きさ</b>にある。営業利益自体は2026年3月期が過去5年で最高（141億61百万円）であり、<b>本業の稼ぐ力そのものは拡大している</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+<p class="small">提出会社単体との乖離：提出会社（純粋持株会社）単体の売上高は11億9百万円・当期純利益5億5百万円にとどまり、連結売上の99.3%・連結純利益の大半は事業子会社側で生まれている。持株会社体制のため単体決算に事業実態はほぼ表れない。<span class="tag t-f">[事実]</span></p>
+
+<h3>1-2. 事業の内容 ― 事業系統の言語化</h3>
+<p class="small">第1【企業の概況】3 事業の内容より。当社（純粋持株会社）＋子会社14社で構成。<span class="tag t-f">[事実]</span></p>
+<blockquote>当社グループは、当社（株式会社ＣＫサンエツ）、子会社14社により構成されており、伸銅・精密部品・配管・鍍金及びこれらに付帯する事業を行っております。
+<span class="src">有報 第1【企業の概況】3【事業の内容】</span></blockquote>
+<div class="card">
+<h4>商流を文章化すると</h4>
+<ol>
+<li><b>黄銅を溶かし、棒・線・めっき線に伸ばす（伸銅事業）</b> ― 中核はサンエツ金属（100%子会社）の砺波工場・高岡事業所・新日東工場。2025年4月に連結子会社化した三谷伸銅（京都）、2015年に子会社化した日本伸銅（堺）が加わり、国内4拠点体制になった。鉛・カドミウム等の環境負荷物質を使わない環境対応合金を実用化し、多数の特許を持つ。<span class="tag t-f">[事実]</span></li>
+<li><b>棒を削り・鍛造して部品にする（精密部品事業）</b> ― サンエツ金属プレシジョン工場が、カメラマウント（一眼レフの本体・レンズ着脱部）や自動車のシンクロナイザーリング部品を鍛造・切削加工する。<span class="tag t-f">[事実]</span></li>
+<li><b>継手を作り、鍍金する（配管・鍍金事業）</b> ― 株式会社リケンとの合弁リケンＣＫＪＶが水道・ガス配管用の継手を生産、塩化ビニールを使わない脱塩ビ継手や、透明被覆継手（グッドデザイン賞受賞）を開発。シーケー金属（89.0%子会社）が環境対応鍍金「CKeめっきスーパー」を手掛ける。<span class="tag t-f">[事実]</span></li>
+<li><b>売る</b> ― 国内はサンエツ商事等のグループ販社、海外は三越金属（上海）・台湾三越が担う。<span class="tag t-f">[事実]</span></li>
+</ol>
+<p><b>ビジネスモデルの要約</b>：<b>国際相場商品である銅・亜鉛という「相場のある原材料」を仕入れ、加工度を上げた黄銅製品として自動車・家電・水栓金具・住宅設備に供給する</b>。利益の源泉は加工賃（伸銅品の付加価値）と特許化された環境対応技術にあり、原材料相場そのものは基本的に価格転嫁とデリバティブでヘッジする構造。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>1-3. 収益柱の照合 ― セグメント別の売上と利益</h3>
+<div class="grid2">
+  <div class="card"><div class="chart sm"><canvas id="c_mix"></canvas></div>
+  <p class="small" style="margin:4px 0 0">セグメント別売上構成（2026年3月期）</p></div>
+  <div class="card"><div class="chart sm"><canvas id="c_mixprof"></canvas></div>
+  <p class="small" style="margin:4px 0 0">セグメント別利益構成（2026年3月期）</p></div>
+</div>
+<div class="tw"><table>
+<thead><tr><th class="l">セグメント</th><th>売上高（百万円）</th><th>構成比</th><th>前期比</th><th>セグメント利益（百万円）</th><th>前期比</th><th>セグメント利益率</th></tr></thead>
+<tbody>
+<tr><td class="l">伸銅</td><td>131,442</td><td>87.9%</td><td>+23.5%</td><td>11,177</td><td>+57.7%</td><td>8.5%</td></tr>
+<tr><td class="l">精密部品</td><td>6,009</td><td>4.0%</td><td>+6.6%</td><td>906</td><td>+45.2%</td><td>15.1%</td></tr>
+<tr><td class="l">配管・鍍金</td><td>11,985</td><td>8.0%</td><td>△8.2%</td><td>1,872</td><td>△15.2%</td><td>15.6%</td></tr>
+<tr><td class="l"><b>合計</b></td><td><b>149,438</b></td><td>100.0%</td><td>+19.4%</td><td><b>13,955</b></td><td>+43.8%（合算）</td><td>9.3%</td></tr>
+</tbody></table></div>
+<div class="card">
+<p><b>語りと利益の一致度</b>：3事業とも「語りの大きさ」（有報の紙幅・経営方針での言及順）と「利益の大きさ」がおおむね一致しており、6824（新コスモス電機）型の乖離は見られない。<span class="tag t-i">[解釈]</span> ただし伸銅は売上の88%を占めながらセグメント利益率は8.5%と3事業で最も低く、<b>精密部品（15.1%）・配管鍍金（15.6%）の方が儲かる体質</b>である点は経営方針の記述からは読み取りにくい。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span> 配管・鍍金は増収率がマイナス（△8.2%）でセグメント利益も△15.2%と、3事業中唯一の減収減益であり、伸銅・M&amp;Aの好調の陰で見えにくくなっている。<span class="tag t-f">[事実]</span></p>
+</div>
+
+<h3>1-4. 競争優位はどこにあるか</h3>
+<div class="card">
+<p>有報は競争優位を直接語らないが、事業の内容・関係会社の記述から次のように推定できる。<span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>環境対応技術による差別化</b> ― 伸銅・配管鍍金の両事業で「鉛・カドミウム等の環境負荷物質を使わない」技術を早期に実用化し、特許を多数取得している。素材そのもの（黄銅）はコモディティに近いが、<b>環境規制強化を先取りした特許技術で価格競争から一段離れる</b>戦略と読める。<span class="tag t-f">[事実]</span></li>
+<li><b>M&amp;Aによる規模と用途の複線化</b> ― 日本伸銅（2015年）、三谷伸銅（2025年）と同業を継続的に取り込み、伸銅事業内での規模の経済とブランドイメージ形成を進めている。「トップシェアにふさわしいブランドイメージの形成による差別優位化」を明言。<span class="tag t-f">[事実]</span></li>
+<li><b>相場ヘッジによる価格安定化（ただし諸刃）</b> ― デリバティブ取引で銅・亜鉛の相場変動を吸収し、販売価格の乱高下を避ける仕組みを持つ。これにより取引先には比較的安定した価格を提示できる強みがある一方、Ⅳ章で述べる通り<b>ヘッジ自体が損益変動要因化するリスク</b>を抱える。<span class="tag t-i">[解釈]</span></li>
+</ul>
+</div>
+
+<h3>1-5. 関係会社 ― 支配構造とそこに潜むリスク</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">親会社の有無</div><div class="v">なし</div><div class="n">当社が純粋持株会社として最上位</div></div>
+  <div class="kpi"><div class="l">非100%子会社</div><div class="v">3社</div><div class="n">日本伸銅55.5%／シーケー金属89.0%／三谷伸銅94.06%</div></div>
+  <div class="kpi"><div class="l">非支配株主持分</div><div class="v">7,733<span style="font-size:13px">百万円</span></div><div class="n">連結純資産62,648百万円の12.3%</div></div>
+</div>
+<div class="card">
+<ul>
+<li><b>日本伸銅株式会社（55.5%）</b> ― 2015年に株式公開買付けで子会社化した堺市の伸銅メーカー。単独で有価証券報告書を提出する規模の企業であり、連結売上高の10%超を占めるが、自身が有報提出会社であるため主要損益情報の記載が省略されている。<b>44.5%の少数株主が存在する子会社の実態が、CKサンエツの有報だけでは十分に見えない</b>。<span class="tag t-f">[事実]</span><span class="tag t-c">[要確認]</span></li>
+<li><b>三谷伸銅株式会社（94.06%）</b> ― 2025年4月に株式取得し当期に新規連結。売上97,153百万円・経常利益1,088百万円・純資産27,757百万円と、単体で見てもかなりの規模を持つ会社を取り込んでおり、<b>当期の増収の主因はこのM&amp;Aである</b>ことが数値からも裏付けられる。<span class="tag t-f">[事実]</span></li>
+<li><b>シーケー金属株式会社（89.0%）</b> ― 配管・鍍金事業の中核。役員兼任ありで経営のサポートを受けている。</li>
+<li><b>非支配株主持分の重さ</b> ― 3社に少数株主が残ることで、連結純資産62,648百万円のうち7,733百万円（12.3%）が非支配株主に帰属する。M&amp;Aを重ねるほどこの比率は上がりやすい構造にあり、<b>親会社株主に帰属する当期純利益（3,587百万円）は連結ベースの利益の一部でしかない</b>点に留意が必要。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ========== Ⅱ. 沿革 ========== -->
+<section id="s2" data-t="Ⅱ. 沿革">
+<h2>Ⅱ. 沿革 ― どういう成り立ちの会社か</h2>
+<div class="card note">
+<p>本章のみ、有報の【沿革】を骨格としつつ外部Web情報で肉付けしている。Web由来の記述には <span class="tag t-w">[web]</span> と出典名を付し、有報由来と混ぜない。<span class="src-cite">出所 [③]有報 第1【企業の概況】2【沿革】</span></p>
+</div>
+
+<h3>2-1. 実質的な存続会社は「旧サンエツ金属」</h3>
+<div class="card">
+<p>有報の沿革は特異な構成を取る。現在の提出会社「株式会社ＣＫサンエツ」は1963年7月設立（北銅商事株式会社として）だが、1991年4月に「旧サンエツ金属株式会社」（1937年12月設立）を吸収合併した際、<b>合併後の会社の実態は法律上消滅した旧サンエツ金属がそのまま存続しているのと同様の状態</b>であるため、沿革は実質的な存続会社である旧サンエツ金属を基準に記載されている、と有報自身が明記している。<span class="tag t-f">[事実]</span></p>
+<blockquote>合併前の当社の事業は合併後の会社に一切継承されておらず、また合併当時の当社は事業活動を停止しておりましたので、合併後の会社の実態は法律上消滅した旧サンエツ金属株式会社がそのまま存続しているのと同様の状態であります。
+<span class="src">有報 第1【企業の概況】2【沿革】</span></blockquote>
+<p>つまり<b>実質的な創業は1937年12月、伸銅品メーカー「阪根伸銅株式会社」として東京市江戸川区に資本金30万円で設立</b>されたところに遡る。<span class="tag t-f">[事実]</span></p>
+</div>
+
+<h3>2-2. 転換点① 会社更生（1981〜1984年）― どん底からの再建</h3>
+<div class="card">
+<p>1981年6月に会社更生手続きを開始し、1984年8月に終結。同年9月に北陸金属工業から黄銅棒事業の全部譲渡を受けて砺波工場とし、社名をサンエツ金属株式会社に変更した。<span class="tag t-f">[事実]</span> 会社更生という経営破綻を経験した企業が、その直後に事業譲受で製造拠点を再構築している点は、<b>「潰れかけてから、他社の事業を取り込んで立て直す」という後年のM&amp;A戦略の原型</b>とも読める。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>2-3. 転換点② 1993〜2018年 ― 上場と海外展開の開始</h3>
+<div class="card">
+<ul>
+<li>1993年12月 名古屋証券取引所市場第二部に上場<span class="tag t-f">[事実]</span></li>
+<li>1994年12月 中国・大連に現地法人設立（2015年に持分譲渡）<span class="tag t-f">[事実]</span></li>
+<li>2005年1月 三越金属（上海）有限公司を設立（現・連結子会社）<span class="tag t-f">[事実]</span></li>
+<li>2011年4月 シーケー金属株式会社（現・連結子会社）の株式を取得<span class="tag t-f">[事実]</span></li>
+<li><b>2011年10月 商号を株式会社ＣＫサンエツに変更すると同時に、純粋持株会社に移行</b>。新設分割によりサンエツ金属株式会社（現・連結子会社）を新たに設立<span class="tag t-f">[事実]</span></li>
+<li>2015年1月 台湾三越股份有限公司を設立<span class="tag t-f">[事実]</span></li>
+<li><b>2015年3月 日本伸銅株式会社を株式公開買付けにより連結子会社化</b>。同社が同年7月に大阪黄銅株式会社を吸収合併<span class="tag t-f">[事実]</span></li>
+<li>2017年3月 東京証券取引所市場第二部に上場<span class="tag t-f">[事実]</span></li>
+<li>2018年3月 東京証券取引所市場第一部に上場<span class="tag t-f">[事実]</span></li>
+</ul>
+<p><b>2011年の持株会社化がこの会社の現在の骨格を決めた</b>。事業子会社を切り離すことで、伸銅・精密部品・配管鍍金の各事業ごとの経営責任を明確化しつつ、持株会社本体はM&amp;Aの受け皿として機能する体制を作った。以降の日本伸銅・三谷伸銅の子会社化は、いずれもこの体制の上で実行されている。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>2-4. 転換点③ 直近5年 ― プライム市場移行と2件目の大型M&amp;A</h3>
+<div class="card">
+<ul>
+<li>2020年4月 オキノ工業株式会社を子会社化<span class="tag t-f">[事実]</span></li>
+<li>2021年1月・3月 日立アロイ・日立金属から黄銅棒・線事業や桶川工場の銅合金事業を譲受<span class="tag t-f">[事実]</span></li>
+<li>2022年4月 東証の市場区分見直しにより第一部からプライム市場へ移行<span class="tag t-f">[事実]</span></li>
+<li><b>2025年4月 三谷伸銅株式会社の株式を取得し連結子会社化</b>（当期の増収の主因）<span class="tag t-f">[事実]</span></li>
+</ul>
+<p>2020年〜2021年の事業譲受（オキノ工業、日立アロイ、日立金属桶川工場）は<b>中小規模の事業・設備の切り出しを継続的に取り込む</b>パターンで、2025年の三谷伸銅（単体売上97,153百万円規模）は<b>これまでで最大級のM&amp;A</b>にあたる。<span class="tag t-i">[解釈]</span> 沿革全体を通じ、<b>大型の自社開発による新規事業展開ではなく、同業の事業・株式の取得を積み重ねて規模を作ってきた会社</b>という性格が一貫している。<span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card note">
+<p><b>沿革から見える会社の性格</b>：①会社更生という危機を、他社事業の譲受で乗り越えた再建の経験を持つ。②2011年の持株会社化以降、<b>同業M&amp;Aを継続的な成長エンジン</b>として明確に位置づけている（日本伸銅2015年、三谷伸銅2025年、その間も複数の事業譲受）。③上場市場は名証二部→東証二部→東証一部→プライムと一貫して格上げを続けており、<b>規模拡大と市場評価の向上を並行して進めてきた</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅲ. 人的資本 ========== -->
+<section id="s3" data-t="Ⅲ. 人的資本">
+<h2>Ⅲ. 人的資本 ― 従業員の状況＋サステナビリティの人的資本情報</h2>
+<p class="small">第1【企業の概況】5【従業員の状況等】および第2【事業の状況】2【サステナビリティ】(3)(4)より。<span class="src-cite">出所 [③] 有価証券報告書</span></p>
+
+<h3>3-1. 人員構成</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">セグメント（連結）</th><th>従業員数（人）</th><th>構成比</th></tr></thead>
+<tbody>
+<tr><td class="l">伸銅</td><td>591</td><td>58.2%</td></tr>
+<tr><td class="l">精密部品</td><td>102</td><td>10.0%</td></tr>
+<tr><td class="l">配管・鍍金</td><td>322</td><td>31.7%</td></tr>
+<tr><td class="l"><b>合計</b></td><td><b>1,015</b></td><td>100.0%</td></tr>
+</tbody></table></div>
+<p class="small">前連結会計年度末比の増加は、三谷伸銅株式会社および新キタミ株式会社を連結子会社化したことによる。提出会社（純粋持株会社）自体には従業員がおらず、管理・経理事務はサンエツ金属・シーケー金属に委託している。<span class="tag t-f">[事実]</span></p>
+
+<div class="grid3">
+  <div class="kpi"><div class="l">最大人員会社</div><div class="v">サンエツ金属</div><div class="n">489人・平均40.3歳・勤続16.2年・平均年収728万円</div></div>
+  <div class="kpi"><div class="l">2位</div><div class="v">リケンＣＫＪＶ</div><div class="n">206人・平均37.3歳・勤続14.2年・平均年収694万円</div></div>
+  <div class="kpi"><div class="l">3位</div><div class="v">シーケー金属</div><div class="n">116人・平均39.1歳・勤続14.2年・平均年収749万円</div></div>
+</div>
+<p class="small">4位：日本伸銅 92人・平均42.8歳・勤続19.3年・平均年収745万円（対前期増減率+4.1%）。<span class="tag t-f">[事実]</span></p>
+
+<h3>3-2. 生産性 ― 増収は人を増やして作ったのか</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">年度</th><th>売上高（百万円）</th><th>連結従業員（人）</th><th>1人当たり売上（百万円）</th><th>1人当たり経常利益（百万円）</th></tr></thead>
+<tbody>
+<tr><td class="l">2022/3期</td><td>115,343</td><td>928</td><td>124.3</td><td>7.08</td></tr>
+<tr><td class="l">2023/3期</td><td>123,838</td><td>928</td><td>133.4</td><td>9.33</td></tr>
+<tr><td class="l">2024/3期</td><td>111,433</td><td>924</td><td>120.6</td><td>6.60</td></tr>
+<tr><td class="l">2025/3期</td><td>125,108</td><td>912</td><td>137.2</td><td>9.19</td></tr>
+<tr><td class="l"><b>2026/3期</b></td><td><b>149,438</b></td><td><b>1,015</b></td><td><b>147.2</b></td><td><b>5.55</b></td></tr>
+</tbody></table></div>
+<div class="chart sm" style="max-width:720px"><canvas id="c_prod"></canvas></div>
+<div class="card ok">
+<p><b>1人当たり売上は5年で+18.5%と着実に伸び</b>、従業員数がほぼ横ばいだった2022〜2025年の間も増加基調にあり、労働集約的な人員増ではなく<b>設備・相場・価格転嫁による増収</b>だったことが読み取れる。<span class="tag t-i">[解釈]</span></p>
+<p>一方で<b>1人当たり経常利益は2026年3月期に5.55百万円まで急落</b>（前期比△39.6%）。これは前述のデリバティブ損益の影響であり、<b>人員の生産性そのものが悪化したわけではない</b>点は区別して読む必要がある。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>3-3. 人材戦略の記述（サステナビリティ統合）</h3>
+<div class="card">
+<h4>基本方針として書かれていること</h4>
+<blockquote>「努力するに値するプロの仕事と、努力して働くほど報われる働きがいのある職場を提供することで、社会に貢献します。」に基づき、性別・年齢・国籍等にかかわらず、社員に対して働きがいのある職場を提供すべく、（中略）人材育成方針及び社内環境整備方針を掲げて具体的取組を行っています。
+<span class="src">有報 第2-2(3)戦略</span></blockquote>
+<p>この理念文自体は定型的だが、<b>賞与の決定方針には固有の具体性がある</b>。<span class="tag t-i">[解釈]</span></p>
+<ul>
+<li><b>賞与の累進増加方針</b> ― 「賞与を短期的な業績変動には連動させず、一人当たりの平均支給額を累進的に増加させる方針を2010年より一貫して採用」し、2010年の1回100万円から段階的に増額、2026年度は1人160万円（年間320万円）を予定。日本経済新聞社の賞与支給額調査で全国21位（2025年12月調査）にランキングされると具体的な外部評価まで記載している。<span class="tag t-f">[事実]</span></li>
+<li><b>「夜勤レス」の推進</b> ― 夜勤率10%以下を目標に掲げ、当期実績2.1%と大きく上回って達成。装置産業でありながら夜勤を減らす方向性を明示している点は、同業他社と比較しても固有性がある。<span class="tag t-f">[事実]</span></li>
+</ul>
+<p><b>沈黙している点</b>：人事希望等成就率（目標2/3以上・実績78.9%）、通信教育受講者割合（目標70%以上・実績58.3%＝未達）等、目標を下回る指標も含め数値自体は開示されているが、<b>未達（通信教育受講者割合）についての原因分析や改善策への言及はない</b>。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>3-4. 人的資本指標（数値の提示）</h3>
+<p class="small">第1-5(4)より。本レポートは数値の提示のみを行い、水準の優劣評価は行わない。<span class="tag t-f">[事実]</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l">会社</th><th>男性育休<br>取得率</th><th>男女賃金差異<br>全労働者</th><th>同<br>正規雇用</th><th>同<br>パート・有期</th></tr></thead>
+<tbody>
+<tr><td class="l">サンエツ金属</td><td>14.3%</td><td>65.9%</td><td>73.1%</td><td>32.7%</td></tr>
+<tr><td class="l">日本伸銅</td><td>―</td><td>77.7%</td><td>79.1%</td><td>78.3%</td></tr>
+<tr><td class="l">シーケー金属</td><td>―</td><td>74.2%</td><td>73.5%</td><td>143.2%</td></tr>
+<tr><td class="l">リケンＣＫＪＶ</td><td>―</td><td>67.5%</td><td>76.3%</td><td>21.6%</td></tr>
+</tbody></table></div>
+<p class="small">その他の連結子会社は法定の公表義務対象外のため記載省略。労働組合は結成されておらず、労使関係は安定していると記載。役員のうち女性比率14.2%（7名中1名）。<span class="tag t-f">[事実]</span></p>
+</section>
+
+<!-- ========== Ⅳ. 経営者の世界観 ========== -->
+<section id="s4" data-t="Ⅳ. 経営者の世界観">
+<h2>Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+
+<h3>4-1. 課題→打ち手の一対一照合</h3>
+<p class="small">有報の当該綱目は、経営理念・市場認識・事業別戦略・経営指標を一体で述べる構成を取る（成長戦略を柱立てで示す形式ではない）。<span class="src-cite">出所 [③] 有報 第2-1</span></p>
+<div class="tw"><table>
+<thead><tr><th class="l" style="width:26%">認識されている課題</th><th class="l" style="width:44%">紐づく具体施策（有報の記載）</th><th class="l" style="width:30%">照合結果</th></tr></thead>
+<tbody>
+<tr><td class="l">国内市場の成熟・需要漸減（伸銅・配管鍍金の両主力事業）</td><td class="l">新製品の開発による市場開拓、M&amp;Aによる事業拡張</td><td class="l"><b>接続あり</b>。当期の三谷伸銅子会社化はまさにこの打ち手の実行例<span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">伸銅事業でのブランド力・差別化</td><td class="l">新素材の開発・特殊材の品揃え、トップシェアにふさわしいブランドイメージの形成、グループ内伸銅3社（サンエツ金属・日本伸銅・三谷伸銅）のシナジー追求</td><td class="l"><b>接続あり</b>だが、「ブランドイメージの形成」の具体的な施策（広告・認証取得等）は書かれていない<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">配管・鍍金事業の競争力強化</td><td class="l">リケンとの開発・生産拠点統合による相乗効果、溶融亜鉛鍍金の新技術開発による差別優位化</td><td class="l"><b>接続あり</b>だが、当期は当該セグメントが減収減益（Ⅰ-3参照）であり、施策の効果が数値に現れていない<span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">経常利益100億円という次期目標</td><td class="l"><span style="color:var(--red)"><b>（記載なし）</b></span></td><td class="l"><b>打ち手が完全に空白</b>。目標数値だけが提示され、達成手段への言及がない<span class="tag t-c">[要確認]</span></td></tr>
+</tbody></table></div>
+<div class="card warn">
+<p><b>打ち手が最も薄いのは、自ら掲げた「2027年3月期の経常利益100億円」目標である。</b>当期実績56億36百万円からの積み上げ方（コスト削減か、ヘッジ方針の見直しか、さらなるM&amp;Aか）についての説明が一切なく、<b>目標だけが単独で提示されている</b>。<span class="tag t-f">[事実]</span> 経常利益を最も動かしたのがデリバティブ損益であったことを踏まえると、<b>ヘッジ方針や取引規模を見直すのか、単に相場の落ち着きを前提とするのか</b>が読者にとって最大の関心事だが、有報はここに触れていない。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>4-2. 経営環境認識の具体性 ― 固有記述か、ボイラープレートか</h3>
+<div class="card">
+<p>MD&amp;A冒頭の経営環境認識は次の通り。</p>
+<blockquote>当連結会計年度における世界経済は、米国が「米国第一主義」を唱えて、保護主義的貿易政策を強硬に推進したために混乱しました。また、米国とイスラエルが2026年２月28日にイランを攻撃して、ホルムズ海峡が封鎖されました。わが国経済は、資源・エネルギー価格が上昇したため、物価が上昇しました。政策金利は、30年ぶりに0.75％まで上昇しました。（中略）銅の建値は、ＬＭＥ価格の高騰と円安のため、同年１月13日に１トン219万円まで上昇しました。
+<span class="src">有報 第2-4(1)①</span></blockquote>
+<p><b>この記述は多くの伸銅品メーカーの有報に見られる定型より具体的である。</b>「1トン219万円」「1月13日」という固有の数値・日付を伴い、ホルムズ海峡封鎖という地政学イベントまで名指ししている点は、<b>原材料相場が業績の主変数である会社としての自覚が表れている</b>。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span><br>
+一方で、<b>この具体的な環境認識と、経常利益の大幅減益の因果関係を直接つなぐ説明はない</b>。銅相場高騰＝原材料高＝ヘッジコスト増、という連鎖は読者が自分で組み立てる必要がある。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>4-3. 経営指標としての「経常利益」への強いこだわり</h3>
+<div class="card">
+<p>有報は次のように明記する。</p>
+<blockquote>当社グループの経営状況を判断するための客観的な指標は経常利益です。伸銅事業の業績は、主要原材料である銅の相場の影響を受けて、営業利益が変動するリスクをヘッジするためのデリバティブ取引を行うことで経常利益段階での利益を安定化させているためです。
+<span class="src">有報 第2-1</span></blockquote>
+<p>会社自身が「経常利益こそが経営の物差し」と明言しているにもかかわらず、<b>当期はその経常利益が最も大きく崩れた指標</b>という結果になった。<span class="tag t-f">[事実]</span> 中期的な数値目標も売上高や営業利益率ではなく経常利益（100億円）で置かれており、<b>この会社を評価する際は営業利益の伸びだけを見て強気に評価するのは適切でなく、デリバティブ損益を含めた経常利益の動きを継続的に注視する必要がある</b>ことを、会社自身の開示方針が示唆している。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅴ. サステナビリティ ========== -->
+<section id="s5" data-t="Ⅴ. サステナビリティ">
+<h2>Ⅴ. サステナビリティ（人的資本を除く）</h2>
+<p class="small">第2【事業の状況】2【サステナビリティに関する考え方及び取組】(1)(2)(4)より。人的資本はⅢ章に統合済み。<span class="src-cite">出所 [③] 有価証券報告書</span></p>
+
+<h3>5-1. 戦略接続と検証可能性</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">指標</th><th>目標</th><th>実績（当期）</th><th class="l">検証可能性</th></tr></thead>
+<tbody>
+<tr><td class="l">環境対応材比率（伸銅事業の製品販売量）</td><td>―（数値目標なし）</td><td>53.3%</td><td class="l">実績値のみ。目標水準の記載なし<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">溶融亜鉛鍍金加工重量に占める環境対応比率</td><td>―</td><td>100%</td><td class="l">既に上限に到達<span class="tag t-f">[事実]</span></td></tr>
+<tr><td class="l">外部購入原料に占めるリサイクル原料比率</td><td>―</td><td>94.5%</td><td class="l">実績値のみ<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">CO2排出量（Scope1・2）</td><td>継続的な省エネ対策（数値目標なし）</td><td>80,730t-CO2（2014年3月期比△25.4%）</td><td class="l">基準年比の実績提示のみ。将来の削減目標年・数値目標がない<span class="tag t-c">[要確認]</span></td></tr>
+</tbody></table></div>
+<div class="card">
+<p><b>戦略接続は良好</b>：環境対応材・リサイクル原料・CO2排出量のいずれも、Ⅰ章で見た「環境対応技術による差別化」という競争優位の説明と一致しており、サステナビリティ章が本業の戦略から浮いていない。<span class="tag t-i">[解釈]</span><br>
+<b>検証可能性はやや弱い</b>：環境対応材比率53.3%・リサイクル原料比率94.5%のいずれも、<b>将来の目標値・達成期限が示されておらず、実績の提示に終始</b>している。CO2排出量も2014年3月期比での実績を示すのみで、将来のネットゼロ目標や中間目標年は記載がない。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>5-2. ガバナンス・リスク管理体制</h3>
+<div class="card">
+<p>サステナビリティ課題への対応方針は月次の「グループ経営会議」で協議・決定され、各事業子会社の半期に一度の「ISOマネジメントレビュー」で実行計画・進捗をモニタリングする体制。リスク管理は各部門長が年1回評価し、リスク管理責任者である監査・規格管理室長を通じて代表取締役社長に報告される。<span class="tag t-f">[事実]</span> 気候変動・GHG・TCFDに関する独立した章立てはなく、環境対応は主にサステナビリティ(3)(4)の中で製品比率・原料比率の指標として語られている。銅・亜鉛という非鉄金属の溶解を伴う装置産業でありながら、<b>TCFD提言に沿ったシナリオ分析等の記載はない</b>。<span class="tag t-i">[解釈]</span><span class="tag t-c">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅵ. 事業等のリスク ========== -->
+<section id="s6" data-t="Ⅵ. リスク">
+<h2>Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+<p class="small">第2【事業の状況】3【事業等のリスク】は16項目。<span class="src-cite">出所 [③] 有価証券報告書</span></p>
+
+<h3>6-1. 固有リスクと定型リスクの仕分け</h3>
+<div class="tw"><table>
+<thead><tr><th class="l" style="width:30%">リスク項目</th><th class="l">分類</th><th class="l" style="width:44%">評価</th></tr></thead>
+<tbody>
+<tr><td class="l">(1) 材料価格変動のリスク</td><td class="l"><b>固有・重要</b></td><td class="l">銅・亜鉛の相場乱高下による棚卸資産の含み損益、デリバティブ取引によるヘッジを説明。当期実際に経常利益を32.8%押し下げた要因そのもの<span class="tag t-f">[事実]</span></td></tr>
+<tr><td class="l">(2) 電力供給不安のリスク</td><td class="l">固有</td><td class="l">電気炉による銅・亜鉛溶解という製法固有のリスク。グループ内代替生産で対応</td></tr>
+<tr><td class="l">(3) 海外事業拠点のリスク</td><td class="l">定型</td><td class="l">中国・台湾現地法人。一般的な記述</td></tr>
+<tr><td class="l">(4) 取引先の経営破綻による債権回収のリスク</td><td class="l">定型</td><td class="l">信用状況確認・取引信用保険</td></tr>
+<tr><td class="l">(5) 自然災害・事故等のリスク</td><td class="l">定型</td><td class="l">BCP策定、代替生産</td></tr>
+<tr><td class="l">(6) 製品クレームによるリスク</td><td class="l">定型</td><td class="l">一般的な記述</td></tr>
+<tr><td class="l">(7) 知的財産権を侵害するリスク</td><td class="l">定型</td><td class="l">一般的な記述</td></tr>
+<tr><td class="l">(8) M&amp;A及び事業提携において見込んだ効果を得られないリスク</td><td class="l"><b>固有</b></td><td class="l">日本伸銅・三谷伸銅と継続的にM&amp;Aを実行してきた会社にとって直接的に該当性の高い項目<span class="tag t-i">[解釈]</span></td></tr>
+<tr><td class="l">(9)〜(14)</td><td class="l">定型</td><td class="l">環境費用・設備投資・訴訟・法規制・経済環境・代替製品。いずれも一般的な記述</td></tr>
+<tr><td class="l">(15) 人材の確保と育成に関するリスク</td><td class="l">定型</td><td class="l">一般的な記述</td></tr>
+<tr><td class="l">(16) パンデミック発生に関するリスク</td><td class="l">定型</td><td class="l">一般的な記述</td></tr>
+</tbody></table></div>
+<div class="card warn">
+<p><b>固有リスクは実質2項目（材料価格変動、M&amp;A）に絞られ、16項目中14項目は業種を問わず書ける定型リスクである。</b>定型比率は87.5%と高い。<span class="tag t-i">[解釈]</span><br>
+それでも<b>(1)材料価格変動のリスクは当期の決算結果と正確に符合しており、ボイラープレートではなく実際に顕在化したリスクとして機能している</b>点は評価できる。「原料相場が乱高下する場合、棚卸資産等に含み益や含み損が発生する可能性」という記述通り、当期は棚卸資産（商品及び製品・仕掛品・原材料）が前期末比94億23百万円増加しており、相場高の影響が貸借対照表にも表れている。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+</div>
+<div class="card">
+<p><b>財務数値との照合</b>：デリバティブ損失89億36百万円という当期最大の損益インパクトは(1)材料価格変動のリスクの範囲内で説明可能だが、<b>リスク項目の文中では「デリバティブ取引による損失」という結果そのもの（ヘッジがマイナスに作用する可能性）には触れていない</b>。「リスクヘッジのためのデリバティブ取引を締結することで、当該リスクを緩和する対応を講じております」という記述は、<b>ヘッジ手段自体が損失を生みうるという逆側のリスクを書いていない点でやや楽観的</b>である。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>6-2. 経営上の重要な契約等</h3>
+<div class="card">
+<p>第2-5【重要な契約等】は「該当事項はありません」の一言のみ。<span class="tag t-f">[事実]</span> 株式会社リケンとの合弁（リケンＣＫＪＶ）のような事業上重要な協業についても、契約自体は本項目の対象外として扱われている。依存・更新リスクの評価材料としては本章から得られるものはない。<span class="tag t-c">[要確認]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅶ. 経営成績の分析 ========== -->
+<section id="s7" data-t="Ⅶ. MD&A">
+<h2>Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+
+<h3>7-1. 業績事実の要約</h3>
+<div class="tw"><table>
+<thead><tr><th class="l">（単位：百万円）</th><th>2025/3期</th><th>2026/3期</th><th>増減</th><th>増減率</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高</td><td>125,108</td><td>149,438</td><td>+24,329</td><td>+19.4%</td></tr>
+<tr><td class="l">営業利益</td><td>10,263</td><td>14,161</td><td>+3,898</td><td>+38.0%</td></tr>
+<tr><td class="l">経常利益</td><td>8,383</td><td>5,636</td><td>△2,746</td><td>△32.8%</td></tr>
+<tr><td class="l">親会社株主に帰属する当期純利益</td><td>5,207</td><td>3,587</td><td>△1,619</td><td>△31.1%</td></tr>
+</tbody></table></div>
+<div class="chart"><canvas id="c_waterfall"></canvas></div>
+<p class="small">経常利益の主な増減要因（会社開示）：数量・構成 +31.6億円／相場差損益 +21.1億円／デリバティブ損益 △67.6億円／その他 △12.5億円。<span class="tag t-f">[事実]</span></p>
+<div class="card warn">
+<p><b>営業利益+38.0%増と経常利益△32.8%減という真逆の方向が、同じ決算の中で同居している。</b>その差を説明する会社開示の内訳を見ると、事業要因（数量・構成、相場差損益）は合計+52.7億円のプラスに対し、<b>デリバティブ損益単独で△67.6億円のマイナス</b>と、事業要因の改善を上回る規模で経常利益を押し下げている。<span class="tag t-f">[事実]</span> セグメント業績（伸銅利益+57.7%）と全社の経常利益（△32.8%）の方向が逆転する決算は、<b>本業の評価と全社の評価を分けて読む必要がある</b>典型例である。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>7-2. セグメント別業績</h3>
+<div class="card">
+<p><b>伸銅</b>：販売量10万389トン（前期比+11.7%）、売上131,442百万円（同+23.5%）、セグメント利益11,177百万円（同+57.7%）。三谷伸銅の新規連結と銅相場高が牽引。<span class="tag t-f">[事実]</span><br>
+<b>精密部品</b>：売上6,009百万円（同+6.6%）、セグメント利益906百万円（同+45.2%）。<span class="tag t-f">[事実]</span><br>
+<b>配管・鍍金</b>：売上11,985百万円（同△8.2%）、セグメント利益1,872百万円（同△15.2%）。3事業で唯一の減収減益。<span class="tag t-f">[事実]</span></p>
+</div>
+
+<h3>7-3. 財政状態の分析</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">総資産</div><div class="v">97,520<span style="font-size:13px">百万円</span></div><div class="n">前期末比+10,545（主に売掛金・棚卸資産増）</div></div>
+  <div class="kpi"><div class="l">負債合計</div><div class="v">34,871<span style="font-size:13px">百万円</span></div><div class="n">前期末比+6,935（主に買掛金・短期借入金増）</div></div>
+  <div class="kpi"><div class="l">純資産</div><div class="v">62,648<span style="font-size:13px">百万円</span></div><div class="n">自己資本比率56.3%（前期末60.1%から低下）</div></div>
+</div>
+<p class="small">流動資産72,758百万円（前期末比+9,796）は売掛金+5,455百万円、棚卸資産+9,423百万円が主因。固定資産24,762百万円は前期末比+748百万円。<span class="tag t-f">[事実]</span></p>
+
+<h3>7-4. CF・資本の財源</h3>
+<div class="chart" style="max-width:760px"><canvas id="c_cf"></canvas></div>
+<div class="card">
+<p>営業CF29億65百万円（前期比△23億47百万円）は、棚卸資産の増加66億56百万円・法人税等の支払25億23百万円が下押しした一方、税金等調整前当期純利益59億54百万円・減価償却費23億96百万円が下支え。投資CFは△48億31百万円（有形固定資産取得△37億97百万円、子会社株式取得△13億51百万円）で前期より支出増。財務CFは△5億39百万円。<span class="tag t-f">[事実]</span><br>
+会社は「営業CFと内部留保資金で投資・財務CFの支出を賄った」と説明しつつ、<b>今後の継続的な設備投資・M&amp;A資金・運転資金の必要性を挙げ、自己資本比率56.3%を根拠に「十分な資金調達余力を保有している」</b>と結んでいる。<span class="tag t-f">[事実]</span> 資金繰りの説明は数値の裏付けを伴っており実質的である。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅷ. 将来への投資 ========== -->
+<section id="s8" data-t="Ⅷ. 設備・研究開発">
+<h2>Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+
+<h3>Ⅷ-a. 設備の状況</h3>
+<div class="card">
+<p>当期設備投資額1,683百万円（伸銅1,103百万円・精密部品96百万円・配管鍍金483百万円）に対し、減価償却費は2,396百万円（キャッシュ・フロー計算書ベース）。<span class="tag t-f">[事実]</span></p>
+<div class="card note" style="margin:10px 0 0">
+<p><b>設備投資は減価償却費の範囲内 ― 「維持」フェーズと判定できる。</b>1,683百万円 ÷ 2,396百万円 ≈ 70%であり、資産を積極的に積み増す拡張投資ではなく、既存設備の更新中心と読める。<span class="tag t-i">[解釈]</span> 資産集約度で言えば、有形固定資産合計21,239百万円は総資産97,520百万円の21.8%を占め、装置産業としては相応の重さを持つが、<b>当期の成長の主エンジンはM&amp;A（三谷伸銅）であり自前の設備投資ではなかった</b>ことが、この投資規模からも裏付けられる。<span class="tag t-i">[解釈]</span></p>
+</div>
+<p style="margin-top:10px">計画中の重要な新設は、サンエツ金属砺波工場の「第２工場増築」（投資予定額1,140百万円・自己資金・2026年7月着手〜2027年5月完了予定）のみ。重要な改修・除却・売却は「該当事項なし」。<span class="tag t-f">[事実]</span> Ⅳ章の成長戦略・Ⅶ章のCF状況と接続すると、<b>次期の設備投資規模も前期並みの「維持」レベルにとどまる見込み</b>で、経常利益100億円という目標は設備投資の拡大では説明されない。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>Ⅷ-b. 研究開発活動</h3>
+<div class="card">
+<p>研究開発費総額144百万円（対売上高比0.10%）。内訳は伸銅62百万円、配管事業73百万円、鍍金事業8百万円、精密部品は該当事項なし。<span class="tag t-f">[事実]</span></p>
+<p><b>対売上比0.10%は非鉄金属加工業として低い水準</b>であり、成長ドライバーとしての研究開発の位置づけは大きくない。<span class="tag t-i">[解釈]</span> ただしテーマは「銅合金の生産性・バッキングプレートの品質改善」「配管の施工性向上」「Pb非含有溶融亜鉛めっきとの差別化技術」と具体的で、Ⅰ章で述べた環境対応技術による差別化と接続している。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span> <b>成長ドライバーというより、既存技術の防衛・改善に主眼を置いた研究開発</b>と評価できる。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅸ. 資本政策・株主還元 ========== -->
+<section id="s9" data-t="Ⅸ. 資本政策">
+<h2>Ⅸ. 資本政策・株主還元</h2>
+
+<h3>9-1. 資本配分の規律</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">年間配当総額</div><div class="v">786<span style="font-size:13px">百万円</span></div><div class="n">1株90円（中間45円＋期末45円）</div></div>
+  <div class="kpi"><div class="l">自己株式取得額</div><div class="v">760<span style="font-size:13px">百万円</span></div><div class="n">20万株（ToSTNeT-3、2025年5月13日実施）</div></div>
+  <div class="kpi"><div class="l">総還元性向</div><div class="v">43.1<span style="font-size:13px">%</span></div><div class="n">当方算出＝(786+760)/3,587</div></div>
+</div>
+<div class="card">
+<p>配当方針は「自己資本比率の向上を図りつつ、業績に応じた適正な利益配分を安定的に行うことを基本方針」としつつ、<b>「減配せず、配当を維持または増加させる累進配当方針」を2027年3月期より正式に採用する</b>と表明した。<span class="tag t-f">[事実]</span> 当期の連結配当性向（会社が別途開示する提出会社ベースの配当性向とは別に、当方が親会社株主帰属当期純利益ベースで算出）は786/3,587＝<b>21.9%</b>。<span class="tag t-i">[解釈]</span></p>
+<p class="small">なお有報本表の「提出会社の経営指標等」に記載される配当性向147.89%は、<b>持株会社である提出会社単体の小さなEPS（60.85円）を分母に取った数値</b>であり、事業実態を表す連結ベースの水準（21.9%）とは意味が異なる。両者を混同しないよう注意が必要。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></p>
+<p>自己株式取得は取締役会決議（2025年5月12日、上限25万株・9億50百万円）に対し実施20万株・7億60百万円（未行使5万株）。取得した自己株式のうち23万株は従業員持株会信託型ESOPの導入に伴う第三者割当処分に充当された。<span class="tag t-f">[事実]</span> 増益基調の設備投資を抑えつつ、還元と自社ESOP原資の両方に自己株式を使う<b>比較的保守的でバランス型の資本配分</b>と評価できる。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>9-2. 株主構成 ― 支配構造の解釈</h3>
+<div class="chart" style="max-width:640px"><canvas id="c_own"></canvas></div>
+<div class="tw"><table>
+<thead><tr><th class="l">株主</th><th>所有割合</th><th class="l">性格</th></tr></thead>
+<tbody>
+<tr><td class="l">ＣＫサンエツ取引先持株会</td><td>11.12%</td><td class="l">取引先による安定株主</td></tr>
+<tr><td class="l">日本カストディ銀行（信託口）</td><td>7.67%</td><td class="l">うち役員株式交付信託323千株・ESOP信託281千株を含む＝自己株式的性格</td></tr>
+<tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>4.08%</td><td class="l">機関投資家の信託名義</td></tr>
+<tr><td class="l">ＣＫサンエツ従業員持株会</td><td>3.62%</td><td class="l">従業員による安定株主</td></tr>
+<tr><td class="l">株式会社ツリヤ経営</td><td>3.17%</td><td class="l"><b>創業家（釣谷家）資産管理会社</b></td></tr>
+<tr><td class="l">株式会社北陸銀行</td><td>2.71%</td><td class="l">取引金融機関</td></tr>
+<tr><td class="l">富源商事株式会社</td><td>2.34%</td><td class="l">事業関係先とみられる法人</td></tr>
+<tr><td class="l">株式会社リケン</td><td>2.20%</td><td class="l">配管・鍍金事業の合弁パートナー</td></tr>
+<tr><td class="l">東泉産業株式会社</td><td>2.18%</td><td class="l">主要販売先（総販売実績の13.2%を占める得意先）</td></tr>
+<tr><td class="l">株式会社釣谷興産</td><td>1.56%</td><td class="l"><b>創業家（釣谷家）資産管理会社</b></td></tr>
+</tbody></table></div>
+<div class="card">
+<p><b>単独の支配株主は不在だが、創業家・取引先・従業員という「関係の近さ」を軸にした分散型の安定株主構造</b>である。<span class="tag t-i">[解釈]</span> 創業家（釣谷家）は資産管理会社2社で合計4.73%を直接保有するほか、代表取締役社長 釣谷宏行氏・専務取締役 釣谷伸行氏（社長の弟）が役員として経営の中枢を占める。役員7名の合計所有株式数は66千株（0.75%）。<span class="tag t-f">[事実]</span><br>
+取引先持株会・従業員持株会・取引先法人（リケン、東泉産業）を合わせると<b>事業関係に基づく安定株主が発行済株式の2割前後を占め、機関投資家の存在感は相対的に薄い</b>（日本マスタートラスト信託銀行4.08%のみ）。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>9-3. 政策保有株式</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">政策保有株式（提出会社＋日本伸銅）</div><div class="v">2,129<span style="font-size:13px">百万円</span></div><div class="n">非上場7銘柄＋上場13銘柄</div></div>
+  <div class="kpi"><div class="l">連結純資産に占める比率</div><div class="v">3.4<span style="font-size:13px">%</span></div><div class="n">当方算出＝2,129/62,648</div></div>
+  <div class="kpi"><div class="l">主な上場保有先</div><div class="v">東泉産業<br>川崎重工業</div><div class="n">いずれも製品販売先としての保有</div></div>
+</div>
+<div class="card">
+<p>提出会社ベースでは非上場5銘柄55百万円＋上場10銘柄1,413百万円＝1,468百万円、日本伸銅ベースでは非上場2銘柄113百万円＋上場3銘柄548百万円＝661百万円（合算2,129百万円）。<span class="tag t-f">[事実]</span> 保有目的は「伸銅品関連事業の製品販売先であり、取引関係維持・強化」（東泉産業、川崎重工業）が中心で、いずれも定量的な保有効果の記載は「困難」としつつ取締役会での毎年の検証を実施し、全銘柄について保有の妥当性を確認したと記載。<span class="tag t-f">[事実]</span> 連結純資産比3.4%はコーポレートガバナンス上の論点となる水準ではなく、<b>資本効率への影響は限定的</b>と評価できる。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅹ. ガバナンス ========== -->
+<section id="s10" data-t="Ⅹ. ガバナンス">
+<h2>Ⅹ. ガバナンス</h2>
+
+<h3>10-1. 体制の事実</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">機関設計</div><div class="v">監査等委員会<br>設置会社</div><div class="n">取締役会は非監査等委員3名＋監査等委員4名（うち社外3名）</div></div>
+  <div class="kpi"><div class="l">社外取締役比率</div><div class="v">3/7<span style="font-size:13px">名</span></div><div class="n">42.9%（監査等委員はすべて構成員）</div></div>
+  <div class="kpi"><div class="l">女性役員比率</div><div class="v">14.2<span style="font-size:13px">%</span></div><div class="n">7名中1名（常勤監査等委員）</div></div>
+</div>
+<div class="card">
+<p>取締役会は原則月1回、監査等委員会も原則月1回開催。監査等委員である取締役に議決権を付与することで監査・監督機能を強化する狙いを明記。<span class="tag t-f">[事実]</span> 独立部門として監査・規格管理室を設置し、内部監査・監査等委員会・監査法人の三者連携を明記している。<span class="tag t-f">[事実]</span></p>
+</div>
+
+<h3>10-2. 役員報酬</h3>
+<div class="grid2">
+  <div class="card"><div class="chart sm"><canvas id="c_pay"></canvas></div></div>
+  <div class="card">
+<table>
+<thead><tr><th class="l">区分</th><th>総額</th><th>員数</th></tr></thead>
+<tbody>
+<tr><td class="l">取締役（監査等委員・社外を除く）</td><td>250百万円</td><td>3名</td></tr>
+<tr><td class="l">取締役（監査等委員・社外を除く）</td><td>8百万円</td><td>1名</td></tr>
+<tr><td class="l">社外役員</td><td>18百万円</td><td>3名</td></tr>
+</tbody></table>
+  </div>
+</div>
+<p class="small">非監査等委員取締役の報酬は固定報酬（基本報酬）80%：非金銭報酬（株式報酬）20%の構成。株式報酬は信託を用いた役員向け株式交付信託で、原則退任時に交付。決定権限は代表取締役社長に一任、監査等委員会が意見聴取を行う。<span class="tag t-f">[事実]</span></p>
+
+<h3>10-3. 主要役員の属性</h3>
+<div class="card">
+<ul>
+<li><b>代表取締役社長 釣谷宏行氏</b>（1958年生）― 1982年に北陸銀行入行後、1986年にシーケー金属入社。以降グループ各社の代表を歴任し2000年6月に当社代表取締役社長就任。<b>銀行出身で、生え抜きに近いキャリアで創業家として経営を担う</b>人物。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+<li><b>専務取締役 釣谷伸行氏</b>（1961年生）― 社長の弟。日産自動車出身で2001年入社、営業畑を歩む。<span class="tag t-f">[事実]</span></li>
+<li><b>社外取締役（監査等委員）桝田和彦氏</b> ― 住友軽金属工業（現UACJ）の元代表取締役会長。2009年から社外取締役を14年以上務める、<b>非鉄金属業界に精通した専門性</b>を持つ人物。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+<li><b>社外取締役（監査等委員）山田政雄氏</b> ― 同和鉱業（現DOWAホールディングス）の元代表取締役会長。非鉄金属大手出身者を2名社外に迎える構成は、<b>業界知見を重視した人選</b>と読める。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+<li><b>社外取締役（監査等委員）浜田亘氏</b> ― 有限責任あずさ監査法人で富山オフィス責任者を務めた公認会計士。会計専門性を担保する人選。<span class="tag t-f">[事実]</span></li>
+</ul>
+<p><b>社外役員3名がいずれも非鉄金属業界の経営経験者・会計専門家で構成されており、独立性に加えて業界知見・財務規律のチェック機能を意識した布陣</b>と評価できる。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅺ. 会計面の定性シグナル ========== -->
+<section id="s11" data-t="Ⅺ. 会計シグナル">
+<h2>Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+
+<h3>11-1. KAM（監査上の主要な検討事項）</h3>
+<div class="card">
+<p><b>KAMは1件のみ：「サンエツ金属株式会社における伸銅事業の売上高の実在性及び期間帰属の適切性」。</b><span class="tag t-f">[事実]</span> 伸銅事業が連結売上の大部分を占め、銅・亜鉛の相場変動により販売価格が乱高下しうるため、売上計上の実在性・期間帰属の慎重な検証が必要と監査法人が判断。監査対応は証憑照合、基幹システムを経由しない仕訳の有無の検討、売掛金残高確認等。<span class="tag t-f">[事実]</span><br>
+<b>KAMが「相場変動下の売上高」に絞られている点は、本レポートが指摘する「原材料相場が業績の主変数」という評価と整合的</b>である。監査法人も同じ論点を最重要リスクと見ている。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>11-2. 本表の財務特徴</h3>
+<div class="grid3">
+  <div class="kpi"><div class="l">棚卸資産</div><div class="v">38,404<span style="font-size:13px">百万円</span></div><div class="n">総資産97,520百万円の39.4%＝在庫の重い財務体質</div></div>
+  <div class="kpi"><div class="l">有利子負債</div><div class="v">13,147<span style="font-size:13px">百万円</span></div><div class="n">短期11,970＋長期1,177。現預金1,292に対しネット有利子負債約11,855</div></div>
+  <div class="kpi"><div class="l">非支配株主持分</div><div class="v">7,733<span style="font-size:13px">百万円</span></div><div class="n">純資産62,648百万円の12.3%</div></div>
+</div>
+<div class="card">
+<p>資産の中身を見ると、流動資産72,758百万円のうち商品及び製品10,079百万円・仕掛品16,156百万円・原材料及び貯蔵品12,169百万円の合計38,404百万円が棚卸資産で、<b>総資産の約4割を在庫が占める「在庫の重い」財務体質</b>である。<span class="tag t-f">[事実]</span> 相場商品を扱う伸銅品メーカーとして、在庫の評価損益が業績の振れ幅を広げやすい構造にあることが、B/Sの構成からも裏付けられる。<span class="tag t-i">[解釈]</span><br>
+有利子負債13,147百万円（短期11,970百万円が中心）に対し現預金は1,292百万円と薄く、<b>ネットでは約118億円の負債超過</b>だが、自己資本比率56.3%・純資産62,648百万円の規模からすればレバレッジは高くない。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>11-3. 重要な会計上の見積り</h3>
+<div class="card">
+<p>注記上の「重要な会計上の見積り」は<b>繰延税金資産の回収可能性のみ</b>（前期934百万円→当期754百万円）。将来の税金負担額を軽減する効果があるかをスケジューリングし、将来課税所得（予想販売数量・単価が主要な仮定）を見積る方式。<span class="tag t-f">[事実]</span> 銅・亜鉛の相場変動という同社最大の不確実性要因が、会計上の見積りの主要仮定として明示的に組み込まれている点は一貫している。<span class="tag t-i">[解釈]</span></p>
+</div>
+
+<h3>11-4. GC注記・後発事象・偶発債務</h3>
+<div class="card ok">
+<p><b>継続企業の前提に関する注記（GC注記）はない。重要な後発事象も「該当事項はありません」。</b>偶発債務に関する特記事項も見当たらない。<span class="tag t-f">[事実]</span> 財務健全性への懸念を示すシグナルは本決算には見られない。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+<!-- ========== Ⅻ. 論点と未解明事項 ========== -->
+<section id="s12" data-t="Ⅻ. 論点・未解明">
+<h2>Ⅻ. 論点と未解明事項</h2>
+
+<h3>12-1. 買い材料になりうる記述</h3>
+<div class="card">
+<ul>
+<li><b>本業（営業利益ベース）は過去5年で最高水準</b>。売上高・営業利益とも当期が最高で、M&amp;A（三谷伸銅）と銅相場高が寄与した。伸銅事業のセグメント利益は前期比+57.7%。<span class="tag t-f">[事実]</span></li>
+<li><b>累進配当方針を次期から正式採用</b>し、株主還元の下限を明文化した。総還元性向は当期時点で約43.1%（当方算出）と相応の水準。<span class="tag t-f">[事実]</span><span class="tag t-i">[解釈]</span></li>
+<li><b>環境対応技術による特許化された差別化</b>（脱塩ビ継手、環境対応合金、CKeめっきスーパー）が、伸銅・配管鍍金の両主力事業に存在する。<span class="tag t-f">[事実]</span></li>
+<li>スクリーニング上はPER12.01倍・PBR0.78倍と割安圏にあり、8/8条件をクリアしている<span class="src-cite">[⑤]</span>。<span class="tag t-f">[事実]</span></li>
+</ul>
+</div>
+
+<h3>12-2. 懸念材料と、それが顕在化する条件</h3>
+<div class="card warn">
+<ul>
+<li><b>経常利益・EPS・営業CFが5年でいずれもマイナスCAGR。</b>本業の成長がデリバティブ損益や運転資金（棚卸資産増加）に相殺される構図が続けば、増収増益が株主に届く利益の伸びに変換されない状態が続く。<span class="tag t-f">[事実]</span></li>
+<li><b>「経常利益100億円」目標に達成手段の記載がない。</b>デリバティブ損益次第で大きく上下しうる指標を、具体策なしに目標化している。<span class="tag t-c">[要確認]</span></li>
+<li><b>配管・鍍金事業が唯一の減収減益</b>。伸銅の好調に隠れて課題認識・対応策の記述が薄い。<span class="tag t-i">[解釈]</span></li>
+<li><b>継続的なM&amp;Aによる非支配株主持分の増大</b>（連結純資産の12.3%）。親会社株主に帰属する利益の希薄化が構造的に進みやすい。<span class="tag t-i">[解釈]</span></li>
+<li><b>irpocketに数値データが存在しない</b>ため、本レポートの数値検証は有報の本表・注記の突合のみに依拠している。外部データベースとの照合ができていない。<span class="tag t-c">[要確認]</span></li>
+</ul>
+</div>
+
+<h3>12-3. 有報だけでは判断できず、追加確認が必要な事項</h3>
+<div class="tw"><table>
+<thead><tr><th class="l" style="width:42%">確認したいこと</th><th class="l" style="width:33%">確認先（具体名）</th><th class="l" style="width:25%">なぜ必要か</th></tr></thead>
+<tbody>
+<tr><td class="l"><b>デリバティブ取引の対象・想定元本・ヘッジ会計の適用状況</b></td><td class="l">決算説明資料（2026年3月期）／有報の金融商品に関する注記の原文精査／IR取材</td><td class="l">経常利益を最も動かした要因の再現性・当期特有かの判断。<b>最優先</b><span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">経常利益100億円（2027年3月期目標）の<b>達成シナリオ</b></td><td class="l">決算説明資料／中期経営計画（公表されていれば）／IR取材</td><td class="l">有報に達成手段の記載がないため<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">配管・鍍金事業減収の<b>要因と対応策</b></td><td class="l">決算説明資料／四半期報告書</td><td class="l">3事業中唯一の減収減益。有報の記述が薄い<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">日本伸銅株式会社（44.5%が少数株主）の<b>詳細な経営状況</b></td><td class="l">日本伸銅株式会社が別途提出する有価証券報告書</td><td class="l">連結売上の一角を占めるが主要損益情報が省略されている<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">三谷伸銅子会社化の<b>取得価格・のれん・PMIの進捗</b></td><td class="l">適時開示（株式取得に関するお知らせ）／2027年3月期決算説明資料</td><td class="l">当期最大のM&amp;Aの採算検証<span class="tag t-c">[要確認]</span></td></tr>
+<tr><td class="l">棚卸資産（+94億円）の<b>今後の取り崩し・評価損リスク</b></td><td class="l">2027年3月期 四半期報告書</td><td class="l">相場下落時の含み損リスクの規模感<span class="tag t-c">[要確認]</span></td></tr>
+</tbody></table></div>
+
+<h3>12-4. 総括 ― この有報から読み取れたこと</h3>
+<div class="card note">
+<p><b>実像</b>：ＣＫサンエツは、会社更生という危機を乗り越え、持株会社体制のもとで同業M&amp;A（日本伸銅、三谷伸銅）を継続的な成長エンジンとしてきた富山発祥の伸銅品メーカーである。環境対応技術による特許化された差別化を伸銅・配管鍍金の両事業で進め、国内市場の成熟という構造課題にM&amp;Aと新製品開発で対抗している。<span class="tag t-i">[解釈]</span></p>
+<p>第2026年3月期は、三谷伸銅の新規連結と銅相場高により売上・営業利益とも過去最高を更新した年だった。しかし会社自身が「経営状況を判断するための客観的な指標」と位置づける経常利益は、原材料価格変動をヘッジするはずのデリバティブ取引の損失によって32.8%の減益となり、5年で見ても経常利益・EPS・営業CFはいずれも縮小基調にある。<b>本業の拡大とヘッジ損益の毀損が同時に進行する、方向の食い違った1年</b>だった。<span class="tag t-i">[解釈]</span></p>
+<p><b>開示姿勢</b>：経営環境認識には銅相場の具体的な数値・日付を伴う固有性があり、KAMも相場変動下の売上認識という同社の核心的リスクに正しく焦点を当てている。一方で、次期の経常利益100億円という強気の数値目標には達成手段の記載がなく、デリバティブ取引自体が損失要因になりうるという逆側のリスクも【事業等のリスク】には書かれていない。<b>「何が起きたか」は具体的に書くが、「次にどう対処するか」は書かない</b>という偏りがある。<span class="tag t-i">[解釈]</span></p>
+<p><b>最大の論点</b>：営業利益ベースで見れば増収増益の好決算だが、株主に届く利益（経常利益・EPS）はデリバティブ損益という財務要因で大きく損なわれた。<b>この会社の実力を測るには、営業利益の伸びだけでなく、相場ヘッジの巧拙を映す経常利益の動きを継続的に確認する必要がある。</b>次期100億円目標の達成可否は、事業の成長よりも、むしろ銅・亜鉛相場とヘッジ運用の結果に左右される可能性が高い。<span class="tag t-i">[解釈]</span></p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<p><b>■ 本レポートについて</b><br>
+本レポートは、株式会社ＣＫサンエツ（証券コード5757）が2026年6月24日に北陸財務局長へ提出した<b>2026年3月期（2025年4月1日〜2026年3月31日）有価証券報告書</b>の記述情報を一次情報として、経営の実像と開示姿勢を構造化したものです。作成要領は本プロジェクトの『有価証券報告書 定性分析レポート 作成要領マニュアル v1.0』に準拠しています。</p>
+<p><b>■ データ取得日・基準日</b><br>
+・分析実行日／HTML作成日：<b>2026年8月11日</b><br>
+・有価証券報告書の対象事業年度：<b>2026年3月期（2025年4月1日〜2026年3月31日）</b>／提出日 2026年6月24日／監査報告書日 2026年6月23日<br>
+・スクリーニング判定値 <b>[⑤]</b> の基準日：2026年7月17日（株価5,190円）。参照決算 2026年3月31日（開示 2026年5月13日）<br>
+・本レポートは<b>予想値・業績予想を用いていません</b>（単年完結・実績ベース）</p>
+<p><b>■ 出所記号</b><br>
+[①] irpocket 公式IRデータ（<b>本銘柄は未収録のため本レポートでは不使用</b>） ／ [②] 会社公式IRページ ／ [③] 会社公式開示PDF（有価証券報告書） ／ [④] kabutan.jp（本レポートでは未使用） ／ [⑤] J-Quants API V2（JPX公式） ／ [web] 外部Web（本レポートでは沿革章に固有のWeb出典なし。沿革は有報記載事実のみで構成）</p>
+<p><b>■ ラベルの意味</b><br>
+[事実]＝有価証券報告書に記載のある事項 ／ [解釈]＝有報の記載から当方が行った合理的推論 ／ [要確認]＝有報だけでは判断できず追加資料が必要な事項 ／ [web]＝外部Web由来（沿革章のみ・出典明示）</p>
+<p><b>■ 推計値・保証なしに関する注記</b><br>
+本レポート中のCAGR・1人当たり売上／利益・総還元性向・政策保有株式の純資産比等の比率は、開示された数値をもとに当方が算出した<b>計算値</b>です。四捨五入により合計が一致しない場合があります。これらの数値や本文中の[解釈]は<b>推計・見解であり、将来の業績・株価を保証するものではありません</b>。日本伸銅株式会社・三谷伸銅株式会社等の関係会社の主要損益情報は個別の数値であり、連結値との単純合算は参考値です。</p>
+<p><b>■ 免責事項</b><br>
+本レポートは<b>投資判断のための材料と論点の整理を目的とした資料</b>であり、特定の有価証券の売買を推奨・勧誘するものではありません。<b>売買推奨および目標株価は一切提示していません。</b>記載内容は作成時点の公開情報に基づくものであり、その完全性・正確性を保証するものではありません。投資に関する最終的な判断はご自身の責任において行ってください。当方は本レポートの利用により生じたいかなる損害についても責任を負いません。</p>
+</footer>
+
+<script>
+// ---------- タブ生成 ----------
+(function(){
+  var secs = document.querySelectorAll('main > section');
+  var nav = document.getElementById('nav');
+  secs.forEach(function(s,i){
+    var b = document.createElement('button');
+    b.textContent = s.dataset.t;
+    if(i===0) b.className='on';
+    b.onclick = function(){
+      document.querySelectorAll('nav button').forEach(function(x){x.className='';});
+      b.className='on';
+      secs.forEach(function(x){x.className='';});
+      s.className='on';
+      window.scrollTo({top:0,behavior:'smooth'});
+      built.forEach(function(fn){fn();});
+    };
+    nav.appendChild(b);
+  });
+})();
+
+// ---------- Chart.js ----------
+var NAVY='#1c3557', NAVYL='#2f4f7d', ACC='#c98a1e', TEAL='#1f7a6b', RED='#b3382c', GRAY='#8b95a1';
+Chart.defaults.font.family='"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif';
+Chart.defaults.font.size=11.5;
+Chart.defaults.plugins.legend.labels.boxWidth=12;
+var YRS=['22/3','23/3','24/3','25/3','26/3'];
+var made={};
+function mk(id, cfg){
+  return function(){
+    var el=document.getElementById(id);
+    if(!el || made[id]) return;
+    if(el.offsetParent===null) return;
+    made[id]=new Chart(el, cfg);
+  };
+}
+var built=[];
+function reg(f){built.push(f); f();}
+
+reg(mk('c_rev',{type:'bar',data:{labels:YRS,datasets:[
+ {label:'売上高（百万円）',data:[115343,123838,111433,125108,149438],backgroundColor:NAVY,order:2},
+ {label:'従業員数（人・右軸）',data:[928,928,924,912,1015],type:'line',borderColor:ACC,backgroundColor:ACC,yAxisID:'y1',tension:.3,order:1}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'売上高と従業員数の推移'}},
+ scales:{y:{beginAtZero:true,title:{display:true,text:'百万円'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'人'}}}}}));
+
+reg(mk('c_prof',{type:'bar',data:{labels:YRS,datasets:[
+ {label:'経常利益（百万円）',data:[6571,8655,6094,8383,5636],backgroundColor:NAVYL,order:3},
+ {label:'ROE（%・右軸）',data:[11.7,13.0,8.4,10.4,6.7],type:'line',borderColor:RED,backgroundColor:RED,yAxisID:'y1',tension:.3,order:1},
+ {label:'自己資本比率（%・右軸）',data:[54.2,57.5,61.5,60.1,56.3],type:'line',borderColor:TEAL,backgroundColor:TEAL,yAxisID:'y1',borderDash:[5,4],tension:.3,order:2}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'経常利益・ROE・自己資本比率'}},
+ scales:{y:{beginAtZero:true,title:{display:true,text:'百万円'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'%'},suggestedMax:80}}}}));
+
+reg(mk('c_mix',{type:'doughnut',data:{labels:['伸銅 87.9%','精密部品 4.0%','配管・鍍金 8.0%'],
+ datasets:[{data:[131442,6009,11985],backgroundColor:[NAVY,ACC,TEAL]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'セグメント別売上構成（計149,438百万円）'},legend:{position:'bottom'}}}}));
+
+reg(mk('c_mixprof',{type:'doughnut',data:{labels:['伸銅 80.1%','精密部品 6.5%','配管・鍍金 13.4%'],
+ datasets:[{data:[11177,906,1872],backgroundColor:[NAVY,ACC,TEAL]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'セグメント別利益構成（計13,955百万円）'},legend:{position:'bottom'}}}}));
+
+reg(mk('c_prod',{type:'line',data:{labels:YRS,datasets:[
+ {label:'1人当たり売上（百万円）',data:[124.3,133.4,120.6,137.2,147.2],borderColor:NAVY,backgroundColor:'rgba(28,53,87,.08)',fill:true,tension:.25,yAxisID:'y'},
+ {label:'1人当たり経常利益（百万円・右軸）',data:[7.08,9.33,6.60,9.19,5.55],borderColor:RED,backgroundColor:RED,tension:.25,yAxisID:'y1'}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'1人当たり売上・経常利益の推移（当方算出）'}},
+ scales:{y:{beginAtZero:false,suggestedMin:100,title:{display:true,text:'百万円（売上）'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'百万円（経常利益）'}}}}}));
+
+reg(mk('c_waterfall',{type:'bar',data:{labels:['2025/3期\n経常利益','数量・構成','相場差損益','デリバティブ損益','その他','2026/3期\n経常利益'],datasets:[
+ {label:'増減要因（百万円）',data:[8383,3160,2110,-6760,-1250,null],backgroundColor:[GRAY,TEAL,TEAL,RED,RED,GRAY]},
+ {label:'期末値（参考）',data:[null,null,null,null,null,5636],backgroundColor:NAVY}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'経常利益 増減要因（会社開示ベース・簡易表示）'},legend:{display:false}},
+ scales:{y:{title:{display:true,text:'百万円'}}}}}));
+
+reg(mk('c_cf',{type:'bar',data:{labels:YRS,datasets:[
+ {label:'営業CF',data:[6280,3243,3698,5312,2965],backgroundColor:TEAL},
+ {label:'投資CF',data:[-2632,-2539,-2680,-2321,-4831],backgroundColor:RED},
+ {label:'財務CF',data:[-4711,-553,-1071,-279,-539],backgroundColor:GRAY}
+]},options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'キャッシュ・フローの推移（百万円）'}},scales:{y:{title:{display:true,text:'百万円'}}}}}));
+
+reg(mk('c_own',{type:'doughnut',data:{labels:['個人その他 51.25%','金融機関 18.47%','その他の法人 27.99%','外国法人等 1.33%','金融商品取引業者 0.93%'],
+ datasets:[{data:[51.25,18.47,27.99,1.33,0.93],backgroundColor:[ACC,NAVY,NAVYL,TEAL,GRAY]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'所有者別状況（単元ベース）'},legend:{position:'bottom',labels:{font:{size:10.5}}}}}}));
+
+reg(mk('c_pay',{type:'doughnut',data:{labels:['固定報酬（推計65%）','株式報酬（推計20%）','その他役員合計26百万円'],
+ datasets:[{data:[203,46,26],backgroundColor:[NAVY,ACC,TEAL]}]},
+ options:{maintainAspectRatio:false,plugins:{title:{display:true,text:'役員報酬構成（百万円）'},legend:{position:'bottom',labels:{font:{size:10.5}}}}}}));
+</script>
+</body>
+</html>

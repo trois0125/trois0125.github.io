@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NITTOKU (6145) 有価証券報告書 定性分析レポート｜第54期(2026年3月期)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f4f6f9; --panel:#ffffff; --ink:#1f2a37; --sub:#5b6675; --line:#e3e8ef;
+  --navy:#1e3a5f; --navy2:#2c5282; --accent:#c8792e; --accent-soft:#fdf3e6;
+  --fact:#48566a; --fact-bg:#eef1f5;
+  --interp:#b5720c; --interp-bg:#fdf4e3;
+  --check:#b3341f; --check-bg:#fbeae7;
+  --web:#0f766e; --web-bg:#e6f5f2;
+  --good:#2f855a; --bad:#c53030; --warn:#c8792e;
+  --shadow:0 1px 3px rgba(20,30,45,.07),0 1px 2px rgba(20,30,45,.04);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+header.top{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:26px 0 20px;box-shadow:var(--shadow)}
+header.top .wrap{padding-bottom:0}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:#a9c2e0;font-weight:600;text-transform:uppercase}
+h1.title{font-size:23px;margin:6px 0 4px;font-weight:700;letter-spacing:.01em}
+.sub{color:#cdd9e8;font-size:13.5px}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;padding:4px 11px;font-size:12.5px;color:#eaf1fa}
+.badge b{color:#fff}
+.badge.ok{background:rgba(72,200,140,.18);border-color:rgba(72,200,140,.4)}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;font-size:12px;color:#cdd9e8}
+.tag{display:inline-block;border-radius:5px;padding:1px 7px;font-size:11.5px;font-weight:600;line-height:1.7;white-space:nowrap}
+.t-fact{background:var(--fact-bg);color:var(--fact)}
+.t-interp{background:var(--interp-bg);color:var(--interp)}
+.t-check{background:var(--check-bg);color:var(--check)}
+.t-web{background:var(--web-bg);color:var(--web)}
+.legend .tag{opacity:.95}
+
+/* nav */
+nav.tabs{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 12px}
+nav.tabs button{flex:0 0 auto;background:none;border:none;padding:12px 12px 10px;cursor:pointer;
+  font-family:inherit;font-size:13px;color:var(--sub);border-bottom:2.5px solid transparent;white-space:nowrap}
+nav.tabs button:hover{color:var(--navy)}
+nav.tabs button.active{color:var(--navy);border-bottom-color:var(--accent);font-weight:700}
+
+section.tab{display:none;padding-top:26px;animation:fade .25s ease}
+section.tab.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+h2.sec{font-size:20px;margin:0 0 4px;font-weight:700;color:var(--navy);letter-spacing:.01em}
+.sec-note{color:var(--sub);font-size:13px;margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid var(--line)}
+h3{font-size:16px;margin:26px 0 10px;color:var(--navy2);font-weight:700}
+h4{font-size:14px;margin:18px 0 8px;color:var(--ink);font-weight:700}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;box-shadow:var(--shadow)}
+.card.tight{padding:14px 18px}
+p{margin:9px 0}
+ul{margin:9px 0;padding-left:22px}
+li{margin:5px 0}
+.small{font-size:13px;color:var(--sub)}
+
+/* quote block = 有報原文 */
+.quote{border-left:4px solid var(--navy2);background:#f7f9fc;border-radius:0 8px 8px 0;
+  padding:11px 15px;margin:12px 0;font-size:13.5px;color:#37455a}
+.quote .q-src{display:block;font-size:11px;color:var(--sub);margin-bottom:5px;font-weight:600;letter-spacing:.04em}
+
+/* callout */
+.callout{border-radius:10px;padding:13px 16px;margin:14px 0;font-size:14px}
+.callout.key{background:var(--accent-soft);border:1px solid #eed3ac}
+.callout.risk{background:var(--check-bg);border:1px solid #f0c9c1}
+.callout.pos{background:#eaf6ef;border:1px solid #c3e2ce}
+.callout .h{font-weight:700;margin-bottom:3px}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow)}
+.kpi .l{font-size:11.5px;color:var(--sub)}
+.kpi .v{font-size:20px;font-weight:700;color:var(--navy);margin-top:2px}
+.kpi .d{font-size:11.5px;margin-top:2px}
+.up{color:var(--good)} .down{color:var(--bad)}
+
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#eef2f7;color:var(--navy);font-weight:700;text-align:center}
+td.l,th.l{text-align:left}
+tbody tr:nth-child(even){background:#fafbfd}
+.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
+.chartbox h4{margin:0 0 10px}
+.chart-h{position:relative;height:300px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}.chart-h{height:260px}}
+
+.tag-inline{font-size:11px;font-weight:600;border-radius:4px;padding:0 5px;margin-left:2px;white-space:nowrap}
+footer.disc{margin-top:34px;padding:18px 20px;background:#eef1f5;border:1px solid var(--line);border-radius:12px;font-size:12px;color:var(--sub)}
+footer.disc b{color:var(--ink)}
+.src-note{font-size:11.5px;color:var(--sub);font-style:normal;margin-top:6px}
+.pill{display:inline-block;background:#eef2f7;border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:12px;margin:2px 3px 2px 0}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">有価証券報告書 定性分析レポート</div>
+    <h1 class="title">NITTOKU株式会社（6145）／第54期・2026年3月期</h1>
+    <div class="sub">巻線機で世界シェア首位のトータル精密FAメーカー。経営の実像と開示姿勢を、有報の記述情報を一次情報として構造化。</div>
+    <div class="badges">
+      <span class="badge ok">スクリーニング <b>8/8条件通過</b> ★</span>
+      <span class="badge">PER <b>12.6倍</b></span>
+      <span class="badge">PBR <b>1.08倍</b></span>
+      <span class="badge">自己資本比率 <b>64.0%</b></span>
+      <span class="badge">時価総額 <b>約433億円</b></span>
+      <span class="badge">株価 <b>2,567円</b>（26/7/17）</span>
+    </div>
+    <div class="legend">
+      <span>出所・確度ラベル：</span>
+      <span class="tag t-fact">[事実]</span><span>有報記載</span>
+      <span class="tag t-interp">[解釈]</span><span>記載からの推論</span>
+      <span class="tag t-check">[要確認]</span><span>有報外の確認要</span>
+      <span class="tag t-web">[web]</span><span>沿革のみ外部情報</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap" id="tabnav"></div>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ 0. サマリー ============ -->
+<section class="tab" id="s0">
+  <h2 class="sec">0. エグゼクティブサマリー</h2>
+  <p class="sec-note">この企業を一文で／最重要3点／最注意1点。詳細は各タブ。</p>
+
+  <div class="card">
+    <p><b>一文で：</b>コイル・モータ用自動巻線機で世界シェア首位、連結子会社20社を擁し海外売上比率の高い「ライン
+    ビルダー（一貫生産ライン提供者）」。第54期は売上・利益とも過去最高で、8スクリーニング条件を全通過した割安・
+    高財務健全性の中小型株。<span class="tag-inline t-fact">[事実]</span><span class="tag-inline t-interp">[解釈]</span></p>
+  </div>
+
+  <div class="callout key">
+    <div class="h">記述情報から読み取れる最重要ポイント3点</div>
+    <ul>
+      <li><b>①「V字」ではなく大型案件の期ずれ剥落による過去最高益。</b>第53期に営業利益率が急落（経常利益1,225百万）した後、第54期は経常利益5,492百万へ急回復。会社は「新規開発要素を含む案件の割合が前期比減少」「価格転嫁・コスト削減」を主因に挙げ、売上原価率が75.9%→69.5%へ改善。<span class="tag-inline t-fact">[事実]</span></li>
+      <li><b>成長の物語が具体的。</b>ヒューマノイド関節・指用の小型精密モータ、AIサーバー向けモータ、レアアースレスセラミックモータ、ペロブスカイト太陽電池向けロール・ツー・ロール等、固有名詞つきで新領域を列挙。中計最終年（2028/3期）に売上500億・ROE9.3%・ROIC7.6%を掲げる。<span class="tag-inline t-fact">[事実]</span></li>
+      <li><b>無借金に近い財務と資本効率志向。</b>自己資本比率64.0%、現金同等物195億円（総資産の31%）。役員報酬・株式報酬をEBITDAマージンと3年平均ROICに連動させ、配当性向40%以上を新方針化。<span class="tag-inline t-fact">[事実]</span></li>
+    </ul>
+  </div>
+
+  <div class="callout risk">
+    <div class="h">最も注意すべき論点1点</div>
+    <p><b>利益の水準は「検収基準の期ずれ」に大きく左右される。</b>監査人が唯一のKAMに選んだのは「検収基準に基づく製品売上高の計上時期の適切性」。ワインディング事業の大型案件が連結売上の約96%を占め、案件の大型化・長納期化が進むなか、当期の急回復も一部は前期からの計上時期のシフトを含む可能性がある。単年の最高益をそのまま巡航値と見なすのは危険。<span class="tag-inline t-interp">[解釈]</span><span class="tag-inline t-fact">[事実]</span></p>
+  </div>
+  <p class="small">※シナリオ・水準感の評価は推計を含み、将来を保証しません。売買推奨・目標株価は提示しません。</p>
+</section>
+
+<!-- ============ Ⅰ. 企業の輪郭 ============ -->
+<section class="tab" id="s1">
+  <h2 class="sec">Ⅰ. 企業の輪郭</h2>
+  <p class="sec-note">5年推移（代表6指標＋CAGR・連結中心）／事業系統図の言語化／セグメント別収益構成の照合／関係会社は支配構造のみ。</p>
+
+  <h3>1) 5年推移と代表指標</h3>
+  <div class="kpis">
+    <div class="kpi"><div class="l">売上高 CAGR（4年）</div><div class="v">+10.8%</div><div class="d small">28,121→42,412百万</div></div>
+    <div class="kpi"><div class="l">経常利益 CAGR（4年）</div><div class="v">+16.0%</div><div class="d small">3,030→5,492百万</div></div>
+    <div class="kpi"><div class="l">EPS CAGR（4年）</div><div class="v">+12.4%</div><div class="d small">127.8→203.9円</div></div>
+    <div class="kpi"><div class="l">ROE（第54期）</div><div class="v">9.0%</div><div class="d small">前期 3.5%</div></div>
+    <div class="kpi"><div class="l">自己資本比率</div><div class="v">64.0%</div><div class="d small">前期 60.2%</div></div>
+    <div class="kpi"><div class="l">営業CF（第54期）</div><div class="v">41.0億</div><div class="d small">前期 0.5億</div></div>
+  </div>
+  <p class="small">CAGRは第50期(2022/3)→第54期(2026/3)の4年で算出（レポート側計算）。<span class="tag-inline t-fact">[①][⑤]</span> スクリーニング用の9年CAGRは売上+6.9%・営業+7.3%<span class="tag-inline t-fact">[⑤]</span>。窓の取り方で数値は変わる（推計）。</p>
+
+  <div class="chartbox">
+    <h4>連結5年推移（売上・経常利益・親会社株主純利益）</h4>
+    <div class="chart-h"><canvas id="c_trend"></canvas></div>
+    <p class="src-note">出所 [①] irpocket相当の有報「主要な経営指標等の推移」。第53期の減益→第54期の急回復が視認できる。</p>
+  </div>
+
+  <table>
+    <thead><tr><th class="l">連結（百万円）</th><th>第50期<br>22/3</th><th>第51期<br>23/3</th><th>第52期<br>24/3</th><th>第53期<br>25/3</th><th>第54期<br>26/3</th></tr></thead>
+    <tbody>
+      <tr><td class="l">売上高</td><td>28,121</td><td>29,461</td><td>30,803</td><td>33,268</td><td>42,412</td></tr>
+      <tr><td class="l">経常利益</td><td>3,030</td><td>3,119</td><td>4,280</td><td>1,225</td><td>5,492</td></tr>
+      <tr><td class="l">親会社株主純利益</td><td>2,308</td><td>2,224</td><td>2,744</td><td>1,307</td><td>3,439</td></tr>
+      <tr><td class="l">EPS（円）</td><td>127.78</td><td>123.10</td><td>151.92</td><td>73.97</td><td>203.85</td></tr>
+      <tr><td class="l">ROE（%）</td><td>7.1</td><td>6.4</td><td>7.3</td><td>3.5</td><td>9.0</td></tr>
+      <tr><td class="l">自己資本比率（%）</td><td>71.1</td><td>74.9</td><td>69.4</td><td>60.2</td><td>64.0</td></tr>
+      <tr><td class="l">営業CF</td><td>2,689</td><td>1,246</td><td>525</td><td>50</td><td>4,103</td></tr>
+      <tr><td class="l">現金同等物 期末</td><td>11,768</td><td>12,023</td><td>14,503</td><td>14,274</td><td>19,579</td></tr>
+      <tr><td class="l">従業員数（人）</td><td>904</td><td>945</td><td>993</td><td>1,229</td><td>1,235</td></tr>
+    </tbody>
+  </table>
+  <p class="small"><b>向きの読み：</b>売上は9→33年度まで緩やかな増収基調、第54期に27.5%増と加速。利益は第53期に大きく落ち込み、営業CFは第52・53期に細った（525→50百万）が第54期に41億へ回復。自己資本比率は70%台→60%台へ低下後に64%へ戻す。従業員は第52→53期に993→1,229人へ約1.2倍化（M&A・採用）し、以後横ばい。<span class="tag-inline t-interp">[解釈]</span></p>
+  <p class="small">単体は売上29,820／自己資本比率65.2％で、連結と大きな乖離はない（持株会社型ではなく事業会社本体が主力）。<span class="tag-inline t-fact">[①]</span></p>
+
+  <h3>2) 事業系統図の言語化とビジネスモデル</h3>
+  <div class="card">
+    <p>企業グループは<b>当社＋連結子会社20社</b>で構成。「トータル精密FAメーカー」として、コイル・モータ用自動巻線機を中心に、フィルム・ワイヤ用巻取り・搬送設備、機構部品・デバイス等のFA設備の開発・製造・販売を主業とし、加えて非接触ICタグ・カード事業を持つ。<span class="tag-inline t-fact">[①]</span></p>
+    <div class="quote"><span class="q-src">有報原文（事業の内容）[①]</span>「搬送システム上に巻線・ハンドリング・組立・検査等の工程を搭載する技術をベースにし、独自開発のOSにより高機能多軸同期制御が可能な生産システムによるさまざまな生産ライン構築を提供する」</div>
+    <p><b>ビジネスモデル[解釈]：</b>顧客ごとの固有ニーズに合わせた<b>専用生産ライン（オンリーワン機）を受注設計・製造</b>する受注生産型。ユーザーの生産システム全体を設計・構築する「ラインビルダー」を自称し、参入障壁を上げる「ブラックオーシャン戦術」で競合を排除。近年はデファクトスタンダード機（業界標準機）の育成も併走。誰に＝電子部品・自動車・通信・家電・精密機器メーカー等、何を＝一貫生産ライン、どこで利益＝擦り合わせ技術と多軸制御OSの内製化による高付加価値。<span class="tag-inline t-interp">[解釈]</span></p>
+    <p><b>バリューチェーン上の位置[解釈]：</b>制御OS・要素技術・工法開発を自社で握る（内製・川上寄り）一方、海外子会社群は「製造・販売・アフターサービス」を地産地消で分担。基幹技術はクローズ戦略で秘匿、周辺はオープン戦略で活用と、有報自身が知財の内外を使い分けると明言。<span class="tag-inline t-interp">[解釈]</span><span class="tag-inline t-fact">[①]</span></p>
+  </div>
+
+  <h3>3) セグメント別 収益構成の照合</h3>
+  <div class="grid2">
+    <div class="chartbox"><h4>売上構成（第54期）</h4><div class="chart-h"><canvas id="c_seg_sales"></canvas></div></div>
+    <div class="chartbox"><h4>セグメント利益構成（第54期）</h4><div class="chart-h"><canvas id="c_seg_profit"></canvas></div></div>
+  </div>
+  <table>
+    <thead><tr><th class="l">第54期</th><th>売上高（百万円）</th><th>前期比</th><th>セグメント利益</th><th>前期比</th></tr></thead>
+    <tbody>
+      <tr><td class="l">ワインディングシステム＆メカトロニクス</td><td>40,513</td><td>+28.7%</td><td>6,115</td><td>+242.3%</td></tr>
+      <tr><td class="l">非接触ICタグ・カード</td><td>1,899</td><td>+5.9%</td><td>594</td><td>+33.4%</td></tr>
+    </tbody>
+  </table>
+  <p class="small"><b>語りと利益の一致：</b>本業ワインディングが売上の約95%・セグメント利益の約91%を占め、有報の語り（主力事業）と利益の柱が一致。非接触ICタグは売上5%弱ながら利益率が高く（594/1,899＝31%）小粒だが収益性は良好。なおセグメント利益合計6,709百万は連結営業利益5,439百万を上回り、差は全社費用等の調整。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></p>
+
+  <h3>4) 関係会社（支配構造のみ）</h3>
+  <div class="card tight">
+    <ul>
+      <li><b>親会社は存在しない</b>（独立企業）。連結子会社20社で、うち海外が大半（中国4・タイ・シンガポール・ベトナム・インド・台湾・香港・韓国・フィリピン・オーストリア・ドイツ・米国2）。<b>海外子会社比重が高く地理的に分散</b>。<span class="tag-inline t-fact">[①]</span></li>
+      <li>議決権50%以下でも「実質的に支配」として子会社化している先が2社（IMD株式会社49.0%、NITTOKU(THAILAND)49.0%）。持分法適用会社は記載上見当たらず、主要子会社は概ね100%出資。<span class="tag-inline t-fact">[①]</span></li>
+      <li>関係内容に「役員の兼任あり」（アステクノス、日特香港）「債務保証をしております」（NITTOKU EUROPE）の記載。非100%・実質支配先や債務保証は、連結外への利益・リスク移転の確認起点となる（事実提示に留める）。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Ⅱ. 沿革 ============ -->
+<section class="tab" id="s2">
+  <h2 class="sec">Ⅱ. 沿革</h2>
+  <p class="sec-note">有報の変遷を詳細に整理し、主要な転換点をWebで肉付け（この章のみ外部情報を [web] で明示）。事業モデルの転換点を軸に。</p>
+
+  <div class="callout key">
+    <div class="h">3つの転換点で読む会社の成り立ち [解釈]</div>
+    <ul>
+      <li><b>①創業＝自動巻線機の専業（1972）→ グローバルニッチトップ化。</b>1972年、砂岡誠一氏が千葉県八千代市で資本金400万円で設立、自動巻線機の製造販売を開始。以後、巻線という一点特化の要素技術を深掘りし、海外拠点を積み増した。<span class="tag-inline t-fact">[①]</span> 巻線機の世界シェアは約37%で首位、2000年代前半から業界No.1を維持と報じられる。<span class="tag-inline t-web">[web]日本経済新聞</span></li>
+      <li><b>②上場と商号転換（2004・2019）。</b>2004年12月ジャスダック上場、2022年4月スタンダード市場へ移行。2019年8月に商号を「日特エンジニアリング」から「NITTOKU株式会社」へ変更し本社をさいたま市大宮区へ。社名変更は、巻線機専業から「トータル精密FA／ラインビルダー」への自己定義転換の節目。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></li>
+      <li><b>③M&A・提携による領域拡張（2024〜）。</b>2024年にアステクノス、API Hard- &amp; Software（独）を100%子会社化。2025年に第一実業と合弁でインドNITTOKU FA INDIA、2025年12月〜2026年設立のNITTOKU KYOTOで日本政策投資銀行と組み、民事再生中の片岡製作所のレーザ加工システム事業を譲受。巻線の周辺（レーザ・半導体・電池）へ広げる局面に入った。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+  </div>
+
+  <h3>詳細年表（有報「沿革」より）</h3>
+  <div class="card tight">
+    <table>
+      <thead><tr><th class="l">年月</th><th class="l">事項</th></tr></thead>
+      <tbody>
+        <tr><td class="l">1972.9</td><td class="l">元代表取締役社長 砂岡誠一が千葉県八千代市に資本金400万円で設立。自動巻線機の製造販売を開始</td></tr>
+        <tr><td class="l">1977.6</td><td class="l">埼玉県戸田市に本社・工場を移転統合</td></tr>
+        <tr><td class="l">1980.4</td><td class="l">販売部門を分離（日特エンジニアリング東/西販売を設立）</td></tr>
+        <tr><td class="l">1989.1</td><td class="l">日本証券業協会に店頭売買銘柄として登録</td></tr>
+        <tr><td class="l">1990〜2010</td><td class="l">米・香港・タイ・マレーシア・シンガポール・台湾・中国(蘇州/深圳/上海)・韓国など海外現地法人を相次ぎ設立（グローバル網の構築）</td></tr>
+        <tr><td class="l">2004.12</td><td class="l">ジャスダック証券取引所に上場</td></tr>
+        <tr><td class="l">2008.9 / 2014.5</td><td class="l">コーセイ（現 日特コーセイ）、コイデエンジニアリング（現 日特コイデ）を100%子会社化</td></tr>
+        <tr><td class="l">2017.5</td><td class="l">中国・常州に合弁 美瑪特電子科技を設立</td></tr>
+        <tr><td class="l">2019.8</td><td class="l">商号を「NITTOKU株式会社」に変更、本社をさいたま市大宮区へ移転</td></tr>
+        <tr><td class="l">2020.8</td><td class="l">岐阜県中津川市に共同出資でIMD株式会社を設立（モータ素材・工法の開発）</td></tr>
+        <tr><td class="l">2022.4</td><td class="l">東証の市場区分見直しでスタンダード市場へ移行</td></tr>
+        <tr><td class="l">2023.9 / 2024.4</td><td class="l">フィリピン現法設立／アステクノス・API（独）を100%子会社化</td></tr>
+        <tr><td class="l">2024.5–6</td><td class="l">鳥取・愛媛（下林）・滋賀にテクニカルセンター等を設置（サテライト戦略）</td></tr>
+        <tr><td class="l">2025.12</td><td class="l">第一実業との業務提携でインドに合弁 NITTOKU FA INDIA を設立</td></tr>
+        <tr><td class="l">2026.3–4</td><td class="l">大宮本社不動産を売却し本社移転／日特コイデを吸収合併／NITTOKU KYOTOが日本政策投資銀行と組み片岡製作所のレーザ加工システム事業を譲受</td></tr>
+      </tbody>
+    </table>
+    <p class="small">出所 [①] 有報「沿革」。市場評価・シェア等の肉付けは [web]（下記）。</p>
+  </div>
+
+  <div class="card tight">
+    <h4>Webによる肉付け（沿革の文脈補足）</h4>
+    <ul>
+      <li>自動巻線機システムの世界シェアは約37%で世界No.1、海外19拠点を持つ「グローバルニッチトップ」と紹介。営業利益率は10%超を継続してきたと報じられる。<span class="tag-inline t-web">[web]日本経済新聞／日経ビジネス（2019–2020年時点）</span></li>
+      <li>地域別売上構成（2018年時点）はアジア64%・日本24%・欧州8%・米州4%とされ、アジア偏重の海外売上構造。<span class="tag-inline t-web">[web]日経BizGate</span></li>
+      <li>2024年以降、AIによる巻線テンション最適化やヒューマノイド向け小型精密モータ製造設備の開発に注力していると報じられる。<span class="tag-inline t-web">[web]各種報道</span></li>
+    </ul>
+    <p class="small">※ [web] の数値・シェアは報道時点のものであり、最新値・厳密な定義は要確認。有報記載（[①]）とは区別している。</p>
+  </div>
+</section>
+
+<!-- ============ Ⅲ. 人的資本 ============ -->
+<section class="tab" id="s3">
+  <h2 class="sec">Ⅲ. 人的資本</h2>
+  <p class="sec-note">従業員の状況＋サステナビリティの人的資本を統合。1人当たり指標を算出。人的資本指標は数値の提示のみ。</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">連結従業員数</div><div class="v">1,235<span class="small">人</span></div><div class="d small">臨時133人・前期1,229</div></div>
+    <div class="kpi"><div class="l">提出会社 平均年収</div><div class="v">657.6<span class="small">万円</span></div><div class="d up">前期比 +8.2%</div></div>
+    <div class="kpi"><div class="l">平均勤続年数</div><div class="v">11.9<span class="small">年</span></div><div class="d small">平均年齢38.6歳</div></div>
+    <div class="kpi"><div class="l">1人当たり売上（連結）</div><div class="v">34.3<span class="small">百万</span></div><div class="d small">前期 27.1百万</div></div>
+    <div class="kpi"><div class="l">1人当たり純利益（連結）</div><div class="v">2.78<span class="small">百万</span></div><div class="d small">レポート側算出</div></div>
+    <div class="kpi"><div class="l">女性役員比率</div><div class="v">33.3%</div><div class="d small">役員9名中3名</div></div>
+  </div>
+  <p class="small"><b>生産性の読み[解釈]：</b>従業員数は第52→53期に993→1,229人と急増（M&A・採用）した後は横ばい。1人当たり売上は前期27.1→当期34.3百万へ改善したが、これは人員一定下で売上が27.5%増えた結果であり、当期の伸びは「人を増やして伸ばした」より「大型案件の剥落と価格転嫁で1人当たりが上振れた」性格。労働集約と仕組み型の中間で、増員一巡後の生産性回復局面。<span class="tag-inline t-interp">[解釈]</span></p>
+
+  <div class="card">
+    <h4>人材戦略（有報の基本方針）</h4>
+    <p>「人材を最も重要な経営資本」と位置づけ、事業戦略と連動した人的資本投資を推進。設計・開発、生産技術、ソフト・制御、グローバル人材、次世代経営人材の確保・育成を掲げる。採用は<b>「サテライト戦略」</b>（人材が集積する地域にテクニカルセンターを設置してニッチな高度専門人材を確保）が固有の打ち手。処遇は労働分配率の向上・中途市場での競争力強化を明記し、<b>株式給付信託（J-ESOP）</b>で従業員と株主の価値共有を図る。<span class="tag-inline t-fact">[①]</span></p>
+    <p class="small">従業員の約8割が技術系・技能系（開発・設計・組立・調達等）で、電気・電子・機械工学等の専門知識を要すると自ら記載。母集団に女性が少ないことが女性比率の低さの背景と説明している。<span class="tag-inline t-fact">[①]</span></p>
+  </div>
+
+  <h4>人的資本 指標（数値の提示のみ／提出会社ベース）</h4>
+  <table>
+    <thead><tr><th class="l">指標</th><th>実績（当期）</th><th>目標</th></tr></thead>
+    <tbody>
+      <tr><td class="l">労働者に占める女性労働者の割合</td><td>15.5%</td><td>2030/3までに25%</td></tr>
+      <tr><td class="l">男女の賃金の差異</td><td>60.5%</td><td>2030/3までに70%</td></tr>
+      <tr><td class="l">有給休暇取得率</td><td>77.6%</td><td>2028/3までに80%</td></tr>
+      <tr><td class="l">男性労働者の育児休業取得率</td><td>71.4%</td><td>2028/3までに70%（達成）</td></tr>
+    </tbody>
+  </table>
+  <p class="small">指標は連結全体では管理困難として提出会社の値を記載。育休取得率は既に目標超過、女性比率・賃金差は目標まで距離あり。<span class="tag-inline t-fact">[①]</span>（数値の優劣評価は本レポートでは行わない）</p>
+</section>
+
+<!-- ============ Ⅳ. 経営者の世界観 ============ -->
+<section class="tab" id="s4">
+  <h2 class="sec">Ⅳ. 経営者の世界観</h2>
+  <p class="sec-note">【経営方針・経営環境及び対処すべき課題】課題→打ち手の接続を一対一で検証／中計は進捗・未達認識まで。</p>
+
+  <div class="card">
+    <h4>基本方針・行動指針</h4>
+    <div class="quote"><span class="q-src">有報原文（経営の基本方針）[①]</span>「小さくともキラリと輝く存在感のある世界No.1の企業へ」を行動指針とし、「価値創造による顧客満足度の向上」「機能・能力による収益の向上」「コンプライアンスの徹底」を基本方針に掲げる。</div>
+    <p>4S（Speed／Small／Saving／Smart）を製品コンセプトに据え、脱炭素・FA化・スマート工場化のソリューションで貢献する、と市場環境を自社の技術に引きつけて具体的に語っている。<span class="tag-inline t-fact">[①]</span></p>
+  </div>
+
+  <h3>目標とする経営指標（中計 2026/3〜2028/3）</h3>
+  <div class="kpis">
+    <div class="kpi"><div class="l">売上高（2028/3目標）</div><div class="v">500<span class="small">億円</span></div><div class="d small">当期 424億</div></div>
+    <div class="kpi"><div class="l">EBITDA（2028/3目標）</div><div class="v">68<span class="small">億円</span></div><div class="d small">当期 66.7億</div></div>
+    <div class="kpi"><div class="l">ROE（2028/3目標）</div><div class="v">9.3%</div><div class="d small">当期 9.0%</div></div>
+    <div class="kpi"><div class="l">ROIC（2028/3目標）</div><div class="v">7.6%</div><div class="d small">当期 7.7%</div></div>
+  </div>
+  <p class="small"><b>進捗・未達認識[解釈]：</b>会社は2027/3期を中計2年目とし「当初の計画を上回るペースでの業績達成に向け」と記述。当期時点でEBITDA(66.7億)・ROE(9.0%)・ROIC(7.7%)は既に最終年度目標に肉薄しており、残るは売上500億（424億→+18%）。目標を掲げるだけでなく現状値が目標に近いことを数字で示しているが、「上回るペース」ゆえの目標引き上げ余地の言及はまだない。<span class="tag-inline t-interp">[解釈]</span></p>
+
+  <h3>対処すべき課題 → 打ち手の接続（一対一照合）</h3>
+  <table>
+    <thead><tr><th class="l">掲げる戦略・課題</th><th class="l">紐づく具体的打ち手（有報記載）</th><th>接続</th></tr></thead>
+    <tbody>
+      <tr><td class="l">競争力・マーケットプレゼンス向上</td><td class="l">「ブラックオーシャン戦術」＝オープンイノベーションで参入障壁を高める</td><td>○</td></tr>
+      <tr><td class="l">即戦力人材の確保</td><td class="l">「サテライト戦略」＝人材集積地にテクニカルセンター設置</td><td>○</td></tr>
+      <tr><td class="l">業容拡大（シナジー）</td><td class="l">「M&A戦略」＝アステクノス/API独/インド合弁/片岡レーザ事業譲受</td><td>○</td></tr>
+      <tr><td class="l">成長分野での競争力強化</td><td class="l">ヒューマノイド関節・指用モータ、レアアースレスセラミックモータ、AIサーバー向けモータ、半導体検査ハンドラー、ペロブスカイトR2R等の新設備開発</td><td>○</td></tr>
+      <tr><td class="l">レーザ新収益機会</td><td class="l">NITTOKU KYOTOでレーザ加工技術×モータ/半導体のシナジー追求</td><td>○</td></tr>
+    </tbody>
+  </table>
+  <p class="small">課題と打ち手が概ね一対一で固有名詞つきに紐づいており、抽象的スローガンで打ち手が空白という箇所は少ない。ボイラープレート比率は低め。<span class="tag-inline t-interp">[解釈]</span></p>
+</section>
+
+<!-- ============ Ⅴ. サステナビリティ ============ -->
+<section class="tab" id="s5">
+  <h2 class="sec">Ⅴ. サステナビリティ</h2>
+  <p class="sec-note">人的資本を除く。戦略接続と検証可能性の2軸。気候・GHGは投資論点に関わる場合のみ。</p>
+
+  <div class="card">
+    <p>ガバナンス委員会を中心に重要課題（マテリアリティ）を特定し取締役会が決定、推進状況を取締役会・ガバナンス委員会がモニタリングする体制。「稼ぐ力とESGを両立させる両利き経営（サステナビリティ・トランスフォーメーション）」を掲げる。<span class="tag-inline t-fact">[①]</span></p>
+    <h4>戦略接続の評価 [解釈]</h4>
+    <p>サステナが独立した美辞ではなく、<b>要因別に「リスク／機会／重点課題」を表で結びつけている</b>点は戦略接続が比較的強い。たとえば「気候変動」機会に<b>「省エネ・高効率化設備需要の増加／モータ関連設備需要の増加」</b>を挙げ、脱炭素をそのまま自社の巻線・モータ設備需要に接続している。本業の売上ドライバーとESGが同じ方向を向く構図。<span class="tag-inline t-interp">[解釈]</span><span class="tag-inline t-fact">[①]</span></p>
+    <h4>検証可能性の評価 [解釈]</h4>
+    <p>人的資本・安全衛生の指標は<b>目標値と達成期限と実績が併記</b>されており（例：有給取得率2028/3までに80%＝実績77.6%）、後から達成/未達を検証できる書き方。一方、気候・環境テーマは定性記述が中心で、GHG排出量の具体数値やTCFDシナリオ分析の明示は本文からは確認できない（＝この点は検証可能性が低い）。<span class="tag-inline t-interp">[解釈]</span><span class="tag-inline t-check">[要確認]</span></p>
+    <p class="small">NITTOKUは装置メーカーで自社が炭素集約的とは言い難く、気候の主眼は「排出者」より「脱炭素設備の供給者＝機会」側。投資論点としては規制リスクより需要機会の面が大きい。<span class="tag-inline t-interp">[解釈]</span></p>
+  </div>
+</section>
+
+<!-- ============ Ⅵ. 事業等のリスク ============ -->
+<section class="tab" id="s6">
+  <h2 class="sec">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+  <p class="sec-note">固有/定型を仕分け固有を深掘り／財務照合で矛盾（過小開示）を指摘／単年。末尾に重要な契約を短く。</p>
+
+  <div class="grid2">
+    <div class="callout risk">
+      <div class="h">固有リスク（深掘り対象）</div>
+      <ul>
+        <li><b>技術陳腐化＝駆動デバイスの世代交代。</b>「モータに代わる駆動デバイスが開発されるなど他社の技術領域に属する大きな技術革新があった場合、業績に大きく影響」と明記。巻線・モータ特化ゆえの構造的固有リスク。<span class="tag-inline t-fact">[①]</span></li>
+        <li><b>固定資産の減損集中。</b>「有形固定資産は残高の約8割を生産工場及び本社に係る建物・構築物・土地が占める」と自ら記載。収益悪化時に減損が一点集中しうる。<span class="tag-inline t-fact">[①]</span></li>
+        <li><b>顧客専用機の契約不適合・納期遅延。</b>受注生産ゆえ、仕様不適合や遅延で損害賠償・与信リスク。KAM（Ⅺ章）と表裏。<span class="tag-inline t-fact">[①]</span></li>
+      </ul>
+    </div>
+    <div class="card tight">
+      <div class="callout" style="background:var(--fact-bg);border:1px solid var(--line);margin-top:0">
+        <div class="h">定型リスク（件数のみ）</div>
+        <p class="small">事故・災害・感染症／世界の政治・経済・体制／セキュリティ／資金調達・運用など、多くの企業に共通する定型リスクが並ぶ。全8区分中、固有性が高いのは技術革新・減損・製品取引の3つ、残り5区分は概ね定型。<span class="tag-inline t-interp">[解釈]</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card tight">
+    <h4>財務数値・他章との照合（過小開示の検出）</h4>
+    <ul>
+      <li><b>減損リスクの裏取り＝整合。</b>「有形固定資産の約8割が工場・本社の建物土地」との記載は、設備の状況（福島事業所の土地87,749㎡等）とも整合し、過小開示ではない。むしろ当期は旧大宮本社を売却し売却益89百万を計上、土地は10.3億減少しており、資産の入れ替えが進む。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></li>
+      <li><b>為替リスクの限定を明言。</b>「取引を原則円建て」ゆえ為替損益への直接影響は軽微とし、顧客側の円調達を通じた間接影響に絞って開示。実際に営業外の為替差損は25百万と小さく、記述と数値は整合。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>与信・パートナーシップ損失は定性のみ。</b>M&A投資損失・取引先与信は「可能性」の記述に留まり定量指標なし。片岡レーザ事業(取得2,100百万)等でのれん・投資が増える局面ゆえ、今後の減損可能性は要確認。<span class="tag-inline t-check">[要確認]</span></li>
+    </ul>
+  </div>
+
+  <div class="card tight">
+    <h4>経営上の重要な契約等</h4>
+    <p class="small"><b>「該当事項はありません」</b>と記載。<span class="tag-inline t-fact">[①]</span> ライセンス・独占販売等への依存を契約として抱える構造ではない（一方で片岡レーザ事業の譲受契約等は後発事象・沿革側に記載）。<span class="tag-inline t-interp">[解釈]</span></p>
+  </div>
+</section>
+
+<!-- ============ Ⅶ. MD&A ============ -->
+<section class="tab" id="s7">
+  <h2 class="sec">Ⅶ. 経営成績の分析（MD&A）</h2>
+  <p class="sec-note">業績事実の要約（要因つき）／経営者が使う指標を抽出／CF・資金繰りの質。</p>
+
+  <div class="card">
+    <h4>業績の要因分解（当期）</h4>
+    <ul>
+      <li><b>売上高 424.1億（+27.5%）：</b>米国等海外向けが盛況。米関税・中東情勢の不確実性下でも、人手不足対応の省力化投資・AI関連投資・自動車の電装化投資が下支え。欧州（モビリティ）は景気低迷。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>営業利益 54.4億（+385.9%）／経常54.9億（+348.2%）：</b>売上原価率が75.9%→69.5%へ6.4pt改善（<b>「新規開発要素を含む案件の割合が前期比減少」</b>＋価格転嫁・コスト削減）。売上総利益は129.2億（+61.3%）、粗利率30.5%。販管費は人員増で74.8億（+8.6%）。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>純利益 34.4億（+163.0%）。</b>会社は要因を「原価率改善」「価格転嫁」「開発案件比率の低下」と分解して説明しており、結果の羅列に留まらない。<span class="tag-inline t-interp">[解釈]</span></li>
+    </ul>
+    <p class="small">セグメント別：ワインディングは売上405.1億(+28.7%)・利益61.2億(+242.3%)、個別受注残は205.7億(前期比▲10.6%)。非接触ICタグは売上19.0億(+5.9%)・利益5.9億(+33.4%)。<span class="tag-inline t-fact">[①]</span></p>
+  </div>
+
+  <div class="card tight">
+    <h4>経営者が使う指標（何で自社を測るか）[解釈]</h4>
+    <p>中計と報酬制度から、経営陣が重視する指標は<b>EBITDA／EBITDAマージン／ROE／ROIC／連結純利益</b>。とりわけ役員報酬の業績連動を「前年度連結純利益×EBITDAマージン係数」、株式報酬を「3年平均ROIC係数」に紐づけており、<b>資本効率（ROIC）とキャッシュ創出（EBITDA）を経営の物差しに据えている</b>。売上より利益効率を重視する設計。<span class="tag-inline t-interp">[解釈]</span><span class="tag-inline t-fact">[①]</span></p>
+  </div>
+
+  <div class="chartbox">
+    <h4>キャッシュ・フロー3区分の推移（百万円）</h4>
+    <div class="chart-h"><canvas id="c_cf"></canvas></div>
+  </div>
+  <div class="card tight">
+    <h4>CF・資本の財源・流動性の質 [解釈]</h4>
+    <ul>
+      <li><b>営業CF 41.0億へ回復（前期0.5億）。</b>税前利益48.9億、棚卸資産減29.1億、減価償却12.3億が押し上げ。ただし契約負債減▲25.0億（前受の剥落）・仕入債務減▲10.4億が相殺。前受金の増減で営業CFが大きく振れる受注生産型の性格が数字に出ている。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></li>
+      <li><b>投資CFはプラス8.1億</b>（旧本社等の有形固定資産売却20.3億が設備取得6.6億・保険積立7.5億を上回る）。資産の入れ替え局面。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>資本の財源は「主として営業CFを源泉とする内部資金」</b>と明記。長期借入30億を実行しつつ22.7億返済、配当8.6億。現金同等物は195.8億へ積み上がり、資金繰りの説明は具体的で健全。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Ⅷ. 将来への投資 ============ -->
+<section class="tab" id="s8">
+  <h2 class="sec">Ⅷ. 将来への投資（設備・研究開発）</h2>
+  <p class="sec-note">Ⅷ-a 設備＝資産集約度で濃淡・拡張/維持判定。Ⅷ-b 研究開発＝業種で濃淡・成長ドライバーの読み。</p>
+
+  <h3>Ⅷ-a 設備の状況</h3>
+  <div class="card">
+    <ul>
+      <li><b>設備投資総額 1,212百万円</b>（ワインディング1,083／非接触ICタグ79／全社49）。主因は生産能力増強を目的とした<b>愛媛事業所の新設</b>と加工機開発。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>拡張/維持の判定[解釈]：</b>設備投資1,212百万 ≒ 減価償却費1,230百万で、全体としては<b>ほぼ維持水準（減価償却の範囲内）</b>。愛媛新設という局所的な拡張はあるが、大宮本社売却など資産の入れ替えが主で、大規模な能力拡張フェーズではない。中計の売上500億は、大型設備の積み増しより既存能力の稼働・生産性で狙う構図と読める。<span class="tag-inline t-interp">[解釈]</span></li>
+      <li>提出会社の生産資産は福島事業所（土地87,749㎡・帳簿3,375百万）が中核。「設備の新設、除却等の計画」は<b>該当なし</b>。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+  </div>
+
+  <h3>Ⅷ-b 研究開発活動</h3>
+  <div class="card">
+    <ul>
+      <li><b>研究開発費 892百万円（全額ワインディング事業）、対売上比 約2.1%。</b>装置産業として突出して高くはないが、受注設計そのものに開発が組み込まれるビジネスゆえ、R&D費だけでは開発強度を測りきれない。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></li>
+      <li><b>成長ドライバーの読み[解釈]：</b>テーマが「一貫生産ライン」を軸に、ヒューマノイド関節・指用の小型精密モータ、レアアースレスのセラミックモータ、AIサーバー向け（ステッピング/ファン/ポンプ）モータ、半導体高速検査ハンドラー、ペロブスカイト太陽電池向けR2Rと、<b>需要が今後立ち上がる新領域に具体名で張っている</b>。将来収益源への仕込みは明確で、単なる維持研究ではない。<span class="tag-inline t-interp">[解釈]</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Ⅸ. 資本政策・株主還元 ============ -->
+<section class="tab" id="s9">
+  <h2 class="sec">Ⅸ. 資本政策・株主還元</h2>
+  <p class="sec-note">自社株買い＋配当を資本配分の規律として／株主構成から支配構造を[解釈]／政策保有は保有数・銘柄数と純資産比／役員・創業家持株。</p>
+
+  <h3>1) 株主還元と資本配分</h3>
+  <div class="kpis">
+    <div class="kpi"><div class="l">1株配当（当期）</div><div class="v">82<span class="small">円</span></div><div class="d small">中間30＋期末52（予）</div></div>
+    <div class="kpi"><div class="l">配当性向（当期）</div><div class="v">53.4%</div><div class="d small">前期 31.4%</div></div>
+    <div class="kpi"><div class="l">還元方針</div><div class="v">40%<span class="small">以上</span></div><div class="d small">連結配当性向（26/3〜）</div></div>
+    <div class="kpi"><div class="l">自己株式</div><div class="v">6.5%</div><div class="d small">当期取得なし</div></div>
+  </div>
+  <div class="card tight">
+    <ul>
+      <li><b>配当性向40%以上を2026/3期から新方針化</b>し、当期は82円・性向53.4%と方針を上回る水準。増益局面で還元を明確に引き上げた（前期42円→当期82円）。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>自社株買いは当期実施なし</b>、保有自己株式は6.5%。譲渡制限付株式報酬で52,300株を処分（126百万）。総還元は配当中心で、自己株消却の記載はない。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>資本配分の規律[解釈]：</b>「運転資金・投資・株主還元は主として営業CFを源泉とする内部資金」と明記し、内部留保は事業展開とR&Dに投入と宣言。無借金に近い財務（現金195.8億）と配当性向40%＋の両立で、増益を還元と再投資へ配る規律は示されている。ただし積み上がる現金の使途（M&A原資か）は今後の論点。<span class="tag-inline t-interp">[解釈]</span></li>
+    </ul>
+  </div>
+
+  <h3>2) 株主構成と支配構造</h3>
+  <div class="chartbox"><h4>所有者別 株式分布（第54期末）</h4><div class="chart-h"><canvas id="c_owner"></canvas></div></div>
+  <table>
+    <thead><tr><th class="l">大株主（上位10）</th><th>持株比率</th><th class="l">属性[解釈]</th></tr></thead>
+    <tbody>
+      <tr><td class="l">株式会社東京ウエルズ</td><td>5.3%</td><td class="l">半導体検査装置メーカー（取引先系）</td></tr>
+      <tr><td class="l">SMC株式会社</td><td>5.0%</td><td class="l">空気圧機器大手（取引先系）</td></tr>
+      <tr><td class="l">田中電子工業</td><td>4.7%</td><td class="l">ボンディングワイヤ（取引先系）</td></tr>
+      <tr><td class="l">日本カストディ銀行（信託口）</td><td>3.2%</td><td class="l">信託（機関投資家）</td></tr>
+      <tr><td class="l">日本生命保険</td><td>3.0%</td><td class="l">機関投資家</td></tr>
+      <tr><td class="l">大黒電線</td><td>2.7%</td><td class="l">取引先系</td></tr>
+      <tr><td class="l">安川電機</td><td>2.7%</td><td class="l">FA大手（仕入先・販売先）</td></tr>
+      <tr><td class="l">NITTOKU共栄会</td><td>2.4%</td><td class="l">取引先持株会</td></tr>
+      <tr><td class="l">日星電気</td><td>2.1%</td><td class="l">取引先系</td></tr>
+      <tr><td class="l">BNP（JASDEC/ファンド）</td><td>2.1%</td><td class="l">外国機関投資家</td></tr>
+    </tbody>
+  </table>
+  <p class="small">上位10名計33.2%。<b>支配構造の[解釈]：</b>創業家・親会社による支配は上位株主に見えず、<b>取引先事業会社と持株会が「安定株主」の中核</b>。一方で外国法人21.5%・個人30.6%と浮動株も厚い。安定株主に守られつつ、機関投資家・浮動株の比率も高い中間的な構造。<span class="tag-inline t-interp">[解釈]</span><span class="tag-inline t-fact">[①]</span></p>
+  <div class="callout risk">
+    <div class="h">アクティビスト／大量保有の接近 [事実]</div>
+    <p>大量保有（変更）報告書ベースで、<b>シティインデックスイレブンス系（野村絢）4.4%</b>、<b>ベイリー・ギフォード3.9%</b>、みずほ信託系4.3%（うちアセットマネジメントOne3.7%）が接近。会社は「実質所有株式数の確認ができない」として大株主表には含めていないが、物言う株主・大型ファンドが複数株を持つ状況。還元強化（配当性向40%＋）や政策保有の縮減方針は、この文脈と無縁ではない可能性。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></p>
+  </div>
+
+  <h3>3) 政策保有株式</h3>
+  <div class="card tight">
+    <ul>
+      <li><b>上場9銘柄 2,214百万円＋非上場4銘柄 53百万円 ＝ 約2,267百万円。純資産40,516百万円の約5.6%。</b><span class="tag-inline t-fact">[①]</span></li>
+      <li>主な銘柄は<b>すべて取引先</b>：理研計器・安川電機・国際計測器・RYODEN・ミネベアミツミ・マブチモーター・THK 等（販売先/仕入先/業務提携先）。<span class="tag-inline t-fact">[①]</span></li>
+      <li>縮減方針は掲げるが、当期は<b>増加3銘柄（取引先持株会経由）／減少3銘柄（売却138百万）</b>で純減は小幅。方針と実績にやや乖離があり、取引先持株会を通じた買い増しが縮減の逆風。<span class="tag-inline t-interp">[解釈]</span></li>
+    </ul>
+  </div>
+
+  <h3>4) 役員・従業員のインセンティブ整合</h3>
+  <p class="small">代表者らの持株（社長6千株ほか）に加え、譲渡制限付株式報酬（3年平均ROIC連動・年5万株上限）とJ-ESOPで、役員・従業員に株式を通じた利害一致の仕組みを敷く。創業家の突出した持株は確認できない。<span class="tag-inline t-fact">[①]</span><span class="tag-inline t-interp">[解釈]</span></p>
+</section>
+
+<!-- ============ Ⅹ. ガバナンス ============ -->
+<section class="tab" id="s10">
+  <h2 class="sec">Ⅹ. ガバナンス</h2>
+  <p class="sec-note">体制の事実／役員報酬は総額・内訳の数値のみ／主要役員の属性を[解釈]。</p>
+
+  <div class="card">
+    <h4>体制の事実</h4>
+    <ul>
+      <li><b>監査役会設置会社。</b>取締役6名（うち社外3名）、監査役3名（うち社外2名）。独立役員は社外取締役2名＋社外監査役2名。女性役員比率33.3%（9名中3名）。<span class="tag-inline t-fact">[①]</span></li>
+      <li>任意の<b>ガバナンス委員会・指名委員会・報酬委員会</b>を設置し、いずれも<b>委員長は社外取締役</b>。経営戦略会議・リスク管理委員会も併設。取締役会実効性はアンケートで分析・評価。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+    <h4>役員報酬（数値のみ・当期）</h4>
+    <table>
+      <thead><tr><th class="l">役員区分</th><th>総額</th><th>固定</th><th>業績連動</th><th>非金銭</th><th>員数</th></tr></thead>
+      <tbody>
+        <tr><td class="l">取締役（社外除く）</td><td>101</td><td>67</td><td>28</td><td>5</td><td>4</td></tr>
+        <tr><td class="l">監査役（社外除く）</td><td>14</td><td>14</td><td>−</td><td>−</td><td>2</td></tr>
+        <tr><td class="l">社外役員</td><td>43</td><td>43</td><td>−</td><td>−</td><td>5</td></tr>
+      </tbody>
+    </table>
+    <p class="small">単位百万円。1億円以上の個別開示対象者なし。業績連動＝前年度連結純利益2%×EBITDAマージン係数（0〜150%）、株式報酬＝3年平均ROIC係数。ROIC推移6.0→7.0→1.8→7.7%。報酬指標が資本効率に連動する設計。<span class="tag-inline t-fact">[①]</span></p>
+    <h4>主要役員の属性 [解釈]</h4>
+    <p class="small">代表取締役 社長執行役員 CEO 笹澤純人氏は1978年生・2001年入社の生え抜きで、2024年社長・2025年CEO就任と若く新しい体制。社外取締役3名・社外監査役2名が各任意委員会の委員長を務め、監督機能を社外に委ねる姿勢は見える。属人的支配より委員会運用を重視する構図。<span class="tag-inline t-interp">[解釈]</span></p>
+  </div>
+</section>
+
+<!-- ============ Ⅺ. 会計面の定性シグナル ============ -->
+<section class="tab" id="s11">
+  <h2 class="sec">Ⅺ. 会計面の定性シグナル</h2>
+  <p class="sec-note">KAM・重要な見積りは「何をなぜ重視したか」／本表から財務体質の特徴を描く／GC・後発・偶発の有無。</p>
+
+  <div class="callout key">
+    <div class="h">KAM（唯一）：検収基準に基づく製品売上高の計上時期の適切性</div>
+    <p><b>何を：</b>ワインディング事業のFA設備売上が連結売上の<b>約96%</b>を占め、検収基準（顧客が検収した時点で計上）で認識。<b>なぜ：</b>案件の大型化・高難度化で検収要件が複雑になり、かつ<b>「経営者は業績予想を外部公表しており、業績達成のプレッシャーを受けている可能性」</b>があるため、検収未了なのに不適切な期に計上される潜在リスクを監査人が重要と判断。<span class="tag-inline t-fact">[①]</span></p>
+    <p class="small">監査対応：売上計上根拠資料（検収書）の承認・回収状況の内部統制評価、予定納期と計上日の比較、大型案件の顧客への検収日確認、滞留債権の査閲。監査法人＝<b>かなで監査法人</b>（継続監査4年、GC注記なし）。<span class="tag-inline t-fact">[①]</span></p>
+  </div>
+  <p class="small"><b>読み[解釈]：</b>会社最大の会計上の急所は「収益認識の期ずれ」。当期の営業利益+385.9%という水準も、案件の計上タイミングに感応度が高い。KAMは会社を疑う材料ではないが、単年の最高益を巡航値と捉えるべきでない根拠になる。<span class="tag-inline t-interp">[解釈]</span></p>
+
+  <h3>本表から読む財務体質 [①][解釈]</h3>
+  <div class="card tight">
+    <ul>
+      <li><b>実質ネットキャッシュの堅い財務。</b>総資産629.4億に対し現金同等物195.8億（31%）、自己資本比率64.0%。長期借入はあるが現金が大きく上回り、無借金に近い。<span class="tag-inline t-interp">[解釈]</span></li>
+      <li><b>運転資本が重い受注生産型。</b>棚卸資産（仕掛品）と契約負債（前受金）が大きく動き、当期は仕掛品▲27.1億・契約負債▲25.0億。B/S・CFが受注残と検収の波で振れる体質。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>資産は工場・本社の不動産が中核。</b>有形固定資産の約8割が建物・土地で、当期は旧大宮本社売却（土地▲10.3億）で資産を入れ替え。減損は不動産に集中する構造。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>収益性は原価率次第。</b>売上原価率75.9%→69.5%の6.4pt改善が利益急増の主因で、開発案件比率の増減に粗利が大きく感応。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+  </div>
+
+  <div class="card tight">
+    <h4>後発事象・継続企業・偶発債務</h4>
+    <ul>
+      <li><b>後発事象[事実]：</b>①片岡製作所のレーザ加工システム事業を吸収分割で譲受（2026/4/13完了、取得原価2,100百万、日本政策投資銀行と共同出資のNITTOKU KYOTOが承継、取得関連費34百万）。②孫会社 日特コイデを2026/4/1付で吸収合併。いずれも中計のレーザ・領域拡張を実行に移す動き。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>継続企業の前提（GC）：</b>疑義の注記なし（監査報告書も標準無限定適正意見）。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>偶発債務：</b>本文上、重大な訴訟・保証の特記は確認されず（子会社 NITTOKU EUROPE への債務保証の記載は関係会社欄）。<span class="tag-inline t-check">[要確認]</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Ⅻ. 論点と未解明事項 ============ -->
+<section class="tab" id="s12">
+  <h2 class="sec">Ⅻ. 論点と未解明事項</h2>
+  <p class="sec-note">買い材料と確からしさ／懸念材料と顕在化条件／追加確認事項を具体名で。</p>
+
+  <div class="callout pos">
+    <div class="h">買い材料になりうる記述と確からしさ</div>
+    <ul>
+      <li><b>世界シェア首位のニッチ独占＋成長テーマへの具体的な仕込み（確からしさ：高）。</b>ヒューマノイド・AIサーバー・EV・ペロブスカイト等、需要が立ち上がる領域に固有名詞で設備開発を張る。本業とESG（脱炭素設備需要）が同方向。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>資本効率志向と株主還元の強化（確からしさ：高）。</b>報酬をROIC/EBITDAに連動、配当性向40%＋を新方針化、当期82円・性向53.4%。無借金に近い財務。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>割安・高財務健全（確からしさ：中）。</b>PER12.6倍・PBR1.08倍・自己資本比率64%でスクリーニング8/8通過。<span class="tag-inline t-fact">[⑤]</span></li>
+    </ul>
+  </div>
+
+  <div class="callout risk">
+    <div class="h">懸念材料と顕在化条件</div>
+    <ul>
+      <li><b>当期最高益の巡航性（顕在化条件：検収の期ずれ剥落・開発案件比率の反転）。</b>営業利益+385.9%は原価率改善と案件計上タイミングに依存。KAMが示す通り期ずれ感応度が高く、翌期に反動が出る余地。<span class="tag-inline t-interp">[解釈]</span></li>
+      <li><b>技術世代交代リスク（顕在化条件：モータに代わる駆動デバイスの台頭）。</b>会社自身が最大級の固有リスクとして明記。<span class="tag-inline t-fact">[①]</span></li>
+      <li><b>M&A・レーザ新事業ののれん／投資回収（顕在化条件：片岡レーザ・独API等の想定未達）。</b>領域拡張の実行は評価できるが、投資損失・減損の芽も増える。<span class="tag-inline t-check">[要確認]</span></li>
+      <li><b>アクティビスト／大型ファンドの接近（顕在化条件：株主提案・資本政策要求）。</b>複数の物言う株主・大型ファンドが5%弱で接近。<span class="tag-inline t-fact">[①]</span></li>
+    </ul>
+  </div>
+
+  <div class="card tight">
+    <h4>有報だけでは判断できず追加確認が必要な事項 [要確認]</h4>
+    <ul>
+      <li><b>受注残・受注高の月次〜四半期動向</b>（当期末個別受注残205.7億は前期比▲10.6%）→ 決算説明資料（20260720_kessan_setsumei.pdf）・四半期決算短信で確認。</li>
+      <li><b>片岡レーザ事業・独API等の収益貢献とのれん残高</b>→ 決算説明資料・翌期以降の注記。</li>
+      <li><b>GHG排出量・TCFDシナリオ</b>の定量開示 → 統合報告書・サステナビリティサイト。</li>
+      <li><b>アクティビストの意図と保有継続</b> → 大量保有報告書の更新・適時開示。</li>
+      <li><b>今期（2027/3期）会社予想の前提</b> → 決算短信の業績予想・前提。</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="disc">
+  <p><b>免責事項・データ基準日：</b>本レポートはNITTOKU株式会社（6145）の<b>第54期・2026年3月期 有価証券報告書（提出日2026年6月25日）</b>の記述情報を一次情報として構造化した定性分析であり、投資勧誘・売買推奨・目標株価の提示を目的としません。定量スクリーニング値（PER・PBR・自己資本比率・CAGR等）は基準日<b>2026年7月17日</b>／参照決算2026年3月31日ベース。株価は2026年7月17日終値2,567円。将来に関する記述・シナリオ・水準感は<b>推計を含み、その実現を保証しません</b>。沿革章の一部は外部Web情報（[web]）で肉付けしており、報道時点の値・定義は要確認です。最終的な投資判断はご自身の責任で行ってください。</p>
+  <p class="src-note">出所ラベル：[①] 有報「経理の状況」等の一次開示（本レポートは有報PDFを直接読解）／[⑤] J-Quants等によるスクリーニング判定（8条件通過・順位）／[web] 沿革章のみの外部報道（日本経済新聞・日経ビジネス・日経BizGate 等、2018–2020年時点を含む）。作成日：2026年7月25日。</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+// ---- tab nav ----
+const tabs=[
+ ["s0","0. サマリー"],["s1","Ⅰ. 企業の輪郭"],["s2","Ⅱ. 沿革"],["s3","Ⅲ. 人的資本"],
+ ["s4","Ⅳ. 経営者の世界観"],["s5","Ⅴ. サステナ"],["s6","Ⅵ. リスク"],["s7","Ⅶ. MD&A"],
+ ["s8","Ⅷ. 将来投資"],["s9","Ⅸ. 資本政策"],["s10","Ⅹ. ガバナンス"],["s11","Ⅺ. 会計シグナル"],["s12","Ⅻ. 論点"]
+];
+const nav=document.getElementById('tabnav');
+let charted={};
+tabs.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t[1];b.dataset.t=t[0];
+ if(i===0)b.classList.add('active');b.onclick=()=>show(t[0],b);nav.appendChild(b);});
+function show(id,btn){
+ document.querySelectorAll('section.tab').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+ buildCharts(id);
+}
+document.getElementById('s0').classList.add('active');
+
+// ---- charts ----
+const NAVY='#1e3a5f',NAVY2='#2c5282',ACC='#c8792e',TEAL='#0f766e',GRAY='#94a3b8',RED='#c53030',GREEN='#2f855a';
+Chart.defaults.font.family='"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif';
+Chart.defaults.font.size=12;Chart.defaults.color='#5b6675';
+const yrs=['第50期\n22/3','第51期\n23/3','第52期\n24/3','第53期\n25/3','第54期\n26/3'];
+function mk(id,cfg){if(charted[id])return;const el=document.getElementById(id);if(!el)return;charted[id]=new Chart(el,cfg);}
+function buildCharts(sec){
+ if(sec==='s1'){
+  mk('c_trend',{type:'bar',data:{labels:yrs,datasets:[
+    {type:'bar',label:'売上高',data:[28121,29461,30803,33268,42412],backgroundColor:'rgba(44,82,130,.75)',yAxisID:'y',order:3},
+    {type:'line',label:'経常利益',data:[3030,3119,4280,1225,5492],borderColor:ACC,backgroundColor:ACC,yAxisID:'y2',tension:.3,order:1},
+    {type:'line',label:'親会社株主純利益',data:[2308,2224,2744,1307,3439],borderColor:GREEN,backgroundColor:GREEN,yAxisID:'y2',tension:.3,order:2}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    scales:{y:{title:{display:true,text:'売上高(百万円)'},grid:{color:'#eef1f5'}},y2:{position:'right',title:{display:true,text:'利益(百万円)'},grid:{drawOnChartArea:false}}}}});
+  const segS={type:'doughnut',data:{labels:['ワインディングS&M','非接触ICタグ・カード'],datasets:[{data:[40513,1899],backgroundColor:[NAVY2,ACC]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}};
+  const segP={type:'doughnut',data:{labels:['ワインディングS&M','非接触ICタグ・カード'],datasets:[{data:[6115,594],backgroundColor:[NAVY2,ACC]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}};
+  mk('c_seg_sales',segS);mk('c_seg_profit',segP);
+ }
+ if(sec==='s7'){
+  mk('c_cf',{type:'bar',data:{labels:yrs,datasets:[
+    {label:'営業CF',data:[2689,1246,525,50,4103],backgroundColor:NAVY2},
+    {label:'投資CF',data:[-714,-392,116,154,813],backgroundColor:TEAL},
+    {label:'財務CF',data:[-848,-848,1195,-329,-360],backgroundColor:ACC}
+  ]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:'#eef1f5'},title:{display:true,text:'百万円'}}}}});
+ }
+ if(sec==='s9'){
+  mk('c_owner',{type:'bar',data:{labels:['その他法人','外国法人等','個人その他','金融機関','金融商品取引業者'],
+    datasets:[{label:'所有株式数割合(%)',data:[34.13,21.47,30.60,10.66,3.06],backgroundColor:[NAVY2,ACC,GREEN,GRAY,TEAL]}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#eef1f5'},ticks:{callback:v=>v+'%'}}}}});
+ }
+}
+</script>
+</body>
+</html>

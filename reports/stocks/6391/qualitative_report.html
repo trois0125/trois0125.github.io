@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6391 加地テック｜有価証券報告書 定性分析レポート（第93期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#1b2a41; --navy2:#28405e; --ink:#22282f; --sub:#5d6b7a;
+  --line:#dfe4ea; --bg:#f6f7f9; --card:#ffffff;
+  --amber:#b8791a; --amberbg:#fdf6e7; --red:#b03030; --redbg:#fdeeee;
+  --teal:#1c7a6c; --tealbg:#e9f5f2; --graybg:#eef1f4;
+  --accent:#2e6fb7;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px;-webkit-font-smoothing:antialiased}
+header{background:var(--navy);color:#fff;padding:22px 28px 16px}
+header h1{margin:0 0 4px;font-size:21px;font-weight:700;letter-spacing:.02em}
+header .meta{font-size:12.5px;color:#b9c6d6;line-height:1.7}
+.legend{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;font-size:11.5px}
+.legend span{padding:2px 9px;border-radius:11px;font-weight:700}
+.lg-f{background:#dfe6ee;color:#2b3a4d}
+.lg-i{background:#fbe6c0;color:#7d4f06}
+.lg-c{background:#f7d4d4;color:#8c2020}
+.lg-w{background:#cfe9e3;color:#0f5348}
+.wrap{display:flex;align-items:flex-start;max-width:1500px;margin:0 auto}
+nav{width:236px;flex:0 0 236px;position:sticky;top:0;max-height:100vh;overflow-y:auto;
+  background:var(--navy2);padding:14px 0 40px}
+nav a{display:block;padding:8px 16px 8px 20px;color:#c6d3e2;text-decoration:none;font-size:13px;
+  border-left:3px solid transparent;transition:.15s}
+nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+nav a.active{background:rgba(255,255,255,.13);color:#fff;border-left-color:#7fb2e8;font-weight:700}
+main{flex:1;padding:24px 30px 90px;min-width:0}
+section{display:none;animation:fade .18s ease}
+section.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+h2.sec{font-size:20px;margin:2px 0 6px;padding-bottom:9px;border-bottom:3px solid var(--navy);color:var(--navy)}
+h3{font-size:16px;margin:26px 0 10px;color:var(--navy);border-left:5px solid var(--accent);padding-left:10px}
+h4{font-size:14px;margin:18px 0 7px;color:var(--navy2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:17px 20px;margin:13px 0;
+  box-shadow:0 1px 2px rgba(20,30,45,.05)}
+.card.warn{border-left:5px solid var(--red);background:var(--redbg)}
+.card.note{border-left:5px solid var(--amber);background:var(--amberbg)}
+.card.ok{border-left:5px solid var(--teal);background:var(--tealbg)}
+.card.plain{border-left:5px solid var(--navy2)}
+blockquote{margin:11px 0;padding:11px 15px;background:#f3f6fa;border-left:4px solid #9db4cd;
+  font-size:13.5px;color:#38424f;border-radius:0 5px 5px 0}
+blockquote .src{display:block;margin-top:6px;font-size:11px;color:#7b8a9a}
+table{width:100%;border-collapse:collapse;margin:11px 0;font-size:13px;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:var(--graybg);font-weight:700;text-align:center;color:var(--navy)}
+td.l,th.l{text-align:left}
+tbody tr:nth-child(even){background:#fafbfc}
+.tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:9px;font-weight:700;margin-left:5px;
+  vertical-align:1px;white-space:nowrap}
+.t-f{background:#dfe6ee;color:#2b3a4d}
+.t-i{background:#fbe6c0;color:#7d4f06}
+.t-c{background:#f7d4d4;color:#8c2020}
+.t-w{background:#cfe9e3;color:#0f5348}
+.src{font-size:10.5px;color:#7b8a9a}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:5px 0}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:10px;margin:14px 0}
+.kpi div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 13px}
+.kpi .k{font-size:11.5px;color:var(--sub);display:block}
+.kpi .v{font-size:20px;font-weight:700;color:var(--navy);display:block;line-height:1.35}
+.kpi .s{font-size:11px;color:var(--sub)}
+.chart{background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:1000px){.grid2{grid-template-columns:1fr}nav{width:180px;flex:0 0 180px}}
+@media(max-width:720px){.wrap{flex-direction:column}nav{width:100%;flex:none;position:static;max-height:none;
+  display:flex;overflow-x:auto}nav a{white-space:nowrap;border-left:none;border-bottom:3px solid transparent}
+  main{padding:16px}}
+.tl{border-left:2px solid #c3ced9;margin-left:8px;padding-left:0}
+.tl li{list-style:none;position:relative;padding-left:20px;margin:9px 0}
+.tl li:before{content:"";position:absolute;left:-6px;top:11px;width:9px;height:9px;border-radius:50%;
+  background:var(--accent);border:2px solid #fff}
+.tl li.big:before{background:var(--red);width:12px;height:12px;left:-7px}
+.tl .yr{font-weight:700;color:var(--navy);margin-right:8px}
+footer{background:var(--navy);color:#a9b8c9;padding:20px 30px;font-size:11.5px;line-height:1.8}
+footer b{color:#e3ebf3}
+.small{font-size:12.5px;color:var(--sub)}
+</style>
+</head>
+<body>
+<header>
+  <h1>株式会社加地テック（6391・東証スタンダード）｜有価証券報告書 定性分析レポート</h1>
+  <div class="meta">
+    対象事業年度：第93期（2025年4月1日〜2026年3月31日）／有報提出日：2026年6月25日<br>
+    主ソース：会社公式開示 有価証券報告書 <b>[③]</b>／会社公式IRページ <b>[②]</b>／J-Quants API V2（JPX公式） <b>[⑤]</b>　　分析実行日：2026年8月7日
+  </div>
+  <div class="legend">
+    <span class="lg-f">[事実] 有報に記載あり</span>
+    <span class="lg-i">[解釈] 記載からの合理的推論</span>
+    <span class="lg-c">[要確認] 有報だけでは判断不能</span>
+    <span class="lg-w">[web/②] 会社公式サイト由来（沿革のみ）</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav id="nav">
+  <a href="#s0" class="active">0. エグゼクティブサマリー</a>
+  <a href="#s1">Ⅰ. 企業の輪郭</a>
+  <a href="#s2">Ⅱ. 沿革</a>
+  <a href="#s3">Ⅲ. 人的資本</a>
+  <a href="#s4">Ⅳ. 経営者の世界観</a>
+  <a href="#s5">Ⅴ. サステナビリティ</a>
+  <a href="#s6">Ⅵ. 事業等のリスク</a>
+  <a href="#s7">Ⅶ. 経営成績の分析</a>
+  <a href="#s8">Ⅷ. 将来への投資</a>
+  <a href="#s9">Ⅸ. 資本政策・株主還元</a>
+  <a href="#s10">Ⅹ. ガバナンス</a>
+  <a href="#s11">Ⅺ. 会計面の定性シグナル</a>
+  <a href="#s12">Ⅻ. 論点と未解明事項</a>
+</nav>
+
+<main>
+
+<!-- ============ 0 ============ -->
+<section id="s0" class="on">
+<h2 class="sec">0. エグゼクティブサマリー</h2>
+
+<div class="card plain">
+<p style="font-size:16px;margin:2px 0 0"><b>一文でいえば：</b>三井E&amp;S（議決権51.38%）を親会社に持つ大阪・堺の超高圧圧縮機専業メーカーで、水素ステーション向け圧縮機で国内トップを自認しつつ、実際の利益成長はアフターサービスと原価低減が支えている、単一セグメント・無借金体質に近い中小型製造業。<span class="tag t-i">解釈</span></p>
+</div>
+
+<div class="kpi">
+  <div><span class="k">売上高（第93期）</span><span class="v">77.99億円</span><span class="s">前期比 +11.4%　[③]</span></div>
+  <div><span class="k">営業利益</span><span class="v">9.25億円</span><span class="s">前期比 +49.2%／利益率11.9%　[③]</span></div>
+  <div><span class="k">当期純利益</span><span class="v">7.24億円</span><span class="s">前期比 +25.0%　[③]</span></div>
+  <div><span class="k">自己資本比率</span><span class="v">68.9%</span><span class="s">ROE 8.9%　[③]</span></div>
+  <div><span class="k">受注残高</span><span class="v">58.23億円</span><span class="s">前期比 △4.9%　[③]</span></div>
+  <div><span class="k">親会社持株</span><span class="v">51.38%</span><span class="s">株式会社三井E&amp;S　[③]</span></div>
+</div>
+
+<h3>記述情報から読み取れる最重要ポイント3点</h3>
+
+<div class="card ok">
+<h4>① 「アフターサービスが牽引した」という語りと、実際の売上構成の動きが逆を向いている</h4>
+<p>MD&amp;Aは当期の増収要因を「圧縮機本体販売が堅調」＋「アフターサービス事業の販売が好調」と説明する <span class="tag t-f">事実</span>。しかし収益認識注記の財・サービス別内訳では、<b>本体・部品販売 +14.9%（48.78億→56.07億円）に対し、保守・メンテナンスサービスは +2.9%（21.25億→21.87億円）</b>にとどまり、売上構成比は30.3%→28.0%へ<b>低下</b>している <span class="tag t-f">事実</span>。当期の増収・増益を実際に押し上げたのは本体の大口案件であり、AS（アフターサービス）は「好調」と呼ぶほどの伸びを示していない <span class="tag t-i">解釈</span>。新中計（26中計）が「本体売上の伸長は望めないため、ASを伸ばして利益を積み上げる」という設計になっている以上、この乖離は中計の実現可能性を測るうえで最も重要な検証点になる <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card note">
+<h4>② 過去最高益の裏で、受注は前年割れ・繰り延べ収益の期近部分も減っている</h4>
+<p>受注高 75.01億円（前期比 <b>△10.7%</b>）、受注残高 58.23億円（<b>△4.9%</b>） <span class="tag t-f">事実</span>。残存履行義務の期間別内訳でも、<b>1年以内に認識見込みの金額が44.87億円→39.51億円へ約12%減少</b>し、一方で1年超2年以内が2.54億円→18.72億円へ大きく増えている <span class="tag t-f">事実</span>。当期の記録的な増益はフローの改善（売上総利益率 29.1%→30.9%）に支えられており、受注というストックの先行指標はむしろ細っている <span class="tag t-i">解釈</span>。中計が翌3年で売上78億円（＝当期とほぼ同水準）に据え置かれているのは、この受注環境の認識と整合的である <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>③ 増益と同時に、受注損失引当金（特に本体）が急増している</h4>
+<p>受注損失引当金は 64,300千円→<b>79,500千円（+23.6%）</b>、うち<b>圧縮機本体に係るものは 44,700千円→67,800千円（+51.7%）</b> <span class="tag t-f">事実</span>。監査人はこの「総原価の見積り」を唯一のKAM（監査上の主要な検討事項）に指定している <span class="tag t-f">事実</span>。有報は「原価低減への取り組みの推進」で粗利率が改善したと説明するが、同じ期に将来赤字が見込まれる本体案件の引当が5割増えているという事実は、案件ごとの採算のばらつきが拡大している可能性を示す <span class="tag t-i">解釈</span>。全社平均の粗利率改善だけを見て採算体質が改善したと結論づけるのは早い <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>最も注意すべき論点1点</h3>
+<div class="card warn">
+<h4>親会社・三井E&amp;Sとの関係が「支配」と「独立性」の両面で開示の中心を占めており、少数株主の立ち位置が構造的に弱い</h4>
+<p>三井E&amp;Sは議決権の51.38%を保有する親会社 <span class="tag t-f">事実</span>。有報は【事業の内容】の冒頭近くで、通常であれば触れない「親会社との取引にあたって当社の利益を害さないよう留意した事項」「取締役会の判断及びその理由」をわざわざ章立てして記載している <span class="tag t-f">事実</span>。加えて、<b>余剰資金8.00億円が親会社への「預け金」として運用されている</b>（当期に3.00億円を回収し11.00億→8.00億円） <span class="tag t-f">事実</span>。取締役6名のうち代表取締役社長・取締役（非常勤）の2名が三井E&amp;S出身または現職であり、社外監査役1名も同社出身 <span class="tag t-f">事実</span>。制度上の独立性確保の記述は充実しているが、資金・人材・販路の3方向で親会社に接続した構造そのものは変わっていない <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card">
+<p class="small"><b>スクリーニング参考（本レポートの評価対象外）：</b>J-Quants API V2（JPX公式）による2026-07-17時点の判定では、当プロジェクトの8条件をすべて充足（PER 9.82倍／PBR 0.84倍／売上高CAGR +4.9%／営業利益CAGR +11.0%／自己資本比率 68.9%／時価総額71億円／直近営業増益率 +49.2%（母集団上位19%）／6ヶ月モメンタム +14.4%（同上位13%））<span class="tag t-f">事実</span> <span class="src">[⑤]</span>。本レポートは定性分析であり、売買判断・目標株価は提示しない。</p>
+</div>
+</section>
+
+<!-- ============ Ⅰ ============ -->
+<section id="s1">
+<h2 class="sec">Ⅰ. 企業の輪郭</h2>
+
+<h3>1. 5年推移（第89期〜第93期）</h3>
+<p class="small">当社は連結財務諸表を作成しておらず、記載はすべて単体ベース <span class="tag t-f">事実</span>。CAGRは第89期を起点とする4年間の年平均成長率として本レポートで算出（推計値・保証なし）。<span class="src">[③] 第1【企業の概況】1 主要な経営指標等の推移</span></p>
+
+<table>
+<thead><tr><th class="l">指標</th><th>第89期<br>2022/3</th><th>第90期<br>2023/3</th><th>第91期<br>2024/3</th><th>第92期<br>2025/3</th><th>第93期<br>2026/3</th><th>4年CAGR</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高（百万円）</td><td>4,578</td><td>5,976</td><td>7,261</td><td>7,004</td><td>7,800</td><td>+14.3%</td></tr>
+<tr><td class="l">経常利益（百万円）</td><td>455</td><td>297</td><td>818</td><td>770</td><td>978</td><td>+21.1%</td></tr>
+<tr><td class="l">EPS（円）</td><td>186.97</td><td>174.35</td><td>349.55</td><td>349.92</td><td>437.46</td><td>+23.7%</td></tr>
+<tr><td class="l">ROE（%）</td><td>4.8</td><td>4.3</td><td>8.2</td><td>7.7</td><td>8.9</td><td>―</td></tr>
+<tr><td class="l">自己資本比率（%）</td><td>67.9</td><td>61.8</td><td>61.9</td><td>67.6</td><td>68.9</td><td>―</td></tr>
+<tr><td class="l">営業CF（百万円）</td><td>786</td><td>381</td><td>843</td><td>542</td><td>1,027</td><td>+6.9%</td></tr>
+<tr><td class="l">従業員数（名）</td><td>199</td><td>198</td><td>199</td><td>205</td><td>207</td><td>+1.0%</td></tr>
+<tr><td class="l">株主総利回り（%）</td><td>64.11</td><td>50.96</td><td>79.03</td><td>53.69</td><td>75.18</td><td>―</td></tr>
+</tbody></table>
+
+<div class="chart"><canvas id="ch5y" height="120"></canvas></div>
+
+<div class="card note">
+<p><b>方向の客観提示：</b>4年間で売上は1.70倍、経常利益は2.15倍、EPSは2.34倍。<b>従業員数はほぼ横ばい（199→207名、+1.0%/年）</b>であり、成長は人員増ではなく単価・案件規模・生産性の改善によって得られている <span class="tag t-i">解釈</span>。一方、営業CFのCAGRは+6.9%にとどまり利益成長に追いついていない。これは運転資本（仕掛品・売上債権）の振れが大きい個別受注型ビジネスの特性を反映している <span class="tag t-i">解釈</span>。</p>
+<p><b>株主総利回りとTOPIXの乖離：</b>比較指標である配当込みTOPIXが5期で101.98→202.21（＝約2倍）と推移したのに対し、当社の株主総利回りは64.11→75.18で、<b>基準期（2021/3）を5期通じて一度も回復していない</b> <span class="tag t-f">事実</span>。利益はこの間に2倍以上になっているため、市場評価と業績の間に持続的な乖離が存在する <span class="tag t-i">解釈</span>。26中計が「資本コストや株価を意識した経営を推進」を戦略に掲げた背景として整合的である <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>2. 事業の内容とビジネスモデル</h3>
+<blockquote>
+「当社は、圧縮機の製造販売を主たる事業としております。当該事業においては、主力である空気及びガス圧縮機等の風水力機械、産業機械およびその他諸機械の製造販売、空気及びガスの圧縮充填ならびに販売、機械器具設置工事、電気工事、とび・土工工事及び管工事の請負工事等を行っております。」
+<span class="src">有報原文 [③] 第1【企業の概況】3 事業の内容</span>
+</blockquote>
+
+<div class="card">
+<h4>事業系統図の言語化</h4>
+<p>当社は子会社を持たず、関係会社は<b>親会社の株式会社三井E&amp;S 1社のみ</b>である <span class="tag t-f">事実</span>。したがって「グループ内の役割分担」は当社単体と親会社グループの間にしか存在しない。有報が記載する商流は次の3経路 <span class="tag t-f">事実</span>：</p>
+<ul>
+<li><b>親会社（三井E&amp;S）に対して</b>：当社製品の販売／部品等の仕入／資金取引（預け金）</li>
+<li><b>親会社の子会社に対して</b>：当社製品の販売／部品等の仕入</li>
+<li><b>外部顧客に対して</b>：本体・部品の直接販売＋保守・メンテナンスサービス</li>
+</ul>
+<p>ただし関連当事者注記で開示されている親会社との取引は<b>資金取引（預け金800,009千円・受取利息3,097千円）のみ</b>であり、販売・仕入取引は金額が開示基準に達していない <span class="tag t-f">事実</span>。つまり、親会社経由の販売は事業規模に対して量的には限定的である可能性が高い <span class="tag t-i">解釈</span>。有報自身も「これら取引は当社の事業運営に影響を与えるものではありません」と明記している <span class="tag t-f">事実</span>。</p>
+<h4>ビジネスモデル（誰に・何を・どう届け・どこで利益を取るか）</h4>
+<ul>
+<li><b>誰に</b>：産業ガス会社（岩谷瓦斯が売上の15.1%）、石油化学・電力・原子力プラント、PETボトル成形メーカー、水素ステーション事業者、中東・アジアの国営石油関連 <span class="tag t-f">事実</span>／<span class="tag t-i">解釈</span></li>
+<li><b>何を</b>：標準型式をベースに顧客仕様へ作り込む<b>個別受注型の超高圧圧縮機</b>。KAMの記述で「標準型式をもとに、顧客仕様に沿って部品等を組み合わせて製造される」と明示されている <span class="tag t-f">事実</span></li>
+<li><b>どう届け</b>：本社・美原工場（従業員180名）で製造、東京支社（27名）が販売と保守サービスを担う2拠点体制 <span class="tag t-f">事実</span></li>
+<li><b>どこで利益を取るか</b>：本体販売（構成比71.9%）で設置ベースを作り、保守・メンテナンス（同28.0%）で継続収益を得る<b>インストールベース型</b>。26中計はこれを「ASを起点とした循環型ビジネスの確立」と表現している <span class="tag t-f">事実</span></li>
+</ul>
+</div>
+
+<h3>3. 収益柱の照合 ― 「語りの大きさ」と「金額の大きさ」</h3>
+<p class="small">当社は<b>「圧縮機事業」の単一セグメント</b>のためセグメント情報の記載は省略されている <span class="tag t-f">事実</span>。代わりに収益認識注記の「収益を分解した情報」が実質的なセグメント開示となる。<span class="src">[③] 第5【経理の状況】注記事項（収益認識関係）</span></p>
+
+<div class="grid2">
+<div class="chart"><canvas id="chMix" height="200"></canvas></div>
+<div class="chart"><canvas id="chGeo" height="200"></canvas></div>
+</div>
+
+<table>
+<thead><tr><th class="l">財・サービス別</th><th>第92期（千円）</th><th>構成比</th><th>第93期（千円）</th><th>構成比</th><th>増減率</th></tr></thead>
+<tbody>
+<tr><td class="l">本体・部品販売</td><td>4,877,735</td><td>69.6%</td><td>5,606,592</td><td>71.9%</td><td>+14.9%</td></tr>
+<tr><td class="l">保守・メンテナンスサービス</td><td>2,125,200</td><td>30.3%</td><td>2,186,963</td><td>28.0%</td><td>+2.9%</td></tr>
+<tr><td class="l">その他</td><td>1,007</td><td>0.0%</td><td>5,977</td><td>0.1%</td><td>―</td></tr>
+</tbody></table>
+
+<table>
+<thead><tr><th class="l">地域別</th><th>第92期（千円）</th><th>構成比</th><th>第93期（千円）</th><th>構成比</th></tr></thead>
+<tbody>
+<tr><td class="l">日本</td><td>5,727,883</td><td>81.8%</td><td>6,649,512</td><td>85.3%</td></tr>
+<tr><td class="l">東アジア</td><td>420,873</td><td>6.0%</td><td>618,997</td><td>7.9%</td></tr>
+<tr><td class="l">東南・南アジア</td><td>680,521</td><td>9.7%</td><td>311,931</td><td>4.0%</td></tr>
+<tr><td class="l">中近東</td><td>96,197</td><td>1.4%</td><td>129,994</td><td>1.7%</td></tr>
+<tr><td class="l">その他</td><td>78,466</td><td>1.1%</td><td>89,097</td><td>1.1%</td></tr>
+</tbody></table>
+
+<div class="card warn">
+<h4>乖離①：「AS好調」という語りと構成比の低下</h4>
+<p>MD&amp;Aは増収要因として「アフターサービス事業の販売が好調だった」と述べ、また前中計の振り返りでも「アフターサービスは、積極的な営業活動推進により順調に業績拡大を進め計画を上回る受注・売上を達成」と評価している <span class="tag t-f">事実</span>。しかし当期のAS成長率は<b>+2.9%</b>で全社成長率+11.4%を大きく下回り、<b>売上構成比は2.3ポイント低下</b>している <span class="tag t-f">事実</span>。「好調」という語りは前中計3年間の累積を指している可能性があるが、当期単年で見れば実態は本体主導の増収である <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card note">
+<h4>乖離②：「海外市場においても存在感を示す」という長期方針と海外売上比率の低下</h4>
+<p>KAJI 2030VISIONの基本方針④は「超高圧圧縮技術で、海外市場においても存在感を示す企業となる」、26中計の第二の矢・戦略③も「海外市場開拓」を掲げる <span class="tag t-f">事実</span>。一方、実績の海外売上比率は<b>18.2%→14.7%へ低下</b>（東南・南アジアが6.81億→3.12億円と半減） <span class="tag t-f">事実</span>。中東ベンダー認定（サウジアラムコ・KNPC・ADNOC等）を取得済みである <span class="tag t-w">web/②</span> にもかかわらず中近東売上は1.3億円（1.7%）にとどまる <span class="tag t-f">事実</span>。海外は「方針として大きく語られているが、金額としてはまだ小さく、しかも当期は縮んだ」領域である <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>4. 競争優位の所在</h3>
+<div class="card">
+<ul>
+<li><b>技術の希少性（超高圧領域）</b>：1970年に98MPa超高圧コンプレッサ、2004年に110MPa超高圧水素ガス空冷オイルレスピストンコンプレッサ、2014年に水素ステーション用82MPa一括昇圧型「HyKom340」を開発 <span class="tag t-w">web/② 会社公式サイト「沿革」</span>。有報も「当社の強みである超高圧技術」と繰り返し記述する <span class="tag t-f">事実</span>。数十MPa超の圧縮機は法規制（高圧ガス保安法）と実績要求の両面で参入障壁が高く、ここが優位の中核と推定される <span class="tag t-i">解釈</span></li>
+<li><b>認定・許認可の積み上げ</b>：高圧ガス設備試験・製造認定事業所（1968年〜）、ISO9001（1997年〜）、ISO14001（2000年〜）、電気事業法・原子炉等規制法に基づく溶接施行法認可（1986〜87年）、中東4社のベンダー認定 <span class="tag t-w">web/② 会社公式サイト「会社概要」「沿革」</span>。これらは取得に年単位を要し、模倣に時間がかかる <span class="tag t-i">解釈</span></li>
+<li><b>内製／外注の切り分け</b>：有報は「機械加工・研磨・切削等の精緻な技術力に支えられた製品を製作」（事業等のリスク(6)）と記し、ステンレス溶接工場（1993年）・総合組立工場（2022年竣工）を自社で建設している <span class="tag t-f">事実</span>／<span class="tag t-w">web/②</span>。<b>重要工程は内製、鋼材・部材は外部調達</b>という構成と読める <span class="tag t-i">解釈</span>。総資産12,301百万円に対し有形固定資産は3,234百万円（26.3%）で、装置産業としてはむしろ軽い <span class="tag t-f">事実</span></li>
+<li><b>川上・川下の位置</b>：川上（鋼材）は市況リスクを負い（リスク(1)）、川下は顧客の設備投資動向に従属する（リスク(3)） <span class="tag t-f">事実</span>。<b>価格決定力は「超高圧・特殊仕様」の度合いに比例し、標準品に近い領域では競合による受注価格下落を自ら認めている</b>（リスク(4)） <span class="tag t-f">事実</span>／<span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<h3>5. 関係会社 ― 支配構造とリスクのみ</h3>
+<table>
+<thead><tr><th class="l">名称</th><th class="l">住所</th><th>資本金</th><th class="l">主要な事業</th><th>被所有割合</th><th class="l">関係内容</th></tr></thead>
+<tbody>
+<tr><td class="l">株式会社三井E&amp;S（親会社）</td><td class="l">東京都中央区</td><td>8,846百万円</td><td class="l">製造業</td><td>51.38%</td><td class="l">当社製品の販売／資金取引</td></tr>
+</tbody></table>
+<div class="card warn">
+<ul>
+<li><b>親会社あり・子会社なし・持分法適用会社なし</b>。連結財務諸表を作成していない <span class="tag t-f">事実</span></li>
+<li><b>議決権51.38%＝単独過半数</b>。株主総会の普通決議は親会社の意思のみで成立する構造 <span class="tag t-i">解釈</span></li>
+<li><b>余剰資金の親会社預託</b>：期末残高800,009千円。当期に300,000千円を回収した <span class="tag t-f">事実</span>。現金及び預金2,571,073千円と合わせた手元流動性3,371百万円のうち<b>23.7%が親会社に預けられている</b>（本レポート算出・推計値） <span class="tag t-i">解釈</span></li>
+<li><b>非100%子会社ではなく上場子会社</b>であるため、少数株主と親会社の利益相反は制度的に常在する。有報が独立性確保の記述を厚く置いているのはその裏返し <span class="tag t-i">解釈</span></li>
+<li>親会社の信用状態が悪化した場合の預け金回収リスク、親会社の資本政策変更（完全子会社化・持分売却等）の可能性は<b>有報からは判断できない</b> <span class="tag t-c">要確認</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ============ Ⅱ ============ -->
+<section id="s2">
+<h2 class="sec">Ⅱ. 沿革</h2>
+<p class="small">有報【第1 企業の概況】2 沿革を軸に、会社公式サイトの「沿革」「会社概要」ページで肉付けした。公式サイト由来の記述には <span class="tag t-w">web/②</span> を付す。本章以外ではWeb情報を使用していない。</p>
+
+<h3>この会社をどう捉えるか</h3>
+<div class="card plain">
+<p>加地テックは<b>3度、主力事業を入れ替えている</b>会社である <span class="tag t-i">解釈</span>。①繊維機械（1905年創業）→②空気圧縮機（1934年〜）→③超高圧・特殊ガス圧縮機（1968年の高圧ガス試験製造認定以降）。そして現在、④カーボンニュートラル（水素）関連への4度目の転換の途上にある <span class="tag t-i">解釈</span>。同時に<b>資本の後ろ盾も2度替わっている</b>：丸紅（1950年〜）→三井造船／三井E&amp;S（2015年資本業務提携、2017年TOBで子会社化） <span class="tag t-f">事実</span>。120年の社歴の実態は「大阪の中堅機械メーカーが、そのつど商社・重工業の資本を得ながら、圧縮技術という一本の軸で用途を乗り換えてきた歴史」と読める <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>年表</h3>
+<ul class="tl">
+<li class="big"><span class="yr">1905年5月</span>加地弁二氏が<b>繊維機械の製造</b>を目的として大阪市桜川町に加地鉄工所を設立 <span class="tag t-f">事実</span>（公式サイトは「創立」と表記） <span class="tag t-w">web/②</span></li>
+<li><span class="yr">1914年10月</span>堺市三宝町に移転 <span class="tag t-f">事実</span></li>
+<li class="big"><span class="yr">1934年2月</span>株式会社加地鉄工所（資本金30万円）に改組し、<b>空気圧縮機を製造品目に追加</b> <span class="tag t-f">事実</span>。同年、空気コンプレッサの試作・研究に着手（1号機） <span class="tag t-w">web/②</span>　<i>→ 1度目の事業転換</i></li>
+<li><span class="yr">1950年8月</span><b>丸紅株式会社の資本参加</b> <span class="tag t-f">事実</span></li>
+<li><span class="yr">1954年</span>農業用動力噴霧機の生産・販売を開始 <span class="tag t-w">web/②</span></li>
+<li><span class="yr">1958年10月</span>東京営業所を開設（1989年4月 東京支社に改称） <span class="tag t-f">事実</span>。同年、<b>オイルフリーコンプレッサの製造開始</b> <span class="tag t-w">web/②</span></li>
+<li class="big"><span class="yr">1962年7月</span><b>大阪証券取引所市場第二部に上場</b>（資本金1億2,000万円） <span class="tag t-f">事実</span>／<span class="tag t-w">web/②</span></li>
+<li><span class="yr">1963年3月</span>資本金を2億4千万円に増資 <span class="tag t-f">事実</span>。加地シャルパンティエ式タイヤコード直撚機の国産第1号機を完成 <span class="tag t-w">web/②</span>（＝繊維機械系の技術がまだ残っていた時期） <span class="tag t-i">解釈</span></li>
+<li><span class="yr">1964年6月・12月</span>美原工場（現本社・工場）完成、本社を現在地に移転 <span class="tag t-f">事実</span></li>
+<li class="big"><span class="yr">1968年</span><b>高圧ガス保安法に基づく試験製造認定事業所を取得</b> <span class="tag t-w">web/②</span>　<i>→ 高圧・特殊ガス領域への入口</i></li>
+<li><span class="yr">1969〜70年</span>SF6ガス回収装置1号機を製作。<b>98MPa超高圧コンプレッサを開発</b>（HQ5A-75H型） <span class="tag t-w">web/②</span>　<i>→ 2度目の事業転換の技術的起点</i> <span class="tag t-i">解釈</span></li>
+<li><span class="yr">1973〜74年</span>10.78MPa高圧オイルフリーコンプレッサをシリーズ化。オイルフリーガスコンプレッサ1号機納入 <span class="tag t-w">web/②</span></li>
+<li><span class="yr">1974〜91年</span>資本金を段階的に増資（3億→4億→5億→8.7億→14.4億円） <span class="tag t-f">事実</span></li>
+<li><span class="yr">1985〜87年</span>ガス事業法・電気事業法・原子炉等規制法に基づく溶接施行法の認可を相次いで取得。原子力発電所向けコンプレッサ納入 <span class="tag t-w">web/②</span></li>
+<li><span class="yr">1988年3月</span>決算期を10月31日から3月31日に変更 <span class="tag t-f">事実</span></li>
+<li class="big"><span class="yr">1991年10月</span><b>社名を「加地鉄工所」から「加地テック」に変更</b> <span class="tag t-f">事実</span>（鉄工所＝重厚長大からの脱皮を意図した改称と読める） <span class="tag t-i">解釈</span></li>
+<li><span class="yr">1993〜97年</span>ステンレス溶接工場を建設 <span class="tag t-w">web/②</span>。1994年 千葉県船橋市にサービスセンター開設 <span class="tag t-f">事実</span>。1997年 ISO9001認証取得、<b>PETボトル成形用コンプレッサの量産開始</b> <span class="tag t-f">事実</span>／<span class="tag t-w">web/②</span></li>
+<li><span class="yr">1999〜2003年</span>CNG空冷オイルレスコンプレッサ開発（1999年） <span class="tag t-w">web/②</span>。ISO14001認証取得（2000年） <span class="tag t-f">事実</span>。2003年8月 本社に天然ガススタンド「加地エコ・ステーション」開設 <span class="tag t-f">事実</span>　<i>→ 燃料充填インフラへの布石</i> <span class="tag t-i">解釈</span></li>
+<li class="big"><span class="yr">2004年</span><b>110MPa超高圧水素ガス空冷オイルレスピストンコンプレッサを開発</b> <span class="tag t-w">web/②</span>　<i>→ 現在の主戦場である水素領域の技術的原点</i> <span class="tag t-i">解釈</span></li>
+<li><span class="yr">2007年</span>水素ステーション向けに40MPa水素ガス超高圧コンプレッサを納入 <span class="tag t-w">web/②</span></li>
+<li><span class="yr">2010年</span>大型水平対向型（横型）コンプレッサ開発 <span class="tag t-w">web/②</span></li>
+<li class="big"><span class="yr">2014年</span><b>水素ステーション用82MPa一括昇圧型コンプレッサ「HyKom340」の販売開始</b> <span class="tag t-w">web/②</span>。有報も「FCV用水素ステーション向け超高圧圧縮機については、2014年に市場投入後、順調に販売台数を伸ばし水素ステーション用圧縮機メーカーとして国内トップを走っており」と記述 <span class="tag t-f">事実</span></li>
+<li class="big"><span class="yr">2015年1月</span><b>筆頭株主が丸紅から三井造船（現・三井E&amp;S）へ交代</b>し、資本業務提携契約を締結 <span class="tag t-f">事実</span>　<i>→ 65年続いた丸紅系列の終了</i> <span class="tag t-i">解釈</span></li>
+<li><span class="yr">2015年3月</span>大阪支店を本社へ統合 <span class="tag t-f">事実</span>。同年、サウジアラムコのベンダー認定取得 <span class="tag t-w">web/②</span></li>
+<li><span class="yr">2016〜18年</span>クウェート国営石油（2016年）、アブダビ石油精製（2017年）、アブダビ国営石油（2018年）のベンダー認定を順次取得 <span class="tag t-w">web/②</span></li>
+<li class="big"><span class="yr">2017年3月</span><b>三井造船が公開買付け（TOB）により当社株式を取得し、親会社となる</b> <span class="tag t-f">事実</span>　<i>→ 上場子会社化。以降の資本構造の起点</i></li>
+<li><span class="yr">2017年10月</span>株式併合（10株→1株）を実施し、発行済株式総数が17,180,000株→1,718,000株に減少 <span class="tag t-f">事実</span></li>
+<li><span class="yr">2019年5月</span>サービスセンター（習志野）を東京支社に統合し、東京支社を高田馬場から江戸川区（葛西臨海）へ移転 <span class="tag t-f">事実</span>／<span class="tag t-w">web/②</span></li>
+<li><span class="yr">2022年4月</span>東証の市場区分見直しにより<b>市場第二部からスタンダード市場へ移行</b> <span class="tag t-f">事実</span></li>
+<li class="big"><span class="yr">2022年</span><b>本社に総合組立工場を建設（竣工）</b> <span class="tag t-w">web/②</span>。当期末の長期借入金1,197百万円は<b>この総合組立工場の建設資金</b>である旨をMD&amp;Aが明記（返済期限2042年5月） <span class="tag t-f">事実</span></li>
+<li><span class="yr">2022年6月</span>長期経営計画「KAJI 2030VISION」を策定・発表 <span class="tag t-f">事実</span></li>
+<li><span class="yr">2023年4月</span>「2023中期経営計画（23中計）」開始 <span class="tag t-f">事実</span>。同年6月、松岡克憲氏が三井E&amp;Sを退職して当社代表取締役社長に就任 <span class="tag t-f">事実</span></li>
+<li class="big"><span class="yr">2026年4月</span><b>「2026中期経営計画（26中計）」を策定</b>（2026〜2028年度） <span class="tag t-f">事実</span></li>
+</ul>
+
+<div class="card note">
+<h4>沿革から読める構造</h4>
+<ul>
+<li><b>技術の軸は一貫して「圧縮」</b>。1934年の空気圧縮機以降、90年以上この一点に資源を集中している <span class="tag t-i">解釈</span></li>
+<li><b>用途は約20〜30年周期で乗り換えてきた</b>：空気（1934〜）→高圧ガス・原子力（1968〜）→PET・CNG（1997〜）→水素（2004〜） <span class="tag t-i">解釈</span>。現在の水素シフトは4番目の波であり、過去3回はいずれも既存技術の応用で達成されている点が特徴 <span class="tag t-i">解釈</span></li>
+<li><b>資本の後ろ盾は事業構造とほぼ無関係に交代してきた</b>。丸紅（商社＝販路）から三井造船（重工＝技術・プラント）への交代は、顧客がプラント／エネルギーインフラ側にシフトしたことと整合的 <span class="tag t-i">解釈</span></li>
+<li><b>2022年の総合組立工場が直近の最大投資</b>。返済期限が2042年と20年に及ぶ長期借入で賄われており、当期の設備投資が小さい（63百万円）のは大型投資の直後だからと読める <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+</section>
+
+<!-- ============ Ⅲ ============ -->
+<section id="s3">
+<h2 class="sec">Ⅲ. 人的資本（従業員の状況＋サステナビリティ人的資本を統合）</h2>
+
+<h3>1. 従業員の状況</h3>
+<table>
+<thead><tr><th class="l">項目</th><th>第93期（2026/3/31現在）</th></tr></thead>
+<tbody>
+<tr><td class="l">従業員数（就業人員）</td><td>207名（臨時従業員 平均33名は外数）</td></tr>
+<tr><td class="l">平均年齢</td><td>42.18歳</td></tr>
+<tr><td class="l">平均勤続年数</td><td>15.34年</td></tr>
+<tr><td class="l">平均年間給与</td><td>7,023千円（前期比 +1.8%）</td></tr>
+<tr><td class="l">セグメント別</td><td>圧縮機事業 207名（単一セグメント）</td></tr>
+<tr><td class="l">拠点別</td><td>本社・工場 180名／東京支社 27名</td></tr>
+<tr><td class="l">労働組合</td><td>JAM所属・組合員153名・ユニオンショップ制</td></tr>
+</tbody></table>
+<p class="small"><span class="src">[③] 第4【提出会社の状況】5 従業員の状況等／第3【設備の状況】2 主要な設備の状況</span></p>
+
+<div class="card note">
+<p><b>開示上の数字の食い違いに注意：</b>有報の従業員数は<b>207名</b>（就業人員）だが、サステナビリティ章の人的資本指標は「総受講時間1,802時間÷<b>期初従業員数229名</b>」で算出されている <span class="tag t-f">事実</span>。また会社公式サイトの会社概要は従業員<b>230名</b>と表示している <span class="tag t-w">web/②</span>。臨時従業員（平均33名）や出向者の扱いの差と推定されるが、有報内で定義の説明がなく、指標の分母が本表と一致しない <span class="tag t-i">解釈</span>。人的資本指標の比較可能性という点では弱い開示である <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>2. 生産性（本レポート算出・推計値／保証なし）</h3>
+<div class="kpi">
+  <div><span class="k">1人当たり売上高（第93期）</span><span class="v">37.7百万円</span><span class="s">前期 34.2百万円（+10.3%）</span></div>
+  <div><span class="k">1人当たり営業利益</span><span class="v">4.47百万円</span><span class="s">前期 3.03百万円（+47.8%）</span></div>
+  <div><span class="k">平均年間給与</span><span class="v">7,023千円</span><span class="s">前期比 +1.8%</span></div>
+  <div><span class="k">従業員数 4年増減</span><span class="v">+8名</span><span class="s">199名（第89期）→207名</span></div>
+</div>
+
+<div class="chart"><canvas id="chEmp" height="130"></canvas></div>
+
+<div class="card">
+<h4>労働集約型か、仕組み型か</h4>
+<p>売上高が4年で<b>1.70倍</b>になる間、従業員数は<b>1.04倍</b>にしか増えていない <span class="tag t-f">事実</span>。増収と人員がほぼ連動していないため、<b>労働集約型ではなく、設備・設計・調達の組み合わせで受注規模を拡大する仕組み型に寄っている</b>と読める <span class="tag t-i">解釈</span>。2022年竣工の総合組立工場が、この人員一定のままの増産を可能にした主要因である可能性が高い <span class="tag t-i">解釈</span>。ただし有報にこの因果を裏づける記述はなく、生産能力・稼働率の開示もない <span class="tag t-c">要確認</span>。</p>
+<p><b>付加価値の配分：</b>1人当たり営業利益が+47.8%伸びた一方、平均年間給与の伸びは+1.8%にとどまる <span class="tag t-f">事実</span>。MD&amp;Aは販管費増加の理由として「賃上げに伴う人件費の増加等」を挙げているが <span class="tag t-f">事実</span>、給与水準の伸びは生産性の伸びに追いついていない <span class="tag t-i">解釈</span>。有報は「従業員の給与その他の給付の額及び内容については、持続的な成長と適切な成果の配分を、労使交渉に基づき決定」と記すのみで、配分方針の具体的な水準・目標は示されていない <span class="tag t-f">事実</span>。</p>
+</div>
+
+<h3>3. 人材戦略（第4-5(1) 人材戦略に関する基本方針等）</h3>
+<blockquote>
+「当社が提供する商品とサービスの提供主体は人であり、成長戦略の実現において、人材が重要な経営資源と位置付けており、当社の人材戦略は、一人ひとりがより深く顧客の視点を持ち、より一層の技術力の向上を図ること、そして当事者意識と相互支援を通じて組織の力をたかめていくことが、当社の持続的な成長を担保するものと考えております。」
+<span class="src">有報原文 [③] 第4【提出会社の状況】5(1)</span>
+</blockquote>
+<div class="card">
+<p><b>人材ビジョン（サステナビリティ章に記載）</b> <span class="tag t-f">事実</span></p>
+<ul>
+<li>［顧客志向］顧客の視点で考え、自らタイムリーに行動できる人材</li>
+<li>［技術志向］技術革新に向け、常に技術力向上に努める人材</li>
+<li>［フォア・ザ・チーム］組織目標達成に向け、当事者意識を持って相互支援ができる人材</li>
+</ul>
+<p class="small">同一の文言が第4-5(1)とサステナビリティ章の両方に置かれており、記述は重複している <span class="tag t-f">事実</span>。</p>
+</div>
+
+<h3>4. 人的資本の指標と目標</h3>
+<table>
+<thead><tr><th class="l">項目</th><th class="l">内容</th></tr></thead>
+<tbody>
+<tr><td class="l">指標</td><td class="l">階層に応じた教育・研修プログラムに関する一人当たりの年間受講時間（人事総務部主催研修を対象に算定）</td></tr>
+<tr><td class="l">目標</td><td class="l">2025年 7.5時間</td></tr>
+<tr><td class="l">実績</td><td class="l">7.8時間（総受講時間1,802時間 ÷ 期初従業員数229名）</td></tr>
+</tbody></table>
+
+<div class="card warn">
+<p><b>沈黙も情報：</b>人的資本に関して当社が設定した定量目標は<b>「年間研修受講時間7.5時間」1本のみ</b>である <span class="tag t-f">事実</span>。しかもこれは人事総務部主催研修に限定した集計であり、部門内OJT・技能伝承・資格取得は含まれない <span class="tag t-f">事実</span>。26中計は第三の矢で「人的資本投資を強化することで、企業風土を改革」と掲げるが <span class="tag t-f">事実</span>、その進捗を測る指標は現時点でこの1本しかない <span class="tag t-i">解釈</span>。平均勤続年数15.34年・平均年齢42.18歳という<b>定着率の高い技能集団</b>であることを踏まえると、事業等のリスク(6)が指摘する「専門的技術・知識・資格を持つ人材の採用・育成」の進捗を外部から検証する手段が乏しい <span class="tag t-i">解釈</span>。採用者数・離職率・技能資格保有者数などの開示があれば検証可能性は大きく上がる <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<h3>5. 多様性に関する法定指標（数値の提示のみ・優劣評価はしない）</h3>
+<table>
+<thead><tr><th class="l">指標</th><th>当事業年度</th></tr></thead>
+<tbody>
+<tr><td class="l">管理的地位にある労働者に占める女性労働者の割合</td><td>2.4%</td></tr>
+<tr><td class="l">男性労働者の育児休業取得率（正規雇用労働者）</td><td>100.0%</td></tr>
+<tr><td class="l">男性労働者の育児休業取得率（非正規雇用労働者）</td><td>―</td></tr>
+<tr><td class="l">労働者の男女の賃金の額の差異（全労働者）</td><td>76.0%</td></tr>
+<tr><td class="l">同（正規雇用労働者）</td><td>75.3%</td></tr>
+<tr><td class="l">同（非正規雇用労働者）</td><td>87.1%</td></tr>
+<tr><td class="l">役員に占める女性の比率</td><td>11.1%（役員9名中1名）</td></tr>
+</tbody></table>
+<blockquote>
+「男女の賃金の額の差異に関して、正規労働者・課長相当職での割合は100％であり、同等の職責において実質的に男女の賃金の額の差異はありません。」
+<span class="src">有報原文 [③] 第4【提出会社の状況】5(2)③ 補足説明</span>
+</blockquote>
+<p class="small">上記はすべて女性活躍推進法に基づく算出値 <span class="tag t-f">事実</span>。本レポートでは水準の優劣評価は行わない。</p>
+</section>
+
+<!-- ============ Ⅳ ============ -->
+<section id="s4">
+<h2 class="sec">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+
+<h3>1. 経営の基本方針</h3>
+<blockquote>
+「当社は、技術に立脚し社会が求める優れた商品及びサービスを提供することにより、全てのステークホルダーの繁栄並びに経済・社会の発展に貢献すること、及び常に技術の研究開発に努め、グローバル化の時代に即した国際競争力のある企業体質を涵養し、世界の企業として発展することを経営の基本方針としております。」
+<span class="src">有報原文 [③] 第2【事業の状況】1(1)</span>
+</blockquote>
+<p class="small">この段落は<b>どの製造業にも当てはまる定型文（ボイラープレート）</b>であり、固有情報は含まれない <span class="tag t-i">解釈</span>。続く一文もコーポレートガバナンス・コード対応の一般記述である <span class="tag t-f">事実</span>。当社の固有記述は次項以降の長期ビジョン・中計に集中している <span class="tag t-i">解釈</span>。</p>
+
+<h3>2. 長期経営計画「KAJI 2030VISION」（2022年6月策定）</h3>
+<div class="card ok">
+<p><b>＜2030年のありたい姿＞</b>「超高圧技術でカーボンニュートラル社会の実現に貢献する『モノづくり』＆『ソリューションサービス』企業」 <span class="tag t-f">事実</span></p>
+<p><b>＜基本方針＞</b> <span class="tag t-f">事実</span></p>
+<ol>
+<li>強みである超高圧技術でカーボンニュートラル社会に要求される製品を開発し、新市場で先行して商品化を進め、超高圧圧縮技術で常に市場をリードする</li>
+<li>既存事業のQCD強化により製品競争力を高め事業を拡大する</li>
+<li>Lifecycle Solution Service型ビジネスを志向したアフターサービスの拡大により収益力を向上する</li>
+<li>超高圧圧縮技術で、海外市場においても存在感を示す企業となる</li>
+</ol>
+</div>
+
+<h3>3. 前中計（23中計・2023〜2025年度）の振り返り ― 未達認識の誠実さ</h3>
+<table>
+<thead><tr><th class="l">2025年度</th><th>23中計計画<br>（2023年4月開示）</th><th>25短計計画<br>（2025年4月開示）</th><th>2025年度実績</th><th>対23中計</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高</td><td>75億円</td><td>71億円</td><td>77億円</td><td>+2億円</td></tr>
+<tr><td class="l">営業利益</td><td>6.5億円</td><td>6.8億円</td><td>9.2億円</td><td>+2.7億円</td></tr>
+<tr><td class="l">純利益</td><td>4.5億円</td><td>5.1億円</td><td>7.2億円</td><td>+2.7億円</td></tr>
+</tbody></table>
+<p class="small"><span class="src">[③] 第2【事業の状況】1(2)2. 前中期経営計画の振り返り。実績は億円単位に丸められた有報記載値</span></p>
+
+<div class="card note">
+<h4>「達成」の中身を分解すると、計画と実績で要因が入れ替わっている</h4>
+<blockquote>
+「23中計策定時には想定していなかった水素ステーションの普及の遅れ等の一方でアフターサービスが近年伸長していることなどにより、最終年度である2025年度計画は売上高目標、利益目標ともに達成することができました。」
+<span class="src">有報原文 [③] 第2【事業の状況】1(2)2.</span>
+</blockquote>
+<p>この一文は<b>誠実な自己認識</b>と評価できる <span class="tag t-i">解釈</span>。主力と位置づけた水素ステーション市場が計画通りに立ち上がらなかったことを明示し、目標達成が<b>別要因（AS伸長）による代替</b>であったと認めているためである <span class="tag t-i">解釈</span>。ボイラープレートで塗りつぶさず、想定外を想定外と書いている点は評価材料になる <span class="tag t-i">解釈</span>。</p>
+<p>ただし、<b>3年目単年（第93期）の実績では、ASの伸びは+2.9%にすぎず、増収の主因は本体販売（+14.9%）である</b>（Ⅰ章参照） <span class="tag t-f">事実</span>。「ASが伸びたから達成した」という説明は3年累積を指すと解されるが、有報にAS売上の年次推移は開示されておらず、この説明の当否を有報単体で検証することはできない <span class="tag t-c">要確認</span>。</p>
+<p>また、23中計の売上目標75億円に対し、2025年4月時点の短期計画（25短計）では<b>71億円へ下方修正</b>されていた <span class="tag t-f">事実</span>。実績77億円は「一度下げた目標を大きく超えた」という構図であり、期中の見通し精度そのものは高くない <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>4. 新中計「26中計」（2026〜2028年度）― 課題と打ち手の一対一照合</h3>
+<blockquote>
+「次期３ヵ年は、製造業としての強固な事業基盤づくりに集中し、『KAJI 2030VISION』達成へ向けた基礎体力をつける期間として位置付けます。」
+<span class="src">有報原文 [③] 第2【事業の状況】1(2)3.(1)</span>
+</blockquote>
+
+<table>
+<thead><tr><th class="l">矢</th><th class="l">戦略</th><th class="l">打ち手の具体性</th><th class="l">検証可能な指標の有無</th></tr></thead>
+<tbody>
+<tr><td class="l" rowspan="3"><b>第一の矢</b><br>稼ぐ力の“最大化”<br><span class="small">※最も注力する領域</span></td>
+<td class="l">① AS（アフターサービス）への重点強化</td><td class="l">「顧客対応力強化によるAS拡大とASを起点とした循環型ビジネスの確立」</td><td class="l">AS売上目標の開示なし <span class="tag t-c">要確認</span></td></tr>
+<tr><td class="l">② 品質プロセス改革</td><td class="l">「顧客視点、責任体制、仕組み、スキルの観点から品質問題をミニマム化」</td><td class="l">品質関連のKPIなし <span class="tag t-c">要確認</span></td></tr>
+<tr><td class="l">③ コスト力強化</td><td class="l">「設計段階からコストを創り込み、生産でミニマムコストなサプライチェーンを構築」</td><td class="l">原価率目標なし（営業利益率14%が間接指標） <span class="tag t-i">解釈</span></td></tr>
+<tr><td class="l" rowspan="3"><b>第二の矢</b><br>圧縮機事業の“次世代化”</td>
+<td class="l">① 水素領域のブランド化</td><td class="l">「製品ラインナップ拡充によりブランドを強化し、長期的には圧縮機全体でのブランド化につなげる」</td><td class="l">指標なし <span class="tag t-c">要確認</span></td></tr>
+<tr><td class="l">② 高効率化開発の推進</td><td class="l">「顧客の価値基準に応じた最適な組合せ提案を可能にするモジュール体系を構築」</td><td class="l">指標なし。研究開発章の20MPaG級新シリーズが対応と読める <span class="tag t-i">解釈</span></td></tr>
+<tr><td class="l">③ 新市場開発</td><td class="l">「カーボンニュートラル関連市場の拡大をメインに、プラントとインフラ用途に重点を置いた海外市場開拓」</td><td class="l">海外売上比率目標なし <span class="tag t-c">要確認</span></td></tr>
+<tr><td class="l" rowspan="3"><b>第三の矢</b><br>経営基盤の“進化”</td>
+<td class="l">① DXによる生産性革新</td><td class="l">「全社視点のDX戦略策定と『稼ぐ力の最大化』の生産性向上にフォーカスした展開」</td><td class="l">DX投資額・指標なし <span class="tag t-c">要確認</span></td></tr>
+<tr><td class="l">② 組織風土改革</td><td class="l">「組織に“ゆらぎ”を与え、人的資本投資を強化することで、企業風土を改革」</td><td class="l">研修受講時間7.5時間のみ <span class="tag t-i">解釈</span></td></tr>
+<tr><td class="l">③ 資本効率経営の推進</td><td class="l">「資本コストや株価を意識した経営を推進し、社会から継続的に評価される企業へ」</td><td class="l"><b>ROE 8.0%目標／配当性向20%目標</b> <span class="tag t-f">事実</span></td></tr>
+</tbody></table>
+
+<div class="card warn">
+<h4>照合結果：9戦略のうち、定量目標が紐づくのは第三の矢③のみ</h4>
+<p>「三本の矢／9つの主要課題」という構成は明快だが、<b>個別戦略に対応する数値目標は全社KPI（売上・営業利益・純利益・ROE）と配当性向を除いて存在しない</b> <span class="tag t-f">事実</span>。とりわけ<b>「最も注力する領域」と自ら明記した第一の矢（AS強化・品質・コスト）に、進捗を測る指標が1つも置かれていない</b> <span class="tag t-i">解釈</span>。前中計の総括で「ASが伸びたから目標を達成できた」と説明し、新中計でも「ASを伸ばして利益を積み上げる」と設計している以上、AS売上・AS利益率の目標が示されないことは開示の空白として大きい <span class="tag t-i">解釈</span>。</p>
+<p>また、9戦略はいずれも「〜強化」「〜改革」「〜推進」という動詞で終わっており、<b>固有名詞・時期・数量を伴う記述は「20MPaG級」「モジュール体系」程度</b>にとどまる <span class="tag t-i">解釈</span>。ボイラープレートとまでは言えないが、外部から進捗を検証できる粒度には達していない <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>5. 26中計の経営数値計画</h3>
+<table>
+<thead><tr><th class="l">経営指標</th><th>第93期実績<br>（2025年度）</th><th>2028年度目標</th><th>必要な3年CAGR<br>（本レポート算出）</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高</td><td>77.99億円</td><td>78億円</td><td><b>ほぼ 0%</b></td></tr>
+<tr><td class="l">営業利益</td><td>9.25億円</td><td>11億円（利益率14%）</td><td>+5.9%</td></tr>
+<tr><td class="l">純利益</td><td>7.24億円</td><td>7.8億円</td><td>+2.5%</td></tr>
+<tr><td class="l">ROE</td><td>8.9%</td><td>8.0%</td><td><b>実績が既に目標超</b></td></tr>
+<tr><td class="l">配当性向</td><td>13.7%</td><td>20%</td><td>―</td></tr>
+</tbody></table>
+<p class="small">3年CAGRは第93期実績から2028年度目標への年平均成長率として本レポートで算出（推計値・保証なし）。<span class="src">[③] 第2【事業の状況】1(2)3.(3)(4)</span></p>
+
+<blockquote>
+「水素社会を目指す動きに遅れが見られることから、26中計期間中の本体売上の伸長は望めないと想定されるため、アフターサービスを伸ばし利益の積み上げを行い、『KAJI 2030VISION』における営業利益目標11億円の２年前倒しでの達成を目指します。」
+<span class="src">有報原文 [③] 第2【事業の状況】1(2)3.(3)</span>
+</blockquote>
+
+<div class="card warn">
+<h4>この数値計画から読める経営者の世界観</h4>
+<ul>
+<li><b>トップラインの成長を3年間放棄している</b>：売上目標78億円は当期実績77.99億円と実質同額。経営者は「水素社会の動きの遅れ」を理由に、本体売上の伸長を期待していないと明言している <span class="tag t-f">事実</span>。中期計画で売上横ばいを公式に掲げる会社は多くなく、これは相当に保守的な前提である <span class="tag t-i">解釈</span></li>
+<li><b>利益は「積み上げ」で作る設計</b>：売上横ばいのまま営業利益を9.25億→11億円（+18.9%）に伸ばすには、<b>営業利益率を11.9%→14%へ2.1ポイント改善</b>する必要がある <span class="tag t-i">解釈</span>。利益率の高いASの構成比引き上げと原価低減がその原資になる設計だが、当期のAS成長率は+2.9%にとどまる <span class="tag t-f">事実</span>。中計の成否は<b>AS成長率をどこまで加速できるか</b>にほぼ一点で懸かる <span class="tag t-i">解釈</span></li>
+<li><b>ROE目標8.0%は実績8.9%より低い</b> <span class="tag t-f">事実</span>。純利益7.8億円（+7.7%）に対し自己資本は毎期の内部留保で増え続けるため、目標を8.0%に置くのは算術的に整合的だが、<b>「資本効率経営の推進」を戦略に掲げながら資本効率の目標が現状より低い</b>という構図になっている <span class="tag t-i">解釈</span>。自己資本比率68.9%という財務余力を踏まえると、資本効率の改善余地は分子（利益）よりも分母（自己資本の使い方）にある <span class="tag t-i">解釈</span></li>
+<li><b>唯一の明確な株主還元強化は配当性向20%</b>（現状13.7%） <span class="tag t-f">事実</span>。第93期実績ベースで単純適用すれば配当総額は約99百万円→約145百万円規模になる（本レポート試算・推計値） <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<h3>6. 経営環境認識の具体性</h3>
+<blockquote>
+「当事業年度におけるわが国経済は、雇用・所得環境の改善を背景に景気は緩やかな回復基調で推移した一方、米国の関税引き上げ政策や日中関係悪化、イラン情勢緊迫化等の中東をはじめとした地政学リスクの高まりなど、景気の下振れリスクに対する警戒感から、先行きは不透明な状況が続いた１年となりました。」<br>
+「日銀短観(2026年３月調査)による2025年度の設備投資計画(全規模・全産業)では、前年比7.9％増と前回調査時(8.5％増)からやや下方修正されているものの、例年と比べると下方修正幅は小さく、堅調な投資計画は維持されているものと考えられます。」
+<span class="src">有報原文 [③] 第2【事業の状況】4(1)①</span>
+</blockquote>
+<div class="card note">
+<p>前段はマクロの定型記述だが、後段は<b>日銀短観という固有の出典と数値（7.9%増／前回8.5%増）を挙げて、自社の受注環境に直結する「顧客の設備投資動向」を語っている</b> <span class="tag t-f">事実</span>。事業等のリスク(3)「設備投資動向に係るリスク」と対応しており、<b>経営者がどの外部変数を見ているかが特定できる</b>点で、定型文とは区別できる記述である <span class="tag t-i">解釈</span>。一方、当社の主戦場である水素ステーション市場については「普及の遅れ」「水素社会を目指す動きに遅れが見られる」と述べるのみで、<b>基数・普及台数・政策動向などの具体的な数値は一切示されていない</b> <span class="tag t-f">事実</span>。最も重要な市場についての環境認識が最も定性的である <span class="tag t-i">解釈</span>。</p>
+</div>
+</section>
+
+<!-- ============ Ⅴ ============ -->
+<section id="s5">
+<h2 class="sec">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+<p class="small">人的資本に関する記述はⅢ章に統合済み。本章では戦略接続と検証可能性の2軸に絞る。<span class="src">[③] 第2【事業の状況】2 サステナビリティに関する考え方及び取組</span></p>
+
+<h3>1. 記載の全体像</h3>
+<div class="card">
+<p>当社のサステナビリティ章は<b>ガバナンス／リスク管理／戦略・指標及び目標／人的資本関係</b>の4部構成 <span class="tag t-f">事実</span>。うち「戦略、指標及び目標」は独立した記述を持たず、次の一文で経営計画の章を参照するのみである <span class="tag t-f">事実</span>。</p>
+<blockquote>
+「『第２ 事業の状況 １〔経営方針、経営環境及び対処すべき課題等〕（２）中長期的な会社の経営戦略及び対処すべき課題等 ３．新中期経営計画（2026年度～2028年度）の策定』をご参照ください。」
+<span class="src">有報原文 [③] 第2【事業の状況】2(3)</span>
+</blockquote>
+</div>
+
+<h3>2. 軸① 戦略接続 ― 本文と結びついているか</h3>
+<div class="card ok">
+<p><b>結論：接続している。むしろサステナビリティ章が経営計画章に吸収されている。</b> <span class="tag t-i">解釈</span></p>
+<ul>
+<li>当社の長期ビジョンそのものが<b>「超高圧技術でカーボンニュートラル社会の実現に貢献する」</b>であり、事業内容（水素ステーション向け圧縮機・CNG・ガス回収装置）と脱炭素が事実として一致している <span class="tag t-f">事実</span>。多くの企業で見られる「本業と関係のない浮いたサステナ章」にはなっていない <span class="tag t-i">解釈</span></li>
+<li>サステナビリティのガバナンス体制も、専門委員会を新設せず<b>経営会議→取締役会という通常の意思決定ラインをそのまま使う</b>と明記 <span class="tag t-f">事実</span>。四半期ごとに中計の前提としたサステナビリティ関連状況の変化を確認・評価・管理する、と手続まで記述されている <span class="tag t-f">事実</span></li>
+<li>ただし(1)ガバナンスの記述は「『2023中期経営計画』にまとめ」とあり、<b>26中計への更新が反映されていない</b>（同じ有報の別章では26中計が策定済みと記載） <span class="tag t-f">事実</span>。章間の更新漏れと推定される <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<h3>3. 軸② 検証可能性 ― 目標に期限と実績があるか</h3>
+<table>
+<thead><tr><th class="l">領域</th><th class="l">目標</th><th class="l">期限</th><th class="l">実績開示</th><th class="l">検証可能性</th></tr></thead>
+<tbody>
+<tr><td class="l">人的資本（研修）</td><td class="l">一人当たり年間受講時間 7.5時間</td><td class="l">2025年</td><td class="l">7.8時間</td><td class="l">○（ただし分母定義が本表と不一致）</td></tr>
+<tr><td class="l">気候変動・GHG排出量</td><td class="l">記載なし</td><td class="l">―</td><td class="l">なし</td><td class="l">×</td></tr>
+<tr><td class="l">TCFD提言に沿った開示</td><td class="l">記載なし</td><td class="l">―</td><td class="l">なし</td><td class="l">×</td></tr>
+<tr><td class="l">環境（ISO14001以外）</td><td class="l">記載なし</td><td class="l">―</td><td class="l">なし</td><td class="l">×</td></tr>
+</tbody></table>
+
+<div class="card warn">
+<h4>沈黙も情報：脱炭素を掲げる会社が、自社の排出については何も書いていない</h4>
+<p>当社は長期ビジョンの中核に「カーボンニュートラル社会の実現に貢献」を据えているが、<b>Scope1/2/3のGHG排出量、削減目標、TCFDに基づくシナリオ分析はいずれも有報に記載がない</b> <span class="tag t-f">事実</span>。サステナビリティ章の「指標及び目標」で提示されるのは研修受講時間のみである <span class="tag t-f">事実</span>。</p>
+<p>これをどう評価するかは分かれる <span class="tag t-i">解釈</span>：</p>
+<ul>
+<li><b>擁護側の見方</b>：当社は炭素集約的な装置産業ではなく（有形固定資産32.3億円、従業員207名、単一工場）、規制リスクも直接的ではない。むしろ<b>顧客の脱炭素を助ける供給側</b>に位置するため、自社排出の重要性は相対的に低い <span class="tag t-i">解釈</span>。プライム市場ではなくスタンダード市場上場であり、TCFD相当の開示は法的に要求されていない <span class="tag t-f">事実</span></li>
+<li><b>批判側の見方</b>：「カーボンニュートラル」を企業アイデンティティの中心に置きながら自社の炭素フットプリントを開示しないのは、語りと検証可能性の不整合である <span class="tag t-i">解釈</span></li>
+</ul>
+<p>本レポートの立場としては、<b>当社の投資論点において気候関連開示の欠落は重大な減点要因ではない</b>（プレイブックの「炭素集約的・規制リスク大の業種のみ深掘り」に従う）が、<b>水素市場の政策依存度を測る材料が有報から得られない</b>点は論点として残る <span class="tag t-i">解釈</span>。</p>
+</div>
+</section>
+
+<!-- ============ Ⅵ ============ -->
+<section id="s6">
+<h2 class="sec">Ⅵ. 事業等のリスク（＋経営上の重要な契約等）</h2>
+<p class="small">当期の有報が掲げるリスクは<b>8項目</b>。前年度との増減比較は行わず、当期単体で仕分ける。<span class="src">[③] 第2【事業の状況】3 事業等のリスク</span></p>
+
+<h3>1. 固有／定型の仕分け</h3>
+<table>
+<thead><tr><th class="l">#</th><th class="l">リスク項目</th><th class="l">分類</th><th class="l">固有性の根拠</th></tr></thead>
+<tbody>
+<tr><td>(1)</td><td class="l">材料価格高騰</td><td class="l"><b>準固有</b></td><td class="l">「鋼材」と具体的な原材料名を特定。個別受注・長納期のため価格転嫁のラグが構造的</td></tr>
+<tr><td>(2)</td><td class="l">品質問題</td><td class="l"><b>固有</b></td><td class="l">ISO9001体制を明示。26中計で「品質プロセス改革」を第一の矢の戦略②に格上げしており、社内的に重い課題と読める</td></tr>
+<tr><td>(3)</td><td class="l">設備投資動向</td><td class="l"><b>固有</b></td><td class="l">「顧客となる企業の設備投資状況に影響を受ける」＝資本財メーカー特有の景気連動性</td></tr>
+<tr><td>(4)</td><td class="l">製品販売価格</td><td class="l"><b>固有</b></td><td class="l">「他社との競合により受注価格の下落を招く場合もあり」と競争劣位を自認</td></tr>
+<tr><td>(5)</td><td class="l">製品に係るリスク（PL）</td><td class="l"><b>固有</b></td><td class="l">高圧ガス保安法に基づく圧縮機＝事故時の物理的被害が大きい製品特性</td></tr>
+<tr><td>(6)</td><td class="l">人材の確保・育成</td><td class="l"><b>準固有</b></td><td class="l">「機械加工・研磨・切削等の精緻な技術力」＝技能承継リスクを具体的に記述</td></tr>
+<tr><td>(7)</td><td class="l">情報システム</td><td class="l"><b>定型</b></td><td class="l">対策記述もPC・サーバーの脆弱性対策等の一般論</td></tr>
+<tr><td>(8)</td><td class="l">自然災害等</td><td class="l"><b>定型</b></td><td class="l">安否確認システム・災害対応マニュアル等の一般論</td></tr>
+</tbody></table>
+<p><b>件数：固有4件（50%）／準固有2件（25%）／定型2件（25%）</b>。<b>全8項目に共通して「現時点において重大な影響を及ぼす見込みはない／重大な不具合等は把握していない／これまで当該事象が発生したことはない」という打ち消し文が付されている</b> <span class="tag t-f">事実</span>。リスクを列挙しつつ、そのすべてを「今は問題ない」で締める構成であり、<b>リスクの相対的な重み付け（発生可能性・影響度）は一切示されていない</b> <span class="tag t-i">解釈</span>。</p>
+
+<h3>2. 固有リスクの深掘り</h3>
+
+<div class="card warn">
+<h4>(2)(4) 品質・受注価格リスク ← 財務数値と照合すると開示が薄い</h4>
+<p>有報は「現時点においては、重大な不具合等は把握しておりません」と記す <span class="tag t-f">事実</span>。しかし財務諸表側では：</p>
+<ul>
+<li><b>受注損失引当金 64,300千円 → 79,500千円（+23.6%）</b>、うち圧縮機本体 44,700千円 → <b>67,800千円（+51.7%）</b> <span class="tag t-f">事実</span></li>
+<li>当期の受注損失引当金の動き：期首64,300 → 増加54,000 → 減少（目的使用）38,800 → 期末79,500 <span class="tag t-f">事実</span>。<b>当期中に新たに54,000千円の将来損失を認識している</b></li>
+<li>製品保証引当金は 40,350千円 → 35,511千円（洗替）で微減 <span class="tag t-f">事実</span></li>
+<li>貸倒引当金は 20,600千円 → <b>26,500千円（+28.6%）</b>に増加 <span class="tag t-f">事実</span></li>
+</ul>
+<p><b>矛盾の指摘：</b>「重大な不具合等は把握しておりません」という定性記述と、本体案件の受注損失引当金が5割増えているという定量事実は、少なくとも<b>整合的とは言い難い</b> <span class="tag t-i">解釈</span>。受注損失引当金は品質不具合そのものではなく「総原価が受注価格を上回る見込み」を意味するため、直接には(4)製品販売価格リスクまたは原価見積り精度の問題である <span class="tag t-i">解釈</span>。いずれにせよ<b>リスク章では言及されず、財務諸表と監査報告書（KAM）でのみ可視化されている</b>点は、リスク開示の過小性として指摘できる <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>(3) 設備投資動向リスク ← 受注データが既にリスクの顕在化を示唆</h4>
+<ul>
+<li>受注高 7,501,468千円（前期比 <b>△10.7%</b>）／受注残高 5,823,263千円（<b>△4.9%</b>） <span class="tag t-f">事実</span></li>
+<li>残存履行義務のうち<b>1年以内</b>：4,487,014千円 → <b>3,951,089千円（△11.9%）</b> <span class="tag t-f">事実</span></li>
+<li>1年超2年以内：254,314千円 → 1,872,174千円（大幅増）／2年超：1,380,000千円 → <b>0</b> <span class="tag t-f">事実</span></li>
+</ul>
+<p><b>解釈：</b>受注残の総額はほぼ維持されているが、<b>期近（1年以内）の収益認識予定額が約12%減り、中期（1〜2年）へシフトしている</b> <span class="tag t-i">解釈</span>。翌期の売上が当期を下回る可能性を示唆する構造であり、26中計が売上横ばい前提であることと整合する <span class="tag t-i">解釈</span>。また2年超の残高がゼロになったことは、<b>超長納期の大型案件が当期中に消化され、後継案件がまだ受注できていない</b>ことを意味する <span class="tag t-i">解釈</span>。リスク(3)は「今後の設備投資動向を把握し」という一般論で締められており、この受注データの含意には触れていない <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>リスク章に記載がないが、財務諸表から読める重要リスク（過小開示の指摘）</h4>
+<ol>
+<li><b>顧客集中リスク</b>：岩谷瓦斯株式会社への売上が 617,632千円（8.8%）→ <b>1,175,961千円（15.1%）</b>へ急増し、当期は「損益計算書の売上高の10%以上を占める相手先」として初めて主要顧客注記に登場した <span class="tag t-f">事実</span>。前期は該当先なしで注記省略されていた <span class="tag t-f">事実</span>。<b>事業等のリスクに顧客集中・特定顧客依存の項目は存在しない</b> <span class="tag t-f">事実</span>。単一顧客が売上の15%を占める状態は、資本財メーカーとして開示に値するリスクである <span class="tag t-i">解釈</span></li>
+<li><b>親会社依存・支配株主リスク</b>：議決権51.38%、余剰資金800百万円の預託 <span class="tag t-f">事実</span>。<b>事業等のリスクに親会社関連の項目は存在しない</b> <span class="tag t-f">事実</span>。上場子会社としての利益相反リスクは【事業の内容】とガバナンス章で扱われるが、リスク章には置かれていない <span class="tag t-i">解釈</span></li>
+<li><b>水素市場の政策・普及リスク</b>：経営計画章では「水素社会を目指す動きに遅れ」と明記しているにもかかわらず <span class="tag t-f">事実</span>、<b>事業等のリスクには水素市場・政策変更・補助金依存に関する項目がない</b> <span class="tag t-f">事実</span>。当社の営業外収益には助成金収入が計上され、144,800千円（前期）→ 48,637千円（当期）と<b>96百万円減少</b>している <span class="tag t-f">事実</span>。NEDOグリーンイノベーション基金事業（2026年12月実証完了予定）の終了は翌々期以降の営業外収益に影響し得るが、リスクとしては開示されていない <span class="tag t-i">解釈</span></li>
+<li><b>為替リスク</b>：海外売上比率14.7%（1,150百万円） <span class="tag t-f">事実</span>にもかかわらず、為替変動リスクの記載はない <span class="tag t-f">事実</span>。取引通貨が円建てである可能性もあるが、有報からは判断できない <span class="tag t-c">要確認</span></li>
+</ol>
+</div>
+
+<h3>3. 経営上の重要な契約等（第2-5）</h3>
+<div class="card">
+<blockquote>
+「該当事項はありません。」
+<span class="src">有報原文 [③] 第2【事業の状況】5 重要な契約等</span>
+</blockquote>
+<p>記載なし <span class="tag t-f">事実</span>。ただし当社は 2015年1月に三井造船（現・三井E&amp;S）と<b>資本業務提携契約を締結</b>している旨を沿革に記載しており <span class="tag t-f">事実</span>、当該契約が現在も有効か、TOBによる子会社化（2017年3月）で失効・置換されたかは<b>有報からは判断できない</b> <span class="tag t-c">要確認</span>。また NEDO助成金事業（H2-YESコンソーシアム）は研究開発章に記載されるが、契約条件・成果物の帰属・返還条項は開示されていない <span class="tag t-c">要確認</span>。</p>
+<p>なお、有報提出直前の2026年6月12日に会社が「支配株主等に関する事項について」を適時開示している <span class="tag t-w">web/② 会社公式IRページ「適時開示情報」</span>。内容は本レポートの一次情報範囲外のため、確認が必要 <span class="tag t-c">要確認</span>。</p>
+</div>
+</section>
+
+<!-- ============ Ⅶ ============ -->
+<section id="s7">
+<h2 class="sec">Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+
+<h3>1. 業績事実の要約</h3>
+<table>
+<thead><tr><th class="l">損益計算書（千円）</th><th>第92期</th><th>第93期</th><th>増減率</th><th class="l">有報が示す要因</th></tr></thead>
+<tbody>
+<tr><td class="l">売上高</td><td>7,003,943</td><td>7,799,533</td><td>+11.4%</td><td class="l">水素モビリティ・カーボンニュートラル関連の大口案件が複数、本体販売が堅調＋AS好調</td></tr>
+<tr><td class="l">売上原価</td><td>4,968,769</td><td>5,387,996</td><td>+8.4%</td><td class="l">―</td></tr>
+<tr><td class="l"><b>売上総利益</b></td><td>2,035,174</td><td>2,411,537</td><td><b>+18.5%</b></td><td class="l">売上増＋原価低減の推進（粗利率 29.1%→30.9%）</td></tr>
+<tr><td class="l">販売費及び一般管理費</td><td>1,415,097</td><td>1,486,099</td><td>+5.0%</td><td class="l">賃上げに伴う人件費の増加等</td></tr>
+<tr><td class="l"><b>営業利益</b></td><td>620,076</td><td>925,437</td><td><b>+49.2%</b></td><td class="l">上記の差分</td></tr>
+<tr><td class="l">営業外収益</td><td>157,279</td><td>65,620</td><td>△58.3%</td><td class="l">助成金収入 144,800→48,637千円</td></tr>
+<tr><td class="l">営業外費用</td><td>7,850</td><td>13,242</td><td>+68.7%</td><td class="l">支払利息 7,282→11,437千円</td></tr>
+<tr><td class="l"><b>経常利益</b></td><td>769,505</td><td>977,815</td><td><b>+27.1%</b></td><td class="l">助成金減で営業利益の伸びより鈍化</td></tr>
+<tr><td class="l">特別利益</td><td>2,600</td><td>37,882</td><td>―</td><td class="l">損害賠償収入37,882千円（2025年7月22日公表の訴訟勝訴）</td></tr>
+<tr><td class="l">税引前当期純利益</td><td>768,249</td><td>1,015,697</td><td>+32.2%</td><td class="l">―</td></tr>
+<tr><td class="l">法人税等合計</td><td>189,333</td><td>292,036</td><td>+54.2%</td><td class="l">実効税率 24.6%→28.8%（本レポート算出）</td></tr>
+<tr><td class="l"><b>当期純利益</b></td><td>578,915</td><td>723,661</td><td><b>+25.0%</b></td><td class="l">―</td></tr>
+</tbody></table>
+
+<div class="chart"><canvas id="chPL" height="120"></canvas></div>
+
+<div class="card note">
+<h4>利益の質を段階で見ると、「営業利益+49.2%」ほど下は伸びていない</h4>
+<p>営業利益は+49.2%だが、経常利益は+27.1%、当期純利益は+25.0%と、<b>下に行くほど伸びが小さくなる</b> <span class="tag t-f">事実</span>。理由は明確で、<b>①前期に144,800千円あった助成金収入が48,637千円に減った</b>（＝前期の経常利益を約1.4億円押し上げていた一過性収益の剥落）、<b>②総合組立工場の借入に伴う支払利息が増えた</b>、<b>③実効税率が24.6%→28.8%に上昇した</b>ため <span class="tag t-i">解釈</span>。</p>
+<p>逆に言えば、<b>前期（第92期）の経常利益769,505千円は助成金144,800千円を含んでおり、本業由来ではない部分が18.8%あった</b> <span class="tag t-i">解釈</span>。営業利益ベースで比較する（620,076→925,437）ほうが実態を捉えている <span class="tag t-i">解釈</span>。また当期の当期純利益723,661千円にも、訴訟勝訴による損害賠償収入37,882千円という一過性利益が含まれる <span class="tag t-f">事実</span>。</p>
+</div>
+
+<h3>2. 生産・受注・販売の実績</h3>
+<table>
+<thead><tr><th class="l">項目（圧縮機事業・単一セグメント）</th><th>金額（千円）</th><th>前年同期比</th></tr></thead>
+<tbody>
+<tr><td class="l">生産高（販売価格ベース）</td><td>7,317,232</td><td>+4.3%</td></tr>
+<tr><td class="l">受注高</td><td>7,501,468</td><td><b>△10.7%</b></td></tr>
+<tr><td class="l">受注残高</td><td>5,823,263</td><td><b>△4.9%</b></td></tr>
+<tr><td class="l">販売高</td><td>7,799,533</td><td>+11.4%</td></tr>
+<tr><td class="l">うち岩谷瓦斯株式会社</td><td>1,175,961</td><td>構成比 15.1%（前期 8.8%）</td></tr>
+</tbody></table>
+<div class="card warn">
+<p><b>3つの数字が同時に示すもの：</b>販売高（+11.4%）＞生産高（+4.3%）＞受注高（△10.7%） <span class="tag t-f">事実</span>。販売が生産を上回ったのは<b>仕掛品の取り崩し</b>で説明でき、実際に仕掛品は1,680,977千円→1,276,945千円（<b>△404百万円</b>）と大きく減っている <span class="tag t-f">事実</span>。つまり<b>当期の増収の一部は「作り置きの在庫を売った」ことによる</b> <span class="tag t-i">解釈</span>。生産・受注が伸びていない以上、この構図は翌期以降は繰り返せない <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>3. 財政状態</h3>
+<div class="grid2">
+<div class="card">
+<h4>資産側の変化（総資産 11,559→12,301百万円、+741百万円）</h4>
+<ul>
+<li>現金及び預金 +898,612千円（1,672→2,571百万円） <span class="tag t-f">事実</span></li>
+<li>電子記録債権 +542,019千円（664→1,206百万円） <span class="tag t-f">事実</span></li>
+<li>売掛金 +156,916千円 <span class="tag t-f">事実</span></li>
+<li>仕掛品 △404,032千円 <span class="tag t-f">事実</span></li>
+<li>預け金（親会社） △299,999千円（1,100→800百万円） <span class="tag t-f">事実</span></li>
+<li>有形固定資産 △204,823千円（減価償却が投資を大きく上回る） <span class="tag t-f">事実</span></li>
+<li>繰延税金資産 +95,163千円（450→545百万円） <span class="tag t-f">事実</span></li>
+</ul>
+</div>
+<div class="card">
+<h4>負債・純資産側（負債 3,741→3,826百万円、+84百万円）</h4>
+<ul>
+<li>電子記録債務 △374,771千円 <span class="tag t-f">事実</span></li>
+<li>未払法人税等 +154,132千円／未払消費税等 +172,874千円 <span class="tag t-f">事実</span></li>
+<li>契約負債（前受金） +144,854千円（大口案件の前受金受領） <span class="tag t-f">事実</span></li>
+<li>賞与引当金 +138,253千円（223→362百万円） <span class="tag t-f">事実</span></li>
+<li>長期借入金 △78,924千円（約定返済） <span class="tag t-f">事実</span></li>
+<li>退職給付引当金 △37,903千円 <span class="tag t-f">事実</span></li>
+<li>純資産 +656,812千円（当期純利益723,661－配当66,174） <span class="tag t-f">事実</span></li>
+</ul>
+</div>
+</div>
+
+<h3>4. キャッシュ・フローの質</h3>
+<table>
+<thead><tr><th class="l">キャッシュ・フロー（千円）</th><th>第92期</th><th>第93期</th></tr></thead>
+<tbody>
+<tr><td class="l">営業活動によるCF</td><td>542,206</td><td><b>1,027,001</b></td></tr>
+<tr><td class="l">投資活動によるCF</td><td>△245,745</td><td>△479,383</td></tr>
+<tr><td class="l">財務活動によるCF</td><td>△148,335</td><td>△149,006</td></tr>
+<tr><td class="l">現金及び現金同等物 期末残高</td><td>1,672,461</td><td>2,071,073</td></tr>
+</tbody></table>
+<div class="card ok">
+<p><b>営業CFの内訳（有報記載）</b> <span class="tag t-f">事実</span>：税引前当期純利益 1,015,697千円＋減価償却費 299,000千円＋棚卸資産の減少額 437,000千円 － 売上債権の増加額 729,000千円。</p>
+<p><b>質の評価：</b>営業CF 1,027百万円は当期純利益 724百万円の<b>1.42倍</b>（本レポート算出） <span class="tag t-i">解釈</span>。利益がキャッシュを伴っており、質は良好と言える <span class="tag t-i">解釈</span>。ただし内訳を見ると、<b>プラス寄与437百万円は棚卸資産（仕掛品）の取り崩しによるもの</b>であり、これは在庫水準の正常化に伴う一時的な資金流入である <span class="tag t-i">解釈</span>。棚卸資産合計は 2,010,630千円 → 1,573,484千円（△21.7%）まで縮んでおり、翌期以降に同規模の取り崩し余地は小さい <span class="tag t-i">解釈</span>。一方で売上債権は729百万円増えており、<b>運転資本の構成が「在庫」から「債権」へ入れ替わった</b>と読める <span class="tag t-i">解釈</span>。</p>
+<p><b>投資CFの中身：</b>△479百万円のうち、有形固定資産の取得は243百万円、<b>定期預金の増加が500百万円</b>、預け金の減少（親会社からの回収）が+300百万円 <span class="tag t-f">事実</span>。<b>実質的な事業投資は243百万円にとどまり、投資CFの大部分は資金の置き場所の移動</b>である <span class="tag t-i">解釈</span>。親会社預け金を減らして自社の定期預金を増やしたことになり、<b>親会社への資金依存を能動的に下げた動き</b>とも読める <span class="tag t-i">解釈</span>（有報にこの意図の説明はない <span class="tag t-c">要確認</span>）。</p>
+</div>
+
+<h3>5. 資本の財源及び資金の流動性（経営者の説明）</h3>
+<blockquote>
+「当社は、運転資金及び設備資金の調達につきましては、基本的には営業活動によるキャッシュ・フローを財源としますが、設備投資等の比較的大きな資金需要に対応する場合は、余剰資金もしくは金融機関からの借入によって対応する方針です。資金調達を行う際は、期間や市場金利等、また自己資本比率、ROEといった財務指標への影響度を総合的に判断しながら、最適な調達を実施します。」<br>
+「余剰資金は親会社である株式会社三井E&amp;Sに対する預け金や安全性の高い金融資産で運用しております。また、金融機関からの有利子負債について、その主な利用用途は2022年度に竣工した総合組立工場の建設資金であり、当事業年度末における残高は1,286百万円となります。」
+<span class="src">有報原文 [③] 第2【事業の状況】4(2)②</span>
+</blockquote>
+<div class="card note">
+<p><b>説明の実質性：</b>「自己資本比率、ROEといった財務指標への影響度を総合的に判断」という記述は方針としては具体的だが、目標水準（例：ネットD/Eレシオ、最適自己資本比率）は示されていない <span class="tag t-f">事実</span>。有利子負債の使途を<b>「2022年度に竣工した総合組立工場の建設資金」と特定して開示している点は実質的</b>である <span class="tag t-i">解釈</span>。返済期限は2042年5月で、年間約79百万円の約定返済が18年続く <span class="tag t-f">事実</span>。平均利率1.2%（長期借入金） <span class="tag t-f">事実</span>。</p>
+<p><b>財務の余裕度（本レポート算出・推計値／保証なし）</b>：現金及び預金 2,571百万円＋預け金 800百万円＝手元流動性 3,371百万円に対し有利子負債合計 1,296百万円。<b>ネットキャッシュは約2,075百万円</b>。J-Quants基準日（2026-07-17）の時価総額71億円 <span class="tag t-f">事実</span> <span class="src">[⑤]</span> に対して<b>約29%</b>に相当する <span class="tag t-i">解釈</span>。流動比率は386%（8,242÷2,135） <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>6. 経営者が使う指標 ― 経営の関心の所在</h3>
+<div class="card">
+<p>有報全体を通じて経営者が繰り返し用いる指標は次のとおり <span class="tag t-f">事実</span>：</p>
+<ul>
+<li><b>中計の経営目標</b>：売上高／営業利益（および営業利益率）／純利益／ROE／配当性向</li>
+<li><b>役員報酬の業績連動指標</b>：<b>売上高：経常利益：純利益＝20：40：40</b> の加重、および当期純利益（賞与相当報酬の閾値200百万円）</li>
+<li><b>MD&amp;Aで語られる指標</b>：売上高、売上総利益、販管費、営業利益、経常利益、当期純利益、総資産、負債、純資産、自己資本比率、営業/投資/財務CF、現金同等物残高</li>
+</ul>
+<p><b>解釈：</b>経営者の関心は<b>P/L（特に利益額）と自己資本比率に集中</b>しており、<b>ROIC・資本コスト・在庫回転・受注採算といった資本効率／案件採算の指標は経営目標にも報酬指標にも登場しない</b> <span class="tag t-i">解釈</span>。26中計で「資本効率経営の推進」を掲げながら、ROE 8.0%以外の資本効率指標が提示されていないのはこの構造と整合する <span class="tag t-i">解釈</span>。また役員報酬の業績連動が<b>経常利益と純利益に80%のウェイト</b>を置くため、助成金・特別利益といった非経常項目も報酬に反映される設計になっている <span class="tag t-i">解釈</span>。</p>
+</div>
+</section>
+
+<!-- ============ Ⅷ ============ -->
+<section id="s8">
+<h2 class="sec">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+
+<h3>Ⅷ-a. 設備の状況</h3>
+<p class="small">当社の有形固定資産は3,234百万円（総資産の26.3%）。装置産業としては中程度の資産集約度であり、本節は<b>拡張／維持の判定</b>に絞る。<span class="src">[③] 第3【設備の状況】／第5【経理の状況】有形固定資産等明細表</span></p>
+
+<blockquote>
+「当事業年度の設備投資は、主として生産設備やシステム関連の更新・増強等を図るために実施いたしました。当事業年度の設備投資総額（無形固定資産含む）は63百万円であります。」<br>
+「３【設備の新設、除却等の計画】　該当事項はありません。」
+<span class="src">有報原文 [③] 第3【設備の状況】1・3</span>
+</blockquote>
+
+<div class="kpi">
+  <div><span class="k">設備投資総額（有報記載）</span><span class="v">63百万円</span><span class="s">無形固定資産含む</span></div>
+  <div><span class="k">減価償却費（有形＋無形）</span><span class="v">299百万円</span><span class="s">有形266,960＋無形32,273千円</span></div>
+  <div><span class="k">投資／償却 比率</span><span class="v">21.1%</span><span class="s">本レポート算出・推計値</span></div>
+  <div><span class="k">設備投資計画</span><span class="v">記載なし</span><span class="s">「該当事項はありません」</span></div>
+</div>
+
+<div class="card warn">
+<h4>判定：拡張ではなく、維持水準すら下回る</h4>
+<p>設備投資63百万円に対し減価償却費は299百万円 <span class="tag t-f">事実</span>。<b>投資は償却の約21%にとどまり、有形固定資産は3,439百万円→3,234百万円へ205百万円減少</b>した <span class="tag t-f">事実</span>。純粋な会計上の判定としては<b>「縮小」局面</b>である <span class="tag t-i">解釈</span>。</p>
+<p><b>ただし、この数字の読み方には注意が必要</b> <span class="tag t-i">解釈</span>：</p>
+<ul>
+<li>2022年度に総合組立工場を竣工しており、<b>大型投資の直後の谷</b>にあたる可能性が高い（借入金1,286百万円がその建設資金である旨を有報が明記） <span class="tag t-f">事実</span>／<span class="tag t-i">解釈</span></li>
+<li>有形固定資産等明細表では当期増加額125,577千円（うち建設仮勘定63,162千円）＋無形41,167千円＝計166,744千円 <span class="tag t-f">事実</span>。有報本文の「63百万円」との差は、建設仮勘定の振替（63,407千円が当期減少）等の集計基準の違いによると推定される <span class="tag t-i">解釈</span>。<b>いずれの基準でも償却額299百万円を大きく下回る</b> <span class="tag t-i">解釈</span></li>
+<li>キャッシュ・フロー計算書上の「有形固定資産の取得による支出」は243百万円 <span class="tag t-f">事実</span>。この基準でも償却額を下回る <span class="tag t-i">解釈</span></li>
+</ul>
+<p><b>Ⅳ章・Ⅶ章との接続：</b>26中計は「製造業としての強固な事業基盤づくりに集中し、基礎体力をつける期間」と位置づけている <span class="tag t-f">事実</span>。しかし<b>【設備の新設、除却等の計画】は「該当事項はありません」</b>であり、その基盤づくりを裏づける具体的な設備投資計画は有報上に存在しない <span class="tag t-f">事実</span>。営業CFが1,027百万円あり財務余力は十分にある中で <span class="tag t-f">事実</span>、<b>「基礎体力をつける」の中身が設備ではなく人材・仕組み・DX側にあるのか、単に投資計画が未確定なのかは有報からは判断できない</b> <span class="tag t-c">要確認</span>。決算説明資料または中期経営計画の説明資料での確認が必要 <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<h4>主要な設備（2026年3月31日現在）</h4>
+<table>
+<thead><tr><th class="l">事業所</th><th class="l">設備の内容</th><th>建物及び構築物</th><th>機械装置</th><th>土地（面積㎡）</th><th>ソフトウェア</th><th>その他</th><th>合計（千円）</th><th>従業員</th></tr></thead>
+<tbody>
+<tr><td class="l">本社・工場<br>（大阪府堺市美原区）</td><td class="l">圧縮機の製造・組立及び販売・管理</td><td>2,248,525</td><td>440,041</td><td>447,525<br>(33,295)</td><td>28,172</td><td>89,198</td><td><b>3,253,463</b></td><td>180名</td></tr>
+<tr><td class="l">東京支社<br>（東京都江戸川区）</td><td class="l">販売及び保守サービス</td><td>8,984</td><td>10</td><td>―</td><td>1,740</td><td>2,870</td><td>13,606</td><td>27名</td></tr>
+</tbody></table>
+<p class="small"><b>設備の99.6%が本社・工場に集中している</b> <span class="tag t-i">解釈</span>。土地33,295㎡・簿価447,525千円は簿価が低く（1㎡あたり約13,400円）、取得が古いことを示す <span class="tag t-i">解釈</span>。<b>単一拠点に生産機能が集中しているため、自然災害リスク（リスク(8)）は分散されていない</b> <span class="tag t-i">解釈</span>。建物の簿価2,182百万円のうち相当部分が2022年竣工の総合組立工場と推定され、償却累計額966,962千円／取得価額3,149,846千円＝償却率30.7%と<b>建物としては比較的新しい</b> <span class="tag t-i">解釈</span>。一方、機械及び装置は償却率74.0%（1,253,142÷1,693,193）と<b>相当に償却が進んでいる</b> <span class="tag t-i">解釈</span>。</p>
+
+<h3>Ⅷ-b. 研究開発活動</h3>
+<div class="kpi">
+  <div><span class="k">試験研究費（第93期）</span><span class="v">276百万円</span><span class="s">前期 269百万円（+2.7%）</span></div>
+  <div><span class="k">対売上高比率</span><span class="v">3.54%</span><span class="s">前期 3.84%（本レポート算出）</span></div>
+  <div><span class="k">計上区分</span><span class="v">販管費</span><span class="s">損益計算書 販管費内訳「試験研究費」</span></div>
+  <div><span class="k">セグメント</span><span class="v">圧縮機事業のみ</span><span class="s">単一セグメント</span></div>
+</div>
+
+<div class="card">
+<h4>研究開発テーマの具体性（有報記載の2テーマ）</h4>
+<p><b>① 大規模P2Gシステム用水素圧縮機等開発</b> <span class="tag t-f">事実</span></p>
+<ul>
+<li>2021年度より山梨県企業局を幹事とするコンソーシアム「やまなし・ハイドロジェン・エネルギー・ソサエティ（H2-YES）」の一員として参画</li>
+<li>グリーンイノベーション基金事業におけるNEDOの助成金事業に採択（2021年9月〜）</li>
+<li>当期は当社担当の<b>水素圧縮機・除湿器を山梨県北杜市の実証サイトに納入し、現地据付工事・運転試験を実施</b></li>
+<li><b>2026年12月の実証完了に向けて作業中</b></li>
+</ul>
+<p><b>② 20MPaG級水素圧縮機新シリーズ</b> <span class="tag t-f">事実</span></p>
+<ul>
+<li>水素充填向け吐出圧力20MPaG級の新シリーズ初号機（<b>VD4-55：1基、VD4-150：3基</b>）を出荷</li>
+<li>水素ステーション向け圧縮機の技術を取り入れ、<b>吐出流量100〜600Nm³/h</b>の範囲をカバー</li>
+<li>今後<b>最大1000Nm³/h</b>までラインナップ拡張を進める方針</li>
+</ul>
+<p>その他、水素バリューチェーン推進協議会（JH2A、2020年12月発足）の会員として活動 <span class="tag t-f">事実</span>。</p>
+</div>
+
+<div class="card ok">
+<h4>評価：金額は小さいが、記述は当社の中で最も具体的</h4>
+<p>研究開発章は<b>製品型番（VD4-55／VD4-150）、圧力（20MPaG）、流量レンジ（100〜600Nm³/h、将来1000Nm³/h）、納入地（山梨県北杜市）、完了時期（2026年12月）といった固有名詞と数値を最も多く含む章</b>である <span class="tag t-f">事実</span>。26中計の「第二の矢 戦略② 高効率化開発の推進（モジュール体系の構築）」「戦略① 水素領域のブランド化（製品ラインナップ拡充）」と<b>一対一で対応している</b> <span class="tag t-i">解釈</span>。方針が空語で終わらず、既に初号機出荷という具体的な進捗まで到達している点は評価できる <span class="tag t-i">解釈</span>。</p>
+<p><b>ただし成長ドライバーとしての規模感には留保が必要</b> <span class="tag t-i">解釈</span>：</p>
+<ul>
+<li>試験研究費は対売上比3.54%で、<b>前期3.84%から低下</b>している（金額は+2.7%増だが売上の伸びに追いついていない） <span class="tag t-f">事実</span></li>
+<li>NEDO助成に対応する助成金収入は144,800千円→48,637千円へ<b>96百万円減少</b> <span class="tag t-f">事実</span>。実証が2026年12月に完了すれば、この収入は消える <span class="tag t-i">解釈</span></li>
+<li>20MPaG級新シリーズの<b>受注見通し・売上寄与額は開示されていない</b> <span class="tag t-c">要確認</span>。初号機4基の出荷実績のみで、シリーズの市場規模も示されない <span class="tag t-f">事実</span></li>
+<li>研究開発費の資産計上は行われておらず全額費用処理 <span class="tag t-i">解釈</span>（無形固定資産「その他」が149,148→187,999千円と増加している内訳は開示されていない <span class="tag t-c">要確認</span>）</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ Ⅸ ============ -->
+<section id="s9">
+<h2 class="sec">Ⅸ. 資本政策・株主還元</h2>
+
+<h3>1. 配当政策と資本配分の規律</h3>
+<blockquote>
+「当社は、『持続的成長につながる研究開発や設備投資などの実行が、企業価値の向上と株主利益の拡大に資する』という考えのもと、<b>持続的な成長のための戦略投資を最優先とし</b>、企業価値の最大化を目指すとともに、株主への安定的な配当を継続していくことを基本方針としております。内部留保金の使途につきましては、今後の事業展開への備えと研究開発や設備投資などの投資資金に活用する予定です。」
+<span class="src">有報原文 [③] 第4【提出会社の状況】3 配当政策</span>
+</blockquote>
+
+<table>
+<thead><tr><th class="l">期</th><th>第89期</th><th>第90期</th><th>第91期</th><th>第92期</th><th>第93期</th><th>2028年度目標</th></tr></thead>
+<tbody>
+<tr><td class="l">1株当たり配当額（円）</td><td>40.00</td><td>40.00</td><td>40.00</td><td>40.00</td><td><b>60.00</b></td><td>―</td></tr>
+<tr><td class="l">EPS（円）</td><td>186.97</td><td>174.35</td><td>349.55</td><td>349.92</td><td>437.46</td><td>―</td></tr>
+<tr><td class="l">配当性向（%）</td><td>21.4</td><td>22.9</td><td><b>11.4</b></td><td><b>11.4</b></td><td>13.7</td><td><b>20</b></td></tr>
+</tbody></table>
+<div class="chart"><canvas id="chDiv" height="120"></canvas></div>
+
+<div class="card note">
+<h4>資本配分の規律をどう読むか</h4>
+<ul>
+<li><b>配当は4期40円で据え置かれ、当期に初めて60円へ増配された</b>（+50%） <span class="tag t-f">事実</span>。EPSが第91期に349円へ倍増した際も配当は据え置かれ、その結果<b>配当性向は22.9%→11.4%へ半減した</b> <span class="tag t-f">事実</span>。つまり<b>「安定的な配当」の実質は「増益局面での配当据え置き」であり、株主還元は業績に連動してこなかった</b> <span class="tag t-i">解釈</span></li>
+<li>26中計が<b>2028年度の配当性向20%を目標に設定</b>したのは、この据え置き姿勢からの転換を意味する <span class="tag t-i">解釈</span>。ただし20%という水準は、第89期・第90期の水準（21.4%・22.9%）に戻すという以上のものではない <span class="tag t-i">解釈</span></li>
+<li><b>総還元性向（本レポート算出・推計値）</b>：配当総額99,249千円＋当期自己株式取得674千円＝99,923千円 ÷ 当期純利益723,661千円＝<b>13.8%</b> <span class="tag t-i">解釈</span>。自己株式の取得は<b>単元未満株式の買取り（195株・674千円）のみ</b>であり、株主還元を意図した取得ではない <span class="tag t-f">事実</span>。<b>株主総会決議・取締役会決議による自己株式取得はいずれも「該当事項はありません」</b> <span class="tag t-f">事実</span></li>
+<li><b>自己株式63,836株（発行済の3.72%）を保有し続けている</b> <span class="tag t-f">事実</span>。当期中の消却・処分はゼロ <span class="tag t-f">事実</span>。使途の説明は有報にない <span class="tag t-c">要確認</span></li>
+<li><b>資本配分全体の描像</b>：当期の営業CF 1,027百万円に対し、事業投資（有形固定資産取得）243百万円＋配当66百万円＋借入返済79百万円＝388百万円。<b>差額の639百万円は手元資金として積み上がった</b>（現預金+899百万円、定期預金+500百万円） <span class="tag t-i">解釈</span>。配当政策が「戦略投資を最優先」と宣言している一方で、<b>その戦略投資の実額（243百万円）は減価償却（299百万円）にも届かず、資金は投資にも還元にも向かわず滞留している</b>というのが当期の資本配分の実像である <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<h3>2. 株主構成と支配構造</h3>
+<div class="grid2">
+<div class="chart"><canvas id="chOwner" height="200"></canvas></div>
+<div class="card">
+<h4>所有者別状況（2026年3月31日現在）</h4>
+<table>
+<thead><tr><th class="l">区分</th><th>株主数</th><th>所有割合</th></tr></thead>
+<tbody>
+<tr><td class="l">その他の法人</td><td>30</td><td><b>52.94%</b></td></tr>
+<tr><td class="l">個人その他</td><td>1,788</td><td>42.39%</td></tr>
+<tr><td class="l">金融商品取引業者</td><td>21</td><td>2.70%</td></tr>
+<tr><td class="l">外国法人等（個人以外）</td><td>16</td><td>1.79%</td></tr>
+<tr><td class="l">金融機関</td><td>2</td><td>0.19%</td></tr>
+<tr><td class="l"><b>計</b></td><td><b>1,857</b></td><td><b>100.00%</b></td></tr>
+</tbody></table>
+<p class="small">自己株式63,836株は「個人その他」に含まれる <span class="tag t-f">事実</span>。</p>
+</div>
+</div>
+
+<table>
+<thead><tr><th class="l">大株主（上位10名）</th><th>所有株式数</th><th>所有割合</th><th class="l">属性</th></tr></thead>
+<tbody>
+<tr><td class="l"><b>株式会社三井E&amp;S</b></td><td>844,546</td><td><b>51.06%</b></td><td class="l">親会社（議決権ベース51.38%）</td></tr>
+<tr><td class="l">加地取引先持株会</td><td>36,000</td><td>2.18%</td><td class="l">取引先（安定株主）</td></tr>
+<tr><td class="l">早川 直希</td><td>15,000</td><td>0.91%</td><td class="l">個人</td></tr>
+<tr><td class="l">桜井 昭一</td><td>14,300</td><td>0.86%</td><td class="l">個人</td></tr>
+<tr><td class="l">東京短資株式会社</td><td>13,000</td><td>0.79%</td><td class="l">法人</td></tr>
+<tr><td class="l">野村證券株式会社</td><td>12,648</td><td>0.76%</td><td class="l">証券会社</td></tr>
+<tr><td class="l">株式会社SBI証券</td><td>11,890</td><td>0.72%</td><td class="l">証券会社</td></tr>
+<tr><td class="l">JP JPMSE LUX RE CITIGROUP GLOBAL MARKETS L EQ CO</td><td>10,800</td><td>0.65%</td><td class="l">外国法人</td></tr>
+<tr><td class="l">曽山 邦子</td><td>10,600</td><td>0.64%</td><td class="l">個人</td></tr>
+<tr><td class="l">加地テック役員持株会</td><td>10,090</td><td>0.61%</td><td class="l">役員（利害一致）</td></tr>
+<tr><td class="l"><b>上位10名 計</b></td><td><b>978,874</b></td><td><b>59.18%</b></td><td class="l">＋自己株式63,836株（3.72%）</td></tr>
+</tbody></table>
+
+<div class="card warn">
+<h4>支配構造の解釈</h4>
+<ul>
+<li><b>実質支配者は明確に三井E&amp;S</b>（議決権51.38%）。株主総会の普通決議（取締役選任・剰余金処分等）は同社単独で可決でき、<b>特別決議（定款変更・合併等）を単独で可決するには足りない</b>（3分の2＝66.7%に届かない） <span class="tag t-i">解釈</span></li>
+<li><b>安定株主の厚み</b>：三井E&amp;S 51.06%＋取引先持株会 2.18%＋役員持株会 0.61%＋自己株式 3.72%＝<b>約57.6%</b>（本レポート算出） <span class="tag t-i">解釈</span>。浮動株は限定的で、流動性は低い（J-Quants基準日の売買代金は29百万円） <span class="tag t-f">事実</span> <span class="src">[⑤]</span></li>
+<li><b>機関投資家の不在</b>：金融機関はわずか2社・0.19%、外国法人等も16社・1.79% <span class="tag t-f">事実</span>。上位10名に信託銀行の名義（日本マスタートラスト・日本カストディ等）が一切入っていない <span class="tag t-f">事実</span>。<b>機関投資家によるエンゲージメント圧力はほぼ働いていない</b>と読める <span class="tag t-i">解釈</span></li>
+<li><b>個人株主が42.39%・1,788名</b> <span class="tag t-f">事実</span>。少数株主の声は分散しており、組織化されていない <span class="tag t-i">解釈</span></li>
+<li><b>創業家の不在</b>：大株主に「加地」姓の個人・法人は持株会以外に見当たらない <span class="tag t-f">事実</span>。創業家支配ではなく<b>純粋な親子上場</b>の構造 <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<h3>3. 政策保有株式</h3>
+<blockquote>
+「（５）【株式の保有状況】　該当事項はありません。」
+<span class="src">有報原文 [③] 第4【提出会社の状況】4(5)</span>
+</blockquote>
+<div class="card ok">
+<p><b>政策保有株式はゼロ。純資産8,475百万円に占める割合は0.00%</b>（本レポート算出） <span class="tag t-i">解釈</span>。貸借対照表の投資その他の資産604,311千円の内訳も、長期前払費用218千円／前払年金費用45,255千円／繰延税金資産545,195千円／その他13,642千円で、<b>投資有価証券の科目自体が存在しない</b> <span class="tag t-f">事実</span>。</p>
+<p>資本配分の規律という観点では<b>明確な加点材料</b>である <span class="tag t-i">解釈</span>。近年の東証・機関投資家の主要な論点である政策保有株式の縮減について、当社には論点そのものが存在しない <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>4. 役員の持株 ― 株主との利害一致</h3>
+<table>
+<thead><tr><th class="l">氏名</th><th class="l">役職</th><th>所有株式数</th><th class="l">出身</th></tr></thead>
+<tbody>
+<tr><td class="l">松岡 克憲</td><td class="l">代表取締役社長 CEO</td><td>2,600株</td><td class="l">三井造船／三井E&amp;S（2023年6月に同社退職の上で就任）</td></tr>
+<tr><td class="l">田邉 雄三</td><td class="l">取締役執行役員（AS担当）</td><td>1,700株</td><td class="l">当社生え抜き（1994年入社）</td></tr>
+<tr><td class="l">塩口 修治</td><td class="l">取締役執行役員（経営企画・財務経理）</td><td>900株</td><td class="l">三井E&amp;Sから出向</td></tr>
+<tr><td class="l">大高 俊輔</td><td class="l">常勤監査役</td><td>100株</td><td class="l">当社生え抜き（1987年入社）</td></tr>
+<tr><td class="l">桑田 和正／中塚 秀聡／寺本 真裕美／泰井 俊彦／廣田 知之</td><td class="l">取締役（非常勤）・社外取締役・社外監査役</td><td>0株</td><td class="l">―</td></tr>
+<tr><td class="l"><b>役員合計</b></td><td class="l">―</td><td><b>5,300株</b></td><td class="l">発行済株式の<b>0.31%</b></td></tr>
+</tbody></table>
+<div class="card note">
+<p><b>解釈：</b>役員個人の保有は合計5,300株（0.31%）と少額。加えて<b>加地テック役員持株会が10,090株（0.61%）</b>を保有 <span class="tag t-f">事実</span>。役員報酬体系に<b>「役位別に定めた一定金額を、役員持株会を通じて自社株購入に充当する株式取得報酬」</b>が組み込まれており <span class="tag t-f">事実</span>、制度として株式保有を促す仕組みは存在する <span class="tag t-i">解釈</span>。ただし報酬総額の内訳表では<b>「非金銭報酬等」の欄はすべて「－」</b>であり、株式取得報酬は金銭報酬として支給され各自が持株会で購入する形と推定される <span class="tag t-i">解釈</span>。</p>
+<p><b>社外役員4名の持株がすべてゼロ</b> <span class="tag t-f">事実</span>。独立性の観点では中立だが、株主との利害一致という観点では機能していない <span class="tag t-i">解釈</span>。</p>
+</div>
+</section>
+
+<!-- ============ Ⅹ ============ -->
+<section id="s10">
+<h2 class="sec">Ⅹ. ガバナンス</h2>
+
+<h3>1. 体制の事実</h3>
+<div class="kpi">
+  <div><span class="k">機関設計</span><span class="v">監査役会設置会社</span><span class="s">2026年6月25日現在</span></div>
+  <div><span class="k">取締役</span><span class="v">6名</span><span class="s">うち社外2名（33.3%）</span></div>
+  <div><span class="k">監査役</span><span class="v">3名</span><span class="s">うち社外2名（常勤1名）</span></div>
+  <div><span class="k">女性役員比率</span><span class="v">11.1%</span><span class="s">役員9名中1名</span></div>
+  <div><span class="k">取締役会開催</span><span class="v">16回</span><span class="s">全取締役の出席率100%</span></div>
+  <div><span class="k">監査役会開催</span><span class="v">15回</span><span class="s">出席率100%</span></div>
+</div>
+
+<table>
+<thead><tr><th class="l">役職</th><th class="l">氏名</th><th>取締役会</th><th>監査役会</th><th>経営会議</th><th>人事・報酬委員会</th></tr></thead>
+<tbody>
+<tr><td class="l">代表取締役社長</td><td class="l">松岡 克憲</td><td>構成員（議長）</td><td>－</td><td>構成員（議長）</td><td>構成員</td></tr>
+<tr><td class="l">取締役</td><td class="l">塩口 修治</td><td>構成員</td><td>－</td><td>構成員</td><td>－</td></tr>
+<tr><td class="l">取締役</td><td class="l">田邉 雄三</td><td>構成員</td><td>－</td><td>構成員</td><td>構成員</td></tr>
+<tr><td class="l">取締役（非常勤）</td><td class="l">桑田 和正</td><td>構成員</td><td>－</td><td>－</td><td>－</td></tr>
+<tr><td class="l"><b>社外取締役</b></td><td class="l">中塚 秀聡</td><td>構成員</td><td>－</td><td>－</td><td><b>構成員（議長）</b></td></tr>
+<tr><td class="l"><b>社外取締役</b></td><td class="l">寺本 真裕美</td><td>構成員</td><td>－</td><td>－</td><td>構成員</td></tr>
+<tr><td class="l">常勤監査役</td><td class="l">大高 俊輔</td><td>出席</td><td>構成員（議長）</td><td>出席</td><td>－</td></tr>
+<tr><td class="l"><b>社外監査役</b></td><td class="l">泰井 俊彦</td><td>出席</td><td>構成員</td><td>－</td><td>－</td></tr>
+<tr><td class="l"><b>社外監査役</b></td><td class="l">廣田 知之</td><td>出席</td><td>構成員</td><td>－</td><td>－</td></tr>
+</tbody></table>
+
+<div class="card">
+<h4>その他の機関</h4>
+<ul>
+<li><b>人事・報酬委員会</b>：取締役会の諮問機関。取締役・監査役・執行役員の人事、取締役・執行役員の報酬を審議。<b>委員の半数以上を社外取締役とし、議長は社外取締役（中塚氏）</b> <span class="tag t-f">事実</span>。当期開催4回 <span class="tag t-f">事実</span></li>
+<li><b>経営会議</b>：常勤取締役＋執行役員で構成。常勤監査役が出席 <span class="tag t-f">事実</span></li>
+<li><b>役員協議会</b>：取締役・監査役＋幹部社員が参加。原則月1回 <span class="tag t-f">事実</span></li>
+<li><b>内部監査</b>：監査部（監査部長 南 秀晃）を設置。監査結果を取締役会に報告 <span class="tag t-f">事実</span>。<b>監査部の人員数は開示されていない</b> <span class="tag t-c">要確認</span></li>
+<li><b>執行役員制度</b>：導入済み。執行役員5名（片山秀樹・牧義男・浦田洋・片山秀昭・中塚利幸） <span class="tag t-w">web/② 会社公式サイト「会社概要」</span></li>
+<li><b>取締役・執行役員の任期は1年</b>（定款・内部統制システム基本方針に明記） <span class="tag t-f">事実</span></li>
+<li><b>会計監査人</b>：清稜監査法人。業務執行社員は石井和也・笠井良平の2名。補助者は公認会計士5名・その他2名 <span class="tag t-f">事実</span></li>
+</ul>
+</div>
+
+<h4>取締役会の出席状況（当事業年度）</h4>
+<table>
+<thead><tr><th class="l">氏名</th><th>開催回数</th><th>出席回数</th><th>出席率</th></tr></thead>
+<tbody>
+<tr><td class="l">松岡 克憲</td><td>16</td><td>16</td><td>100%</td></tr>
+<tr><td class="l">塩口 修治</td><td>16</td><td>16</td><td>100%</td></tr>
+<tr><td class="l">田邉 雄三</td><td>13</td><td>13</td><td>100%</td></tr>
+<tr><td class="l">桑田 和正</td><td>13</td><td>13</td><td>100%</td></tr>
+<tr><td class="l">中塚 秀聡</td><td>16</td><td>16</td><td>100%</td></tr>
+<tr><td class="l">寺本 真裕美</td><td>13</td><td>13</td><td>100%</td></tr>
+</tbody></table>
+<p class="small">田邉・桑田・寺本の3氏は2025年6月26日就任のため開催回数が13回 <span class="tag t-i">解釈</span>。全員出席率100% <span class="tag t-f">事実</span>。</p>
+
+<h3>2. 役員報酬 ― 数値のみ</h3>
+<table>
+<thead><tr><th class="l">役員区分</th><th>報酬等の総額</th><th>固定報酬</th><th>業績連動（金銭）</th><th>業績連動（非金銭等）</th><th>対象人数</th></tr></thead>
+<tbody>
+<tr><td class="l">取締役（社外を除く）</td><td>72百万円</td><td>47百万円</td><td>24百万円</td><td>－</td><td>4名</td></tr>
+<tr><td class="l">社外取締役</td><td>6百万円</td><td>6百万円</td><td>－</td><td>－</td><td>3名</td></tr>
+<tr><td class="l">監査役（社外を除く）</td><td>12百万円</td><td>12百万円</td><td>－</td><td>－</td><td>1名</td></tr>
+<tr><td class="l">社外監査役</td><td>5百万円</td><td>5百万円</td><td>－</td><td>－</td><td>4名</td></tr>
+<tr><td class="l"><b>合計</b></td><td><b>95百万円</b></td><td>70百万円</td><td>24百万円</td><td>－</td><td>―</td></tr>
+</tbody></table>
+<p class="small">報酬限度額：取締役 年額195百万円以内（うち社外15百万円以内）／監査役 年額35百万円以内（うち社外10百万円以内）。決議は2016年6月28日 <span class="tag t-f">事実</span>。損益計算書の販管費「役員報酬」は96,165千円（前期93,780千円） <span class="tag t-f">事実</span>。<b>報酬等の総額が1億円以上の者は存在しないため個人別開示なし</b> <span class="tag t-f">事実</span>。</p>
+
+<div class="card">
+<h4>報酬体系の構造（有報記載の6要素）</h4>
+<ol>
+<li>従業員最高額を考慮した基本報酬（固定）</li>
+<li>役割と責任に見合った役位加算（固定）</li>
+<li><b>売上高：経常利益：純利益＝20：40：40</b> の加重で評価する業績加算（業績連動。前事業年度の業績で評価し、当期純利益0以下なら加算なし）</li>
+<li>個人評価加減算（業績連動。代表取締役が人事・報酬委員会に諮問し答申を受け取締役会決議）</li>
+<li>当期純利益を指標とした賞与相当報酬（<b>当期純利益200百万円未満なら不支給</b>）</li>
+<li>役位別に定めた一定金額を役員持株会を通じて自社株購入に充当する株式取得報酬</li>
+</ol>
+<p><b>当事業年度の業績連動報酬比率は33%（設定上限は44%）</b> <span class="tag t-f">事実</span>。業績連動報酬の目標は前事業年度に設定した業績予想値とし、<b>実績値はいずれも達成</b> <span class="tag t-f">事実</span>。上限は「過去の圧縮機事業の最高値」 <span class="tag t-f">事実</span>。</p>
+</div>
+
+<div class="card note">
+<h4>報酬設計の解釈</h4>
+<ul>
+<li><b>業績連動が「前事業年度の業績」で評価される点</b>は、当期業績と当期報酬のズレを生むが、確定値で評価できるという合理性もある <span class="tag t-i">解釈</span></li>
+<li><b>指標が売上高・経常利益・純利益の3つのみで、資本効率指標（ROE・ROIC）や株価連動要素が入っていない</b> <span class="tag t-f">事実</span>。26中計が「資本効率経営の推進」「株価を意識した経営」を掲げていることと<b>報酬設計が接続していない</b> <span class="tag t-i">解釈</span>。株式報酬も⑥の持株会拠出のみで、譲渡制限付株式（RS）やパフォーマンス・シェアは導入されていない <span class="tag t-f">事実</span></li>
+<li><b>経常利益に40%のウェイトがある</b>ため、助成金収入のような営業外の一過性収益も報酬に反映される構造 <span class="tag t-i">解釈</span>。当期は助成金が96百万円減少しており、翌期の報酬にはマイナスに働く <span class="tag t-i">解釈</span></li>
+<li>報酬限度額195百万円に対し実際の取締役報酬は78百万円（社外含む）で<b>枠の40%</b>。枠に大きな余裕がある <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<h3>3. 主要役員の属性</h3>
+<div class="card">
+<h4>代表取締役社長 松岡 克憲（1964年10月26日生・61歳）</h4>
+<ul>
+<li>2006年4月 三井造船入社（機械・システム事業本部事業開発部 主管）。同社で企画管理・戦略企画を歴任し、2021年4月 取締役執行役員 戦略企画部長（<b>水素ビジネス戦略室・DX推進室担当</b>）、2022年4月 CCO 取締役執行役員 企画管理部長 <span class="tag t-f">事実</span></li>
+<li>2022年6月 当社取締役（非常勤）→ 2023年4月 三井E&amp;S成長事業推進事業部 事業部長補佐 → <b>2023年6月 同社を退職して当社代表取締役社長CEOに就任</b> <span class="tag t-f">事実</span></li>
+<li><b>在任年数：約3年（2023年6月〜）</b>。所有株式2,600株 <span class="tag t-f">事実</span></li>
+<li><b>解釈</b>：出向ではなく親会社を退職して就任しており、形式上は当社専任である <span class="tag t-i">解釈</span>。経歴の中心は戦略企画・企画管理であり<b>製造・技術畑ではない</b> <span class="tag t-i">解釈</span>。一方で親会社時代に<b>水素ビジネス戦略室とDX推進室を担当していた</b>ことは、26中計の「第二の矢 水素領域のブランド化」「第三の矢 DXによる生産性革新」という戦略の組み立てと直接対応している <span class="tag t-i">解釈</span></li>
+</ul>
+</div>
+
+<div class="grid2">
+<div class="card">
+<h4>社外取締役</h4>
+<p><b>中塚 秀聡</b>（1964年生・人事報酬委員会議長）：1983年 大阪国税局採用。国税庁課税部法人課税課（組織再編税制通達担当）、財務省主税局法人税制企画室（連結納税制度法制担当）、大阪国税局調査第一部 国際調査審理官等を歴任。2013年 税理士登録・中塚秀聡税理士事務所開設。姫路獨協大学大学院法科研究科 特別教授、タイガー魔法瓶 社外監査役、MORESCO 社外取締役（監査等委員）。当社2023年6月就任 <span class="tag t-f">事実</span>。<b>専門性＝税務・法人税制</b> <span class="tag t-i">解釈</span></p>
+<p><b>寺本 真裕美</b>（1959年生）：1983年 長谷川工務店（現・長谷工コーポレーション）入社。長谷工ライフ 執行役員、長谷工管理HD 常務執行役員（経営企画・法務・契約・リスク管理・システム統括管掌）。2019年 寺本社会保険労務士事務所開設。美樹工業 社外取締役。当社2025年6月就任 <span class="tag t-f">事実</span>。<b>専門性＝人事労務・リスク管理・経営企画</b> <span class="tag t-i">解釈</span></p>
+</div>
+<div class="card">
+<h4>監査役</h4>
+<p><b>大高 俊輔</b>（常勤・1964年生）：1987年当社入社。品質保証課長→品質保証部長→<b>2019年 監査部長</b>→2024年 定年後再雇用→2026年6月 常勤監査役就任 <span class="tag t-f">事実</span>。<b>当社生え抜き。品質保証と内部監査の両方を経験</b> <span class="tag t-i">解釈</span></p>
+<p><b>泰井 俊彦</b>（社外・1957年生）：1980年 三井造船入社。財務経理部長、玉野事業所経理部長、<b>同社監査役室長</b>を歴任し2023年6月退社。当社2025年6月就任 <span class="tag t-f">事実</span>。<b>親会社出身の社外監査役</b> <span class="tag t-i">解釈</span></p>
+<p><b>廣田 知之</b>（社外・1961年生）：1987年 大阪国税局採用。神戸税務署副署長、長浜税務署長、大阪国税局調査第一部国際調査課長・調査総括課長、大阪国税局調査第二部次長、下京税務署長。2022年 税理士登録。当社2025年6月就任 <span class="tag t-f">事実</span></p>
+<p class="small">補欠監査役：神島 信（1956年生・元三井造船／新エネルギー供給 代表取締役） <span class="tag t-f">事実</span></p>
+</div>
+</div>
+
+<div class="card warn">
+<h4>ガバナンス構成の解釈 ― 独立性と専門性の偏り</h4>
+<ul>
+<li><b>取締役6名中3名が三井E&amp;S関係者</b>（松岡：元同社取締役執行役員／塩口：同社から出向中／桑田：同社成長事業推進事業部管理部長を現任のまま当社非常勤取締役） <span class="tag t-f">事実</span>。<b>生え抜きは田邉氏1名のみ</b> <span class="tag t-f">事実</span>。取締役会の過半が親会社側の人材で構成されている <span class="tag t-i">解釈</span></li>
+<li><b>社外監査役の泰井氏も三井造船出身</b> <span class="tag t-f">事実</span>。補欠監査役の神島氏も同社出身 <span class="tag t-f">事実</span>。会社法上の社外要件は満たすが、<b>親会社からの実質的な独立性という観点では留保が必要</b> <span class="tag t-i">解釈</span>。有報は「独立社外取締役候補者の選任においては東京証券取引所が定める基準に該当する」と記すが、<b>誰を独立役員として届け出ているかの明示はない</b> <span class="tag t-c">要確認</span>（コーポレート・ガバナンス報告書での確認が必要）</li>
+<li><b>社外役員4名の専門性は税務2名・人事労務1名・財務経理1名</b>で、<b>製造業の技術・品質・生産に関する専門家がいない</b> <span class="tag t-i">解釈</span>。26中計が「品質プロセス改革」を最重点領域の1つに掲げ、事業等のリスク(2)でも品質を挙げていることを踏まえると、<b>取締役会に品質・技術を監督する外部の目がない</b>のは構成上の空白である <span class="tag t-i">解釈</span>。ただし常勤監査役の大高氏が品質保証部長経験者であり、監査役側でこれを部分的に補っている <span class="tag t-i">解釈</span></li>
+<li><b>親会社との利益相反への制度的手当</b>：有報は【事業の内容】で「独立社外取締役からも当社経営に対する適切な意見を得ながら、取締役会において多面的な議論を経たうえで、当該取引の実施の可否を決定」と記述 <span class="tag t-f">事実</span>。ただし<b>特別委員会（独立社外役員のみで構成）の設置には言及がない</b> <span class="tag t-f">事実</span>。人事・報酬委員会は存在するが、その所管は人事と報酬であり関連当事者取引の審議機関ではない <span class="tag t-i">解釈</span></li>
+<li><b>取締役会・監査役会とも出席率100%</b>、監査役会は年15回開催（決議15件・協議3件・報告35件）と活動の量は開示されている <span class="tag t-f">事実</span>。ただし取締役会の実効性評価（自己評価・第三者評価）の実施状況は有報に記載がない <span class="tag t-c">要確認</span></li>
+</ul>
+</div>
+
+<h3>4. 監査の状況</h3>
+<table>
+<thead><tr><th class="l">項目</th><th>前事業年度</th><th>当事業年度</th></tr></thead>
+<tbody>
+<tr><td class="l">監査証明業務に基づく報酬</td><td>17,500千円</td><td>17,500千円</td></tr>
+<tr><td class="l">非監査業務に基づく報酬</td><td>―</td><td>―</td></tr>
+</tbody></table>
+<p class="small">監査法人：清稜監査法人。<b>非監査業務の報酬はゼロ</b>で独立性の観点では明快 <span class="tag t-i">解釈</span>。監査報酬17,500千円は売上高7,799百万円に対し0.22%（本レポート算出） <span class="tag t-i">解釈</span>。監査役会は会計監査人の評価を行い「問題が無いと認識」と結論 <span class="tag t-f">事実</span>。内部統制報告書では<b>「財務報告に係る内部統制は有効である」</b>と評価し、付記事項・特記事項ともに該当なし <span class="tag t-f">事実</span>。</p>
+</section>
+
+<!-- ============ Ⅺ ============ -->
+<section id="s11">
+<h2 class="sec">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+
+<h3>1. KAM（監査上の主要な検討事項）</h3>
+<div class="card warn">
+<h4>KAMは1件のみ：「圧縮機に係る受注損失引当金の算定のための総原価の見積り」</h4>
+<blockquote>
+「会社は、個別受注による圧縮機の製造販売を主たる事業としている。圧縮機は、標準型式をもとに、顧客仕様に沿った部品等を組み合わせて製造される。そして、契約ごとの仕様に基づき、過去の類似案件を参考に総原価の見積りが行われるが、<b>複雑な仕様や新たな設計等の案件は顧客の追加的な要望や製造途中での作業の見直し等により、当初見込んだ材料費や作業時間等が最終的に増加する場合がある</b>。このため、受注損失引当金の計上の前提となる総原価の見積りには、経営者による判断が重要な影響を及ぼす。」
+<span class="src">監査報告書原文 [③] 独立監査人の監査報告書</span>
+</blockquote>
+
+<table>
+<thead><tr><th class="l">受注損失引当金（千円）</th><th>当期首残高</th><th>当期増加額</th><th>当期減少額</th><th>当期末残高</th></tr></thead>
+<tbody>
+<tr><td class="l">合計</td><td>64,300</td><td>54,000</td><td>38,800</td><td><b>79,500</b></td></tr>
+<tr><td class="l">うち圧縮機本体に係るもの</td><td>44,700</td><td colspan="2">―</td><td><b>67,800</b></td></tr>
+</tbody></table>
+
+<h4>監査人が何をなぜ重視したか</h4>
+<ul>
+<li><b>なぜ</b>：当社の売上のすべてが個別受注型であり、総原価の見積りが<b>経営者の判断に依存</b>するため <span class="tag t-f">事実</span>。単一セグメント・個別受注という事業構造がそのまま監査上の最大リスクになっている <span class="tag t-i">解釈</span></li>
+<li><b>どう対応したか</b>：①受注時・受注後の総原価変更に関する会議体での検討・承認統制の評価、②算定資料と根拠資料の照合、③引当計上案件の見積り資料の閲覧と設計部責任者への質問、④<b>当期売上計上分の原価実績と前期の総原価見積りの比較分析による見積り精度の評価</b> <span class="tag t-f">事実</span></li>
+<li><b>解釈</b>：④の手続（過去の見積り精度のバックテスト）が明記されているのは実質的な監査対応である <span class="tag t-i">解釈</span>。監査人は<b>「見積りが甘い方向に偏っていないか」を過去実績で検証している</b>ことになる <span class="tag t-i">解釈</span></li>
+</ul>
+
+<h4>見積り前提の楽観／保守の評価</h4>
+<p>有報の【重要な会計上の見積り】は<b>「実際原価が見積りと異なった場合、翌事業年度の財務諸表において、受注損失引当金の金額に重要な影響を与える可能性があります」</b>と記すのみで、<b>感応度分析（仮定を何%動かすと引当金がいくら変わるか）は開示されていない</b> <span class="tag t-f">事実</span>。したがって前提の楽観／保守を外部から定量的に判定することはできない <span class="tag t-c">要確認</span>。</p>
+<p>ただし方向感としては、<b>①当期に新規で54,000千円の将来損失を認識、②圧縮機本体の引当が+51.7%、③期首残高64,300千円のうち38,800千円が実際に目的使用された（＝過去の見積りどおり損失が発生した）</b> <span class="tag t-f">事実</span>。<b>目的使用率60.3%</b>は、引当が過大でも過少でもなく<b>おおむね実態に即して積まれてきた</b>ことを示す <span class="tag t-i">解釈</span>。とすれば、期末の79,500千円（うち本体67,800千円）も<b>翌期に相当程度が実損として現れる蓋然性がある</b> <span class="tag t-i">解釈</span>。営業利益925百万円に対し8.6%の規模であり、翌期の利益を圧迫する要素として認識しておく価値がある <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>2. その他の重要な会計事項</h3>
+<div class="grid2">
+<div class="card">
+<h4>会計上の見積りの変更</h4>
+<p><b>退職給付の数理計算上の差異の費用処理年数を15年→13年に短縮</b>（従業員の平均残存勤務期間の短縮を理由とする） <span class="tag t-f">事実</span>。損益への影響は「軽微」 <span class="tag t-f">事実</span>。</p>
+<p><b>解釈</b>：処理年数の短縮は<b>費用認識を早める＝保守的な方向</b>の変更 <span class="tag t-i">解釈</span>。平均残存勤務期間が短くなったという理由は、平均年齢42.18歳・平均勤続15.34年という人員構成と整合する（ベテラン層の退職期が近づいている） <span class="tag t-i">解釈</span>。退職給付引当金は522,422→484,519千円へ減少し、前払年金費用が21,799→45,255千円へ増加している <span class="tag t-f">事実</span>。</p>
+</div>
+<div class="card">
+<h4>未適用の会計基準</h4>
+<p><b>リース会計基準（企業会計基準第34号）を2028年3月期期首から適用予定</b>。影響額は「現時点で評価中」 <span class="tag t-f">事実</span>。</p>
+<p><b>解釈</b>：当社のリース資産は簿価3,374千円、リース債務は3,930千円と極小 <span class="tag t-f">事実</span>。オフバランスの賃借（販管費「賃借料」32,970千円） <span class="tag t-f">事実</span>がオンバランス化される可能性はあるが、総資産12,301百万円に対する影響は限定的と推定される <span class="tag t-i">解釈</span>。</p>
+</div>
+</div>
+
+<h3>3. 本表から読める財務体質</h3>
+<div class="kpi">
+  <div><span class="k">自己資本比率</span><span class="v">68.9%</span><span class="s">前期 67.6%</span></div>
+  <div><span class="k">流動比率</span><span class="v">386%</span><span class="s">本レポート算出</span></div>
+  <div><span class="k">総資産回転率</span><span class="v">0.65回</span><span class="s">売上÷平均総資産・本レポート算出</span></div>
+  <div><span class="k">ROA（当期純利益ベース）</span><span class="v">6.07%</span><span class="s">本レポート算出</span></div>
+  <div><span class="k">ネットキャッシュ</span><span class="v">約20.7億円</span><span class="s">現預金+預け金－有利子負債</span></div>
+  <div><span class="k">営業CF／当期純利益</span><span class="v">1.42倍</span><span class="s">本レポート算出</span></div>
+</div>
+
+<div class="card">
+<h4>「どんな財務体質の会社か」</h4>
+<p><b>① 実質無借金に近く、B/Sは重いが中身は運転資本</b>。総資産12,301百万円のうち流動資産が8,242百万円（<b>67.0%</b>）、有形固定資産は3,234百万円（26.3%） <span class="tag t-i">解釈</span>。装置産業の外見を持ちながら、実際には<b>売上債権（3,202百万円）＋棚卸資産（1,573百万円）＋現預金等（3,371百万円）で総資産の66%</b>を占める運転資本型のB/Sである <span class="tag t-i">解釈</span>。</p>
+<p><b>② 回転は遅い</b>。総資産回転率0.65回は、個別受注・長納期（残存履行義務が1年超で18.7億円）という事業特性の帰結 <span class="tag t-i">解釈</span>。売上債権3,202百万円は売上の約4.9ヶ月分、棚卸資産1,573百万円は売上原価の約3.5ヶ月分（本レポート算出・推計値） <span class="tag t-i">解釈</span>。当期は仕掛品が404百万円減って回転が改善したが、<b>電子記録債権が542百万円増えており、運転資本の重さそのものは解消していない</b> <span class="tag t-i">解釈</span>。</p>
+<p><b>③ レバレッジはほぼ効かせていない</b>。有利子負債1,296百万円（うち1,197百万円が2042年返済の工場建設資金）に対しネットキャッシュは約2,075百万円 <span class="tag t-i">解釈</span>。<b>ROE 8.9%は財務レバレッジではなく事業の利益率で作られている</b>（ROA 6.07%×レバレッジ約1.45倍） <span class="tag t-i">解釈</span>。逆に言えば<b>資本効率の改善余地は資本構成側に大きく残っている</b> <span class="tag t-i">解釈</span>。</p>
+<p><b>④ 利益の質は良好だが一過性要素を含む</b>。営業CF／純利益は1.42倍 <span class="tag t-i">解釈</span>。ただし当期純利益には訴訟勝訴による損害賠償収入37,882千円、営業外には助成金収入48,637千円が含まれる <span class="tag t-f">事実</span>。また営業CFのプラス寄与437百万円は棚卸資産の取り崩し <span class="tag t-f">事実</span>。</p>
+<p><b>⑤ 繰延税金資産が厚い</b>。545,195千円（総資産の4.4%）で、前期比+95,163千円 <span class="tag t-f">事実</span>。純資産8,475百万円の6.4%に相当 <span class="tag t-i">解釈</span>。回収可能性の判断根拠は有報に開示されていない <span class="tag t-c">要確認</span>。</p>
+<p><b>⑥ 引当金の水準</b>：賞与引当金361,511千円（前期223,258千円、+62%）、受注損失引当金79,500千円、製品保証引当金35,511千円、貸倒引当金26,500千円 <span class="tag t-f">事実</span>。<b>賞与引当金の大幅増は業績連動の賞与増を反映していると読め、翌期の人件費水準の底上げを示唆する</b> <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>4. GC注記・後発事象・偶発債務</h3>
+<table>
+<thead><tr><th class="l">項目</th><th class="l">有報の記載</th><th class="l">評価</th></tr></thead>
+<tbody>
+<tr><td class="l">継続企業の前提に関する注記（GC）</td><td class="l">記載なし</td><td class="l">該当なし。自己資本比率68.9%・ネットキャッシュ約20.7億円から見て懸念材料なし <span class="tag t-i">解釈</span></td></tr>
+<tr><td class="l">重要な後発事象</td><td class="l"><b>「該当事項はありません。」</b></td><td class="l">2026年3月期末〜2026年6月25日（提出日）の間に重要事象なし <span class="tag t-f">事実</span></td></tr>
+<tr><td class="l">偶発債務</td><td class="l">注記なし</td><td class="l">保証債務・訴訟債務等の開示なし <span class="tag t-f">事実</span></td></tr>
+<tr><td class="l">減損損失</td><td class="l">前期・当期とも「該当事項はありません」</td><td class="l">固定資産の減損は発生していない <span class="tag t-f">事実</span></td></tr>
+<tr><td class="l">のれん</td><td class="l">該当なし（償却額・未償却残高ともなし）</td><td class="l">M&amp;Aによる無形資産を保有していない <span class="tag t-f">事実</span></td></tr>
+<tr><td class="l">資産除去債務</td><td class="l">「該当事項はありません」</td><td class="l">自社所有地・自社工場のため <span class="tag t-i">解釈</span></td></tr>
+<tr><td class="l">社債</td><td class="l">「該当事項はありません」</td><td class="l">直接金融による調達なし <span class="tag t-f">事実</span></td></tr>
+<tr><td class="l">訴訟</td><td class="l">2025年7月22日公表の他社との訴訟が当社側の勝訴。特別利益（損害賠償収入）37,882千円を計上</td><td class="l">係属中の訴訟の有無は開示されていない <span class="tag t-c">要確認</span></td></tr>
+</tbody></table>
+<p class="small">内部統制報告書：<b>「財務報告に係る内部統制は有効である」</b>と結論。付記事項・特記事項ともに該当なし <span class="tag t-f">事実</span>。確認書も提出済み <span class="tag t-f">事実</span>。</p>
+</section>
+
+<!-- ============ Ⅻ ============ -->
+<section id="s12">
+<h2 class="sec">Ⅻ. 論点と未解明事項</h2>
+<p class="small">本章は判断材料と論点の提示に徹する。売買推奨・目標株価は示さない。</p>
+
+<h3>1. 買い材料になりうる記述と、その確からしさ</h3>
+
+<div class="card ok">
+<h4>① 超高圧・水素領域における技術ポジション　<span class="small">確からしさ：中〜高</span></h4>
+<p><b>根拠</b>：有報が「水素ステーション用圧縮機メーカーとして国内トップを走っており」と明記 <span class="tag t-f">事実</span>。1970年の98MPa機、2004年の110MPa水素機、2014年のHyKom340と<b>50年以上にわたる超高圧の開発履歴</b> <span class="tag t-w">web/②</span>。高圧ガス保安法・電気事業法・原子炉等規制法の各種認定、中東国営石油4社のベンダー認定 <span class="tag t-w">web/②</span>。当期も20MPaG級新シリーズの初号機4基を出荷済み <span class="tag t-f">事実</span>。</p>
+<p><b>留保</b>：「国内トップ」はシェア数値や出典を伴わない<b>自称</b>である <span class="tag t-f">事実</span>。競合名・市場規模・シェアは有報に一切記載がない <span class="tag t-f">事実</span>。技術優位が価格決定力に転換できているかは疑わしく、有報自身が「他社との競合により受注価格の下落を招く場合もあり」とリスクに挙げている <span class="tag t-f">事実</span>。</p>
+</div>
+
+<div class="card ok">
+<h4>② 財務の安全性と資本効率改善の余地　<span class="small">確からしさ：高（事実として確認可能）</span></h4>
+<p><b>根拠</b>：自己資本比率68.9%、流動比率386%、ネットキャッシュ約20.7億円（J-Quants基準日の時価総額71億円の約29%に相当） <span class="tag t-i">解釈</span>。<b>政策保有株式ゼロ</b> <span class="tag t-f">事実</span>。GC注記・偶発債務・減損・のれんいずれもなし <span class="tag t-f">事実</span>。26中計で<b>配当性向20%目標</b>と「資本効率経営の推進」を初めて掲げた <span class="tag t-f">事実</span>。</p>
+<p><b>留保</b>：資本効率の改善余地が大きいことと、<b>それが実行されることは別</b> <span class="tag t-i">解釈</span>。ROE目標が実績（8.9%）を下回る8.0%に設定されており <span class="tag t-f">事実</span>、自己株式取得の実績もゼロ（単元未満株の買取り195株のみ） <span class="tag t-f">事実</span>。役員報酬にも資本効率指標は組み込まれていない <span class="tag t-f">事実</span>。<b>親会社が議決権51.38%を握る構造では、資本政策の主導権は少数株主側にない</b> <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card ok">
+<h4>③ 経営陣の自己認識の誠実さ　<span class="small">確からしさ：中</span></h4>
+<p><b>根拠</b>：前中計の総括で「23中計策定時には想定していなかった水素ステーションの普及の遅れ」と<b>前提の外れを明示</b> <span class="tag t-f">事実</span>。新中計でも「26中計期間中の本体売上の伸長は望めないと想定される」と<b>成長鈍化を公式に織り込んだ</b> <span class="tag t-f">事実</span>。株主総利回りがTOPIXに5期連続で劣後している状況で「資本コストや株価を意識した経営」を戦略に入れた <span class="tag t-f">事実</span>。</p>
+<p><b>留保</b>：誠実さは<b>認識のレベルにとどまり、9つの戦略のうち定量目標が紐づくのは資本効率のみ</b> <span class="tag t-i">解釈</span>。最重点と自認するAS強化に指標がない <span class="tag t-f">事実</span>。</p>
+</div>
+
+<h3>2. 懸念材料と、それが顕在化する条件</h3>
+
+<div class="card warn">
+<h4>① AS（アフターサービス）が中計想定どおりに伸びない　<span class="small">影響度：大</span></h4>
+<p><b>懸念の中身</b>：26中計は<b>売上横ばい（78億円）のまま営業利益率を11.9%→14%へ引き上げる</b>設計で、その主要な原資をASの拡大に置いている <span class="tag t-f">事実</span>。しかし当期のAS成長率は<b>+2.9%</b>（本体+14.9%）で、売上構成比は30.3%→28.0%へ低下した <span class="tag t-f">事実</span>。</p>
+<p><b>顕在化の条件</b>：AS売上が年率5%未満の伸びにとどまり、かつ本体売上が受注減（受注高△10.7%）を受けて実際に縮小した場合、<b>売上78億円の維持自体が難しくなり、営業利益11億円の達成は原価低減のみに依存することになる</b> <span class="tag t-i">解釈</span>。</p>
+<p><b>検証方法</b>：四半期ごとの決算説明資料でAS売上・AS比率の推移を追う <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>② 受注残の期近部分の減少が翌期の減収として現れる　<span class="small">影響度：大</span></h4>
+<p><b>懸念の中身</b>：受注高△10.7%、受注残△4.9%、<b>残存履行義務のうち1年以内が44.87億→39.51億円（△11.9%）</b> <span class="tag t-f">事実</span>。当期の増収は仕掛品404百万円の取り崩しを伴っており、この余地は縮小している <span class="tag t-i">解釈</span>。</p>
+<p><b>顕在化の条件</b>：翌期（第94期）の受注が回復しない場合、<b>1年以内の残存履行義務39.5億円＋期中受注分</b>が売上の上限を規定する。単純計算では当期の77.99億円を下回る可能性がある <span class="tag t-i">解釈</span>。<b>ただし第94期第1四半期決算短信は既に公表されている</b>（会社IRページに「2027年3月期第1四半期決算短信（非連結）」を掲載） <span class="tag t-w">web/② 会社公式IRページ</span> ため、実際の進捗はそちらで確認できる <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>③ 受注損失引当金（本体）の急増が示す案件採算の悪化　<span class="small">影響度：中</span></h4>
+<p><b>懸念の中身</b>：圧縮機本体に係る受注損失引当金が44,700→67,800千円（<b>+51.7%</b>） <span class="tag t-f">事実</span>。当期新規認識54,000千円 <span class="tag t-f">事実</span>。監査人はこれを唯一のKAMに指定 <span class="tag t-f">事実</span>。過去の目的使用率が60.3%であることから、期末残高の相当部分は翌期に実損として現れる可能性がある <span class="tag t-i">解釈</span>。</p>
+<p><b>顕在化の条件</b>：「複雑な仕様や新たな設計等の案件」（＝新製品・カーボンニュートラル関連の初号機案件）の比率が高まるほど原価超過の確率が上がる <span class="tag t-i">解釈</span>。20MPaG級新シリーズやP2G実証案件のような<b>先行開発を伴う受注ほど採算リスクが高い</b>という構造的トレードオフがある <span class="tag t-i">解釈</span>。</p>
+<p><b>検証方法</b>：翌期有報の受注損失引当金明細と売上総利益率の推移を照合 <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>④ 特定顧客への依存（岩谷瓦斯 15.1%）　<span class="small">影響度：中</span></h4>
+<p><b>懸念の中身</b>：前期8.8%→当期<b>15.1%</b>へ急上昇し、初めて主要顧客注記に登場 <span class="tag t-f">事実</span>。<b>事業等のリスクに顧客集中の項目はない</b> <span class="tag t-f">事実</span>。</p>
+<p><b>顕在化の条件</b>：当期の大口案件が一過性であれば翌期に11.76億円が剥落する <span class="tag t-i">解釈</span>。逆に継続的な関係であれば、価格交渉力の非対称が中期的な利益率圧迫要因になる <span class="tag t-i">解釈</span>。<b>どちらであるかは有報から判断できない</b> <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<div class="card warn">
+<h4>⑤ 親会社（三井E&amp;S）との構造的な利益相反　<span class="small">影響度：中〜大（顕在化確率は不明）</span></h4>
+<p><b>懸念の中身</b>：議決権51.38% <span class="tag t-f">事実</span>、取締役6名中3名が親会社関係者 <span class="tag t-f">事実</span>、社外監査役1名・補欠監査役1名も同社出身 <span class="tag t-f">事実</span>、余剰資金800百万円を親会社に預託 <span class="tag t-f">事実</span>。<b>関連当事者取引を審議する独立特別委員会の設置は有報に記載がない</b> <span class="tag t-f">事実</span>。</p>
+<p><b>顕在化の条件</b>：①親会社の資本政策変更（完全子会社化のTOB／持分の第三者への売却）、②親会社の財務状況悪化による預け金の回収不能、③親会社グループ向け取引条件の不利化 <span class="tag t-i">解釈</span>。いずれも<b>当社有報からは予見できない</b> <span class="tag t-c">要確認</span>。</p>
+<p><b>なお</b>、2026年6月12日に「支配株主等に関する事項について」が適時開示されている <span class="tag t-w">web/② 会社公式IRページ「適時開示情報」</span>。内容の確認が必要 <span class="tag t-c">要確認</span>。</p>
+</div>
+
+<div class="card note">
+<h4>⑥ 設備投資が償却の21%にとどまり、中計の「基盤づくり」を裏づける投資計画がない　<span class="small">影響度：中（時間軸は長い）</span></h4>
+<p><b>懸念の中身</b>：設備投資63百万円 vs 減価償却299百万円 <span class="tag t-f">事実</span>。<b>【設備の新設、除却等の計画】は「該当事項はありません」</b> <span class="tag t-f">事実</span>。機械及び装置の償却率は74.0%と進んでいる <span class="tag t-i">解釈</span>。</p>
+<p><b>顕在化の条件</b>：2022年竣工の総合組立工場の効果が一巡した後も投資が抑制されたままだと、生産能力・生産性の伸びが止まる <span class="tag t-i">解釈</span>。一方、これが大型投資直後の一時的な谷にすぎない可能性も同程度に高い <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<div class="card note">
+<h4>⑦ 助成金収入の剥落　<span class="small">影響度：小〜中</span></h4>
+<p>営業外の助成金収入が144,800→48,637千円へ<b>96百万円減少</b> <span class="tag t-f">事実</span>。NEDOグリーンイノベーション基金事業（H2-YES）の<b>実証完了予定は2026年12月</b> <span class="tag t-f">事実</span>。実証完了後は当該収入が消える可能性が高く、経常利益に対する下押し要因となる <span class="tag t-i">解釈</span>。役員報酬の業績連動が経常利益に40%のウェイトを置く点にも影響する <span class="tag t-i">解釈</span>。</p>
+</div>
+
+<h3>3. 有報だけでは判断できず、追加確認が必要な事項</h3>
+<div class="card">
+<table>
+<thead><tr><th class="l">#</th><th class="l">確認したい事項</th><th class="l">確認先（具体名）</th></tr></thead>
+<tbody>
+<tr><td>1</td><td class="l"><b>AS（アフターサービス）売上の年次推移と中計上のAS目標額</b>。前中計で「AS伸長」を達成要因と説明する根拠</td><td class="l">2026中期経営計画 説明資料／決算説明資料（会社IRページ「中期経営計画」「決算短信」）</td></tr>
+<tr><td>2</td><td class="l"><b>第94期第1四半期（2026年4〜6月）の受注高・受注残・売上進捗</b>。受注減が実際に減収として現れているか</td><td class="l">2027年3月期第1四半期決算短信（会社IRページに掲載済み）</td></tr>
+<tr><td>3</td><td class="l"><b>「支配株主等に関する事項について」の開示内容</b>（2026年6月12日付）</td><td class="l">会社IRページ「適時開示情報」の当該PDF</td></tr>
+<tr><td>4</td><td class="l"><b>独立役員の届出状況・取締役会実効性評価・関連当事者取引の審査体制</b></td><td class="l">コーポレート・ガバナンス報告書（東証・会社IRページ）</td></tr>
+<tr><td>5</td><td class="l"><b>岩谷瓦斯向け案件の性質</b>（一過性の大口か、継続的な取引関係か）</td><td class="l">決算説明資料／適時開示（大口受注のリリース有無）</td></tr>
+<tr><td>6</td><td class="l"><b>水素ステーション市場の当社シェア・競合状況・国内基数の推移</b></td><td class="l">決算説明資料／中期経営計画説明資料／統合報告書（存在するか自体が要確認）</td></tr>
+<tr><td>7</td><td class="l"><b>26中計の設備投資計画額・DX投資額</b>。「強固な事業基盤づくり」の具体的な投資内容</td><td class="l">2026中期経営計画 説明資料</td></tr>
+<tr><td>8</td><td class="l"><b>20MPaG級新シリーズの受注見通し・市場規模・売上寄与</b></td><td class="l">決算説明資料／製品リリース（会社IRページ「適時開示情報」）</td></tr>
+<tr><td>9</td><td class="l"><b>NEDO助成事業の契約条件・実証完了後の事業化計画</b></td><td class="l">決算説明資料／NEDO公表資料</td></tr>
+<tr><td>10</td><td class="l"><b>採用者数・離職率・技能資格保有者数などの人的資本の実質指標</b></td><td class="l">株主通信／採用ページ／統合報告書（存在するか要確認）</td></tr>
+<tr><td>11</td><td class="l"><b>繰延税金資産545百万円の回収可能性の判断区分</b></td><td class="l">有報の税効果会計注記の詳細（本レポートでは未参照範囲）／会計士見解</td></tr>
+<tr><td>12</td><td class="l"><b>自己株式63,836株（3.72%）の今後の使途</b>（消却・処分・保有継続）</td><td class="l">株主総会招集通知／適時開示</td></tr>
+</tbody></table>
+</div>
+
+<div class="card plain">
+<h4>総括：この有報から読み取れる会社像</h4>
+<p>加地テックは、<b>120年の社歴を通じて「圧縮」という一点に技術を集中させ、そのつど用途を乗り換えてきた中堅専業メーカー</b>である <span class="tag t-i">解釈</span>。現在は水素という4番目の波に賭けているが、その波の到来が想定より遅れていることを経営者自身が明示的に認めており、<b>26中計は「成長を取りに行く計画」ではなく「売上横ばい前提で利益率を上げ、基礎体力をつける守りの計画」</b>として設計されている <span class="tag t-i">解釈</span>。</p>
+<p>財務は堅牢（自己資本比率68.9%・実質ネットキャッシュ・政策保有株式ゼロ）で、当期は過去最高益を更新した <span class="tag t-f">事実</span>。一方で<b>受注は前年割れ、期近の残存履行義務は12%減、本体の受注損失引当金は5割増</b>という、増益とは逆を向く3つの先行指標が同時に出ている <span class="tag t-f">事実</span>。当期の好業績を<b>持続的な改善</b>と読むか、<b>在庫取り崩しと大口案件による一時的なピーク</b>と読むかで、評価は大きく分かれる <span class="tag t-i">解釈</span>。</p>
+<p>ガバナンス面では、親会社の議決権51.38%と取締役会の人員構成により<b>資本政策の主導権が少数株主側にない</b>という構造が最大の論点として残る <span class="tag t-i">解釈</span>。26中計が掲げた配当性向20%と「資本効率経営の推進」が実際にどこまで実行されるかが、この構造に対する会社側の回答になる <span class="tag t-i">解釈</span>。</p>
+</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+<b>免責事項</b><br>
+本レポートは、株式会社加地テック（証券コード6391）が金融商品取引法第24条第1項に基づき提出した<b>第93期（2025年4月1日〜2026年3月31日）有価証券報告書</b>（提出日：2026年6月25日、近畿財務局長宛）を主たる一次情報として、その記述情報を構造化・分析したものです。<br><br>
+<b>データ取得日：</b>2026年8月7日（有報PDFは会社公式IRページより同日取得）<br>
+<b>対象事業年度：</b>第93期（2025年4月1日〜2026年3月31日）／単体（当社は連結財務諸表を作成していません）<br>
+<b>スクリーニング判定の基準日：</b>2026年7月17日（J-Quants API V2・JPX公式 <b>[⑤]</b>）。株価4,295円時点<br>
+<b>使用ソース：</b>[③] 会社公式開示PDF（有価証券報告書）／[②] 会社公式IRページ（会社概要・沿革・IRライブラリ）／[⑤] J-Quants API V2（JPX公式）。<b>[①] irpocket 公式IRデータ（Excel）は銘柄コード6391について提供がなく取得できなかったため、5年推移は有報【主要な経営指標等の推移】[③] を用いています。</b>ニュース記事・検索サマリー・アナリストレポート等の二次情報は使用していません。Web由来の情報は沿革章および一部の会社概要事実に限定し、<b>[web/②]</b> のラベルを付して区別しています。<br><br>
+<b>推計値に関する注記：</b>CAGR、1人当たり売上高・営業利益、対売上比率、総還元性向、ネットキャッシュ、総資産回転率、ROA、流動比率、償却率、設備投資／減価償却比率、必要成長率などは本レポートが有報開示数値から算出した<b>推計値であり、将来の実現を保証するものではありません</b>。会社の公表値と定義が異なる場合があります。<br><br>
+<b>本レポートは投資判断の材料と論点を提示するものであり、特定の銘柄の売買を推奨するものではありません。目標株価・投資判断（買い／売り／中立等）は一切提示していません。</b>投資に関する最終的な決定はご自身の判断と責任において行ってください。<br><br>
+作成：2026年8月7日／jp_stock 投資分析プロジェクト（有報定性分析レポート v1.0）
+</footer>
+
+<script>
+(function(){
+  var links=document.querySelectorAll('#nav a'), secs=document.querySelectorAll('section');
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=a.getAttribute('href').slice(1);
+      secs.forEach(function(s){s.classList.toggle('on',s.id===id)});
+      links.forEach(function(l){l.classList.toggle('active',l===a)});
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  var NAVY='#1b2a41', BLUE='#2e6fb7', AMBER='#c98a1e', TEAL='#1c7a6c', RED='#b03030', GRAY='#9aa8b6';
+  var yrs=['第89期\n2022/3','第90期\n2023/3','第91期\n2024/3','第92期\n2025/3','第93期\n2026/3'];
+  Chart.defaults.font.family='"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif';
+  Chart.defaults.font.size=11;
+
+  new Chart(document.getElementById('ch5y'),{
+    data:{labels:yrs,datasets:[
+      {type:'bar',label:'売上高（百万円）',data:[4578,5976,7261,7004,7800],backgroundColor:'rgba(46,111,183,.75)',yAxisID:'y',order:3},
+      {type:'bar',label:'経常利益（百万円）',data:[455,297,818,770,978],backgroundColor:'rgba(201,138,30,.85)',yAxisID:'y',order:2},
+      {type:'line',label:'ROE（%・右軸）',data:[4.8,4.3,8.2,7.7,8.9],borderColor:TEAL,backgroundColor:TEAL,yAxisID:'y1',tension:.25,borderWidth:2.5,order:1},
+      {type:'line',label:'自己資本比率（%・右軸）',data:[67.9,61.8,61.9,67.6,68.9],borderColor:GRAY,backgroundColor:GRAY,yAxisID:'y1',tension:.25,borderWidth:2,borderDash:[5,4],order:0}
+    ]},
+    options:{responsive:true,plugins:{title:{display:true,text:'5年推移：売上高・経常利益・ROE・自己資本比率 [③]'},legend:{position:'bottom'}},
+      scales:{y:{title:{display:true,text:'百万円'},beginAtZero:true},y1:{position:'right',title:{display:true,text:'%'},grid:{drawOnChartArea:false},beginAtZero:true}}}
+  });
+
+  new Chart(document.getElementById('chMix'),{
+    type:'bar',
+    data:{labels:['第92期 2025/3','第93期 2026/3'],datasets:[
+      {label:'本体・部品販売',data:[4877.7,5606.6],backgroundColor:'rgba(27,42,65,.85)'},
+      {label:'保守・メンテナンスサービス',data:[2125.2,2187.0],backgroundColor:'rgba(28,122,108,.85)'},
+      {label:'その他',data:[1.0,6.0],backgroundColor:'rgba(154,168,182,.8)'}
+    ]},
+    options:{responsive:true,plugins:{title:{display:true,text:'財・サービス別売上（百万円）[③]'},legend:{position:'bottom'}},
+      scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'百万円'}}}}
+  });
+
+  new Chart(document.getElementById('chGeo'),{
+    type:'doughnut',
+    data:{labels:['日本 85.3%','東アジア 7.9%','東南・南アジア 4.0%','中近東 1.7%','その他 1.1%'],
+      datasets:[{data:[6649.5,619.0,311.9,130.0,89.1],
+        backgroundColor:['#1b2a41','#2e6fb7','#5b9bd5','#c98a1e','#9aa8b6']}]},
+    options:{responsive:true,plugins:{title:{display:true,text:'第93期 地域別売上構成 [③]'},legend:{position:'bottom'}}}
+  });
+
+  new Chart(document.getElementById('chEmp'),{
+    data:{labels:yrs,datasets:[
+      {type:'bar',label:'従業員数（名）',data:[199,198,199,205,207],backgroundColor:'rgba(154,168,182,.75)',yAxisID:'y'},
+      {type:'line',label:'1人当たり売上高（百万円・右軸）',data:[23.0,30.2,36.5,34.2,37.7],borderColor:BLUE,backgroundColor:BLUE,yAxisID:'y1',tension:.25,borderWidth:2.5}
+    ]},
+    options:{responsive:true,plugins:{title:{display:true,text:'従業員数と1人当たり売上高（右軸は本レポート算出・推計値）[③]'},legend:{position:'bottom'}},
+      scales:{y:{title:{display:true,text:'名'},min:180},y1:{position:'right',title:{display:true,text:'百万円/人'},grid:{drawOnChartArea:false},beginAtZero:true}}}
+  });
+
+  new Chart(document.getElementById('chPL'),{
+    type:'bar',
+    data:{labels:['売上総利益','販管費','営業利益','経常利益','当期純利益'],datasets:[
+      {label:'第92期（百万円）',data:[2035,1415,620,770,579],backgroundColor:'rgba(154,168,182,.8)'},
+      {label:'第93期（百万円）',data:[2412,1486,925,978,724],backgroundColor:'rgba(46,111,183,.85)'}
+    ]},
+    options:{responsive:true,plugins:{title:{display:true,text:'損益の段階別比較 [③]'},legend:{position:'bottom'}},
+      scales:{y:{title:{display:true,text:'百万円'},beginAtZero:true}}}
+  });
+
+  new Chart(document.getElementById('chDiv'),{
+    data:{labels:yrs,datasets:[
+      {type:'bar',label:'1株当たり配当額（円）',data:[40,40,40,40,60],backgroundColor:'rgba(201,138,30,.85)',yAxisID:'y'},
+      {type:'bar',label:'EPS（円）',data:[186.97,174.35,349.55,349.92,437.46],backgroundColor:'rgba(27,42,65,.6)',yAxisID:'y'},
+      {type:'line',label:'配当性向（%・右軸）',data:[21.4,22.9,11.4,11.4,13.7],borderColor:RED,backgroundColor:RED,yAxisID:'y1',tension:.2,borderWidth:2.5}
+    ]},
+    options:{responsive:true,plugins:{title:{display:true,text:'配当・EPS・配当性向の推移（2028年度目標：配当性向20%）[③]'},legend:{position:'bottom'}},
+      scales:{y:{title:{display:true,text:'円'},beginAtZero:true},y1:{position:'right',title:{display:true,text:'%'},grid:{drawOnChartArea:false},beginAtZero:true,max:30}}}
+  });
+
+  new Chart(document.getElementById('chOwner'),{
+    type:'doughnut',
+    data:{labels:['株式会社三井E&S（親会社）51.06%','加地取引先持株会 2.18%','その他上位株主 5.33%','加地テック役員持株会 0.61%','自己株式 3.72%','その他一般株主 37.10%'],
+      datasets:[{data:[51.06,2.18,5.33,0.61,3.72,37.10],
+        backgroundColor:['#b03030','#c98a1e','#2e6fb7','#1c7a6c','#9aa8b6','#dfe4ea']}]},
+    options:{responsive:true,plugins:{title:{display:true,text:'株主構成（2026年3月31日現在・発行済株式ベース）[③]'},legend:{position:'bottom',labels:{boxWidth:12,font:{size:10}}}}}
+  });
+})();
+</script>
+</body>
+</html>
