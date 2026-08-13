@@ -2,6 +2,12 @@
   "generated": true,
   "stocks": [
     {
+      "code": "5288",
+      "name": "アジアパイルホールディングス",
+      "report_date": null,
+      "qualitative_date": "2026-08-13"
+    },
+    {
       "code": "5757",
       "name": "CKサンエツ",
       "report_date": "2026-08-13",

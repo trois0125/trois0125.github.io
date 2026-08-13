@@ -1,0 +1,580 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>アジアパイルホールディングス（5288） 有価証券報告書 定性分析レポート（第21期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;
+  border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.topbar a{text-decoration:none;display:flex;align-items:center;gap:8px;font-weight:700;color:inherit}
+.topbar a .sq{width:7px;height:7px;background:var(--ink);display:inline-block}
+.topbar .meta{color:var(--sub);font-variant-numeric:tabular-nums}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tag{font-size:10.5px;border:1px solid var(--line);border-radius:2px;padding:1px 7px;color:var(--sub)}
+ul.plain{list-style:none;padding:0}
+ul.plain li{padding:4px 0 4px 14px;position:relative}
+ul.plain li:before{content:"—";position:absolute;left:0;color:var(--sub)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.grid2{grid-template-columns:1fr}}
+.kpi{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.kpi div{border:1px solid var(--line);padding:8px 12px;min-width:130px}
+.kpi div .k{font-size:10.5px;color:var(--sub)}
+.kpi div .v{font-size:16px;font-weight:800}
+footer.disc{font-size:11px;color:var(--sub);border-top:1px solid var(--line);margin-top:24px;padding-top:14px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">アジアパイルホールディングス（5288） 有報定性レポート</span></div>
+
+<div class="topbar"><a href="../../index.html"><span class="sq"></span>VALUE INVEST</a>
+  <div class="meta">個別銘柄レポート ／ INDEXへ戻る</div></div>
+<div class="wrap">
+  <header class="rhead"><h1>アジアパイルホールディングス（5288） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第21期有価証券報告書（2026年３月期・2026年６月24日提出）／ 作成日：2026-08-13</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p><b>一文で：</b>コンクリート杭・鋼管杭・場所打ち杭のすべてを扱う国内唯一の総合基礎建設持株会社で、中核子会社ジャパンパイル㈱による国内事業と、ベトナムPhan Vu Investment Corporationを軸とする海外事業の二本柱で構成される<span class="src">事実</span>。<span class="lab fact">事実</span></p>
+      <h3>最重要ポイント３点</h3>
+      <ul class="plain">
+        <li>第21期（2026年３月期）は国内・海外双方が増収増益となり、売上高1,159億56百万円（前期比+15.0％）、営業利益108億83百万円（同+151.1％）、親会社株主帰属当期純利益75億92百万円（同+223.5％）と大幅増益。特に前期に営業損失（△5億19百万円）だった海外事業が14億16百万円の黒字に転換し、利益成長を牽引した。<span class="lab fact">事実</span></li>
+        <li>中期経営計画「新５か年計画」（2024〜2028年度）が掲げるROE目標11.0％（計画最終年度）に対し、初年度から３年目にあたる当期に実績15.5％で既に上回っている。中計の前提を上振れて進捗している可能性がある一方、目標設定自体が保守的だった可能性もある。<span class="lab interp">解釈</span></li>
+        <li>配当性向は直近５期中４期で95％超（うち２期が100％超）と極めて高水準が常態化しており、累進配当方針・DOE3.75％以上という株主還元方針を上回るペースで還元を継続している。<span class="lab fact">事実</span><span class="lab interp">解釈</span></li>
+      </ul>
+      <h3>最も注意すべき論点１点</h3>
+      <p>ベトナム子会社の売上債権に対する貸倒引当金が前期２,895百万円→当期3,429百万円へ増加しており、有報が「重要な会計上の見積り」として単独で取り上げている。ベトナム建設業界の債権回収期間の長さに起因する信用リスクであり、海外事業の増収増益ペースと債権滞留の増加が同時に進行している点は、利益の質を見るうえで継続的な確認が必要。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>５年推移（代表６指標）<span class="src">①</span></h3>
+      <p style="font-size:11.5px;color:var(--sub)">irpocket公式IRデータExcelは本銘柄コードで404（未掲載）であったため、有報「主要な経営指標等の推移」の連結数値を一次ソースとして採用した（出所は有報本体のため<span class="src">事実</span>）。CAGRは第17期（2022年３月期）→第21期（2026年３月期）の４年間で自算。</p>
+      <div class="card" style="background:#f7f7f7">
+        <canvas id="chartTrend"></canvas>
+      </div>
+      <table>
+        <tr><th class="l">指標</th><th>第17期<br>2022/3</th><th>第18期<br>2023/3</th><th>第19期<br>2024/3</th><th>第20期<br>2025/3</th><th>第21期<br>2026/3</th><th>CAGR(4年)</th></tr>
+        <tr><td class="l">売上高（百万円）</td><td>93,176</td><td>110,245</td><td>103,151</td><td>100,803</td><td>115,956</td><td>+5.6%</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>2,169</td><td>5,844</td><td>6,247</td><td>3,872</td><td>10,865</td><td>+49.6%</td></tr>
+        <tr><td class="l">EPS（円）</td><td>39.23</td><td>108.43</td><td>100.34</td><td>61.61</td><td>199.33</td><td>+50.1%</td></tr>
+        <tr><td class="l">ROE（％）</td><td>4.1</td><td>10.5</td><td>8.9</td><td>5.2</td><td>15.5</td><td>（+11.4pt）</td></tr>
+        <tr><td class="l">自己資本比率（％）</td><td>43.5</td><td>41.6</td><td>47.2</td><td>47.0</td><td>49.4</td><td>（+5.9pt）</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>3,628</td><td>7,549</td><td>4,241</td><td>4,671</td><td>15,663</td><td>+44.1%</td></tr>
+      </table>
+      <p style="font-size:11.5px;color:var(--sub);margin-top:6px">※CAGRは自算。第17期（コロナ影響下の低収益期）が起点のため、経常利益・EPS・営業CFのCAGRは低base効果で高く出ている点に留意。単年の振れ幅も大きく（第20期は経常利益が前々期比で減益）、直線的な成長トレンドではなく変動を伴う回復局面と読むのが妥当。<span class="lab interp">解釈</span></p>
+
+      <h3>事業の内容とビジネスモデル<span class="src">③</span></h3>
+      <p>国内事業と海外事業の２区分。国内では中核子会社ジャパンパイル㈱がゼネコン・商社・代理店から基礎工事を受注し、コンクリート杭・鋼管杭・場所打ち杭の設計・製造・施工を一貫して手掛ける。子会社のジャパンパイル基礎工業㈱（施工）、ジャパンパイル富士コン㈱・ジャパンパイル関東北販売㈱（施工・販売）、ジャパンパイル建設㈱（原材料販売）、シントク工業㈱（継手金具製造）が機能分担する構造。海外はベトナムでPhan Vu Investment Corporationが施主等から基礎工事を受注し、傘下の製造子会社７社へ原材料を供給する一方、コンクリート杭を仕入れて施工・販売する双方向の商流。<span class="lab fact">事実</span></p>
+      <p>製品別売上構成（第21期・連結外部売上）：コンクリート杭96,588百万円（83.3％）、場所打ち杭9,785百万円（8.4％）、鋼管杭7,369百万円（6.4％）、その他2,212百万円（1.9％）。<span class="lab fact">事実</span></p>
+
+      <h3>収益柱の照合（セグメント別売上・利益構成比）</h3>
+      <div class="grid2">
+        <div class="card" style="background:#f7f7f7"><canvas id="chartSegSales"></canvas></div>
+        <div class="card" style="background:#f7f7f7"><canvas id="chartSegProfit"></canvas></div>
+      </div>
+      <table>
+        <tr><th class="l">区分</th><th>売上高（百万円）</th><th>構成比</th><th>セグメント利益（百万円）</th><th>構成比</th><th>利益率</th></tr>
+        <tr><td class="l">国内事業</td><td>94,902</td><td>81.8%</td><td>9,460</td><td>87.0%</td><td>9.96%</td></tr>
+        <tr><td class="l">海外事業</td><td>21,054</td><td>18.2%</td><td>1,416</td><td>13.0%</td><td>6.73%</td></tr>
+      </table>
+      <p style="font-size:11.5px;color:var(--sub);margin-top:6px">語りの大きさと利益の大きさはおおむね一致しており、「アセアン市場への拡大」という戦略的語りに対し、実際の利益貢献は売上比率相応かそれ以下（利益率は海外の方が国内より低い）。海外事業は前期の営業赤字（△519百万円）から黒字転換したばかりで、利益貢献度としてはまだ発展途上。<span class="lab interp">解釈</span></p>
+
+      <h3>競争優位</h3>
+      <p>国内唯一、全種類の基礎杭（コンクリート杭・鋼管杭・場所打ち杭）の設計・製造・施工を一貫して提供できる体制を自社の強みと位置付けている（有報記載）。国土交通大臣認定工法を複数保有（Ｓｍａｒｔ－ＭＡＧＮＵＭ工法、ＪＰ－Ｐｉｌｅ工法等）し、技術的な参入障壁を形成している。<span class="lab fact">事実</span>　業界屈指とされる設計部門（基礎設計部門60名、うち建築基礎設計士58名）を擁し、上流の設計提案から下流の施工まで垂直統合していることが差別化の源泉と解釈できる。<span class="lab interp">解釈</span></p>
+
+      <h3>関係会社（支配構造・リスク）<span class="src">③</span></h3>
+      <p>親会社なし。国内は連結子会社７社（ジャパンパイル㈱100％ほか）。うちジャパンパイル富士コン㈱（70％）、ジャパンパイル関東北販売㈱（60％）は非100％子会社で、少数株主が存在する。海外はベトナムのPhan Vu Investment Corporation（69.2％）を筆頭に十数社の製造子会社群、加えて持分法適用関連会社２社（風力発電のCa Mau Investment Renewable Power社20.1％など）。Phan Vu Ha Nam Concrete（旧Fecon Mining、51％）はホーチミン証券取引所上場企業であり、非100％子会社かつ上場子会社という統治構造上の論点を抱える。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>持株会社アジアパイルホールディングスの直接の沿革は2005年の設立から始まるが、その前身は戦前創業の建設会社群である。株式会社ジオトップは1923年、大同コンクリート工業株式会社は1934年、ヨーコン株式会社は1958年にそれぞれ設立された<span class="lab web">[web]＋ジャパンパイル㈱公式サイト沿革ページ（japanpile.co.jp/company/history/）</span>。</p>
+      <h3>統合前史〜持株会社設立（〜2007年）</h3>
+      <ul class="plain">
+        <li>1923年　㈱ジオトップ設立<span class="lab web">[web]</span></li>
+        <li>1934年　大同コンクリート工業㈱設立<span class="lab web">[web]</span></li>
+        <li>1958年　ヨーコン㈱設立<span class="lab web">[web]</span></li>
+        <li>2005年４月　㈱ジオトップ・大同コンクリート工業㈱が共同で株式移転により当社（当時ジャパンパイル㈱）を設立、大阪証券取引所市場第二部に上場<span class="lab fact">事実</span></li>
+        <li>2005年10月　株式交換によりヨーコン㈱を完全子会社化<span class="lab fact">事実</span></li>
+        <li>2006年４月　ジオトップ・大同コンクリート工業・ヨーコンが共同新設分割によりジャパンパイル製造㈱を設立、製品製造事業を承継<span class="lab fact">事実</span></li>
+        <li>2007年４月　100％子会社のジオトップ・大同コンクリート工業・ヨーコンを吸収合併し、３社体制から単一事業会社へ統合<span class="lab fact">事実</span></li>
+        <li>2009年２月　東京証券取引所市場第二部上場</li>
+        <li>2010年５月　大阪証券取引所市場第二部の上場を廃止（東証への一本化）</li>
+        <li>2012年12月　東京証券取引所市場第一部に指定</li>
+      </ul>
+      <h3>海外展開（アセアン進出、2010年〜）</h3>
+      <ul class="plain">
+        <li>2010年７月　ベトナム最大のコンクリートパイル会社Phan Vu Investment Corporationに出資し資本提携。2011年12月に持分法適用関連会社化、2013年12月に子会社化と段階的に関係を深化<span class="lab fact">事実</span></li>
+        <li>2012年〜2015年　Phan Vuグループを通じ、ベトナム国内に複数の製造子会社を新設・買収（Phan Vu Quang Binh Concrete、Vinaconex-Phan Vu Concrete＝現Phan Vu Hai Duong Concrete、Phuong Nam Centrifugal Concrete＝現Phan Vu Long An Spun Piles等）<span class="lab fact">事実</span></li>
+        <li>2015年６月　ミャンマーにMyanmar V-Pileほかとの共同出資でVJP Co., Ltd.を設立（2025年６月付で全株式売却・撤退）<span class="lab fact">事実</span></li>
+      </ul>
+      <h3>持株会社体制への移行と現体制（2015年〜）</h3>
+      <ul class="plain">
+        <li>2015年10月　吸収分割により持株会社体制に移行。ジャパンパイル㈱からアジアパイルホールディングス㈱に商号変更し、国内事業一切（海外事業・グループ運営を除く）を100％子会社の新「ジャパンパイル㈱」に承継<span class="lab fact">事実</span>――これは事業モデル上の大きな転換点であり、単一事業会社から「国内総合基礎建設＋海外（アセアン）基礎建設」を束ねる持株会社への構造転換にあたる<span class="lab interp">解釈</span></li>
+        <li>2018年９月　Fecon Mining Joint Stock Company（現Phan Vu Ha Nam Concrete、ホーチミン証取上場）を子会社化<span class="lab fact">事実</span></li>
+        <li>2022年４月　東証市場区分見直しによりプライム市場へ移行<span class="lab fact">事実</span></li>
+        <li>2023年11月　ジオトップ前身の武智工務所創業からの通算で100周年記念式典を開催<span class="lab web">[web]＋HISビジネス事例（his-j.com）</span></li>
+        <li>2025年10月　全株式取得により㈱高山基礎工業（首都圏の場所打ち杭施工業者）を完全子会社化。対価600百万円、のれん556百万円計上<span class="lab fact">事実</span>――本業（場所打ち杭）の施工体制強化を狙ったボルトオン型M&Aで、大型M&Aによる事業構造の転換というより既存事業の面的補強と位置付けられる<span class="lab interp">解釈</span></li>
+      </ul>
+      <p style="margin-top:8px">総括すると、①1920〜50年代創業の建設資材会社３社が2005〜2007年に経営統合してジャパンパイルが誕生、②2010年代にベトナムのPhan Vuグループを段階的に買収してアセアン展開を実現、③2015年に持株会社体制へ移行して国内外の事業運営を分離、という３段階の転換を経て現在の姿に至っている。<span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本（従業員＋サステナビリティ統合）</h2>
+      <h3>従業員数の推移と生産性<span class="src">③</span></h3>
+      <div class="card" style="background:#f7f7f7"><canvas id="chartEmp"></canvas></div>
+      <table>
+        <tr><th class="l">指標</th><th>第17期</th><th>第18期</th><th>第19期</th><th>第20期</th><th>第21期</th></tr>
+        <tr><td class="l">連結従業員数（人）</td><td>2,867</td><td>2,683</td><td>2,667</td><td>2,523</td><td>2,681</td></tr>
+        <tr><td class="l">一人当たり売上高（百万円）</td><td>32.5</td><td>41.1</td><td>38.7</td><td>39.9</td><td>43.3</td></tr>
+      </table>
+      <p style="font-size:11.5px;color:var(--sub);margin-top:6px">一人当たり売上高は自算（売上高÷連結従業員数）。従業員数は４年間で6.5％減少した一方、売上高は24.4％増加しており、一人当たり売上高は約33％向上した。労働集約的な人員増強ではなく、大径・大規模案件へのシフトや施工の平準化・効率化による「仕組み型」の増収と整合的である。<span class="lab interp">解釈</span></p>
+
+      <h3>提出会社・最大人員会社の給与水準<span class="src">③</span></h3>
+      <table>
+        <tr><th class="l">区分</th><th>従業員数</th><th>平均年齢</th><th>平均勤続年数</th><th>平均年間給与</th></tr>
+        <tr><td class="l">提出会社（持株会社）</td><td>11人</td><td>50.9歳</td><td>18.0年</td><td>1,026.5万円</td></tr>
+        <tr><td class="l">ジャパンパイル㈱（最大人員会社）</td><td>807人</td><td>45.7歳</td><td>14.6年</td><td>706.0万円（前期比+10.3％）</td></tr>
+      </table>
+      <p>提出会社は持株会社機能に特化した少人数体制（11名）で高年齢・高勤続・高給与。事業運営の実態はジャパンパイル㈱以下の事業会社にある。<span class="lab interp">解釈</span></p>
+
+      <h3>人的資本戦略・資格制度</h3>
+      <p>「働きやすい職場の実現」をサステナビリティ重点項目の一つに掲げ、専門資格の取得を組織的に支援。有報提出日現在、建築基礎設計士58名・同士補38名・工学博士６名、国の登録基礎ぐい工事試験合格者（基礎施工士）を累計291名育成。基礎設計部門は総勢60名（うち34名が女性）で「業界随一の規模」と自認している。<span class="lab fact">事実</span>　ベトナムからの技能実習生累計34名、ミャンマーからの人材19名を受け入れ、海外人材活用も進めている。<span class="lab fact">事実</span></p>
+
+      <h3>人的資本指標（数値の提示のみ）</h3>
+      <table>
+        <tr><th class="l">項目</th><th>ジャパンパイル㈱</th><th>ジャパンパイル基礎工業㈱</th></tr>
+        <tr><td class="l">女性管理職比率</td><td>3.9%</td><td>0.0%</td></tr>
+        <tr><td class="l">男性育休取得率</td><td>64.7%</td><td>0.0%（対象者なし）</td></tr>
+        <tr><td class="l">男女賃金差異（全労働者）</td><td>74.2%</td><td>66.8%</td></tr>
+      </table>
+      <p style="font-size:11.5px;color:var(--sub)">提出会社（持株会社）は公表義務の対象外のため記載省略。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <h3>課題→打ち手の接続</h3>
+      <table>
+        <tr><th class="l">掲げられた課題</th><th class="l">対応する打ち手（本文記載）</th></tr>
+        <tr><td class="l">既存事業の競争力強化・全杭種トップシェア</td><td class="l">大径・大規模工事へのシフト、効率化によるマンパワー余力創出<span class="lab fact">事実</span></td></tr>
+        <tr><td class="l">事業領域拡大・海外市場開拓</td><td class="l">国内での技術革新、グループ全体の技術力向上<span class="lab fact">事実</span>――ただし海外の具体的な拡大策（新規拠点・M&A方針等）の記載は薄い<span class="lab check">要確認</span></td></tr>
+        <tr><td class="l">気候変動への取組</td><td class="l">TCFD提言に基づく開示、シナリオ分析による財務影響試算（後述Ⅴ章）<span class="lab fact">事実</span></td></tr>
+        <tr><td class="l">働きやすい職場の実現</td><td class="l">人材育成・増強、多様性確保（前章Ⅲ参照）<span class="lab fact">事実</span></td></tr>
+        <tr><td class="l">ガバナンス体制の充実</td><td class="l">指名・報酬諮問委員会の設置（2024年６月）<span class="lab fact">事実</span></td></tr>
+      </table>
+      <p>「全杭種でのトップシェア実現」「新分野マーケット開拓」は課題として掲げられているが、具体的な数値目標や達成期限は本節に記載がなく、定性的な方向性の提示にとどまる。<span class="lab interp">解釈</span></p>
+
+      <h3>経営環境認識の具体性</h3>
+      <p>「国内唯一の総合基礎建設会社」「業界屈指の設計部門と施工部門」といった自社の位置付けは具体的だが、市場全体の環境認識（我が国経済の緩やかな回復、物価高・人手不足、中東情勢緊迫化等）はMD&A（Ⅶ章）に記載される一般的なマクロ環境認識と重複しており、この節自体の記述は比較的定型的。<span class="lab interp">解釈</span></p>
+
+      <h3>中期経営計画の進捗・未達認識</h3>
+      <div class="kpi">
+        <div><div class="k">ROE目標（2028年度・計画最終年度）</div><div class="v">11.0%</div></div>
+        <div><div class="k">当期実績ROE</div><div class="v">15.5%</div></div>
+        <div><div class="k">前期比</div><div class="v">+10.3pt</div></div>
+      </div>
+      <p>有報は「５か年計画最終年度（2028年度）の目標値11.0％に対して15.5％となり」と明記しており、計画３年目（初年度は2024年度）にして最終年度目標を上回っている。<span class="lab fact">事実</span>　これは①事業環境が計画策定時の想定より好転した、②目標設定自体が保守的だった、のいずれか（あるいは両方）を意味するが、有報からは判別できない。目標の上方修正や新たな中間目標の言及は見当たらず、未達を認める記述もない代わりに、達成後の次のマイルストーンも示されていない。<span class="lab interp">解釈</span><span class="lab check">要確認</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <h3>戦略接続</h3>
+      <p>気候変動への取組は「経営上の重要課題の一つ」と位置付けられ、第２-１経営方針の「サステナビリティ戦略」と直接結びついている。炭素集約的な業種（コンクリート製造）であるため気候変動対応の重要性は業種特性上高く、この章が本文戦略から浮いた記述にはなっていない。<span class="lab interp">解釈</span></p>
+
+      <h3>気候変動（TCFD）：検証可能性</h3>
+      <p>ガバナンス・戦略・リスク管理・指標目標のTCFD４要素に沿って記載。移行リスク（炭素税導入）・物理的リスク（洪水・高潮）について、1.5℃/2℃/4℃シナリオ別の財務影響を金額で試算している点は具体性が高い。<span class="lab fact">事実</span></p>
+      <table>
+        <tr><th class="l">リスク</th><th>シナリオ</th><th>2030年</th><th>2050年</th></tr>
+        <tr><td class="l">炭素税導入</td><td class="l">1.5℃上昇</td><td>3.3億円</td><td>6.2億円</td></tr>
+        <tr><td class="l">炭素税導入</td><td class="l">2℃上昇</td><td>3.4億円</td><td>5.0億円</td></tr>
+        <tr><td class="l">洪水・高潮による拠点浸水</td><td class="l">2℃上昇</td><td>2.4億円</td><td>14.8億円</td></tr>
+        <tr><td class="l">洪水・高潮による拠点浸水</td><td class="l">4℃上昇</td><td>2.1億円</td><td>17.4億円</td></tr>
+      </table>
+      <p style="font-size:11.5px;color:var(--sub)">推計値・保証なし（有報記載の将来予測シナリオに基づく試算）。<span class="lab fact">事実</span></p>
+      <p>一方、温室効果ガス排出量（Scope1+2：15,162tCO2、Scope3：402,409tCO2）は実績値として開示されているが、「今後、具体的な排出量削減目標の設定に取り組んでまいります」との記載にとどまり、当期時点では定量的な削減目標・期限が未設定。シナリオ分析の定量性の高さに対し、実際の削減目標の検証可能性は低い状態にある。<span class="lab fact">事実</span><span class="lab check">要確認</span></p>
+
+      <h3>ガバナンス（サステナ推進体制）</h3>
+      <p>社長直属の「気候変動に関するワーキンググループ」が事務局機能を担い、執行役員連絡会・取締役会に定期報告する体制。リスク特定はワークショップ形式で部門横断的に実施。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+      <h3>固有リスクと定型リスクの仕分け</h3>
+      <p>有報は10項目のリスクを列挙。うち下記は同業他社にも共通しがちな定型的リスクと言える：<span class="tagrow">
+        <span class="tag">(5)市場環境</span><span class="tag">(6)法的規制</span><span class="tag">(7)施工物件の瑕疵</span>
+        <span class="tag">(8)労災事故</span><span class="tag">(10)自然災害等</span></span></p>
+      <p>一方、下記は当社固有の事業構造を反映した記述：<span class="tagrow">
+        <span class="tag">(1)グループ再編</span><span class="tag">(3)業界の寡占状況</span>
+        <span class="tag">(9)海外事業</span></span></p>
+
+      <h3>固有リスクの深掘り</h3>
+      <ul class="plain">
+        <li><b>(1) グループ再編について：</b>ベトナムPhan Vuとの資本・業務提携から子会社化、ミャンマーVJPの設立・撤退（2025年６月）など、同業他社との提携・資本参加を積極推進する方針を明記した上で「期待する効果が実現する保証はない」と自ら留保を付している。M&A余地は今後も残る一方、実現可能性は不確実と読める。<span class="lab fact">事実</span><span class="lab interp">解釈</span></li>
+        <li><b>(3) 業界の寡占状況について：</b>認定工法の取得や製品開発の負担が重いため、業界大手による再編・寡占化が進みつつあると認識。自社を「業界大手企業」と位置付けて主導的役割を果たす方針を示すが、「当該方針が実現する保証はない」との留保あり。寡占化の進展は価格競争激化のリスクとしても両義的に記載されている。<span class="lab fact">事実</span></li>
+        <li><b>(9) 海外事業について：</b>ベトナムの政治・経済状況、法律・税制改正、為替変動の影響を一般的に記載するにとどまり、Ⅺ章で取り上げる貸倒引当金の増加傾向（信用リスクの顕在化）との明示的な関連付けはない。財務数値（重要な会計上の見積り）が示す信用リスクの高まりに対し、本リスク項目の記述は定型的な水準にとどまっており、過小開示の可能性がある。<span class="lab interp">解釈</span></li>
+      </ul>
+
+      <h3>財務数値との照合</h3>
+      <p>ベトナム子会社の売上債権に係る貸倒引当金は前期2,895百万円→当期3,429百万円（+18.4％）に増加している（Ⅺ章参照）。この増加ペースは海外事業の売上高伸長率（+17.8％）とほぼ同水準で、債権の質が急速に悪化しているとまでは言えないが、絶対額としては連結流動資産の5.0％に達しており、監視が必要な規模になっている。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>該当事項はありません（有報記載どおり）。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&A】</h2>
+      <h3>業績事実の要約</h3>
+      <div class="kpi">
+        <div><div class="k">売上高</div><div class="v">1,159億56百万円</div><div class="k">前期比+15.0%</div></div>
+        <div><div class="k">営業利益</div><div class="v">108億83百万円</div><div class="k">前期比+151.1%</div></div>
+        <div><div class="k">経常利益</div><div class="v">108億65百万円</div><div class="k">前期比+180.6%</div></div>
+        <div><div class="k">親会社株主帰属当期純利益</div><div class="v">75億92百万円</div><div class="k">前期比+223.5%</div></div>
+      </div>
+      <p><b>国内事業：</b>売上949億65百万円（+14.4％）、営業利益94億60百万円（+96.3％）。国内コンクリートパイル業界全体の出荷量は前期比0.2％微減、当社出荷量も大型案件の着工遅延等で2.6％減となる中、大径・大規模案件の受注確保とワンストップ営業、生産・施工の平準化・効率化による収益性改善が奏功し増収増益を実現。<span class="lab fact">事実</span></p>
+      <p><b>海外事業：</b>売上210億54百万円（+17.8％）、営業利益14億16百万円（前期は営業損失５億19百万円）。ベトナム政府の大規模インフラ整備方針を背景に建設需要が旺盛に推移し、大型案件受注と生産拠点稼働率向上により黒字転換。<span class="lab fact">事実</span></p>
+      <p>特別利益に政策保有株式売却益661百万円、特別損失に閉鎖工場の土壌改良費用に備えた環境対策引当金繰入401百万円を計上。<span class="lab fact">事実</span></p>
+
+      <h3>受注・生産・販売の実績</h3>
+      <table>
+        <tr><th class="l">区分</th><th>生産高</th><th>受注高</th><th>受注残高（前年比）</th><th>販売高</th></tr>
+        <tr><td class="l">国内事業</td><td>25,416百万円</td><td>99,178百万円</td><td>46,220百万円（+34.6%）</td><td>94,902百万円</td></tr>
+        <tr><td class="l">海外事業</td><td>11,525百万円</td><td>27,921百万円</td><td>10,869百万円（+32.5%）</td><td>21,054百万円</td></tr>
+      </table>
+      <p>受注残高が国内・海外とも前年同期比30％超で積み上がっており、次期以降の収益の先行指標として読める。<span class="lab interp">解釈</span></p>
+
+      <h3>経営者が使う指標・関心の所在</h3>
+      <p>経営指標として「営業利益」と「自己資本当期純利益率（ROE）」を明記して重視している（Ⅳ章参照）。売上高そのものよりも収益性・資本効率への関心が明示的に高い。<span class="lab fact">事実</span></p>
+
+      <h3>CF・資本の財源</h3>
+      <p>営業CF156億63百万円の獲得により、投資CF110億16百万円の使用（主に有形固定資産取得56億95百万円）を賄い、財務CF32億41百万円の使用（借入返済・配当支払）も自己創出資金の範囲内で完結。運転資金は短期借入、設備資金は長期借入・社債で調達する方針を明記し、コミットメントライン40億円（借入未実行）も確保しており、資金繰りの説明は実質を伴う。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3>Ⅷ-a 設備の状況</h3>
+      <p>当期設備投資総額5,985百万円（国内5,543百万円、海外440百万円）。主な内訳はジャパンパイル㈱茨城工場の大径・高強度杭の生産能力増強投資。<span class="lab fact">事実</span></p>
+      <div class="kpi">
+        <div><div class="k">当期設備投資額</div><div class="v">5,985百万円</div></div>
+        <div><div class="k">当期減価償却費</div><div class="v">3,387百万円</div></div>
+        <div><div class="k">投資／償却倍率</div><div class="v">1.77倍</div></div>
+      </div>
+      <p>設備投資額が減価償却費の約1.8倍に達しており、維持更新の範囲を超えた拡張投資局面にあると判定できる。茨城工場の能力増強はⅣ章の「全杭種でのトップシェア実現」戦略、Ⅶ章の投資CF（有形固定資産取得56億95百万円）と整合する。<span class="lab interp">解釈</span></p>
+      <p>提出会社（持株会社）の設備は本社事務所のみで僅少（帳簿価額計２百万円）。実質的な生産設備はジャパンパイル㈱（国内、帳簿価額計19,386百万円）とベトナム各製造子会社（海外計437〜1,650百万円規模が複数）に分散して保有されている。当期末時点で重要な設備の新設・拡充・除却等の計画（茨城工場増強以外）は記載なし。<span class="lab fact">事実</span></p>
+
+      <h3>Ⅷ-b 研究開発活動</h3>
+      <div class="kpi">
+        <div><div class="k">研究開発費（当期）</div><div class="v">339百万円</div></div>
+        <div><div class="k">対売上高比</div><div class="v">0.29%</div></div>
+        <div><div class="k">特許出願数（当期）</div><div class="v">7件</div></div>
+      </div>
+      <p style="font-size:11.5px;color:var(--sub)">対売上高比は自算（研究開発費339百万円÷売上高115,956百万円）。</p>
+      <p>研究開発はジャパンパイル㈱技術部門を中心に、杭製品技術・施工技術・基礎周辺技術（地熱利用杭）・基礎関連研究（大学・学会との共同研究）・設計技術／品質管理技術の５分野で活動。研究開発費の対売上高比0.29％は製造業平均と比べて低水準だが、建設・土木業種は工法認定取得や現場適用技術が中心で、実験室型R&Dに依存しない業種特性上、この水準自体が異常とは言えない。テーマは「Ｓｍａｒｔ－ＭＡＧＮＵＭ工法」の高支持力化・大径化など既存主力工法の性能向上が中心で、非連続な新規事業創出よりも既存技術の深化に軸足を置く姿勢がうかがえる。<span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>配当性向・DOE</h3>
+      <div class="card" style="background:#f7f7f7"><canvas id="chartDiv"></canvas></div>
+      <table>
+        <tr><th class="l">指標</th><th>第17期</th><th>第18期</th><th>第19期</th><th>第20期</th><th>第21期</th></tr>
+        <tr><td class="l">１株配当（円）</td><td>20.0</td><td>30.0</td><td>40.0</td><td>45.0</td><td>55.0</td></tr>
+        <tr><td class="l">配当性向（％）</td><td>76.6</td><td>102.5</td><td>97.3</td><td>95.4</td><td>102.5</td></tr>
+      </table>
+      <p>累進配当方針（減配なし）のもと５期連続増配。配当性向は直近５期中４期が95％超、うち２期は100％を超えており、内部留保より株主還元を優先する姿勢が数値面で一貫している。<span class="lab fact">事実</span></p>
+      <p>株主還元方針が定めるDOE（連結株主資本配当率）3.75％以上の目途に対し、当期の配当総額2,094百万円（中間914百万円＋期末1,180百万円）÷自己資本52,198百万円（非支配株主持分控除後）＝DOE約4.01％となり、目標を上回る水準を確保している（自算）。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>自己株式の取得は僅少（当期取得45株・61,053円）で、還元手段はほぼ配当に一本化されている。<span class="lab fact">事実</span></p>
+
+      <h3>株主構成（支配構造）</h3>
+      <table>
+        <tr><th class="l">上位株主</th><th>所有割合</th><th class="l">属性</th></tr>
+        <tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>12.53%</td><td class="l">信託銀行（実質株主不明の名義）</td></tr>
+        <tr><td class="l">太平洋セメント㈱</td><td>6.58%</td><td class="l">政策保有的（原材料仕入先）</td></tr>
+        <tr><td class="l">㈱日本カストディ銀行（信託口）</td><td>4.79%</td><td class="l">信託銀行</td></tr>
+        <tr><td class="l">アジアパイルグループ取引先持株会</td><td>3.61%</td><td class="l">取引先持株会</td></tr>
+        <tr><td class="l">㈱三井住友銀行</td><td>3.33%</td><td class="l">主要取引銀行</td></tr>
+        <tr><td class="l">㈱みずほ銀行</td><td>3.16%</td><td class="l">取引銀行</td></tr>
+      </table>
+      <p>上位10株主で合計42.25％。創業家的な単一の支配株主は見当たらず、信託銀行名義（実質株主不明）と、太平洋セメントをはじめとする事業会社・取引銀行が上位に並ぶ「事業関係に基づく分散所有」の構造。代表取締役会長・社長がいずれも旧住友銀行（現三井住友銀行）出身であることと、三井住友銀行・みずほ銀行が上位株主かつ融資取引先でもある点は、経営陣の出自と資金調達先が重なる構図として留意される。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>政策保有株式（ジャパンパイル㈱基準）</h3>
+      <div class="card" style="background:#f7f7f7"><canvas id="chartPolicy"></canvas></div>
+      <div class="kpi">
+        <div><div class="k">非上場株式</div><div class="v">11銘柄／27百万円</div></div>
+        <div><div class="k">上場株式</div><div class="v">17銘柄／4,219百万円</div></div>
+        <div><div class="k">合計の純資産比</div><div class="v">7.61%</div></div>
+      </div>
+      <p style="font-size:11.5px;color:var(--sub)">純資産比は自算（政策保有株式合計4,246百万円÷連結純資産55,797百万円）。</p>
+      <p>保有目的は「取引関係の維持・発展を通じた企業価値向上」で、コンクリート原材料の仕入先（太平洋セメント、高周波熱錬）、共同開発パートナー（新日本空調、岡部）、金融機関（十六フィナンシャルグループ等）が中心。当期はビジネス拡大目的（㈱巴コーポレーション350,100株を新規取得）と縮減（横河ブリッジホールディングス、ジェイエフイーホールディングス等５銘柄を売却）の両方が生じており、純投資目的の保有はゼロ（有報記載どおり）。<span class="lab fact">事実</span></p>
+
+      <h3>役員・創業家持株</h3>
+      <p>代表取締役会長・黒瀬晃氏210千株（発行済株式の0.55％）、代表取締役社長・黒瀬修介氏33千株（0.09％）。両氏は同姓だが有報注記に「親族関係はありません」と明記されている。役員全体の合計所有株式数は358千株（発行済株式の約0.94％）にとどまり、トップ経営陣の自社株保有は株主との利害一致の観点からは限定的な水準。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実</h3>
+      <div class="kpi">
+        <div><div class="k">機関設計</div><div class="v">監査役会設置会社</div></div>
+        <div><div class="k">取締役</div><div class="v">11名（社外4名）</div></div>
+        <div><div class="k">監査役</div><div class="v">3名（社外2名）</div></div>
+        <div><div class="k">取締役会開催</div><div class="v">年12回</div></div>
+      </div>
+      <p>指名・報酬諮問委員会を2024年６月に設置し、当期は１回開催（構成員：会長＋社外取締役３名）。取締役会出席率は主要メンバーで91〜100％と高水準。<span class="lab fact">事実</span></p>
+
+      <h3>役員報酬（数値のみ）</h3>
+      <div class="card" style="background:#f7f7f7"><canvas id="chartComp"></canvas></div>
+      <table>
+        <tr><th class="l">区分</th><th>報酬総額</th><th>固定報酬</th><th>賞与</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（社外除く）</td><td>126百万円</td><td>116百万円</td><td>10百万円</td><td>7名</td></tr>
+        <tr><td class="l">監査役（社外除く）</td><td>1百万円</td><td>1百万円</td><td>－</td><td>1名</td></tr>
+        <tr><td class="l">社外役員</td><td>46百万円</td><td>46百万円</td><td>－</td><td>7名</td></tr>
+      </table>
+      <p>業務執行取締役の報酬にのみ業績連動賞与（10百万円）が設定されており、社外役員・監査役は固定報酬のみ。個人別配分は代表取締役会長への一任事項で、指名・報酬諮問委員会が答申する形式的なチェックが入る設計。<span class="lab fact">事実</span></p>
+
+      <h3>主要役員の属性</h3>
+      <p>代表取締役会長・黒瀬晃氏（1947年生）、代表取締役社長・黒瀬修介氏（1956年生）はいずれも旧住友銀行（現三井住友銀行）出身。取締役・大越正彦氏、奥山和則氏も金融機関（住友銀行系列）出身者が目立ち、経営中枢が銀行出身者で占められている点が特徴的。<span class="lab fact">事実</span></p>
+      <p>社外取締役４名は、鉄鋼商社出身（樺澤敏弘氏）、金融機関出身（上田耕平氏、三井住友銀行出身）、法務専門家（大谷和子氏）、デザイン専門家（五十嵐久枝氏、2025年６月就任）と多様な専門性を確保。ただし社外取締役の一人（上田耕平氏）が主要取引銀行である三井住友銀行の出身者であり、有報自身が「子会社は同行と借入取引がある」ことを開示した上で「特別な利害関係を有するものではない」と説明している。独立性の基準・方針自体は定めておらず、東証の独立役員基準を参考にする運用にとどまる。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>監査上の主要な検討事項（KAM）</h3>
+      <blockquote class="yuho">子会社ジャパンパイル株式会社の工事契約に係る収益認識の適切性 ―― 一件当たりの取引金額が大きい工事契約について、工事進捗に応じた収益認識（一定期間にわたる履行義務の充足）の会計処理を誤った場合の連結財務諸表への影響が大きいことをKAM選定理由としている。</blockquote>
+      <p>KAMは１項目のみで、大型個別契約の進捗基準収益認識という建設業に典型的な論点。監査人は内部統制の検証に加え、取引テストの実施件数拡大、注文書・竣工承認証との突合等の実証手続を実施している。特別に異例な会計処理や見積りの前提の楽観性を示す記載は見られない。<span class="lab fact">事実</span></p>
+
+      <h3>重要な会計上の見積り</h3>
+      <blockquote class="yuho">海外事業（ベトナムの子会社）の売上債権に係る貸倒引当金 ―― 前期2,895百万円→当期3,429百万円。ベトナム建設業界の債権平均回収期間の長さから見積りの不確実性が高いと有報自身が明記。</blockquote>
+      <p>これはKAMではなく「重要な会計上の見積り」注記だが、Ⅵ章の海外事業リスクと直結する内容であり、監査人・経営者双方が財務諸表上の重要論点として認識している。翌期の連結財務諸表に重要な影響を与える可能性があると明記されており、見積りの前提が信用リスクの変化に対して脆弱であることを示唆する。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>本表の財務特徴</h3>
+      <div class="kpi">
+        <div><div class="k">総資産</div><div class="v">105,710百万円</div></div>
+        <div><div class="k">自己資本比率</div><div class="v">49.4%</div></div>
+        <div><div class="k">のれん（当期末）</div><div class="v">602百万円</div></div>
+        <div><div class="k">現金及び預金</div><div class="v">25,633百万円</div></div>
+      </div>
+      <p>負債純資産合計105,710百万円のうち純資産55,797百万円（自己資本比率49.4％、非支配株主持分3,598百万円を含む）と、財務レバレッジは低め。現金及び預金25,633百万円に対し有利子負債合計は短期・長期・リース債務等で概ね16,438百万円（借入金等明細表）で、実質無借金に近いネットキャッシュ状態にある。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>のれんは高山基礎工業㈱の子会社化に伴い前期末61百万円→当期末602百万円へ急増（６年間定額償却）。M&Aの規模自体は小さい（取得原価600百万円）ため、財務体質への影響は限定的。棚卸資産（商品及び製品7,419百万円、原材料及び貯蔵品1,997百万円）は流動資産の約14％を占め、製造・施工を伴う事業モデルらしい構成。<span class="lab fact">事実</span></p>
+
+      <h3>GC注記・後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する注記：該当なし。重要な後発事象：該当なし（連結・個別とも）。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul class="plain">
+        <li>海外事業が前期の営業損失から黒字転換し、ベトナムの旺盛な建設需要を背景に受注残高も前年比32.5％増と積み上がっている。黒字転換が一過性でなく定着するかが焦点。<span class="lab interp">解釈</span></li>
+        <li>ROEが中計最終年度目標（11.0％）を計画３年目で実績15.5％と大幅に上回っており、資本効率面の改善ペースは速い。<span class="lab fact">事実</span></li>
+        <li>国内・海外とも受注残高が前年比30％台の伸びで積み上がっており（国内46,220百万円・+34.6％、海外10,869百万円・+32.5％）、次期業績の先行指標として底堅さを示唆する。<span class="lab fact">事実</span></li>
+        <li>実質無借金に近い財務体質と累進配当・DOE目標の明示により、株主還元の継続性に対する裏付けは相対的に確からしい。<span class="lab interp">解釈</span></li>
+      </ul>
+      <h3>懸念材料と顕在化する条件</h3>
+      <ul class="plain">
+        <li>ベトナム子会社の貸倒引当金が２期連続で増加（2,895→3,429百万円）。海外事業の急拡大が続く局面で債権回収サイトがさらに長期化した場合、追加引当・実際の貸倒損失に発展するリスクがある。<span class="lab fact">事実</span><span class="lab interp">解釈</span></li>
+        <li>配当性向が100％を超える年度が直近５期中２期あり、内部留保の積み上がりペースを上回る還元が常態化している。設備投資の拡大局面（投資／償却倍率1.77倍）と両立させ続けられるかは資本配分の規律として要注視。<span class="lab interp">解釈</span></li>
+        <li>経営中枢（会長・社長）が同一銀行系列出身で占められ、社外取締役の一人も同行出身という構成は、多様な視点による牽制機能の観点で限定的となりうる。独立性の基準・方針が未整備な点も含め、ガバナンスの実効性は今後の運用（指名・報酬諮問委員会の実質的な機能発揮等）次第。<span class="lab interp">解釈</span></li>
+      </ul>
+      <h3>有報だけでは判断できず追加確認が要る事項</h3>
+      <ul class="plain">
+        <li>中期経営計画「新５か年計画」の詳細な数値目標（セグメント別目標値、投資計画の年度別内訳）は有報に記載がなく、決算説明会資料での確認が必要。<span class="lab check">要確認</span></li>
+        <li>ベトナム子会社の貸倒引当金増加の個別要因（特定の大口債務者か、構造的な回収サイト長期化か）は、決算説明資料や四半期報告書での追加開示が必要。<span class="lab check">要確認</span></li>
+        <li>非100％子会社（ジャパンパイル富士コン70％、ジャパンパイル関東北販売60％、Phan Vu Ha Nam51％等）の少数株主との具体的な取引条件・配当方針は有報の記載範囲を超え、適時開示や個別のIR資料での確認が要る。<span class="lab check">要確認</span></li>
+        <li>温室効果ガス排出削減の具体的数値目標（設定時期・削減率）は「今後取り組む」段階であり、設定後の統合報告書等でのフォローが必要。<span class="lab check">要確認</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="disc">
+    <p><b>免責事項：</b>本レポートは有価証券報告書（第21期、2026年３月期、2026年６月24日提出）を主たる一次情報源として作成した定性分析であり、売買推奨・目標株価の提示を目的とするものではありません。データ取得日：2026年８月13日。irpocket公式IRデータExcelは本銘柄コードで取得不能（404）だったため、数値の裏取りは有報本体の「主要な経営指標等の推移」および財務諸表注記に基づいています。沿革章のみWeb情報（ジャパンパイル㈱公式サイト、HISビジネス事例）で補完し、出典は本文中に明示しています。文中の自算値（CAGR、一人当たり売上高、DOE、政策保有株式の純資産比、投資／償却倍率等）は推計であり、保証はありません。将来に関する記述は有価証券報告書提出日（2026年６月24日）時点で当社が判断したものです。</p>
+  </footer>
+</div>
+<script>
+const tabs = [
+  {id:'p0',label:'0. サマリー'},
+  {id:'p1',label:'Ⅰ. 企業の輪郭'},
+  {id:'p2',label:'Ⅱ. 沿革'},
+  {id:'p3',label:'Ⅲ. 人的資本'},
+  {id:'p4',label:'Ⅳ. 経営者の世界観'},
+  {id:'p5',label:'Ⅴ. サステナビリティ'},
+  {id:'p6',label:'Ⅵ. 事業等のリスク'},
+  {id:'p7',label:'Ⅶ. 経営成績分析'},
+  {id:'p8',label:'Ⅷ. 設備・研究開発'},
+  {id:'p9',label:'Ⅸ. 資本政策・還元'},
+  {id:'p10',label:'Ⅹ. ガバナンス'},
+  {id:'p11',label:'Ⅺ. 会計シグナル'},
+  {id:'p12',label:'Ⅻ. 論点・未解明'}
+];
+const tabWrap = document.getElementById('tabs');
+tabs.forEach((t,i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'tab' + (i===0 ? ' active' : '');
+  btn.textContent = t.label;
+  btn.onclick = () => {
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(t.id).classList.add('active');
+  };
+  tabWrap.appendChild(btn);
+});
+
+const inkColor = '#111111', subColor = '#6b6b6b', lineColor = '#dcdcdc';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = subColor;
+
+new Chart(document.getElementById('chartTrend'), {
+  type:'bar',
+  data:{
+    labels:['第17期\n2022/3','第18期\n2023/3','第19期\n2024/3','第20期\n2025/3','第21期\n2026/3'],
+    datasets:[
+      {type:'bar', label:'売上高（百万円）', data:[93176,110245,103151,100803,115956], backgroundColor:'#dcdcdc', yAxisID:'y'},
+      {type:'line', label:'経常利益（百万円）', data:[2169,5844,6247,3872,10865], borderColor:'#111111', backgroundColor:'#111111', yAxisID:'y1', tension:0.15}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom'}},
+    scales:{
+      y:{position:'left', grid:{color:lineColor}, title:{display:true,text:'売上高'}},
+      y1:{position:'right', grid:{display:false}, title:{display:true,text:'経常利益'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartSegSales'), {
+  type:'doughnut',
+  data:{labels:['国内事業 81.8%','海外事業 18.2%'], datasets:[{data:[94902,21054], backgroundColor:['#111111','#dcdcdc']}]},
+  options:{responsive:true, plugins:{legend:{position:'bottom'}, title:{display:true,text:'売上構成比（第21期）'}}}
+});
+new Chart(document.getElementById('chartSegProfit'), {
+  type:'doughnut',
+  data:{labels:['国内事業 87.0%','海外事業 13.0%'], datasets:[{data:[9460,1416], backgroundColor:['#111111','#dcdcdc']}]},
+  options:{responsive:true, plugins:{legend:{position:'bottom'}, title:{display:true,text:'セグメント利益構成比（第21期）'}}}
+});
+
+new Chart(document.getElementById('chartEmp'), {
+  data:{
+    labels:['第17期','第18期','第19期','第20期','第21期'],
+    datasets:[
+      {type:'bar', label:'従業員数（人）', data:[2867,2683,2667,2523,2681], backgroundColor:'#dcdcdc', yAxisID:'y'},
+      {type:'line', label:'一人当たり売上高（百万円）', data:[32.5,41.1,38.7,39.9,43.3], borderColor:'#111111', backgroundColor:'#111111', yAxisID:'y1', tension:0.15}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom'}},
+    scales:{
+      y:{position:'left', grid:{color:lineColor}, title:{display:true,text:'従業員数'}},
+      y1:{position:'right', grid:{display:false}, title:{display:true,text:'一人当たり売上高'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartDiv'), {
+  type:'bar',
+  data:{
+    labels:['第17期','第18期','第19期','第20期','第21期'],
+    datasets:[{label:'配当性向（％）', data:[76.6,102.5,97.3,95.4,102.5], backgroundColor:'#111111'}]
+  },
+  options:{responsive:true, plugins:{legend:{display:false}}, scales:{y:{grid:{color:lineColor}}}}
+});
+
+new Chart(document.getElementById('chartPolicy'), {
+  type:'bar',
+  data:{
+    labels:['新日本空調','巴コーポレーション','ダイヘン','十六FG','太平洋セメント','高周波熱錬','矢作建設工業','岡部','三十三FG','徳倉建設'],
+    datasets:[{label:'貸借対照表計上額（百万円）', data:[1237,697,781,360,214,187,166,145,101,80], backgroundColor:'#111111'}]
+  },
+  options:{indexAxis:'y', responsive:true, plugins:{legend:{display:false}, title:{display:true,text:'政策保有株式（特定投資株式）上位10銘柄・ジャパンパイル㈱基準'}}, scales:{x:{grid:{color:lineColor}}}}
+});
+
+new Chart(document.getElementById('chartComp'), {
+  type:'bar',
+  data:{
+    labels:['取締役（社外除く）','監査役（社外除く）','社外役員'],
+    datasets:[
+      {label:'固定報酬', data:[116,1,46], backgroundColor:'#111111'},
+      {label:'賞与', data:[10,0,0], backgroundColor:'#dcdcdc'}
+    ]
+  },
+  options:{responsive:true, plugins:{legend:{position:'bottom'}}, scales:{x:{stacked:true},y:{stacked:true, grid:{color:lineColor}}}}
+});
+</script>
+</body></html>
