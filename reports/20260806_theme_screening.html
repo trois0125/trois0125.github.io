@@ -4,41 +4,45 @@
 <title>政策テーマ周辺の割安小型株スクリーニング 2026-08-06</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#f6f7f9;--fg:#1a1d21;--mut:#6b7280;--line:#e3e6ea;--card:#fff}
+:root{--bg:#fafafa;--fg:#111111;--mut:#6b6b6b;--line:#dcdcdc;--card:#fff}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);
  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
  line-height:1.75;font-size:15px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.topbar a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:8px;font-weight:700}
+.topbar a .sq{width:7px;height:7px;background:var(--fg);display:inline-block}
+.topbar .meta{color:var(--mut);font-variant-numeric:tabular-nums}
 .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
-header h1{font-size:24px;margin:0 0 6px}
+header h1{font-size:24px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px}
 header .sub{color:var(--mut);font-size:13px;margin:0}
-.method{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:22px 0}
+.method{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:20px 22px;margin:22px 0}
 .method h2{font-size:16px;margin:0 0 10px}
 .method h3{font-size:14px;margin:18px 0 6px;color:var(--mut)}
 .method p{margin:6px 0;font-size:14px}
 .method ol,.method ul{margin:6px 0;padding-left:22px;font-size:14px}
 .method li{margin:3px 0}
 .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 0}
-.tab{flex:1;min-width:150px;border:1px solid var(--line);background:var(--card);border-radius:10px 10px 0 0;
+.tab{flex:1;min-width:150px;border:1px solid var(--line);background:var(--card);border-radius:2px 2px 0 0;
  padding:11px 12px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--mut);
  border-bottom:3px solid transparent}
 .tab.on{color:var(--tc);border-bottom-color:var(--tc);background:#fff}
 .tab .cnt{display:inline-block;margin-left:6px;background:var(--line);color:var(--fg);
- border-radius:9px;padding:0 7px;font-size:11.5px}
+ border-radius:3px;padding:0 7px;font-size:11.5px}
 .pane{display:none;background:var(--card);border:1px solid var(--line);border-top:0;
- border-radius:0 0 12px 12px;padding:20px}
+ border-radius:0 0 2px 2px;padding:20px}
 .pane.on{display:block}
 .lead{border-left:4px solid;padding:2px 0 2px 14px;margin:2px 0 22px}
 .lead h2{font-size:18px;margin:0 0 4px}
 .lead p{margin:2px 0;font-size:14px}
 .lead .sub{color:var(--mut);font-size:13px}
-.card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 14px;background:#fcfcfd}
+.card{border:1px solid var(--line);border-radius:2px;padding:16px 18px;margin:0 0 14px;background:#fcfcfd}
 .chead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
 .code{font-weight:700;font-variant-numeric:tabular-nums}
 .cname{font-weight:700;font-size:16px;margin-left:4px}
 .meta{color:var(--mut);font-size:12.5px;margin-left:8px}
 .tags{display:flex;gap:5px;flex-wrap:wrap}
-.badge{font-size:11px;border-radius:20px;padding:2px 9px;white-space:nowrap;border:1px solid transparent}
+.badge{font-size:11px;border-radius:3px;padding:2px 9px;white-space:nowrap;border:1px solid transparent}
 .badge.route{background:#eef2f7;color:#42505f}
 .badge.all8{background:#065f46;color:#fff}
 .badge.pi-low{background:#e8f5ee;color:#0b6b3f;border-color:#bfe3d0}
@@ -47,7 +51,7 @@ header .sub{color:var(--mut);font-size:13px;margin:0}
 .badge.ok{background:#e8f0fe;color:#1a4fa0;border-color:#c6d9f7}
 .badge.warn{background:#fdf6e3;color:#8a6100;border-color:#f0e2b8}
 .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin:14px 0 12px}
-.nums div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 9px;text-align:center}
+.nums div{background:#fff;border:1px solid var(--line);border-radius:2px;padding:7px 9px;text-align:center}
 .nums b{display:block;font-size:15.5px;font-variant-numeric:tabular-nums}
 .nums span{display:block;font-size:10.5px;color:var(--mut);margin-top:1px}
 .nums .neg b{color:#b42318}
@@ -56,18 +60,20 @@ header .sub{color:var(--mut);font-size:13px;margin:0}
 .src{color:var(--mut);font-size:11.5px;margin-top:9px;border-top:1px dashed var(--line);padding-top:7px}
 table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
 th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left}
-th{background:#f2f4f7;font-size:12px;color:var(--mut);font-weight:600}
+th{background:#f2f2f2;font-size:12px;color:var(--mut);font-weight:600}
 td.r{text-align:right;font-variant-numeric:tabular-nums}
 .pos{color:#0b6b3f}.neg{color:#b42318}
-.chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0}
+.chartbox{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:20px;margin:22px 0}
 .chartbox h2{font-size:16px;margin:0 0 4px}
 .chartbox p{font-size:13px;color:var(--mut);margin:0 0 14px}
-details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:22px 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:16px 20px;margin:22px 0}
 summary{cursor:pointer;font-weight:600;font-size:15px}
-.disc{background:#fffaf3;border:1px solid #f0e2c8;border-radius:12px;padding:18px 20px;margin:24px 0 0;font-size:13px}
+.disc{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--fg);border-radius:2px;padding:18px 20px;margin:24px 0 0;font-size:13px}
 .disc h2{font-size:15px;margin:0 0 8px}
 .disc ul{padding-left:20px;margin:6px 0}
-</style></head><body><div class="wrap">
+</style></head><body>
+<div class="topbar"><a href="../index.html"><span class="sq"></span>VALUE INVEST</a><div class="meta">分析レポート ／ INDEXへ戻る</div></div>
+<div class="wrap">
 
 <header>
   <h1>政策テーマ「周辺」の割安小型株スクリーニング</h1>
