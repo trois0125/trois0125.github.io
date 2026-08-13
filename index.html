@@ -151,63 +151,55 @@
     }
     .section-header .line { flex: 1; height: 1px; background: var(--border); }
 
-    /* Report rows */
-    .rows { border-top: 1px solid var(--border-strong); }
-    .row {
+    /* Report cards */
+    .card-grid {
       display: grid;
-      grid-template-columns: 48px 1fr auto;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
-      padding: 28px 4px;
+    }
+    .card-link {
+      display: block;
       text-decoration: none;
       color: inherit;
-      border-bottom: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 32px 28px;
       transition: background .12s, color .12s;
     }
-    .row:hover { background: var(--fg); color: var(--bg); }
-    .row .num {
-      font-size: 26px;
-      font-weight: 300;
+    .card-link:hover { background: var(--fg); color: var(--bg); }
+    .card-link .idx {
+      display: block;
+      font-size: 12px;
       font-variant-numeric: tabular-nums;
-      opacity: .35;
-      line-height: 1.1;
+      opacity: .4;
+      letter-spacing: .06em;
+      margin-bottom: 24px;
     }
-    .row:hover .num { opacity: .55; }
-    .row h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .card-link:hover .idx { opacity: .6; }
+    .card-link h3 {
+      font-size: 21px;
+      font-weight: 800;
       letter-spacing: -.01em;
+      margin-bottom: 10px;
     }
-    .row p {
+    .card-link p {
       font-size: 13px;
       opacity: .6;
       line-height: 1.65;
-      max-width: 56ch;
+      min-height: 3.3em;
     }
-    .row:hover p { opacity: .78; }
-    .row .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-    .chip {
-      border: 1px solid currentColor;
-      opacity: .55;
-      border-radius: var(--radius);
-      padding: 2px 9px;
-      font-size: 11px;
+    .card-link:hover p { opacity: .82; }
+    .card-link .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+      padding-top: 16px;
     }
-    .chip.solid {
-      background: var(--fg);
-      opacity: 1;
-      color: var(--bg);
-      border-color: transparent;
-    }
-    .row:hover .chip.solid { background: var(--bg); color: var(--fg); }
-    .row .date {
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      opacity: .5;
-      white-space: nowrap;
-      padding-top: 6px;
-    }
+    .card-link:hover .cta { border-top-color: currentColor; opacity: 1; }
 
     /* About */
     .principles {
@@ -244,9 +236,7 @@
     @media (max-width: 640px) {
       .topbar .meta { display: none; }
       .hero { padding-top: 64px; }
-      .row { grid-template-columns: 32px 1fr; }
-      .row .date { grid-column: 2; padding-top: 0; }
-      .row .num { font-size: 20px; }
+      .card-grid { grid-template-columns: 1fr; }
       .principles { grid-template-columns: 1fr; }
     }
   </style>
@@ -275,52 +265,27 @@
     </div>
   </div>
 
-  <div class="section" id="reports">
+  <div class="section">
     <div class="section-inner">
       <div class="section-header">
         <span class="idx">01</span>
-        <h2>分析レポート</h2>
+        <h2>レポート</h2>
         <div class="line"></div>
       </div>
-      <div class="rows">
+      <div class="card-grid">
 
-        <a class="row" href="reports/20260806_theme_screening.html"          <div class="num">01</div>
-          <div class="info">
-            <h3>政策テーマ周辺の割安小型株スクリーニング</h3>
-            <p>半導体・GX・防衛・国内回帰など7つの政策テーマに沿って、独自8条件スクリーニングを適用した候補銘柄一覧。Chart.jsによるインタラクティブな可視化付き。</p>
-            <div class="chip-row">
-              <span class="chip solid">スクリーニング</span>
-              <span class="chip">政策テーマ</span>
-              <span class="chip">Chart.js</span>
-              <span class="chip">J-Quants</span>
-            </div>
-          </div>
-          <div class="date">2026-08-06</div>
+        <a class="card-link" href="reports.html">
+          <span class="idx">01</span>
+          <h3>分析レポート</h3>
+          <p>政策テーマ・5バガー研究など、独自スクリーニングに基づく特集分析。Chart.jsによるインタラクティブな可視化付き。</p>
+          <div class="cta"><span>3件のレポート</span><span>→</span></div>
         </a>
 
-        <a class="row" href="reports/20260802_5bagger_study_expanded.html"          <div class="num">02</div>
-          <div class="info">
-            <h3>5年で株価5倍 銘柄スタディ（詳細版）</h3>
-            <p>2021〜2026年に株価5倍超を達成した銘柄の財務・バリュエーション・モメンタム要因を詳細分析。スクリーニング条件との事前一致率・共通パターンを検証。</p>
-            <div class="chip-row">
-              <span class="chip solid">バックテスト</span>
-              <span class="chip">5バガー研究</span>
-              <span class="chip">定量分析</span>
-            </div>
-          </div>
-          <div class="date">2026-08-02</div>
-        </a>
-
-        <a class="row" href="reports/20260802_5bagger_study.html"          <div class="num">03</div>
-          <div class="info">
-            <h3>5年で株価5倍 銘柄スタディ</h3>
-            <p>5バガー達成銘柄の要因分析レポート（サマリー版）。共通する財務指標と投資タイミングのパターンを抽出。スクリーニング条件の有効性を検証する基礎資料。</p>
-            <div class="chip-row">
-              <span class="chip solid">バックテスト</span>
-              <span class="chip">5バガー研究</span>
-            </div>
-          </div>
-          <div class="date">2026-08-02</div>
+        <a class="card-link" href="stocks.html">
+          <span class="idx">02</span>
+          <h3>個別銘柄レポート</h3>
+          <p id="stocksTeaser">スクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
+          <div class="cta"><span>銘柄コード・社名で探す</span><span>→</span></div>
         </a>
 
       </div>
@@ -331,24 +296,6 @@
     <div class="section-inner">
       <div class="section-header">
         <span class="idx">02</span>
-        <h2>個別銘柄レポート</h2>
-        <div class="line"></div>
-      </div>
-      <a class="row" href="stocks.html">
-        <div class="num">→</div>
-        <div class="info">
-          <h3>銘柄コード・社名で探す</h3>
-          <p id="stocksTeaser">スクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
-        </div>
-        <div class="date">一覧を見る</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="idx">03</span>
         <h2>分析アプローチ</h2>
         <div class="line"></div>
       </div>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>value_invest — 分析レポート一覧</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --border: #dcdcdc;
+      --border-strong: #111111;
+      --radius: 2px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0b0b;
+        --fg: #f2f2f2;
+        --border: #2b2b2b;
+        --border-strong: #f2f2f2;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                   "Yu Gothic", "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 880px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .topbar a { text-decoration: none; }
+    .topbar .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .topbar .mark .sq { width: 8px; height: 8px; background: var(--fg); flex: none; }
+    .topbar .meta { font-variant-numeric: tabular-nums; opacity: .6; }
+
+    .breadcrumb {
+      max-width: 880px; margin: 0 auto; padding: 12px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px; color: var(--fg); opacity: .55;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+    }
+    .breadcrumb a { text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { opacity: .5; }
+    .breadcrumb .current { opacity: 1; font-weight: 700; }
+
+    .head { max-width: 880px; margin: 0 auto; padding: 56px 24px 32px; }
+    .head .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border-strong); border-radius: var(--radius);
+      padding: 5px 12px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .head .badge .sq { width: 6px; height: 6px; background: var(--fg); flex: none; }
+    .head h1 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
+    .head p { opacity: .62; font-size: 15px; max-width: 620px; }
+
+    .section { padding: 0 24px 80px; }
+    .section-inner { max-width: 880px; margin: 0 auto; }
+
+    .rows { border-top: 1px solid var(--border-strong); }
+    .row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: start;
+      gap: 20px;
+      padding: 28px 4px;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 1px solid var(--border);
+      transition: background .12s, color .12s;
+    }
+    .row:hover { background: var(--fg); color: var(--bg); }
+    .row .num {
+      font-size: 26px;
+      font-weight: 300;
+      font-variant-numeric: tabular-nums;
+      opacity: .35;
+      line-height: 1.1;
+    }
+    .row:hover .num { opacity: .55; }
+    .row h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.01em; }
+    .row p { font-size: 13px; opacity: .6; line-height: 1.65; max-width: 56ch; }
+    .row:hover p { opacity: .78; }
+    .row .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .chip {
+      border: 1px solid currentColor; opacity: .55; border-radius: var(--radius);
+      padding: 2px 9px; font-size: 11px;
+    }
+    .chip.solid { background: var(--fg); opacity: 1; color: var(--bg); border-color: transparent; }
+    .row:hover .chip.solid { background: var(--bg); color: var(--fg); }
+    .row .date {
+      font-size: 11px; font-variant-numeric: tabular-nums; opacity: .5;
+      white-space: nowrap; padding-top: 6px;
+    }
+
+    footer {
+      max-width: 880px; margin: 0 auto; padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; opacity: .5;
+    }
+
+    @media (max-width: 640px) {
+      .topbar .meta { display: none; }
+      .row { grid-template-columns: 32px 1fr; }
+      .row .date { grid-column: 2; padding-top: 0; }
+      .row .num { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="index.html"><div class="mark"><span class="sq"></span>VALUE INVEST</div></a>
+    <div class="meta">JP EQUITIES <span style="opacity:.6">/ REPORTS</span></div>
+  </div>
+
+  <div class="breadcrumb">
+    <a href="index.html">HOME</a>
+    <span class="sep">›</span>
+    <span class="current">分析レポート</span>
+  </div>
+
+  <div class="head">
+    <div class="badge"><span class="sq"></span>特集分析</div>
+    <h1>分析レポート一覧</h1>
+    <p>独自スクリーニング条件に基づく政策テーマ・バックテスト研究など、個別銘柄に閉じない特集分析レポート。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="rows">
+
+        <a class="row" href="reports/20260806_theme_screening.html">
+          <div class="num">01</div>
+          <div class="info">
+            <h3>政策テーマ周辺の割安小型株スクリーニング</h3>
+            <p>半導体・GX・防衛・国内回帰など7つの政策テーマに沿って、独自8条件スクリーニングを適用した候補銘柄一覧。Chart.jsによるインタラクティブな可視化付き。</p>
+            <div class="chip-row">
+              <span class="chip solid">スクリーニング</span>
+              <span class="chip">政策テーマ</span>
+              <span class="chip">Chart.js</span>
+              <span class="chip">J-Quants</span>
+            </div>
+          </div>
+          <div class="date">2026-08-06</div>
+        </a>
+
+        <a class="row" href="reports/20260802_5bagger_study_expanded.html">
+          <div class="num">02</div>
+          <div class="info">
+            <h3>5年で株価5倍 銘柄スタディ（詳細版）</h3>
+            <p>2021〜2026年に株価5倍超を達成した銘柄の財務・バリュエーション・モメンタム要因を詳細分析。スクリーニング条件との事前一致率・共通パターンを検証。</p>
+            <div class="chip-row">
+              <span class="chip solid">バックテスト</span>
+              <span class="chip">5バガー研究</span>
+              <span class="chip">定量分析</span>
+            </div>
+          </div>
+          <div class="date">2026-08-02</div>
+        </a>
+
+        <a class="row" href="reports/20260802_5bagger_study.html">
+          <div class="num">03</div>
+          <div class="info">
+            <h3>5年で株価5倍 銘柄スタディ</h3>
+            <p>5バガー達成銘柄の要因分析レポート（サマリー版）。共通する財務指標と投資タイミングのパターンを抽出。スクリーニング条件の有効性を検証する基礎資料。</p>
+            <div class="chip-row">
+              <span class="chip solid">バックテスト</span>
+              <span class="chip">5バガー研究</span>
+            </div>
+          </div>
+          <div class="date">2026-08-02</div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>value_invest — 個人投資・学習目的。投資の助言ではありません。一次情報（有報・決算資料・JPX公式データ）のみを使用。</p>
+  </footer>
+
+</body>
+</html>
