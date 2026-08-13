@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>メタルアート（5644）投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;
+  border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.topbar a{text-decoration:none;display:flex;align-items:center;gap:8px;font-weight:700;color:inherit}
+.topbar a .sq{width:7px;height:7px;background:var(--ink);display:inline-block}
+.topbar .meta{color:var(--sub);font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.box{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:12px 14px}
+.box h4{font-size:12.5px;font-weight:800;margin-bottom:6px}
+@media (max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">メタルアート（5644） 定量レポート</span></div>
+
+<div class="topbar"><a href="../../index.html"><span class="sq"></span>VALUE INVEST</a>
+  <div class="meta">個別銘柄レポート ／ INDEXへ戻る</div></div>
+<div class="wrap">
+  <header class="rhead"><h1>株式会社メタルアート（5644） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-13 ／ データ取得日：2026-08-12〜2026-08-13 ／ 一次情報のみ [①]〜[⑤]</div></header>
+
+  <div class="verdict caution">慎重検討（スクリーニング8条件は公式判定で全クリアだが、時価総額・売上高CAGR・PERが本書固定の3段階評価でボーダー水準。TOB不成立後のバリュエーション動向に留意）</div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="panel active" id="p0"><!-- Tab1 総合評価 -->
+
+    <div class="card">
+      <h2 class="section">スクリーニング8条件 判定 <span class="src">[⑤]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">指標</th><th>基準値</th><th>実績値</th><th>判定</th><th class="l">備考</th></tr>
+        <tr><td class="l">①</td><td class="l">PER</td><td>≤15倍</td><td>8.22倍</td><td>○</td><td class="l">基準日2026-07-17・株価7,720円ベース（実績EPS939.35円）</td></tr>
+        <tr><td class="l">②</td><td class="l">PBR</td><td>≤1.5倍</td><td>0.85倍</td><td>○</td><td class="l">同上</td></tr>
+        <tr><td class="l">③</td><td class="l">売上高CAGR</td><td>≥4%</td><td>+6.1%</td><td>○</td><td class="l">9年間で算出</td></tr>
+        <tr><td class="l">④</td><td class="l">営業利益CAGR</td><td>≥4%</td><td>+15.2%</td><td>○</td><td class="l">9年間で算出</td></tr>
+        <tr><td class="l">⑤</td><td class="l">自己資本比率</td><td>≥40%</td><td>56.3%</td><td>○</td><td class="l">FY2026/3期末（連結）</td></tr>
+        <tr><td class="l">⑥</td><td class="l">時価総額</td><td>≤600億円</td><td>221億円</td><td>○</td><td class="l">基準日2026-07-17時点。2026-08-12時点では224億円</td></tr>
+        <tr><td class="l">⑦</td><td class="l">直近営業増益率</td><td>候補群 上位1/3</td><td>+30.4%</td><td>○</td><td class="l">母集団内 上位28%（境界+22%）</td></tr>
+        <tr><td class="l">⑧</td><td class="l">6ヶ月モメンタム</td><td>候補群 上位1/3</td><td>+38.6%</td><td>○</td><td class="l">母集団内 上位2%（境界+3%）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">判定：8/8条件クリア ★全条件通過（母集団：①〜⑥通過101銘柄／8条件通過11銘柄）。参考値：3ヶ月モメンタム+48.5％／12ヶ月モメンタム+120.3％／直近増収率+3.0％／営業利益率8.6％／売買代金291百万円。<span class="src">[⑤]</span> J-Quants API V2（<code>ctx.py</code>、基準日2026-07-17）出力をそのまま転記。</p>
+      <div class="alert">
+        <strong>注記（重要）：</strong>
+        <ul style="margin-left:18px;margin-top:6px">
+          <li>上表は8条件を「基準クリア／未達」の二値で判定した公式スクリーニング結果 <span class="src">[⑤]</span>。一方、より詳細な「✅クリア／⚠️境界線／❌未達」の3段階評価（本書固定ロジック）では、PER（予想ベース12.6倍・⚠️境界線）・売上高CAGR（+6.1%・⚠️境界線）・時価総額（221〜224億円・200〜600億円レンジの下寄りだが200億円は超過・⚠️境界線）の3項目が⚠️に該当し、上部の投資判断バナーはこの3段階評価に基づく。</li>
+          <li>irpocket公式IRデータExcelは404エラーで取得不可（<code>https://irpocket.com/5644/chartest/data.xlsx</code>）。本レポートの1株指標・財務推移は、代替一次情報として有価証券報告書<span class="src">[③]</span>「主要な経営指標等の推移」（5期分）・決算短信・第1四半期決算短信<span class="src">[③]</span>を使用した。</li>
+          <li><strong>2026年5月〜7月、Gerbera holdings株式会社による当社株式に対するTOB（完全子会社化を企図した公開買付け）が実施されたが、応募株数が下限に届かず2026年7月28日付で不成立に終わった。</strong>直近12ヶ月モメンタム+120.3%・6ヶ月モメンタム+38.6%という異例の株価上昇は主にこのTOB思惑によるものであり、事業ファンダメンタルズの改善のみを反映したものではない点に留意が必要。詳細はTab④・⑤・⑦参照。<span class="src">[③]</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI</h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">7,100円</div><div class="l">株価（2026/8/12終値）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">12.6倍</div><div class="l">PER（予想）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">0.78倍</div><div class="l">PBR<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">2.25%</div><div class="l">配当利回り（予想）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">56.3%</div><div class="l">自己資本比率（FY26/3）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">10.9%</div><div class="l">ROE（FY26/3実績・連結）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">9.1%</div><div class="l">ROA（経常利益ベース・独自算出）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">224億円</div><div class="l">時価総額（2026/8/12）<span class="src">[④]</span></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>業績推移概観（売上高・経常利益） <span class="src">[③]</span></h3>
+      <canvas id="chartOverview"></canvas>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[③]</span> 有価証券報告書「主要な経営指標等の推移」（FY22/3〜FY26/3実績）／第1四半期決算短信（FY27/3会社予想、2026-08-06公表・修正後）</p>
+    </div>
+
+    <div class="alert danger">
+      <strong>特記事項・アラート</strong>
+      <ul style="margin-left:18px;margin-top:6px">
+        <li>FY27/3（今期）会社予想は2026-08-06付で下方修正され、<strong>大幅減益</strong>：営業利益2,740百万円（前期比-29.8%）、経常利益2,840百万円（-32.3%）、純利益1,610百万円（-40.2%）。<span class="src">[③]</span></li>
+        <li>一方でQ1（2026年4〜6月）実績は営業利益+65.9%・経常利益+46.4%・純利益+52.3%と大幅増益で着地しており、通期予想に対する進捗率は売上高25.0%・営業利益26.1%・経常利益26.8%・純利益28.0%と、単純な4分の1（25%）ペースを上回っている。<span class="src">[③]</span></li>
+        <li>減配なし・むしろ増配：FY27予想DPSは160.00円（前期比+10円）。会社は大幅減益予想の中でも配当を維持・増額する方針を示している。<span class="src">[③]</span></li>
+        <li>2026年5月15日〜7月28日、Gerbera holdings株式会社（スパークス・グループが助言・組成した買収ビークル、主要販売先かつ大株主のダイハツ工業と特別関係者の関係にある）による1株7,713円でのTOBが実施されたが、応募株数721,295株が下限849,600株に届かず不成立。現在株価7,100円はこのTOB価格を約8％下回る水準。<span class="src">[③]</span></li>
+        <li>現在の予想PER12.6倍・実績PER8.22倍は、いずれも有報記載の過去5年間PER実績レンジ（2.7〜5.3倍）を大幅に上回る水準にある。<span class="src">[③][④]</span> 詳細はTab④参照。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel" id="p1"><!-- Tab2 企業概要 -->
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[②][③]</span></h2>
+      <table>
+        <tr><td class="l">会社名</td><td>株式会社メタルアート（METALART CORPORATION）</td><td class="l">証券コード</td><td>5644</td></tr>
+        <tr><td class="l">上場市場</td><td>東証スタンダード（2022年4月市場区分移行、旧東証二部）</td><td class="l">業種</td><td>鉄鋼</td></tr>
+        <tr><td class="l">創業／設立</td><td colspan="3">1943年8月6日（後藤鍛工株式会社として設立）／1991年10月に現社名へ商号変更</td></tr>
+        <tr><td class="l">本社所在地</td><td colspan="3">〒525-0059 滋賀県草津市野路三丁目2番18号</td></tr>
+        <tr><td class="l">資本金</td><td>21億4,348万円</td><td class="l">代表者</td><td>取締役社長 友岡正明</td></tr>
+        <tr><td class="l">連結従業員数</td><td>668名（うち平均臨時雇用者385名、2026年3月31日現在）<span class="src">[③]</span></td><td class="l">単体従業員数</td><td>545名（うち273名、同日現在）<span class="src">[③]</span></td></tr>
+        <tr><td class="l">事業内容</td><td colspan="3">自動車、建設機械、農業機械、船舶その他一般産業機械に使用される熱間鍛造品、精密型打鍛造品の製造、機械加工及び販売</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[②]</span> 会社公式サイト「会社概要」／<span class="src">[③]</span> 有価証券報告書。<strong>注記：</strong>会社公式サイト「会社概要」ページでは従業員数が（連結）1,068名／（単独）680名と記載されており、有報記載値と一致しない（基準日・集計範囲の相違の可能性）。本レポートは監査対象である有報記載値を採用した。</p>
+    </div>
+
+    <div class="card">
+      <h3>経営理念・グループビジョン</h3>
+      <table>
+        <tr><td class="l" style="width:140px">経営理念</td><td>「①常に新たな価値を生みだしお客様の感動を創造します。②革新的なものづくりを通じて社会の発展に貢献します。③リスクを恐れず挑戦し成長する喜びを共感します。」</td></tr>
+        <tr><td class="l">2030年グループビジョン</td><td>スローガン「ワクワクする会社になろう！」。めざす姿：①ダントツものづくりのグローバル企業　②新規事業を創出し大変革に対応できる企業　③地域貢献活動を通じ地域に愛される企業。4つの戦略（マーケティング／ものづくり／ひとづくり／コトづくり）で推進。</td></tr>
+        <tr><td class="l">経営指標の重視項目</td><td>持続的な成長と中長期的な企業価値拡大のため、売上高経常利益率および自己資本比率の向上を重要指標と位置付け（具体的な数値目標を伴う中期経営計画は本レポート作成時点で確認できず）。</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[③]</span> 有価証券報告書「経営方針、経営環境及び対処すべき課題等」（会社公式の文言をそのまま記載）</p>
+    </div>
+
+    <div class="card">
+      <h3>事業構成（単一セグメント・製品別内訳） <span class="src">[③]</span></h3>
+      <p style="font-size:11px;color:var(--sub);margin-bottom:8px">当社グループの報告セグメントは鍛工品製造販売のみであり、セグメント記載の代わりに製品別の売上高を開示している。</p>
+      <div class="grid2">
+        <div class="box"><h4>自動車部品</h4>FY26/3売上高 37,646百万円（構成比83.1%／前期比+1.8%）。売上の9割以上を自動車・建設機械部品が占める中でも最大の柱。ダイハツ工業・トヨタ自動車向けが中心。</div>
+        <div class="box"><h4>建設機械部品</h4>FY26/3売上高 5,298百万円（構成比11.7%／前期比+4.8%）。コベルコ建機向けなど。国内外の需要低迷が続くも底打ちの兆し。</div>
+        <div class="box"><h4>農業機械部品</h4>FY26/3売上高 849百万円（構成比1.9%／前期比+15.0%）。</div>
+        <div class="box"><h4>その他部品</h4>FY26/3売上高 1,494百万円（構成比3.3%／前期比+27.9%）。船舶部品等の新規拡販が寄与。</div>
+      </div>
+      <canvas id="chartSegment" style="margin-top:14px"></canvas>
+      <h3>地域別売上高（FY26/3実績）</h3>
+      <table>
+        <tr><th class="l">地域</th><th>売上高（百万円）</th><th>構成比</th></tr>
+        <tr><td class="l">日本</td><td>37,866</td><td>83.6%</td></tr>
+        <tr><td class="l">インドネシア</td><td>7,422</td><td>16.4%</td></tr>
+        <tr class="highlight"><td class="l">合計</td><td>45,289</td><td>100%</td></tr>
+      </table>
+      <h3>主要顧客（FY26/3実績）</h3>
+      <table>
+        <tr><th class="l">顧客名</th><th>売上高（百万円）</th><th>構成比</th></tr>
+        <tr><td class="l">ダイハツ工業㈱</td><td>14,576</td><td>32.2%</td></tr>
+        <tr><td class="l">トヨタ自動車㈱</td><td>6,111</td><td>13.5%</td></tr>
+        <tr><td class="l">コベルコ建機㈱</td><td>3,932</td><td>8.7%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[③]</span> 有価証券報告書「経営者による財政状態、経営成績及びキャッシュ・フローの状況の分析」「関連情報」。ダイハツ工業㈱は主要販売先であると同時に、対象者株式の議決権36.23%を保有する大株主でもある（後述のTOBにおいては公開買付者の特別関係者として整理されている）。<span class="src">[③]</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p2"><!-- Tab3 財務分析 -->
+    <div class="card">
+      <h2 class="section">連結P&amp;Lサマリー <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">（百万円）</th><th>FY25/3実績</th><th>FY26/3実績</th><th>Q1 FY27/3実績</th><th>FY27/3会社予想</th></tr>
+        <tr><td class="l">売上高</td><td>43,954</td><td>45,289</td><td>10,888</td><td class="forecast">43,600</td></tr>
+        <tr><td class="l">営業利益</td><td>2,994（逆算参考）</td><td>3,905</td><td>715</td><td class="forecast">2,740</td></tr>
+        <tr class="highlight"><td class="l">営業利益率</td><td>6.8%（参考）</td><td>8.6%</td><td>6.6%</td><td>6.3%</td></tr>
+        <tr><td class="l">経常利益</td><td>3,253</td><td>4,193</td><td>760</td><td class="forecast">2,840</td></tr>
+        <tr class="h1-row"><td class="l">親会社株主純利益</td><td>1,998</td><td>2,693</td><td>450</td><td class="forecast">1,610</td></tr>
+        <tr><td class="l">前年（同期）比（純利益）</td><td class="neg">-5.7%</td><td>+34.8%</td><td>+52.3%</td><td class="neg">-40.2%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">FY25/3営業利益は、有報開示の「前期比+30.4%」（FY26/3実績3,905百万円）から逆算した参考値。営業利益率は各期の営業利益÷売上高で算出。斜体＝会社予想。出所：<span class="src">[③]</span> 有価証券報告書・第1四半期決算短信（2026-08-06開示、業績予想修正後）</p>
+    </div>
+
+    <div class="card">
+      <h3>売上高・利益推移 <span class="src">[③]</span></h3>
+      <canvas id="chartPL"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">1株指標（5期推移・連結） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>FY22/3<br>(第91期)</th><th>FY23/3<br>(第92期)</th><th>FY24/3<br>(第93期)</th><th>FY25/3<br>(第94期)</th><th>FY26/3<br>(第95期)</th></tr>
+        <tr><td class="l">EPS（連結・円）</td><td>732.78</td><td>879.91</td><td>719.21</td><td>679.15</td><td>939.35</td></tr>
+        <tr><td class="l">BPS（連結・円）</td><td>5,809.74</td><td>6,780.93</td><td>7,603.62</td><td>8,083.80</td><td>9,095.16</td></tr>
+        <tr><td class="l">DPS（単体・円）</td><td>74.00</td><td>90.00</td><td>118.00</td><td>133.00</td><td>150.00</td></tr>
+        <tr><td class="l">配当性向（単体）</td><td>15.8%</td><td>13.6%</td><td>40.0%</td><td>41.0%</td><td>7.4%（注）</td></tr>
+        <tr><td class="l">ROE（連結）</td><td>13.6%</td><td>14.0%</td><td>10.0%</td><td>8.7%</td><td>10.9%</td></tr>
+        <tr><td class="l">ROA（経常利益/総資産・独自算出）</td><td>8.6%</td><td>9.1%</td><td>7.2%</td><td>7.4%</td><td>9.1%</td></tr>
+        <tr><td class="l">自己資本比率（連結）</td><td>45.5%</td><td>47.2%</td><td>50.9%</td><td>53.0%</td><td>56.3%</td></tr>
+        <tr><td class="l">PER（期末株価ベース・有報記載・連結）</td><td>2.7倍</td><td>3.3倍</td><td>5.3倍</td><td>4.7倍</td><td>5.3倍</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">（注）FY26/3（第95期）の単体配当性向7.4%は、2025年4月の完全子会社（㈱メタルフォージ）吸収合併に伴う抱合せ株式消滅差益等により単体当期純利益が5,821百万円と一時的に急増した結果であり、事業の経常的な収益力を示す数値ではない。ROAは経常利益÷期末総資産で本レポート独自算出（irpocket代替、算出方法を明記）。DPS・配当性向は提出会社（単体）ベース。出所：<span class="src">[③]</span> 有価証券報告書「主要な経営指標等の推移」</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><h3>ROE / ROA 推移</h3><canvas id="chartRoe"></canvas></div>
+      <div class="card"><h3>EPS / DPS 推移</h3><canvas id="chartEpsDps"></canvas></div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">（百万円）</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th><th>Q1 FY27/3（2026/6/30）</th></tr>
+        <tr><td class="l">総資産</td><td>44,024</td><td>44,261</td><td>46,263</td><td>46,291</td></tr>
+        <tr><td class="l">純資産（合計）</td><td>25,277</td><td>26,514</td><td>29,215</td><td>29,280</td></tr>
+        <tr><td class="l">自己資本（親会社株主持分）</td><td>―</td><td>―</td><td>26,036</td><td>26,111</td></tr>
+        <tr><td class="l">自己資本比率</td><td>50.9%</td><td>53.0%</td><td>56.3%</td><td>56.4%</td></tr>
+        <tr><td class="l">営業CF</td><td>3,899</td><td>5,482</td><td>4,908</td><td>―（四半期個別非開示）</td></tr>
+        <tr><td class="l">投資CF</td><td class="neg">-3,558</td><td class="neg">-4,001</td><td class="neg">-3,046</td><td>―</td></tr>
+        <tr><td class="l">財務CF</td><td>711</td><td class="neg">-894</td><td class="neg">-1,091</td><td>―</td></tr>
+        <tr><td class="l">現金及び現金同等物期末残高</td><td>9,491</td><td>9,734</td><td>10,724</td><td>10,979（現金及び預金）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">純資産は非支配株主持分を含む合計額。自己資本比率の算出基礎となる「自己資本」（親会社株主持分）は有報・決算短信に個別開示がある期のみ記載。出所：<span class="src">[③]</span> 有価証券報告書・第1四半期決算短信</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p3"><!-- Tab4 バリュエーション -->
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">12.6倍</div><div class="l">PER（予想）</div></div>
+        <div class="kpi"><div class="v">0.78倍</div><div class="l">PBR</div></div>
+        <div class="kpi"><div class="v">2.25%</div><div class="l">配当利回り（予想）</div></div>
+        <div class="kpi"><div class="v">―</div><div class="l">信用倍率（データなし）</div></div>
+      </div>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">2026年8月12日終値7,100円ベース（2026年8月13日14時台時点で当日出来無く前日終値を使用）。出所：<span class="src">[④]</span> kabutan.jp直接フェッチ</p>
+    </div>
+
+    <div class="card">
+      <h3>PER推移（過去5期実績＋現在2水準） <span class="src">[③][④]</span></h3>
+      <canvas id="chartPer"></canvas>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">FY22〜FY26は有報記載の期末株価ベースPER（会社開示の確定値、連結EPSベース）。過去5年間の実績レンジは2.7〜5.3倍。現在の実績PER8.22倍（ctx.py基準日ベース）・予想PER12.6倍（kabutan）は、いずれもこのレンジを大幅に上回る水準にある。<span class="src">[③][④]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">理論PBR分析（ROEベース） <span class="src">[③]</span></h2>
+      <p>ROE 10.9%（FY26/3実績・連結）に対し、株式コストを仮定8%とすると、理論PBR ＝ ROE÷株式コスト ＝ 10.9%÷8% ≈ <strong>1.36倍</strong>。現在PBR 0.78倍はこの理論値を大きく下回り、ROE水準対比では割安の余地があるとも解釈できる。ただし直近PERはTOB思惑により歴史的水準を大幅に超えて推移しており、PBRの割安感だけを根拠に投資判断を行うことは適切でない。</p>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">株式コスト8%は一般的な仮定値であり会社発表値ではない（推計・保証なし）。<span class="src">[③]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th><th>FY27/3予</th></tr>
+        <tr><td class="l">DPS（円・単体）</td><td>74.00</td><td>90.00</td><td>118.00</td><td>133.00</td><td>150.00</td><td class="forecast">160.00</td></tr>
+        <tr><td class="l">配当性向（単体）</td><td>15.8%</td><td>13.6%</td><td>40.0%</td><td>41.0%</td><td>7.4%（注）</td><td>―</td></tr>
+        <tr><td class="l">現在株価比利回り</td><td>―</td><td>―</td><td>―</td><td>―</td><td>―</td><td>2.25%（現在株価7,100円比）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">FY26/3配当性向7.4%は吸収合併に伴う一時的な単体純利益急増によるもの（Tab③注記参照）。会社はFY27/3で大幅減益を予想する一方、DPSは150円→160円へ増配方針を示しており、株主還元姿勢は維持されている。<span class="src">[③]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ピア比較</h2>
+      <p style="font-size:11px;color:var(--sub)">一次情報未取得のため省略（本プロジェクトの方針上、定量ピア比較は簡易言及のみ）。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p4"><!-- Tab5 カタリスト -->
+    <div class="card">
+      <h2 class="section">TOB不成立後の展開 <span class="src">[③]</span></h2>
+      <p>2026年5月14日、Gerbera holdings株式会社（スパークス・グループが助言・組成した買収ビークル）が、当社を完全子会社化する取引の一環として、1株7,600円（後に7,713円へ引き上げ）でのTOBを発表した。買付価格は提案前営業日終値5,149円に対し47.60%のプレミアムであった。主要販売先かつ大株主のダイハツ工業㈱（議決権35.18%所有）は特別関係者として本取引に関与し、自己の保有株式（1,037,000株）はTOB対象から除外された。</p>
+      <p style="margin-top:8px">TOBは2026年5月15日〜7月28日（延長後）実施されたが、応募株数721,295株が買付予定数の下限849,600株（29.68%）に届かず、応募株式は全て返還され不成立に終わった。会社側は「公開買付け後の方針等及び今後の見通し：該当事項はありません」としており、直後の再提案は明らかにされていない。</p>
+      <p style="margin-top:8px">現在株価7,100円はTOB価格7,713円を約7.9%下回っており、市場はTOB思惑を部分的に維持しつつも、再提案の実現性については織り込み切れていない可能性がある。中期（3〜12ヶ月）の観点では、①ダイハツ工業を含む関係者による再提案の有無、②提案なき場合の株価のファンダメンタルズへの回帰、の両シナリオを注視する必要がある。</p>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[③]</span> 「Gerbera holdings株式会社による当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨のお知らせ」（2026-05-14）／「公開買付けの結果に関するお知らせ」（2026-07-29）</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト <span class="src">[③]</span></h2>
+      <div class="grid2">
+        <div class="box"><h4>再度の買収提案・株主還元強化の思惑</h4>TOBは不成立に終わったものの、大株主ダイハツ工業を含む関係者の意図次第では、条件を見直した再提案や自己株式取得等の株主還元強化策が浮上する可能性がある（本レポート作成時点で公表事実なし・推測）。</div>
+        <div class="box"><h4>Q1の大幅増益基調</h4>Q1（2026年4〜6月）は営業利益+65.9%・純利益+52.3%と好調で、通期予想（-29.8%・-40.2%）に対する進捗率は25〜28%と単純ペースを上回っている。国内向け小型車の堅調な推移、海外子会社の商用車・輸出向け車両の増産が寄与。</div>
+        <div class="box"><h4>増配方針</h4>大幅減益予想の中でもDPSは150円→160円へ増額予定。財務健全性（自己資本比率56.3%）を背景に株主還元は維持。</div>
+        <div class="box"><h4>建設機械・農業機械部門の底打ち</h4>国内外の需要低迷が続いてきた建設機械部門に底打ちの兆しが見られ、農業機械部門・その他部門（船舶部品等）は前期比増収が続いている。</div>
+      </div>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[③]</span> 有価証券報告書・第1四半期決算短信の定性的情報</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">Q1実績進捗（対FY27/3会社予想） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">（百万円）</th><th>FY27/3通期予想</th><th>Q1実績</th><th>進捗率</th><th>前年同期比</th></tr>
+        <tr><td class="l">売上高</td><td class="forecast">43,600</td><td>10,888</td><td>25.0%</td><td>+2.0%</td></tr>
+        <tr><td class="l">営業利益</td><td class="forecast">2,740</td><td>715</td><td>26.1%</td><td>+65.9%</td></tr>
+        <tr><td class="l">経常利益</td><td class="forecast">2,840</td><td>760</td><td>26.8%</td><td>+46.4%</td></tr>
+        <tr><td class="l">純利益</td><td class="forecast">1,610</td><td>450</td><td>28.0%</td><td>+52.3%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">四半期進捗率は季節性を伴うため単純な4倍換算で通期を判断すべきでないが、Q1時点の利益進捗率（26〜28%）は単純ペース（25%）をやや上回っており、通期の大幅減益予想（会社側は具体的な下期減速要因を本資料で明示していない）に対しては保守的な計画である可能性がある。<span class="src">[③]</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p5"><!-- Tab6 リスク -->
+    <div class="card">
+      <h2 class="section">事業等のリスク <span class="src">[③]</span></h2>
+      <div class="grid2">
+        <div class="box"><h4>①素材・部品等仕入価格の変動</h4>鋼材等の世界市場での需給変動により購入価格が変動し、業績に影響する可能性。</div>
+        <div class="box"><h4>②受注変動</h4>売上の90%以上を自動車・建設機械部品が占め、両業界の国内外販売動向に業績が左右される。新興国での現地生産化進展による受注減少リスクも指摘。</div>
+        <div class="box"><h4>③金利変動</h4>運転資金は短期借入金、設備投資は長期借入金で調達しており、金利上昇時は支払利息増加の影響を受ける。</div>
+        <div class="box"><h4>④為替リスク</h4>海外子会社（インドネシア）の財務諸表を円換算する際、決算時レートの影響を受ける。</div>
+        <div class="box"><h4>⑤政治・経済状況の変化</h4>インドネシア事業における法規制・政治経済情勢の急変、米国通商政策による世界経済後退の影響。</div>
+        <div class="box"><h4>⑥自然災害・事故災害</h4>東南海沖地震・大規模台風等の自然災害、火災・爆発事故、感染症拡大による操業停止リスク。</div>
+        <div class="box"><h4>⑦情報セキュリティ</h4>顧客情報・機密情報の漏洩、サイバー攻撃によるシステム障害のリスク。</div>
+        <div class="box"><h4>⑧環境維持コスト</h4>環境関連法規制の強化により、将来的に環境維持コストが許容範囲を超えて高まる可能性。</div>
+      </div>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">出所：<span class="src">[③]</span> 有価証券報告書「事業等のリスク」（会社開示ベース）</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">財務面・需給面での留意点（本レポート独自分析） <span class="src">[③][④]</span></h2>
+      <ul style="margin-left:18px">
+        <li><strong>顧客集中リスク：</strong>最大顧客ダイハツ工業㈱への売上依存度が32.2%（FY26/3、14,576百万円）に達する。同社は主要販売先であると同時に議決権35.18%を持つ大株主でもあり、今回のTOBでは特別関係者として整理された。主要販売先と主要株主が同一である構造は、独立した少数株主の意思決定に対する影響力の面で留意が必要。</li>
+        <li><strong>バリュエーション・オーバーハングリスク：</strong>現在の実績PER8.22倍・予想PER12.6倍は、有報記載の過去5年間PER実績レンジ（2.7〜5.3倍）を大幅に上回る。今回のTOB不成立を受け、再提案が具体化しない場合、株価がTOB思惑を剥落させてこのレンジ方向へ調整する可能性がある。</li>
+        <li><strong>大幅減益予想：</strong>FY27/3会社予想は営業利益-29.8%・経常利益-32.3%・純利益-40.2%と大幅減益。Q1実績は好調に推移しているが、会社側は下期の具体的な減速要因を本資料内で明示していない。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel" id="p6"><!-- Tab7 投資結論 -->
+    <div class="verdict caution">慎重検討（スクリーニング8条件は公式判定で全クリアだが、時価総額・売上高CAGR・PERが本書固定の3段階評価でボーダー水準。TOB不成立後のバリュエーション動向に留意）</div>
+
+    <div class="card">
+      <h2 class="section">総合評価ナラティブ</h2>
+      <p>メタルアートは自動車・建設機械向け熱間鍛造品を主力とする鍛工品メーカーであり<span class="src">[②][③]</span>、自己資本比率56.3%という財務健全性を持つ<span class="src">[③]</span>。スクリーニング8条件は公式判定で全てクリアしているが<span class="src">[⑤]</span>、その基準日（2026-07-17）は後述するTOB期間中であり、株価は既にTOB思惑を強く織り込んだ水準にあった点に注意が必要である。</p>
+      <p style="margin-top:8px">2026年5月〜7月にかけて、大株主ダイハツ工業と特別関係にあるGerbera holdings株式会社による1株7,713円でのTOBが実施されたが、応募株数が下限に届かず不成立に終わった<span class="src">[③]</span>。直近12ヶ月モメンタム+120.3%・6ヶ月モメンタム+38.6%という異例の株価上昇はこのTOB思惑によるところが大きく<span class="src">[⑤]</span>、現在の実績PER8.22倍・予想PER12.6倍は、有報記載の過去5年間実績PERレンジ（2.7〜5.3倍）を大幅に上回っている<span class="src">[③][④]</span>。</p>
+      <p style="margin-top:8px">一方、FY27/3会社予想は前期比大幅減益（営業利益-29.8%等）を計画しているが<span class="src">[③]</span>、Q1実績は営業利益+65.9%・純利益+52.3%と好調で、通期予想に対する利益進捗率（26〜28%）も単純ペースを上回っており<span class="src">[③]</span>、通期計画はやや保守的である可能性がある。会社は大幅減益予想の中でも増配方針（DPS150円→160円）を示しており、株主還元姿勢自体には積極性が見られる<span class="src">[③]</span>。中期（3〜12ヶ月）の投資判断としては、①再度の買収提案の有無、②TOB思惑剥落後のバリュエーション調整リスク、③下期業績の実際の着地、の3点を見極める必要がある。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計値・保証なし） <span class="src">[③]</span></h2>
+      <p style="font-size:11px;color:var(--sub);margin-bottom:8px"><strong>以下の目標株価は一次情報（会社予想EPS・過去の実績PERレンジ・TOB経緯）から本レポートが独自に導出した推計値であり、実際の業績・株価を保証するものではない。</strong></p>
+      <table>
+        <tr><th class="l">ケース</th><th>想定確率</th><th class="l">前提</th><th>想定EPS</th><th>想定PER</th><th>目標株価（推計）</th><th>現在比</th></tr>
+        <tr><td class="l">ベア</td><td>25%</td><td class="l">再提案なし・下期に会社予想を下回る着地（EPS会社予想比-10%）、TOBプレミアム完全剥落で過去5年PERレンジ上限へ回帰</td><td>506円</td><td>5.3倍</td><td>2,683円</td><td class="neg">-62.2%</td></tr>
+        <tr><td class="l">ベース</td><td>50%</td><td class="l">再提案なし・FY27会社予想どおり着地。TOB思惑残存によりPERは実績ベースの現在水準（8倍程度）で下げ止まり</td><td>562円</td><td>8.0倍</td><td>4,499円</td><td class="neg">-36.6%</td></tr>
+        <tr><td class="l">ブル</td><td>25%</td><td class="l">Q1の好調モメンタムが下期も継続（EPSは前期実績939円に接近）、かつ再提案・株主還元強化期待でPERが現在の予想PER水準を維持</td><td>750円</td><td>12.0倍</td><td>9,000円</td><td>+26.8%</td></tr>
+      </table>
+      <canvas id="chartScenario" style="margin-top:14px"></canvas>
+      <div class="alert danger" style="margin-top:12px">
+        <strong>重要な留意点：</strong> ベア・ベース両ケースで目標株価（推計）が現在株価7,100円を大きく下回る。これは現在のPER（実績8.22倍・予想12.6倍）が過去5年の実績PERレンジ（2.7〜5.3倍）を大幅に上回っており、その主因が事業ファンダメンタルズの改善ではなく、不成立に終わったTOB（1株7,713円）への思惑であったことを反映している。再度の買収提案が具体化しない限り、株価はバリュエーション面で下押し圧力を受けやすい構造にあると解釈できる。裏を返せば、ブルケースのようにM&A思惑が再燃・実現した場合の上値余地も相応に存在する。新規購入を検討する場合は、このバリュエーション構造を十分に踏まえる必要がある。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <table>
+        <tr><th class="l">項目</th><th>評価</th></tr>
+        <tr><td class="l">スクリーニング8条件（公式判定）</td><td>8/8 クリア <span class="src">[⑤]</span></td></tr>
+        <tr><td class="l">財務健全性（自己資本比率）</td><td>56.3%と健全 <span class="src">[③]</span></td></tr>
+        <tr><td class="l">直近業績モメンタム</td><td>Q1実績は好調（通期は大幅減益予想だが進捗は上振れ） <span class="src">[③]</span></td></tr>
+        <tr><td class="l">バリュエーション（歴史的PERレンジ対比）</td><td class="neg">現在PERはレンジを大幅超過、TOB思惑への依存度が高い <span class="src">[③][④]</span></td></tr>
+        <tr><td class="l">株主還元</td><td>大幅減益予想下でも増配方針（150円→160円） <span class="src">[③]</span></td></tr>
+        <tr><td class="l">M&amp;A関連イベントリスク</td><td class="neg">TOB不成立直後で株価の先行き不透明感が高い <span class="src">[③]</span></td></tr>
+        <tr><td class="l">顧客集中度</td><td class="neg">最大顧客ダイハツ工業への依存度32.2%、同社は大株主でもある <span class="src">[③]</span></td></tr>
+      </table>
+    </div>
+
+    <div style="font-size:11px;color:var(--sub);background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:12px 16px">
+      <strong>免責事項：</strong> 本レポートは一次情報・公式開示情報のみに基づく分析であり、投資助言を目的としたものではない。データ取得日：2026年8月12日〜13日（kabutan株価・指標<span class="src">[④]</span>）。有価証券報告書の参照決算期：FY2026/3（第95期、開示日2026-06-26）、第1四半期決算短信：FY2027/3 Q1（開示日2026-08-06、業績予想修正を含む）<span class="src">[③]</span>。スクリーニング判定の基準日：2026-07-17<span class="src">[⑤]</span>（Gerbera holdings社によるTOB期間中）。シナリオ分析中の目標株価は本レポート独自の推計値であり実際の業績・株価を保証しない。irpocket公式IRデータExcelは取得不可（404）のため、財務データは有価証券報告書・決算短信・TOB関連開示資料で代替した。投資の最終判断はご自身の責任で行うこと。
+    </div>
+  </div>
+</div>
+<script>
+const tabs=[
+  ['①総合評価','p0'],['②企業概要','p1'],['③財務分析','p2'],['④バリュエーション','p3'],
+  ['⑤カタリスト','p4'],['⑥リスク','p5'],['⑦投資結論','p6']
+];
+const tabsEl=document.getElementById('tabs');
+tabs.forEach(([label,id],i)=>{
+  const b=document.createElement('button');
+  b.className='tab'+(i===0?' active':'');
+  b.textContent=label;
+  b.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  };
+  tabsEl.appendChild(b);
+});
+
+const ink='#111111', sub='#6b6b6b', neg='#b42318', line='#dcdcdc';
+
+new Chart(document.getElementById('chartOverview'), {
+  data: {
+    labels: ['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','FY27/3予'],
+    datasets: [
+      { type:'bar', label:'売上高（億円）', data:[350.10,442.38,450.21,439.54,452.89,436.00], backgroundColor:ink, yAxisID:'y' },
+      { type:'line', label:'経常利益（億円）', data:[33.08,38.66,31.83,32.53,41.93,28.40], borderColor:neg, backgroundColor:neg, yAxisID:'y1', tension:.2 }
+    ]
+  },
+  options:{ responsive:true, maintainAspectRatio:true,
+    scales:{ y:{position:'left', title:{display:true,text:'売上高（億円）'}},
+             y1:{position:'right', title:{display:true,text:'経常利益（億円）'}, grid:{drawOnChartArea:false}} } }
+});
+
+new Chart(document.getElementById('chartSegment'), {
+  type:'bar',
+  data:{ labels:['FY26/3実績','Q1 FY27/3実績'],
+    datasets:[
+      { label:'自動車部品', data:[37646,8999], backgroundColor:'#111111' },
+      { label:'建設機械部品', data:[5298,1266], backgroundColor:'#6b6b6b' },
+      { label:'農業機械部品', data:[849,184], backgroundColor:'#a8a8a8' },
+      { label:'その他部品', data:[1494,437], backgroundColor:'#dcdcdc' }
+    ] },
+  options:{ responsive:true, maintainAspectRatio:true,
+    scales:{ x:{stacked:true}, y:{stacked:true, title:{display:true,text:'売上高（百万円）'}} } }
+});
+
+new Chart(document.getElementById('chartPL'), {
+  data:{ labels:['FY25/3実績','FY26/3実績','FY27/3予想'],
+    datasets:[
+      { type:'bar', label:'売上高（億円）', data:[439.54,452.89,436.00], backgroundColor:'#111111', yAxisID:'y' },
+      { type:'bar', label:'営業利益（億円）', data:[29.94,39.05,27.40], backgroundColor:'#a8a8a8', yAxisID:'y' },
+      { type:'line', label:'経常利益（億円）', data:[32.53,41.93,28.40], borderColor:neg, backgroundColor:neg, yAxisID:'y', tension:.2 }
+    ] },
+  options:{ responsive:true, maintainAspectRatio:true, scales:{ y:{title:{display:true,text:'億円'}} } }
+});
+
+new Chart(document.getElementById('chartRoe'), {
+  type:'line',
+  data:{ labels:['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+    datasets:[
+      { label:'ROE（%）', data:[13.6,14.0,10.0,8.7,10.9], borderColor:'#111111', backgroundColor:'#111111', tension:.2 },
+      { label:'ROA（経常利益ベース・%）', data:[8.6,9.1,7.2,7.4,9.1], borderColor:'#6b6b6b', backgroundColor:'#6b6b6b', tension:.2 }
+    ] },
+  options:{ responsive:true, maintainAspectRatio:true }
+});
+
+new Chart(document.getElementById('chartEpsDps'), {
+  data:{ labels:['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'],
+    datasets:[
+      { type:'bar', label:'EPS（連結・円）', data:[732.78,879.91,719.21,679.15,939.35], backgroundColor:'#111111', yAxisID:'y' },
+      { type:'line', label:'DPS（単体・円）', data:[74.00,90.00,118.00,133.00,150.00], borderColor:neg, backgroundColor:neg, yAxisID:'y', tension:.2 }
+    ] },
+  options:{ responsive:true, maintainAspectRatio:true, scales:{ y:{title:{display:true,text:'円'}} } }
+});
+
+new Chart(document.getElementById('chartPer'), {
+  type:'bar',
+  data:{ labels:['FY22/3','FY23/3','FY24/3','FY25/3','FY26/3','現在(実績PER)','現在(予想PER)'],
+    datasets:[{ label:'PER（倍）', data:[2.7,3.3,5.3,4.7,5.3,8.22,12.6],
+      backgroundColor:(c)=> c.dataIndex>=5 ? neg : '#111111' }] },
+  options:{ responsive:true, maintainAspectRatio:true, scales:{ y:{title:{display:true,text:'倍'}} } }
+});
+
+new Chart(document.getElementById('chartScenario'), {
+  type:'bar',
+  data:{ labels:['ベア（推計）','現在株価','ベース（推計）','ブル（推計）'],
+    datasets:[{ label:'株価（円）', data:[2683,7100,4499,9000],
+      backgroundColor:[neg,'#6b6b6b','#a8a8a8','#111111'] }] },
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:true, scales:{ x:{title:{display:true,text:'円'}} } }
+});
+</script>
+</body></html>
