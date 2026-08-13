@@ -46,10 +46,6 @@
     }
     .topbar .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; }
     .topbar .mark .sq { width: 8px; height: 8px; background: var(--fg); flex: none; }
-    .topbar .meta { font-variant-numeric: tabular-nums; }
-    .topbar .meta .muted { margin-left: 2px; }
-    .topbar .navlink { text-decoration: none; border-bottom: 1px solid transparent; }
-    .topbar .navlink:hover { border-bottom-color: currentColor; }
 
     /* Hero */
     .hero {
@@ -201,23 +197,6 @@
     }
     .card-link:hover .cta { border-top-color: currentColor; opacity: 1; }
 
-    /* About */
-    .principles {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px 32px;
-    }
-    .principle { border-top: 2px solid var(--border-strong); padding-top: 16px; }
-    .principle .num {
-      display: block;
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      opacity: .45;
-      letter-spacing: .08em;
-      margin-bottom: 8px;
-    }
-    .principle p { font-size: 14px; opacity: .68; }
-
     /* Footer */
     footer {
       max-width: 880px;
@@ -234,10 +213,8 @@
     }
 
     @media (max-width: 640px) {
-      .topbar .meta { display: none; }
       .hero { padding-top: 64px; }
       .card-grid { grid-template-columns: 1fr; }
-      .principles { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -245,23 +222,14 @@
 
   <div class="topbar">
     <div class="mark"><span class="sq"></span>VALUE INVEST</div>
-    <div class="meta"><a href="stocks.html" class="navlink">個別銘柄レポート →</a></div>
   </div>
 
   <div class="hero">
     <div class="hero-inner">
-      <div class="badge"><span class="sq"></span>個人投資家 / アナリスト</div>
-      <h1>日本<span class="hl">割安株</span><br>分析ポートフォリオ</h1>
-      <p>一次情報（有報・決算資料・JPX公式データ）のみを使った定量・定性分析。
-         独自のスクリーニング条件で割安な中小型株を発掘し、中期投資の意思決定を支援します。</p>
-      <div class="tags">
-        <span>PER ≤ 15倍</span>
-        <span>PBR ≤ 1.5倍</span>
-        <span>時価総額 ≤ 600億円</span>
-        <span>売上CAGR ≥ 4%</span>
-        <span>自己資本比率 ≥ 40%</span>
-        <span>J-Quants API</span>
-      </div>
+      <div class="badge"><span class="sq"></span>週末投資家リーマン｜元手100万から1億へ(願望)</div>
+      <h1>日本<span class="hl">VALUE株</span><br>分析ポートフォリオ</h1>
+      <p>主に一次情報（有報・決算資料・JPX公式データ）のみを使った定量・定性分析をレポートにしています。
+         </p>
     </div>
   </div>
 
@@ -277,45 +245,17 @@
         <a class="card-link" href="reports.html">
           <span class="idx">01</span>
           <h3>分析レポート</h3>
-          <p>政策テーマ・5バガー研究など、独自スクリーニングに基づく特集分析。Chart.jsによるインタラクティブな可視化付き。</p>
+          <p>政策テーマやバガー株に関する研究など、興味好奇心のままに行ったレポートです。興味深い示唆等があれば、Xやnoteにまとめています。</p>
           <div class="cta"><span>3件のレポート</span><span>→</span></div>
         </a>
 
         <a class="card-link" href="stocks.html">
           <span class="idx">02</span>
           <h3>個別銘柄レポート</h3>
-          <p id="stocksTeaser">スクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
+          <p id="stocksTeaser">独自のスクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
           <div class="cta"><span>銘柄コード・社名で探す</span><span>→</span></div>
         </a>
 
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="idx">02</span>
-        <h2>分析アプローチ</h2>
-        <div class="line"></div>
-      </div>
-      <div class="principles">
-        <div class="principle">
-          <span class="num">01</span>
-          <p>データソースは有報・決算短信・irpocket・J-Quants API（JPX公式）のみ。二次情報・アナリストレポートは使用しない</p>
-        </div>
-        <div class="principle">
-          <span class="num">02</span>
-          <p>独自8条件スクリーニング（PER・PBR・時価総額・CAGR・自己資本比率・モメンタム）で候補を絞り込む</p>
-        </div>
-        <div class="principle">
-          <span class="num">03</span>
-          <p>個別銘柄は定量（財務トレンド・バリュエーション）と定性（有報・中計の戦略読解）を組み合わせて評価</p>
-        </div>
-        <div class="principle">
-          <span class="num">04</span>
-          <p>投資判断は中期（3〜12ヶ月）。過去バックテストで条件の有効性を継続的に検証・改訂</p>
-        </div>
       </div>
     </div>
   </div>
