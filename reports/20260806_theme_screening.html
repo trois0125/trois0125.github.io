@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>政策テーマ周辺の割安小型株スクリーニング 2026-08-06</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#f6f7f9;--fg:#1a1d21;--mut:#6b7280;--line:#e3e6ea;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+ line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+header h1{font-size:24px;margin:0 0 6px}
+header .sub{color:var(--mut);font-size:13px;margin:0}
+.method{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:22px 0}
+.method h2{font-size:16px;margin:0 0 10px}
+.method h3{font-size:14px;margin:18px 0 6px;color:var(--mut)}
+.method p{margin:6px 0;font-size:14px}
+.method ol,.method ul{margin:6px 0;padding-left:22px;font-size:14px}
+.method li{margin:3px 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 0}
+.tab{flex:1;min-width:150px;border:1px solid var(--line);background:var(--card);border-radius:10px 10px 0 0;
+ padding:11px 12px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--mut);
+ border-bottom:3px solid transparent}
+.tab.on{color:var(--tc);border-bottom-color:var(--tc);background:#fff}
+.tab .cnt{display:inline-block;margin-left:6px;background:var(--line);color:var(--fg);
+ border-radius:9px;padding:0 7px;font-size:11.5px}
+.pane{display:none;background:var(--card);border:1px solid var(--line);border-top:0;
+ border-radius:0 0 12px 12px;padding:20px}
+.pane.on{display:block}
+.lead{border-left:4px solid;padding:2px 0 2px 14px;margin:2px 0 22px}
+.lead h2{font-size:18px;margin:0 0 4px}
+.lead p{margin:2px 0;font-size:14px}
+.lead .sub{color:var(--mut);font-size:13px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 14px;background:#fcfcfd}
+.chead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.code{font-weight:700;font-variant-numeric:tabular-nums}
+.cname{font-weight:700;font-size:16px;margin-left:4px}
+.meta{color:var(--mut);font-size:12.5px;margin-left:8px}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.badge{font-size:11px;border-radius:20px;padding:2px 9px;white-space:nowrap;border:1px solid transparent}
+.badge.route{background:#eef2f7;color:#42505f}
+.badge.all8{background:#065f46;color:#fff}
+.badge.pi-low{background:#e8f5ee;color:#0b6b3f;border-color:#bfe3d0}
+.badge.pi-mid{background:#f3f4f6;color:#4b5563;border-color:#e0e2e6}
+.badge.pi-high{background:#fdf0e6;color:#9a4d0d;border-color:#f2d6bd}
+.badge.ok{background:#e8f0fe;color:#1a4fa0;border-color:#c6d9f7}
+.badge.warn{background:#fdf6e3;color:#8a6100;border-color:#f0e2b8}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin:14px 0 12px}
+.nums div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 9px;text-align:center}
+.nums b{display:block;font-size:15.5px;font-variant-numeric:tabular-nums}
+.nums span{display:block;font-size:10.5px;color:var(--mut);margin-top:1px}
+.nums .neg b{color:#b42318}
+.note{font-size:13.5px}
+.note p{margin:7px 0 0}
+.src{color:var(--mut);font-size:11.5px;margin-top:9px;border-top:1px dashed var(--line);padding-top:7px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left}
+th{background:#f2f4f7;font-size:12px;color:var(--mut);font-weight:600}
+td.r{text-align:right;font-variant-numeric:tabular-nums}
+.pos{color:#0b6b3f}.neg{color:#b42318}
+.chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0}
+.chartbox h2{font-size:16px;margin:0 0 4px}
+.chartbox p{font-size:13px;color:var(--mut);margin:0 0 14px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:22px 0}
+summary{cursor:pointer;font-weight:600;font-size:15px}
+.disc{background:#fffaf3;border:1px solid #f0e2c8;border-radius:12px;padding:18px 20px;margin:24px 0 0;font-size:13px}
+.disc h2{font-size:15px;margin:0 0 8px}
+.disc ul{padding-left:20px;margin:6px 0}
+</style></head><body><div class="wrap">
+
+<header>
+  <h1>政策テーマ「周辺」の割安小型株スクリーニング</h1>
+  <p class="sub">作成 2026-08-06／母集団：東証プライム・スタンダード・グロース 3,702 銘柄のうち
+     条件①〜⑥通過 101 銘柄（基準日 2026-07-17）／データ：J-Quants API V2（JPX公式）[⑤]</p>
+</header>
+
+<div class="method">
+  <h2>この一覧の作り方</h2>
+  <h3>1. 母集団：条件①〜⑥のみ</h3>
+  <p>STRATEGY.md の8条件のうち、相対条件⑦（直近営業増益率が上位1/3）と⑧（6ヶ月モメンタムが上位1/3）は
+     母集団から外しました。テーマを重ねると該当が数銘柄まで減るためです。
+     ⑦⑧は足切りではなく、各銘柄の参考順位として表示しています。</p>
+  <ul>
+    <li>① PER ≤ 15倍 ／ ② PBR ≤ 1.5倍（いずれも未調整終値ベース）</li>
+    <li>③ 売上高CAGR ≥ 4% ／ ④ 営業利益CAGR ≥ 4%</li>
+    <li>⑤ 自己資本比率 ≥ 40% ／ ⑥ 時価総額 ≤ 600億円</li>
+  </ul>
+
+  <h3>2. テーマとの距離：本丸を外し、3経路で拾う</h3>
+  <p>テーマ名で検索して出てくる銘柄は、その時点で既に買われている可能性が高い。そこで接続経路を次の3つに分けました。</p>
+  <ol>
+    <li><b>裏方</b>（部材・工事・保守）── 装置本体ではなく、その部品・据付工事・メンテを担う</li>
+    <li><b>川下</b>（テーマ投資の受け手）── テーマ企業に納入する側ではなく、投資の結果として仕事が増える側</li>
+    <li><b>共通因子</b>（設備投資量・素材需要）── テーマ名ではなく「設備投資が増えるか」「素材が要るか」で拾う</li>
+  </ol>
+
+  <h3>3. 織り込み度：6ヶ月モメンタムの母集団内順位</h3>
+  <p>「まだ織り込まれていない」を、101銘柄の中での6ヶ月株価モメンタム順位で測っています。
+     下位1/3を<b>未織り込み</b>、上位1/3を<b>織り込み進行</b>と表示。各テーマ内は順位の低い順に並べています。
+     順位が低いことは「安く買える」と同時に「売られている理由がある」ことも意味します。どちらかは個別に確かめる必要があります。</p>
+
+  <h3>4. 事業内容の確認状況（重要）</h3>
+  <p>定量データはすべて J-Quants API V2 [⑤] の一次データで、再現可能です。
+     一方<b>「その企業が何をしているか」は、公式サイト [②] を確認できた6銘柄を除き、33業種と社名からの仮説です。</b>
+     各カードにバッジで区別しています。仮説の銘柄は、個別の定量レポート／有報定性レポートを作る段階で
+     一次情報による確認が必須です。（作成時、木村化工機のドメイン推定が別会社に当たったため、
+     推定でのURL特定は行わず未確認のまま残しています）</p>
+</div>
+
+<div class="tabs"><button class="tab" data-t="t0" style="--tc:#2563eb">電力・エネルギー／GX<span class="cnt">7</span></button><button class="tab" data-t="t1" style="--tc:#b45309">防衛・経済安全保障<span class="cnt">6</span></button><button class="tab" data-t="t2" style="--tc:#7c3aed">半導体・AIデータセンター<span class="cnt">7</span></button><button class="tab" data-t="t3" style="--tc:#059669">国土強靭化・インフラ更新<span class="cnt">8</span></button></div>
+
+<section class="pane" id="t0">
+  <div class="lead" style="border-color:#2563eb">
+    <h2 style="color:#2563eb">電力・エネルギー／GX</h2><p>系統増強・電源更新・水素/再エネ。設備投資は「装置本体」より配電・据付・保守に長く落ちる</p>
+    <p class="sub">該当 7 銘柄（うち事業内容を公式サイトで確認済み 3 銘柄）。
+       6ヶ月モメンタム順位の低い順＝まだ市場が動いていない順に並べています。</p>
+  </div>
+  
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6229</span> <span class="cname">オーケーエム</span>
+      <span class="meta">スタンダード・機械</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 16%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>8.7</b><span>PER（倍）</span></div>
+    <div><b>0.64</b><span>PBR（倍）</span></div>
+    <div><b>69</b><span>時価総額（億円）</span></div>
+    <div><b>81.0%</b><span>自己資本比率</span></div>
+    <div><b>4.9%</b><span>売上高CAGR</span></div>
+    <div><b>5.1%</b><span>営業利益CAGR</span></div>
+    <div><b>+65.4%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-18.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は機械。社名（OKM）からバルブメーカーと推定。発電・船舶・プロセス産業に広く納入される部品。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-15</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6637</span> <span class="cname">寺崎電気産業</span>
+      <span class="meta">スタンダード・電気機器</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 18%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>11.4</b><span>PER（倍）</span></div>
+    <div><b>0.82</b><span>PBR（倍）</span></div>
+    <div><b>456</b><span>時価総額（億円）</span></div>
+    <div><b>68.1%</b><span>自己資本比率</span></div>
+    <div><b>7.5%</b><span>売上高CAGR</span></div>
+    <div><b>14.5%</b><span>営業利益CAGR</span></div>
+    <div><b>+10.3%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-17.4%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge ok">[②] 公式サイトで確認</span><p>配線用遮断器・気中遮断器と「産業用配電制御システム」を持つ。ただし公式サイトの筆頭事業は船舶用システムで、市場では造船株として括られやすく電力テーマとして扱われにくい。エンジニアリング及びライフサイクルサービス（保守・レトロフィット）も事業単位で保有。</p><div class="src">確認元：寺崎電気産業 公式サイト（船舶用システム／産業用システム／機器（ブレーカ）／メディカル／エンジニアリング及びライフサイクルサービス）（2026-08-06 取得）[②]</div></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-15</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">1828</span> <span class="cname">田辺工業</span>
+      <span class="meta">スタンダード・建設業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 27%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>7.2</b><span>PER（倍）</span></div>
+    <div><b>0.89</b><span>PBR（倍）</span></div>
+    <div><b>248</b><span>時価総額（億円）</span></div>
+    <div><b>59.3%</b><span>自己資本比率</span></div>
+    <div><b>6.2%</b><span>売上高CAGR</span></div>
+    <div><b>11.8%</b><span>営業利益CAGR</span></div>
+    <div><b>+24.3%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-13.2%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は建設業。社名からプラント設備工事と推定。新設だけでなく定期修理・据付という「毎年発生する」側の売上構成なら景気耐性が高い。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-13</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">9906</span> <span class="cname">藤井産業</span>
+      <span class="meta">スタンダード・卸売業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 35%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>7.0</b><span>PER（倍）</span></div>
+    <div><b>0.81</b><span>PBR（倍）</span></div>
+    <div><b>339</b><span>時価総額（億円）</span></div>
+    <div><b>59.6%</b><span>自己資本比率</span></div>
+    <div><b>4.4%</b><span>売上高CAGR</span></div>
+    <div><b>10.2%</b><span>営業利益CAGR</span></div>
+    <div><b>+15.7%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-10.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge ok">[②] 公式サイトで確認</span><p>電設資材・電気機器の販売に加え、設備・建設資材の施工と再生可能エネルギー発電まで自社で持つ。栃木地盤の地域商社で全国的な認知が薄い。2026-05-15 に持株会社体制への移行（吸収分割・商号変更）を開示済み。</p><div class="src">確認元：藤井産業 公式サイト（電設資材・電気機器・工作機械・情報機器・土木建設機械の販売／総合建築・設備・建設資材の施工／再生可能エネルギー発電）（2026-08-06 取得）[②]</div></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-15</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6378</span> <span class="cname">木村化工機</span>
+      <span class="meta">スタンダード・機械</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 42%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>10.3</b><span>PER（倍）</span></div>
+    <div><b>1.10</b><span>PBR（倍）</span></div>
+    <div><b>228</b><span>時価総額（億円）</span></div>
+    <div><b>61.0%</b><span>自己資本比率</span></div>
+    <div><b>5.5%</b><span>売上高CAGR</span></div>
+    <div><b>13.7%</b><span>営業利益CAGR</span></div>
+    <div><b>+0.4%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-6.9%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は機械。社名から化学プラント向け機器と推定。プラント設備投資の裏方。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-12</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6365</span> <span class="cname">電業社機械製作所</span>
+      <span class="meta">スタンダード・機械</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 50%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>8.7</b><span>PER（倍）</span></div>
+    <div><b>0.74</b><span>PBR（倍）</span></div>
+    <div><b>227</b><span>時価総額（億円）</span></div>
+    <div><b>73.5%</b><span>自己資本比率</span></div>
+    <div><b>4.9%</b><span>売上高CAGR</span></div>
+    <div><b>11.3%</b><span>営業利益CAGR</span></div>
+    <div><b>+8.0%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-3.9%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は機械。社名から発電所・上下水道向けの回転機械（ポンプ・送風機）と推定。電源更新と水インフラ更新の両方に接続しうる。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-15</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6391</span> <span class="cname">加地テック</span>
+      <span class="meta">スタンダード・機械</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span><span class="badge all8">8条件すべて通過</span>
+      <span class="badge pi-high">織り込み度：織り込み進行（6ヶ月モメンタム順位 87%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>9.8</b><span>PER（倍）</span></div>
+    <div><b>0.84</b><span>PBR（倍）</span></div>
+    <div><b>71</b><span>時価総額（億円）</span></div>
+    <div><b>68.9%</b><span>自己資本比率</span></div>
+    <div><b>4.9%</b><span>売上高CAGR</span></div>
+    <div><b>11.0%</b><span>営業利益CAGR</span></div>
+    <div><b>+49.2%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+14.4%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge ok">[②] 公式サイトで確認</span><p>製品ラインの筆頭が「水素関連事業向け圧縮機」。2026-04-30 に中期経営計画（2026〜2028年度）を開示。ただし6ヶ月モメンタムが母集団上位のため、既に一定の織り込みが進んでいる可能性が高い。</p><div class="src">確認元：加地テック 公式サイト（水素関連事業向け圧縮機／プラント関連事業向け圧縮機／PETボトル成形用圧縮機／アフターサービス）（2026-08-06 取得）[②]</div></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-04-30</div>
+</div>
+</section>
+<section class="pane" id="t1">
+  <div class="lead" style="border-color:#b45309">
+    <h2 style="color:#b45309">防衛・経済安全保障</h2><p>装備品そのものより、防護・通信・素材といった横断的な下支えに需要が回る</p>
+    <p class="sub">該当 6 銘柄（うち事業内容を公式サイトで確認済み 2 銘柄）。
+       6ヶ月モメンタム順位の低い順＝まだ市場が動いていない順に並べています。</p>
+  </div>
+  
+<div class="card">
+  <div class="chead">
+    <div><span class="code">5729</span> <span class="cname">日本精鉱</span>
+      <span class="meta">スタンダード・非鉄金属</span></div>
+    <div class="tags"><span class="badge route">共通因子（設備投資量・素材需要）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 1%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>3.5</b><span>PER（倍）</span></div>
+    <div><b>0.94</b><span>PBR（倍）</span></div>
+    <div><b>146</b><span>時価総額（億円）</span></div>
+    <div><b>62.5%</b><span>自己資本比率</span></div>
+    <div><b>15.1%</b><span>売上高CAGR</span></div>
+    <div><b>22.7%</b><span>営業利益CAGR</span></div>
+    <div><b>+69.0%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-52.8%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は非鉄金属。社名から非鉄製錬と推定。重要鉱物の国内供給網に位置するかが要確認点。6ヶ月モメンタム順位1%＝母集団で最も売られており、PER3.5倍。安い理由の特定が先。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-12</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">8226</span> <span class="cname">理経</span>
+      <span class="meta">スタンダード・卸売業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 9%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>7.4</b><span>PER（倍）</span></div>
+    <div><b>0.92</b><span>PBR（倍）</span></div>
+    <div><b>55</b><span>時価総額（億円）</span></div>
+    <div><b>46.5%</b><span>自己資本比率</span></div>
+    <div><b>13.0%</b><span>売上高CAGR</span></div>
+    <div><b>38.2%</b><span>営業利益CAGR</span></div>
+    <div><b>+11.0%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-28.7%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge ok">[②] 公式サイトで確認</span><p>3事業のうち「ネットワークソリューション」が衛星通信・地上FWAによる防災情報の伝送・配信、「電子部品及び機器」の対象分野に安全保障を明記。Jアラートの特設サイトを持つ。防衛と国土強靭化の両方にまたがる。</p><div class="src">確認元：理経 公式サイト（システムソリューション／ネットワークソリューション／電子部品及び機器、Jアラート特設サイト）（2026-08-06 取得）[②]</div></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-13</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">4719</span> <span class="cname">アルファシステムズ</span>
+      <span class="meta">プライム・情報･通信業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 22%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>12.4</b><span>PER（倍）</span></div>
+    <div><b>1.03</b><span>PBR（倍）</span></div>
+    <div><b>465</b><span>時価総額（億円）</span></div>
+    <div><b>85.2%</b><span>自己資本比率</span></div>
+    <div><b>4.8%</b><span>売上高CAGR</span></div>
+    <div><b>7.6%</b><span>営業利益CAGR</span></div>
+    <div><b>+11.8%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-16.3%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は情報･通信業。通信系の受託ソフト開発と推定。自己資本比率85.2%と手元が厚い。官公庁比率の確認が要点。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-11</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">7963</span> <span class="cname">興研</span>
+      <span class="meta">スタンダード・その他製品</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 47%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>10.1</b><span>PER（倍）</span></div>
+    <div><b>0.64</b><span>PBR（倍）</span></div>
+    <div><b>88</b><span>時価総額（億円）</span></div>
+    <div><b>63.4%</b><span>自己資本比率</span></div>
+    <div><b>4.6%</b><span>売上高CAGR</span></div>
+    <div><b>8.0%</b><span>営業利益CAGR</span></div>
+    <div><b>+26.0%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-5.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge ok">[②] 公式サイトで確認</span><p>防じんマスク・防毒マスク・電動ファン付き呼吸用保護具。化学防護と産業安全の両方に接続する。クリーンルームも扱うため半導体側の需要も拾う。</p><div class="src">確認元：興研 公式サイト（防じんマスク／防毒マスク／電動ファン付き呼吸用保護具／クリーンルーム）（2026-08-06 取得）[②]</div></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2025-12-31・開示日 2026-05-08</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">5753</span> <span class="cname">日本伸銅</span>
+      <span class="meta">スタンダード・非鉄金属</span></div>
+    <div class="tags"><span class="badge route">共通因子（設備投資量・素材需要）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 55%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>6.8</b><span>PER（倍）</span></div>
+    <div><b>0.40</b><span>PBR（倍）</span></div>
+    <div><b>51</b><span>時価総額（億円）</span></div>
+    <div><b>68.7%</b><span>自己資本比率</span></div>
+    <div><b>7.4%</b><span>売上高CAGR</span></div>
+    <div><b>12.6%</b><span>営業利益CAGR</span></div>
+    <div><b>+46.8%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-2.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は非鉄金属。社名から伸銅品と推定。PBR0.40倍。銅材は電力・半導体・防衛のいずれにも入る共通素材。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-13</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">7980</span> <span class="cname">重松製作所</span>
+      <span class="meta">スタンダード・その他製品</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 64%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>8.1</b><span>PER（倍）</span></div>
+    <div><b>0.60</b><span>PBR（倍）</span></div>
+    <div><b>57</b><span>時価総額（億円）</span></div>
+    <div><b>43.7%</b><span>自己資本比率</span></div>
+    <div><b>4.5%</b><span>売上高CAGR</span></div>
+    <div><b>36.5%</b><span>営業利益CAGR</span></div>
+    <div><b>-1.4%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+1.3%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種はその他製品。社名から呼吸用保護具メーカーと推定（興研と同業）。時価総額57億円と小さく流動性に注意。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-08</div>
+</div>
+</section>
+<section class="pane" id="t2">
+  <div class="lead" style="border-color:#7c3aed">
+    <h2 style="color:#7c3aed">半導体・AIデータセンター</h2><p>前工程装置は既に高PER。部材・治工具・計測・電源まわりの脇役に着目する</p>
+    <p class="sub">該当 7 銘柄（うち事業内容を公式サイトで確認済み 0 銘柄）。
+       6ヶ月モメンタム順位の低い順＝まだ市場が動いていない順に並べています。</p>
+  </div>
+  
+<div class="card">
+  <div class="chead">
+    <div><span class="code">3321</span> <span class="cname">ミタチ産業</span>
+      <span class="meta">スタンダード・卸売業</span></div>
+    <div class="tags"><span class="badge route">川下（テーマ投資の受け手）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 8%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>5.7</b><span>PER（倍）</span></div>
+    <div><b>0.68</b><span>PBR（倍）</span></div>
+    <div><b>122</b><span>時価総額（億円）</span></div>
+    <div><b>43.7%</b><span>自己資本比率</span></div>
+    <div><b>13.5%</b><span>売上高CAGR</span></div>
+    <div><b>16.2%</b><span>営業利益CAGR</span></div>
+    <div><b>+28.6%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-28.9%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は卸売業。電子部品商社と推定。6ヶ月モメンタム順位8%・PER5.7倍・PBR0.68倍。母集団の中でも「安く、まだ売られている」側の代表。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-05-31・開示日 2026-07-06</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6626</span> <span class="cname">ＳＥＭＩＴＥＣ</span>
+      <span class="meta">スタンダード・電気機器</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 24%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>7.2</b><span>PER（倍）</span></div>
+    <div><b>0.80</b><span>PBR（倍）</span></div>
+    <div><b>192</b><span>時価総額（億円）</span></div>
+    <div><b>77.4%</b><span>自己資本比率</span></div>
+    <div><b>7.6%</b><span>売上高CAGR</span></div>
+    <div><b>19.3%</b><span>営業利益CAGR</span></div>
+    <div><b>-9.7%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-14.3%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は電気機器。社名からサーミスタ等の温度センサと推定。装置・電源・車載に横断的に入る部品。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-12</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">7525</span> <span class="cname">リックス</span>
+      <span class="meta">プライム・卸売業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 39%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>9.0</b><span>PER（倍）</span></div>
+    <div><b>0.99</b><span>PBR（倍）</span></div>
+    <div><b>285</b><span>時価総額（億円）</span></div>
+    <div><b>60.4%</b><span>自己資本比率</span></div>
+    <div><b>5.7%</b><span>売上高CAGR</span></div>
+    <div><b>8.7%</b><span>営業利益CAGR</span></div>
+    <div><b>-8.9%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-8.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は卸売業。産業機械・部品の技術商社と推定。商社は装置メーカーより変動が小さく、その分注目もされにくい。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-15</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">7510</span> <span class="cname">たけびし</span>
+      <span class="meta">プライム・卸売業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 60%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>12.6</b><span>PER（倍）</span></div>
+    <div><b>0.84</b><span>PBR（倍）</span></div>
+    <div><b>373</b><span>時価総額（億円）</span></div>
+    <div><b>68.1%</b><span>自己資本比率</span></div>
+    <div><b>4.9%</b><span>売上高CAGR</span></div>
+    <div><b>5.4%</b><span>営業利益CAGR</span></div>
+    <div><b>+19.2%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+0.5%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は卸売業。FA・制御機器の商社と推定。工場自動化の投資が半導体・データセンター建設と連動する。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-04-28</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6599</span> <span class="cname">エブレン</span>
+      <span class="meta">スタンダード・電気機器</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 62%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>12.0</b><span>PER（倍）</span></div>
+    <div><b>0.86</b><span>PBR（倍）</span></div>
+    <div><b>44</b><span>時価総額（億円）</span></div>
+    <div><b>80.1%</b><span>自己資本比率</span></div>
+    <div><b>4.5%</b><span>売上高CAGR</span></div>
+    <div><b>12.2%</b><span>営業利益CAGR</span></div>
+    <div><b>+14.2%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+1.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は電気機器。電子機器の実装・筐体系と推定。時価総額44億円は母集団最小級で、流動性リスクが大きい。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-14</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">6291</span> <span class="cname">日本エアーテック</span>
+      <span class="meta">スタンダード・機械</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-high">織り込み度：織り込み進行（6ヶ月モメンタム順位 71%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>11.2</b><span>PER（倍）</span></div>
+    <div><b>0.87</b><span>PBR（倍）</span></div>
+    <div><b>125</b><span>時価総額（億円）</span></div>
+    <div><b>74.9%</b><span>自己資本比率</span></div>
+    <div><b>5.3%</b><span>売上高CAGR</span></div>
+    <div><b>12.7%</b><span>営業利益CAGR</span></div>
+    <div><b>+5.9%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+3.9%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は機械。社名からクリーンルーム機器と推定。半導体工場・医薬工場の建設量に連動。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2025-12-31・開示日 2026-05-15</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">9908</span> <span class="cname">日本電計</span>
+      <span class="meta">スタンダード・卸売業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-high">織り込み度：織り込み進行（6ヶ月モメンタム順位 81%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>8.1</b><span>PER（倍）</span></div>
+    <div><b>0.91</b><span>PBR（倍）</span></div>
+    <div><b>299</b><span>時価総額（億円）</span></div>
+    <div><b>41.6%</b><span>自己資本比率</span></div>
+    <div><b>5.3%</b><span>売上高CAGR</span></div>
+    <div><b>9.0%</b><span>営業利益CAGR</span></div>
+    <div><b>+4.9%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+10.6%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は卸売業。計測器の商社と推定。ただし6ヶ月モメンタム順位81%で織り込みが進行している可能性。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-13</div>
+</div>
+</section>
+<section class="pane" id="t3">
+  <div class="lead" style="border-color:#059669">
+    <h2 style="color:#059669">国土強靭化・インフラ更新</h2><p>元請ゼネコンより、コンサル（川上）・二次製品/鉄筋（部材）・仮設（川下）に分散して落ちる</p>
+    <p class="sub">該当 8 銘柄（うち事業内容を公式サイトで確認済み 1 銘柄）。
+       6ヶ月モメンタム順位の低い順＝まだ市場が動いていない順に並べています。</p>
+  </div>
+  
+<div class="card">
+  <div class="chead">
+    <div><span class="code">5285</span> <span class="cname">ヤマックス</span>
+      <span class="meta">スタンダード・ガラス･土石製品</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 3%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>6.3</b><span>PER（倍）</span></div>
+    <div><b>1.28</b><span>PBR（倍）</span></div>
+    <div><b>130</b><span>時価総額（億円）</span></div>
+    <div><b>60.4%</b><span>自己資本比率</span></div>
+    <div><b>6.5%</b><span>売上高CAGR</span></div>
+    <div><b>20.7%</b><span>営業利益CAGR</span></div>
+    <div><b>+6.6%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-36.1%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種はガラス･土石製品。社名からコンクリート二次製品と推定。6ヶ月モメンタム順位3%＝母集団でほぼ最下位まで売られている。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-14</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">5410</span> <span class="cname">合同製鐵</span>
+      <span class="meta">プライム・鉄鋼</span></div>
+    <div class="tags"><span class="badge route">共通因子（設備投資量・素材需要）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 4%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>4.9</b><span>PER（倍）</span></div>
+    <div><b>0.27</b><span>PBR（倍）</span></div>
+    <div><b>391</b><span>時価総額（億円）</span></div>
+    <div><b>56.3%</b><span>自己資本比率</span></div>
+    <div><b>7.6%</b><span>売上高CAGR</span></div>
+    <div><b>17.3%</b><span>営業利益CAGR</span></div>
+    <div><b>-28.6%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-35.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は鉄鋼。電炉と推定。PBR0.27倍は母集団最低。6ヶ月モメンタム順位4%。安さの理由（構造要因か循環要因か）の特定が先。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-04-27</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">9768</span> <span class="cname">いであ</span>
+      <span class="meta">スタンダード・サービス業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 14%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>9.9</b><span>PER（倍）</span></div>
+    <div><b>0.77</b><span>PBR（倍）</span></div>
+    <div><b>236</b><span>時価総額（億円）</span></div>
+    <div><b>75.1%</b><span>自己資本比率</span></div>
+    <div><b>4.6%</b><span>売上高CAGR</span></div>
+    <div><b>12.3%</b><span>営業利益CAGR</span></div>
+    <div><b>-2.1%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-21.0%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge ok">[②] 公式サイトで確認</span><p>建設コンサルタント事業に「国土保全」「災害への対応と復旧・復興」、情報システム事業に降雨予報・洪水予測・防災情報提供システムを持つ。工事の川上に位置し、予算が付いた段階で先に発注される。6ヶ月モメンタム順位14%と売られている。</p><div class="src">確認元：いであ 公式サイト（環境コンサルタント事業／建設コンサルタント事業／情報システム事業／海外事業）（2026-08-06 取得）[②]</div></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2025-12-31・開示日 2026-05-07</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">1929</span> <span class="cname">日特建設</span>
+      <span class="meta">プライム・建設業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 17%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>11.2</b><span>PER（倍）</span></div>
+    <div><b>1.24</b><span>PBR（倍）</span></div>
+    <div><b>466</b><span>時価総額（億円）</span></div>
+    <div><b>60.4%</b><span>自己資本比率</span></div>
+    <div><b>4.3%</b><span>売上高CAGR</span></div>
+    <div><b>5.6%</b><span>営業利益CAGR</span></div>
+    <div><b>+58.4%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-17.8%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は建設業。社名から地盤改良・法面等の特殊土木と推定。防災テーマの「本丸」に近いが、6ヶ月モメンタム順位17%と売られており、織り込みが進んでいない例外候補。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-11</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">5445</span> <span class="cname">東京鐵鋼</span>
+      <span class="meta">プライム・鉄鋼</span></div>
+    <div class="tags"><span class="badge route">共通因子（設備投資量・素材需要）</span>
+      <span class="badge pi-low">織り込み度：未織り込み（6ヶ月モメンタム順位 31%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>6.1</b><span>PER（倍）</span></div>
+    <div><b>0.76</b><span>PBR（倍）</span></div>
+    <div><b>484</b><span>時価総額（億円）</span></div>
+    <div><b>78.8%</b><span>自己資本比率</span></div>
+    <div><b>5.8%</b><span>売上高CAGR</span></div>
+    <div><b>43.9%</b><span>営業利益CAGR</span></div>
+    <div><b>-17.9%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-11.3%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種は鉄鋼。社名から鉄筋（棒鋼）と推定。公共・民間を問わず建築量そのものに連動する共通因子。自己資本比率78.8%。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-07</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">2153</span> <span class="cname">Ｅ・Ｊホールディングス</span>
+      <span class="meta">プライム・サービス業</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span>
+      <span class="badge pi-mid">織り込み度：中位（6ヶ月モメンタム順位 56%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>9.3</b><span>PER（倍）</span></div>
+    <div><b>0.79</b><span>PBR（倍）</span></div>
+    <div><b>318</b><span>時価総額（億円）</span></div>
+    <div><b>71.0%</b><span>自己資本比率</span></div>
+    <div><b>7.6%</b><span>売上高CAGR</span></div>
+    <div><b>14.1%</b><span>営業利益CAGR</span></div>
+    <div><b>+4.2%</b><span>直近営業増益率</span></div>
+    <div class="neg"><b>-1.5%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種はサービス業。建設コンサルタントの持株会社と推定。いであ同様、工事の川上に位置する。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-05-31・開示日 2026-07-14</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">5288</span> <span class="cname">アジアパイルホールディングス</span>
+      <span class="meta">プライム・ガラス･土石製品</span></div>
+    <div class="tags"><span class="badge route">裏方（部材・工事・保守）</span><span class="badge all8">8条件すべて通過</span>
+      <span class="badge pi-high">織り込み度：織り込み進行（6ヶ月モメンタム順位 68%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>7.5</b><span>PER（倍）</span></div>
+    <div><b>1.10</b><span>PBR（倍）</span></div>
+    <div><b>572</b><span>時価総額（億円）</span></div>
+    <div><b>49.4%</b><span>自己資本比率</span></div>
+    <div><b>5.1%</b><span>売上高CAGR</span></div>
+    <div><b>17.6%</b><span>営業利益CAGR</span></div>
+    <div><b>+151.2%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+2.8%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種はガラス･土石製品。社名から既製コンクリート杭と推定。8条件すべてを通過した11銘柄の1つ。直近営業増益率151.2%（母集団98%）は一過性の反動でないかの確認が必須。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-13</div>
+</div>
+<div class="card">
+  <div class="chead">
+    <div><span class="code">9639</span> <span class="cname">三協フロンテア</span>
+      <span class="meta">スタンダード・サービス業</span></div>
+    <div class="tags"><span class="badge route">川下（テーマ投資の受け手）</span>
+      <span class="badge pi-high">織り込み度：織り込み進行（6ヶ月モメンタム順位 74%）</span></div>
+  </div>
+  <div class="nums">
+    <div><b>9.0</b><span>PER（倍）</span></div>
+    <div><b>0.96</b><span>PBR（倍）</span></div>
+    <div><b>502</b><span>時価総額（億円）</span></div>
+    <div><b>75.0%</b><span>自己資本比率</span></div>
+    <div><b>4.3%</b><span>売上高CAGR</span></div>
+    <div><b>4.9%</b><span>営業利益CAGR</span></div>
+    <div><b>-0.3%</b><span>直近営業増益率</span></div>
+    <div class=""><b>+5.9%</b><span>6ヶ月モメンタム</span></div>
+  </div>
+  <div class="note"><span class="badge warn">業種[⑤]＋社名からの仮説・一次情報未確認</span><p>業種はサービス業。ユニットハウス・仮設建物のレンタルと推定。工事量が増えれば現場事務所需要が増え、災害時は仮設住宅にも回る川下。</p></div>
+  <div class="src">数値はすべて J-Quants API V2（JPX公式）[⑤]／基準日 2026-07-17・参照決算期 2026-03-31・開示日 2026-05-12</div>
+</div>
+</section>
+
+<div class="chartbox">
+  <h2>割安さ（PBR）×まだ動いていないか（6ヶ月モメンタム）</h2>
+  <p>左下ほど「PBRが低く、直近6ヶ月で買われていない」。テーマ接続がありながらこの領域にいる銘柄が、
+     本一覧のねらいです。データ：J-Quants API V2 [⑤]・基準日 2026-07-17</p>
+  <canvas id="sc" height="150"></canvas>
+</div>
+
+<details>
+  <summary>参考A：テーマに近いが、既に6ヶ月モメンタム上位1/3に入っている銘柄（6件）</summary>
+  <p style="font-size:13px;color:#6b7280">条件①〜⑥は通過しているものの、株価が既に動いている。
+     「近すぎる銘柄を避ける」方針から主候補には入れていませんが、押し目待ちの監視対象になり得ます。</p>
+  <table><thead><tr><th>コード</th><th>社名</th><th>業種</th><th>PER</th><th>PBR</th>
+    <th>6ヶ月</th><th>備考（業種・社名からの推定）</th></tr></thead><tbody><tr><td>6742</td><td>京三製作所</td><td>電気機器</td><td class="r">10.6</td><td class="r">0.96</td><td class="r pos">+40.7%</td><td>鉄道信号・電力用パワエレと推定。6ヶ月モメンタム +40.7%（順位99%）</td></tr><tr><td>9880</td><td>イノテック</td><td>電気機器</td><td class="r">10.1</td><td class="r">1.49</td><td class="r pos">+49.5%</td><td>半導体設計支援・テストと推定。6ヶ月モメンタム +49.5%（順位100%）</td></tr><tr><td>5644</td><td>メタルアート</td><td>鉄鋼</td><td class="r">8.2</td><td class="r">0.85</td><td class="r pos">+38.6%</td><td>鍛造と推定。6ヶ月モメンタム +38.6%（順位98%）</td></tr><tr><td>3374</td><td>内外テック</td><td>卸売業</td><td class="r">11.4</td><td class="r">0.87</td><td class="r pos">+31.6%</td><td>半導体製造装置向け部品と推定。6ヶ月モメンタム +31.6%（順位97%）</td></tr><tr><td>5757</td><td>ＣＫサンエツ</td><td>非鉄金属</td><td class="r">12.0</td><td class="r">0.78</td><td class="r pos">+21.5%</td><td>伸銅品と推定。6ヶ月モメンタム +21.5%（順位94%）</td></tr><tr><td>6823</td><td>リオン</td><td>電気機器</td><td class="r">12.7</td><td class="r">1.22</td><td class="r pos">+25.8%</td><td>計測器・音響機器と推定。6ヶ月モメンタム +25.8%（順位96%）</td></tr></tbody></table>
+</details>
+
+<details>
+  <summary>参考B：条件①〜⑥を通過した残り 67 銘柄（テーマ接続を見出していないもの）</summary>
+  <p style="font-size:13px;color:#6b7280">6ヶ月モメンタムの低い順。テーマ接続がないという断定ではなく、
+     今回の4テーマからは接続を見出していない、という意味です。</p>
+  <table><thead><tr><th>コード</th><th>社名</th><th>業種</th><th>PER</th><th>PBR</th>
+    <th>時価総額（億円）</th><th>6ヶ月</th></tr></thead><tbody><tr><td>1491</td><td>中外鉱業</td><td>非鉄金属</td><td class="r">6.8</td><td class="r">1.10</td><td class="r">103</td><td class="r neg">-37.0%</td></tr><tr><td>5287</td><td>イトーヨーギョー</td><td>ガラス･土石製品</td><td class="r">7.4</td><td class="r">0.60</td><td class="r">24</td><td class="r neg">-34.4%</td></tr><tr><td>9612</td><td>ラックランド</td><td>サービス業</td><td class="r">6.2</td><td class="r">1.08</td><td class="r">143</td><td class="r neg">-33.2%</td></tr><tr><td>9823</td><td>マミーマートホールディングス</td><td>小売業</td><td class="r">9.9</td><td class="r">1.15</td><td class="r">520</td><td class="r neg">-32.4%</td></tr><tr><td>7095</td><td>Ｍａｃｂｅｅ　Ｐｌａｎｅｔ</td><td>サービス業</td><td class="r">6.8</td><td class="r">1.14</td><td class="r">144</td><td class="r neg">-26.0%</td></tr><tr><td>3640</td><td>電算</td><td>情報･通信業</td><td class="r">3.0</td><td class="r">0.81</td><td class="r">131</td><td class="r neg">-23.3%</td></tr><tr><td>9799</td><td>旭情報サービス</td><td>情報･通信業</td><td class="r">11.8</td><td class="r">1.22</td><td class="r">149</td><td class="r neg">-22.4%</td></tr><tr><td>3431</td><td>宮地エンジニアリンググループ</td><td>金属製品</td><td class="r">12.5</td><td class="r">0.95</td><td class="r">408</td><td class="r neg">-21.6%</td></tr><tr><td>5244</td><td>ｊｉｇ．ｊｐ</td><td>情報･通信業</td><td class="r">6.4</td><td class="r">1.46</td><td class="r">73</td><td class="r neg">-20.9%</td></tr><tr><td>3918</td><td>ＰＣＩホールディングス</td><td>情報･通信業</td><td class="r">10.6</td><td class="r">1.23</td><td class="r">119</td><td class="r neg">-17.0%</td></tr><tr><td>6294</td><td>オカダアイヨン</td><td>機械</td><td class="r">10.7</td><td class="r">0.88</td><td class="r">160</td><td class="r neg">-16.6%</td></tr><tr><td>4430</td><td>東海ソフト</td><td>情報･通信業</td><td class="r">8.3</td><td class="r">1.17</td><td class="r">80</td><td class="r neg">-16.4%</td></tr><tr><td>7050</td><td>フロンティアインターナショナル</td><td>サービス業</td><td class="r">9.5</td><td class="r">1.22</td><td class="r">120</td><td class="r neg">-14.8%</td></tr><tr><td>9057</td><td>遠州トラック</td><td>陸運業</td><td class="r">10.3</td><td class="r">0.94</td><td class="r">233</td><td class="r neg">-14.1%</td></tr><tr><td>4838</td><td>スペースシャワーＳＫＩＹＡＫＩホールディングス</td><td>情報･通信業</td><td class="r">9.1</td><td class="r">1.22</td><td class="r">108</td><td class="r neg">-13.5%</td></tr><tr><td>9795</td><td>ステップ</td><td>サービス業</td><td class="r">13.0</td><td class="r">1.24</td><td class="r">345</td><td class="r neg">-12.6%</td></tr><tr><td>7299</td><td>フジオーゼックス</td><td>輸送用機器</td><td class="r">8.5</td><td class="r">0.55</td><td class="r">177</td><td class="r neg">-11.6%</td></tr><tr><td>9658</td><td>ビジネスブレイン太田昭和</td><td>情報･通信業</td><td class="r">11.2</td><td class="r">1.09</td><td class="r">334</td><td class="r neg">-11.5%</td></tr><tr><td>6730</td><td>アクセル</td><td>電気機器</td><td class="r">9.6</td><td class="r">0.87</td><td class="r">118</td><td class="r neg">-11.2%</td></tr><tr><td>7949</td><td>小松ウオール工業</td><td>その他製品</td><td class="r">14.9</td><td class="r">1.16</td><td class="r">455</td><td class="r neg">-10.6%</td></tr><tr><td>1814</td><td>大末建設</td><td>建設業</td><td class="r">9.5</td><td class="r">1.43</td><td class="r">359</td><td class="r neg">-10.4%</td></tr><tr><td>4465</td><td>ニイタカ</td><td>化学</td><td class="r">7.1</td><td class="r">0.83</td><td class="r">135</td><td class="r neg">-9.0%</td></tr><tr><td>6246</td><td>テクノスマート</td><td>機械</td><td class="r">11.9</td><td class="r">1.02</td><td class="r">213</td><td class="r neg">-9.0%</td></tr><tr><td>6357</td><td>三精テクノロジーズ</td><td>機械</td><td class="r">8.3</td><td class="r">0.83</td><td class="r">424</td><td class="r neg">-8.7%</td></tr><tr><td>4299</td><td>ハイマックス</td><td>情報･通信業</td><td class="r">11.9</td><td class="r">1.15</td><td class="r">125</td><td class="r neg">-7.7%</td></tr><tr><td>9856</td><td>ケーユーホールディングス</td><td>小売業</td><td class="r">6.6</td><td class="r">0.53</td><td class="r">367</td><td class="r neg">-7.7%</td></tr><tr><td>3355</td><td>クリヤマホールディングス</td><td>卸売業</td><td class="r">8.0</td><td class="r">0.63</td><td class="r">315</td><td class="r neg">-6.6%</td></tr><tr><td>5013</td><td>ユシロ</td><td>石油･石炭製品</td><td class="r">8.0</td><td class="r">0.79</td><td class="r">377</td><td class="r neg">-6.6%</td></tr><tr><td>9845</td><td>パーカーコーポレーション</td><td>化学</td><td class="r">7.8</td><td class="r">0.72</td><td class="r">368</td><td class="r neg">-6.3%</td></tr><tr><td>5576</td><td>オービーシステム</td><td>情報･通信業</td><td class="r">11.2</td><td class="r">1.19</td><td class="r">68</td><td class="r neg">-5.5%</td></tr><tr><td>8864</td><td>空港施設</td><td>不動産業</td><td class="r">14.0</td><td class="r">0.78</td><td class="r">481</td><td class="r neg">-4.2%</td></tr><tr><td>4262</td><td>ニフティライフスタイル</td><td>情報･通信業</td><td class="r">10.8</td><td class="r">1.36</td><td class="r">84</td><td class="r neg">-4.2%</td></tr><tr><td>7811</td><td>中本パックス</td><td>その他製品</td><td class="r">7.8</td><td class="r">0.80</td><td class="r">169</td><td class="r neg">-4.1%</td></tr><tr><td>7937</td><td>ツツミ</td><td>その他製品</td><td class="r">11.0</td><td class="r">0.58</td><td class="r">405</td><td class="r neg">-2.9%</td></tr><tr><td>9441</td><td>ベルパーク</td><td>情報･通信業</td><td class="r">9.6</td><td class="r">1.10</td><td class="r">310</td><td class="r neg">-2.7%</td></tr><tr><td>8052</td><td>椿本興業</td><td>卸売業</td><td class="r">10.3</td><td class="r">1.04</td><td class="r">519</td><td class="r neg">-2.2%</td></tr><tr><td>2335</td><td>キューブシステム</td><td>情報･通信業</td><td class="r">10.3</td><td class="r">1.42</td><td class="r">162</td><td class="r neg">-2.1%</td></tr><tr><td>2924</td><td>イフジ産業</td><td>食料品</td><td class="r">8.4</td><td class="r">1.34</td><td class="r">169</td><td class="r neg">-1.2%</td></tr><tr><td>6272</td><td>レオン自動機</td><td>機械</td><td class="r">10.3</td><td class="r">0.94</td><td class="r">404</td><td class="r neg">-0.4%</td></tr><tr><td>1780</td><td>ヤマウラ</td><td>建設業</td><td class="r">8.9</td><td class="r">1.08</td><td class="r">282</td><td class="r pos">+0.3%</td></tr><tr><td>9739</td><td>ＮＳＷ</td><td>情報･通信業</td><td class="r">10.1</td><td class="r">0.99</td><td class="r">376</td><td class="r pos">+0.8%</td></tr><tr><td>6677</td><td>エスケーエレクトロニクス</td><td>電気機器</td><td class="r">12.5</td><td class="r">0.96</td><td class="r">341</td><td class="r pos">+1.2%</td></tr><tr><td>2332</td><td>クエスト</td><td>情報･通信業</td><td class="r">11.0</td><td class="r">1.16</td><td class="r">86</td><td class="r pos">+2.2%</td></tr><tr><td>6144</td><td>西部電機</td><td>機械</td><td class="r">12.4</td><td class="r">1.29</td><td class="r">434</td><td class="r pos">+2.4%</td></tr><tr><td>8908</td><td>毎日コムネット</td><td>不動産業</td><td class="r">8.0</td><td class="r">1.07</td><td class="r">149</td><td class="r pos">+2.6%</td></tr><tr><td>6912</td><td>菊水ホールディングス</td><td>電気機器</td><td class="r">10.0</td><td class="r">1.02</td><td class="r">160</td><td class="r pos">+3.3%</td></tr><tr><td>6364</td><td>ＡＩＲＭＡＮ</td><td>機械</td><td class="r">9.1</td><td class="r">1.12</td><td class="r">503</td><td class="r pos">+3.5%</td></tr><tr><td>6247</td><td>日阪製作所</td><td>機械</td><td class="r">12.5</td><td class="r">0.68</td><td class="r">427</td><td class="r pos">+4.0%</td></tr><tr><td>6145</td><td>ＮＩＴＴＯＫＵ</td><td>機械</td><td class="r">12.6</td><td class="r">1.08</td><td class="r">433</td><td class="r pos">+5.2%</td></tr><tr><td>6824</td><td>新コスモス電機</td><td>電気機器</td><td class="r">11.2</td><td class="r">1.09</td><td class="r">580</td><td class="r pos">+6.5%</td></tr><tr><td>5356</td><td>美濃窯業</td><td>ガラス･土石製品</td><td class="r">10.4</td><td class="r">0.83</td><td class="r">131</td><td class="r pos">+6.8%</td></tr><tr><td>8285</td><td>三谷産業</td><td>卸売業</td><td class="r">11.2</td><td class="r">0.72</td><td class="r">407</td><td class="r pos">+8.0%</td></tr><tr><td>5363</td><td>東京窯業</td><td>ガラス･土石製品</td><td class="r">8.2</td><td class="r">0.65</td><td class="r">305</td><td class="r pos">+8.2%</td></tr><tr><td>9890</td><td>マキヤ</td><td>小売業</td><td class="r">9.3</td><td class="r">0.61</td><td class="r">137</td><td class="r pos">+8.9%</td></tr><tr><td>7990</td><td>グローブライド</td><td>その他製品</td><td class="r">10.1</td><td class="r">0.82</td><td class="r">530</td><td class="r pos">+9.6%</td></tr><tr><td>6850</td><td>チノー</td><td>電気機器</td><td class="r">13.1</td><td class="r">1.13</td><td class="r">264</td><td class="r pos">+10.6%</td></tr><tr><td>3932</td><td>アカツキ</td><td>情報･通信業</td><td class="r">7.4</td><td class="r">0.92</td><td class="r">416</td><td class="r pos">+10.7%</td></tr><tr><td>6676</td><td>バッファロー</td><td>電気機器</td><td class="r">8.1</td><td class="r">1.42</td><td class="r">306</td><td class="r pos">+11.4%</td></tr><tr><td>7466</td><td>ＳＰＫ</td><td>卸売業</td><td class="r">10.1</td><td class="r">0.93</td><td class="r">272</td><td class="r pos">+12.5%</td></tr><tr><td>4979</td><td>ＯＡＴアグリオ</td><td>化学</td><td class="r">10.6</td><td class="r">1.25</td><td class="r">247</td><td class="r pos">+12.9%</td></tr><tr><td>6306</td><td>日工</td><td>機械</td><td class="r">14.2</td><td class="r">0.96</td><td class="r">359</td><td class="r pos">+14.5%</td></tr><tr><td>5906</td><td>エムケー精工</td><td>金属製品</td><td class="r">4.8</td><td class="r">0.58</td><td class="r">112</td><td class="r pos">+14.9%</td></tr><tr><td>6033</td><td>エクストリーム</td><td>サービス業</td><td class="r">7.6</td><td class="r">1.30</td><td class="r">90</td><td class="r pos">+18.8%</td></tr><tr><td>6638</td><td>ミマキエンジニアリング</td><td>電気機器</td><td class="r">8.7</td><td class="r">1.47</td><td class="r">586</td><td class="r pos">+19.9%</td></tr><tr><td>8935</td><td>ＦＪネクストホールディングス</td><td>不動産業</td><td class="r">5.8</td><td class="r">0.72</td><td class="r">583</td><td class="r pos">+20.2%</td></tr><tr><td>4972</td><td>綜研化学</td><td>化学</td><td class="r">13.7</td><td class="r">1.33</td><td class="r">553</td><td class="r pos">+21.0%</td></tr><tr><td>8152</td><td>ソマール</td><td>卸売業</td><td class="r">9.5</td><td class="r">0.64</td><td class="r">142</td><td class="r pos">+23.0%</td></tr></tbody></table>
+</details>
+
+<div class="disc">
+  <h2>注意事項・免責</h2>
+  <ul>
+    <li>本資料は投資助言ではありません。作成者は証券アナリスト・投資助言業者ではなく、
+        最終的な投資判断はすべて自己責任で行ってください。</li>
+    <li><b>データ取得日：2026-07-17</b>（universe_latest.csv の基準日）。本資料の作成日は 2026-08-06 で、
+        <b>株価・指標は約3週間前の値</b>です。発注前に <code>build_universe.py</code> を実行して更新してください。</li>
+    <li>PER・PBR・時価総額は未調整終値と直近開示のEPS/BPSから算出しています（分割調整による遡及バイアスの回避）。</li>
+    <li>CAGRは通期実績のみを用いた期間平均で、期間長は銘柄により異なります（CAGR年数列）。</li>
+    <li>テーマとの接続は、公式サイト確認済みの6銘柄を除き<b>仮説であり検証されていません</b>。
+        テーマ売上比率・受注残・会社予想は本資料では確認していません。</li>
+    <li>「織り込み度」は株価モメンタムによる代理指標で、市場の織り込み状況を直接測るものではありません。</li>
+    <li>時価総額100億円未満の銘柄は流動性が低く、想定どおりの価格で売買できない場合があります
+        （特に -15% 損切りルールはスリッページで深くなり得ます）。</li>
+    <li>発注前に STRATEGY.md の「発注前チェックリスト」（増益の質・受注残・会社予想・需給・中期計画・産業構造）を
+        必ず通してください。</li>
+  </ul>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');
+});
+document.querySelector('.tab').classList.add('on');
+document.querySelector('.pane').classList.add('on');
+new Chart(document.getElementById('sc'),{
+  type:'scatter',
+  data:{datasets:[{label:"電力・エネルギー／GX",backgroundColor:"#2563eb",data:[{"x": 0.636, "y": -18.0, "label": "6229 オーケーエム"}, {"x": 0.822, "y": -17.4, "label": "6637 寺崎電気産業"}, {"x": 0.885, "y": -13.2, "label": "1828 田辺工業"}, {"x": 0.814, "y": -10.0, "label": "9906 藤井産業"}, {"x": 1.103, "y": -6.9, "label": "6378 木村化工機"}, {"x": 0.739, "y": -3.9, "label": "6365 電業社機械製作所"}, {"x": 0.838, "y": 14.4, "label": "6391 加地テック"}],pointRadius:6,pointHoverRadius:9},{label:"防衛・経済安全保障",backgroundColor:"#b45309",data:[{"x": 0.942, "y": -52.8, "label": "5729 日本精鉱"}, {"x": 0.916, "y": -28.7, "label": "8226 理経"}, {"x": 1.027, "y": -16.3, "label": "4719 アルファシステムズ"}, {"x": 0.643, "y": -5.0, "label": "7963 興研"}, {"x": 0.398, "y": -2.0, "label": "5753 日本伸銅"}, {"x": 0.603, "y": 1.3, "label": "7980 重松製作所"}],pointRadius:6,pointHoverRadius:9},{label:"半導体・AIデータセンター",backgroundColor:"#7c3aed",data:[{"x": 0.68, "y": -28.9, "label": "3321 ミタチ産業"}, {"x": 0.805, "y": -14.3, "label": "6626 ＳＥＭＩＴＥＣ"}, {"x": 0.993, "y": -8.0, "label": "7525 リックス"}, {"x": 0.843, "y": 0.5, "label": "7510 たけびし"}, {"x": 0.859, "y": 1.0, "label": "6599 エブレン"}, {"x": 0.868, "y": 3.9, "label": "6291 日本エアーテック"}, {"x": 0.91, "y": 10.6, "label": "9908 日本電計"}],pointRadius:6,pointHoverRadius:9},{label:"国土強靭化・インフラ更新",backgroundColor:"#059669",data:[{"x": 1.281, "y": -36.1, "label": "5285 ヤマックス"}, {"x": 0.272, "y": -35.0, "label": "5410 合同製鐵"}, {"x": 0.767, "y": -21.0, "label": "9768 いであ"}, {"x": 1.237, "y": -17.8, "label": "1929 日特建設"}, {"x": 0.763, "y": -11.3, "label": "5445 東京鐵鋼"}, {"x": 0.789, "y": -1.5, "label": "2153 Ｅ・Ｊホールディングス"}, {"x": 1.096, "y": 2.8, "label": "5288 アジアパイルホールディングス"}, {"x": 0.956, "y": 5.9, "label": "9639 三協フロンテア"}],pointRadius:6,pointHoverRadius:9}]},
+  options:{responsive:true,
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}},
+      tooltip:{callbacks:{label:c=>c.raw.label+'  PBR '+c.raw.x+'倍 / 6ヶ月 '+c.raw.y+'%'}}},
+    scales:{
+      x:{title:{display:true,text:'PBR（倍）— 左ほど割安'},min:0,max:1.6},
+      y:{title:{display:true,text:'6ヶ月モメンタム（%）— 下ほど動いていない'}}}
+  }
+});
+</script></body></html>

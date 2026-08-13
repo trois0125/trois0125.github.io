@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>value_invest — 日本割安株 分析ポートフォリオ</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --tag-bg: #1f2d3d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      letter-spacing: .04em;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 580px;
+    }
+    .hero .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .hero .tags span {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Section */
+    .section {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .section-header .line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Cards */
+    .cards { display: flex; flex-direction: column; gap: 16px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      transition: border-color .15s, background .15s;
+    }
+    .card:hover { border-color: var(--accent); background: #1a2233; }
+    .card .info { flex: 1; }
+    .card .date {
+      font-size: 11px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .card .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .chip {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .chip.green { color: var(--accent2); border-color: #2d5a36; background: #1a2e1e; }
+
+    /* About */
+    .about-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .about-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .about-box ul li {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+    }
+    .about-box ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="badge">個人投資家 / アナリスト</div>
+    <h1>日本<span>割安株</span><br>分析ポートフォリオ</h1>
+    <p>一次情報（有報・決算資料・JPX公式データ）のみを使った定量・定性分析。
+       独自のスクリーニング条件で割安な中小型株を発掘し、中期投資の意思決定を支援します。</p>
+    <div class="tags">
+      <span>PER ≤ 15倍</span>
+      <span>PBR ≤ 1.5倍</span>
+      <span>時価総額 ≤ 600億円</span>
+      <span>売上CAGR ≥ 4%</span>
+      <span>自己資本比率 ≥ 40%</span>
+      <span>J-Quants API</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2>分析レポート</h2>
+      <div class="line"></div>
+    </div>
+    <div class="cards">
+
+      <a class="card" href="reports/20260806_theme_screening.html" target="_blank">
+        <div class="info">
+          <h3>政策テーマ周辺の割安小型株スクリーニング</h3>
+          <p>半導体・GX・防衛・国内回帰など7つの政策テーマに沿って、独自8条件スクリーニングを適用した候補銘柄一覧。Chart.jsによるインタラクティブな可視化付き。</p>
+          <div class="chip-row">
+            <span class="chip green">スクリーニング</span>
+            <span class="chip">政策テーマ</span>
+            <span class="chip">Chart.js</span>
+            <span class="chip">J-Quants</span>
+          </div>
+        </div>
+        <div class="date">2026-08-06</div>
+      </a>
+
+      <a class="card" href="reports/20260802_5bagger_study_expanded.html" target="_blank">
+        <div class="info">
+          <h3>5年で株価5倍 銘柄スタディ（詳細版）</h3>
+          <p>2021〜2026年に株価5倍超を達成した銘柄の財務・バリュエーション・モメンタム要因を詳細分析。スクリーニング条件との事前一致率・共通パターンを検証。</p>
+          <div class="chip-row">
+            <span class="chip green">バックテスト</span>
+            <span class="chip">5バガー研究</span>
+            <span class="chip">定量分析</span>
+          </div>
+        </div>
+        <div class="date">2026-08-02</div>
+      </a>
+
+      <a class="card" href="reports/20260802_5bagger_study.html" target="_blank">
+        <div class="info">
+          <h3>5年で株価5倍 銘柄スタディ</h3>
+          <p>5バガー達成銘柄の要因分析レポート（サマリー版）。共通する財務指標と投資タイミングのパターンを抽出。スクリーニング条件の有効性を検証する基礎資料。</p>
+          <div class="chip-row">
+            <span class="chip green">バックテスト</span>
+            <span class="chip">5バガー研究</span>
+          </div>
+        </div>
+        <div class="date">2026-08-02</div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2>分析アプローチ</h2>
+      <div class="line"></div>
+    </div>
+    <div class="about-box">
+      <ul>
+        <li>データソースは有報・決算短信・irpocket・J-Quants API（JPX公式）のみ。二次情報・アナリストレポートは使用しない</li>
+        <li>独自8条件スクリーニング（PER・PBR・時価総額・CAGR・自己資本比率・モメンタム）で候補を絞り込む</li>
+        <li>個別銘柄は定量（財務トレンド・バリュエーション）と定性（有報・中計の戦略読解）を組み合わせて評価</li>
+        <li>投資判断は中期（3〜12ヶ月）。過去バックテストで条件の有効性を継続的に検証・改訂</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>value_invest — 個人投資・学習目的。投資の助言ではありません。</p>
+  </footer>
+
+</body>
+</html>
