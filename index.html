@@ -93,20 +93,6 @@
       margin-bottom: 28px;
     }
     .hero .badge .sq { width: 6px; height: 6px; background: var(--fg); flex: none; }
-
-    /* Generic badge (reused outside .hero, e.g. portfolio section) */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius);
-      padding: 5px 12px;
-      font-size: 11px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .badge .sq { width: 6px; height: 6px; background: var(--fg); flex: none; }
     .hero h1 {
       font-size: clamp(32px, 6vw, 56px);
       font-weight: 800;
@@ -220,7 +206,6 @@
       border-bottom: 3px solid var(--border-strong);
     }
     .portfolio-head { margin-bottom: 32px; }
-    .portfolio-head .badge { margin-bottom: 18px; }
     .portfolio-title {
       display: flex;
       align-items: baseline;
@@ -308,7 +293,6 @@
   <div class="section portfolio-section">
     <div class="section-inner">
       <div class="portfolio-head">
-        <div class="badge"><span class="sq"></span>自動更新・手動メンテなし</div>
         <div class="portfolio-title">
           <h2>保有ポートフォリオ</h2>
           <span class="portfolio-pill" id="pPill">—</span>
