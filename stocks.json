@@ -2,9 +2,15 @@
   "generated": true,
   "stocks": [
     {
+      "code": "3932",
+      "name": "アカツキ",
+      "report_date": null,
+      "qualitative_date": "2026-08-14"
+    },
+    {
       "code": "5288",
       "name": "アジアパイルホールディングス",
-      "report_date": null,
+      "report_date": "2026-08-14",
       "qualitative_date": "2026-08-13"
     },
     {

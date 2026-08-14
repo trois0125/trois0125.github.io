@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>アカツキ（3932） 有価証券報告書 定性分析レポート（第16期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">アカツキ（3932） 有報定性レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>アカツキ（3932） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第16期有価証券報告書（自 2025年４月１日　至 2026年３月31日）／ 作成日：2026-08-14</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p><b>この企業を一文で：</b>バンダイナムコエンターテインメント協業タイトル「ドラゴンボールZ ドッカンバトル」の運営を主力収益源としながら、コミック・オンラインくじ・AI/DXソリューションへM&amp;Aで積極的に多角化を進める、創業者主導のコンテンツ・エンタテインメント企業である。<span class="lab interp">解釈</span></p>
+      <h3>最重要ポイント3点</h3>
+      <ul style="padding-left:20px">
+        <li>第16期（2026年3月期）は新規タイトル「怪獣８号 THE GAME」投入と複数のM&amp;A（株式会社CRAYON・株式会社Natee・株式会社PAPABUBBLE等の連結子会社化）により、売上高25,856百万円（前期比9.3％増）・経常利益7,618百万円（前期比79.9％増）・親会社株主に帰属する当期純利益5,652百万円（前期比243.2％増）とV字回復した。ただし利益の絶対水準は主力タイトル依存だった第12期（経常利益7,867百万円）にようやく戻った水準にすぎない。<span class="lab fact">事実</span></li>
+        <li>期末後の2026年5月、PR・タレントマネジメント大手の株式会社サニーサイドアップグループ（証券コード2180）に対しTOBを実施し、発行済株式（潜在株式込み）の62.7％を取得。さらに株式交換により完全子会社化し、統合後は代表取締役を２名体制、商号を「サニーズホールディングス株式会社」に変更する計画である。買付代金は約139億円で、大半をコミットメントライン・財務制限条項付き借入（総額約154億円）で調達した。<span class="lab fact">事実</span></li>
+        <li>大株主構成の上位は、創業者 香田哲朗氏本人およびその資産管理会社（株式会社Owl Age）と、資本業務提携先のソニーグループ・株式会社コーエーテクモホールディングスで占められており、創業者色の強いガバナンス構造である。香田哲朗氏本人＋Owl Ageの合算持株比率は約17.8％に達する（試算）。<span class="lab interp">解釈</span></li>
+      </ul>
+      <h3>最も注意すべき論点</h3>
+      <p>サニーサイドアップ買収に伴う財務レバレッジの急上昇（借入・自己株式16.5%取得・財務制限条項）と、これに伴い配当方針が「精査中」として不透明化している点。有報の事業等のリスク本文にはこの新規債務・財務制限条項リスクが明記されておらず、後発事象注記でのみ開示されている。<span class="lab fact">事実</span><span class="lab check">要確認</span></p>
+      <p style="font-size:12px;color:var(--sub);margin-top:10px">※本レポートに含まれる推計値・算出値には保証がありません。売買推奨・目標株価の提示は行いません。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>5年推移（連結・代表6指標）</h3>
+      <table>
+        <tr><th class="l">決算期</th><th>第12期<br>2022/3</th><th>第13期<br>2023/3</th><th>第14期<br>2024/3</th><th>第15期<br>2025/3</th><th>第16期<br>2026/3</th><th>4年CAGR</th></tr>
+        <tr><td class="l">売上高（百万円）</td><td>26,273</td><td>24,336</td><td>23,972</td><td>23,652</td><td>25,856</td><td>△0.4％</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>7,867</td><td>5,207</td><td>2,834</td><td>4,233</td><td>7,618</td><td>△0.8％</td></tr>
+        <tr><td class="l">EPS（円）</td><td>381.62</td><td>98.97</td><td>104.01</td><td>114.22</td><td>391.97</td><td>+0.7％</td></tr>
+        <tr><td class="l">ROE（％）</td><td>14.0</td><td>3.5</td><td>3.3</td><td>4.1</td><td>13.1</td><td>−</td></tr>
+        <tr><td class="l">自己資本比率（％）</td><td>82.9</td><td>72.7</td><td>76.8</td><td>75.3</td><td>72.3</td><td>−</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>4,793</td><td>5,047</td><td>△84</td><td>3,639</td><td>2,693</td><td>△13.4％</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">CAGRは第12期→第16期（4年）の当方算出値。推計値・保証なし。<span class="src">①</span></p>
+      <div style="max-width:640px;margin:16px auto"><canvas id="chart5y"></canvas></div>
+      <p>5年間の姿は「一本足からの脱却途上」と要約できる。第13〜14期にかけて主力タイトルの運営成熟に伴い経常利益は7,867百万円→2,834百万円まで落ち込み、第16期にようやく新規タイトル投入とM&amp;Aで水準を回復した。売上高・経常利益とも4年CAGRはマイナスであり、この5年間で有機的な地力の底上げがあったとは言い切れず、直近1年の反転は新規要因（新タイトル・買収）に依存している。<span class="lab interp">解釈</span></p>
+      <p>自己資本比率は82.9％→72.3％へ緩やかに低下している。無借金に近い状態から、M&amp;A原資として借入を活用する方向へ財務戦略が変化しつつあることが読み取れる。後述のとおり、期末後のサニーサイドアップ買収でこの傾向はさらに加速する見込みである。<span class="lab interp">解釈</span></p>
+
+      <h3>事業の内容・ビジネスモデル</h3>
+      <p>連結子会社11社・持分法適用関連会社1社・非連結子会社等17社を含むグループ30社で構成され、報告セグメントは「ゲーム・コミック事業」「エンタメ・ライフスタイル事業」「AI・DXソリューション事業」の3区分。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <ul style="padding-left:20px">
+        <li><b>ゲーム・コミック事業：</b>Apple／Googleの各アプリマーケット向けにスマートフォンゲームを開発・運営。主力はバンダイナムコエンターテインメントとの協業タイトル「ドラゴンボールZ ドッカンバトル」、スクウェア・エニックスとの協業タイトル「ロマンシング サガ リ・ユニバース」。縦読みフルカラーコミック配信アプリ「HykeComic」も同事業に含む。<span class="lab fact">事実</span></li>
+        <li><b>エンタメ・ライフスタイル事業：</b>オンラインくじ販売システム「Slash Gift」、ノーコードのファンアプリプラットフォーム、キャンディショップ「PAPABUBBLE」「ヴィヨン」等の菓子製造・販売（第16期に連結子会社化）。<span class="lab fact">事実</span></li>
+        <li><b>AI・DXソリューション事業：</b>SNSマーケティングの株式会社Natee、AIエージェント構築支援の株式会社アカツキAIテクノロジーズ（Natee完全子会社）を第16期に子会社化して新設したセグメント。投資フェーズにあり同事業単体はセグメント損失241百万円。<span class="lab fact">事実</span></li>
+      </ul>
+      <p><b>収益柱の照合（語りの大きさ vs 利益の大きさ）：</b>第16期の売上構成比はゲーム・コミック85.6％、エンタメ・ライフスタイル9.9％、AI・DX4.4％、その他0.1％。セグメント利益はゲーム・コミック7,972百万円、エンタメ・ライフスタイル474百万円、AI・DX△241百万円（損失）、その他△64百万円（損失）。経営方針の記述では3事業を並列で語っているが、利益のほぼ全てをゲーム・コミック事業が生み出しており、他2事業は現時点で投資・育成フェーズにある。<span class="lab interp">解釈</span><span class="src">③</span></p>
+      <div style="max-width:420px;margin:16px auto"><canvas id="chartSeg"></canvas></div>
+      <p><b>主要相手先への依存：</b>販売実績の相手先別内訳では、バンダイナムコエンターテインメントが総販売実績の52.6％（前期70.3％）を占める。第16期に比率は低下したものの、単一パートナー企業への依存度は依然として高い。<span class="lab fact">事実</span><span class="src">③</span></p>
+
+      <h3>競争優位</h3>
+      <p>企画・開発・運営を自社（連結子会社の株式会社アカツキゲームス中心）で一貫して行う内製体制により、ユーザー行動データの蓄積・分析ノウハウを全開発部門で共有する仕組みを構築している。他社IP（ドラゴンボール、ロマンシング サガ）の活用によりリリース初速のユーザー獲得リスクを抑えつつ、オリジナルタイトル・オリジナル作品の開発も並行することで、IP使用料負担のない高い収益分配率を確保する二正面戦略を取っている。<span class="lab interp">解釈</span><span class="src">③</span></p>
+
+      <h3>関係会社・支配構造</h3>
+      <p>連結子会社の大半は東京都品川区の本社近辺に所在し、出資比率100％。海外は台湾のAkatsuki Taiwan Inc.（ゲーム運用委託、100％出資）とシンガポールのEMOOTE PTE. LTD.（投資管理、100％出資）の2社にとどまり、海外子会社比重は限定的。持分法適用関連会社・非連結子会社が計17社あり、投資インキュベーション領域（Dawn Capital１号投資事業有限責任組合等）を通じたスタートアップ投資が広がっている。親会社は存在せず、非100％出資の主要関係会社も開示上は確認できない。<span class="lab fact">事実</span><span class="src">③</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>社名「Akatsuki」の由来は「世界に夜明けを」という意味の日本語「暁」から。感情を報酬に発展する社会を目指すという創業理念のもと、2010年6月に東京都渋谷区でモバイルゲームの企画・開発・運営を目的として設立された。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <p>創業者は、アクセンチュア出身の香田哲朗氏と、ディー・エヌ・エー出身の塩田元規氏。ワークスアプリケーションズのインターンシップで知り合った両名が2010年に共同創業したとされる。塩田元規氏は現在も個人株主として2.32％を保有する（大株主の状況）。<span class="lab web">web＋ceo-checker-jp.com／Wikipedia「アカツキ（企業）」</span></p>
+      <table>
+        <tr><th class="l">年月</th><th class="l">概要</th></tr>
+        <tr><td class="l">2010年6月</td><td class="l">株式会社アカツキ設立（東京都渋谷区、モバイルゲームの企画・開発・運営）</td></tr>
+        <tr><td class="l">2010年9月</td><td class="l">DeNA運営「Mobage」へモバイルゲーム提供開始</td></tr>
+        <tr><td class="l">2014年7月</td><td class="l">台湾に子会社Akatsuki Taiwan Inc.設立</td></tr>
+        <tr><td class="l">2015年1〜7月</td><td class="l">バンダイナムコエンターテインメントとの協業「ドラゴンボールZ ドッカンバトル」Android/iOS版・海外版をリリース。同作は後の主力収益源となる</td></tr>
+        <tr><td class="l">2016年3月</td><td class="l">東証マザーズ上場</td></tr>
+        <tr><td class="l">2017年9月</td><td class="l">東証市場第一部へ市場変更</td></tr>
+        <tr><td class="l">2018年12月</td><td class="l">スクウェア・エニックスとの協業「ロマンシング サガ リ・ユニバース」リリース</td></tr>
+        <tr><td class="l">2021〜2022年</td><td class="l">株式会社アカツキゲームス設立、Akatsuki Ventures設立、Dawn Capital1号投資事業有限責任組合組成等、投資・新規事業体制を拡充</td></tr>
+        <tr><td class="l">2022年4月</td><td class="l">東証プライム市場へ移行。ゲーム事業を会社分割によりアカツキゲームスへ承継</td></tr>
+        <tr><td class="l">2023年12月</td><td class="l">ソニーグループ・コーエーテクモホールディングスと資本業務提携契約締結（第三者割当）</td></tr>
+        <tr><td class="l">2025年8月</td><td class="l">新規ゲームタイトル「怪獣８号 THE GAME」リリース。株式会社Natee・株式会社PAPABUBBLE JAPAN HD等を子会社化</td></tr>
+        <tr><td class="l">2026年4月</td><td class="l">株式会社グルーヴ・ホールディングス（グッズ企画・製造・販売）を子会社化</td></tr>
+        <tr><td class="l">2026年5〜6月</td><td class="l">株式会社サニーサイドアップグループへのTOB実施・完了（期末後の重要な後発事象）</td></tr>
+      </table>
+      <p>沿革を通観すると、上場後は「ドラゴンボールZ ドッカンバトル」という単一の大型IPタイトルへの依存度が非常に高い時期が長く続き、2022年以降になって投資ファンド・M&amp;Aを通じた事業ポートフォリオの多角化へ舵を切っている。サニーサイドアップの買収はその延長線上にあるが、規模としては過去最大級の企業結合であり、単なる周辺事業への多角化を超えた「経営統合」と位置付けられている点で質的な転換点といえる。<span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本</h2>
+      <h3>従業員数・生産性</h3>
+      <table>
+        <tr><th class="l">決算期</th><th>第12期</th><th>第13期</th><th>第14期</th><th>第15期</th><th>第16期</th></tr>
+        <tr><td class="l">連結従業員数（人）</td><td>473</td><td>520</td><td>539</td><td>503</td><td>537</td></tr>
+        <tr><td class="l">売上高／人（百万円、当方算出）</td><td>55.5</td><td>46.8</td><td>44.5</td><td>47.0</td><td>48.1</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub)">売上高／人＝連結売上高÷連結従業員数の単純平均。臨時雇用者を含まない就業人員ベース。推計値・保証なし。<span class="src">①</span></p>
+      <p>1人当たり売上高は第12期55.5百万円から第14期44.5百万円まで低下した後、第16期は48.1百万円へ持ち直している。従業員数自体は470〜540人のレンジで大きくは変動しておらず、業績変動の主因は人員の増減よりも主力タイトルの収益サイクル（ライブオペレーション型ゲーム特有の運営成熟による自然減衰）にあると解釈できる。<span class="lab interp">解釈</span></p>
+      <p>提出会社（単体）は34名（うち臨時15名）と小規模で、平均年齢37.8歳・平均勤続6.7年・平均年間給与926.3万円（前期比+4.2％）。最大人員会社の株式会社アカツキゲームス（ゲーム開発の中核子会社）は171名、平均年齢34.0歳・平均勤続3.1年・平均年間給与749.5万円（前期比△1.6％）。次いで従業員数が多い株式会社PAPABUBBLE（第16期新規連結）は89名、平均年齢31.4歳・平均勤続4.7年・平均年間給与391.7万円。事業特性（企画・投資機能を担う持株会社的な提出会社、ゲーム開発の中核子会社、店舗運営を伴う菓子製造小売子会社）によって給与水準・勤続年数に大きな差があり、グループ全体で単一の人事制度ではなく事業ごとに制度設計している旨の記述と整合する。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <p>労働組合は結成されていないが、労使関係は円満に推移しているとの記述にとどまる（定型的な記述）。<span class="lab fact">事実</span></p>
+
+      <h3>人的資本指標（女性管理職比率・男性育休取得率・男女賃金差異）</h3>
+      <p>提出会社は女性活躍推進法・育児介護休業法上の公表義務対象外のため記載を省略している。開示があるのは連結子会社の株式会社アカツキゲームスと株式会社PAPABUBBLEの2社のみ。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <table>
+        <tr><th class="l">会社名</th><th>男女の賃金差異（全労働者・％）</th><th>同（正規雇用労働者・％）</th><th>同（パート・有期・％）</th></tr>
+        <tr><td class="l">株式会社アカツキゲームス</td><td>77.9</td><td>76.6</td><td>98.9</td></tr>
+        <tr><td class="l">株式会社PAPABUBBLE</td><td>46.3</td><td>83.3</td><td>90.7</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub)">数値は開示された事実の提示のみとし、優劣評価は行わない。</p>
+      <p>アカツキゲームスは役員に占める女性割合0.0％、男女の平均勤続年数差異は全労働者で△2.6ヶ月（女性が短い）。管理的地位にある労働者に占める女性割合・男性育休取得率は、両社とも開示項目の選択により記載省略となっており、女性管理職比率そのものは有報上では確認できない。<span class="lab fact">事実</span><span class="lab check">要確認</span></p>
+      <p>サステナビリティ章の「指標及び目標」では、人材の育成・社内環境整備に関する具体的な数値目標は設定していないと明記されている。人的資本を「重要な経営基盤」と位置づける記述の一方で、定量目標を伴わない点は開示姿勢として留意すべきである。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <p>新ビジョン「– Challengers' Community –」、ミッション「感性とテクノロジーで、世界をもっと楽しく、豊かに変えていく。」を掲げる。目標とする経営指標は売上高・営業利益とされるが、具体的な数値目標（中期経営計画の定量ターゲット）は本章には記載がない。<span class="lab fact">事実</span></p>
+      <h3>課題→打ち手の接続</h3>
+      <p>「優先的に対処すべき事業上及び財務上の課題」として①海外市場展開の強化、②ユーザー・顧客獲得の強化、③新技術への対応、④優秀な人材の確保、⑤ゲームの安全性・健全性の強化、⑥システム管理体制の強化、⑦組織体制の強化の7項目が挙げられ、いずれも同じ項目内に対応する打ち手が一体で記述されている（課題を挙げた直後に自社の対応策を続ける文体）。項目単位では課題と打ち手が空白なく対応しており、体裁上の欠落はない。<span class="lab fact">事実</span></p>
+      <p>ただし各打ち手の記述は「積極的に採用イベントを実施」「教育研修の機会を確保」等、多くの上場企業に共通する定型的な表現にとどまり、固有の数値目標（採用人数目標、海外売上比率目標等）を伴う項目はない。経営環境認識（世界のゲーム市場CAGR6％、電子コミック市場成長率等）は外部調査（BCG、出版指標、QYResearch）を引用しており具体性があるが、それに対する自社の打ち手は定性的な方向感の提示にとどまっている。<span class="lab interp">解釈</span></p>
+      <blockquote class="yuho">「当社グループは、継続的な企業価値の向上を経営上の重要課題と認識しており売上高及び営業利益を重要な経営指標としております。」（目標とする経営指標）</blockquote>
+      <p>中期経営計画としての数値目標開示・進捗検証記述は本章には見当たらない。目標指標を定性的に述べるにとどめ、達成/未達の自己評価を行う記述もない点は、進捗検証性という観点では弱い。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <p>ガバナンス面では、リスク管理委員会がサステナビリティ関連のリスク・機会を含む全リスクを統括的に管理する体制とされる。戦略面では、気候変動リスクを「限定的」と自己評価し、ペーパーレス化・オフィス照明LED化等の一般的な環境配慮策にとどまる。炭素集約的な事業（装置産業・エネルギー多消費型）ではないため、TCFD・GHG関連の深掘りは本レポートでも行わない。<span class="lab fact">事実</span></p>
+      <h3>戦略接続</h3>
+      <p>3事業それぞれについて簡潔な戦略記述があり（例：ゲーム・コミック事業のマルチデバイス化・多言語化、エンタメ・ライフスタイル事業のトレンド対応、AI・DXソリューション事業のAIエンジニア確保）、本文の経営戦略（第2-1）と表現の重複が大きく、サステナビリティ章として独自に掘り下げられた内容は限定的である。<span class="lab interp">解釈</span></p>
+      <h3>検証可能性</h3>
+      <p>「指標及び目標」において、サステナビリティ関連リスクについても人材育成・社内環境整備についても具体的な数値目標は設定していないと明記されている。期限・実績を伴う定量目標が存在しないため、進捗の外部検証は現状不可能である。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+      <p>リスクは(1)事業環境、(2)事業・サービス、(3)法的規制・業界規制、(4)組織体制、(5)その他の5分類・22項目で構成される。いずれも「発生時期・可能性は不明」という定型的な留保文言が付されており、個社固有の定量的なセンシティビティ分析（例：手数料料率が何％変動した場合の利益影響）は行われていない。<span class="lab fact">事実</span></p>
+      <h3>固有リスクとして深掘りすべき項目</h3>
+      <ul style="padding-left:20px">
+        <li><b>他社IPへの依存：</b>ドラゴンボールZ ドッカンバトルの相手先依存度は52.6％（バンダイナムコ、前期70.3％から低下も依然高水準）。契約は自動更新型（1年ごと）だが、IP使用会社の方針変更・契約改定時の内容変更リスクが明記されている。財務数値（相手先別販売実績）と整合し、開示の過小性は認められない。<span class="lab fact">事実</span><span class="src">③</span></li>
+        <li><b>M&amp;A・投資リスク：</b>「対象企業における偶発債務の発生や未認識債務の判明」「投下資本の回収困難化」が明記されている。第16期に複数のM&amp;A（CRAYON・Natee・PAPABUBBLE）を実行し、期末後にはサニーサイドアップグループの大型買収を実施しており、リスクの記述内容と実際の事業展開が高い頻度で符合している。<span class="lab fact">事実</span></li>
+        <li><b>新株予約権の希薄化：</b>2026年3月末時点の潜在株式数は発行済株式総数の10.2％に相当（1,481,590株）と定量的に開示されている。<span class="lab fact">事実</span></li>
+        <li><b>暗号資産投資リスク：</b>暗号資産取引所を通じた投資を行っている旨の記載があるが、保有残高・評価損益の定量開示はリスク章にはない。<span class="lab fact">事実</span><span class="lab check">要確認</span></li>
+      </ul>
+      <h3>沈黙している論点</h3>
+      <p>期末後に実行された約154億円規模の借入（コミットメントライン＋財務制限条項付き特約融資）とそれに伴う財務制限条項（グロス・レバレッジ・レシオ8.4倍以内、ネット・レバレッジ・レシオ3.1倍以内、2期連続の経常損益・当期純利益赤字禁止、純資産75％維持等）は、事業等のリスク本文には一切登場せず、後発事象注記でのみ開示されている。有報の提出日（2026年6月26日）時点では既に発生している事象であるにもかかわらず、リスク章の記述はTOB実施前の従来型リスク認識のままであり、財務レバレッジ急上昇という新たな固有リスクへのアップデートがなされていない。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>ゲーム・コミック事業ではバンダイナムコエンターテインメント（共同事業契約、1年ごと自動更新）、スクウェア・エニックス（業務提携契約、開発運営）と契約。いずれも自動更新条項があり、単年での急な契約終了リスクは限定的とみられるが、更新拒絶・条件変更時の影響度は「事業等のリスク」記載のとおり大きい。また、ソニーグループ・コーエーテクモホールディングスとの資本業務提携（2023年12月締結）では、両社の株式保有割合維持に関する合意（第三者割当時の同条件提供義務）があり、支配権構造にも関わる契約となっている。<span class="lab fact">事実</span><span class="src">③</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+      <p>第16期の連結業績は売上高25,856百万円（前期比9.3％増）、営業利益7,444百万円（前期比90.1％増）、経常利益7,618百万円（前期比79.9％増）、親会社株主に帰属する当期純利益5,652百万円（前期比243.2％増）。<span class="lab fact">事実</span><span class="src">①</span></p>
+      <h3>セグメント別業績</h3>
+      <table>
+        <tr><th class="l">セグメント</th><th>売上高（百万円）</th><th>前期比</th><th>セグメント利益／損失（百万円）</th></tr>
+        <tr><td class="l">ゲーム・コミック</td><td>22,134</td><td>△1.1％</td><td>7,972</td></tr>
+        <tr><td class="l">エンタメ・ライフスタイル</td><td>2,560</td><td>+117.4％</td><td>474</td></tr>
+        <tr><td class="l">AI・DXソリューション</td><td>1,143</td><td>−（新設）</td><td class="neg">△241</td></tr>
+        <tr><td class="l">その他</td><td>18</td><td>△81.4％</td><td class="neg">△64</td></tr>
+      </table>
+      <p>主力のゲーム・コミック事業は減収・大幅増益。要因は既存タイトルの運用効率化・事業ポートフォリオ見直しによる費用削減、新規開発一巡による研究開発費の減少であり、収益の質としては「トップライン成長」よりも「費用構造の改善」による増益である点に留意が必要。エンタメ・ライフスタイル事業は新規連結（CRAYON、PAPABUBBLE）により売上が倍増したが、これは有機成長ではなく企業結合による見かけ上の伸びである。<span class="lab interp">解釈</span></p>
+      <h3>財政状態</h3>
+      <p>総資産は前期末比7,692百万円増の62,325百万円（現金及び預金+2,178百万円、売掛金+1,375百万円、のれん+3,781百万円、投資有価証券+1,294百万円）。負債は同3,771百万円増の16,949百万円（長期借入金+5,554百万円）。純資産は同3,921百万円増の45,376百万円。のれんの増加はPAPABUBBLE・Natee等のM&amp;Aによるものであり、負債側は長期借入金の増加が主因で、期末後のサニーサイドアップ買収に向けた資金調達の予兆と整合する。<span class="lab fact">事実</span><span class="src">①</span></p>
+      <h3>キャッシュ・フローの質</h3>
+      <p>営業CFは2,693百万円（前期3,639百万円から減少）。投資CFは△3,283百万円（定期預金の預入・投資有価証券取得・子会社株式取得による支出が投資有価証券売却収入等を上回る）。財務CFは+3,178百万円（長期借入6,750百万円の実行が配当金支払・借入返済を上回る）。M&amp;A実行と借入増加が同時進行しており、営業活動だけでは投資・株主還元をまかないきれず、外部調達に依存する財務構造に変化しつつある。<span class="lab interp">解釈</span></p>
+      <h3>経営者が使う指標</h3>
+      <p>ゲーム事業ではDAU・課金率・ARPPU、コミック事業では購読履歴等のユーザー行動指標を重視し、目標とする経営指標としては売上高・営業利益を掲げる。ライブオペレーション型ゲーム事業らしい、運用指標重視の経営スタイルがうかがえる。<span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3>Ⅷ-a 設備の状況</h3>
+      <p>第16期の設備投資額は592百万円と小規模（うち有形固定資産取得98百万円、ゲーム開発ソフトウエア取得等の無形固定資産取得494百万円）。提出会社の主要設備は品川区の賃借オフィス（年間賃借料341百万円）のみで、装置産業のような大型有形資産は保有していない。減価償却費との比較では、設備投資592百万円は緩やかな更新投資の範囲内であり、拡張投資というより維持投資の性格が強い。重要な設備の新設・除却計画はなしと明記されている。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <h3>Ⅷ-b 研究開発活動</h3>
+      <p>研究開発費の総額は506百万円（対売上高比1.96％）、そのほぼ全て（505百万円）がゲーム・コミック事業に計上されている。新技術投資・新規タイトル開発への取組みが記述されるが、研究開発費自体は売上高比で高い水準ではなく、成長ドライバーとしての「仕込み」の規模としては限定的と見受けられる。前期比較の記載はないため、投資強度のトレンドは有報単体からは判断できない。<span class="lab interp">解釈</span><span class="lab check">要確認</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>配当方針</h3>
+      <p>2020年の創業10周年を機に、連結株主資本配当率（DOE）を基準とする累進配当方針を採用（前事業年度にDOE年率3％→4％へ引き上げ）。年間配当総額の50％を期末配当とする方針のもと、第16期期末配当は1株60円（中間55円と合わせ年間115円）。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <p>ただし、期末後のサニーサイドアップグループ買収を受け、「2027年3月期中間配当以降は、成長施策の進捗状況等を総合的に勘案のうえ、株主還元方針について改めて精査し、方針が決定次第公表する」と明記されている。累進配当方針は事実上一時停止・見直し対象となっており、従来の株主還元コミットメントの継続性は現時点で不透明である。<span class="lab fact">事実</span><span class="lab check">要確認</span></p>
+      <h3>自己株式取得</h3>
+      <p>期末後の2026年5月14日、ToSTNeT-3を通じて2,390,000株（自己株式を除く発行済株式総数の16.5％という大規模な取得）を6,481百万円で取得完了。取得目的は資本効率向上に加え、サニーサイドアップとの株式交換における対価（当社株式）への充当が明記されている。通常の自社株買い（株主還元目的）とは性格が異なり、M&amp;Aの決済手段としての取得である点に注意が必要。<span class="lab fact">事実</span></p>
+      <h3>株主構成</h3>
+      <div style="max-width:640px;margin:16px auto"><canvas id="chartHolders"></canvas></div>
+      <table>
+        <tr><th class="l">氏名・名称</th><th>所有株式数（株）</th><th>比率（％）</th></tr>
+        <tr><td class="l">香田哲朗（代表取締役社長）</td><td>1,475,000</td><td>10.20</td></tr>
+        <tr><td class="l">ソニーグループ株式会社</td><td>1,400,000</td><td>9.69</td></tr>
+        <tr><td class="l">日本マスタートラスト信託銀行</td><td>1,191,900</td><td>8.25</td></tr>
+        <tr><td class="l">株式会社コーエーテクモホールディングス</td><td>1,130,000</td><td>7.82</td></tr>
+        <tr><td class="l">株式会社Owl Age（香田哲朗氏の資産管理会社）</td><td>1,100,000</td><td>7.61</td></tr>
+        <tr><td class="l">株式会社サンクピア</td><td>972,100</td><td>6.73</td></tr>
+        <tr><td class="l">State Street Bank and Trust 505103</td><td>784,800</td><td>5.43</td></tr>
+        <tr><td class="l">塩田元規（共同創業者）</td><td>335,000</td><td>2.32</td></tr>
+      </table>
+      <p>香田哲朗氏本人とその資産管理会社Owl Ageの合算は2,575,000株・約17.8％（発行済株式（自己株式除く）に対する比率、当方試算）に達し、実質的な創業者支配の色彩が強い。ソニーグループ・コーエーテクモホールディングスは2023年の資本業務提携に伴う戦略保有株主であり、上位株主の過半が「創業者」または「事業提携パートナー」で占められ、純投資目的の機関投資家（日本マスタートラスト、State Street等の信託口）は残りの部分にとどまる。少数株主の意見がガバナンスに反映される経路としては、社外取締役・社外監査役の独立性に依存する構造といえる。<span class="lab interp">解釈</span></p>
+      <h3>政策保有株式</h3>
+      <p>提出会社ベースの純投資目的以外の投資株式（いわゆる政策保有株式）は非上場51銘柄1,692百万円＋上場1銘柄（株式会社TENTIAL、当事業年度に純投資目的へ区分変更済み）448百万円の合計2,140百万円。提出会社の純資産額44,791百万円に対する比率は約4.8％（当方算出）で、事業会社としては相応の規模である。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <p>これとは別に、投資ファンドであるDawn Capital１号投資事業有限責任組合（連結子会社、グループ内の最大保有会社）が非上場株式25銘柄・3,449百万円を「純投資目的」として保有している。これはスタートアップ企業へのベンチャー投資ポートフォリオであり、政策保有株式（取引先との関係維持目的の持合い株式）とは性質が異なる点に注意が必要。<span class="lab fact">事実</span></p>
+      <h3>役員・創業家持株</h3>
+      <p>役員合計の所有株式数は2,589千株。代表取締役社長香田哲朗氏が2,575千株（Owl Age分を含む）とほぼ全てを占め、他の取締役・監査役の持株は数千株規模にとどまる。経営陣の報酬・利害は株価と強く連動しており、株主との利害一致度は高いと評価できる。<span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実</h3>
+      <p>監査役会設置会社。取締役会は取締役5名（うち社外取締役3名：勝屋久氏、水口哲也氏、梅津文氏）で構成され、原則月1回開催（第16期は13回開催、社外取締役水口哲也氏が12回出席、他は全員13回出席）。監査役会は監査役4名（うち社外監査役3名：加藤祐太氏〈常勤〉、片山英二氏、岡本健太郎氏）で構成、月1回開催（14回開催、全員14回出席）。任意の指名・報酬委員会を設置し、代表取締役社長と社外取締役3名の計4名で構成（年1回以上開催、第16期は2回）。会計監査人は有限責任あずさ監査法人、継続監査期間13年間。<span class="lab fact">事実</span><span class="src">③</span></p>
+      <h3>役員報酬</h3>
+      <table>
+        <tr><th class="l">区分</th><th>報酬総額（百万円）</th><th>固定報酬</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（社外除く）</td><td>97</td><td>97</td><td>3名</td></tr>
+        <tr><td class="l">社外役員</td><td>43</td><td>43</td><td>5名</td></tr>
+      </table>
+      <p>2026年3月27日開催の取締役会において、報酬方針を従来の固定報酬のみから「固定報酬＋業績連動の成果報酬＋インセンティブ新株予約権」へ変更する決議を行った。ただし決議が事業年度末間際であったため、第16期の実績報酬は依然として全額固定報酬であり、新方針の効果は第17期以降の開示で初めて確認できる。方針変更と実績反映の間にタイムラグがある点は、開示のタイミングとして留意すべきである。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <h3>主要役員の属性</h3>
+      <p>代表取締役社長 香田哲朗氏は2010年の創業者で、2020年に社長再任（2012〜2020年は取締役として在籍）。社外取締役3名はそれぞれベンチャー支援（勝屋久氏）、ゲーム事業（水口哲也氏、セガ出身でEnhance Games創業者）、法務・行政経験（梅津文氏、警察庁・マッキンゼー出身）と、事業領域に即した専門性を有する。社外監査役は公認会計士（加藤祐太氏）、渉外弁護士（片山英二氏）、エンタメ業界に詳しい弁護士（岡本健太郎氏）で構成され、財務・法務双方の専門知見を確保する布陣となっている。独立役員としての利益相反懸念は、勝屋久氏・片山英二氏の少額株式保有および梅津文氏の過去の少額取引関係について「僅少」と説明されている。<span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>監査上の主要な検討事項（KAM）</h3>
+      <p>連結・単体とも「非上場株式の評価」の1項目のみがKAMとして選定されている。連結貸借対照表計上の投資有価証券12,669百万円のうち、関係会社株式を除く非上場株式は5,285百万円で総資産の8.5％を占める。評価は取得原価法によるが、投資先の超過収益力の毀損有無を財務・非財務情報および直近のエクイティファイナンス状況等から総合判断する必要があり、経営者の見積りに重要な判断が介在する。監査人は内部統制評価に加え、投資先の資金調達時の払込単価が取得価額を下回っていないか等を検証している。<span class="lab fact">事実</span><span class="src">①</span></p>
+      <h3>本表の財務特徴</h3>
+      <p>総資産62,325百万円に対し純資産45,376百万円、自己資本比率72.3％と依然として財務健全性は高い。一方で非上場株式（政策保有＋投資ファンド経由のベンチャー投資）が投資有価証券の中心を占め、時価評価になじまない資産の比重が大きい点はB/Sの質としてやや特徴的である。のれんは第16期のM&amp;A（CRAYON・Natee・PAPABUBBLE等）により大きく増加しており、今後の減損リスクの源泉となる。利益の質としては、第16期増益の主因が費用削減効果であったことは既述のとおりで、トップラインの持続的成長を伴う利益とは言い切れない。<span class="lab interp">解釈</span></p>
+      <h3>後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する注記（GC注記）はない。重要な後発事象として、①サニーサイドアップグループへのTOB実施・完了（62.7％取得、株式交換による完全子会社化計画）、②自己株式2,390千株（16.5％）の取得完了、③コミットメントライン契約（極度額75.9億円）および財務制限条項付き借入（予定154.4億円、財務制限条項：レバレッジ・レシオ8.4倍以内等）、④株式会社グルーヴ・ホールディングスの子会社化、の4件が開示されている。これらはいずれも規模・財務影響ともに大きく、次期以降の連結財務諸表・キャッシュ・フロー・自己資本比率に重要な影響を与える。<span class="lab fact">事実</span><span class="src">③</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul style="padding-left:20px">
+        <li>「怪獣８号 THE GAME」の通期寄与（第16期は6ヶ月分のみ寄与）が見込まれ、スマートフォンソフトウェア競争促進法の施行等によるプラットフォーム手数料低減で費用負担抑制も見込まれると経営者が言及している。ただし新規タイトルの継続的なユーザー定着は「事業等のリスク」で述べられる嗜好変化リスクの対象でもあり、確度は未知数。<span class="lab interp">解釈</span></li>
+        <li>エンタメ・ライフスタイル事業（オンラインくじ・IPマーチャンダイジング）は既存事業だけで前期比117.4％増収と高成長を継続しており、ゲーム・コミック事業への依存を段階的に下げる実績が既に出ている。<span class="lab fact">事実</span></li>
+      </ul>
+      <h3>懸念材料</h3>
+      <ul style="padding-left:20px">
+        <li>サニーサイドアップグループ買収に伴う統合リスク（異業種の経営統合、代表取締役2名体制、商号変更を伴う大規模な組織再編）と、買収資金の大半を占める財務制限条項付き借入による自己資本比率の低下懸念。<span class="lab fact">事実</span></li>
+        <li>ドラゴンボールZ ドッカンバトルへの依存度（相手先依存52.6％）が依然として高く、契約更新・IP使用条件変更の影響を受けやすい収益構造。<span class="lab fact">事実</span></li>
+        <li>累進配当方針が事実上停止・見直し中であり、従来の株主還元コミットメントが今後どう扱われるか不透明。<span class="lab fact">事実</span></li>
+      </ul>
+      <h3>有報だけでは判断できず追加確認が要る事項</h3>
+      <ul style="padding-left:20px">
+        <li>株式交換比率の最終決定内容・算定根拠、および交換完了時期。<span class="lab check">要確認</span>（次期以降の適時開示・臨時報告書等で確認）</li>
+        <li>サニーサイドアップ買収に伴う連結財務諸表への影響（のれん計上見込額、PPA〈取得原価配分〉の結果）。<span class="lab check">要確認</span>（次期有報・決算短信）</li>
+        <li>2027年3月期以降の株主還元方針の正式決定内容。<span class="lab check">要確認</span>（適時開示）</li>
+        <li>暗号資産投資の保有残高・評価損益。<span class="lab check">要確認</span>（決算説明資料等）</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<script>
+const chapters = [
+  {id:'p0', label:'0. サマリー'},
+  {id:'p1', label:'Ⅰ. 企業の輪郭'},
+  {id:'p2', label:'Ⅱ. 沿革'},
+  {id:'p3', label:'Ⅲ. 人的資本'},
+  {id:'p4', label:'Ⅳ. 経営者の世界観'},
+  {id:'p5', label:'Ⅴ. サステナビリティ'},
+  {id:'p6', label:'Ⅵ. 事業等のリスク'},
+  {id:'p7', label:'Ⅶ. MD&A'},
+  {id:'p8', label:'Ⅷ. 設備・研究開発'},
+  {id:'p9', label:'Ⅸ. 資本政策・株主還元'},
+  {id:'p10', label:'Ⅹ. ガバナンス'},
+  {id:'p11', label:'Ⅺ. 会計面の定性シグナル'},
+  {id:'p12', label:'Ⅻ. 論点と未解明事項'},
+];
+const tabsEl = document.getElementById('tabs');
+chapters.forEach((c,i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'tab' + (i===0?' active':'');
+  btn.textContent = c.label;
+  btn.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(c.id).classList.add('active');
+  };
+  tabsEl.appendChild(btn);
+});
+
+const monoGrid = {color:'#e5e5e5'};
+const monoTick = {color:'#6b6b6b', font:{size:11}};
+
+new Chart(document.getElementById('chart5y'), {
+  type:'bar',
+  data:{
+    labels:['第12期','第13期','第14期','第15期','第16期'],
+    datasets:[
+      {type:'bar', label:'売上高（百万円）', data:[26273,24336,23972,23652,25856], backgroundColor:'#dcdcdc', order:2},
+      {type:'line', label:'経常利益（百万円）', data:[7867,5207,2834,4233,7618], borderColor:'#111111', backgroundColor:'#111111', tension:0.15, order:1}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{labels:{color:'#111111', font:{size:11}}}},
+    scales:{ x:{ticks:monoTick, grid:{display:false}}, y:{ticks:monoTick, grid:monoGrid} }
+  }
+});
+
+new Chart(document.getElementById('chartSeg'), {
+  type:'doughnut',
+  data:{
+    labels:['ゲーム・コミック','エンタメ・ライフスタイル','AI・DXソリューション','その他'],
+    datasets:[{data:[22134,2560,1143,18], backgroundColor:['#111111','#6b6b6b','#b0b0b0','#dcdcdc'], borderColor:'#ffffff', borderWidth:2}]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom', labels:{color:'#111111', font:{size:11}}}}
+  }
+});
+
+new Chart(document.getElementById('chartHolders'), {
+  type:'bar',
+  data:{
+    labels:['香田哲朗','ソニーグループ','日本マスタートラスト','コーエーテクモHD','Owl Age','サンクピア','State Street 505103','塩田元規'],
+    datasets:[{label:'所有比率（％）', data:[10.20,9.69,8.25,7.82,7.61,6.73,5.43,2.32], backgroundColor:'#111111'}]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true,
+    plugins:{legend:{display:false}},
+    scales:{ x:{ticks:monoTick, grid:monoGrid}, y:{ticks:monoTick, grid:{display:false}} }
+  }
+});
+</script>
+</body></html>
