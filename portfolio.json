@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-08-14T04:35:43Z",
+  "price_date": "2026-08-13",
+  "source": "J-Quants API V2（JPX公式・未調整終値）",
+  "holdings": [
+    {
+      "code": "6145",
+      "name": "NITTOKU",
+      "shares": 50,
+      "avg_cost": 2620.0,
+      "cost_basis": 131000,
+      "price": 2406.0,
+      "value": 120300,
+      "gain": -10700,
+      "gain_pct": -8.17,
+      "purchases": [
+        {
+          "date": "2026-07-31",
+          "price": 2620,
+          "shares": 50
+        }
+      ]
+    },
+    {
+      "code": "6301",
+      "name": "コマツ",
+      "shares": 12,
+      "avg_cost": 6240.0,
+      "cost_basis": 74880,
+      "price": 7362.0,
+      "value": 88344,
+      "gain": 13464,
+      "gain_pct": 17.98,
+      "purchases": [
+        {
+          "date": "2026-05-25",
+          "price": 6240,
+          "shares": 12
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "cost_basis": 205880,
+    "value": 208644,
+    "gain": 2764,
+    "gain_pct": 1.34
+  }
+}
