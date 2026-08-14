@@ -93,6 +93,20 @@
       margin-bottom: 28px;
     }
     .hero .badge .sq { width: 6px; height: 6px; background: var(--fg); flex: none; }
+
+    /* Generic badge (reused outside .hero, e.g. portfolio section) */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .badge .sq { width: 6px; height: 6px; background: var(--fg); flex: none; }
     .hero h1 {
       font-size: clamp(32px, 6vw, 56px);
       font-weight: 800;
@@ -199,8 +213,37 @@
     }
     .card-link:hover .cta { border-top-color: currentColor; opacity: 1; }
 
-    /* Portfolio widget */
+    /* Portfolio widget (featured — no numbering, deliberately more prominent than list sections) */
     .neg { color: var(--neg); }
+    .portfolio-section {
+      border-top: 3px solid var(--border-strong);
+      border-bottom: 3px solid var(--border-strong);
+    }
+    .portfolio-head { margin-bottom: 32px; }
+    .portfolio-head .badge { margin-bottom: 18px; }
+    .portfolio-title {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .portfolio-title h2 {
+      font-size: clamp(26px, 4.5vw, 38px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .portfolio-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 5px 13px;
+      font-size: 15px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+    .portfolio-pill.neg { border-color: var(--neg); }
     .portfolio-asof { font-size: 12px; opacity: .5; font-variant-numeric: tabular-nums; margin-bottom: 24px; }
     .summary {
       display: grid;
@@ -262,39 +305,14 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section portfolio-section">
     <div class="section-inner">
-      <div class="section-header">
-        <span class="idx">01</span>
-        <h2>レポート</h2>
-        <div class="line"></div>
-      </div>
-      <div class="card-grid">
-
-        <a class="card-link" href="reports.html">
-          <span class="idx">01</span>
-          <h3>分析レポート</h3>
-          <p>政策テーマやバガー株に関する研究など、興味好奇心のままに行ったレポートです。興味深い示唆等があれば、Xやnoteにまとめています。</p>
-          <div class="cta"><span>3件のレポート</span><span>→</span></div>
-        </a>
-
-        <a class="card-link" href="stocks.html">
-          <span class="idx">02</span>
-          <h3>個別銘柄レポート</h3>
-          <p id="stocksTeaser">独自のスクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
-          <div class="cta"><span>銘柄コード・社名で探す</span><span>→</span></div>
-        </a>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="idx">02</span>
-        <h2>保有ポートフォリオ</h2>
-        <div class="line"></div>
+      <div class="portfolio-head">
+        <div class="badge"><span class="sq"></span>自動更新・手動メンテなし</div>
+        <div class="portfolio-title">
+          <h2>保有ポートフォリオ</h2>
+          <span class="portfolio-pill" id="pPill">—</span>
+        </div>
       </div>
 
       <div class="portfolio-asof" id="pAsof">読み込み中…</div>
@@ -342,6 +360,33 @@
     </div>
   </div>
 
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="idx">01</span>
+        <h2>レポート</h2>
+        <div class="line"></div>
+      </div>
+      <div class="card-grid">
+
+        <a class="card-link" href="reports.html">
+          <span class="idx">01</span>
+          <h3>分析レポート</h3>
+          <p>政策テーマやバガー株に関する研究など、興味好奇心のままに行ったレポートです。興味深い示唆等があれば、Xやnoteにまとめています。</p>
+          <div class="cta"><span>3件のレポート</span><span>→</span></div>
+        </a>
+
+        <a class="card-link" href="stocks.html">
+          <span class="idx">02</span>
+          <h3>個別銘柄レポート</h3>
+          <p id="stocksTeaser">独自のスクリーニング通過銘柄を中心に、定量レポート（財務・バリュエーション）と有価証券報告書の定性分析レポートを銘柄ごとに掲載。</p>
+          <div class="cta"><span>銘柄コード・社名で探す</span><span>→</span></div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>value_invest — 個人投資・学習目的。投資の助言ではありません。</p>
     <p class="muted">© 2026</p>
@@ -379,6 +424,10 @@ fetch('portfolio.json?v=' + Date.now(), { cache: 'no-store' })
       document.getElementById('pEmpty').style.display = 'block';
       return;
     }
+
+    const pillEl = document.getElementById('pPill');
+    pillEl.textContent = (t.gain_pct >= 0 ? '+' : '') + (t.gain_pct || 0).toFixed(2) + '%';
+    pillEl.classList.toggle('neg', (t.gain || 0) < 0);
 
     document.getElementById('pSummary').style.display = 'grid';
     document.getElementById('pTablewrap').style.display = 'block';
