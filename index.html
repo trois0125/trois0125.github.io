@@ -266,7 +266,7 @@
   </footer>
 
 <script>
-fetch('stocks.json').then(r => r.json()).then(data => {
+fetch('stocks.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json()).then(data => {
   const stocks = data.stocks || [];
   const reportN = stocks.filter(s => s.report_date).length;
   const qualN = stocks.filter(s => s.qualitative_date).length;

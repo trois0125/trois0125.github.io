@@ -190,7 +190,7 @@ function render() {
   `).join('');
 }
 
-fetch('stocks.json')
+fetch('stocks.json?v=' + Date.now(), { cache: 'no-store' })
   .then(r => r.json())
   .then(data => { STOCKS = data.stocks || []; render(); })
   .catch(() => {
