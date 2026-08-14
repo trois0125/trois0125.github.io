@@ -1,0 +1,1024 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>イノテック（9880） 有価証券報告書 定性分析レポート（第40期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+ul,ol{margin:8px 0 8px 22px}
+li{margin-bottom:4px}
+p{margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.note{font-size:12px;color:var(--sub);margin-top:8px}
+footer{margin-top:28px;font-size:11.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:14px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">イノテック（9880） 有報定性レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>イノテック株式会社（9880） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第40期有価証券報告書（自 2025年4月1日 至 2026年3月31日／提出日 2026年6月24日） ／ 作成日：2026-08-14</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+
+<!-- ============ 0. エグゼクティブサマリー ============ -->
+<div class="panel active" id="p0">
+  <h2 class="section">0. エグゼクティブサマリー</h2>
+  <div class="card">
+    <h3>この企業を一文で</h3>
+    <p>半導体メモリー向け自社製テスターと台湾子会社のプローブカード／信頼性評価装置、米ケイデンス社EDAソフトの国内販売、組込みCPUボード・決済端末という3本柱を、20社の子会社群で束ねた「エンジニアリング商社からメーカー化を進める」半導体・エレクトロニクス系グループ。<span class="lab interp">解釈</span></p>
+
+    <h3>記述情報から読み取れる最重要ポイント3点</h3>
+    <ol>
+      <li><strong>当期の利益急増は「本業の回復」と「本社ビル売却」の二階建て。</strong>営業利益は3,108百万円（前期比+64.7%）と実質改善だが、親会社株主に帰属する当期純利益4,111百万円（同+242.6%）の大半は固定資産売却益2,911百万円と投資有価証券売却益437百万円による。会社自身も「売却益の影響を除いた場合のROEは8.4%」と注記しており、15.9%というROEを実力値として扱っていない。<span class="lab fact">事実</span></li>
+      <li><strong>中計目標は当期に一斉達成したが、達成の質は項目でばらつく。</strong>ROE 15.9%（目標8%以上）、ROIC 6.4%（目標6%以上）、D/Eレシオ0.19倍（0.5倍以下）はいずれもクリア。一方、配当性向39.0%は下限30%は満たすが「50%程度」の目安には届かない。また「現預金保有は月商の2か月以内」という自ら掲げた基準に対し、期末現預金8,534百万円は月商換算約2.2か月で超過している。<span class="lab interp">解釈</span></li>
+      <li><strong>受注残高が期末で29,485百万円（前期比+37.2%）まで積み上がっている。</strong>連結売上高46,737百万円の63%に相当する水準で、3セグメントすべてで受注残が増加。テストソリューションの受注高は前期比+51.5%。<span class="lab fact">事実</span></li>
+    </ol>
+
+    <h3>最も注意すべき論点1点</h3>
+    <p><strong>「特定顧客依存」が、リスク開示・KAM・重要な会計上の見積りの3か所で同じ姿をして繰り返し現れる。</strong>テストソリューション事業（連結売上の39.5%）の主力である半導体メモリー向け自社製テスターは、顧客が「特定の半導体メモリー製造企業」1社に集中している。監査人はこれを起点に棚卸資産評価をKAMに指定し、会社は商品及び製品6,595百万円（総資産の13.7%）を重要な会計上の見積り項目として開示している。中計の3大戦略の1つが「業績の安定性向上」であること自体が、この依存が未解決であることの裏返しである。<span class="lab interp">解釈</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅰ. 企業の輪郭 ============ -->
+<div class="panel" id="p1">
+  <h2 class="section">Ⅰ. 企業の輪郭</h2>
+
+  <div class="card">
+    <h3>5年推移（連結・代表6指標）<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">指標</th><th>第36期<br>2022/3</th><th>第37期<br>2023/3</th><th>第38期<br>2024/3</th><th>第39期<br>2025/3</th><th>第40期<br>2026/3</th><th>4年CAGR</th></tr>
+      <tr><td class="l">売上高（百万円）</td><td>37,238</td><td>38,629</td><td>41,358</td><td>41,977</td><td>46,737</td><td>+5.8%</td></tr>
+      <tr><td class="l">経常利益（百万円）</td><td>2,984</td><td>2,480</td><td>2,880</td><td>1,754</td><td>2,912</td><td class="neg">▲0.6%</td></tr>
+      <tr><td class="l">EPS（円）</td><td>168.65</td><td>126.95</td><td>110.55</td><td>89.54</td><td>320.19</td><td>+17.4%</td></tr>
+      <tr><td class="l">ROE（%）</td><td>10.4</td><td>7.3</td><td>6.1</td><td>4.8</td><td>15.9</td><td>—</td></tr>
+      <tr><td class="l">自己資本比率（%）</td><td>54.8</td><td>54.1</td><td>51.6</td><td>54.1</td><td>54.8</td><td>—</td></tr>
+      <tr><td class="l">営業CF（百万円）</td><td>2,741</td><td>1,680</td><td>2,621</td><td>1,711</td><td>4,058</td><td>+10.3%</td></tr>
+    </table>
+    <p class="note">CAGRは第36期→第40期（4年）で当レポートが算出した推計値。保証なし。有報の「主要な経営指標等の推移」に営業利益は掲載がないため、5年推移では経常利益を採用した。<span class="lab interp">解釈</span></p>
+    <canvas id="ch5y"></canvas>
+    <p style="margin-top:12px">読み取り：<strong>売上は着実に伸びているのに、経常利益は5年前の水準を回復したにすぎない。</strong>売上CAGR+5.8%に対し経常利益CAGRは▲0.6%。第39期に経常利益1,754百万円・ROE4.8%まで落ち込み、当期に反発した形で、利益は明確に循環的である。EPSのCAGR+17.4%は当期の売却益と自己株式取得による分母減少が押し上げた数字であり、事業の稼ぐ力の成長率とみなすのは適切でない。<span class="lab interp">解釈</span></p>
+    <p>単体（提出会社）は売上17,894百万円・当期純利益3,834百万円と、連結の当期純利益4,111百万円の大半を占める。これは本社不動産の売却益が単体に立つためで、平時の単体と連結の乖離とは性質が異なる。<span class="lab fact">事実</span></p>
+  </div>
+
+  <div class="card">
+    <h3>事業の内容 ― 事業系統図の言語化<span class="src">[③]</span></h3>
+    <p>当社グループは2026年3月31日現在、当社・子会社20社・関連会社1社で構成される。<span class="lab fact">事実</span> 報告セグメントは3つで、いずれも「イノテック本体の事業」と「買収してきた子会社群」の二層構造になっている。<span class="lab interp">解釈</span></p>
+    <table>
+      <tr><th class="l">セグメント</th><th class="l">本体が担う機能</th><th class="l">子会社が担う機能</th></tr>
+      <tr><td class="l">テストソリューション事業</td><td class="l">自社製半導体テストシステムの開発・販売（顧客は半導体メモリー市場中心）</td><td class="l">STAr Technologies, Inc.（台湾）＝信頼性評価装置・プローブカードの製造販売、米・中・シンガポール等に拠点。持分法の芯卓科技（浙江）＝プローブカード製造販売</td></tr>
+      <tr><td class="l">半導体設計関連事業</td><td class="l">米ケイデンス社製EDAソフトウェアの販売・保守</td><td class="l">三栄ハイテックス（LSI受託設計・人材派遣、アナログ／電源・音源に強み）、ジェイ・エス・シー（車載・半導体・農機のソフト開発）、三栄高科設計（成都）／SANEI HYTECHS VIETNAM（設計受託）、モーデック（アナログモデリング）、ファイ・マイクロテック（高速アナログIC、光通信）</td></tr>
+      <tr><td class="l">システム・サービス事業</td><td class="l">組込み用途向けCPUボード・BOX型コンピューター（自社ブランド「INNINGS」）、モデルベース開発支援、ノイズ解析</td><td class="l">アイティアクセス（キャッシュレス決済端末・決済サービス、組込みOS）、レグラス（画像処理IP・AIカメラ）、ガイオ・テクノロジー（組込みソフト検証ツール、車載で高シェア）</td></tr>
+      <tr><td class="l">全社（共通）</td><td class="l">経営戦略・経営管理・総務人事・システム</td><td class="l">Fenox Innotech Venture Company VI, L.P.（米国CVC、AI・組込み・ウェブ関連への投資）／INNOTECH FRONTIER, Inc.</td></tr>
+    </table>
+    <h3>ビジネスモデル</h3>
+    <p>誰に：半導体メモリーメーカー、半導体設計企業、自動車メーカーとその関連企業、FA・産業機器・社会インフラ・防衛関連。何を：装置（テスター・プローブカード）、ソフトウェアライセンス（EDA・検証ツール）、受託設計・エンジニアリングサービス、自社ハード（CPUボード・決済端末）。どこで利益を取るか：<strong>「他社製品の代理店販売」から「自社製品・自社サービス」へ利益源を移す途上にある。</strong>会社は中計で「自社製品比率の向上／メーカー化により利益率の向上を図ってまいりました」と明記しており、当期も売上原価率が69.5%へ0.4pt改善した要因として「自社製品の売上増」を挙げている。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>収益柱の照合 ― 語りの大きさ vs 利益の大きさ<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">セグメント</th><th>売上高<br>（百万円）</th><th>構成比</th><th>前期比</th><th>セグメント利益<br>（百万円）</th><th>利益構成比</th><th>利益率</th></tr>
+      <tr><td class="l">テストソリューション</td><td>18,456</td><td>39.5%</td><td>+23.2%</td><td>1,190</td><td>33.1%</td><td>6.5%</td></tr>
+      <tr><td class="l">半導体設計関連</td><td>13,729</td><td>29.4%</td><td>+5.7%</td><td>656</td><td>18.3%</td><td>4.8%</td></tr>
+      <tr><td class="l">システム・サービス</td><td>14,551</td><td>31.1%</td><td>+3.9%</td><td>1,748</td><td>48.6%</td><td>12.0%</td></tr>
+      <tr><td class="l">全社費用等（調整額）</td><td>—</td><td>—</td><td>—</td><td>▲487</td><td>—</td><td>—</td></tr>
+      <tr><td class="l"><strong>連結</strong></td><td><strong>46,737</strong></td><td>100%</td><td>+11.3%</td><td><strong>3,108</strong></td><td>—</td><td>6.7%</td></tr>
+    </table>
+    <div class="grid2" style="margin-top:14px">
+      <div><canvas id="chSegS"></canvas></div>
+      <div><canvas id="chSegP"></canvas></div>
+    </div>
+    <p style="margin-top:12px"><strong>乖離の指摘：</strong>有報本文の記述量・研究開発費の配分・リスク開示・KAMのいずれもテストソリューション事業に大きく割かれているが、<strong>利益を最も出しているのはシステム・サービス事業（利益構成比48.6%、利益率12.0%）である。</strong>テストソリューションは売上構成比39.5%に対し利益構成比33.1%で、しかも前期はセグメント損失▲312百万円だった。「語り」の中心と「利益」の中心が一致していない。<span class="lab interp">解釈</span></p>
+    <p>ただしシステム・サービス事業のセグメント利益は当期▲2.8%と唯一の減益で、ガイオ・テクノロジーの車載向け需要減速と外注費の一時的過大が理由とされる。<strong>最も稼いでいる柱が最も自動車業界に依存している</strong>という構図であり、収益の安定性という観点では手放しでは評価できない。<span class="lab interp">解釈</span></p>
+    <h3>製品別内訳（当期）</h3>
+    <table>
+      <tr><th class="l">製品・子会社</th><th>売上高（百万円）</th><th>前期（百万円）</th></tr>
+      <tr><td class="l">STAr Technologies（テスト）</td><td>14,206</td><td>13,264</td></tr>
+      <tr><td class="l">テスター（本体・テスト）</td><td>4,250</td><td>1,712</td></tr>
+      <tr><td class="l">EDA他（設計）</td><td>9,619</td><td>9,089</td></tr>
+      <tr><td class="l">三栄ハイテックス（設計）</td><td>3,899</td><td>3,678</td></tr>
+      <tr><td class="l">モーデック（設計）</td><td>210</td><td>224</td></tr>
+      <tr><td class="l">アイティアクセス（システム）</td><td>5,444</td><td>5,392</td></tr>
+      <tr><td class="l">ガイオ・テクノロジー（システム）</td><td>4,741</td><td>5,003</td></tr>
+      <tr><td class="l">組込みシステム他（システム）</td><td>3,873</td><td>3,075</td></tr>
+      <tr><td class="l">レグラス（システム）</td><td>491</td><td>535</td></tr>
+    </table>
+    <p class="note">本体テスターは前期1,712百万円→当期4,250百万円と2.5倍。テストソリューション事業の増益はこの本体テスター回復が主因と読める。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>競争優位の所在<span class="lab interp">解釈</span></h3>
+    <ul>
+      <li><strong>川上・川下の両取り。</strong>EDAソフト（設計の入口）を売り、LSI設計を受託し、シミュレーションモデルを作り、最後にテスターで検査する。半導体の設計から検査までの工程を、セグメントを跨いで面で押さえている。会社自身も「事業セグメントを超えたシナジーとしてシミュレーションプラットフォームの活用」を掲げている。<span class="lab fact">事実</span></li>
+      <li><strong>内製と外注の混在。</strong>自社製テスターの一部は外部委託生産（生産実績の注記に「一部の自社製品については、社外へ委託生産を行っており」と明記）。一方STAr Technologiesは台湾で製造機能を持ち、三栄ハイテックスは静岡に土地・建物835百万円を保有する。ファブレス寄りだが完全なファブレスではない。<span class="lab fact">事実</span></li>
+      <li><strong>優位の実体はおそらく「代理店権＋技術サポート人材」。</strong>ケイデンス社EDAという他社製品の販売が半導体設計関連事業の中核であり、この事業のセグメント利益率は4.8%と3セグメント中最低。参入障壁は製品ではなく長年の取扱経験に基づくサポート品質にあると読める。会社も「長年の取扱い経験により得た知見をもとに質の高いサポート」と表現している。逆に言えば、<strong>この事業の優位は仕入先との関係に依存しており、有報のリスク章でも「特定の仕入先及び製造委託先への依存」として自ら挙げている。</strong><span class="lab interp">解釈</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>関係会社 ― 支配構造とリスクのみ<span class="src">[③]</span></h3>
+    <ul>
+      <li><strong>親会社は存在しない。</strong>大株主は信託銀行と海外機関投資家が中心で、支配株主はいない。<span class="lab fact">事実</span></li>
+      <li><strong>非100%子会社が3社ある。</strong>アイティアクセス85.00%、モーデック86.13%、STAr Technologies 92.41%。いずれも「役員の兼任あり」「商品の売買」など当社との取引関係を持つ。非支配株主に帰属する当期純利益は84百万円。<span class="lab fact">事実</span></li>
+      <li><strong>海外子会社の比重が大きい。</strong>STAr Technologies（子会社8社を含む）は単独で売上14,280百万円・総資産16,213百万円を持ち、連結総資産48,048百万円の3分の1に相当する。特定子会社に該当。海外売上比率は31.8%（日本31,868／中国5,553／台湾4,933／その他4,382百万円）。<span class="lab fact">事実</span></li>
+      <li><strong>持分法適用の芯卓科技（浙江）は議決権14.71%と20%未満だが「実質的な影響力を持っているため」持分法を適用している。</strong>当期の持分法による投資損失は168百万円で、前期70百万円から拡大した。<span class="lab fact">事実</span></li>
+      <li><strong>米国CVCが連結内にある。</strong>Fenox Innotech Venture Company VI, L.P.（99.00%）の投資事業組合運用損が当期155百万円、前期242百万円と営業外費用に恒常的に計上されている。<span class="lab fact">事実</span></li>
+      <li>2026年4月1日付で三栄ハイテックスがジェイ・エス・シーを吸収合併。台灣三榮高科技は清算結了により連結除外。当期からファイ・マイクロテック（100%）を新規連結。<span class="lab fact">事実</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ Ⅱ. 沿革 ============ -->
+<div class="panel" id="p2">
+  <h2 class="section">Ⅱ. 沿革</h2>
+  <div class="card">
+    <h3>年表<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l" style="width:130px">年月</th><th class="l">事項</th></tr>
+      <tr><td class="l">1987年1月</td><td class="l">東京都新宿区に会社設立</td></tr>
+      <tr><td class="l">1987年4月</td><td class="l">伊藤忠商事および伊藤忠テクノサイエンス（現・伊藤忠テクノソリューションズ）と業務提携</td></tr>
+      <tr><td class="l">1990年4月</td><td class="l">株式額面変更のため株式会社エコノマックス（1976年6月設立）と合併（合併比率1：1,000）</td></tr>
+      <tr><td class="l">1990年9月</td><td class="l">日本証券業協会に店頭売買銘柄として登録</td></tr>
+      <tr><td class="l">1991年8月</td><td class="l">横浜市港北区に新横浜本社を新設</td></tr>
+      <tr><td class="l">1992年7月</td><td class="l">本店を東京都港区から横浜市港北区へ移転</td></tr>
+      <tr><td class="l">1994年3月</td><td class="l">シーティーシー・コンポーネンツシステムズを買収し子会社化（イノマイクロ）</td></tr>
+      <tr><td class="l">1998年12月</td><td class="l">創立10周年記念として新社屋完成（2026年3月に信託設定・信託受益権の一部譲渡）</td></tr>
+      <tr><td class="l">2000年4月</td><td class="l">アイティアクセス設立（現・連結子会社）</td></tr>
+      <tr><td class="l">2002年3月</td><td class="l">三栄ハイテックスの全株式取得（現・連結子会社）</td></tr>
+      <tr><td class="l">2004年3月</td><td class="l">連結子会社イノマイクロを吸収合併</td></tr>
+      <tr><td class="l">2004年12月</td><td class="l">店頭登録を取消し、ジャスダック証券取引所に上場（2008年5月に上場廃止）</td></tr>
+      <tr><td class="l">2008年3月</td><td class="l">東京証券取引所市場第二部に上場</td></tr>
+      <tr><td class="l">2011年3月</td><td class="l">東京証券取引所市場第一部に指定</td></tr>
+      <tr><td class="l">2012年7月</td><td class="l">レグラスの全株式取得（現・連結子会社）</td></tr>
+      <tr><td class="l">2013年10月</td><td class="l">中国に三栄高科設計（成都）を設立</td></tr>
+      <tr><td class="l">2014年1月</td><td class="l">ガイオ・テクノロジーの全株式取得</td></tr>
+      <tr><td class="l">2014年10月</td><td class="l">台湾STAr Technologies, Inc.の株式を追加取得し子会社化</td></tr>
+      <tr><td class="l">2015年1〜2月</td><td class="l">米国にCVC「Fenox Innotech Venture Company VI, L.P.」およびINNOTECH FRONTIER, Inc.を設立</td></tr>
+      <tr><td class="l">2015年6月</td><td class="l">ベトナムにSANEI HYTECHS VIETNAM設立</td></tr>
+      <tr><td class="l">2016年8月</td><td class="l">ジェイ・エス・シーの全株式取得</td></tr>
+      <tr><td class="l">2020年2月</td><td class="l">米国Accel-RF Instruments Corporationの全株式取得</td></tr>
+      <tr><td class="l">2020年4月</td><td class="l">モーデックの株式取得</td></tr>
+      <tr><td class="l">2022年4月</td><td class="l">市場区分見直しによりプライム市場へ移行</td></tr>
+      <tr><td class="l">2022年9月</td><td class="l">フィリピンにSTAr-Pearl Technologies Inc.設立</td></tr>
+      <tr><td class="l">2023年6月</td><td class="l">監査役会設置会社から監査等委員会設置会社へ移行</td></tr>
+      <tr><td class="l">2024年8月</td><td class="l">中国・芯卓科技（浙江）に出資し関連会社化（持分法適用）</td></tr>
+      <tr><td class="l">2026年3月</td><td class="l">ファイ・マイクロテックの全株式取得（現・連結子会社）</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>どういう成り立ちの会社か ― 4つの転換点<span class="lab interp">解釈</span></h3>
+    <h3>① 1987年：伊藤忠系の技術商社として出発</h3>
+    <p>設立3か月後に伊藤忠商事および伊藤忠テクノサイエンスと業務提携している。設立直後にこの規模の商社と提携できたということは、<strong>創業チームが伊藤忠系の商流を前提に事業を組み立てた可能性が高い。</strong>会社は自社の出自を「1987年、半導体の技術商社としてスタートし、2000年以降、それまで培ってきた様々なノウハウやM&Aをもとに、自社製品の開発強化に努めてきました」と説明している。<span class="lab web">web</span>（イノテック株式会社 公式コーポレートサイト／沿革ページ）</p>
+    <p>なお当期の大株主に伊藤忠系の名前はなく、資本関係としての伊藤忠色は現在は残っていない。<span class="lab fact">事実</span></p>
+
+    <h3>② 1990〜2011年：上場市場を3度渡り歩いた21年</h3>
+    <p>店頭登録（1990年）→ ジャスダック（2004年）→ 東証二部（2008年）→ 東証一部（2011年）→ プライム（2022年）と、日本の新興市場の再編にそのまま乗る形で階段を上がっている。1990年の店頭登録から東証一部指定まで21年を要しており、<strong>急成長型のIPO企業ではなく、時間をかけて信用を積み上げたタイプの会社である。</strong>1990年の「株式額面変更のため株式会社エコノマックス（1976年設立）と合併」は当時の上場実務上の形式的合併であり、事業上の意味は薄い。</p>
+
+    <h3>③ 2002〜2020年：買収による「商社→グループメーカー」への転換</h3>
+    <p>沿革の中心は明らかにM&Aである。三栄ハイテックス（2002）、レグラス（2012）、ガイオ・テクノロジー（2014）、STAr Technologies（2014）、ジェイ・エス・シー（2016）、Accel-RF（2020）、モーデック（2020）、ファイ・マイクロテック（2026）。<strong>ほぼすべてが「設計・検証・検査という半導体の周辺工程を担う技術会社」であり、無関係な多角化はしていない。</strong>とりわけ2014年のSTAr Technologies子会社化は、連結総資産の3分の1を占める規模になっており、この会社の姿を最も大きく変えた買収である。</p>
+    <p>一方で、買収の副作用も有報に現れている。リスク章の「コーポレート・ガバナンス、内部統制について」では<em>「M&Aの推進に伴う事業の急速な拡大等により、十分なガバナンスや内部統制の整備が追いつかない状況が生じ」</em>るリスクを自ら挙げている。<span class="lab fact">事実</span></p>
+
+    <h3>④ 2023〜2026年：ガバナンスと資本構成の作り替え</h3>
+    <p>2023年6月に監査等委員会設置会社へ移行、当期に政策保有株式（金融機関4銘柄）を全売却、本社不動産を信託設定のうえ2分割譲渡（1回目が2026年3月31日）、さらに2026年5月に上限1,000,000株・25億円の自己株式取得を決議。<strong>沿革の最新の局面は「事業を買う」から「バランスシートを軽くする」に移っている。</strong>1998年に建てた自社ビルを28年目に手放すという判断は、この会社の重心が資産保有から資本効率へ移ったことの象徴的な出来事と読める。</p>
+  </div>
+</div>
+
+<!-- ============ Ⅲ. 人的資本 ============ -->
+<div class="panel" id="p3">
+  <h2 class="section">Ⅲ. 人的資本（従業員＋サステナビリティ人的資本の統合）</h2>
+
+  <div class="card">
+    <h3>従業員数と構成<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">区分</th><th>従業員数（人）</th><th>（外、平均臨時雇用者数）</th></tr>
+      <tr><td class="l">テストソリューション事業</td><td>706</td><td>(10)</td></tr>
+      <tr><td class="l">半導体設計関連事業</td><td>548</td><td>(30)</td></tr>
+      <tr><td class="l">システム・サービス事業</td><td>321</td><td>(132)</td></tr>
+      <tr><td class="l">全社（共通）</td><td>45</td><td>(2)</td></tr>
+      <tr><td class="l"><strong>連結合計</strong></td><td><strong>1,620</strong></td><td>(174)</td></tr>
+      <tr><td class="l">うち提出会社（単体）</td><td>211</td><td>(26)</td></tr>
+    </table>
+    <p class="note">連結1,620人に対し提出会社は211人。<strong>従業員の87%は子会社に属する。</strong>特にテストソリューション事業706人のうち本体は44人で、残りはほぼSTAr Technologies及びその子会社（662人）である。<span class="lab interp">解釈</span></p>
+
+    <h3>5年推移</h3>
+    <table>
+      <tr><th class="l"></th><th>第36期</th><th>第37期</th><th>第38期</th><th>第39期</th><th>第40期</th></tr>
+      <tr><td class="l">連結従業員数（人）</td><td>1,642</td><td>1,728</td><td>1,775</td><td>1,560</td><td>1,620</td></tr>
+      <tr><td class="l">連結売上高（百万円）</td><td>37,238</td><td>38,629</td><td>41,358</td><td>41,977</td><td>46,737</td></tr>
+      <tr><td class="l">1人当たり売上高（百万円）</td><td>22.7</td><td>22.4</td><td>23.3</td><td>26.9</td><td>28.8</td></tr>
+      <tr><td class="l">提出会社従業員数（人）</td><td>211</td><td>212</td><td>213</td><td>212</td><td>211</td></tr>
+    </table>
+    <p class="note">1人当たり売上高は当レポートによる算出値（推計・保証なし）。<span class="lab interp">解釈</span></p>
+    <canvas id="chProd"></canvas>
+    <p style="margin-top:12px"><strong>読み取り：増収と人員増が連動していない。</strong>第38期1,775人→第39期1,560人と215人減っているのに、売上は41,358→41,977百万円と増えている。第40期はさらに人員60人増に対し売上4,760百万円増。1人当たり売上高は22.7百万円→28.8百万円へ5年で約27%改善した。<strong>労働集約型から仕組み型へ寄りつつある</strong>と読めるが、第39期の人員減の理由は有報の記述情報からは特定できない。前期のプローブカード事業一部譲渡が関係している可能性はあるが、有報は人員面には触れていない。<span class="lab check">要確認</span></p>
+    <p>1人当たり営業利益は第39期1.21百万円→第40期1.92百万円（当レポート算出・推計値）。提出会社単体では1人当たり売上高84.8百万円と、連結の3倍近い。本体は少人数で商流と自社製品を回し、頭数は子会社にあるという構造がはっきり出ている。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>人的資本指標（数値提示のみ）<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">対象</th><th>管理職に占める<br>女性比率（%）</th><th>男性育休<br>取得率（%）</th><th>男女賃金差異<br>全労働者（%）</th><th>同・正規雇用<br>（%）</th><th>同・パート有期<br>（%）</th></tr>
+      <tr><td class="l">提出会社</td><td>5.4</td><td>100.0</td><td>72.5</td><td>71.7</td><td>—</td></tr>
+      <tr><td class="l">三栄ハイテックス</td><td>5.6</td><td>125.0</td><td>84.5</td><td>86.8</td><td>88.1</td></tr>
+      <tr><td class="l">主要な連結子会社6社</td><td>5.2</td><td>80.0</td><td>69.4</td><td>71.0</td><td>21.1</td></tr>
+    </table>
+    <p class="note">男性育休取得率が100%を超えるのは、過年度に配偶者が出産した従業員が当事業年度に取得する場合があるためと注記されている。パート・有期の女性雇用は提出会社にはない。<span class="lab fact">事実</span></p>
+
+    <h3>女性管理職比率のKPI</h3>
+    <table>
+      <tr><th class="l">対象範囲</th><th>2024年度実績</th><th>2025年度実績</th><th>2025年度目標</th><th>2030年度目標</th></tr>
+      <tr><td class="l">当社＋国内連結子会社</td><td>4.7%</td><td>5.3%</td><td>5.0%</td><td>10.0%</td></tr>
+    </table>
+    <p><strong>2025年度目標5%は達成している。</strong>ただし2030年度に10%へ倍増させる計画に対し、直近1年の伸びは0.6ptにとどまる。<span class="lab fact">事実</span> この伸び幅が続いた場合、2030年度に10%へ到達する道筋は数字上は見えにくい。<span class="lab interp">解釈</span></p>
+    <p>重点施策として掲げられているのは「女性社員と経営陣との定期的な意見交換」「ダイバーシティ推進研修」「新卒女性採用比率30%以上」「年休取得率向上・育児短時間勤務・時間単位年休・在宅勤務」の4項目。<strong>このうち期限と数値が入っているのは新卒女性採用比率30%以上のみで、残る3つは定性的である。</strong><span class="lab interp">解釈</span></p>
+    <p>外国人管理職については「国籍によって管理職登用のプロセスに特段の差が生じているとは認識していないため、現時点では目標策定は行っておりません」と明記。中途採用者は「既に過半数に達しております」としている。<span class="lab fact">事実</span> なお連結従業員の相当部分が台湾・中国・ベトナム等の海外子会社に属することを考えると、「外国人管理職比率の目標を置かない」判断の説明は提出会社単体の視点にとどまっている。<span class="lab interp">解釈</span></p>
+
+    <h3>提出会社の処遇</h3>
+    <table>
+      <tr><th>従業員数</th><th>平均年齢</th><th>平均勤続年数</th><th>平均年間給与</th><th>対前事業年度増減率</th></tr>
+      <tr><td>211人（外26）</td><td>43.6歳</td><td>14.9年</td><td>8,410,465円</td><td>+11.2%</td></tr>
+    </table>
+    <p><strong>平均年収が前年比+11.2%と大きく伸びている。</strong>有報の記述情報では、リスク章で「報酬水準の向上や福利厚生、教育制度の充実」を人財流出防止策として挙げており、MD&Aでは販管費増加の要因として「業績の向上や業容拡大に伴う従業員賞与や外注費用の増加」を挙げている。<strong>賞与の業績連動部分が当期業績で膨らんだ結果である可能性が高く、恒常的なベース賃金の引き上げと同一視すべきではない。</strong><span class="lab interp">解釈</span> 平均勤続14.9年・平均年齢43.6歳は、中途採用が過半という記述と合わせると、定着はしているが若返りは進んでいない姿を示す。<span class="lab interp">解釈</span></p>
+    <p>労働組合は結成されていない（「労使関係は円満に推移」）。<span class="lab fact">事実</span></p>
+
+    <h3>人材戦略の記述</h3>
+    <p>会社は「競争優位の源泉は高度な専門性を有する人材にある」とし、求める人材像を7項目（新規開拓の意欲、グローバル視点、決断実行、当事者意識、リーダーシップ、他者への敬意、進言できること）で定義している。教育面では2019年10月発足の「教育委員会」が研修制度を統括し、「基礎力」と「専門力」の二軸で設計。外部コンサルによる匿名エンゲージメント調査と、2014年から続く記名式の人事アンケート（年1回）を併用し、アンケート結果は社外取締役の意見も交えて議論しているという。<span class="lab fact">事実</span></p>
+    <p><strong>沈黙の指摘：</strong>研修制度・調査体制の「仕組み」は具体的に書かれているが、<strong>エンゲージメントスコア、離職率、研修投資額といった結果指標の数値は一切開示されていない。</strong>人的資本のKPIとして数値が開示されているのは女性管理職比率のみである。技術者の獲得競争をリスクとして掲げている企業としては、離職率の非開示は情報の欠落にあたる。<span class="lab check">要確認</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅳ. 経営者の世界観 ============ -->
+<div class="panel" id="p4">
+  <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+
+  <div class="card">
+    <h3>経営理念とビジョン<span class="src">[③]</span></h3>
+    <blockquote class="yuho">「我々が目指すもの」／エレクトロニクスビジネスを通じて、人々の生活を豊かで快適なものにし、「未来社会に貢献」する／創造力を駆使、携わるエレクトロニクス業界の技術の進歩に寄与し、「不可欠な存在」になる／我々の真の事業は「問題を解決」することであり、顧客に満足いただく労苦を惜しまない／先端技術に挑戦し続ける「パイオニア」になる／創造力を発揮できる会社の仕組みづくりに心血を注ぐ、「誇りの持てる会社を実現」する</blockquote>
+    <p>ビジョンは「未来を変えテック、イノテック 〜Innovation Technology〜」。<span class="lab fact">事実</span> 理念部分は他社にも当てはまる一般論（ボイラープレート）であり、ここから固有の戦略を読み取ることはできない。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>課題 → 打ち手の一対一照合<span class="lab interp">解釈</span></h3>
+    <p>中計（2024年3月21日公表、2024〜2026年度）は共通戦略3本と各セグメント戦略で構成される。それぞれに具体施策が紐づいているかを照合した。</p>
+    <table>
+      <tr><th class="l" style="width:24%">掲げた課題／戦略</th><th class="l">有報に記載された打ち手</th><th class="l" style="width:16%">接続の評価</th></tr>
+      <tr><td class="l">営業利益率の向上</td><td class="l">自社製品比率の向上／メーカー化、さらに付加価値の高い製品・サービスの提供</td><td class="l">方向は明示。ただし目標営業利益率の数値がなく、いつまでに何%かは書かれていない</td></tr>
+      <tr><td class="l">経営資源の再配分による事業ポートフォリオの最適化</td><td class="l">注力分野・成長分野の見定め、組織再編や事業撤退を含む見直しの「検討」</td><td class="l"><strong>打ち手が最も薄い。</strong>「検討」「見直し」の域を出ず、対象事業も期限も示されない</td></tr>
+      <tr><td class="l">業績の安定性向上</td><td class="l">特定業界・特定顧客依存からの脱却、製品等の充実、ストック型ビジネスの強化</td><td class="l">方向は具体だが、依存度の現状値・目標値が示されない</td></tr>
+      <tr><td class="l">テストソリューション：製品ポートフォリオの拡充と最適化</td><td class="l">NANDを主軸としつつCMOSイメージセンサー・DRAM向けへ展開、後工程用検査ボード等へ範囲拡大。STArはファウンドリ向け信頼性評価装置・研究開発用プローブカードに資源集中、MEMS型／高周波／化合物／パワー半導体へ展開</td><td class="l"><strong>最も具体的。</strong>デバイス種別・製品種別まで固有名詞で降りている</td></tr>
+      <tr><td class="l">半導体設計関連：強固な安定収益の拡大</td><td class="l">IC設計から基板設計・システム製品設計へ範囲拡大、三栄ハイテックスのLSI設計受託／モーデックのモデル開発／ファイ・マイクロテックの光電融合と連携、ターンキー分野へ拡大</td><td class="l">子会社名を挙げた連携の設計図があり、具体性は高い</td></tr>
+      <tr><td class="l">システム・サービス：マスカスタマイゼーション</td><td class="l">キャッシュレス決済端末・エッジコンピューティング・画像処理、決済端末のサービス収入等ストック型の拡大</td><td class="l">概念語（マスカスタマイゼーション）が先に立ち、施策の粒度は他2セグメントより粗い</td></tr>
+    </table>
+    <p><strong>あぶり出された空白：</strong>「事業ポートフォリオの最適化」だけが、他の戦略と比べて打ち手が抽象的なまま残っている。取締役会の検討内容には「事業ポートフォリオに関する討議」が挙げられているので議論はされているが、<strong>有報の記述情報のレベルでは、どの事業を伸ばしどれを畳むのかは開示されていない。</strong>前期にプローブカード事業の一部を譲渡した実績があるため、実行力がないわけではない。<span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>経営環境の認識 ― 具体性の評価<span class="src">[③]</span></h3>
+    <p>マクロ認識は「AIの本格的な普及やデジタル化の進展を背景に、先端分野を中心として持続的な成長」「日本政府による半導体産業への支援や海外企業の進出」「地政学的リスクの長期化や経済安全保障に係る政策動向、為替変動や部材調達を巡る不確実性」と、業界共通の定型的な整理にとどまる。<span class="lab interp">解釈</span></p>
+    <p>一方、翌期見通しのセグメント別記述は具体的である。<span class="lab fact">事実</span></p>
+    <ul>
+      <li>テストソリューション：海外向け製品が堅調、<strong>市況好転により国内メモリー向けテスターの需要が「大きく回復」</strong>と予想。ただし信頼性評価装置・プローブカード事業は「AI関連需要を背景に好調に推移するものの、<strong>研究開発への注力により利益面では減益</strong>となる見通し」</li>
+      <li>半導体設計関連：複数の大型契約更新に注力し増収見込み。<strong>LSI設計受託は海外のAI関連需要低迷を予想</strong>、国内は堅調</li>
+      <li>システム・サービス：<strong>防衛向け需要が引き続き高い</strong>、自社ブランド「INNINGS」のデータセンター向け需要拡大。決済のクラウドサービス収入とセキュリティ関連事業の立ち上げに期待。一方<strong>自動車業界の投資抑制により車載関連受託・組込みソフト検証ツールは一定程度の影響</strong></li>
+    </ul>
+    <p><strong>注目すべきは、翌期に「減益要因」を明示している点。</strong>プローブカード事業の減益と車載関連の影響を、増収見通しと同じ文中で並べている。増収と減益が同居する見通しを隠さずに書いており、この点は開示姿勢として誠実である。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>中期経営計画の進捗と未達認識<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">指標</th><th>中計目標</th><th>2024年度<br>（第39期）</th><th>2025年度<br>（第40期）</th><th class="l">評価</th></tr>
+      <tr><td class="l">ROE</td><td>8%以上（10%目指す）</td><td class="neg">4.8%</td><td>15.9%</td><td class="l">達成。ただし会社注記により売却益除きは8.4%</td></tr>
+      <tr><td class="l">ROIC</td><td>6%以上（8%目指す）</td><td class="neg">3.4%</td><td>6.4%</td><td class="l">下限は達成、8%には未到達</td></tr>
+      <tr><td class="l">D/Eレシオ</td><td>0.5倍以下</td><td>0.38倍</td><td>0.19倍</td><td class="l">達成（当レポート検算でも0.185倍）</td></tr>
+      <tr><td class="l">配当性向</td><td>30%以上（50%程度が目安）</td><td>78.2%</td><td>39.0%</td><td class="l">下限は達成、目安50%は下回る</td></tr>
+    </table>
+    <blockquote class="yuho">（注）1. ROEについて、2025年度は本社土地及び建物等の固定資産売却益を計上したため、2024年度に比べ数値が高くなっております。なお、当該売却益の影響を除いた場合のROEは8.4％であります。</blockquote>
+    <p><strong>誠実さの評価：この注記の存在は重い。</strong>ROE 15.9%という数字は中計目標10%を大きく超えており、そのまま「目標超過達成」と書くこともできた。それをせず、一時要因を除いた8.4%を自ら併記している。<strong>2024年度のROE 4.8%・ROIC 3.4%・配当性向78.2%という未達も、隠さずそのまま表に載せている。</strong>未達を認める姿勢は確認できる。<span class="lab interp">解釈</span></p>
+    <p>ただし<strong>中計期間は2024〜2026年度の3年であり、当期はその2年目にあたる。</strong>最終年度である2026年度の見通しについて、中計目標との関係を論じた記述は有報にはない。<span class="lab check">要確認</span></p>
+
+    <h3>資本政策の基本方針（2018年2月公表・中計で踏襲）</h3>
+    <table>
+      <tr><th class="l">掲げた目安</th><th class="l">当期の実績（当レポート検算）</th><th class="l">判定</th></tr>
+      <tr><td class="l">D/Eレシオ0.5倍以下</td><td class="l">有利子負債4,873百万円／自己資本26,348百万円＝0.185倍</td><td class="l">充足</td></tr>
+      <tr><td class="l">現預金保有は月商の2か月以内</td><td class="l">現金及び預金8,534百万円／月商3,894百万円＝約2.19か月</td><td class="l"><strong>超過</strong></td></tr>
+      <tr><td class="l">配当性向は50%程度</td><td class="l">39.0%（会社開示）</td><td class="l">下回る</td></tr>
+      <tr><td class="l">取引銀行との政策保有株式の見直し</td><td class="l">当期に上場4銘柄すべてを売却（売却価額522百万円）</td><td class="l"><strong>完了</strong></td></tr>
+      <tr><td class="l">在庫水準の適正化と運転資金管理</td><td class="l">商品及び製品6,052→6,595百万円と増加</td><td class="l">数値上は逆行</td></tr>
+    </table>
+    <p class="note">検算はいずれも当レポートによる推計値。保証なし。自己資本＝純資産27,113百万円−新株予約権21百万円−非支配株主持分743百万円。月商＝連結売上高÷12。<span class="lab interp">解釈</span></p>
+    <p><strong>5項目のうち、明確に達成したと言えるのは2つ（D/Eレシオ・政策保有株式）。</strong>政策保有株式の全売却は「見直し」という表現に対して完全売却で応えたもので、方針以上の実行である。一方、現預金・配当性向・在庫の3項目は目安から外れており、有報はこの乖離について説明していない。ただし現預金の膨張は本社売却代金7,172百万円の流入と2026年5月決議の自己株式取得（上限25億円）を控えた一時的なものである可能性が高い。<span class="lab interp">解釈</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅴ. サステナビリティ ============ -->
+<div class="panel" id="p5">
+  <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+
+  <div class="card">
+    <h3>マテリアリティと重点テーマ<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l" style="width:32%">マテリアリティ</th><th class="l">重点テーマ</th></tr>
+      <tr><td class="l">ヒューマンキャピタルマネジメント</td><td class="l">人材確保・育成、ナレッジマネジメント／ダイバーシティ＆インクルージョン／モチベーションの向上／労働安全衛生、働き方改革・業務効率化</td></tr>
+      <tr><td class="l">サプライチェーンマネジメント</td><td class="l">部材調達と製品供給の安定化／持続可能エネルギーへのアクセス確保／サプライヤーCSR行動基準</td></tr>
+      <tr><td class="l">エレクトロニクス技術を通じた社会課題の解決</td><td class="l">環境負荷低減製品での環境貢献／顧客企業の生産性向上／新規技術・分野への取組／品質マネジメントによる生産性の改善</td></tr>
+      <tr><td class="l">社会との共生と持続可能な未来への貢献</td><td class="l">ディーセントワークの実現／地球環境・気候変動への配慮、貢献／イノベーション・価値創造の促進／取引先とのパートナーシップ</td></tr>
+      <tr><td class="l">経営基盤の整備</td><td class="l">資本効率の向上／サクセッションプランニング／情報セキュリティ、コンプライアンス</td></tr>
+    </table>
+    <p>会社は「それぞれにKPIを設定、開示しております」と述べている。<span class="lab fact">事実</span> ただし<strong>有報本文に数値として現れるKPIは女性管理職比率（Ⅲで詳述）と2050年Scope1・2ネットゼロの2つのみで、5マテリアリティ全体のKPI一覧は有報には掲載されていない。</strong>「開示しております」の実体は有報外（ESGサイト等）にあると読める。<span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>軸1：戦略への接続<span class="lab interp">解釈</span></h3>
+    <p><strong>接続は部分的である。</strong>5つのマテリアリティのうち「経営基盤の整備」に含まれる<em>資本効率の向上</em>は、中計のROE／ROIC／D/Eレシオ目標とそのまま重なる。「エレクトロニクス技術を通じた社会課題の解決」も、事業そのもの（顧客企業の生産性向上）と重なる。この2つは本文と結びついている。</p>
+    <p>一方、<strong>環境関連（Scope1・2ネットゼロ、持続可能エネルギーへのアクセス）は、事業戦略章にも設備投資計画にも接続していない。</strong>設備投資章は「重要な設備の新設、改修及び除却等の計画はありません」の一文で終わっており、脱炭素に紐づく投資計画は存在しない。サステナビリティ章が事業章から浮いている度合いは、環境領域で最も高い。</p>
+    <p>ガバナンス面では、代表取締役社長執行役員をCSO、代表取締役専務執行役員を担当取締役とし、CSO主催の「サステナビリティ推進会議」を設置。参加者はCSO・担当取締役・常勤執行役員・各事業部門長・国内連結子会社の代表者。年1回以上のリスク分析と取締役会への報告が定められている。<span class="lab fact">事実</span> <strong>体制は事業部門長と子会社代表を巻き込む形になっており、形式上は事業側に接続している。</strong>ただし推進会議で「何が決まったか」の具体例は有報には書かれていない。<span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>軸2：検証可能性（目標に期限と実績があるか）<span class="lab interp">解釈</span></h3>
+    <table>
+      <tr><th class="l">目標</th><th class="l">期限</th><th class="l">実績の開示</th><th class="l">検証可能性</th></tr>
+      <tr><td class="l">女性管理職比率5%</td><td class="l">2025年度</td><td class="l">5.3%（達成）</td><td class="l"><strong>高い</strong>（期限・目標・実績が揃う）</td></tr>
+      <tr><td class="l">女性管理職比率10%</td><td class="l">2030年度</td><td class="l">進捗は年次で開示</td><td class="l">高い</td></tr>
+      <tr><td class="l">新卒女性採用比率30%以上</td><td class="l">記載なし</td><td class="l">実績の記載なし</td><td class="l"><strong>低い</strong></td></tr>
+      <tr><td class="l">Scope1・2 温室効果ガス排出量 実質ゼロ</td><td class="l">2050年</td><td class="l"><strong>排出量の実績値は有報に記載なし</strong></td><td class="l"><strong>低い</strong></td></tr>
+    </table>
+    <p><strong>沈黙の指摘：</strong>2050年ネットゼロという目標を掲げながら、<strong>有報にはGHG排出量の現在値も中間目標（2030年など）も記載されていない。</strong>しかも当期の記述は<em>「2050年までにScope１・２の温室効果ガス排出量を実質ゼロにするという目標達成に向け、施策の見直しを行ってまいります」</em>という一文のみである。「施策の見直し」という表現は、既存施策で目標に届かないという認識の表れとも読めるが、何をどう見直すかは書かれていない。<span class="lab check">要確認</span></p>
+    <p>TCFD開示（シナリオ分析・移行リスク／物理リスクの財務影響）は有報には掲載されていない。<span class="lab fact">事実</span> もっとも当社は工場を多く持つ装置産業ではなく、有形固定資産は本社売却後で6,646百万円（総資産の13.8%）にとどまる。<strong>炭素集約度は低く、気候変動が投資論点として支配的になる業種ではない。</strong>プレイブックの基準に照らし、この領域は軽く扱うのが妥当と判断した。<span class="lab interp">解釈</span></p>
+    <p>ただし例外がある。リスク章に<em>「脱炭素への取組が活発化しており、当社製品の製造過程やサプライチェーンにおいても脱炭素が求められることが想定されますが、対応の遅れ等により顧客との取引が継続できなくなった場合」</em>という記述がある。<strong>自社の排出量そのものより、顧客（半導体メーカー・自動車メーカー）からのサプライチェーン要求が取引継続要件になるリスクとして認識している。</strong>この認識と、GHG実績値を開示していないこととの間には距離がある。<span class="lab interp">解釈</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅵ. 事業等のリスク ============ -->
+<div class="panel" id="p6">
+  <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+
+  <div class="card">
+    <h3>リスクの仕分け<span class="src">[③]</span></h3>
+    <p>開示されたリスクは大項目6件（うち(1)は3つの小項目に分かれる）。固有／定型で仕分けると以下のとおり。<span class="lab interp">解釈</span></p>
+    <table>
+      <tr><th class="l">リスク</th><th class="l">区分</th><th class="l">根拠</th></tr>
+      <tr><td class="l">(1)① 特定の顧客への依存</td><td class="l"><strong>固有</strong></td><td class="l">メモリー向け自社製テスターの顧客が特定1社。棚卸資産評価損の可能性まで踏み込む</td></tr>
+      <tr><td class="l">(1)② 特定の業界（自動車）への依存</td><td class="l"><strong>固有</strong></td><td class="l">EV化・ガソリン車規制・国内メーカーの対応遅れ・業界再編という具体的な変化要因を挙げる</td></tr>
+      <tr><td class="l">(1)③ 特定の仕入先・製造委託先への依存</td><td class="l"><strong>固有</strong></td><td class="l">EDAソフト・自社製テスターの調達が特定先に依存、代理店契約解消リスクに言及</td></tr>
+      <tr><td class="l">(2) 人財確保</td><td class="l">やや固有</td><td class="l">技術者獲得競争という一般論だが、「メーカー化」という自社戦略と結びつけている</td></tr>
+      <tr><td class="l">(3) 地政学的リスク・自然災害</td><td class="l">定型</td><td class="l">地震・台風・感染症・BCPという定型構成。ただし海外拠点の実在は事実</td></tr>
+      <tr><td class="l">(4) 自社製品等の品質</td><td class="l">やや固有</td><td class="l">「半導体製造企業や自動車関連企業に対する損害賠償は甚大」と顧客特性に踏み込む</td></tr>
+      <tr><td class="l">(5) ガバナンス・内部統制</td><td class="l"><strong>固有</strong></td><td class="l">「M&Aの推進に伴う事業の急速な拡大等により、十分なガバナンスや内部統制の整備が追いつかない」と自社の成長様式そのものをリスク源として名指し</td></tr>
+      <tr><td class="l">(6) サイバー攻撃</td><td class="l">定型</td><td class="l">ほぼ全上場企業共通の記述</td></tr>
+    </table>
+    <p><strong>定型は2件／全8項目（25%）。固有リスクの比率が高く、リスク開示としては具体性がある。</strong>特に「依存」を3方向（顧客・業界・仕入先）に分解して書いている構成は、この会社の事業構造を正直に映している。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>固有リスクの深掘り① 特定顧客への依存<span class="lab interp">解釈</span></h3>
+    <blockquote class="yuho">テストソリューション事業における主力製品である半導体メモリー向け自社製テストシステムの販売事業の顧客は、特定の半導体メモリー製造企業であり、当該セグメントの売上高に占める主要顧客への依存度が高い水準となっております。</blockquote>
+    <p><strong>財務との照合：</strong></p>
+    <ul>
+      <li>テストソリューション事業の売上18,456百万円のうち、本体テスターは4,250百万円（残る14,206百万円はSTAr Technologies）。<strong>連結売上に対する本体テスターの比率は9.1%。</strong>「特定顧客依存」の直接的な売上エクスポージャーはこの範囲と読める。<span class="lab interp">解釈</span></li>
+      <li>一方、<strong>関連情報の「主要な顧客ごとの情報」は「特定の顧客への売上高が連結損益計算書の売上高の10％に満たないため、記載を省略」となっている。</strong>つまり最大顧客でも連結売上の10%未満。この開示とリスク章の「依存度が高い水準」は矛盾しない ―― セグメント内では高依存だが、連結全体では10%未満、という関係である。<span class="lab fact">事実</span></li>
+      <li>しかし在庫のエクスポージャーは売上比率より大きい。<strong>商品及び製品6,595百万円のうち提出会社計上額4,349百万円（自社製テストシステムを含む）。総資産の13.7%。</strong>売上への影響が9%でも、評価損リスクは総資産の1割超に及ぶ。<span class="lab interp">解釈</span></li>
+      <li>当期は<strong>この在庫がさらに増えている</strong>（商品及び製品6,052→6,595百万円）。「在庫水準の適正化」という資本政策の目安とは逆方向である。ただし受注残高が29,485百万円へ急増しているため、翌期売上の裏付けがある在庫である可能性は高い。<span class="lab interp">解釈</span></li>
+    </ul>
+    <p><strong>過小開示の指摘：主要顧客名も、セグメント内依存度の具体的な%も開示されていない。</strong>「高い水準」という定性表現のみである。棚卸資産評価がKAMに指定されるほど重要な論点でありながら、投資家が自分で感応度を計算できる数値は与えられていない。<span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>固有リスクの深掘り② 自動車業界への依存<span class="lab interp">解釈</span></h3>
+    <p>リスク章は「システム・サービス事業や半導体設計関連事業において取り扱う製商品・サービスの主要取引先には、国内の自動車メーカー及びその関連企業が含まれます」とする。</p>
+    <p><strong>財務との照合：このリスクは当期すでに顕在化している。</strong>MD&Aでガイオ・テクノロジーについて「自動車関連の需要が減速している影響により、検証ツール販売、エンジニアリングサービスが共に伸び悩んだ」「減収減益」と記載。ガイオの売上は5,003→4,741百万円と▲5.2%。さらに翌期見通しでも「自動車業界の投資抑制により、車載関連の受託や組込みソフト検証ツール及び検証サービスは一定程度の影響を受ける」としている。三栄ハイテックスのベトナム子会社もAI関連需要減で影響を受けた。<span class="lab fact">事実</span></p>
+    <p><strong>ここが構造的な難所である。</strong>最も利益率の高いシステム・サービス事業（利益率12.0%、連結利益の48.6%）の中核であるガイオが、自動車業界サイクルの下降局面に入っている。テストソリューションの回復とシステム・サービスの減速が同時に起きており、<strong>「業績の安定性向上」という中計戦略は、セグメント間の逆相関がたまたま働いた形で当期は機能したが、能動的に達成されたわけではない。</strong><span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>固有リスクの深掘り③ ガバナンス・内部統制<span class="lab interp">解釈</span></h3>
+    <p>M&Aによる急拡大を自らリスク源として挙げ、対策として「新たに買収した子会社等に対しては、規程の整備や会計方針の統一などに親会社が積極的に関与」「当社の役員や従業員を子会社の役員として出向又は兼務させて子会社の経営に関与」を挙げる。関係会社の状況を見ると、記載のある主要子会社のほぼすべてに「役員の兼任あり」とあり、この対策は実際に実行されている。<span class="lab fact">事実</span></p>
+    <p><strong>ただし内部監査室の人員は専従2名（うち公認内部監査人1名）である。</strong>連結子会社20社・従業員1,620人・海外拠点複数（台湾・中国・ベトナム・米国・シンガポール・フィリピン）という体制に対して、この人数は薄い。当期新たにファイ・マイクロテックを連結に加えており、監査対象は増えている。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>経営上の重要な契約等（第2-5）<span class="src">[③]</span></h3>
+    <blockquote class="yuho">５【重要な契約等】 該当事項はありません。</blockquote>
+    <p><strong>これは注目すべき「沈黙」である。</strong>リスク章では「EDAソフトウェアは特定の仕入先に依存」「代理店契約の解消等により、当社グループの事業展開や経営成績等に影響を及ぼす可能性」と明記されている。半導体設計関連事業（連結売上の29.4%）の中核が米ケイデンス社の代理店販売であることを考えると、<strong>当該代理店契約は事業の存立に関わる契約のはずだが、「重要な契約等」には該当なしとされている。</strong><span class="lab interp">解釈</span></p>
+    <p>この扱いは形式的には正しい可能性がある（開示府令上の「重要な契約」は資本提携・技術援助・経営委任等の類型が念頭にあり、通常の販売代理店契約は該当しない運用が一般的）。ただし<strong>投資家の立場からは、契約期間・更新条件・解約条項が一切分からないまま、売上の3割弱の継続性を評価しなければならない。</strong>ここは有報だけでは埋まらない情報の穴である。<span class="lab check">要確認</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅶ. MD&A ============ -->
+<div class="panel" id="p7">
+  <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+
+  <div class="card">
+    <h3>業績事実の要約<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">項目（百万円）</th><th>第39期</th><th>第40期</th><th>増減率</th></tr>
+      <tr><td class="l">売上高</td><td>41,977</td><td>46,737</td><td>+11.3%</td></tr>
+      <tr><td class="l">売上原価</td><td>29,327</td><td>32,491</td><td>+10.8%</td></tr>
+      <tr><td class="l">売上原価率</td><td>69.9%</td><td>69.5%</td><td>▲0.4pt</td></tr>
+      <tr><td class="l">販売費及び一般管理費</td><td>10,762</td><td>11,137</td><td>+3.5%</td></tr>
+      <tr><td class="l">営業利益</td><td>1,887</td><td>3,108</td><td>+64.7%</td></tr>
+      <tr><td class="l">営業利益率</td><td>4.5%</td><td>6.7%</td><td>+2.2pt</td></tr>
+      <tr><td class="l">経常利益</td><td>1,754</td><td>2,912</td><td>+66.0%</td></tr>
+      <tr><td class="l">特別利益</td><td>339</td><td>3,349</td><td>—</td></tr>
+      <tr><td class="l">　うち固定資産売却益</td><td>1</td><td>2,911</td><td>—</td></tr>
+      <tr><td class="l">　うち投資有価証券売却益</td><td>—</td><td>437</td><td>—</td></tr>
+      <tr><td class="l">特別損失</td><td>75</td><td>109</td><td>—</td></tr>
+      <tr><td class="l">税金等調整前当期純利益</td><td>2,018</td><td>6,152</td><td>+204.8%</td></tr>
+      <tr><td class="l">法人税等合計</td><td>713</td><td>1,955</td><td>+173.9%</td></tr>
+      <tr><td class="l">親会社株主に帰属する当期純利益</td><td>1,200</td><td>4,111</td><td>+242.6%</td></tr>
+    </table>
+    <canvas id="chPL"></canvas>
+    <p style="margin-top:12px"><strong>営業増益の分解（当レポートによる読み解き・推計）：</strong>増益額1,221百万円のうち、売上総利益の増加は1,596百万円（12,649→14,246）、販管費増が375百万円。売上総利益増の内訳は、増収効果（売上+4,760百万円×前期粗利率30.1%≒1,434百万円）と原価率改善効果（0.4pt×当期売上≒162百万円）に概ね分解できる。<strong>増益の主因は原価率改善ではなく増収である。</strong>会社が原価率改善の理由に挙げるのは「自社製品の売上増や前連結会計年度に行ったプローブカード事業の一部譲渡などにより収益性が改善」。<span class="lab interp">解釈</span></p>
+    <p>営業外では、持分法による投資損失168百万円（前期70百万円）と投資事業組合運用損155百万円（前期242百万円）が恒常的な足かせ。<strong>この2つで合計323百万円、営業利益の10.4%を毎期削っている。</strong>不動産賃貸料484百万円−不動産賃貸費用345百万円＝純139百万円のプラスがこれを一部相殺しているが、<strong>本社を売却したことでこの賃貸収益は将来的に消える可能性が高い。</strong><span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>セグメント別の業績要因<span class="src">[③]</span></h3>
+    <h3>テストソリューション事業：売上18,456百万円（+23.2%）／利益1,190百万円（前期は損失▲312百万円）</h3>
+    <p>自社製テストシステムは「海外向けの新製品販売が大幅に伸長」＋「国内向けメモリーテスターの需要が回復」で増収。本体テスター売上は1,712→4,250百万円と2.5倍。STAr Technologiesは「プローブカード及び信頼性評価装置の販売が堅調」に加え「前連結会計年度にプローブカード事業の一部を譲渡したことなどによる販売費及び一般管理費の減少も寄与し、増収増益」。<span class="lab fact">事実</span></p>
+    <p><strong>読み取り：赤字→黒字転換の構図は「本体テスターの需要回復」＋「STArの事業縮小によるコスト削減」の合わせ技。</strong>後者は売却で身軽になった分の効果であり、繰り返し効かない。翌期見通しで会社自身が「研究開発への注力により利益面では減益」としているのは、この構図と整合的である。<span class="lab interp">解釈</span></p>
+
+    <h3>半導体設計関連事業：売上13,729百万円（+5.7%）／利益656百万円（+43.6%）</h3>
+    <p>EDAソフトは「既存顧客との長期契約や新規顧客開拓が概ね順調に進捗」。三栄ハイテックスは「ベトナム子会社におけるAI関連事業の需要が減少したものの、国内の半導体関連事業において、新規顧客からの受注や自社製IPの販売が伸長したことなどにより増収増益」。モーデックは半導体・自動車関連の新規顧客向け販売増で増収。<span class="lab fact">事実</span></p>
+    <p><strong>売上+5.7%に対し利益+43.6%と、レバレッジが強く効いている。</strong>三栄ハイテックスの「自社製IPの販売」が寄与したとされ、受託設計より粗利の高いIPライセンスが伸びた可能性がある。ただしモーデックの売上は224→210百万円と微減で、規模も小さい。<span class="lab interp">解釈</span></p>
+
+    <h3>システム・サービス事業：売上14,551百万円（+3.9%）／利益1,748百万円（▲2.8%）</h3>
+    <p>組込み製品は「主に社会インフラや防衛・船舶向けが伸長し増収」（3,075→3,873百万円、+26.0%）。アイティアクセスは決済システムのサービス収入と車載ソフト受託が堅調で増収増益（5,392→5,444百万円）。ガイオ・テクノロジーは「自動車関連の需要が減速している影響」に加え「新規受注を見込んだ外注費が一時的に過大」となり減収減益（5,003→4,741百万円）。レグラスはAIカメラ販売がほぼ前年並みで収益性改善（535→491百万円）。<span class="lab fact">事実</span></p>
+    <p><strong>唯一の減益セグメント。</strong>組込み製品の防衛・データセンター向けが+26%で伸びた分を、ガイオの落ち込みと外注費の一時要因が食った形。「外注費が一時的に過大」は翌期に是正されうるが、自動車需要の減速は翌期見通しでも継続するとされている。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>受注の状況 ― 翌期を読む最良の手がかり<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">セグメント</th><th>受注高<br>（百万円）</th><th>前年同期比</th><th>受注残高<br>（百万円）</th><th>前年同期比</th></tr>
+      <tr><td class="l">テストソリューション</td><td>21,090</td><td>151.5%</td><td>5,574</td><td>189.5%</td></tr>
+      <tr><td class="l">半導体設計関連</td><td>17,387</td><td>156.6%</td><td>16,027</td><td>129.6%</td></tr>
+      <tr><td class="l">システム・サービス</td><td>16,248</td><td>109.3%</td><td>7,883</td><td>127.4%</td></tr>
+      <tr><td class="l"><strong>合計</strong></td><td><strong>54,725</strong></td><td><strong>137.1%</strong></td><td><strong>29,485</strong></td><td><strong>137.2%</strong></td></tr>
+    </table>
+    <p><strong>受注高54,725百万円は当期売上46,737百万円を7,988百万円上回る。</strong>受注残高29,485百万円は当期売上の63.1%に相当（当レポート算出）。3セグメントすべてで受注残が増えており、特にテストソリューションは受注残が1.9倍。<span class="lab fact">事実</span></p>
+    <p><strong>MD&A本文はこの受注状況について一切コメントしていない。</strong>表として掲げられているだけで、翌期見通しの根拠としても引用されない。翌期の増収を最も強く示唆するデータが、経営者の分析からは切り離されている。<span class="lab interp">解釈</span></p>
+    <p class="note">注意：受注残高には複数年にわたって履行される契約が含まれる可能性があり、全額が翌期売上になるとは限らない。有報にはその内訳や履行期間の記載がない。<span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>キャッシュ・フローの質と資本の財源<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">（百万円）</th><th>第36期</th><th>第37期</th><th>第38期</th><th>第39期</th><th>第40期</th></tr>
+      <tr><td class="l">営業CF</td><td>2,741</td><td>1,680</td><td>2,621</td><td>1,711</td><td>4,058</td></tr>
+      <tr><td class="l">投資CF</td><td class="neg">▲1,150</td><td class="neg">▲1,692</td><td class="neg">▲1,444</td><td class="neg">▲410</td><td>+5,792</td></tr>
+      <tr><td class="l">財務CF</td><td class="neg">▲900</td><td class="neg">▲517</td><td>+808</td><td class="neg">▲3,382</td><td class="neg">▲7,952</td></tr>
+      <tr><td class="l">現金及び現金同等物期末残高</td><td>6,480</td><td>6,134</td><td>8,243</td><td>6,340</td><td>8,282</td></tr>
+    </table>
+    <canvas id="chCF"></canvas>
+    <p style="margin-top:12px"><strong>営業CFの質：</strong>営業CF 4,058百万円に対し、税金等調整前当期純利益は6,152百万円。ただしそのうち有形固定資産売却益2,802百万円は営業CFから控除される（投資CFへ振替）。<strong>実質の営業CF創出力は、税前利益から売却益を除いた3,350百万円に減価償却費1,290百万円を足し、売上債権増2,225百万円を引き、前受金増2,041百万円を足す ―― という構成。</strong>前受金の2,041百万円増が営業CFを大きく押し上げている点は見ておく必要がある。前受金は流動負債4,070→6,159百万円へ増加しており、<strong>受注残高の急増と整合する（前払を受けた案件が翌期に売上化する）。</strong>キャッシュの質としては、利益を伴わない先取りではなく受注の裏付けがある入金と読める。<span class="lab interp">解釈</span></p>
+    <p><strong>投資CFがプラスなのは異常値。</strong>有形固定資産の売却7,172百万円（本社）が、取得844百万円＋無形取得594百万円を大きく上回った結果。事業投資としての支出額は合計1,438百万円で、減価償却費1,290百万円をわずかに上回る水準にとどまる。<span class="lab fact">事実</span></p>
+    <p><strong>財務CFの▲7,952百万円は、短期借入金の返済5,361百万円と自己株式取得2,117百万円が中心。</strong>本社売却代金を借入返済と株主還元に充てた形で、資本政策の基本方針（D/Eレシオ・還元）と整合している。<span class="lab interp">解釈</span></p>
+    <blockquote class="yuho">これらの資金需要に対しては、まず営業キャッシュ・フローで獲得した資金を使用し、不足分について金融機関からの借入などによる調達を実施することとしております。長期借入金や社債などの長期資金の調達につきましては、金利動向などの調達環境を考慮の上、調達規模や調達手段を適宜判断して実施することとしております。</blockquote>
+    <p><strong>この記述は定型的である。</strong>運転資金の中身（在庫・売掛の回転や季節性）にも、当期に実際に起きた借入5,361百万円返済という大きな動きにも触れていない。当期最大の財務イベントである本社売却と借入圧縮の関係を、資本の財源の章で説明していないのは説明の実質性を欠く。<span class="lab interp">解釈</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅷ. 将来への投資 ============ -->
+<div class="panel" id="p8">
+  <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+
+  <div class="card">
+    <h3>Ⅷ-a 設備の状況<span class="src">[③]</span></h3>
+    <p><strong>資産集約度は低い。</strong>有形固定資産は期末6,646百万円で総資産の13.8%（前期は10,593百万円・22.5%）。装置産業ではなく、深掘りの必要性は限定的である。<span class="lab interp">解釈</span></p>
+
+    <h3>当期の最大トピック：本社売却</h3>
+    <blockquote class="yuho">当連結会計年度における重要な設備の売却として、当社は、神奈川県横浜市に所在する本社の土地及び建物等について、信託設定した上で２分割して引き渡す契約に基づき、その１回目として2026年３月31日付で譲渡いたしました。これに伴い、固定資産売却益2,910百万円を特別利益として計上しております。／なお、当該契約に基づき、残余部分については2026年９月末に追加譲渡を行う予定であり、本件取引は当該譲渡をもって完了する見込みであります。</blockquote>
+    <p><strong>これは翌期業績を左右する確定情報である。</strong>2026年9月末に残余部分の追加譲渡が予定されており、第41期（2027年3月期）に2回目の売却益が計上される見込み。金額は開示されていない。<span class="lab check">要確認</span> 1998年12月に建てた自社ビル（創立10周年記念の新社屋）を28年目に手放す取引であり、沿革の年表にも「（2026年３月 信託設定及び信託受益権の一部譲渡）」として追記されている。<span class="lab fact">事実</span></p>
+    <p>提出会社の主要な設備の欄では、本社の土地帳簿価額2,518百万円（1,694.72㎡）・建物1,427百万円が残っており、注記に「信託受益権の譲渡に伴い、本社設備が著しく減少しております」「一部を除く会社統括業務の設備は信託受益権であり、信託財産を自ら所有するものとして記載」とある。<strong>売却後も信託受益権として一部を保有し、そこから年間482百万円の賃貸料を得ている。</strong><span class="lab fact">事実</span></p>
+
+    <h3>拡張／維持の判定</h3>
+    <table>
+      <tr><th class="l">項目</th><th>金額（百万円）</th></tr>
+      <tr><td class="l">有形固定資産の取得（投資CF）</td><td>844</td></tr>
+      <tr><td class="l">無形固定資産の取得（投資CF）</td><td>594</td></tr>
+      <tr><td class="l">設備投資合計</td><td><strong>1,438</strong></td></tr>
+      <tr><td class="l">減価償却費（連結CF計算書）</td><td>1,290</td></tr>
+      <tr><td class="l">設備投資／減価償却費</td><td><strong>1.11倍</strong></td></tr>
+    </table>
+    <p class="note">比率は当レポートによる算出値（推計・保証なし）。<span class="lab interp">解釈</span></p>
+    <p><strong>判定：維持水準をわずかに上回る程度で、「拡張」とは言えない。</strong>しかも設備の新設計画の章は<em>「当連結会計年度末現在における重要な設備の新設、改修及び除却等の計画はありません」</em>の一文で終わっている。<span class="lab fact">事実</span></p>
+    <p><strong>Ⅳ（成長戦略）との接続の断絶：</strong>中計は「営業利益率の向上／自社製品比率の向上・メーカー化」を掲げ、テストソリューション事業ではDRAM向けテスター開発やMEMS型プローブカードへの展開を打ち出している。<strong>にもかかわらず、それを支える設備投資計画はゼロと明記されている。</strong>この会社の「メーカー化」は、自社工場を建てる方向ではなく、開発（研究開発費）と外部委託生産で実現する設計になっていると読める。実際、生産実績の注記に「一部の自社製品については、社外へ委託生産を行っており」とある。<strong>資本を固定資産に寝かせずに製品化するモデルであり、本社売却もこの方向と一貫している。</strong><span class="lab interp">解釈</span></p>
+    <p>Ⅶ（CF）との接続：投資CFがプラス5,792百万円になったのは売却によるもので、事業投資の絶対額1,438百万円は前期・前々期と大きく変わらない水準。<strong>売却で得た資金は再投資ではなく借入返済と自己株式取得に回った。</strong><span class="lab interp">解釈</span></p>
+    <p class="note">賃借設備：ガイオ・テクノロジー89百万円／レグラス25百万円／STAr Technologies及びその子会社302百万円（年間賃借料）。海外の製造・オフィスは自社保有ではなく賃借中心。<span class="lab fact">事実</span></p>
+  </div>
+
+  <div class="card">
+    <h3>Ⅷ-b 研究開発活動<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">セグメント</th><th>研究開発費<br>（百万円）</th><th>セグメント売上<br>（百万円）</th><th>対売上比</th><th>構成比</th></tr>
+      <tr><td class="l">テストソリューション</td><td>1,715</td><td>18,456</td><td><strong>9.3%</strong></td><td>82.5%</td></tr>
+      <tr><td class="l">半導体設計関連</td><td>93</td><td>13,729</td><td>0.7%</td><td>4.5%</td></tr>
+      <tr><td class="l">システム・サービス</td><td>270</td><td>14,551</td><td>1.9%</td><td>13.0%</td></tr>
+      <tr><td class="l"><strong>合計</strong></td><td><strong>2,079</strong></td><td>46,737</td><td><strong>4.4%</strong></td><td>100%</td></tr>
+    </table>
+    <p class="note">対売上比・構成比は当レポート算出（推計・保証なし）。<span class="lab interp">解釈</span></p>
+    <canvas id="chRD"></canvas>
+    <p style="margin-top:12px"><strong>研究開発費の82.5%がテストソリューション事業1つに集中している。</strong>同事業の対売上比9.3%は、装置メーカーとしては相応の水準。一方、半導体設計関連事業は0.7%と実質的にほぼ研究開発を行っていない ―― これは同事業が「ケイデンス社EDAの販売」と「設計受託」であり、自社で製品を開発する事業ではないことの反映である。<strong>この会社の「メーカー」としての実体は、事実上テストソリューション事業のみに存在する。</strong><span class="lab interp">解釈</span></p>
+
+    <h3>研究開発テーマの具体性</h3>
+    <table>
+      <tr><th class="l">領域</th><th class="l">テーマ</th><th class="l">当期の到達点</th></tr>
+      <tr><td class="l">テスト（本体）</td><td class="l">次世代3D NAND向けテストシステム（超多数個同時測定、新テスタプラットフォーム、AI技術を活用した要素開発）</td><td class="l"><strong>顧客評価が完了、翌期内の納入を計画</strong></td></tr>
+      <tr><td class="l">テスト（本体）</td><td class="l">DRAM向けテストシステム（NAND技術の応用、小型化）</td><td class="l">試作基板の開発・基礎評価を完了</td></tr>
+      <tr><td class="l">テスト（本体×子会社）</td><td class="l">イメージセンサー向け高速インターフェース対応キャプチャーボード（レグラス・STArと共同開発）</td><td class="l"><strong>量産化に至った</strong></td></tr>
+      <tr><td class="l">テスト（STAr）</td><td class="l">化合物パワー半導体向け高電圧・広周波数対応の信頼性評価装置、低リーク特性のプローブステーション、MEMS型プローブカード、高耐圧プローブカード</td><td class="l">開発に取り組み（到達点の記載なし）</td></tr>
+      <tr><td class="l">システム</td><td class="l">「INNINGS」CPUボード／BOX PC（インテルAtom最新世代 Amston Lake搭載）</td><td class="l">順次製品化。リチウムイオンキャパシタUPS内蔵の産業用PCを<strong>市場投入</strong></td></tr>
+      <tr><td class="l">システム</td><td class="l">エッジAI顔認証「EdgeFace」</td><td class="l">実証実験の結果に基づき製品開発を推進（未製品化）</td></tr>
+      <tr><td class="l">システム（ガイオ）</td><td class="l">組込みソフト検証ツールのコード解析機能高速化、モデルベース開発の次世代製品、AIを活用したテスト手法</td><td class="l">高速化は<strong>製品化を実現</strong>。次世代製品は研究段階</td></tr>
+      <tr><td class="l">システム（アイティアクセス）</td><td class="l">新決済サービス対応端末、クレジットカード決済のPCI-PTS対応</td><td class="l">注力（到達点の記載なし）</td></tr>
+    </table>
+    <p><strong>テーマの記述は具体的で、しかも到達段階（研究中／評価完了／量産化／市場投入）が案件ごとに書き分けられている。</strong>特に「次世代3D NAND向けテストシステムの顧客評価が完了し、翌連結会計年度内の納入を計画」は、翌期の売上に直結する情報を具体的な時期とともに開示したものである。<span class="lab interp">解釈</span></p>
+    <p><strong>成長ドライバーとしての仕込み姿勢：</strong>研究開発の重心は、①NANDからDRAM・イメージセンサーへのデバイス横展開、②化合物／パワー半導体という新市場、③エッジAI（顔認証）とデータセンター向け組込み、の3方向。<strong>①②はいずれも「特定顧客依存からの脱却」という中計の課題に直接対応しており、課題と研究開発が接続している数少ない箇所である。</strong>ただしテストソリューション事業の翌期見通しに「研究開発への注力により利益面では減益」とあるとおり、この仕込みは短期的には利益を圧迫する。<span class="lab interp">解釈</span></p>
+    <p class="note">研究開発費の前期比較値は有報に記載がなく、対売上比の推移は追えない。<span class="lab check">要確認</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅸ. 資本政策・株主還元 ============ -->
+<div class="panel" id="p9">
+  <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+
+  <div class="card">
+    <h3>配当政策<span class="src">[③]</span></h3>
+    <blockquote class="yuho">連結配当性向30％を下回らないことを基本としつつ、急激な業績変化等が無ければ同50％程度を目安としております。／当連結会計年度の配当につきましては、上記方針に基づき１株当たり75円の普通配当（うち中間配当35円）に加え、固定資産売却益（特別利益）を計上したことから、特別配当50円を実施し、１株につき合計125円を予定しております。この結果、当連結会計年度の連結配当性向は39.0％となる予定です。</blockquote>
+    <table>
+      <tr><th class="l">期</th><th>第36期</th><th>第37期</th><th>第38期</th><th>第39期</th><th>第40期</th></tr>
+      <tr><td class="l">1株当たり配当額（円）</td><td>65.0</td><td>70.0</td><td>70.0</td><td>70.0</td><td><strong>125.0</strong></td></tr>
+      <tr><td class="l">（うち中間配当）</td><td>30.0</td><td>35.0</td><td>35.0</td><td>35.0</td><td>35.0</td></tr>
+      <tr><td class="l">配当性向（単体ベース・%）</td><td>47.3</td><td>58.2</td><td>63.3</td><td>150.1</td><td>41.9</td></tr>
+      <tr><td class="l">連結配当性向（%）</td><td>—</td><td>—</td><td>—</td><td>78.2</td><td>39.0</td></tr>
+    </table>
+    <p><strong>読み取り：普通配当は5円だけ増配（70円→75円）で、残る50円は特別配当。</strong>会社は特別配当の理由を「固定資産売却益（特別利益）を計上したことから」と明示しており、<strong>一時的な利益を一時的な還元で返すという整理は一貫している。</strong>逆に言えば、恒常的な増配ペースは年5円程度で、第37〜39期は70円据え置きだった。<span class="lab interp">解釈</span></p>
+    <p><strong>目安との乖離：</strong>配当性向39.0%は「50%程度」の目安を11pt下回る。第39期は業績悪化により配当性向78.2%まで跳ね上がったが70円を維持しており、<strong>この会社は配当性向を追いかけるのではなく1株配当の水準を守るタイプの還元方針を実際には採っている。</strong>ただしその運用と「配当性向50%程度」という表記の関係は有報では説明されていない。<span class="lab interp">解釈</span></p>
+    <p>期末配当90円（うち特別配当50円）・配当金の総額1,102百万円は2026年6月25日開催予定の定時株主総会の決議事項（有報提出時点で未確定）。中間配当は2025年11月10日取締役会決議で35円・462百万円。<span class="lab fact">事実</span></p>
+  </div>
+
+  <div class="card">
+    <h3>自己株式と総還元<span class="src">[③]</span></h3>
+    <ul>
+      <li>期末の保有自己株式数：1,445,614株。発行済株式総数13,700,000株に対し<strong>10.55%</strong>（議決権の状況の自己株式等の欄より）。<span class="lab fact">事実</span></li>
+      <li>当期の自己株式取得額：2,117百万円（財務CF）。<span class="lab fact">事実</span></li>
+      <li>当期の処分：株式給付信託への拠出38,000株（48百万円）、譲渡制限付株式報酬27,000株（34百万円）。消却は行っていない。<span class="lab fact">事実</span></li>
+      <li><strong>後発事象：2026年5月14日の取締役会で、上限1,000,000株・25億円（取得期間2026年5月15日〜12月31日、東証市場買付）の自己株式取得を決議。</strong><span class="lab fact">事実</span></li>
+    </ul>
+    <p><strong>総還元性向（当レポート推計）：</strong>配当総額1,565百万円（中間462＋期末1,102）＋自己株式取得2,117百万円＝3,682百万円。親会社株主に帰属する当期純利益4,111百万円に対し<strong>約89.5%。</strong>推計値・保証なし。<span class="lab interp">解釈</span></p>
+    <p>ただし当期純利益には売却益が含まれるため、この総還元性向は「一時利益を一時的に返した」結果である。<strong>それでも自己株式を消却せず10.55%も抱えたままである点は資本効率の観点で論点になる。</strong>資本政策の基本方針には「自己株式取得を機動的に行い、総還元性向を高め、自己資本額を適正に保つ」とあり、取得は方針どおりだが、消却については方針にも実績にも言及がない。<span class="lab interp">解釈</span></p>
+    <p>資本剰余金の推移としては、2020年8月31日に資本準備金1,800百万円を減少しその他資本剰余金へ振替済み（配当原資の確保と読める）。以降、発行済株式総数13,700,000株は変動していない。<span class="lab fact">事実</span></p>
+  </div>
+
+  <div class="card">
+    <h3>株主構成と支配構造<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">区分</th><th>金融機関</th><th>金融商品取引業者</th><th>その他の法人</th><th>外国法人等<br>（法人）</th><th>外国法人等<br>（個人）</th><th>個人その他</th></tr>
+      <tr><td class="l">所有株式数の割合（%）</td><td>22.56</td><td>4.32</td><td>1.01</td><td>15.51</td><td>0.14</td><td>56.46</td></tr>
+    </table>
+    <p class="note">「個人その他」には自己株式1,445,614株（14,456単元）が含まれる。「金融機関」には株式給付信託（J-ESOP）の信託E口保有株797単元が含まれる。<span class="lab fact">事実</span></p>
+    <canvas id="chOwn"></canvas>
+    <h3>大株主（上位10名・2026年3月31日現在）</h3>
+    <table>
+      <tr><th class="l">氏名又は名称</th><th>所有株式数（千株）</th><th>比率（%）</th></tr>
+      <tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>1,672</td><td>13.65</td></tr>
+      <tr><td class="l">Castlewilder Unlimited Company（アイルランド）</td><td>456</td><td>3.72</td></tr>
+      <tr><td class="l">株式会社みずほ銀行</td><td>420</td><td>3.43</td></tr>
+      <tr><td class="l">株式会社日本カストディ銀行（信託口）</td><td>399</td><td>3.26</td></tr>
+      <tr><td class="l">イノテック社員持株会</td><td>294</td><td>2.41</td></tr>
+      <tr><td class="l">DFA INTL SMALL CAP VALUE PORTFOLIO</td><td>285</td><td>2.33</td></tr>
+      <tr><td class="l">澄田 誠</td><td>200</td><td>1.64</td></tr>
+      <tr><td class="l">NOMURA PB NOMINEES LIMITED</td><td>175</td><td>1.43</td></tr>
+      <tr><td class="l">BNY GCM CLIENT ACCOUNT JPRD AC ISG</td><td>174</td><td>1.42</td></tr>
+      <tr><td class="l">竹内 賀子</td><td>148</td><td>1.21</td></tr>
+      <tr><td class="l"><strong>計</strong></td><td><strong>4,228</strong></td><td><strong>34.51</strong></td></tr>
+    </table>
+    <p><strong>支配構造の読み取り：</strong><span class="lab interp">解釈</span></p>
+    <ul>
+      <li><strong>支配株主・親会社は存在せず、創業家的な支配も見られない。</strong>個人大株主は澄田誠1.64%、竹内賀子1.21%の2名のみで、いずれも役員一覧には登場しない。上位10名合計でも34.51%で、<strong>安定株主が3分の1に満たない。</strong></li>
+      <li><strong>実質的な最大の意思決定主体は機関投資家である。</strong>信託銀行2社で16.91%、海外機関投資家（Castlewilder、DFA、NOMURA PB、BNY）で合計8.90%。DFAはスモールキャップ・バリュー戦略のファンドであり、資本効率への圧力がかかりやすい株主構成である。中計がROE・ROIC・D/Eレシオという資本市場の言語で書かれていること、当期に政策保有株式を全売却し本社を売却し自己株式を取得したことは、この株主構成と整合的に見える。</li>
+      <li><strong>少数株主の声は届きやすい構造。</strong>支配株主がおらず、取締役5名中3名が独立社外という体制と合わせると、株主提案や機関投資家の議決権行使が経営に影響しうる。半面、買収防衛的な安定株主が乏しいことは別種のリスクでもある。</li>
+      <li><strong>従業員の利害は一定程度そろえられている。</strong>イノテック社員持株会2.41%（第5位）に加え、株式給付信託（J-ESOP）により自己株式79,700株（110,344千円）を信託に拠出している。</li>
+    </ul>
+    <h3>役員持株</h3>
+    <table>
+      <tr><th class="l">役職</th><th class="l">氏名</th><th>所有株式数（千株）</th></tr>
+      <tr><td class="l">代表取締役 社長執行役員</td><td class="l">大塚 信行</td><td>67</td></tr>
+      <tr><td class="l">代表取締役 専務執行役員</td><td class="l">棚橋 祥紀</td><td>50</td></tr>
+      <tr><td class="l">社外取締役（監査等委員）</td><td class="l">中江 公人</td><td>—</td></tr>
+    </table>
+    <p>執行を担う2名の代表取締役が合計117千株（発行済の0.85%）を保有。譲渡制限付株式報酬制度により毎年積み上がる設計になっている。<strong>金額規模は大きくないが、社長が自社株を持たないタイプの企業ではない。</strong>社外取締役は保有ゼロで、これは独立性の観点では整合的。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>政策保有株式<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">区分</th><th>銘柄数</th><th>貸借対照表計上額（千円）</th></tr>
+      <tr><td class="l">非上場株式</td><td>2</td><td>10,001</td></tr>
+      <tr><td class="l">非上場株式以外の株式（上場株式）</td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
+    </table>
+    <p><strong>当期に上場政策保有株式4銘柄をすべて売却した。</strong>売却価額の合計522,943千円。売却したのは三井住友フィナンシャルグループ（66,000株・250,470千円）、三井住友トラストグループ（29,800株・110,856千円）、みずほフィナンシャルグループ（23,500株・95,198千円）、ほくほくフィナンシャルグループ（15,700株・40,317千円）。すべて「当事業年度において全株式を売却いたしました」と記載。<span class="lab fact">事実</span></p>
+    <p><strong>純資産に占める割合（当レポート算出・推計値）：</strong>残る非上場株式10,001千円÷自己資本26,348,005千円＝<strong>0.038%。</strong>実質ゼロである。<span class="lab interp">解釈</span></p>
+    <p><strong>評価：</strong>資本政策の基本方針に「取引銀行との政策保有株式の見直し」を掲げ、当期に完全売却で応えた。<strong>「見直し」という緩い表現に対して全売却という最も強い形で実行しており、掲げた方針の中で最も明確に達成された項目である。</strong>なお売却先の1つであるみずほ銀行は依然として当社の第3位株主（3.43%）であり、<strong>持ち合いは一方的に解消された形になっている。</strong><span class="lab interp">解釈</span></p>
+    <p>投資有価証券は2,648,107→1,978,759千円へ減少。その他有価証券評価差額金も318,450→31,416千円へ縮小しており、含み益の実現が済んだ状態である。<span class="lab fact">事実</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅹ. ガバナンス ============ -->
+<div class="panel" id="p10">
+  <h2 class="section">Ⅹ. ガバナンス</h2>
+
+  <div class="card">
+    <h3>体制の事実<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">項目</th><th class="l">内容</th></tr>
+      <tr><td class="l">機関設計</td><td class="l">監査等委員会設置会社（2023年6月に監査役会設置会社から移行）</td></tr>
+      <tr><td class="l">取締役会</td><td class="l">取締役5名（うち女性1名）。<strong>うち3名が社外取締役（過半数）</strong>。議長は社外取締役の中江公人</td></tr>
+      <tr><td class="l">任期</td><td class="l">1年（監査等委員は2年）</td></tr>
+      <tr><td class="l">監査等委員会</td><td class="l">3名。<strong>全員が社外取締役</strong>。委員長は廣瀬史乃</td></tr>
+      <tr><td class="l">任意の諮問委員会</td><td class="l">4名。うち独立社外3名（過半数）。<strong>委員長は独立社外取締役の栗山史</strong>。社長も委員</td></tr>
+      <tr><td class="l">執行役員制度</td><td class="l">導入済み（業務執行と監督の分離）</td></tr>
+      <tr><td class="l">内部監査室</td><td class="l">代表取締役直轄。専従2名（うちCIA〈公認内部監査人〉1名）</td></tr>
+      <tr><td class="l">会計監査人</td><td class="l">有限責任監査法人トーマツ。業務執行社員は會澤正志氏・中島雄一朗氏</td></tr>
+    </table>
+    <p><strong>形式面は整っている。</strong>取締役会議長と諮問委員会委員長がいずれも社外取締役であり、監査等委員会は全員社外。取締役5名という小規模な構成で社外3名を確保しているため、社外比率は60%と高い。任期1年により毎年の信任を受ける設計。<span class="lab interp">解釈</span></p>
+
+    <h3>取締役会・委員会の出席状況（当事業年度）</h3>
+    <table>
+      <tr><th class="l">氏名</th><th class="l">区分</th><th>取締役会<br>開催／出席</th><th>諮問委員会<br>開催／出席</th><th>監査等委員会<br>開催／出席</th></tr>
+      <tr><td class="l">大塚 信行</td><td class="l">取締役（社長）</td><td>17／17</td><td>8／6</td><td>—</td></tr>
+      <tr><td class="l">棚橋 祥紀</td><td class="l">取締役（専務）</td><td>17／17</td><td>—</td><td>—</td></tr>
+      <tr><td class="l">中江 公人</td><td class="l">社外・監査等委員</td><td>17／17</td><td>8／8</td><td>14／13</td></tr>
+      <tr><td class="l">廣瀬 史乃</td><td class="l">社外・監査等委員</td><td>17／16</td><td>8／7</td><td>14／11</td></tr>
+      <tr><td class="l">栗山 史</td><td class="l">社外・監査等委員（当期新任）</td><td>14／14</td><td>7／7</td><td>8／8</td></tr>
+      <tr><td class="l">安生 一郎</td><td class="l">社外・監査等委員（当期退任）</td><td>3／3</td><td>1／1</td><td>6／6</td></tr>
+    </table>
+    <p>取締役会は年17回（月1回以上）開催。<strong>監査等委員会委員長である廣瀬史乃氏の監査等委員会出席が14回中11回（78.6%）と、他の委員に比べて低い。</strong>諮問委員会も8回中7回。委員長の出席率としては留意点である。理由は有報に記載がない。<span class="lab check">要確認</span> 社長の諮問委員会出席が8回中6回なのは、自身の選解任・報酬に関わる議題では退席する運用の可能性があるが、これも明記されていない。<span class="lab interp">解釈</span></p>
+    <p>取締役会の検討内容として「中期経営計画の進捗に関する討議」「各事業の戦略に関する討議」「M&Aや投資に関する討議」「事業ポートフォリオに関する討議」が挙げられている。<strong>Ⅳで「打ち手が薄い」と指摘した事業ポートフォリオ最適化は、取締役会レベルでは討議されている。</strong><span class="lab fact">事実</span></p>
+    <p>監査等委員会の検討内容には「監査上の主要な検討事項（KAM）」「会計監査人の評価」「IT統制の状況」「内部通報制度の運用状況」が明記されており、KAMについて会計監査人と意見交換していると記載。<span class="lab fact">事実</span></p>
+  </div>
+
+  <div class="card">
+    <h3>役員報酬 ― 数値<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">役員区分</th><th>報酬等の総額<br>（千円）</th><th>固定報酬<br>（千円）</th><th>業績連動報酬<br>（千円）</th><th>譲渡制限付<br>株式報酬（千円）</th><th>退職慰労金</th><th>員数<br>（人）</th></tr>
+      <tr><td class="l">取締役（社外・監査等委員を除く）</td><td>159,412</td><td>114,000</td><td>26,925</td><td>18,487</td><td>—</td><td>2</td></tr>
+      <tr><td class="l">社外役員</td><td>28,800</td><td>28,800</td><td>—</td><td>—</td><td>—</td><td>4</td></tr>
+    </table>
+    <p class="note">社外役員4名には2025年6月25日の総会終結をもって退任した1名を含む。<span class="lab fact">事実</span></p>
+    <p>報酬構成比（当レポート算出）：業務執行取締役2名では固定71.5%／業績連動16.9%／株式報酬11.6%。<strong>固定報酬の比率が7割超で、変動報酬（業績連動＋株式報酬）は約28%。</strong>1人当たりでは約79,706千円。<span class="lab interp">解釈</span></p>
+    <p><strong>業績連動報酬の目標と実績（開示あり）：</strong></p>
+    <table>
+      <tr><th class="l">指標</th><th>当初目標</th><th>実績</th><th>達成率</th></tr>
+      <tr><td class="l">連結営業利益</td><td>2,600百万円</td><td>3,108百万円</td><td>119.6%</td></tr>
+      <tr><td class="l">親会社株主に帰属する当期純利益</td><td>1,700百万円</td><td>4,111百万円</td><td>241.9%</td></tr>
+    </table>
+    <p><strong>目標と実績の両方を数値で開示している点は評価できる。</strong>業績連動報酬の支給条件は「親会社株主に帰属する当期純利益の目標達成」を条件とし、配分の業績評価指標は「連結営業利益」を採用するという二段構えの設計。<span class="lab fact">事実</span></p>
+    <p><strong>ここに論点がある。</strong>支給の可否を決める指標が当期純利益であるため、<strong>本社売却益による当期純利益241.9%達成が、報酬支給のトリガーを引いた形になっている。</strong>ただし配分の評価指標は連結営業利益（達成率119.6%）であり、支給額26,925千円は月額報酬合計の300%という上限に対して抑制的な水準にとどまっている。<strong>ROEでは売却益を除いた8.4%を併記しながら、報酬の支給条件では売却益を含む当期純利益をそのまま使っているという非対称は指摘に値する。</strong>もっとも結果としての支給額が控えめであることから、運用面では過大な支給を避けた可能性がある。<span class="lab interp">解釈</span></p>
+    <p>譲渡制限付株式報酬の付与株数は「前連結会計年度の連結ROEと前連結会計年度末の連結PBRをそれぞれ50%の比率で評価指標として用いて」上限を決める設計。<strong>PBRを報酬の評価指標に組み込んでいるのは、東証のPBR改善要請を意識した設計と読める。</strong><span class="lab interp">解釈</span></p>
+    <p>報酬限度額（2023年6月23日 第37回定時株主総会決議）：取締役（監査等委員を除く）年額300百万円以内＋別枠で譲渡制限付株式年額150百万円以内、監査等委員である取締役 年額60百万円以内。<strong>実績159百万円は限度額300百万円の53%、社外役員28.8百万円は60百万円の48%。</strong>枠に対して実支給は半分程度。<span class="lab interp">解釈</span></p>
+    <p>報酬決定プロセス：固定報酬・株式報酬は諮問委員会の答申を経て取締役会が決定。<strong>業績連動報酬は取締役会決議により社長（大塚信行氏）に一任</strong>されており、諮問委員会は社長に対して答申する形。一任の理由は「当社グループ全体の業績を俯瞰しつつ各取締役及び執行役員が分掌する事業の評価を行うには代表取締役社長執行役員が最も適している」。<span class="lab fact">事実</span> <strong>社長が自身を含む取締役の業績連動報酬の配分を決める構造であり、諮問委員会の答申が歯止めとして機能する設計になっている。</strong><span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>主要役員の属性<span class="src">[③]</span></h3>
+    <p>役員は男性4名・女性1名（女性比率20.0%）。<span class="lab fact">事実</span></p>
+    <h3>大塚 信行（代表取締役 社長執行役員／1962年12月生）</h3>
+    <p>1982年ヒューモラボラトリー入社 → 1987年丸紅ハイテック・コーポレーション（現・丸紅情報システムズ）入社 → <strong>1991年4月に当社入社</strong> → 2006年テスト技術部長 → 2009年テストソリューション本部長 → 2012年取締役 → 2019年代表取締役専務 → 2021年4月代表取締役社長 → 2023年6月から現職。STAr Technologies董事、INNOTECH FRONTIER取締役を兼任。<span class="lab fact">事実</span></p>
+    <p><strong>読み取り：勤続35年の生え抜きで、キャリアの中心はテストソリューション事業。</strong>社長在任は2021年4月から約5年。中計で最も具体的な戦略が描かれているのがテストソリューション事業であり、翌期に「研究開発への注力により減益」を許容する判断を下していることは、社長の出身事業に対する理解と裁量の深さと整合的に見える。一方、最も利益を出しているシステム・サービス事業の記述が相対的に薄いことも、この経歴と無関係ではない可能性がある。<span class="lab interp">解釈</span></p>
+    <h3>棚橋 祥紀（代表取締役 専務執行役員／1967年12月生）</h3>
+    <p>1990年野村総合研究所 → 野村證券 → 1999年メリルリンチ証券（現BofA証券）投資銀行部門ヴァイス・プレジデント → 2003年スカイパーフェクト・コミュニケーションズ（経営企画室長、管理本部統括部長）→ <strong>2010年8月に当社入社（管理本部財務経理部長）</strong> → 2013年取締役管理本部長 → 2021年代表取締役専務 → 2023年6月から現職。<span class="lab fact">事実</span></p>
+    <p><strong>読み取り：投資銀行出身のCFO型ナンバー2。</strong>この経歴は、この会社の資本政策の性格をよく説明する。ROE／ROIC／D/Eレシオという資本市場の指標での目標設定、譲渡制限付株式報酬の評価にPBRを組み込む設計、政策保有株式の全売却、本社の信託設定による2分割譲渡（単純売却ではなく信託スキーム）、自己株式取得の機動的実施 ―― いずれも投資銀行の実務に近い手法である。<strong>この会社の「資本政策の技術水準」は、事業規模に対して高い。</strong><span class="lab interp">解釈</span></p>
+    <h3>社外取締役3名（全員が監査等委員）</h3>
+    <ul>
+      <li><strong>中江 公人</strong>（1953年6月生／取締役会議長）：大蔵省（現財務省）入省、国税庁日立税務署長、在ニューヨーク日本国総領事館領事、大蔵省主計局主計官、内閣官房長官秘書官、防衛庁経理局会計課長、金融庁検査局総務課長・証券取引等監視委員会事務局総務検査課長・総務企画局審議官・総括審議官等を歴任。<strong>官庁（財務・金融行政）出身で、会社は「財務及び会計の十分な知見を有して」いると評価。</strong>取締役会17回全出席・諮問委員会8回全出席と出席率は最も高い。<span class="lab fact">事実</span></li>
+      <li><strong>廣瀬 史乃</strong>（監査等委員会委員長／女性）：出席率は取締役会16／17、監査等委員会11／14。専門性は有報の抜粋範囲では確認できていない。<span class="lab check">要確認</span></li>
+      <li><strong>栗山 史</strong>（諮問委員会委員長／2025年6月新任）：金融機関およびコンサルティング会社における長年の経験と専門知識があり、財務及び会計の十分な知見を有すると会社が評価。<span class="lab fact">事実</span></li>
+    </ul>
+    <p><strong>独立性と専門性の評価：</strong>社外3名のうち2名（中江・栗山）が財務・会計の知見を持つとされ、監査等委員会全員社外という構成と合わせると、財務監査面のガバナンスは相応に手当てされている。<strong>ただし3名とも財務・行政・金融の出身であり、半導体・エレクトロニクスという事業ドメインの専門家が社外取締役に不在である。</strong>M&Aによる事業ポートフォリオの見直しや技術投資の妥当性を監督する上で、この構成は事業面の目が薄いと読める。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>監査報酬<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">区分</th><th>前期・監査証明<br>（千円）</th><th>前期・非監査<br>（千円）</th><th>当期・監査証明<br>（千円）</th><th>当期・非監査<br>（千円）</th></tr>
+      <tr><td class="l">監査公認会計士等（トーマツ）／提出会社</td><td>55,000</td><td>—</td><td>56,000</td><td>—</td></tr>
+      <tr><td class="l">同一ネットワーク（Deloitte）／連結子会社</td><td>5,955</td><td>2,120</td><td>6,165</td><td>2,195</td></tr>
+    </table>
+    <p><strong>提出会社に対する非監査業務報酬はゼロで、独立性を損なう構造は見られない。</strong>連結子会社（STAr Technologies）の税務コンサルティング等が2,195千円あるが、監査報酬に対して小さい。監査報酬の総額は約64百万円で、前期比+2.0%。監査等委員会が報酬に同意した理由も「同業他社や同規模会社等の情報と比較して適切であるか」を検証したと記載されている。<span class="lab interp">解釈</span></p>
+  </div>
+</div>
+
+<!-- ============ Ⅺ. 会計面の定性シグナル ============ -->
+<div class="panel" id="p11">
+  <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+
+  <div class="card">
+    <h3>KAM（監査上の主要な検討事項）― 2件<span class="src">[③]</span></h3>
+    <h3>KAM① 得意先での検収作業完了の確認が必要な収益認識</h3>
+    <p><strong>監査人が重要と判断した理由：</strong>連結売上46,737百万円のうちテストソリューション事業が18,456百万円（39.5%）を占める。半導体テストシステムは「顧客に検収された時点」で収益を認識するが、引き渡しにあたって顧客の半導体メモリー製造にあたっての動作確認を含む検収作業が必要で、<strong>検収完了の確認には「得意先ごとの製品の取引実態に応じた判断が必要」。</strong><span class="lab fact">事実</span></p>
+    <p><strong>監査対応：</strong>売上計上承認時に得意先の検収完了日を確かめる統制の有効性評価／年間売上取引からのサンプリングと技術検収書・経理検収書の閲覧／注文書・出荷指示書・納品確認書による実物移動の確認／<strong>期末日基準での売上債権残高確認状を得意先へ直接発送し回答を入手。</strong>重要な連結子会社の監査人が実施した手続も含む。<span class="lab fact">事実</span></p>
+    <p><strong>読み取り：</strong>これは典型的な「期ズレ（カットオフ）」の論点である。1台あたりの単価が大きく、検収に顧客側の作業が必要な装置ビジネスでは、期末近辺の1〜2台の検収タイミングで売上が数億円単位で動く。<strong>本体テスター売上が1,712→4,250百万円と2.5倍になった当期において、この論点が改めてKAMに置かれていることは自然である。</strong>ただし監査人は残高確認状を得意先から直接入手するところまで手続を踏んでおり、対応としては強い。<span class="lab interp">解釈</span></p>
+
+    <h3>KAM② 棚卸資産の評価の妥当性</h3>
+    <p><strong>監査人が重要と判断した理由：</strong>商品及び製品6,595百万円は主にテストソリューション事業の自社製テストシステムで、<strong>総資産の13.7%を占める。</strong>顧客が特定の半導体メモリー製造企業であり、「半導体市場の需給バランスが崩れ、一時的な市場収縮による顧客の設備投資の抑制等により、会社グループの経営成績に大きな影響を及ぼしており、商品及び製品の残高は高い水準での推移が継続している」。<span class="lab fact">事実</span></p>
+    <p><strong>監査対応：</strong>評価減の要否・販売計画に係る判断と承認を含む内部統制の有効性評価／経営者および当該セグメント責任者への販売計画ヒアリング／<strong>半導体市場の市場統計情報等に基づく分析</strong>／<strong>主たる販売先の業績及び財政状態の分析。</strong><span class="lab fact">事実</span></p>
+    <p><strong>読み取り：「主たる販売先の業績及び財政状態について分析を実施し」という手続は、監査人が特定の1社を識別して財務分析していることを意味する。</strong>会社が顧客名を開示していないことと、監査人がその1社を分析対象としていることの対比は、この依存関係の実在を裏づけている。<span class="lab interp">解釈</span></p>
+  </div>
+
+  <div class="card">
+    <h3>重要な会計上の見積り<span class="src">[③]</span></h3>
+    <p>識別された項目は<strong>「棚卸資産の評価」1つのみ。</strong>のれん656,578千円があるにもかかわらず、のれんの評価は重要な見積りに挙げられていない。<span class="lab fact">事実</span></p>
+    <table>
+      <tr><th class="l">項目</th><th>前期（千円）</th><th>当期（千円）</th></tr>
+      <tr><td class="l">商品及び製品（連結）</td><td>6,052,657</td><td>6,595,870</td></tr>
+      <tr><td class="l">　うち提出会社計上額</td><td>3,471,043</td><td><strong>4,349,150</strong></td></tr>
+    </table>
+    <p><strong>提出会社計上額が3,471→4,349百万円へ+25.3%増加している。</strong>ここに自社製テストシステムが含まれる。<strong>受注残高が急増している局面なので在庫積み増しは合理的とも読めるが、資本政策の「在庫水準の適正化」という目安とは逆方向である。</strong><span class="lab interp">解釈</span></p>
+    <blockquote class="yuho">半導体市場の予期せぬ急激な縮小や生産活動の停滞、業界再編等に伴う顧客の事業撤退や事業売却が生じた場合は、翌連結会計年度において回収が見込まれない棚卸資産の評価損を計上する可能性があります。</blockquote>
+    <p><strong>見積り前提の楽観／保守：</strong>会社は将来販売見込みを「半導体市況や主要顧客の投資見込みに基づき」見積もっている。翌期見通しで「市況の好転により国内メモリー向けテスターについても需要が大きく回復するものと予想」としており、<strong>在庫評価の前提と業績見通しの前提は同じ方向を向いている（整合はしているが、両方が外れる場合は同時に外れる）。</strong>感応度分析（市況が何%悪化したら評価損がいくら発生するか）は開示されていない。<span class="lab check">要確認</span></p>
+  </div>
+
+  <div class="card">
+    <h3>本表の財務特徴 ― どんな財務体質の会社か<span class="src">[③]</span></h3>
+    <table>
+      <tr><th class="l">項目（百万円）</th><th>前期</th><th>当期</th><th class="l">読み</th></tr>
+      <tr><td class="l">現金及び預金</td><td>6,532</td><td>8,534</td><td class="l">月商2.19か月。自ら課した「2か月以内」を超過</td></tr>
+      <tr><td class="l">売掛金</td><td>10,840</td><td>13,205</td><td class="l">売上比28.3%。回転日数約103日と長い</td></tr>
+      <tr><td class="l">棚卸資産（商品製品＋仕掛品＋原材料）</td><td>9,355</td><td>9,834</td><td class="l">売上比21.0%。装置在庫が重い</td></tr>
+      <tr><td class="l">流動資産合計</td><td>29,711</td><td>34,835</td><td class="l"><strong>総資産の72.5%が流動資産</strong></td></tr>
+      <tr><td class="l">有形固定資産</td><td>10,593</td><td>6,646</td><td class="l">本社売却で37%減。総資産の13.8%</td></tr>
+      <tr><td class="l">のれん</td><td>638</td><td>656</td><td class="l">自己資本の2.5%。<strong>M&A中心の会社としては驚くほど小さい</strong></td></tr>
+      <tr><td class="l">総資産</td><td>47,008</td><td>48,048</td><td class="l">ほぼ横ばい</td></tr>
+      <tr><td class="l">有利子負債（短期＋1年内＋長期）</td><td>9,616</td><td>4,873</td><td class="l"><strong>ほぼ半減</strong></td></tr>
+      <tr><td class="l">前受金</td><td>4,070</td><td>6,159</td><td class="l">+51.3%。受注残増と整合</td></tr>
+      <tr><td class="l">純資産</td><td>26,132</td><td>27,113</td><td class="l">自己株式取得で伸びは抑制</td></tr>
+      <tr><td class="l">自己株式</td><td>▲676</td><td>▲2,714</td><td class="l">4倍に</td></tr>
+      <tr><td class="l">自己資本比率</td><td>54.1%</td><td>54.8%</td><td class="l">当レポート検算でも54.83%で一致</td></tr>
+    </table>
+    <p><strong>財務体質の描写：</strong><span class="lab interp">解釈</span></p>
+    <ul>
+      <li><strong>本社売却により「重い会社」から「軽い会社」へ移行した。</strong>有形固定資産が総資産の22.5%→13.8%へ低下し、流動資産が72.5%を占める構成になった。装置産業の外観をしているが、実態は運転資本型のバランスシートである。</li>
+      <li><strong>B/Sの重さは固定資産ではなく運転資本にある。</strong>売掛金13,205百万円＋棚卸資産9,834百万円＝23,039百万円が総資産の48.0%。売上の49.3%が運転資本に寝ている。装置ビジネス（長い検収サイクル）と受託設計（工数の積み上がり）という事業特性の必然的な帰結。</li>
+      <li><strong>のれんが極端に小さい。</strong>20社を買収してきた会社としては、のれん656百万円（自己資本の2.5%）は異例に小さい。10年以内の均等償却を採用しており、当期償却額134百万円。<strong>減損リスクという意味では健全だが、裏を返せば買収を高い倍率では行っていない（あるいは償却がすでに進んでいる）ということでもある。</strong>当期はファイ・マイクロテック取得によりのれんが半導体設計関連で151→251百万円へ増加した一方、テストソリューションは486→404百万円へ減少。<strong>報告セグメントごとの減損損失は前期・当期とも「該当事項はありません」。</strong></li>
+      <li><strong>レバレッジは低下し続けている。</strong>有利子負債4,873百万円に対し現預金8,534百万円で、実質ネットキャッシュ3,661百万円。D/Eレシオ0.19倍は目標0.5倍の4割弱。<strong>財務リスクはほとんどない代わりに、資本効率の観点では余力を使い切っていない状態である。</strong>2026年5月決議の自己株式取得25億円はこの余力を使う動きと読める。</li>
+      <li><strong>利益の質：</strong>当期の税前利益6,152百万円のうち3,349百万円が特別利益。<strong>営業利益ベースの利益率6.7%が実力値で、これは中計の「営業利益率の向上」がまだ道半ばであることを示す。</strong>繰延税金資産は353→694百万円へ倍増しているが、金額規模は小さい。</li>
+      <li>退職給付に係る資産743百万円が負債372百万円を上回っており、年金は積立超過。役員退職慰労引当金106百万円が残存。<span class="lab fact">事実</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>GC注記・後発事象・偶発債務<span class="src">[③]</span></h3>
+    <ul>
+      <li><strong>継続企業の前提に関する注記：なし。</strong>自己資本比率54.8%・実質ネットキャッシュの財務状態からも該当する状況にない。<span class="lab fact">事実</span></li>
+      <li><strong>重要な後発事象：自己株式の取得（2026年5月14日取締役会決議）。</strong>普通株式1,000,000株（上限）／取得価額総額2,500,000千円（上限）／取得期間2026年5月15日〜12月31日／東証における市場買付。理由は「資本政策に関する基本方針に基づき、資本効率の向上と株主還元に資する施策として」。<span class="lab fact">事実</span> 上限1,000,000株は発行済株式総数の7.3%に相当し、既存の自己株式10.55%と合わせると相当な規模になる。<span class="lab interp">解釈</span></li>
+      <li><strong>偶発債務：</strong>関係会社の状況において、STAr Technologies, Inc.との関係内容に「債務の保証」の記載がある。金額の記載は当レポートが確認した範囲では見当たらない。<span class="lab check">要確認</span></li>
+      <li><strong>セグメント別の固定資産の減損損失：前期・当期とも該当なし。</strong><span class="lab fact">事実</span></li>
+      <li><strong>未適用の会計基準：</strong>「リースに関する会計基準」（企業会計基準第34号）を2028年3月期期首から適用予定。影響額は「現時点で評価中」。<strong>当社は本社を売却しており、今後オフィスを賃借する場合は使用権資産としてB/Sに戻ってくる可能性がある。</strong>また子会社の賃借料（ガイオ89百万円、レグラス25百万円、STAr 302百万円）も対象になりうる。<span class="lab interp">解釈</span> 「後発事象に関する会計基準」（第41号）も未適用基準として記載。<span class="lab fact">事実</span></li>
+      <li>借入金：短期借入金3,123百万円（平均利率2.8%）、1年内返済予定の長期借入金600百万円（0.6%）、長期借入金1,150百万円。<strong>短期借入の平均利率2.8%は長期0.6%より高く、海外子会社の現地通貨建て借入が含まれている可能性がある。</strong><span class="lab interp">解釈</span></li>
+      <li>社債：該当事項なし。<span class="lab fact">事実</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ Ⅻ. 論点と未解明事項 ============ -->
+<div class="panel" id="p12">
+  <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+
+  <div class="card">
+    <h3>買い材料になりうる記述と、その確からしさ<span class="lab interp">解釈</span></h3>
+    <table>
+      <tr><th class="l" style="width:30%">記述</th><th class="l">内容</th><th class="l" style="width:22%">確からしさ</th></tr>
+      <tr><td class="l">受注残高の急増</td><td class="l">期末受注残29,485百万円（前期比+37.2%）＝当期売上の63.1%。3セグメントすべてで増加。前受金も4,070→6,159百万円へ+51.3%と、キャッシュの裏づけを伴う</td><td class="l"><strong>高い。</strong>数値は開示済み。ただし履行期間の内訳がなく、全額が翌期売上になる保証はない<span class="lab check">要確認</span></td></tr>
+      <tr><td class="l">次世代3D NAND向けテストシステムの納入</td><td class="l">「顧客評価が完了し、翌連結会計年度内の納入を計画」と明記</td><td class="l"><strong>中〜高。</strong>評価完了は事実。ただし納入時期は「計画」で、KAM①のとおり検収タイミングは顧客都合で動く</td></tr>
+      <tr><td class="l">国内メモリー向けテスターの需要回復</td><td class="l">翌期見通しで「市況の好転により…需要が大きく回復するものと予想」</td><td class="l">中。当期すでに本体テスター売上が2.5倍になっており、回復は始まっている。ただし「予想」であり市況次第</td></tr>
+      <tr><td class="l">本社売却の2回目</td><td class="l">2026年9月末に残余部分を追加譲渡予定。第41期に売却益が計上される見込み</td><td class="l"><strong>高い（発生）／不明（金額）。</strong>契約に基づく予定と明記されるが、金額は非開示<span class="lab check">要確認</span></td></tr>
+      <tr><td class="l">自己株式取得25億円</td><td class="l">2026年5月14日決議、上限1,000,000株（発行済の7.3%）、12月31日まで</td><td class="l"><strong>高い（決議済）。</strong>ただし上限であり全額執行の保証はない</td></tr>
+      <tr><td class="l">防衛・データセンター向け組込み製品</td><td class="l">当期「社会インフラや防衛・船舶向けが伸長」で組込みシステム他が+26.0%。翌期も「防衛向け需要が引き続き高い」「INNINGSのデータセンター向け需要拡大」</td><td class="l">中。伸長は実績として確認できるが、絶対額3,873百万円と連結売上の8.3%にとどまる</td></tr>
+      <tr><td class="l">資本効率改善の実行力</td><td class="l">政策保有株式の全売却、本社売却、借入5,361百万円返済、自己株式取得2,117百万円を1年で同時に実行</td><td class="l"><strong>高い。</strong>すべて実行済みの事実。CFO経歴の役員が中枢にいることとも整合</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>懸念材料と、それが顕在化する条件<span class="lab interp">解釈</span></h3>
+    <table>
+      <tr><th class="l" style="width:28%">懸念</th><th class="l">内容</th><th class="l" style="width:30%">顕在化する条件</th></tr>
+      <tr><td class="l"><strong>特定顧客依存と棚卸資産</strong></td><td class="l">商品及び製品6,595百万円（総資産13.7%）、うち提出会社4,349百万円。KAM・重要な見積り・リスク章の3か所で同じ論点が現れる</td><td class="l">主要顧客（特定の半導体メモリー製造企業）の設備投資抑制、生産停滞、事業撤退・売却、業界再編。半導体メモリー市況の反転</td></tr>
+      <tr><td class="l"><strong>自動車業界の減速</strong></td><td class="l">最も利益率の高いシステム・サービス事業（利益率12.0%、連結利益の48.6%）の中核ガイオが当期すでに減収減益。翌期も影響継続の見通し</td><td class="l">すでに顕在化中。国内自動車メーカーの投資抑制の長期化、EV移行での競争力低下、業界再編</td></tr>
+      <tr><td class="l">利益の一時性</td><td class="l">当期純利益4,111百万円の大半が売却益。会社自身が実力ROEを8.4%と注記。第41期に2回目の売却益が出るとその後の反動はさらに大きい</td><td class="l">2027年3月期以降、売却益が消えたときの利益水準。営業利益6.7%からの改善が進まない場合</td></tr>
+      <tr><td class="l">研究開発費による減益</td><td class="l">翌期見通しでプローブカード事業が「研究開発への注力により利益面では減益」と明示</td><td class="l">すでに会社が予告済み。減益幅は非開示</td></tr>
+      <tr><td class="l">代理店契約の不透明さ</td><td class="l">半導体設計関連（連結売上29.4%）の中核はケイデンス社EDAの販売。リスク章では「代理店契約の解消等」に言及するが、「重要な契約等」は該当なしとされ契約条件が一切不明</td><td class="l">仕入先の企業再編、直販への方針転換、代理店網の再編</td></tr>
+      <tr><td class="l">内部統制のキャパシティ</td><td class="l">子会社20社・海外6か国以上・従業員1,620人に対し内部監査室は専従2名。会社自身がM&A拡大に伴うガバナンス追随リスクを開示</td><td class="l">新規買収の継続。海外子会社での不正・法令違反の発生</td></tr>
+      <tr><td class="l">持分法損失とCVC損失の恒常化</td><td class="l">持分法投資損失168百万円（前期70百万円）＋投資事業組合運用損155百万円（前期242百万円）＝合計323百万円が営業外を毎期圧迫（営業利益の10.4%）</td><td class="l">芯卓科技（浙江）の業績低迷継続。米国CVCの投資先評価の悪化</td></tr>
+      <tr><td class="l">賃貸収益の消滅</td><td class="l">不動産賃貸料484百万円（純139百万円の利益貢献）は本社ビル由来。2回目の譲渡完了後の扱いが不明</td><td class="l">2026年9月末の追加譲渡完了以降</td></tr>
+      <tr><td class="l">環境情報の欠落</td><td class="l">2050年ネットゼロを掲げるがGHG排出量の実績値・中間目標が有報にない。一方リスク章では顧客からの脱炭素要求が取引継続要件になりうると認識</td><td class="l">半導体・自動車メーカーからのサプライチェーン排出量開示要求の厳格化</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>有報だけでは判断できず、追加確認が要る事項<span class="lab check">要確認</span></h3>
+    <ol>
+      <li><strong>本社不動産の2回目譲渡（2026年9月末）の売却益金額と、その後の賃貸収益の扱い。</strong>→ 適時開示（固定資産の譲渡に関するお知らせ）、2027年3月期の四半期決算短信・決算説明資料で確認する。</li>
+      <li><strong>テストソリューション事業における主要顧客の名称と依存度（%）。</strong>→ 有報は連結売上10%未満のため主要顧客情報を省略。決算説明資料の質疑応答や、顧客側（半導体メモリーメーカー）の設備投資計画から間接的に推測するしかない。</li>
+      <li><strong>ケイデンス社との代理店契約の期間・更新条件・解約条項。</strong>→ 「重要な契約等」に記載がないため有報では埋まらない。決算説明会での質疑、または過去の適時開示で確認する。</li>
+      <li><strong>受注残高29,485百万円の履行期間の内訳（うち翌期に売上化する額）。</strong>→ 決算説明資料または四半期報告での受注残推移から推定する。</li>
+      <li><strong>中計最終年度（2026年度）の目標と、当期時点での到達見込み。</strong>→ 2024年3月21日公表の中期経営計画（会社公式開示PDF）本体、および決算説明資料の中計進捗ページで確認する。</li>
+      <li><strong>離職率・エンゲージメントスコア・研修投資額。</strong>→ 有報では女性管理職比率以外の人的資本KPIが数値化されていない。会社ESGサイト（人材ページ）または統合報告書で確認する。</li>
+      <li><strong>GHG排出量（Scope1・2）の実績値と2030年中間目標。</strong>→ 会社ESGサイトの環境ページ、またはサステナビリティレポートで確認する。</li>
+      <li><strong>第39期に連結従業員が215人減少した理由。</strong>→ 有報の記述情報では説明されていない。前期のプローブカード事業一部譲渡に関する適時開示で確認する。</li>
+      <li><strong>STAr Technologies, Inc.に対する債務保証の金額。</strong>→ 関係会社の状況に「債務の保証」の記載はあるが金額不明。連結財務諸表の偶発債務注記の全文で確認する。</li>
+      <li><strong>2026年5月決議の自己株式取得（上限25億円）の執行状況と、既存自己株式10.55%の消却方針。</strong>→ 月次の自己株式取得状況の適時開示、および今後の資本政策開示で確認する。</li>
+      <li><strong>監査等委員会委員長の監査等委員会出席率が14回中11回にとどまった理由。</strong>→ 有報に記載なし。株主総会招集通知またはコーポレート・ガバナンス報告書で確認する。</li>
+      <li><strong>「事業ポートフォリオの最適化」の具体的な対象事業。</strong>→ 取締役会で討議されているが有報には非開示。決算説明資料または中計のアップデート資料で確認する。</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>総括 ― この有報から見える経営の実像<span class="lab interp">解釈</span></h3>
+    <p>第40期の有価証券報告書から読み取れるイノテックの姿は、<strong>「事業の構造課題は積年のまま残っているが、資本の構造課題には1年で決着をつけにいった会社」</strong>である。</p>
+    <p>事業側では、特定顧客依存・特定業界依存・特定仕入先依存という3つの依存が、リスク章・KAM・重要な見積りの各所で同じ形を保ったまま残っている。中計が「業績の安定性向上」を3大戦略の1つに置いていること自体が、この課題が解けていないことの証明である。当期の営業増益+64.7%も、半導体メモリー市況の回復とプローブカード事業一部譲渡によるコスト減という外部要因・一過性要因の寄与が大きい。</p>
+    <p>一方、資本側では1年のうちに、政策保有株式の全売却、本社不動産の信託譲渡、借入5,361百万円の返済、自己株式2,117百万円の取得、そして翌期に向けた25億円の追加取得決議が同時に進行した。中計の資本効率目標（ROE・ROIC・D/Eレシオ）はすべてクリアされ、投資銀行出身の代表取締役専務が中枢にいることを考えると、これらは偶然ではなく設計された動きと読める。</p>
+    <p>開示姿勢としては、<strong>誠実さと不透明さが混在する。</strong>ROE 15.9%に対して売却益を除いた8.4%を自ら併記し、前年度の未達（ROE 4.8%、配当性向78.2%）を表に載せ、翌期見通しに減益要因を明記し、業績連動報酬の目標値と実績を数値で開示している ―― これらは誠実さの側にある。他方で、主要顧客名・依存度%・代理店契約条件・GHG実績値・離職率・受注残の履行期間はいずれも開示されず、事業の継続性を評価するための最も重要な変数が投資家の手には渡されていない。</p>
+    <p><strong>次の1年で観察すべきは、「資本政策で作った器に、事業側の実力利益が入ってくるか」の1点に尽きる。</strong>受注残29,485百万円と次世代3D NANDテスターの翌期納入計画は、その最初の試験である。逆に、第41期に2回目の本社売却益が計上されることで、実力利益の姿がまた1年見えにくくなるという副作用もある。</p>
+    <p class="note">本レポートは判断材料と論点の提示に徹しており、売買推奨・目標株価の提示は行わない。</p>
+  </div>
+</div>
+
+<footer>
+  <p><strong>データソースと免責事項</strong></p>
+  <p>
+    <span class="src">[③]</span> イノテック株式会社 第40期 有価証券報告書（事業年度：自 2025年4月1日 至 2026年3月31日／提出日：2026年6月24日／EDINET提出書類 E02724）。会社公式IRサイト「IR資料室＞有価証券報告書」より取得。<br>
+    <span class="lab web">web</span> 沿革章の一部補足のみ：イノテック株式会社 公式コーポレートサイト（沿革・会社概要ページ）。<br>
+    データ取得日：2026年8月14日 ／ 対象事業年度：第40期（2026年3月期）／ 記述情報の基準日：有価証券報告書提出日（2026年6月24日）現在。
+  </p>
+  <p>
+    本レポート中の CAGR・1人当たり売上高・1人当たり営業利益・セグメント利益率・研究開発費対売上比・設備投資／減価償却比率・自己資本比率検算・D/Eレシオ検算・現預金月商倍率・政策保有株式の純資産比・総還元性向・報酬構成比・営業増益の分解 は、いずれも有価証券報告書に記載された数値をもとに<strong>当レポートが独自に算出した推計値であり、正確性を保証するものではありません。</strong>会社が開示した数値と定義が異なる場合があります。
+  </p>
+  <p>
+    本レポートは有価証券報告書の記述情報を構造化した定性分析であり、投資判断の推奨・勧誘を目的とするものではありません。売買推奨および目標株価の提示は行っていません。将来に関する記述は有価証券報告書提出日時点で会社が判断したものであり、その後の状況変化は反映されていません。投資判断は利用者ご自身の責任において行ってください。
+  </p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var titles = ["0. サマリー","Ⅰ. 企業の輪郭","Ⅱ. 沿革","Ⅲ. 人的資本","Ⅳ. 経営者の世界観","Ⅴ. サステナビリティ","Ⅵ. リスク","Ⅶ. MD&A","Ⅷ. 将来への投資","Ⅸ. 資本政策・還元","Ⅹ. ガバナンス","Ⅺ. 会計シグナル","Ⅻ. 論点"];
+  var tabsEl = document.getElementById('tabs');
+  titles.forEach(function(t,i){
+    var b = document.createElement('button');
+    b.className = 'tab' + (i===0?' active':'');
+    b.textContent = t;
+    b.setAttribute('data-i', i);
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+      document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active')});
+      b.classList.add('active');
+      document.getElementById('p'+i).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    tabsEl.appendChild(b);
+  });
+
+  var INK='#111111', SUB='#6b6b6b', LINE='#dcdcdc';
+  var grays = ['#111111','#5a5a5a','#909090','#c4c4c4','#e2e2e2'];
+  var baseOpt = {responsive:true, plugins:{legend:{labels:{color:INK,font:{size:11}}}},
+    scales:{x:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},
+            y:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}}}};
+  var yrs = ['第36期','第37期','第38期','第39期','第40期'];
+
+  new Chart(document.getElementById('ch5y'), {
+    type:'bar',
+    data:{labels:yrs,datasets:[
+      {label:'売上高（百万円）',data:[37238,38629,41358,41977,46737],backgroundColor:'#c4c4c4',order:2},
+      {label:'経常利益（百万円）',data:[2984,2480,2880,1754,2912],backgroundColor:'#111111',order:2,yAxisID:'y1'},
+      {label:'営業CF（百万円）',type:'line',data:[2741,1680,2621,1711,4058],borderColor:'#5a5a5a',backgroundColor:'#5a5a5a',borderDash:[4,3],tension:.2,order:1,yAxisID:'y1'}
+    ]},
+    options:{responsive:true,plugins:{legend:{labels:{color:INK,font:{size:11}}},title:{display:true,text:'売上高・経常利益・営業CFの5年推移',color:INK,font:{size:12}}},
+      scales:{x:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},
+        y:{position:'left',ticks:{color:SUB,font:{size:10}},grid:{color:LINE},title:{display:true,text:'売上高',color:SUB,font:{size:10}}},
+        y1:{position:'right',ticks:{color:SUB,font:{size:10}},grid:{drawOnChartArea:false},title:{display:true,text:'利益・CF',color:SUB,font:{size:10}}}}}
+  });
+
+  new Chart(document.getElementById('chSegS'), {
+    type:'doughnut',
+    data:{labels:['テストソリューション','半導体設計関連','システム・サービス'],
+      datasets:[{data:[18456,13729,14551],backgroundColor:grays.slice(0,3),borderColor:'#ffffff',borderWidth:2}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:INK,font:{size:11}}},title:{display:true,text:'売上構成比（当期）',color:INK,font:{size:12}}}}
+  });
+
+  new Chart(document.getElementById('chSegP'), {
+    type:'doughnut',
+    data:{labels:['テストソリューション','半導体設計関連','システム・サービス'],
+      datasets:[{data:[1190,656,1748],backgroundColor:grays.slice(0,3),borderColor:'#ffffff',borderWidth:2}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:INK,font:{size:11}}},title:{display:true,text:'セグメント利益構成比（当期・調整前）',color:INK,font:{size:12}}}}
+  });
+
+  new Chart(document.getElementById('chProd'), {
+    type:'bar',
+    data:{labels:yrs,datasets:[
+      {label:'連結従業員数（人）',data:[1642,1728,1775,1560,1620],backgroundColor:'#c4c4c4'},
+      {label:'1人当たり売上高（百万円・推計）',type:'line',data:[22.7,22.4,23.3,26.9,28.8],borderColor:'#111111',backgroundColor:'#111111',tension:.2,yAxisID:'y1'}
+    ]},
+    options:{responsive:true,plugins:{legend:{labels:{color:INK,font:{size:11}}},title:{display:true,text:'従業員数と1人当たり売上高（後者は推計値）',color:INK,font:{size:12}}},
+      scales:{x:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},
+        y:{position:'left',ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},
+        y1:{position:'right',ticks:{color:SUB,font:{size:10}},grid:{drawOnChartArea:false}}}}
+  });
+
+  new Chart(document.getElementById('chPL'), {
+    type:'bar',
+    data:{labels:['売上総利益','販管費','営業利益','経常利益','特別損益（純）','税前利益'],
+      datasets:[
+        {label:'第39期（百万円）',data:[12649,10762,1887,1754,263,2018],backgroundColor:'#c4c4c4'},
+        {label:'第40期（百万円）',data:[14246,11137,3108,2912,3239,6152],backgroundColor:'#111111'}
+      ]},
+    options:Object.assign({},baseOpt,{plugins:{legend:{labels:{color:INK,font:{size:11}}},title:{display:true,text:'損益の段階別比較',color:INK,font:{size:12}}}})
+  });
+
+  new Chart(document.getElementById('chCF'), {
+    type:'bar',
+    data:{labels:yrs,datasets:[
+      {label:'営業CF',data:[2741,1680,2621,1711,4058],backgroundColor:'#111111'},
+      {label:'投資CF',data:[-1150,-1692,-1444,-410,5792],backgroundColor:'#909090'},
+      {label:'財務CF',data:[-900,-517,808,-3382,-7952],backgroundColor:'#d8d8d8'}
+    ]},
+    options:Object.assign({},baseOpt,{plugins:{legend:{labels:{color:INK,font:{size:11}}},title:{display:true,text:'キャッシュ・フローの5年推移（百万円）',color:INK,font:{size:12}}}})
+  });
+
+  new Chart(document.getElementById('chRD'), {
+    type:'bar',
+    data:{labels:['テストソリューション','半導体設計関連','システム・サービス'],
+      datasets:[
+        {label:'研究開発費（百万円）',data:[1715,93,270],backgroundColor:'#111111'},
+        {label:'対売上比（%・推計）',type:'line',data:[9.3,0.7,1.9],borderColor:'#5a5a5a',backgroundColor:'#5a5a5a',tension:.2,yAxisID:'y1'}
+      ]},
+    options:{responsive:true,plugins:{legend:{labels:{color:INK,font:{size:11}}},title:{display:true,text:'研究開発費のセグメント配分（対売上比は推計値）',color:INK,font:{size:12}}},
+      scales:{x:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},
+        y:{position:'left',ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},
+        y1:{position:'right',ticks:{color:SUB,font:{size:10}},grid:{drawOnChartArea:false}}}}
+  });
+
+  new Chart(document.getElementById('chOwn'), {
+    type:'bar',
+    indexAxis:'y',
+    data:{labels:['個人その他（自己株式含む）','金融機関','外国法人等','金融商品取引業者','その他の法人'],
+      datasets:[{label:'所有株式数の割合（%）',data:[56.46,22.56,15.65,4.32,1.01],backgroundColor:grays}]},
+    options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'所有者別状況（2026年3月31日現在）',color:INK,font:{size:12}}},
+      scales:{x:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}},y:{ticks:{color:SUB,font:{size:10}},grid:{color:LINE}}}}
+  });
+})();
+</script>
+</body></html>
