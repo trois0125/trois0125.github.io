@@ -1,0 +1,32 @@
+# 保有銘柄マスタ（このファイルだけが唯一の保有情報源）
+#
+# 売買が発生した時にだけ、このファイルを手で編集してコミット＆プッシュしてください。
+# 日々の株価取得・評価額計算・portfolio.json への反映は
+# .github/workflows/update-portfolio.yml が毎営業日自動で行うので、
+# このファイル以外はメンテ不要です。
+#
+# 書式：
+#   - code: 証券コード（4桁の文字列。先頭ゼロが消えないよう必ずクォートする）
+#     name: 銘柄名（表示用。kabutan/irpocketの正式名でなくてよい）
+#     purchases: 購入ロットのリスト（買い増しがあれば複数行足す）
+#       - date:   購入日 (YYYY-MM-DD)
+#         price:  購入株価（円・未調整の約定単価）
+#         shares: 購入株数
+#
+# 売却した場合は該当ロットを削除するか、shares を残数に書き換えてください
+# （このファイルはあくまで「現在の保有」を表す）。
+
+holdings:
+  - code: "6301"
+    name: "コマツ"
+    purchases:
+      - date: "2026-05-25"
+        price: 6240
+        shares: 12
+
+  - code: "6145"
+    name: "NITTOKU"
+    purchases:
+      - date: "2026-07-31"
+        price: 2620
+        shares: 50

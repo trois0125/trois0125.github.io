@@ -1,0 +1,40 @@
+name: Update portfolio
+
+on:
+  schedule:
+    # 毎営業日 19:00 JST (= 10:00 UTC)。取引所配信タイミングに余裕を持たせている。
+    - cron: "0 10 * * 1-5"
+  workflow_dispatch: {}   # 手動実行用（Actionsタブから起動して動作確認できる）
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch prices and rebuild portfolio.json
+        env:
+          JQUANTS_API_KEY: ${{ secrets.JQUANTS_API_KEY }}
+        run: python3 scripts/update_portfolio.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "portfolio-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add portfolio.json
+          if git diff --cached --quiet; then
+            echo "変更なし。commit をスキップします。"
+          else
+            git commit -m "portfolio.json を自動更新"
+            git push
+          fi

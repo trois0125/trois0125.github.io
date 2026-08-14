@@ -11,6 +11,7 @@
       --border: #dcdcdc;
       --border-strong: #111111;
       --radius: 2px;
+      --neg: #b42318;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -18,6 +19,7 @@
         --fg: #f2f2f2;
         --border: #2b2b2b;
         --border-strong: #f2f2f2;
+        --neg: #ff6b5e;
       }
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -197,6 +199,33 @@
     }
     .card-link:hover .cta { border-top-color: currentColor; opacity: 1; }
 
+    /* Portfolio widget */
+    .neg { color: var(--neg); }
+    .portfolio-asof { font-size: 12px; opacity: .5; font-variant-numeric: tabular-nums; margin-bottom: 24px; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border-strong);
+      margin-bottom: 32px;
+    }
+    .summary .cell { background: var(--bg); padding: 20px 22px; }
+    .summary .cell .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .5; margin-bottom: 10px; }
+    .summary .cell .v { font-size: clamp(19px, 2.6vw, 25px); font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+    .summary .cell .sub { margin-top: 6px; font-size: 12px; opacity: .55; font-variant-numeric: tabular-nums; }
+    .tablewrap { overflow-x: auto; border-top: 1px solid var(--border-strong); }
+    .ptable { width: 100%; border-collapse: collapse; min-width: 640px; }
+    .ptable th, .ptable td { padding: 13px 10px; text-align: right; font-size: 13px; border-bottom: 1px solid var(--border); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .ptable th:first-child, .ptable td:first-child { text-align: left; padding-left: 4px; }
+    .ptable th:last-child, .ptable td:last-child { padding-right: 4px; }
+    .ptable th { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; opacity: .5; font-weight: 700; }
+    .ptable td.name { text-align: left; }
+    .ptable td.name .nm { font-weight: 700; font-size: 14px; }
+    .ptable td.name .cd { display: block; font-size: 11px; opacity: .5; margin-top: 2px; }
+    .portfolio-empty { padding: 40px 4px; text-align: center; opacity: .5; font-size: 13px; }
+    .portfolio-note { margin-top: 20px; font-size: 12px; opacity: .55; line-height: 1.7; }
+
     /* Footer */
     footer {
       max-width: 880px;
@@ -260,6 +289,59 @@
     </div>
   </div>
 
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="idx">02</span>
+        <h2>保有ポートフォリオ</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="portfolio-asof" id="pAsof">読み込み中…</div>
+
+      <div class="summary" id="pSummary" style="display:none">
+        <div class="cell">
+          <div class="k">取得原価</div>
+          <div class="v" id="pCost">—</div>
+        </div>
+        <div class="cell">
+          <div class="k">評価額</div>
+          <div class="v" id="pValue">—</div>
+        </div>
+        <div class="cell">
+          <div class="k">評価損益</div>
+          <div class="v" id="pGain">—</div>
+          <div class="sub" id="pGainPct"></div>
+        </div>
+      </div>
+
+      <div class="tablewrap" id="pTablewrap" style="display:none">
+        <table class="ptable">
+          <thead>
+            <tr>
+              <th>銘柄</th>
+              <th>保有株数</th>
+              <th>平均取得単価</th>
+              <th>現在株価</th>
+              <th>評価額</th>
+              <th>評価損益</th>
+              <th>評価損益率</th>
+            </tr>
+          </thead>
+          <tbody id="pRows"></tbody>
+        </table>
+      </div>
+
+      <div class="portfolio-empty" id="pEmpty" style="display:none">読み込み中…</div>
+
+      <p class="portfolio-note">
+        投資の助言ではありません。個人の保有記録の公開です。株価は J-Quants API V2（JPX公式データ）による
+        未調整終値をもとに毎営業日夜間に自動更新しています（手動更新なし）。評価額・評価損益は取得時点の
+        終値ベースの参考値であり、取引コスト・税金は含みません。
+      </p>
+    </div>
+  </div>
+
   <footer>
     <p>value_invest — 個人投資・学習目的。投資の助言ではありません。</p>
     <p class="muted">© 2026</p>
@@ -275,6 +357,58 @@ fetch('stocks.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json()).
     el.textContent = `現在 ${stocks.length} 銘柄を掲載（定量レポート ${reportN} 本・有報定性レポート ${qualN} 本）。スクリーニング通過銘柄を中心に、財務・バリュエーションと有価証券報告書の定性分析を掲載。`;
   }
 }).catch(() => {});
+
+function pEsc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function pYen(n) {
+  return '¥' + Math.round(n).toLocaleString('ja-JP');
+}
+
+fetch('portfolio.json?v=' + Date.now(), { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+  .then(data => {
+    const holdings = data.holdings || [];
+    const t = data.totals || {};
+
+    document.getElementById('pAsof').textContent =
+      `基準日 ${data.price_date || '—'}（自動更新: ${data.generated_at || '—'} UTC） / データ源: ${data.source || 'J-Quants API V2'}`;
+
+    if (!holdings.length) {
+      document.getElementById('pEmpty').textContent = '保有銘柄データがまだありません。';
+      document.getElementById('pEmpty').style.display = 'block';
+      return;
+    }
+
+    document.getElementById('pSummary').style.display = 'grid';
+    document.getElementById('pTablewrap').style.display = 'block';
+
+    document.getElementById('pCost').textContent = pYen(t.cost_basis || 0);
+    document.getElementById('pValue').textContent = pYen(t.value || 0);
+    const gainEl = document.getElementById('pGain');
+    gainEl.textContent = (t.gain >= 0 ? '+' : '') + pYen(t.gain || 0);
+    gainEl.classList.toggle('neg', (t.gain || 0) < 0);
+    document.getElementById('pGainPct').textContent =
+      (t.gain_pct >= 0 ? '+' : '') + (t.gain_pct || 0).toFixed(2) + '%';
+
+    document.getElementById('pRows').innerHTML = holdings.map(h => `
+      <tr>
+        <td class="name"><span class="nm">${pEsc(h.name)}</span><span class="cd">${pEsc(h.code)}</span></td>
+        <td>${h.shares.toLocaleString('ja-JP')}株</td>
+        <td>${pYen(h.avg_cost)}</td>
+        <td>${pYen(h.price)}</td>
+        <td>${pYen(h.value)}</td>
+        <td class="${h.gain < 0 ? 'neg' : ''}">${h.gain >= 0 ? '+' : ''}${pYen(h.gain)}</td>
+        <td class="${h.gain_pct < 0 ? 'neg' : ''}">${h.gain_pct >= 0 ? '+' : ''}${h.gain_pct.toFixed(2)}%</td>
+      </tr>
+    `).join('');
+  })
+  .catch(() => {
+    document.getElementById('pAsof').textContent = '';
+    document.getElementById('pEmpty').textContent =
+      'まだデータが生成されていません。GitHub Actions の初回実行後に表示されます。';
+    document.getElementById('pEmpty').style.display = 'block';
+  });
 </script>
 </body>
 </html>
