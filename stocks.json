@@ -4,7 +4,19 @@
     {
       "code": "3932",
       "name": "アカツキ",
+      "report_date": "2026-08-18",
+      "qualitative_date": "2026-08-14"
+    },
+    {
+      "code": "8285",
+      "name": "三谷産業",
       "report_date": null,
+      "qualitative_date": "2026-08-18"
+    },
+    {
+      "code": "9880",
+      "name": "イノテック",
+      "report_date": "2026-08-18",
       "qualitative_date": "2026-08-14"
     },
     {
@@ -12,12 +24,6 @@
       "name": "アジアパイルホールディングス",
       "report_date": "2026-08-14",
       "qualitative_date": "2026-08-13"
-    },
-    {
-      "code": "9880",
-      "name": "イノテック",
-      "report_date": null,
-      "qualitative_date": "2026-08-14"
     },
     {
       "code": "5644",

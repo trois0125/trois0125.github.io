@@ -1,0 +1,520 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>イノテック株式会社（9880） 投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+.seg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:8px 0 16px}
+.seg-box{background:#f7f7f7;border:1px solid var(--line);border-radius:2px;padding:14px 16px}
+.seg-box h4{font-size:13px;font-weight:800;margin-bottom:6px}
+.seg-box .num{font-size:18px;font-weight:800}
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:8px 0 16px}
+.risk-box{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:14px 16px}
+.risk-box h4{font-size:13px;font-weight:800;margin-bottom:6px}
+.risk-box p{font-size:12.5px;color:var(--sub)}
+.check-list{list-style:none;font-size:12.5px}
+.check-list li{padding:6px 0;border-bottom:1px solid var(--line)}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">イノテック（9880） 定量レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>イノテック株式会社（9880） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-18 ／ 株価データ取得日：2026-08-17（東証プライム終値） ／ その他データ取得日：2026-08-18 ／ 一次情報のみ [①]〜[⑤]</div></header>
+
+  <div class="verdict caution">慎重検討（スクリーニング基準日は8/8条件クリアだが、現在株価ではPBR条件が基準超過）</div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="0">①総合評価</button>
+    <button class="tab" data-p="1">②企業概要</button>
+    <button class="tab" data-p="2">③財務分析</button>
+    <button class="tab" data-p="3">④バリュエーション</button>
+    <button class="tab" data-p="4">⑤カタリスト</button>
+    <button class="tab" data-p="5">⑥リスク</button>
+    <button class="tab" data-p="6">⑦投資結論</button>
+  </div>
+
+  <!-- Tab1 総合評価 -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">スクリーニング8条件判定 <span class="src">[⑤]</span></h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:10px">基準日：2026-07-17（参照決算：2026年3月期、開示日2026-05-14）／ J-Quants API V2 母集団87万字CSVを直接参照せず <code>ctx.py</code> 出力のみを使用</p>
+      <table>
+        <tr><th class="l">#</th><th class="l">条件</th><th>基準値</th><th>実測値</th><th>判定</th><th class="l">補足</th></tr>
+        <tr><td class="l">①</td><td class="l">PER</td><td>≤15倍</td><td>10.09倍</td><td>○</td><td class="l">今期会社予想EPSベース</td></tr>
+        <tr><td class="l">②</td><td class="l">PBR</td><td>≤1.5倍</td><td>1.49倍</td><td>○</td><td class="l">基準日時点。現在株価ベースでは下記アラート参照</td></tr>
+        <tr><td class="l">③</td><td class="l">売上高CAGR</td><td>≥4%</td><td>+5.5%</td><td>○</td><td class="l">9年で算出</td></tr>
+        <tr><td class="l">④</td><td class="l">営業利益CAGR</td><td>≥4%</td><td>+13.4%</td><td>○</td><td class="l">－</td></tr>
+        <tr><td class="l">⑤</td><td class="l">自己資本比率</td><td>≥40%</td><td>54.8%</td><td>○</td><td class="l">2026年3月期末実績</td></tr>
+        <tr><td class="l">⑥</td><td class="l">時価総額</td><td>≤600億円</td><td>393億円</td><td>○</td><td class="l">基準日時点。現在株価ベースは530億円</td></tr>
+        <tr><td class="l">⑦</td><td class="l">直近営業増益率</td><td>上位1/3</td><td>+64.7%</td><td>○</td><td class="l">母集団内 上位13%（境界+22%）</td></tr>
+        <tr><td class="l">⑧</td><td class="l">6ヶ月モメンタム</td><td>上位1/3</td><td>+49.5%</td><td>○</td><td class="l">母集団内 上位0%（境界+3%）</td></tr>
+        <tr class="highlight"><td class="l" colspan="2">判定（基準日 2026-07-17）</td><td colspan="4">8/8条件クリア　★全条件通過（母集団：①〜⑥通過101銘柄／8条件通過11銘柄）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">参考：3ヶ月モメンタム +17.2%／12ヶ月モメンタム +128.8%／直近増収率 +11.3%／営業利益率 6.7%／売買代金 828百万円　<span class="src">[⑤]</span></p>
+    </div>
+
+    <div class="alert danger">
+      <b>特記：基準日以降の株価上昇によりPBR条件が現在は未達</b><br>
+      スクリーニング基準日（2026-07-17、株価3,230円）以降、株価は2026-08-17時点で3,865円まで上昇（+19.7%）<span class="src">[④]</span>。
+      これに伴い現在株価ベースのPBRは約1.75倍（会社公式BPS 2,164.16円で算出。kabutan公表値も1.75倍）<span class="src">[④][③]</span>まで上昇しており、
+      スクリーニング閾値1.5倍を上回っている。時価総額も393億円→約530億円に拡大したが⑥の600億円以内には収まっている。
+      本レポートの「慎重検討」判定は、基準日時点の8/8クリアに対し、現在価格で条件②が未達である点を反映したもの。
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI（現在値）<span class="src">[④][③]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">3,865円</div><div class="l">株価（26/08/17終値）</div></div>
+        <div class="kpi"><div class="v">9.1倍</div><div class="l">PER（今期予想）</div></div>
+        <div class="kpi"><div class="v">1.75倍</div><div class="l">PBR</div></div>
+        <div class="kpi"><div class="v">3.36%</div><div class="l">配当利回り</div></div>
+        <div class="kpi"><div class="v">54.8%</div><div class="l">自己資本比率</div></div>
+        <div class="kpi"><div class="v">15.9%</div><div class="l">ROE（26/3期実績）</div></div>
+        <div class="kpi"><div class="v">6.1%</div><div class="l">ROA（経常利益ベース・自社試算）</div></div>
+        <div class="kpi"><div class="v">530億円</div><div class="l">時価総額</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">業績推移概観（売上高＋経常利益）<span class="src">[①][③][④]</span></h2>
+      <canvas id="chartOverview"></canvas>
+    </div>
+
+    <div class="alert">
+      <b>特記事項</b>：2026年3月期の親会社株主に帰属する当期純利益4,112百万円（前期比+242.6%）には、
+      本社ビル売却に伴う固定資産売却益2,911百万円（特別利益）が含まれる<span class="src">[③]</span>。
+      同期のEPS急伸（89.54円→320.19円）の一部は一過性要因であり、翌期以降の反復可能な収益力は
+      経常利益ベース（29.12億円、前期比+66.0%）で評価するのがより妥当と考えられる（自社試算・保証なし）。
+    </div>
+  </div>
+
+  <!-- Tab2 企業概要 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[②]</span></h2>
+      <table>
+        <tr><td class="l" style="width:30%">商号</td><td class="l">イノテック株式会社（INNOTECH CORPORATION）</td></tr>
+        <tr><td class="l">証券コード</td><td class="l">9880</td></tr>
+        <tr><td class="l">上場市場</td><td class="l">東京証券取引所プライム市場</td></tr>
+        <tr><td class="l">業種</td><td class="l">電気機器（半導体商社／メーカー）</td></tr>
+        <tr><td class="l">設立</td><td class="l">1987年（昭和62年）1月5日</td></tr>
+        <tr><td class="l">本社所在地</td><td class="l">神奈川県横浜市港北区新横浜3-17-6</td></tr>
+        <tr><td class="l">資本金</td><td class="l">10,517百万円</td></tr>
+        <tr><td class="l">従業員数</td><td class="l">1,620名（連結・うち臨時雇用者平均174名）／211名（単体・うち臨時26名）<span class="src">[②][③]</span></td></tr>
+        <tr><td class="l">平均年齢</td><td class="l">43.6歳</td></tr>
+        <tr><td class="l">代表者</td><td class="l">代表取締役 大塚信行／代表取締役 棚橋祥紀</td></tr>
+        <tr><td class="l">決算期</td><td class="l">3月</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub);margin-top:8px">事業内容：自社製テストシステム・組込みボードの開発販売／半導体設計用（EDA）ソフトウェアの販売／メディアワークフロー向け品質検証ソフトウェアの販売／ノイズ解析・モデルベース開発のコンサルティング</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ミッション・ビジョン <span class="src">[③]</span></h2>
+      <p><b>Vision：</b>「未来を変えテック、イノテック ～Innovation Technology～」</p>
+      <p style="margin-top:6px"><b>Mission：</b></p>
+      <p>「最先端技術と人を繋ぎ、豊かで快適な未来社会に貢献する」<br>
+      「顧客に寄り添い、ともに課題を解決する」<br>
+      「イノテックならではの付加価値の提供を目指す」</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業セグメント（2026年3月期実績）<span class="src">[③]</span></h2>
+      <div class="seg-grid">
+        <div class="seg-box">
+          <h4>テストソリューション事業</h4>
+          <div class="num">184.6億円（構成比39.5%）</div>
+          <p style="font-size:12px;color:var(--sub);margin-top:4px">自社製テストシステム（半導体メモリー向け）、プローブカード、信頼性評価装置。前期比+23.2%、セグメント利益は前期△3.1億円→今期11.9億円へV字回復。</p>
+        </div>
+        <div class="seg-box">
+          <h4>半導体設計関連事業</h4>
+          <div class="num">137.3億円（構成比29.4%）</div>
+          <p style="font-size:12px;color:var(--sub);margin-top:4px">半導体設計用（EDA）ソフトウェア（Cadence等）、LSI受託設計・開発。前期比+5.7%、セグメント利益6.6億円。</p>
+        </div>
+        <div class="seg-box">
+          <h4>システム・サービス事業</h4>
+          <div class="num">145.5億円（構成比31.1%）</div>
+          <p style="font-size:12px;color:var(--sub);margin-top:4px">組込みシステム、決済端末、AI画像認識等。前期比+3.9%、セグメント利益17.5億円（前期比やや減益）。</p>
+        </div>
+      </div>
+      <canvas id="chartSegment"></canvas>
+    </div>
+  </div>
+
+  <!-- Tab3 財務分析 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">連結P&Lサマリー（5期）<span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>売上高</th><th>経常利益</th><th>純利益</th><th>前年比(純利益)</th></tr>
+        <tr><td class="l">2022年3月期</td><td>372.4億円</td><td>29.8億円</td><td>21.9億円</td><td>－</td></tr>
+        <tr><td class="l">2023年3月期</td><td>386.3億円</td><td>24.8億円</td><td>16.7億円</td><td class="neg">△24.1%</td></tr>
+        <tr><td class="l">2024年3月期</td><td>413.6億円</td><td>28.8億円</td><td>14.8億円</td><td class="neg">△11.3%</td></tr>
+        <tr><td class="l">2025年3月期</td><td>419.8億円</td><td>17.5億円</td><td>12.0億円</td><td class="neg">△18.8%</td></tr>
+        <tr class="h1-row"><td class="l">2026年3月期（実績）</td><td>467.4億円</td><td>29.1億円</td><td>41.1億円</td><td>+242.6%</td></tr>
+        <tr class="forecast"><td class="l">2027年3月期（会社予想）</td><td>510.0億円</td><td>40.0億円</td><td>50.0億円</td><td>+21.6%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">営業利益（参考・開示があるのは直近2期のみ）：2025年3月期 18.9億円 → 2026年3月期 31.1億円（+64.7%）<span class="src">[③]</span></p>
+      <canvas id="chartPL"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">1株指標（5期）<span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>EPS</th><th>BPS</th><th>DPS</th><th>ROE</th><th>ROA（自社試算）</th><th>配当性向（単体）</th></tr>
+        <tr><td class="l">2022年3月期</td><td>168.65円</td><td>1,694.65円</td><td>65.0円</td><td>10.4%</td><td>7.4%</td><td>47.3%</td></tr>
+        <tr><td class="l">2023年3月期</td><td>126.95円</td><td>1,796.30円</td><td>70.0円</td><td>7.3%</td><td>5.7%</td><td>58.2%</td></tr>
+        <tr><td class="l">2024年3月期</td><td>110.55円</td><td>1,835.61円</td><td>70.0円</td><td>6.1%</td><td>6.0%</td><td>63.3%</td></tr>
+        <tr><td class="l">2025年3月期</td><td>89.54円</td><td>1,930.81円</td><td>70.0円</td><td>4.8%</td><td>3.7%</td><td>150.1%</td></tr>
+        <tr class="h1-row"><td class="l">2026年3月期</td><td>320.19円</td><td>2,164.16円</td><td>125.0円</td><td>15.9%</td><td>6.1%</td><td>41.9%</td></tr>
+        <tr class="forecast"><td class="l">2027年3月期（予）</td><td>426.5円</td><td>－</td><td>130.0円</td><td>－</td><td>－</td><td>－</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">ROA＝経常利益÷総資産（会社採用方式に準拠した自社試算）<span class="src">[③]</span>。配当性向は単体ベース開示値。</p>
+      <canvas id="chartROE"></canvas>
+      <canvas id="chartEPS" style="margin-top:16px"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー<span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>総資産</th><th>純資産</th><th>自己資本比率</th><th>営業CF</th><th>投資CF</th><th>現金同等物期末</th></tr>
+        <tr><td class="l">2022年3月期</td><td>405.4億円</td><td>231.7億円</td><td>54.8%</td><td>27.4億円</td><td class="neg">△11.5億円</td><td>64.8億円</td></tr>
+        <tr><td class="l">2023年3月期</td><td>436.3億円</td><td>245.9億円</td><td>54.1%</td><td>16.8億円</td><td class="neg">△16.9億円</td><td>61.3億円</td></tr>
+        <tr><td class="l">2024年3月期</td><td>478.3億円</td><td>253.2億円</td><td>51.6%</td><td>26.2億円</td><td class="neg">△14.4億円</td><td>82.4億円</td></tr>
+        <tr><td class="l">2025年3月期</td><td>470.1億円</td><td>261.3億円</td><td>54.1%</td><td>17.1億円</td><td class="neg">△4.1億円</td><td>63.4億円</td></tr>
+        <tr class="h1-row"><td class="l">2026年3月期</td><td>480.5億円</td><td>271.1億円</td><td>54.8%</td><td>40.6億円</td><td>57.9億円</td><td>82.8億円</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">2026年3月期の投資CFプラスは本社ビル売却（固定資産売却）による一時的要因<span class="src">[③]</span>。財務CFは自己株式取得・配当支払等で△79.5億円。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">セグメント別売上高・利益詳細（2期）<span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">セグメント</th><th>売上高 2025/3</th><th>売上高 2026/3</th><th>前年比</th><th>セグメント利益 2025/3</th><th>セグメント利益 2026/3</th></tr>
+        <tr><td class="l">テストソリューション事業</td><td>149.8億円</td><td>184.6億円</td><td>+23.2%</td><td class="neg">△3.1億円</td><td>11.9億円</td></tr>
+        <tr><td class="l">半導体設計関連事業</td><td>129.9億円</td><td>137.3億円</td><td>+5.7%</td><td>4.6億円</td><td>6.6億円</td></tr>
+        <tr><td class="l">システム・サービス事業</td><td>140.1億円</td><td>145.5億円</td><td>+3.9%</td><td>18.0億円</td><td>17.5億円</td></tr>
+        <tr class="highlight"><td class="l">連結計</td><td>419.8億円</td><td>467.4億円</td><td>+11.3%</td><td>18.9億円</td><td>31.1億円</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab4 バリュエーション -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">9.1倍</div><div class="l">PER（今期予想EPSベース）</div></div>
+        <div class="kpi"><div class="v">1.75倍</div><div class="l">PBR</div></div>
+        <div class="kpi"><div class="v">3.36%</div><div class="l">配当利回り</div></div>
+        <div class="kpi"><div class="v">1,192倍</div><div class="l">信用倍率</div></div>
+      </div>
+      <p style="font-size:11px;color:var(--sub)">2026-08-17終値3,865円ベース。PER確認：3,865円÷予想EPS426.5円＝9.06倍（kabutan公表9.1倍と整合）。PBR確認：3,865円÷BPS2,164.16円＝1.79倍（kabutan公表1.75倍。BPS算出方法の若干の差異はkabutan公表値を採用）<span class="src">[③][④]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">PER推移（5期＋現在）<span class="src">[③][④]</span></h2>
+      <canvas id="chartPER"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">PBR推移（5期推定＋現在）<span class="src">[③][④]</span></h2>
+      <canvas id="chartPBR"></canvas>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">過去5期分のPBRは有報非開示のため、恒等式 PBR＝ROE×PER を用いた推定値（保証なし）。現在値のみkabutan公表の実測値<span class="src">[④]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">理論PBR分析（ROEベース）</h2>
+      <p>理論PBR ＝ ROE ÷ 株主資本コスト。会社が中期経営計画で意識する株主資本コスト基準8%<span class="src">[③]</span>を用いると、
+      理論PBR ＝ 15.9%（2026年3月期実績ROE）÷ 8% ＝ 約1.99倍となる（推計・保証なし）。</p>
+      <div class="alert">ただし2026年3月期ROE15.9%には本社ビル売却に伴う特別利益（税引前29.11億円）が寄与しており、
+      これを除いた正常収益力ベースのROEは一桁台半ば程度に低下する可能性がある（自社試算・保証なし）。
+      その場合の理論PBRは1.0倍前後まで下がり得る。現在の実際のPBR1.75倍は、こうした一過性要因を含む
+      直近実績と、テストソリューション事業のV字回復・M&Aシナジーなど将来の増益期待を織り込んだ水準と考えられる。</div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移<span class="src">[③][④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>DPS</th><th>配当性向（単体）</th></tr>
+        <tr><td class="l">2022年3月期</td><td>65.0円</td><td>47.3%</td></tr>
+        <tr><td class="l">2023年3月期</td><td>70.0円</td><td>58.2%</td></tr>
+        <tr><td class="l">2024年3月期</td><td>70.0円</td><td>63.3%</td></tr>
+        <tr><td class="l">2025年3月期</td><td>70.0円</td><td>150.1%</td></tr>
+        <tr class="h1-row"><td class="l">2026年3月期</td><td>125.0円（うち特別50円）</td><td>41.9%</td></tr>
+        <tr class="forecast"><td class="l">2027年3月期（予）</td><td>130.0円</td><td>－</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">配当方針：通常利益に対し連結配当性向30%を下回らない、急激な業績変動がなければ50%程度が目安<span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ピア比較</h2>
+      <p style="color:var(--sub)">一次情報未取得のため省略（投資スタイル方針によりピア比較は簡易言及に留める）。</p>
+    </div>
+  </div>
+
+  <!-- Tab5 カタリスト -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">中期経営計画 数値目標（2024〜2026年度、2026年度が最終年度）<span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">指標</th><th>目標</th><th>2026年3月期実績</th></tr>
+        <tr><td class="l">ROE</td><td>10%を目指す（8%以上維持）</td><td>15.9%</td></tr>
+        <tr><td class="l">ROIC</td><td>8%を目指す（6%以上維持）</td><td>非開示（本レポートでは未算出）</td></tr>
+        <tr><td class="l">営業利益率</td><td>7〜8%</td><td>6.7%<span class="src">[⑤]</span></td></tr>
+        <tr><td class="l">連結営業利益</td><td>過去最高益（2007年度：33.32億円）更新</td><td>31.09億円（あと一歩）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">会社は「中期経営計画の目標達成は射程圏内」とコメント（2026年6月時点）<span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト項目</h2>
+      <div class="risk-grid">
+        <div class="risk-box"><h4>ファイ・マイクロテック子会社化</h4><p>2026年3月、光通信・高速アナログICに強みを持つ企業を子会社化。シリコンフォトニクス・光電融合技術を獲得し、AI普及に伴う需要取り込みを狙う<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>本社ビル売却と資本配分</h4><p>2026年3月に本社ビルを売却し特別利益29.11億円を計上。ファブレス型事業構造のため大規模設備投資は不要で、資金は成長投資（M&A・研究開発）と株主還元に活用<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>特別配当・自己株式取得</h4><p>本社ビル売却益を踏まえ、特別配当の実施および自己株式取得を決議<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>半導体メモリー市場の投資回復</h4><p>過去2年停滞していた国内半導体メモリー市場に投資回復の兆し。2026年度はさらなる需要増が期待される環境<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>テストソリューション事業のV字回復</h4><p>セグメント利益が前期△3.1億円から今期11.9億円へ大幅改善<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>ストック型ビジネスの拡大</h4><p>CMOSイメージセンサー・DRAM領域でのテスター開発、IP販売等により特定顧客依存からの脱却を推進<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>社会インフラ・防衛/船舶向け需要</h4><p>グループのエンジニアリング力を活かしたCPUボード・BOX型PC等が社会インフラ、防衛・船舶向けで伸長<span class="src">[③]</span>。</p></div>
+        <div class="risk-box"><h4>株主還元方針</h4><p>通常利益に対する配当性向30%を下限とし、50%程度を目安とする方針を維持<span class="src">[③]</span>。</p></div>
+      </div>
+    </div>
+
+    <div class="alert">四半期（H1）実績データは有価証券報告書（通期のみ）からは取得できず、本レポートでは短信・説明会資料の追加取得を行っていないため省略する。</div>
+  </div>
+
+  <!-- Tab6 リスク -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">主要リスク（有価証券報告書開示ベース）<span class="src">[③]</span></h2>
+      <div class="risk-grid">
+        <div class="risk-box"><h4>①特定顧客への依存</h4><p>テストソリューション事業の主力製品（半導体メモリー向け自社製テストシステム）は特定の半導体メモリー製造企業への依存度が高い。市況悪化時の投資抑制・在庫評価損リスク。</p></div>
+        <div class="risk-box"><h4>②特定業界（自動車）への依存</h4><p>システム・サービス事業や半導体設計関連事業の主要取引先に国内自動車メーカーを含む。EV化・規制動向による事業環境変化リスク。</p></div>
+        <div class="risk-box"><h4>③特定仕入先・製造委託先への依存</h4><p>EDAソフトウェア、半導体メモリー向けテストシステムは特定の仕入先・製造委託先に依存。企業再編や契約解消リスク。</p></div>
+        <div class="risk-box"><h4>④人財確保リスク</h4><p>技術革新の激しい事業領域で高度な技術力が必要。技術者獲得競争の激化により、採用難・人材流出時に事業計画へ影響。</p></div>
+        <div class="risk-box"><h4>⑤地政学的リスク・自然災害</h4><p>アジア・北米中心に海外事業を展開。地政学リスク、自然災害、感染症流行等による部材調達難・販売停滞リスク。</p></div>
+        <div class="risk-box"><h4>⑥サイバー攻撃リスク</h4><p>顧客情報・技術情報等の機密情報を取扱う。高度化するサイバー攻撃による情報流出・システム障害リスク。</p></div>
+      </div>
+    </div>
+
+    <div class="alert danger">
+      <b>特別利益の一過性</b>：2026年3月期の純利益急増（前期比+242.6%）は本社ビル売却益29.11億円（特別利益）が主因。
+      正常収益力（経常利益ベース+66.0%）はこれより緩やかであり、翌期以降は同水準の特別利益は見込めない点に留意<span class="src">[③]</span>。
+    </div>
+    <div class="alert danger">
+      <b>バリュエーションの再評価リスク</b>：株価が過去12ヶ月で+128.8%上昇<span class="src">[⑤]</span>し、スクリーニング基準日（7/17）以降だけでも+19.7%上昇。
+      現在PBRはスクリーニング閾値1.5倍を上回る1.75倍まで達しており、既に相当程度の好材料を織り込んだ株価水準にある可能性がある。
+    </div>
+  </div>
+
+  <!-- Tab7 投資結論 -->
+  <div class="panel" id="p6">
+    <div class="verdict caution">慎重検討（スクリーニング基準日は8/8条件クリアだが、現在株価ではPBR条件が基準超過）</div>
+
+    <div class="card">
+      <h2 class="section">総合評価</h2>
+      <p>イノテックは2026年3月期にテストソリューション事業の大幅な収益改善（セグメント利益△3.1億円→11.9億円）と
+      半導体設計関連事業・システムサービス事業の堅調な推移により、売上高467.4億円（前期比+11.3%）、
+      営業利益31.1億円（同+64.7%）と大幅増益を達成した<span class="src">[③]</span>。ファイ・マイクロテック子会社化による
+      光通信・シリコンフォトニクス技術獲得、本社ビル売却による特別利益とその成長投資・株主還元への活用など、
+      中期経営計画（ROE10%・ROIC8%目標、2026年度最終年度）に沿った施策も着実に進捗している<span class="src">[③]</span>。</p>
+      <p style="margin-top:8px">一方で、株価は過去12ヶ月で+128.8%<span class="src">[⑤]</span>と大幅に上昇しており、
+      スクリーニング基準日（2026-07-17）以降だけでも+19.7%上昇した結果、現在のPBR（1.75倍）はスクリーニング閾値（1.5倍）を
+      上回る水準に達している<span class="src">[④]</span>。加えて2026年3月期の大幅増益・高ROEには本社ビル売却に伴う一過性の
+      特別利益が相当程度寄与しており、正常収益力ベースでの再評価には注意が必要である。以上を踏まえ、
+      ファンダメンタルズは良好であるものの、現在の株価水準では新規購入の妙味は基準日時点より低下していると判断し、
+      「慎重検討」とした。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計・保証なし）</h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:8px">以下の目標株価は一次情報から導出した推計値。実際の業績・株価を保証しない。現在株価3,865円を基準とする。</p>
+      <table>
+        <tr><th class="l">シナリオ</th><th>想定確率</th><th>前提</th><th>想定PER</th><th>目標株価</th><th>現在比</th></tr>
+        <tr><td class="l">ベア</td><td>25%</td><td>今期ガイダンス未達（EPS-18%＝349.7円、推計）</td><td>7倍</td><td>2,448円</td><td class="neg">△36.7%</td></tr>
+        <tr class="highlight"><td class="l">ベース</td><td>55%</td><td>今期会社予想達成（EPS426.5円）</td><td>9.5倍</td><td>4,052円</td><td>+4.8%</td></tr>
+        <tr><td class="l">ブル</td><td>20%</td><td>超過達成・上方修正（EPS+12%＝477.7円、推計）</td><td>11.5倍</td><td>5,493円</td><td>+42.1%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">トリガー：ベース／ブル＝半導体メモリー市況の回復持続、テストソリューション事業の受注拡大、M&Aシナジーの顕在化。ベア＝半導体市況の再悪化、特定顧客の投資抑制、自動車業界の需要減速。</p>
+      <canvas id="chartScenario"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <ul class="check-list">
+        <li>スクリーニング8条件：基準日（7/17）ベースで8/8クリア。現在株価ベースでは7/8（PBR未達）<span class="src">[⑤][④]</span></li>
+        <li>収益基盤：2026年3月期は営業利益+64.7%と大幅改善もその一部は一過性の特別利益に由来<span class="src">[③]</span></li>
+        <li>成長投資：ファイ・マイクロテック子会社化のシナジー実現度、M&A推進体制</li>
+        <li>需要動向：半導体メモリー市場の投資回復の持続性、テストソリューション事業の受注状況</li>
+        <li>株主還元：配当性向方針（30〜50%目安）の継続性、特別配当・自己株買いの一過性</li>
+        <li>バリュエーション：直近12ヶ月+128.8%の株価上昇を踏まえた再評価余地の見極め</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 class="section">免責事項</h2>
+      <p style="font-size:12px;color:var(--sub)">
+      本レポートは一次情報（irpocket・会社公式IR・開示PDF・kabutan・J-Quants API）のみに基づき作成した参考情報であり、投資勧誘を目的とするものではない。
+      株価データ取得日：2026年8月17日（東証プライム終値）。その他データ取得日：2026年8月18日。
+      会社業績予想ベース日：2026年8月10日発表分。スクリーニング判定基準日：2026年7月17日。
+      シナリオ分析の目標株価は一次情報から導出した推計値であり、実際の業績・株価を保証しない。
+      投資判断は自己責任で行うこと。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const srcTick = v => v;
+function tabInit(){
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('p'+t.dataset.p).classList.add('active');
+    });
+  });
+}
+tabInit();
+
+const monoBar = '#111111';
+const monoBarLight = '#9a9a9a';
+const monoLine = '#111111';
+
+new Chart(document.getElementById('chartOverview'), {
+  data: {
+    labels: ['2022/3','2023/3','2024/3','2025/3','2026/3(実績)','2027/3(予)'],
+    datasets: [
+      {type:'bar', label:'売上高(億円)', data:[372.4,386.3,413.6,419.8,467.4,510.0], backgroundColor: monoBarLight, yAxisID:'y'},
+      {type:'line', label:'経常利益(億円)', data:[29.8,24.8,28.8,17.5,29.1,40.0], borderColor: monoLine, backgroundColor: monoLine, yAxisID:'y1', tension:.2}
+    ]
+  },
+  options: {responsive:true, scales:{y:{position:'left',title:{display:true,text:'売上高(億円)'}}, y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'経常利益(億円)'}}}}
+});
+
+new Chart(document.getElementById('chartSegment'), {
+  type:'bar',
+  data:{
+    labels:['2025/3','2026/3'],
+    datasets:[
+      {label:'テストソリューション事業', data:[149.8,184.6], backgroundColor:'#111111'},
+      {label:'半導体設計関連事業', data:[129.9,137.3], backgroundColor:'#6b6b6b'},
+      {label:'システム・サービス事業', data:[140.1,145.5], backgroundColor:'#c7c7c7'}
+    ]
+  },
+  options:{responsive:true, scales:{x:{stacked:true}, y:{stacked:true, title:{display:true,text:'売上高(億円)'}}}}
+});
+
+new Chart(document.getElementById('chartPL'), {
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3(予)'],
+    datasets:[
+      {type:'bar', label:'売上高(億円)', data:[372.4,386.3,413.6,419.8,467.4,510.0], backgroundColor: monoBarLight, yAxisID:'y'},
+      {type:'bar', label:'営業利益(億円)', data:[null,null,null,18.9,31.1,null], backgroundColor:'#111111', yAxisID:'y1'},
+      {type:'line', label:'経常利益(億円)', data:[29.8,24.8,28.8,17.5,29.1,40.0], borderColor:'#111111', yAxisID:'y1', tension:.2}
+    ]
+  },
+  options:{responsive:true, scales:{y:{position:'left',title:{display:true,text:'売上高(億円)'}}, y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'利益(億円)'}}}}
+});
+
+new Chart(document.getElementById('chartROE'), {
+  type:'line',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+    datasets:[
+      {label:'ROE(%)', data:[10.4,7.3,6.1,4.8,15.9], borderColor:'#111111', tension:.2},
+      {label:'ROA(%,自社試算)', data:[7.4,5.7,6.0,3.7,6.1], borderColor:'#9a9a9a', tension:.2}
+    ]
+  },
+  options:{responsive:true}
+});
+
+new Chart(document.getElementById('chartEPS'), {
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3','2027/3(予)'],
+    datasets:[
+      {type:'bar', label:'EPS(円)', data:[168.65,126.95,110.55,89.54,320.19,426.5], backgroundColor: monoBarLight, yAxisID:'y'},
+      {type:'line', label:'DPS(円)', data:[65.0,70.0,70.0,70.0,125.0,130.0], borderColor:'#111111', yAxisID:'y1', tension:.2}
+    ]
+  },
+  options:{responsive:true, scales:{y:{position:'left',title:{display:true,text:'EPS(円)'}}, y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'DPS(円)'}}}}
+});
+
+new Chart(document.getElementById('chartPER'), {
+  type:'bar',
+  data:{labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在(26/08/17)'],
+    datasets:[{label:'PER(倍)', data:[8.21,10.89,18.31,14.52,7.50,9.1], backgroundColor:'#111111'}]},
+  options:{responsive:true}
+});
+
+new Chart(document.getElementById('chartPBR'), {
+  type:'bar',
+  data:{labels:['2022/3(推定)','2023/3(推定)','2024/3(推定)','2025/3(推定)','2026/3(推定)','現在(実測)'],
+    datasets:[{label:'PBR(倍)', data:[0.85,0.79,1.12,0.70,1.19,1.75], backgroundColor:['#c7c7c7','#c7c7c7','#c7c7c7','#c7c7c7','#c7c7c7','#111111']}]},
+  options:{responsive:true}
+});
+
+new Chart(document.getElementById('chartScenario'), {
+  type:'bar',
+  data:{labels:['ベア','現在','ベース','ブル'],
+    datasets:[{label:'株価(円)', data:[2448,3865,4052,5493], backgroundColor:['#b42318','#6b6b6b','#111111','#111111']}]},
+  options:{indexAxis:'y', responsive:true}
+});
+</script>
+</body></html>

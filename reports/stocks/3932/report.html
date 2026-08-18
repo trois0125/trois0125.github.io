@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>株式会社アカツキ（3932）投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">アカツキ（3932） 定量レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>株式会社アカツキ（3932） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-18 ／ データ取得日：2026-08-18 ／ 一次情報のみ [①]〜[⑤]</div></header>
+  <div class="verdict buy">購入検討（全スクリーニング条件クリア／8条件すべて○）</div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="p0">①総合評価</button>
+    <button class="tab" data-p="p1">②企業概要</button>
+    <button class="tab" data-p="p2">③財務分析</button>
+    <button class="tab" data-p="p3">④バリュエーション</button>
+    <button class="tab" data-p="p4">⑤カタリスト</button>
+    <button class="tab" data-p="p5">⑥リスク</button>
+    <button class="tab" data-p="p6">⑦投資結論</button>
+  </div>
+
+  <!-- ===================== Tab1 総合評価 ===================== -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">スクリーニング8条件判定 <span class="src">[⑤]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">条件</th><th>基準値</th><th>実績値</th><th>判定</th><th class="l">備考</th></tr>
+        <tr><td class="l">1</td><td class="l">PER</td><td>≤15倍</td><td>7.35倍</td><td>○</td><td class="l">基準日2026-07-17・株価2,882円ベース</td></tr>
+        <tr><td class="l">2</td><td class="l">PBR</td><td>≤1.5倍</td><td>0.92倍</td><td>○</td><td class="l">同上</td></tr>
+        <tr><td class="l">3</td><td class="l">売上高CAGR</td><td>≥4%</td><td>+9.4%</td><td>○</td><td class="l">9年間で算出</td></tr>
+        <tr><td class="l">4</td><td class="l">営業利益CAGR</td><td>≥4%</td><td>+5.1%</td><td>○</td><td class="l">同上</td></tr>
+        <tr><td class="l">5</td><td class="l">自己資本比率</td><td>≥40%</td><td>72.3%</td><td>○</td><td class="l">FY2026/3期末（後述の通りQ1で49.0%に低下 <span class="src">[③]</span>）</td></tr>
+        <tr><td class="l">6</td><td class="l">時価総額</td><td>≤600億円</td><td>416億円</td><td>○</td><td class="l">基準日時点。現在(8/17)は497億円 <span class="src">[④]</span></td></tr>
+        <tr><td class="l">7</td><td class="l">直近営業増益率</td><td>上位1/3</td><td>+90.1%</td><td>○</td><td class="l">母集団内 上位7%（境界+22%）</td></tr>
+        <tr><td class="l">8</td><td class="l">6ヶ月モメンタム</td><td>上位1/3</td><td>+10.7%</td><td>○</td><td class="l">母集団内 上位17%（境界+3%）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">判定：8/8条件クリア（★全条件通過）／母集団：①〜⑥通過101銘柄・8条件通過11銘柄 <span class="src">[⑤]</span>／出所：<code>ctx.py 3932</code> 出力（2026-07-17基準・参照決算2026-03-31・開示日2026-05-13）</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI（現在値） <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">3,420円</div><div class="l">株価（2026-08-17終値）</div></div>
+        <div class="kpi"><div class="v">8.73倍</div><div class="l">PER（実績EPSベース・参考）</div></div>
+        <div class="kpi"><div class="v">1.07倍</div><div class="l">PBR</div></div>
+        <div class="kpi"><div class="v">3.36%</div><div class="l">配当利回り（実績ベース参考）</div></div>
+        <div class="kpi"><div class="v">72.3%</div><div class="l">自己資本比率（FY26/3期末）</div></div>
+        <div class="kpi"><div class="v">13.1%</div><div class="l">ROE（FY26/3）</div></div>
+        <div class="kpi"><div class="v">9.07%</div><div class="l">ROA（FY26/3・純利益/総資産）</div></div>
+        <div class="kpi"><div class="v">497億円</div><div class="l">時価総額（現在値）</div></div>
+      </div>
+
+      <h3>業績推移概観（売上高・営業利益） <span class="src">[①][③]</span></h3>
+      <canvas id="chart1"></canvas>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">2027年3月期は会社側が「適正かつ合理的な数値の算出が非常に困難」として通期業績予想を非開示としているため、予想バーは表示していない。 <span class="src">[③]</span></p>
+    </div>
+
+    <div class="alert danger">
+      <b>特記事項</b>：2026年6月に株式会社サニーサイドアップグループ（証券コード2180）へのTOBが成立し、2026年7月1日付で連結子会社化。借入金で買収資金を調達した結果、自己資本比率はFY2026/3期末の72.3%からQ1(2026年6月末)時点で49.0%まで急低下している <span class="src">[③]</span>。また同社は2026年10月1日を効力発生日として普通株式1株につき3株の株式分割を予定しており、分割前後で株価・EPS・BPSの単純比較はできない <span class="src">[③]</span>。加えて2027年3月期の通期業績予想は「開示しない方針」とされており、レンジ予想も存在しない <span class="src">[③]</span>。
+    </div>
+  </div>
+
+  <!-- ===================== Tab2 企業概要 ===================== -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[②][①]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th class="l">内容</th></tr>
+        <tr><td class="l">商号</td><td class="l">株式会社アカツキ（Akatsuki Inc.）</td></tr>
+        <tr><td class="l">証券コード</td><td class="l">3932（東証プライム・情報通信業）</td></tr>
+        <tr><td class="l">設立</td><td class="l">2010年6月</td></tr>
+        <tr><td class="l">代表者</td><td class="l">代表取締役CEO 香田 哲朗</td></tr>
+        <tr><td class="l">本社所在地</td><td class="l">東京都品川区上大崎2-13-30 oak meguro 8階</td></tr>
+        <tr><td class="l">事業内容</td><td class="l">エンターテインメント事業、ライフスタイル事業、ソリューション事業（決算区分：ゲーム・コミック事業／エンタメ・ライフスタイル事業／AI・DXソリューション事業／投資・インキュベーション／その他）</td></tr>
+        <tr><td class="l">連結従業員数</td><td class="l">537人（うち平均臨時雇用者311人・FY2026/3期末時点）</td></tr>
+        <tr><td class="l">主要関連会社</td><td class="l">アカツキゲームス・アカツキソリューションズ・Akatsuki Ventures・PAPABUBBLE・CRAYON・Natee・アカツキAIテクノロジーズ・サニーサイドアップグループ 等15社</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ミッション・ビジョン <span class="src">[②]</span></h2>
+      <p><b>Vision：</b>– Challengers' Community –</p>
+      <p><b>Mission：</b>感性とテクノロジーで、世界をもっと楽しく、豊かに変えていく。</p>
+      <p style="font-size:12px;color:var(--sub);margin-top:8px">出所：会社公式サイト「ミッション・コアバリュー」ページの文言をそのまま引用。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業セグメント（2027年3月期 第1四半期実績） <span class="src">[③]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">3,537百万円</div><div class="l">ゲーム・コミック事業（構成比69%）<br>セグメント利益1,282百万円</div></div>
+        <div class="kpi"><div class="v">847百万円</div><div class="l">エンタメ・ライフスタイル事業（構成比17%）<br>セグメント利益59百万円</div></div>
+        <div class="kpi"><div class="v">733百万円</div><div class="l">AI・DXソリューション事業（構成比14%）<br>セグメント損失98百万円</div></div>
+        <div class="kpi"><div class="v">7百万円</div><div class="l">その他事業（構成比0.1%）<br>セグメント損失10百万円</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--sub)">ゲーム・コミック事業：「ドラゴンボールZ ドッカンバトル」（バンダイナムコエンターテインメントとの協業）等の既存タイトル運用に加え、2025年8月末リリースの「怪獣8号 THE GAME」が寄与。エンタメ・ライフスタイル事業：オンラインくじ「Slash Gift」およびPAPABUBBLE（2025年連結化）が中核。AI・DXソリューション事業：Natee（SNSマーケティング・AIソリューション）を2025年下期に連結化した新セグメントで、先行投資フェーズ。 <span class="src">[③]</span></p>
+
+      <h3>四半期別セグメント売上高推移</h3>
+      <canvas id="chart2"></canvas>
+    </div>
+  </div>
+
+  <!-- ===================== Tab3 財務分析 ===================== -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">連結P&Lサマリー（5期・百万円） <span class="src">[①][③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th></tr>
+        <tr><td class="l">売上高</td><td>26,273</td><td>24,336</td><td>23,972</td><td>23,652</td><td>25,856</td></tr>
+        <tr><td class="l">営業利益</td><td>7,448</td><td>5,700</td><td>2,676</td><td>3,915</td><td>7,444</td></tr>
+        <tr class="highlight"><td class="l">営業利益率</td><td>28.4%</td><td>23.4%</td><td>11.2%</td><td>16.6%</td><td>28.8%</td></tr>
+        <tr><td class="l">経常利益</td><td>7,867</td><td>5,207</td><td>2,834</td><td>4,233</td><td>7,618</td></tr>
+        <tr class="h1-row"><td class="l">親会社株主純利益</td><td>5,193</td><td>1,342</td><td>1,288</td><td>1,646</td><td>5,652</td></tr>
+        <tr><td class="l">前年比（売上高）</td><td>－</td><td class="neg">△7.4%</td><td class="neg">△1.5%</td><td class="neg">△1.3%</td><td>+9.3%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">出所：有価証券報告書（第16期）「主要な経営指標等の推移」および連結損益計算書 <span class="src">[①]</span>、決算説明資料 <span class="src">[③]</span>。irpocket公式IRデータはURLが404のため取得不可、会社公式開示PDFで代替。</p>
+
+      <h3>直近四半期実績（Q1 FY2027/3）</h3>
+      <table>
+        <tr><th class="l">項目</th><th>2027/3期 1Q</th><th>2026/3期 1Q</th><th class="l">前年同期比</th></tr>
+        <tr class="h1-row"><td class="l">売上高</td><td>5,126百万円</td><td>2,313百万円</td><td class="l">+121.6%</td></tr>
+        <tr><td class="l">営業利益</td><td>693百万円</td><td class="neg">△1,698百万円</td><td class="l">黒字転換</td></tr>
+        <tr><td class="l">経常利益</td><td>652百万円</td><td class="neg">△1,907百万円</td><td class="l">黒字転換</td></tr>
+        <tr><td class="l">親会社株主四半期純利益</td><td>787百万円</td><td class="neg">△1,167百万円</td><td class="l">黒字転換</td></tr>
+        <tr><td class="l">1株当たり四半期純利益</td><td>59.81円</td><td class="neg">△80.94円</td><td class="l">－</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">出所：2027年3月期第1四半期決算短信 <span class="src">[③]</span>。前年同期は主力タイトルの周年イベント端境期で大幅赤字だった反動もあり、単純な前年比較には季節性の考慮が必要（会社側は「例年1Q・3Qは収益が落ち込む」傾向を開示）。</p>
+
+      <h3>売上高・営業利益・経常利益 推移</h3>
+      <canvas id="chart3"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">1株指標（5期） <span class="src">[①]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th></tr>
+        <tr><td class="l">EPS（連結・円）</td><td>381.62</td><td>98.97</td><td>104.01</td><td>114.22</td><td>391.97</td></tr>
+        <tr><td class="l">BPS（連結・円）</td><td>2,826.63</td><td>2,842.89</td><td>2,773.05</td><td>2,851.11</td><td>3,125.09</td></tr>
+        <tr><td class="l">DPS（提出会社・円）</td><td>80.00</td><td>80.00</td><td>80.00</td><td>95.00</td><td>115.00</td></tr>
+        <tr><td class="l">配当性向（提出会社）</td><td>22.1%</td><td>30.2%</td><td>28.7%</td><td>－（単体赤字）</td><td>28.8%</td></tr>
+        <tr><td class="l">ROE（連結）</td><td>14.0%</td><td>3.5%</td><td>3.3%</td><td>4.1%</td><td>13.1%</td></tr>
+        <tr><td class="l">ROA（純利益/総資産・単純計算）</td><td>11.27%</td><td>2.52%</td><td>2.47%</td><td>3.01%</td><td>9.07%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">配当性向の「－」はFY2025/3において提出会社（単体）が当期純損失（△2,719百万円）だったため。連結ベースでは黒字（親会社株主純利益1,646百万円）。ROAは開示された純利益・総資産期末残高から単純計算（純利益÷総資産）した参考値であり、会社公式の指標定義とは異なる場合がある。 <span class="src">[①]</span></p>
+      <h3>ROE / ROA 推移</h3>
+      <canvas id="chart4"></canvas>
+      <h3>EPS / DPS 推移</h3>
+      <canvas id="chart5"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー <span class="src">[①][③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th><th>2027/3 1Q</th></tr>
+        <tr><td class="l">総資産（百万円）</td><td>46,079</td><td>53,156</td><td>52,043</td><td>54,632</td><td>62,325</td><td class="forecast">78,646</td></tr>
+        <tr><td class="l">純資産（百万円）</td><td>38,236</td><td>38,752</td><td>40,211</td><td>41,455</td><td>45,376</td><td class="forecast">38,872</td></tr>
+        <tr class="highlight"><td class="l">自己資本比率</td><td>82.9%</td><td>72.7%</td><td>76.8%</td><td>75.3%</td><td>72.3%</td><td class="forecast neg">49.0%</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>4,793</td><td>5,047</td><td class="neg">△84</td><td>3,639</td><td>2,693</td><td>－</td></tr>
+        <tr><td class="l">投資CF（百万円）</td><td class="neg">△3,008</td><td>1,191</td><td class="neg">△77</td><td class="neg">△1,240</td><td class="neg">△3,283</td><td>－</td></tr>
+        <tr><td class="l">財務CF（百万円）</td><td class="neg">△4,187</td><td>4,937</td><td class="neg">△3,232</td><td class="neg">△2,137</td><td>3,178</td><td>－</td></tr>
+        <tr><td class="l">現金同等物期末残高（百万円）</td><td>22,624</td><td>33,971</td><td>30,864</td><td>31,062</td><td>34,242</td><td>－</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">2027/3期1Q列（イタリック・グレー背景）は決算短信ベースの四半期末実績であり、通期予想ではない。自己資本比率の急低下（72.3%→49.0%）はTOB資金を借入金で調達したことによる一時的な財務レバレッジ上昇。 <span class="src">[③]</span></p>
+    </div>
+  </div>
+
+  <!-- ===================== Tab4 バリュエーション ===================== -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">3,420円</div><div class="l">株価（2026-08-17終値）</div></div>
+        <div class="kpi"><div class="v">8.73倍</div><div class="l">PER（実績EPS392円ベース・会社予想非開示のため代替）</div></div>
+        <div class="kpi"><div class="v">1.07倍</div><div class="l">PBR</div></div>
+        <div class="kpi"><div class="v">34.18倍</div><div class="l">信用倍率</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--sub)">kabutanは会社予想が非開示のため予想PER・予想配当利回りを表示していない（「－」表示）。本レポートのPER・配当利回りは前期実績値を用いた参考値であり、会社の公式な業績予想ではない。 <span class="src">[④]</span></p>
+
+      <h3>PER推移（有報開示値。当期純利益÷EPSから逆算した期末株価ベース）</h3>
+      <canvas id="chart6"></canvas>
+      <h3>PBR推移（有報記載PER×EPSで期末株価を逆算し、BPSで除して算出）</h3>
+      <canvas id="chart7"></canvas>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">有報は連結PBRの系列を開示していないため、開示済みの連結PER・EPS・BPSから期末株価を逆算し算出した。会社非開示の計算値である旨に留意。現在値（1.07倍）はkabutan直接掲載値。 <span class="src">[①][④]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移 <span class="src">[①][④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>2022/3</th><th>2023/3</th><th>2024/3</th><th>2025/3</th><th>2026/3</th></tr>
+        <tr><td class="l">DPS（円）</td><td>80.00</td><td>80.00</td><td>80.00</td><td>95.00</td><td>115.00</td></tr>
+        <tr><td class="l">配当性向（単体）</td><td>22.1%</td><td>30.2%</td><td>28.7%</td><td>－</td><td>28.8%</td></tr>
+        <tr><td class="l">期末株価比利回り（逆算）</td><td>2.76%</td><td>3.60%</td><td>3.10%</td><td>3.05%</td><td>4.24%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">2027年3月期は中間配当60.00円（分割前基準）を予想（前年同期比横ばい）、期末配当は業績予想非開示のため未定。2026年10月1日に1株→3株の分割を予定しているため、分割後の配当額は別途決定される見込み。 <span class="src">[③]</span></p>
+
+      <h3>ピア比較</h3>
+      <p style="font-size:12px;color:var(--sub)">プロジェクト方針（定量ピア比較は原則省略）に基づき詳細な定量比較は省略する。kabutanが提示する比較銘柄はディー・エヌ・エー、コロプラ、KLabで、いずれも国内モバイルゲーム大手。 <span class="src">[④]</span></p>
+    </div>
+  </div>
+
+  <!-- ===================== Tab5 カタリスト ===================== -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">中期経営計画・数値目標 <span class="src">[③]</span></h2>
+      <p>会社公式開示（決算短信・決算説明資料・有報）を確認した範囲では、具体的な数値目標を伴う中期経営計画（chuki_keikaku）は公表されていない。決算説明資料には「既存事業の成長と積極的なM&Aの推進により、グループ基盤を強化し、非連続な成長の実現を目指す」という方向性の記載はあるが、売上高・営業利益・ROE等の定量目標は示されていない。以下は開示された定性的な戦略と直近のカタリストのみを記載する。 <span class="src">[③]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト <span class="src">[③]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">TOB成立</div><div class="l">サニーサイドアップグループ（2180）を2026年7月1日付で連結子会社化。PR・ブランドコミュニケーション力の獲得。2Qより業績寄与</div></div>
+        <div class="kpi"><div class="v">株式分割</div><div class="l">2026年10月1日効力発生で1株→3株。投資単位引き下げによる流動性・株主層拡大を意図</div></div>
+        <div class="kpi"><div class="v">怪獣8号 THE GAME</div><div class="l">2025年8月末リリースの新規タイトルがQ1から収益寄与。通期でのフル寄与が見込まれる</div></div>
+        <div class="kpi"><div class="v">グルーヴ・ディレクション</div><div class="l">2026年4月に連結化。25/11期実績で売上27.9億円・営業利益(のれん償却前)5.35億円の実績あり</div></div>
+        <div class="kpi"><div class="v">投資ポートフォリオのExit</div><div class="l">2026年6月までに累計22社Exit実績（IPO5社・M&A12社・IEO5件）。含み益を持つ投資先の追加Exitが期待される</div></div>
+        <div class="kpi"><div class="v">AI・DX事業の成長</div><div class="l">SNSマーケティング（Natee）は新規案件獲得が順調。AIソリューションはフィジカルAI領域含め受注拡大中で先行投資フェーズ</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">M&A参考値（会社開示） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">対象会社</th><th class="l">直近期業績（参考値）</th><th class="l">連結開始</th></tr>
+        <tr><td class="l">サニーサイドアップグループ</td><td class="l">26/6期通期予想：売上高232億円・営業利益（のれん償却前）22.5億円（2026年2月13日開示）</td><td class="l">2026年7月（2Qより反映）</td></tr>
+        <tr><td class="l">グルーヴ・ディレクション</td><td class="l">25/11期通期実績：売上高27.9億円・営業利益（のれん償却前）5.35億円</td><td class="l">2026年7月（2Qより反映）</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">両社とものれん償却費が今後発生予定（金額は会社側から未開示）。上記はあくまで参考値であり、連結後の実額とは異なる可能性がある。 <span class="src">[③]</span></p>
+    </div>
+  </div>
+
+  <!-- ===================== Tab6 リスク ===================== -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">リスク要因 <span class="src">[③]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">通期予想 非開示</div><div class="l">「適正かつ合理的な数値の算出が非常に困難」として2027年3月期の通期業績予想を開示しない方針。投資判断上の視界不良要因</div></div>
+        <div class="kpi"><div class="v">自己資本比率 急低下</div><div class="l">TOB資金の借入により72.3%→49.0%へ低下（2026年6月末）。財務レバレッジ上昇・金利負担増のリスク</div></div>
+        <div class="kpi"><div class="v">のれん急増</div><div class="l">M&Aによりのれんが3,781百万円→7,120百万円に拡大（2026年6月末）。将来の減損リスク</div></div>
+        <div class="kpi"><div class="v">ゲーム事業への依存</div><div class="l">売上構成比の約7割をゲーム・コミック事業が占め、既存タイトルのLTV（顧客生涯価値）動向に業績が左右されやすい</div></div>
+        <div class="kpi"><div class="v">季節性</div><div class="l">会社開示によれば例年1Q・3Qは収益が落ち込み、2Q・4Qに伸びる傾向。四半期毎の業績変動が大きい</div></div>
+        <div class="kpi"><div class="v">新規セグメントの先行投資</div><div class="l">AI・DXソリューション事業は立ち上げフェーズで、Q1時点でセグメント損失98百万円。黒字化時期は未確定</div></div>
+        <div class="kpi"><div class="v">株式分割による指標変化</div><div class="l">2026年10月1日付の1→3株分割により、分割前後でEPS・BPS・株価の単純比較ができなくなる</div></div>
+      </div>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px">上記はすべて決算短信・決算説明資料等の一次開示情報から確認できたリスクのみを記載。二次情報（アナリストレポート等）に基づく推測は含まない。 <span class="src">[③]</span></p>
+    </div>
+  </div>
+
+  <!-- ===================== Tab7 投資結論 ===================== -->
+  <div class="panel" id="p6">
+    <div class="verdict buy">購入検討（全スクリーニング条件クリア／8条件すべて○）</div>
+    <div class="card">
+      <h2 class="section">総合評価</h2>
+      <p>スクリーニング8条件は基準日（2026-07-17）時点ですべてクリアしており（PER7.35倍・PBR0.92倍・自己資本比率72.3%・時価総額416億円等）<span class="src">[⑤]</span>、割安株としての一次スクリーニングは通過している。直近の2027年3月期第1四半期は売上高5,126百万円（前年同期比+121.6%）、営業利益693百万円（前年同期は営業損失1,698百万円）と大幅な黒字転換を達成しており <span class="src">[③]</span>、既存ゲームタイトルの収益改善とサニーサイドアップグループ・グルーヴディレクションのM&Aによる事業拡張が進行している。</p>
+      <p>一方で、①会社は2027年3月期の通期業績予想を開示しない方針としており視界不良であること、②TOB資金の借入により自己資本比率が72.3%から49.0%へ急低下していること、③2026年10月に1→3の株式分割を予定していること、の3点は投資判断上重要な留意事項である <span class="src">[③]</span>。現在株価（3,420円・2026-08-17）は基準日時点（2,882円）から+18.7%上昇しており、PER・PBRとも基準日時点よりバリュエーションは切り上がっている（実績PERベースで8.73倍、PBR1.07倍）。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計値・保証なし）</h2>
+      <div class="alert danger">以下の目標株価は一次情報（前期実績EPS等）から機械的に導出した推計値であり、実際の業績・株価を保証するものではない。会社は2027年3月期の業績予想を開示していないため、下記EPS前提はいずれも会社公式の予想ではなく、前期（2026年3月期）実績EPS 391.97円を暫定的な起点として使用した参考シナリオである。</div>
+      <table>
+        <tr><th class="l">シナリオ</th><th class="l">想定確率</th><th class="l">前提</th><th>想定EPS</th><th>想定PER</th><th>目標株価</th><th>現在比</th></tr>
+        <tr><td class="l">ベア</td><td class="l">25%</td><td class="l">既存タイトルの収益逓減・のれん償却負担増でEPSが前期比▲18%（推計）</td><td>321円</td><td>7倍</td><td>2,247円</td><td class="neg">△34.3%</td></tr>
+        <tr class="highlight"><td class="l">ベース</td><td class="l">55%</td><td class="l">前期実績EPS並みを維持（M&A寄与とのれん償却が相殺と仮定）</td><td>392円</td><td>9.5倍</td><td>3,724円</td><td>+8.9%</td></tr>
+        <tr><td class="l">ブル</td><td class="l">20%</td><td class="l">M&Aシナジー・既存タイトルの上振れでEPSが前期比+12%（推計）</td><td>439円</td><td>11.5倍</td><td>5,049円</td><td>+47.6%</td></tr>
+      </table>
+      <canvas id="chart8"></canvas>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">上振れトリガー：通期業績予想の開示再開・サニーサイドアップグループ等M&A先の黒字寄与本格化・既存ゲームタイトルの上振れ。下振れトリガー：のれん減損・借入金利負担の増加・ゲーム事業の収益悪化・AI・DX事業の投資回収遅延。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <table>
+        <tr><th class="l">項目</th><th class="l">評価</th></tr>
+        <tr><td class="l">バリュエーション（PER・PBR）</td><td class="l">○　実績PERで8〜9倍・PBR1.07倍と割安水準を維持</td></tr>
+        <tr><td class="l">成長性（CAGR）</td><td class="l">○（長期9年ベース）／△（直近5年は横ばい〜V字回復）</td></tr>
+        <tr><td class="l">財務健全性</td><td class="l">△　自己資本比率がTOBにより72.3%→49.0%に急低下</td></tr>
+        <tr><td class="l">規模・流動性</td><td class="l">○　時価総額497億円・売買代金は増加傾向</td></tr>
+        <tr><td class="l">業績モメンタム</td><td class="l">○　Q1は大幅増収増益・黒字転換</td></tr>
+        <tr><td class="l">開示の透明性</td><td class="l">×　2027年3月期の通期業績予想を非開示</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">免責事項</h2>
+      <p style="font-size:12px;color:var(--sub)">
+      本レポートはirpocket公式IRデータ<span class="src">[①]</span>（本銘柄は404のため未取得。有価証券報告書で代替）、会社公式IRページ<span class="src">[②]</span>、会社公式開示PDF（有価証券報告書・決算短信・決算説明資料）<span class="src">[③]</span>、kabutan.jp<span class="src">[④]</span>、J-Quants API V2<span class="src">[⑤]</span>の一次情報のみに基づき作成した。データ取得日：2026年8月18日。スクリーニング8条件の基準日：2026年7月17日（株価2,882円）。バリュエーション指標の現在値基準日：2026年8月17日（株価3,420円）。予想ベース日：会社は2027年3月期の業績予想を非開示としているため、予想値は含まれず、実績値（2026年3月期・2027年3月期第1四半期）を基礎としている。シナリオ分析の目標株価は推計値であり将来の業績・株価を保証しない。本レポートは投資助言を目的とするものではなく、投資判断は自己責任で行うこと。
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(t=>{
+  t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    panels.forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.p).classList.add('active');
+  });
+});
+
+const gridColor = '#e8e8e8';
+const inkColor = '#111111';
+const subColor = '#6b6b6b';
+
+new Chart(document.getElementById('chart1'), {
+  type:'bar',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+    datasets:[
+      {type:'bar', label:'売上高(百万円)', data:[26273,24336,23972,23652,25856], backgroundColor:'#cccccc', order:2},
+      {type:'line', label:'経常利益(百万円)', data:[7867,5207,2834,4233,7618], borderColor:inkColor, backgroundColor:inkColor, tension:0.15, order:1}
+    ]
+  },
+  options:{scales:{y:{grid:{color:gridColor}}, x:{grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('chart2'), {
+  type:'bar',
+  data:{
+    labels:['25/3 1Q','25/3 2Q','25/3 3Q','25/3 4Q','26/3 1Q','26/3 2Q','26/3 3Q','26/3 4Q','27/3 1Q'],
+    datasets:[
+      {label:'ゲーム・コミック', data:[4016,8041,3233,7083,2008,7248,5225,7651,3537], backgroundColor:'#111111'},
+      {label:'エンタメ・ライフスタイル', data:[111,256,423,385,298,350,750,1160,847], backgroundColor:'#888888'},
+      {label:'AI・DXソリューション', data:[0,0,0,0,0,0,600,542,733], backgroundColor:'#cccccc'},
+      {label:'その他', data:[3,53,21,22,5,3,3,5,7], backgroundColor:'#eeeeee'}
+    ]
+  },
+  options:{scales:{x:{stacked:true, grid:{display:false}}, y:{stacked:true, grid:{color:gridColor}}}}
+});
+
+new Chart(document.getElementById('chart3'), {
+  type:'bar',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+    datasets:[
+      {type:'bar', label:'売上高(百万円)', data:[26273,24336,23972,23652,25856], backgroundColor:'#dddddd'},
+      {type:'bar', label:'営業利益(百万円)', data:[7448,5700,2676,3915,7444], backgroundColor:'#999999'},
+      {type:'line', label:'経常利益(百万円)', data:[7867,5207,2834,4233,7618], borderColor:inkColor, backgroundColor:inkColor, tension:0.15}
+    ]
+  },
+  options:{scales:{y:{grid:{color:gridColor}}, x:{grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('chart4'), {
+  type:'line',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+    datasets:[
+      {label:'ROE(%)', data:[14.0,3.5,3.3,4.1,13.1], borderColor:inkColor, backgroundColor:inkColor, tension:0.15},
+      {label:'ROA(%)', data:[11.27,2.52,2.47,3.01,9.07], borderColor:subColor, backgroundColor:subColor, borderDash:[4,3], tension:0.15}
+    ]
+  },
+  options:{scales:{y:{grid:{color:gridColor}}, x:{grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('chart5'), {
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+    datasets:[
+      {type:'bar', label:'EPS(円)', data:[381.62,98.97,104.01,114.22,391.97], backgroundColor:'#cccccc'},
+      {type:'line', label:'DPS(円)', data:[80,80,80,95,115], borderColor:inkColor, backgroundColor:inkColor, tension:0.15}
+    ]
+  },
+  options:{scales:{y:{grid:{color:gridColor}}, x:{grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('chart6'), {
+  type:'bar',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在(8/17)'],
+    datasets:[{label:'PER(倍)', data:[7.61,22.47,24.80,27.27,6.92,8.73], backgroundColor:'#999999'}]
+  },
+  options:{scales:{y:{grid:{color:gridColor}}, x:{grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('chart7'), {
+  type:'bar',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3','現在(8/17)'],
+    datasets:[{label:'PBR(倍)', data:[1.027,0.782,0.930,1.092,0.868,1.07], backgroundColor:'#999999'}]
+  },
+  options:{scales:{y:{grid:{color:gridColor}}, x:{grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('chart8'), {
+  type:'bar',
+  indexAxis:'y',
+  data:{
+    labels:['ベア(25%)','現在株価','ベース(55%)','ブル(20%)'],
+    datasets:[{label:'株価(円)', data:[2247,3420,3724,5049], backgroundColor:['#b42318','#111111','#999999','#cccccc']}]
+  },
+  options:{plugins:{legend:{display:false}}, scales:{x:{grid:{color:gridColor}}, y:{grid:{display:false}}}}
+});
+</script>
+</body></html>

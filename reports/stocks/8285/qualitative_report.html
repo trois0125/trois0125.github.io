@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>三谷産業（8285） 有価証券報告書 定性分析レポート（第101期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+ul.plain{list-style:none;padding-left:0}
+ul.plain li{margin-bottom:6px;padding-left:14px;position:relative}
+ul.plain li:before{content:"・";position:absolute;left:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">三谷産業（8285） 有報定性レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>三谷産業株式会社（8285） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第101期有価証券報告書（自 2025年４月１日 至 2026年３月31日、提出日2026年６月11日） ／ 作成日：2026-08-18</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p>石川県金沢発祥、化学品・樹脂エレクトロニクス・情報システム・空調設備工事・住宅設備機器・エネルギーの6セグメント（開示区分は「その他」を含め7区分）を展開する独立系の複合商社。創業家（三谷家およびその資産管理会社・関連財団群）が発行済株式（自己株式除く）の約5割を実質的に保持する、同族的ガバナンス色の強い企業である。<span class="lab fact">事実</span></p>
+      <h3>最重要3点</h3>
+      <ul class="plain">
+        <li>第101期（2025/4-2026/3）は全セグメント増収、売上高・親会社株主に帰属する当期純利益は2期連続で過去最高を更新し3期連続増益。ただし増益の一部は政策保有株式の売却益に依存しており、住宅設備機器関連事業は2期連続の営業赤字が続いている。<span class="lab fact">事実</span></li>
+        <li>政策保有株式（特定投資株式＋非上場株式）の貸借対照表計上額は合計309億20百万円で、純資産569億65百万円の54.3%に達する。会社自身が「政策保有株式の売却等を含む資本効率向上の取り組みを継続する方針」を有価証券報告書内で明言している。<span class="src">①</span><span class="lab fact">事実</span></li>
+        <li>大株主上位のうち創業家関連（三谷充氏、三谷株式会社、三谷育英会等の公益財団3法人、株式会社アテナ、株式会社三谷サービスエンジン）を合算すると発行済株式（自己株式除く）の約49.9%、社員持株会を含めると約51.3%に達する。2026年5月には主要株主が個人（三谷充氏）から資産管理会社（三谷株式会社）へ異動した。<span class="lab fact">事実</span><span class="lab interp">解釈</span></li>
+      </ul>
+      <h3>最も注意すべき論点</h3>
+      <p>次期（2027年3月期）は売上高▲3.9%・営業利益▲11.2%・親会社株主に帰属する当期純利益▲28.3%の減収減益予想を会社自身が開示している。当期の増益ドライバーであった情報システム関連事業のNEXTGIGAスクール特需や投資有価証券売却益は一過性の性格が強く、反動減が織り込まれている点に留意が必要である。<span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>5年推移（連結・代表6指標）</h3>
+      <table>
+        <tr><th class="l">決算年月</th><th>2022年3月</th><th>2023年3月</th><th>2024年3月</th><th>2025年3月</th><th>2026年3月</th><th>4年CAGR</th></tr>
+        <tr><td class="l">売上高（百万円）</td><td>84,427</td><td>90,416</td><td>95,857</td><td>103,072</td><td>117,531</td><td>+8.6%</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>1,966</td><td>1,716</td><td>2,443</td><td>2,656</td><td>4,519</td><td>+23.2%</td></tr>
+        <tr><td class="l">EPS（円）</td><td>23.14</td><td>15.60</td><td>33.59</td><td>39.64</td><td>58.92</td><td>+26.3%</td></tr>
+        <tr><td class="l">ROE（%）</td><td>3.60</td><td>2.35</td><td>4.70</td><td>5.17</td><td>6.97</td><td>+3.4pt</td></tr>
+        <tr><td class="l">自己資本比率（%）</td><td>47.2</td><td>48.1</td><td>49.6</td><td>50.7</td><td>55.9</td><td>+8.7pt</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>1,086</td><td>3,661</td><td>5,602</td><td>4,236</td><td>8,562</td><td>+67.5%</td></tr>
+      </table>
+      <div style="max-width:560px;margin:14px auto"><canvas id="chart5y"></canvas></div>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第1 企業の概況 1 主要な経営指標等の推移」（連結）。CAGRは筆者算出の推計値・保証なし。<span class="src">①</span><span class="lab fact">事実</span></p>
+
+      <h3>事業の内容とビジネスモデル</h3>
+      <p>当社グループは、当社・子会社24社・関連会社6社から構成され、化学品関連、樹脂・エレクトロニクス関連、情報システム関連、空調設備工事関連、住宅設備機器関連、エネルギー関連の6事業（＋その他）を展開する。事業系統図を言語化すると、国内本体（金沢本社・東京本社）が商社機能（仕入販売・コーディネーション）とメーカー機能（受託製造・自社製造）を併せ持ち、ベトナムの複数子会社（Aureole各社）が樹脂成形品・電子部品の製造、化学品製造、空調設備工事のCAD設計・積算といった生産・作業拠点として機能する構造である。経営方針でも「時にはメーカーであったり、時にはコンサルタントであったりと、複数のレイヤーでビジネスを展開する」ことを明記しており、単純な商社にとどまらない複合機能が競争優位の源泉として位置づけられている。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>セグメント別売上・利益構成比（第101期）</h3>
+      <table>
+        <tr><th class="l">セグメント</th><th>売上高（百万円）</th><th>構成比</th><th>セグメント利益（百万円）</th><th>利益率</th></tr>
+        <tr><td class="l">化学品関連</td><td>44,722</td><td>37.3%</td><td>945</td><td>2.1%</td></tr>
+        <tr><td class="l">空調設備工事関連</td><td>20,680</td><td>17.3%</td><td>2,320</td><td>11.2%</td></tr>
+        <tr><td class="l">情報システム関連</td><td>16,999</td><td>14.2%</td><td>1,419</td><td>8.3%</td></tr>
+        <tr><td class="l">住宅設備機器関連</td><td>14,482</td><td>12.1%</td><td class="neg">▲698</td><td class="neg">▲4.8%</td></tr>
+        <tr><td class="l">樹脂・エレクトロニクス関連</td><td>12,230</td><td>10.2%</td><td>1,444</td><td>11.8%</td></tr>
+        <tr><td class="l">エネルギー関連</td><td>7,688</td><td>6.4%</td><td>420</td><td>5.5%</td></tr>
+        <tr><td class="l">その他</td><td>3,121</td><td>2.6%</td><td>－</td><td>－</td></tr>
+      </table>
+      <div style="max-width:640px;margin:14px auto"><canvas id="chartSeg"></canvas></div>
+      <p style="font-size:12px;color:var(--sub)">売上高は「販売実績」（セグメント間内部売上高を含む）ベース。出所：有報「第2 事業の状況 4 経営者による財政状態、経営成績及びキャッシュ・フローの状況の分析」「経理の状況」セグメント情報。利益率は筆者算出（推計値・保証なし）。<span class="src">①</span><span class="lab fact">事実</span></p>
+      <p>「語りの大きさ」と「利益の大きさ」には明確な乖離がある。売上構成比が最大（37.3%）の化学品関連事業は利益率2.1%と最も低く、逆に空調設備工事関連（17.3%）と樹脂・エレクトロニクス関連（10.2%）はいずれも利益率11%台の稼ぎ頭である。住宅設備機器関連事業は売上構成比12.1%を占めながら2期連続の営業赤字であり、規模と収益力が一致していない典型例といえる。<span class="lab interp">解釈</span></p>
+      <p>なお、6セグメントのセグメント利益を単純合計すると58億50百万円となり、連結営業利益33億79百万円との差額（約24億71百万円）は全社費用およびセグメント間消去等によるものと推測されるが、その内訳の詳細な開示は有報上確認できない。<span class="lab check">要確認</span></p>
+
+      <h3>関係会社の状況（支配構造）</h3>
+      <p>親会社は存在せず独立系。子会社24社のうち相当数がベトナム法人（Aureole各社、8社前後）であり、樹脂成形品・電子部品製造、化学品製造、情報システム開発、空調設備の設計積算など複数事業に跨って展開している。持分法適用関連会社はタマ化学工業（出資比率31.45%）、ニッコー（同10.16%、開示ベースの潜在的影響力を示す［37.22%］の注記あり）、北陸コンピュータ・サービス（同25.00%）、高山太平洋生コン（同20.69%）、ヴィサージュ管理（同46.32%）の5社。非100%出資子会社としてディサークル（82.97%）、コンフィデンシャルサービス（83.97%）、Aureole Information Technology（89.73%）があり、少数株主が存在する。<span class="src">③</span><span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>当社の起点は1928年2月、石炭・コークス・セメントの販売を目的に開設された三谷合名会社金沢出張所である。1940年10月に分離独立し株式会社三谷商店として創立、石炭・コークス・セメントに加え塩酸・硫酸などの化学品販売を扱い、1943年12月に三谷産業株式会社へ改称した。戦時統制経済下では石炭・コークス・セメント販売を休業し化学品取扱いを主に事業継続を図った経緯があり、化学品事業が創業来の中核であることがうかがえる。<span class="src">③</span><span class="lab fact">事実</span></p>
+      <p>1950年代以降、富山営業所開設（1950年）、三谷産業株式会社への商号変更（1951年）、東京営業所開設（1952年）と拠点を拡大。1960年に石油製品販売、1963年に住宅機器・空調機器販売および空調設備工事の設計施工、1966年にコンピュータ・関連機器販売およびソフトウエア開発と、現行6セグメントの原型となる事業を1960年代のうちに立ち上げている。多角化の速度は同時代の地方系商社としては速い部類に入ると考えられる。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>1988年7月に名古屋証券取引所市場第二部に上場。1994年7月にはベトナムの国営関連企業との合弁でThangloi-Aureole J/V Enterpriseを設立し、以後現在まで続くベトナム展開の起点となった。1997年以降はエネルギー＆ケミカル事業部の分社（三谷産業イー・シー）、金型・樹脂成形（株式会社アクティ、2023年に吸収合併）、パッケージソフトウエア（ディサークル）など事業部の子会社化・専業化を進めている。2001年以降はベトナムでソフトウエア開発、CAD設計・積算、樹脂成形・組立と、国内で培った機能をベトナムに順次移植する形で現地子会社を設立しており、単なる海外拠点ではなく機能移転を伴う海外展開である点が特徴的である。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>2002年1月には医薬品原薬・医薬中間体・工業薬品の製造販売を行う相模化成工業を子会社化し、2009年6月には日医工株式会社との共同出資でジェネリック医薬品向け原薬製造会社アクティブファーマ株式会社を設立（2023年10月に相模化成工業を吸収合併）するなど、化学品関連事業の中に医薬品原薬という規制産業への展開を積み重ねている。Wikipediaの記載によれば、2020年4月には新型コロナウイルス治療薬として期待された「アビガン」の原薬を同年7月から子会社（アクティブファーマ）で生産すると発表しており、これは有報の沿革表には明記されていないが、当社が医薬品原薬メーカーとしての機能を社会的な要請に応じて活用した事例として位置づけられる。<span class="lab web">web＋Wikipedia「三谷産業」</span></p>
+      <p>2014年2月に東京証券取引所市場第二部に上場、2015年3月に東京証券取引所・名古屋証券取引所の市場第一部に指定された。しかし2022年4月の新市場区分移行でプライム市場に区分された後、2023年10月20日にはプライム市場からスタンダード市場へ移行している。これは東証の新市場区分基準（流通株式比率35%以上等）に照らし、創業家グループが約5割の株式を保有する当社の株主構成では基準を満たすことが難しかった可能性を示唆しており、Ⅸ章で述べる同族的な株主構成と符合する動きである。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>Wikipediaによれば2004年（平成16年）、情報システム事業部が売上を過大計上し管理ポストに割り当てる不適切な取引が発生し、有報上も毎期「2004年10月26日に開示しましたとおり、当社では不適切な取引により重大な事態を生ぜしめたことがあり」とリスク項目・ガバナンス項目の両方で継続的に言及されている。同事案は沿革表そのものには記載がないが、現在の内部統制・リスク管理体制（ヘルプライン制度、コンプライアンス委員会等）の多くが2003～2006年に集中して整備されている経緯（後掲Ⅹ章）と時期的に符合しており、当社のガバナンス体制形成における転換点であったと解釈できる。<span class="lab web">web＋Wikipedia「三谷産業」</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>直近では、2022年10月に株式会社HIDEO（旧CTW）が株式会社JAXSONを子会社化・吸収合併、2025年4月にJAXSONを分割会社とする新設分割で株式会社HIDEOを再設立するなど、高級バスタブ等の住宅設備機器ブランド（JAXSON・HIDEO・INTENZA・Tesera）の組織再編を繰り返しており、Ⅸ章で述べる住宅設備機器関連事業の収益改善に向けた組織的な模索が続いていることがうかがえる。2026年3月にはミタニインベストメント株式会社を清算している。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本（従業員＋サステナビリティ統合）</h2>
+      <h3>従業員数と生産性</h3>
+      <table>
+        <tr><th class="l">セグメント</th><th>連結従業員数（人）</th></tr>
+        <tr><td class="l">樹脂・エレクトロニクス関連</td><td>1,342</td></tr>
+        <tr><td class="l">空調設備工事関連</td><td>999</td></tr>
+        <tr><td class="l">化学品関連</td><td>421</td></tr>
+        <tr><td class="l">情報システム関連</td><td>359</td></tr>
+        <tr><td class="l">住宅設備機器関連</td><td>195</td></tr>
+        <tr><td class="l">エネルギー関連</td><td>82</td></tr>
+        <tr><td class="l">その他</td><td>42</td></tr>
+        <tr><td class="l">全社（共通）</td><td>129</td></tr>
+        <tr><td class="l">合計</td><td>3,569</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第4 提出会社の状況 5 従業員の状況等」<span class="src">③</span><span class="lab fact">事実</span></p>
+      <p>提出会社（単体）の従業員数は629名（臨時雇用者数112名を含む）、平均年齢41.5歳、平均勤続年数11.9年、平均年間給与767万3,710円（前期比+8.7%）。連結の1人当たり売上高は第97期の22.1百万円から第101期には32.9百万円へと4年で約1.5倍に上昇しており、増収が人員増を伴わない形（連結従業員数は3,805名→3,569名とむしろ減少）で実現していることがわかる。提出会社ベースの1人当たり経常利益も2.12百万円（第97期）から2.61百万円（第101期）へ改善している。連結従業員数の中では製造拠点であるベトナム子会社を中心とする樹脂・エレクトロニクス関連事業が最大の人員（1,342名）を抱える労働集約型セグメントであり、情報システム関連事業（359名）は少人数で売上・利益率が相対的に高い知識集約型セグメントという対比が見て取れる。<span class="src">①</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>人的資本指標（数値提示のみ）</h3>
+      <table>
+        <tr><th class="l">指標</th><th>数値</th></tr>
+        <tr><td class="l">管理的地位にある労働者に占める女性割合（提出会社）</td><td>8.9%</td></tr>
+        <tr><td class="l">男性労働者の育児休業取得率（提出会社・全労働者）</td><td>100.0%（うち1ヶ月以上取得率55%）</td></tr>
+        <tr><td class="l">女性労働者の育児休業取得率（提出会社）</td><td>100.0%</td></tr>
+        <tr><td class="l">男女の賃金の額の差異（提出会社・全労働者）</td><td>74.4%</td></tr>
+        <tr><td class="l">男女の賃金の額の差異（正規雇用労働者）</td><td>74.7%</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第4 提出会社の状況 5 従業員の状況等 ④」。有報は「賃金差異は管理的地位にある女性労働者が少ないことが原因であり、非管理職では特段の差異はない」と説明している。<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>CWI（Company Well-being Index）主要指標</h3>
+      <p>社員エンゲージメントスコア78.1点（2026年度目標75.0点以上）、所定時間外労働時間（管理職・国内連結）月46.8時間、（非管理職）月27.7時間、年10日以上の有給休暇取得者数70%、新卒入社後3年定着率80%、キャリア採用入社後3年定着率80%、AI・ディープラーニング理解度（G検定取得率）70%など、財務指標と並ぶ非財務経営指標として自社サイトで開示。有報上は主要指標の実績・目標値の一覧が掲載されている。<span class="src">③</span><span class="lab fact">事実</span></p>
+      <p>労働組合は結成されていないが「労使関係は協調的であり円満に推移している」と記載。少数精鋭主義を掲げ、事業ポートフォリオの転換と競争優位確立に資する人材の獲得・育成・定着を「持続的成長の源泉」と位置づけている。<span class="src">③</span><span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <h3>経営環境認識の具体性</h3>
+      <p>第101期の有報では、中東情勢（ホルムズ海峡の通行状況）が6セグメント全てに与える影響について個別に評価・開示するという、通常の紋切り型のマクロ環境認識よりも踏み込んだ記述がなされている。空調設備工事は「資材調達の一時的な混乱」、樹脂・エレクトロニクスは「ベトナムでの材料調達の一部がホルムズ海峡経由」、エネルギー関連は「ホルムズ海峡の通行状況の影響を受ける可能性が最も高い事業」など、セグメントごとに影響度の強弱を書き分けており、定型文ではなく自社のサプライチェーンに即した固有の記述と評価できる。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>課題→打ち手の接続</h3>
+      <p>6セグメントそれぞれについて次期の売上高・営業利益見通し（数値）と重点施策が対応づけて記載されている。特に情報システム関連事業は「バーチャルCxOサービス」の開始、石川・富山34自治体中26自治体からのNEXTGIGAスクール案件受注実績、グループウェア「POWER EGG®」の導入社数（1,600社超）など定量的な裏付けを伴う記述が多い。空調設備工事関連事業もベトナム子会社Aureole Construction Software Development Inc.のBIM技術者数（250名超）など具体的な数値が示されている。一方、住宅設備機器関連事業は「ブランド戦略の推進」「プライムインテリアブランドとしての再定義」といった定性的な記述が中心で、2期連続営業赤字からの脱却に向けた具体的なコスト構造改善策への言及は薄く、課題と打ち手の対応が他セグメントに比べ弱い。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>次期業績見通し</h3>
+      <table>
+        <tr><th class="l">指標</th><th>次期（2027年3月期）予想</th><th>前期比</th></tr>
+        <tr><td class="l">売上高</td><td>1,130億円</td><td class="neg">▲3.9%</td></tr>
+        <tr><td class="l">営業利益</td><td>30億円</td><td class="neg">▲11.2%</td></tr>
+        <tr><td class="l">経常利益</td><td>39億円</td><td class="neg">▲13.7%</td></tr>
+        <tr><td class="l">親会社株主に帰属する当期純利益</td><td>26億円</td><td class="neg">▲28.3%</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第2 事業の状況 1 経営方針、経営環境及び対処すべき課題等」。会社予想であり保証はない。<span class="src">③</span><span class="lab fact">事実</span></p>
+      <p>情報システム関連事業は「前期にNEXTGIGAスクール案件の納入があったことから、売上高は前期比31.9%減」と、当期の特需の反動減を会社自身が明記しており、次期減収減益予想の主因の一端が読み取れる。また政策保有株式売却について「その実施時期や規模は未確定であるため、業績予想には織り込んでおりません」との留保がある点も、次期純利益予想が保守的である可能性を示唆する。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>中期経営計画</h3>
+      <p>「当社は3年スパンでの中期経営計画を策定しており、外的・内的環境の変化に応じて必要な見直しを行っている」との記載があるが、有報本文中に中計の具体的な数値目標一覧・進捗状況・未達認識の記載は確認できなかった。決算説明資料等での確認が必要である。<span class="lab check">要確認</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <h3>ガバナンスとリスク管理体制</h3>
+      <p>2023年7月にサステナビリティ委員会を発足（代表取締役社長を委員長とし、社外取締役・社外監査役がアドバイザーとして出席）し、「三谷産業グループサステナビリティ基本方針」を策定。審議結果は定期的に取締役会へ報告される体制。リスク管理は危機管理担当取締役を委員長とする「リスクマネジメント委員会」が担う。<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>気候変動対応</h3>
+      <p>2023年4月にTCFD（気候関連財務情報開示タスクフォース）提言への賛同を表明したが、有報本文では詳細をウェブサイト参照に委ねており、GHG排出量の実績値や削減目標といった定量開示は有報上確認できない。当社は不動産開発・製造業向け資材供給や建設業を含む複合事業のため炭素集約度は業種によって濃淡があるはずだが、有報の記載は総論に留まっている。<span class="lab check">要確認</span></p>
+
+      <h3>戦略接続・検証可能性</h3>
+      <p>サステナビリティ章の記述はガバナンス体制の説明が中心で、各事業戦略（Ⅳ章）との接続は、化学品関連事業のリサイクル技術（有価金属回収・リサイクル炭素繊維）や環境配慮型空調（ZEB対応）など個別事業の記述の中に断片的に現れる程度であり、サステナビリティ章単独として本文の経営戦略と強く結びついているとまでは言い難い。目標に期限・実績が明示されているのはCWI（Ⅲ章参照）の人的資本関連指標が中心で、環境面の定量目標・実績の開示は相対的に薄い。<span class="lab interp">解釈</span></p>
+      <p>2026年より「付加価値分配計算書（Distribution Statement）」を導入し、創業来の経営理念である「利潤の公正・公平な分配」を可視化する取り組みを開始した点は、他の一般的な有報には見られない当社固有の開示である。<span class="src">③</span><span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約等）</h2>
+      <p>当社は事業リスクを8分野（自然災害、業務事故、財務、戦略、経済・社会的要因、法務、内部人的要因、外部人的要因）に分類し、気候変動・人口動態変化を「社会変動リスク」として別立てで捉えている。有報には10項目が個別記載され、発生可能性・影響度がマトリクスで示されている。<span class="src">③</span><span class="lab fact">事実</span></p>
+      <table>
+        <tr><th class="l">リスク項目</th><th>発生可能性</th><th>影響度</th></tr>
+        <tr><td class="l">(1) 情報セキュリティ</td><td>中</td><td>大</td></tr>
+        <tr><td class="l">(2) 投資有価証券の時価・実質価額変動</td><td>中</td><td>中</td></tr>
+        <tr><td class="l">(3) 法的規制</td><td>中</td><td>大</td></tr>
+        <tr><td class="l">(4) 製品・商品・サービスの品質</td><td>中</td><td>中</td></tr>
+        <tr><td class="l">(5) 海外事業展開・海外取引</td><td>中</td><td>大</td></tr>
+        <tr><td class="l">(6) 知的財産権</td><td>小</td><td>中</td></tr>
+        <tr><td class="l">(7) 事業投資</td><td>中</td><td>中</td></tr>
+        <tr><td class="l">(8) 不正行為</td><td>小</td><td>大</td></tr>
+        <tr><td class="l">(9) 自然災害</td><td>大</td><td>中</td></tr>
+        <tr><td class="l">(10) 感染症の流行・まん延</td><td>中</td><td>中</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第2 事業の状況 3 事業等のリスク」<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>固有リスクと定型リスクの仕分け</h3>
+      <p>(8)不正行為は「2004年10月26日に開示しましたとおり、当社では不適切な取引により重大な事態を生ぜしめたことがあり」と自社の過去の事案を継続して明記しており、他社の有報に見られる一般的な定型文とは一線を画す固有性の高い記述である。(5)海外事業展開についても、ベトナム子会社の統制を担うAureole Expert Integrators Inc.の役割や、ベトナムの大学との人材育成連携（Aureoleカンファレンス）まで具体的に記載されており固有性が高い。一方、(4)品質、(6)知的財産権、(10)感染症については、対策の記述がQMS整備・研修実施・感染予防継続といった業種を問わず当てはまる一般的な内容にとどまり、定型文的な性格が強い。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>財務照合</h3>
+      <p>(2)投資有価証券リスクは、Ⅸ章で述べる政策保有株式の規模（純資産の54.3%）と平仄が合う内容である。ただし、リスク項目としての記述は「毎年、所有株式について個別銘柄毎に取引状況を検証」という一般的なガバナンスプロセスの説明に留まり、保有規模の大きさそのものに対する定量的なリスク評価（例えば株価下落時の自己資本比率への影響度試算等）までは踏み込んでいない。開示規模の大きさに比して、リスク記述の深掘りはやや簡潔である。<span class="lab interp">解釈</span></p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>「該当事項はありません」と記載されている。フランチャイズ契約・技術導入契約・業務提携契約など第2-5に定める重要な契約は開示上存在しない。<span class="src">③</span><span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&A】</h2>
+      <h3>業績事実の要約</h3>
+      <p>売上高1,175億31百万円（前期比+144億58百万円、+14.0%）、営業利益33億79百万円（同+13億5百万円、+62.9%）、経常利益45億19百万円（同+18億62百万円、+70.1%）、親会社株主に帰属する当期純利益36億27百万円（同+11億87百万円、+48.7%）。売上高は6期連続増収、各段階利益は3期連続増益で、売上高・純利益は2期連続で過去最高を更新した。増収は全セグメントの伸長によるもので、情報システム関連事業（+63億63百万円）と化学品関連事業（+45億61百万円）の寄与が大きい。営業利益の増加は住宅設備機器関連事業を除く5セグメントの改善によるもので、樹脂・エレクトロニクス関連事業（+6億88百万円）の寄与が最も大きい。経常利益の増加は営業利益の増加に加え持分法投資利益の増加、親会社株主帰属純利益の増加は経常利益の増加に加え政策保有株式の整理に伴う投資有価証券売却益の計上が主因と、会社自身が明記している。<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>経営者が使う指標</h3>
+      <p>空調設備工事、情報システム、住宅設備機器の3セグメントについては売上高・営業利益に加えて「受注高」「受注残高」が重視され、詳細な数値が開示されている（空調設備工事の受注高は前期比+31.1%の247億13百万円で2期連続過去最高等）。これは建設請負・システム受託開発という積み上がり型のビジネスモデルを反映した経営指標の選好であり、経営者の関心が単年度の売上計上額だけでなく将来の収益の「仕込み」の状況に向いていることを示している。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>キャッシュ・フローの質</h3>
+      <p>営業CFは85億62百万円（前期42億36百万円から倍増）で、税金等調整前当期純利益50億18百万円、減価償却費21億48百万円、売上債権の減少18億69百万円、仕入債務の増加9億24百万円が主な増加要因、法人税等の支払額15億35百万円が減少要因。投資CFは6億60百万円の支出（有形固定資産取得12億44百万円、投資有価証券売却収入10億36百万円）。財務CFは74億18百万円の支出（短期・長期借入金の純減63億25百万円、配当金支払6億46百万円）。営業CFの内容は税前利益に加え運転資本改善（売上債権減少・仕入債務増加）が寄与しており、利益の質としては良好といえる。一方で、増加した営業CFの主な使途は有利子負債の圧縮であり、成長投資や株主還元の積極的な拡大には向かっていない。<span class="src">①</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>当連結会計年度末の有利子負債残高は115億77百万円、現金及び現金同等物は78億70百万円で、ネット有利子負債は約37億円のプラス（実質的な負債超過）だが、自己資本比率55.9%と財務健全性は高い水準にある。<span class="src">①</span><span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3>Ⅷ-a 設備の状況</h3>
+      <p>当連結会計年度の設備投資は有形固定資産18億41百万円、無形固定資産4億85百万円、長期前払費用2億69百万円の合計約25億95百万円。主な投資先は社内システム構築（4億79百万円）、青森県でのリサイクル炭素繊維事業向け機械装置（2億59百万円）、IDC（インターネットデータセンター）設備更新（2億13百万円）、ベトナム子会社の生産設備導入（1億73百万円）、富山八尾工場の研究設備（1億65百万円）。有形固定資産投資額（18億41百万円）は当期の減価償却費（21億48百万円）を下回っており、既存資産の維持更新の範囲内に収まる「維持型」の投資水準と判定できる。設備の新設・除却等の将来計画についても「特記事項はありません」とされ、大型の拡張投資計画は開示されていない。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>設備投資の一部（リサイクル炭素繊維、富山研究設備）はⅣ章で述べた「環境調和」「循環型社会への貢献」という戦略方針と接続しており、限られた投資枠の中でも環境関連技術に重点配分している姿勢がうかがえる。<span class="lab interp">解釈</span></p>
+
+      <h3>Ⅷ-b 研究開発活動</h3>
+      <p>研究開発費は総額2億43百万円（前期2億94百万円から▲17.3%）で、売上高比は約0.21%（前期0.29%）。テーマは化学品関連事業における子会社アクティブファーマ株式会社での医薬品向け原薬の開発、および子会社株式会社ミライ化成でのリサイクル炭素繊維事業の技術開発の2本柱。対売上高比が1%を大きく下回る低水準かつ減少傾向にあることは、当社が自社研究開発による差別化よりも商社機能・受託製造機能・複合サービス提供を主たる成長ドライバーとしていることを示唆している。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>配当・自己株式</h3>
+      <p>第101期の年間配当金は1株当たり13円（中間5円＋期末8円）で前期の10円から+30%増配。配当金総額は約7億99百万円（中間3億7百万円＋期末4億92百万円）。連結EPS58.92円に対する連結ベースの配当性向は約22.1%である一方、有報の提出会社（単体）ベースの配当性向は87.48%と大きく異なる。これは単体の当期純利益（9億15百万円）が連結の当期純利益（36億27百万円）よりも大幅に小さく、単体EPS（14.86円）が変動しやすいことによるもので、配当の実質的な原資は連結ベースで判断する必要がある。<span class="src">①</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+      <p>自己株式の取得は当事業年度で252株・価額の総額126,476円にとどまり、実質的には単元未満株式の買取りが中心で、意図的な自己株式取得（消却目的等）は実施されていない。株主総会決議・取締役会決議に基づく自己株式取得の実績はいずれも「該当事項はありません」。増加した営業CF・投資有価証券売却資金は、自己株買いよりも有利子負債の圧縮（短期借入金の純減55億79百万円）に優先的に充当されており、資本配分の規律としては「配当は増配、自社株買いは実施せず、余剰資金は負債圧縮」という保守的な姿勢が読み取れる。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>株主構成（支配構造）</h3>
+      <table>
+        <tr><th class="l">株主</th><th>所有比率</th></tr>
+        <tr><td class="l">三谷 充</td><td>15.83%</td></tr>
+        <tr><td class="l">三谷株式会社</td><td>9.71%</td></tr>
+        <tr><td class="l">公益財団法人三谷育英会</td><td>7.64%</td></tr>
+        <tr><td class="l">公益財団法人三谷研究開発支援財団</td><td>6.50%</td></tr>
+        <tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>4.39%</td></tr>
+        <tr><td class="l">株式会社アテナ</td><td>3.52%</td></tr>
+        <tr><td class="l">株式会社三谷サービスエンジン</td><td>3.43%</td></tr>
+        <tr><td class="l">公益財団法人三谷文化芸術保護情報発信事業財団</td><td>3.25%</td></tr>
+        <tr><td class="l">立花証券株式会社</td><td>1.59%</td></tr>
+        <tr><td class="l">三谷産業社員持株会</td><td>1.42%</td></tr>
+        <tr><td class="l">上位10者合計</td><td>57.27%</td></tr>
+      </table>
+      <div style="max-width:420px;margin:14px auto"><canvas id="chartOwner"></canvas></div>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第4 提出会社の状況 1 株式等の状況 (6) 大株主の状況」（2026年3月31日現在）<span class="src">③</span><span class="lab fact">事実</span></p>
+      <p>三谷充・三谷株式会社・三谷育英会・三谷研究開発支援財団・アテナ・三谷サービスエンジン・三谷文化芸術保護情報発信事業財団を創業家関連として合算すると49.88%、社員持株会を加えると51.30%に達し、機関投資家（日本マスタートラスト信託銀行）・個人証券（立花証券）を除けば創業家グループが実質的な支配株主である。2026年4月28日付「株式の売出し及び主要株主である筆頭株主の異動に関するお知らせ」により、当事業年度末時点で主要株主であった三谷充氏は2026年5月11日付で主要株主でなくなり、三谷株式会社が新たに主要株主となった旨が開示されている。これは創業家の持株を個人名義から資産管理会社名義へ集約する動きと解釈でき、事業承継・議決権集約の一環である可能性がある。<span class="lab interp">解釈</span><span class="lab fact">事実</span></p>
+
+      <h3>政策保有株式</h3>
+      <p>特定投資株式（上場）33銘柄・貸借対照表計上額299億77百万円、非上場株式39銘柄・9億43百万円、合計309億20百万円。これは純資産569億65百万円の54.3%に相当する大きな比率である。主要銘柄は住友不動産（1,884千株、82億74百万円、空調設備工事・住宅設備機器の取引先）、ビジネスエンジニアリング（687万株、81億20百万円、情報システム関連事業の資本業務提携先。なお同社の当社株式保有の有無は「無」と注記されており、片務的な保有関係）、WASHINGTON H.SOUL PATTINSON（豪州での情報収集目的、48億51百万円）、ダイキン工業（25億3百万円、購買取引先）。当事業年度中に非上場株式以外の株式を6銘柄・8億97百万円分売却しており、これがⅦ章で述べた投資有価証券売却益の源泉となっている。会社は「政策保有株式の売却等を含む資本効率向上の取り組みを継続する方針」と明言しており、今後も同様の売却・利益計上が続く可能性がある。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実</h3>
+      <p>監査役会設置会社であり、経営の監督・執行機能の分離を図るため2000年10月より執行役員制度を導入。取締役会は社内取締役10名・社外取締役5名の合計15名で構成され毎月1回開催。監査役会は社内監査役1名・社外監査役3名の合計4名で構成され毎月1回開催、当事業年度は12回開催し全監査役が全回出席している。2026年6月16日開催予定の定時株主総会では取締役15名（社内9名・社外6名）・監査役1名の選任議案が上程されており、承認されれば社外取締役は6名（新任：株式会社TeaRoom代表取締役CEO岩本涼氏）に増員される予定。<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>役員報酬</h3>
+      <table>
+        <tr><th class="l">役員区分</th><th>報酬等総額（百万円）</th><th>基本報酬</th><th>業績連動報酬</th><th>退職慰労金</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（社外除く）</td><td>453</td><td>253</td><td>147</td><td>32</td><td>12名</td></tr>
+        <tr><td class="l">監査役（社外除く）</td><td>42</td><td>23</td><td>16</td><td>2</td><td>1名</td></tr>
+        <tr><td class="l">社外役員</td><td>48</td><td>43</td><td>－</td><td>4</td><td>8名</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub)">出所：有報「第4 提出会社の状況 4 コーポレート・ガバナンスの状況等」<span class="src">③</span><span class="lab fact">事実</span></p>
+      <p>社内取締役の基本報酬等は「取締役報酬に関する内規」の報酬テーブルに基づき代表取締役社長が決定し、業績連動報酬等も代表取締役社長へ評価配分の決定が委任されている。社外取締役には業績連動報酬は支給されない固定報酬制。<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>主要役員の属性</h3>
+      <p>代表取締役社長の三谷忠照氏は1984年6月20日生まれ（2026年6月時点で41歳）で、2017年6月に代表取締役社長就任（品質担当兼務）、2022年6月に現任の代表取締役社長に就任しており、40代前半という若さで約9年にわたり社長職を務める創業家出身とみられる経営者である（大株主上位に「三谷」姓の個人・関連法人が並ぶことから、創業家出身である蓋然性が高い）。社外取締役5名は慶應義塾大学名誉教授（花田光世氏、清木康氏）、弁護士（長澤裕子氏）、芝浦工業大学教授（増田幸宏氏）、アステナホールディングス常務執行役員（清水雅楽乃氏）と、学術・法務・事業会社経営の専門性を持つ人材で構成されている。株主総会後新任予定の岩本涼氏（株式会社TeaRoom代表取締役CEO、茶文化・ブランド領域）は、Ⅱ章で述べた住宅設備機器ブランド戦略（「美意識は、暮らしの細部に宿る」）との関連が推測される人選である。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>2004年不祥事への言及の継続性</h3>
+      <p>ガバナンスの基本的な考え方の冒頭で「2004年10月26日に開示いたしました過年度の不適切な取引に関しまして、重大な事態を生ぜしめたことを真摯に反省し、内部統制システムやリスク管理体制を見直し、不祥事防止のための内部牽制機能をより一層強化することを最優先に取り組んでおります」と、20年以上前の事案を毎期継続して明記している。これは自社の負の歴史を風化させない開示姿勢として評価できる一方、20年以上同じ文言が反復されている点は、実質的な進捗を伴わない定型化した記述である可能性も否定できない。<span class="src">③</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>監査上の主要な検討事項（KAM）</h3>
+      <p>連結・単体とも唯一のKAMは「受注制作のソフトウエアの収益認識における工事原価総額の見積りの合理性」（情報システム関連事業）。監査人は、工事原価総額の見積りに用いる作業内容・要員計画等の前提の合理性を評価するため、見積りプロセスの検証や実績との比較分析を監査上の対応としている。単体財務諸表の監査報告書では、連結のKAMと実質的に同一内容であるとして記載を簡略化している。KAMが1件のみであること自体、情報システム関連事業の収益認識が当社の財務諸表監査における最重要論点として会計士に認識されていることを示す。<span class="src">③</span><span class="lab fact">事実</span></p>
+
+      <h3>本表の財務特徴</h3>
+      <p>総資産1,015億31百万円のうち、投資有価証券が87億42百万円増加したことが固定資産増加（+85億58百万円）の主因であり、これはⅨ章で述べた政策保有株式の含み益拡大を反映している。純資産の増加（+93億93百万円）もその他の包括利益累計額の増加（+64億15百万円）が主要因であり、事業利益の内部留保よりも保有株式の評価益が純資産増加を牽引する構図となっている。自己資本比率55.9%と財務健全性は高い一方、有利子負債115億77百万円が現金同等物78億70百万円を上回るネットデット状態にある。総じて「事業から生み出すキャッシュは堅調に伸びているが、バランスシートの厚みの多くは政策保有株式の含み益によって支えられている、保守的だが資産構成に偏りのある複合商社」という財務体質が浮かび上がる。<span class="src">①</span><span class="lab fact">事実</span><span class="lab interp">解釈</span></p>
+
+      <h3>継続企業の前提・後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する重要事象・注記は無し。重要な後発事象も「該当事項はありません」。偶発債務（保証債務）は関係会社の仕入先に対する支払債務等80百万円のみで、財政状態への影響は軽微。<span class="src">③</span><span class="lab fact">事実</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul class="plain">
+        <li>全セグメント増収・3期連続増益、売上高・純利益は2期連続で過去最高を更新した実績。<span class="lab fact">事実</span>（確からしさ：高　＝実績数値として有報に明記）</li>
+        <li>純資産の54.3%に相当する政策保有株式を抱え、会社自身が売却継続方針を明言している。今後の売却が進めば追加の投資有価証券売却益・資本効率改善余地がある。<span class="lab fact">事実</span><span class="lab interp">解釈</span>（確からしさ：中　＝時期・規模は「未確定」と会社自身が留保）</li>
+        <li>樹脂・エレクトロニクス関連事業（利益率11.8%）・空調設備工事関連事業（同11.2%）の高収益セグメントが売上・利益とも過去最高を更新し、受注残高も積み上がっている。<span class="lab fact">事実</span>（確からしさ：高）</li>
+      </ul>
+      <h3>懸念材料</h3>
+      <ul class="plain">
+        <li>次期は会社予想ベースで売上高▲3.9%・営業利益▲11.2%・純利益▲28.3%の減収減益。当期の増益ドライバー（NEXTGIGAスクール特需・投資有価証券売却益）は一過性色が強く反動が見込まれる。<span class="lab fact">事実</span><span class="lab interp">解釈</span>（顕在化条件：次期決算での実績確認）</li>
+        <li>住宅設備機器関連事業は2期連続の営業赤字。有報上、黒字化に向けた具体的なコスト構造改善策の記載が他セグメントに比べ薄い。<span class="lab check">要確認</span></li>
+        <li>創業家グループが約5割の株式を実質保有する同族的な株主構成で、自社株買いは実施されておらず、少数株主への価値還元は配当に限定されている。プライム市場からスタンダード市場への移行（2023年10月）も流通株式比率の観点から見て偶然ではない可能性がある。<span class="lab interp">解釈</span></li>
+      </ul>
+      <h3>追加確認が必要な事項</h3>
+      <ul class="plain">
+        <li>中期経営計画の具体的な数値目標一覧・進捗・未達認識 → 決算説明資料・統合報告書での確認が必要。<span class="lab check">要確認</span></li>
+        <li>住宅設備機器関連事業の黒字化に向けた具体的なコスト構造改善計画 → 決算説明資料・適時開示での確認が必要。<span class="lab check">要確認</span></li>
+        <li>政策保有株式売却の具体的なタイムライン・規模（次期業績予想には未織り込み） → 決算説明資料・適時開示での確認が必要。<span class="lab check">要確認</span></li>
+        <li>セグメント利益合計（58億50百万円）と連結営業利益（33億79百万円）の差額（約24億71百万円）の内訳 → セグメント情報の消去・全社項目の詳細を四半期決算補足資料等で確認する必要がある。<span class="lab check">要確認</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="font-size:11.5px;color:var(--sub);margin-top:24px">
+    <p><strong>免責事項：</strong>本レポートは三谷産業株式会社（証券コード8285）第101期有価証券報告書（自2025年4月1日 至2026年3月31日、提出日2026年6月11日）を主要な一次情報源として作成した定性分析であり、投資助言・売買推奨を目的とするものではありません。データ取得日は2026年8月18日。沿革章のWeb情報（2004年不祥事の詳細、2020年アビガン原薬生産の件）はWikipedia「三谷産業」記事に基づく補足情報であり、有報記載事項とは区別して付記しています。次期業績予想は会社発表時点（2026年6月11日）のものであり、実績を保証するものではありません。本レポートに含まれる推計・解釈（<span class="lab interp" style="display:inline">解釈</span>ラベル箇所）は筆者の分析であり、断定的な投資判断を示すものではなく、保証はありません。投資判断は必ずご自身の責任で、最新の一次情報をご確認の上行ってください。</p>
+  </div>
+</div>
+<script>
+const chapters = [
+  {id:'p0', label:'0. サマリー'},
+  {id:'p1', label:'Ⅰ. 企業の輪郭'},
+  {id:'p2', label:'Ⅱ. 沿革'},
+  {id:'p3', label:'Ⅲ. 人的資本'},
+  {id:'p4', label:'Ⅳ. 経営者の世界観'},
+  {id:'p5', label:'Ⅴ. サステナビリティ'},
+  {id:'p6', label:'Ⅵ. 事業等のリスク'},
+  {id:'p7', label:'Ⅶ. MD&A'},
+  {id:'p8', label:'Ⅷ. 設備・研究開発'},
+  {id:'p9', label:'Ⅸ. 資本政策・株主還元'},
+  {id:'p10', label:'Ⅹ. ガバナンス'},
+  {id:'p11', label:'Ⅺ. 会計面の定性シグナル'},
+  {id:'p12', label:'Ⅻ. 論点と未解明事項'}
+];
+const tabsEl = document.getElementById('tabs');
+chapters.forEach((c,i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'tab' + (i===0?' active':'');
+  btn.textContent = c.label;
+  btn.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(c.id).classList.add('active');
+  };
+  tabsEl.appendChild(btn);
+});
+
+new Chart(document.getElementById('chart5y'), {
+  type:'line',
+  data:{
+    labels:['2022/3','2023/3','2024/3','2025/3','2026/3'],
+    datasets:[
+      {label:'売上高（百万円）', data:[84427,90416,95857,103072,117531], borderColor:'#111111', backgroundColor:'rgba(17,17,17,0.06)', yAxisID:'y', tension:0.15},
+      {label:'経常利益（百万円）', data:[1966,1716,2443,2656,4519], borderColor:'#6b6b6b', backgroundColor:'rgba(107,107,107,0.08)', yAxisID:'y1', tension:0.15}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom', labels:{font:{size:11}}}},
+    scales:{
+      y:{position:'left', title:{display:true,text:'売上高'}},
+      y1:{position:'right', title:{display:true,text:'経常利益'}, grid:{drawOnChartArea:false}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartSeg'), {
+  type:'bar',
+  data:{
+    labels:['化学品','空調設備工事','情報システム','住宅設備機器','樹脂エレクトロニクス','エネルギー'],
+    datasets:[
+      {label:'売上高（百万円）', data:[44722,20680,16999,14482,12230,7688], backgroundColor:'#111111'},
+      {label:'セグメント利益（百万円）', data:[945,2320,1419,-698,1444,420], backgroundColor:'#9a9a9a'}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom', labels:{font:{size:11}}}},
+    scales:{y:{beginAtZero:true}}
+  }
+});
+
+new Chart(document.getElementById('chartOwner'), {
+  type:'doughnut',
+  data:{
+    labels:['三谷 充','三谷株式会社','三谷育英会','三谷研究開発支援財団','日本ﾏｽﾀｰﾄﾗｽﾄ信託銀行','ｱﾃﾅ','三谷ｻｰﾋﾞｽｴﾝｼﾞﾝ','三谷文化芸術保護財団','その他上位','その他'],
+    datasets:[{
+      data:[15.83,9.71,7.64,6.50,4.39,3.52,3.43,3.25,3.01,42.72],
+      backgroundColor:['#111111','#2b2b2b','#454545','#5f5f5f','#787878','#919191','#ababab','#c4c4c4','#dcdcdc','#f0f0f0']
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'right', labels:{font:{size:9}, boxWidth:10}}}
+  }
+});
+</script>
+</body></html>
