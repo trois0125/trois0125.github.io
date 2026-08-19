@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>エムケー精工（5906）投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+.seg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:8px 0 16px}
+.seg{background:#f7f7f7;border:1px solid var(--line);border-radius:2px;padding:12px 14px}
+.seg .name{font-weight:800;font-size:13px;margin-bottom:4px}
+.seg .num{font-size:16px;font-weight:800}
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:8px 0 16px}
+.risk{background:#f7f7f7;border:1px solid var(--line);border-radius:2px;padding:12px 14px}
+.risk .t{font-weight:800;font-size:13px;margin-bottom:4px}
+.foot{font-size:11px;color:var(--sub);margin-top:10px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">エムケー精工（5906） 定量レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>エムケー精工株式会社（5906） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-19 ／ データ取得日：2026-08-19（株価は2026-08-18終値） ／ 予想ベース日：2026-05-01（2026年3月期決算短信） ／ 一次情報のみ [①]〜[⑤]</div></header>
+  <div class="verdict buy">購入検討（全スクリーニング条件クリア）</div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="p0">①総合評価</button>
+    <button class="tab" data-p="p1">②企業概要</button>
+    <button class="tab" data-p="p2">③財務分析</button>
+    <button class="tab" data-p="p3">④バリュエーション</button>
+    <button class="tab" data-p="p4">⑤カタリスト</button>
+    <button class="tab" data-p="p5">⑥リスク</button>
+    <button class="tab" data-p="p6">⑦投資結論</button>
+  </div>
+
+  <!-- Tab1: 総合評価 -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">スクリーニング8条件判定 <span class="src">[⑤]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">条件</th><th>基準値</th><th>実測値</th><th>判定</th><th class="l">備考</th></tr>
+        <tr><td>1</td><td class="l">PER</td><td>≤15倍</td><td>4.80倍</td><td>○</td><td class="l">実績EPSベース・基準日2026-07-17株価804円</td></tr>
+        <tr><td>2</td><td class="l">PBR</td><td>≤1.5倍</td><td>0.58倍</td><td>○</td><td class="l">同上</td></tr>
+        <tr><td>3</td><td class="l">売上高CAGR（5年平均基準）</td><td>≥4%</td><td>+4.2%</td><td>○</td><td class="l">9年間で算出（5年データ制約のため最長期間で代替）</td></tr>
+        <tr><td>4</td><td class="l">営業利益CAGR（5年平均基準）</td><td>≥4%</td><td>+12.1%</td><td>○</td><td class="l">9年間で算出</td></tr>
+        <tr><td>5</td><td class="l">自己資本比率</td><td>≥40%</td><td>68.5%</td><td>○</td><td class="l">2026年3月期末実績</td></tr>
+        <tr><td>6</td><td class="l">時価総額</td><td>≤600億円</td><td>112億円</td><td>○</td><td class="l">基準日2026-07-17時点（流通株式ベース）</td></tr>
+        <tr><td>7</td><td class="l">直近1期の営業増益率</td><td>候補群上位1/3</td><td>+36.6%</td><td>○</td><td class="l">母集団内 上位25%（境界値+22%）</td></tr>
+        <tr><td>8</td><td class="l">6ヶ月株価モメンタム</td><td>候補群上位1/3</td><td>+14.9%</td><td>○</td><td class="l">母集団内 上位11%（境界値+3%）</td></tr>
+      </table>
+      <p class="foot">判定：8/8条件クリア（★全条件通過）。母集団：①〜⑥通過101銘柄／8条件通過11銘柄。参考値：3ヶ月モメンタム△9.7%／12ヶ月モメンタム+61.8%／直近増収率+5.4%／営業利益率9.1%／売買代金15百万円（いずれも基準日2026-07-17） <span class="src">[⑤]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI</h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">757円</div><div class="l">株価（2026/08/18終値）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">7.1倍</div><div class="l">PER（会社予想EPSベース）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">0.54倍</div><div class="l">PBR（実績BPSベース）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">2.38%</div><div class="l">配当利回り（予想）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">68.5%</div><div class="l">自己資本比率（26/3期末）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">13.05%</div><div class="l">ROE（26/3期実績）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">8.62%</div><div class="l">ROA（26/3期実績）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">118億円</div><div class="l">時価総額（発行済株式ベース）<span class="src">[④]</span></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">業績推移概観（売上高・経常利益） <span class="src">[④]</span></h2>
+      <canvas id="chartOverview"></canvas>
+    </div>
+
+    <div class="alert danger">
+      <b>特記事項：2027年3月期は会社計画で減益予想。</b> 2026年3月期は増収増益（売上高+5.4%・経常利益+38.4%・純利益+76.4%、いずれも過去最高）だったが、
+      会社は2027年3月期の連結業績予想として営業利益△19.2%・経常利益△21.3%・純利益△36.3%の減益を開示している。
+      要因として中東情勢緊迫化に伴う原材料調達難、エネルギー価格高騰による生産コスト増加、慢性的な労働力不足を挙げている <span class="src">[③]</span>。
+      スクリーニング8条件は直近実績・母集団内の相対評価でクリアしているが、今期（2027年3月期）は業績の踊り場である点に留意が必要。
+    </div>
+    <div class="alert">
+      配当は減配なし。2026年3月期実績15円（前期比+5円）、2027年3月期予想18円（前期比+3円）と増配計画 <span class="src">[③]</span>。
+      なお2026年3月期期末配当15円は2026年6月16日開催の定時株主総会決議事項であったが、決議は既に完了している（第70回定時株主総会決議ご通知、2026-06-16）<span class="src">[③]</span>。
+    </div>
+  </div>
+
+  <!-- Tab2: 企業概要 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[②]</span></h2>
+      <table>
+        <tr><td class="l" style="width:30%">会社名</td><td class="l">エムケー精工株式会社（MK SEIKO CO., LTD.）</td></tr>
+        <tr><td class="l">証券コード</td><td class="l">5906（東京証券取引所 スタンダード市場）</td></tr>
+        <tr><td class="l">設立</td><td class="l">1956年12月</td></tr>
+        <tr><td class="l">決算日</td><td class="l">3月20日</td></tr>
+        <tr><td class="l">本社所在地</td><td class="l">長野県千曲市雨宮1825番地</td></tr>
+        <tr><td class="l">資本金</td><td class="l">33億7,355万円</td></tr>
+        <tr><td class="l">代表者</td><td class="l">代表取締役社長 丸山 将一</td></tr>
+        <tr><td class="l">従業員数</td><td class="l">920名（単体・2025年4月現在）<span class="src">[②]</span>／1,258名（連結・決算説明資料記載）<span class="src">[③]</span></td></tr>
+        <tr><td class="l">事業内容</td><td class="l">モビリティ関連機器・ライフ＆サポート関連機器・住設機器の製造販売及びメンテナンスサービス。その他、保険代理業、不動産管理・賃貸業、運送業、印刷業、IoT関連機器の企画・開発・販売業</td></tr>
+        <tr><td class="l">関係会社</td><td class="l">長野県内を中心に9社 <span class="src">[③]</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">企業理念「エムケーフィロソフィー」 <span class="src">[③]</span></h2>
+      <h3>MISSION（果たすべき使命）</h3>
+      <p>これが欲しかった！を、アイデアで次々に実現する。</p>
+      <h3>VISION（実現したい未来）</h3>
+      <p>今までにない、いろどり豊かなシーンを広げる。</p>
+      <h3>VALUE（約束する価値）</h3>
+      <p>情報提供：速やかな情報提供で、知のめぐりを良くします。／発想：まだ誰も気づいていないニーズを引き出します。／開発：無限の組み合わせから、新しい価値を生み出します。／モノ・サービス：長く愛されるモノ・サービスをつくり続けます。／アフターサービス：いちばんの理解者として、末長く寄り添います。／ビジネスデザイン：ワクワクするビジネスをデザインします。／働きがい：あらゆる人がチャレンジできる環境をつくります。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業セグメント（2026年3月期実績） <span class="src">[③]</span></h2>
+      <div class="seg-grid">
+        <div class="seg"><div class="name">モビリティ＆サービス事業</div><div class="num">205億92百万円</div><div class="l">前期比+9.1%／構成比69.1%。門型洗車機（政府助成事業の補助金効果で大幅伸長）、オイル機器、LED表示機・デジタルサイネージ等</div></div>
+        <div class="seg"><div class="name">ライフ＆サポート事業</div><div class="num">62億9百万円</div><div class="l">前期比△0.4%／構成比20.8%。米価格高騰を背景に低温貯蔵庫・保冷米びつ・精米機が好調。家電・収納商品は需要回復見られず</div></div>
+        <div class="seg"><div class="name">住設機器事業</div><div class="num">27億73百万円</div><div class="l">前期比△3.8%／構成比9.3%。木・アルミ複合断熱建具は大型公共・民間物件が好調も、大型案件完工で施工量が減少</div></div>
+        <div class="seg"><div class="name">その他の事業</div><div class="num">2億13百万円</div><div class="l">前期比△21.0%／構成比0.7%。2025年8月26日付でホテル関連事業を譲渡。保険代理業・不動産管理賃貸業・IoT機器事業等が残存</div></div>
+      </div>
+      <canvas id="chartSegment"></canvas>
+      <p class="foot">出所：2026年3月期決算短信 セグメント情報等の注記 <span class="src">[③]</span>。irpocket公式IRデータExcelは5906で404となり未登録のため、セグメント年次系列は決算短信開示の直近2期分（2025/3・2026/3）のみで構成。</p>
+    </div>
+  </div>
+
+  <!-- Tab3: 財務分析 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">連結P&Lサマリー <span class="src">[④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>経常利益</th><th>純利益</th><th>前年比（売上）</th></tr>
+        <tr><td class="l">2023/3</td><td>27,327</td><td>1,694</td><td>6.2%</td><td>1,816</td><td>1,167</td><td>+9.9%</td></tr>
+        <tr><td class="l">2024/3</td><td>28,474</td><td>2,127</td><td>7.5%</td><td>2,253</td><td>713</td><td>+4.2%</td></tr>
+        <tr><td class="l">2025/3</td><td>28,268</td><td>1,993</td><td>7.05%</td><td>2,111</td><td>1,334</td><td class="neg">△0.7%</td></tr>
+        <tr class="h1-row"><td class="l">2026/3（実績）</td><td>29,788</td><td>2,723</td><td>9.14%</td><td>2,921</td><td>2,354</td><td>+5.4%</td></tr>
+        <tr class="forecast"><td class="l">2027/3（会社予想）</td><td>30,000</td><td>2,200</td><td>7.33%</td><td>2,300</td><td>1,500</td><td>+0.7%</td></tr>
+      </table>
+      <p class="foot">単位：百万円（営業利益率除く）。2023〜2027予はkabutan.jp業績推移表（決算短信開示ベース）<span class="src">[④]</span>、2025/3・2026/3の詳細は決算短信本体 <span class="src">[③]</span> と整合確認済み。</p>
+      <canvas id="chartPL"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">1株指標 <span class="src">[③][④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>EPS（円）</th><th>DPS（円）</th><th>配当性向</th><th>ROE</th><th>ROA</th><th>期末BPS（円）</th></tr>
+        <tr><td class="l">2023/3</td><td>79.91</td><td>10</td><td>12.5%</td><td>―</td><td>―</td><td>―</td></tr>
+        <tr><td class="l">2024/3</td><td>48.67</td><td>8</td><td>16.4%</td><td>―</td><td>―</td><td>1,024.32</td></tr>
+        <tr><td class="l">2025/3</td><td>90.76</td><td>10</td><td>11.0%</td><td>8.41%</td><td>5.03%</td><td>1,133.92</td></tr>
+        <tr class="h1-row"><td class="l">2026/3（実績）</td><td>167.49</td><td>15</td><td>9.0%</td><td>13.05%</td><td>8.62%</td><td>1,392.89</td></tr>
+        <tr class="forecast"><td class="l">2027/3（会社予想）</td><td>106.71</td><td>18</td><td>16.9%</td><td>7.72%（推計・kabutan算出）</td><td>5.16%（推計・kabutan算出）</td><td>―</td></tr>
+      </table>
+      <p class="foot">出所：2023〜2027予の配当・EPS・配当性向は決算説明資料（株主還元セクション）<span class="src">[③]</span>。ROE・ROAはkabutan.jp収益性表（純利益ベース）<span class="src">[④]</span>。2026/3期末BPSは決算短信の1株当たり純資産 <span class="src">[③]</span>。検証：純利益2,354百万円÷EPS167.49円＝約14,053千株（開示の期中平均株式数14,056,300株と概ね整合）。</p>
+      <canvas id="chartEpsDps"></canvas>
+      <canvas id="chartRoe"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>総資産</th><th>純資産</th><th>自己資本比率</th><th>営業CF</th><th>投資CF</th><th>財務CF</th></tr>
+        <tr><td class="l">2025/3</td><td>26,284</td><td>16,690</td><td>63.5%</td><td>516</td><td class="neg">△256</td><td class="neg">△216</td></tr>
+        <tr class="h1-row"><td class="l">2026/3</td><td>28,328</td><td>19,397</td><td>68.5%</td><td>1,990</td><td class="neg">△439</td><td class="neg">△1,515</td></tr>
+      </table>
+      <p class="foot">単位：百万円。出所：2026年3月期決算短信・決算説明資料 <span class="src">[③]</span>。参考：2026年6月末（2027年3月期第1四半期）時点で自己資本比率66.9%・BPS1,396.13円 <span class="src">[④]</span>（kabutan財務推移表）。</p>
+      <p class="foot">検証：自己資本比率＝自己資本19,397÷総資産28,328＝68.47%（開示値68.5%と整合）。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">セグメント別売上高詳細 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">セグメント</th><th>2025/3</th><th>2026/3</th><th>前期比</th><th>2026/3構成比</th></tr>
+        <tr><td class="l">モビリティ＆サービス事業</td><td>18,881</td><td>20,592</td><td>+9.1%</td><td>69.1%</td></tr>
+        <tr><td class="l">ライフ＆サポート事業</td><td>6,235</td><td>6,209</td><td class="neg">△0.4%</td><td>20.8%</td></tr>
+        <tr><td class="l">住設機器事業</td><td>2,882</td><td>2,774</td><td class="neg">△3.8%</td><td>9.3%</td></tr>
+        <tr><td class="l">その他の事業</td><td>270</td><td>213</td><td class="neg">△21.0%</td><td>0.7%</td></tr>
+        <tr class="h1-row"><td class="l">合計</td><td>28,268</td><td>29,788</td><td>+5.4%</td><td>100%</td></tr>
+      </table>
+      <p class="foot">単位：百万円（外部顧客への売上高ベース）。中期経営計画の開示は確認できなかったため、目標年の記載は省略。</p>
+    </div>
+  </div>
+
+  <!-- Tab4: バリュエーション -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">7.1倍</div><div class="l">PER（予想EPS106.71円ベース）</div></div>
+        <div class="kpi"><div class="v">0.54倍</div><div class="l">PBR（実績BPS1,392.89円ベース）</div></div>
+        <div class="kpi"><div class="v">2.38%</div><div class="l">配当利回り（予想DPS18円ベース）</div></div>
+        <div class="kpi"><div class="v">―</div><div class="l">信用倍率（データなし）</div></div>
+      </div>
+      <p class="foot">株価757円（2026年8月18日終値・未調整）。PER・PBRとも未調整終値と開示当時のEPS/BPSで計算 <span class="src">[④]</span>。参考：スクリーニング判定時（基準日2026-07-17、株価804円）はPER4.80倍（実績EPSベース）・PBR0.58倍 <span class="src">[⑤]</span>。実績EPSベースの現時点PERは757÷167.49＝4.52倍。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">PER・PBR推移チャートについて</h2>
+      <p>irpocketの公式IRデータExcel（https://irpocket.com/5906/chartest/data.xlsx）は5906が未登録のため404が返り取得不可であった。過去複数期末時点の未調整株価は会社公式開示に含まれないため、一次情報のみで年度末PER・PBRの多年度推移を再構成することができない。このため、多年度PER・PBR推移チャートは掲載を省略する（一次情報未取得のため省略）。現在時点の値は上記カードの通り <span class="src">[④]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">理論PBR分析（ROEベース・推計）</h2>
+      <p>適正PBR＝ROE÷株式コスト（要求収益率）という簡易フレームで試算。株式コストは一般的な仮定値として8%を採用した（<b>推計値・保証なし</b>）。</p>
+      <table>
+        <tr><th class="l">基準</th><th>ROE</th><th>株式コスト仮定</th><th>理論PBR</th><th>現在PBR</th><th>乖離</th></tr>
+        <tr><td class="l">2026/3実績ベース</td><td>13.05%</td><td>8%</td><td>1.63倍</td><td>0.54倍</td><td class="neg">△67%（大幅な割安）</td></tr>
+        <tr class="forecast"><td class="l">2027/3会社予想ベース</td><td>7.72%（推計）</td><td>8%</td><td>0.97倍</td><td>0.54倍</td><td class="neg">△44%（割安）</td></tr>
+      </table>
+      <p class="foot">理論PBRはあくまで一次情報から導出した推計値であり、実際の適正株価を保証するものではない。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>DPS（円）</th><th>配当性向</th><th>期末株価比利回り（参考）</th></tr>
+        <tr><td class="l">2023/3</td><td>10</td><td>12.5%</td><td>―</td></tr>
+        <tr><td class="l">2024/3</td><td>8</td><td>16.4%</td><td>―</td></tr>
+        <tr><td class="l">2025/3</td><td>10</td><td>11.0%</td><td>―</td></tr>
+        <tr class="h1-row"><td class="l">2026/3（実績）</td><td>15</td><td>9.0%</td><td>―</td></tr>
+        <tr class="forecast"><td class="l">2027/3（会社予想）</td><td>18</td><td>16.9%</td><td>2.38%（現在株価757円ベース）</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ピア比較</h2>
+      <p>一次情報未取得のため省略。</p>
+    </div>
+  </div>
+
+  <!-- Tab5: カタリスト -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">中期経営計画・数値目標</h2>
+      <p>会社公式開示（決算短信・決算説明資料・IRページ）を確認した限り、数値目標を伴う中期経営計画の開示は見当たらなかった。開示されているのは単年度（2027年3月期）の業績予想のみである <span class="src">[③]</span>。</p>
+      <table>
+        <tr><th class="l">項目</th><th>2027/3期会社予想</th><th>2026/3期実績</th><th>前期比</th></tr>
+        <tr><td class="l">売上高</td><td>300億円</td><td>297.9億円</td><td>+0.7%</td></tr>
+        <tr><td class="l">営業利益</td><td>22億円</td><td>27.2億円</td><td class="neg">△19.2%</td></tr>
+        <tr><td class="l">経常利益</td><td>23億円</td><td>29.2億円</td><td class="neg">△21.3%</td></tr>
+        <tr><td class="l">親会社株主帰属当期純利益</td><td>15億円</td><td>23.5億円</td><td class="neg">△36.3%</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">H1実績進捗（2027年3月期第2四半期累計予想） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th>2027/3 2Q累計予想</th><th>通期予想比進捗率</th><th>前年同期比</th></tr>
+        <tr><td class="l">売上高</td><td>135億円</td><td>45.0%</td><td class="neg">△4.7%</td></tr>
+        <tr><td class="l">営業利益</td><td>8億円</td><td>36.4%</td><td class="neg">△35.1%</td></tr>
+        <tr><td class="l">経常利益</td><td>8億円</td><td>34.8%</td><td class="neg">△39.3%</td></tr>
+        <tr><td class="l">純利益</td><td>6億円</td><td>40.0%</td><td class="neg">△52.0%</td></tr>
+      </table>
+      <p class="foot">H1は会社予想値のみ開示（実績はまだ未確定）。前年同期比は開示ベース。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト候補</h2>
+      <div class="seg-grid">
+        <div class="seg"><div class="name">政府助成事業による洗車機需要</div><div class="l">主力の門型洗車機がSS向け政府助成事業の補助金制度を追い風に大幅伸長。当初想定を上回る売上げを記録 <span class="src">[③]</span></div></div>
+        <div class="seg"><div class="name">米価格高騰の追い風</div><div class="l">低温貯蔵庫・保冷米びつ・精米機など米関連商品が米価高騰を背景に好調。ただし収穫増・在庫増による米価下落局面入りの可能性も会社が言及 <span class="src">[③]</span></div></div>
+        <div class="seg"><div class="name">脱炭素・木材利用拡大</div><div class="l">木・アルミ複合断熱建具が、カーボンニュートラル実現に向けた木材利用拡大やZEB化普及を背景に大型公共・民間物件で堅調 <span class="src">[③]</span></div></div>
+        <div class="seg"><div class="name">データセンター需要</div><div class="l">反射板式消音装置がデータセンター・再開発ビル・物流センター・工場向け需要拡大により堅調に推移する見込み <span class="src">[③]</span></div></div>
+        <div class="seg"><div class="name">増配・株主優待拡充</div><div class="l">2027年3月期予想DPS18円（4期連続増配）。2026年度より株主優待も対象条件を「1,000株以上」→「100株以上」に緩和し、2年以上保有株主向け優遇制度も新設 <span class="src">[③]</span></div></div>
+        <div class="seg"><div class="name">AI・IoT技術の製品応用</div><div class="l">メカトロニクス技術基盤にAI・IoT・センサー技術を組み合わせた新商品開発・既存商品高付加価値化を推進する方針 <span class="src">[③]</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab6: リスク -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">リスク要因</h2>
+      <div class="risk-grid">
+        <div class="risk"><div class="t">2027年3月期は会社計画で大幅減益</div><div class="l">営業利益△19.2%・純利益△36.3%を会社自ら予想。2026年3月期が過去最高益だった反動を含む <span class="src">[③]</span></div></div>
+        <div class="risk"><div class="t">原材料・エネルギーコスト増</div><div class="l">中東情勢緊迫化による原油供給不安・石油由来原材料の調達難、エネルギー価格高騰に伴う生産コスト増加を会社が明記 <span class="src">[③]</span></div></div>
+        <div class="risk"><div class="t">労働力不足</div><div class="l">慢性的な労働力不足への対応が課題として開示されている <span class="src">[③]</span></div></div>
+        <div class="risk"><div class="t">米価変動リスク</div><div class="l">ライフ＆サポート事業の主力（低温貯蔵庫等）は米価高騰が追い風だが、2025年産の収穫増・在庫増による米価下落局面入りの可能性を会社自身が指摘 <span class="src">[③]</span></div></div>
+        <div class="risk"><div class="t">政府助成事業への依存</div><div class="l">2026年3月期の洗車機売上げ急伸は政府助成事業の補助金制度が要因の一部。制度終了・縮小時の反動リスク <span class="src">[③]</span></div></div>
+        <div class="risk"><div class="t">住設機器事業の受注環境</div><div class="l">建築資材価格高騰に伴う入札不調・建築計画見直しにより受注環境は厳しい状況が継続 <span class="src">[③]</span></div></div>
+        <div class="risk"><div class="t">流動性の低さ</div><div class="l">売買代金は基準日時点で15百万円と薄く、値動きが荒くなりやすい可能性がある <span class="src">[⑤]</span></div></div>
+        <div class="risk"><div class="t">irpocketデータ未登録</div><div class="l">irpocket公式IRデータが本銘柄で未登録（404）のため、多年度の1株指標・セグメント推移の一次情報が決算短信・決算説明資料の開示範囲に限定される</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab7: 投資結論 -->
+  <div class="panel" id="p6">
+    <div class="verdict buy">購入検討（全スクリーニング条件クリア）</div>
+
+    <div class="card">
+      <h2 class="section">総合評価ナレーティブ</h2>
+      <p>
+      エムケー精工（5906）はスクリーニング8条件を全てクリアしている <span class="src">[⑤]</span>。PER4.8倍・PBR0.58倍（基準日時点）と実績値ベースでは大幅な割安水準にあり、
+      自己資本比率68.5%と財務健全性も高い <span class="src">[③]</span>。2026年3月期は売上高・営業利益・経常利益・純利益とも過去最高を更新し、
+      特に純利益は前期比+76.4%と大幅増益だった（ただしホテル事業子会社株式譲渡に伴う特別利益を含む）<span class="src">[③]</span>。
+      一方で会社は2027年3月期を減益（営業利益△19.2%・純利益△36.3%）と予想しており、予想EPSベースのPERは7.1倍まで上昇する <span class="src">[④]</span>。
+      それでも同水準は依然として割安レンジであり、配当は増配継続（15円→18円予想）、株主優待も拡充されるなど株主還元姿勢は強化されている <span class="src">[③]</span>。
+      irpocketに未登録のため多年度の一次データが決算短信・決算説明資料の開示範囲（主に直近2〜3期）に限定される点は情報面の制約として留意する必要がある。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計・保証なし）</h2>
+      <p style="font-size:12px;color:var(--sub)">以下の目標株価は一次情報から導出した推計値。実際の業績・株価を保証しない。</p>
+      <table>
+        <tr><th class="l">シナリオ</th><th>想定確率</th><th>前提</th><th>想定EPS</th><th>PER仮定</th><th>目標株価</th><th>現在比</th></tr>
+        <tr><td class="l">ベア</td><td>25%</td><td class="l">2027/3期会社予想を下振れ（EPS△15〜20%、推計）</td><td>88.0円</td><td>7.0倍</td><td>616円</td><td class="neg">△18.6%</td></tr>
+        <tr class="highlight"><td class="l">ベース</td><td>55%</td><td class="l">2027/3期会社予想を達成</td><td>106.71円</td><td>9.5倍</td><td>1,014円</td><td>+34.0%</td></tr>
+        <tr><td class="l">ブル</td><td>20%</td><td class="l">上方修正・超過達成（EPS+10〜15%、推計）</td><td>120.0円</td><td>11.5倍</td><td>1,380円</td><td>+82.3%</td></tr>
+      </table>
+      <canvas id="chartScenario"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <table>
+        <tr><th class="l">項目</th><th>状況</th></tr>
+        <tr><td class="l">スクリーニング8条件</td><td>8/8クリア <span class="src">[⑤]</span></td></tr>
+        <tr><td class="l">直近期業績</td><td>増収増益・過去最高益（2026/3）<span class="src">[③]</span></td></tr>
+        <tr><td class="l">今期ガイダンス</td><td>減益予想（要フォロー）<span class="src">[③]</span></td></tr>
+        <tr><td class="l">財務健全性</td><td>自己資本比率68.5%・良好 <span class="src">[③]</span></td></tr>
+        <tr><td class="l">配当政策</td><td>4期連続増配計画・減配なし <span class="src">[③]</span></td></tr>
+        <tr><td class="l">流動性</td><td>売買代金15百万円・薄い <span class="src">[⑤]</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">免責事項</h2>
+      <p style="font-size:11px;color:var(--sub)">
+      本レポートは一次情報（irpocket公式IRデータ [①]・会社公式IRページ [②]・会社公式開示PDF [③]・kabutan.jp [④]・J-Quants API V2 [⑤]）のみに基づき作成した個人投資の意思決定補助資料であり、投資勧誘を目的とするものではない。
+      irpocket公式IRデータExcel（[①]）は5906で未登録（404）のため取得できず、該当箇所は決算短信・決算説明資料（[③]）及びkabutan.jp（[④]）で代替した。
+      データ取得日：2026年8月19日。株価は2026年8月18日終値（未調整）。予想数値のベース日：2026年5月1日開示（2026年3月期決算短信）。
+      シナリオ分析中の目標株価はいずれも推計値であり、将来の業績・株価を保証しない。投資判断は自己責任で行うこと。
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(t=>{
+  t.addEventListener('click', ()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    panels.forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.p).classList.add('active');
+  });
+});
+
+const monoGray = '#111111';
+const lightGray = '#9a9a9a';
+
+new Chart(document.getElementById('chartOverview'), {
+  type: 'bar',
+  data: {
+    labels: ['2023/3','2024/3','2025/3','2026/3','2027/3(予)'],
+    datasets: [
+      {type:'bar', label:'売上高(百万円)', data:[27327,28474,28268,29788,30000], backgroundColor:'#dcdcdc', yAxisID:'y'},
+      {type:'line', label:'経常利益(百万円)', data:[1816,2253,2111,2921,2300], borderColor:'#111111', backgroundColor:'#111111', yAxisID:'y1', tension:0.2}
+    ]
+  },
+  options: {responsive:true, scales:{y:{position:'left', title:{display:true,text:'売上高'}}, y1:{position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'経常利益'}}}}
+});
+
+new Chart(document.getElementById('chartSegment'), {
+  type: 'bar',
+  data: {
+    labels: ['2025/3','2026/3'],
+    datasets: [
+      {label:'モビリティ&サービス', data:[18881,20592], backgroundColor:'#111111'},
+      {label:'ライフ&サポート', data:[6235,6209], backgroundColor:'#6b6b6b'},
+      {label:'住設機器', data:[2882,2774], backgroundColor:'#b4b4b4'},
+      {label:'その他', data:[270,213], backgroundColor:'#dcdcdc'}
+    ]
+  },
+  options: {responsive:true, scales:{x:{stacked:true}, y:{stacked:true, title:{display:true,text:'百万円'}}}}
+});
+
+new Chart(document.getElementById('chartPL'), {
+  type: 'bar',
+  data: {
+    labels: ['2023/3','2024/3','2025/3','2026/3','2027/3(予)'],
+    datasets: [
+      {type:'bar', label:'売上高', data:[27327,28474,28268,29788,30000], backgroundColor:'#dcdcdc'},
+      {type:'bar', label:'営業利益', data:[1694,2127,1993,2723,2200], backgroundColor:'#9a9a9a'},
+      {type:'line', label:'経常利益', data:[1816,2253,2111,2921,2300], borderColor:'#111111', backgroundColor:'#111111', tension:0.2}
+    ]
+  },
+  options: {responsive:true}
+});
+
+new Chart(document.getElementById('chartEpsDps'), {
+  data: {
+    labels: ['2023/3','2024/3','2025/3','2026/3','2027/3(予)'],
+    datasets: [
+      {type:'bar', label:'EPS(円)', data:[79.91,48.67,90.76,167.49,106.71], backgroundColor:'#dcdcdc'},
+      {type:'line', label:'DPS(円)', data:[10,8,10,15,18], borderColor:'#111111', backgroundColor:'#111111', tension:0.2}
+    ]
+  },
+  options: {responsive:true}
+});
+
+new Chart(document.getElementById('chartRoe'), {
+  type: 'line',
+  data: {
+    labels: ['2025/3','2026/3','2027/3(予)'],
+    datasets: [
+      {label:'ROE(%)', data:[8.41,13.05,7.72], borderColor:'#111111', backgroundColor:'#111111', tension:0.2},
+      {label:'ROA(%)', data:[5.03,8.62,5.16], borderColor:'#9a9a9a', backgroundColor:'#9a9a9a', tension:0.2}
+    ]
+  },
+  options: {responsive:true}
+});
+
+new Chart(document.getElementById('chartScenario'), {
+  type: 'bar',
+  data: {
+    labels: ['ベア(25%)','現在(757円)','ベース(55%)','ブル(20%)'],
+    datasets: [{
+      label:'株価(円)',
+      data:[616,757,1014,1380],
+      backgroundColor:['#b42318','#6b6b6b','#111111','#111111']
+    }]
+  },
+  options: {indexAxis:'y', responsive:true, plugins:{legend:{display:false}}}
+});
+</script>
+</body></html>

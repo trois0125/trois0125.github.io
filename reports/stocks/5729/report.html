@@ -1,0 +1,509 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>日本精鉱（5729） 投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:10px 0}
+.cat-card{border:1px solid var(--line);border-radius:2px;padding:12px 14px;background:#fbfbfb}
+.cat-card .t{font-weight:700;font-size:13px;margin-bottom:4px}
+.cat-card .d{font-size:12px;color:var(--sub)}
+.seg-box{border:1px solid var(--line);border-radius:2px;padding:12px 14px;background:#fbfbfb}
+.seg-box .name{font-weight:800;font-size:13px}
+.seg-box .num{font-size:18px;font-weight:800;margin:4px 0}
+.foot{font-size:11px;color:var(--sub);margin-top:10px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">日本精鉱（5729） 定量レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>日本精鉱株式会社（5729） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-19 ／ データ取得日：2026-08-19（kabutan・会社IR） ／ 一次情報のみ [①]〜[⑤]</div></header>
+  <div class="verdict caution">慎重検討（スクリーニング一部未達：8条件中7条件クリア、⑧6ヶ月モメンタムが未達）</div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="0">①総合評価</button>
+    <button class="tab" data-p="1">②企業概要</button>
+    <button class="tab" data-p="2">③財務分析</button>
+    <button class="tab" data-p="3">④バリュエーション</button>
+    <button class="tab" data-p="4">⑤カタリスト</button>
+    <button class="tab" data-p="5">⑥リスク</button>
+    <button class="tab" data-p="6">⑦投資結論</button>
+  </div>
+
+  <!-- Tab1: 総合評価 -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">スクリーニング8条件判定 <span class="src">[⑤]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">条件</th><th>基準値</th><th>実測値</th><th>判定</th><th class="l">備考</th></tr>
+        <tr><td class="l">①</td><td class="l">PER</td><td>≤15倍</td><td>3.45倍</td><td>○</td><td class="l">トレーリング実績（FY131 EPS 430.14円）基準。会社予想EPS基準では別値（Tab4参照）</td></tr>
+        <tr><td class="l">②</td><td class="l">PBR</td><td>≤1.5倍</td><td>0.94倍</td><td>○</td><td class="l">基準日2026-07-17時点</td></tr>
+        <tr><td class="l">③</td><td class="l">売上高CAGR（5年平均）</td><td>≥4%</td><td>+15.1%</td><td>○</td><td class="l">9年で算出</td></tr>
+        <tr><td class="l">④</td><td class="l">営業利益CAGR（5年平均）</td><td>≥4%</td><td>+22.7%</td><td>○</td><td class="l">－</td></tr>
+        <tr><td class="l">⑤</td><td class="l">自己資本比率</td><td>≥40%</td><td>62.5%</td><td>○</td><td class="l">FY131（2026年3月末）実績</td></tr>
+        <tr><td class="l">⑥</td><td class="l">時価総額</td><td>≤600億円</td><td>146億円</td><td>○</td><td class="l">基準日2026-07-17時点株価ベース</td></tr>
+        <tr><td class="l">⑦</td><td class="l">直近1期の営業増益率</td><td>候補群の上位1/3</td><td>+69.0%</td><td>○</td><td class="l">母集団内 上位10%（境界+22%）</td></tr>
+        <tr class="highlight"><td class="l">⑧</td><td class="l">6ヶ月株価モメンタム</td><td>候補群の上位1/3</td><td>-52.8%</td><td class="neg">×</td><td class="l">母集団内 上位99%（境界+3%）</td></tr>
+      </table>
+      <p class="foot">判定：7/8条件クリア。母集団：①〜⑥通過101銘柄／8条件通過11銘柄。参考値：3ヶ月モメンタム-39.9%／12ヶ月モメンタム+20.1%／直近増収率+62.3%／営業利益率14.9%／売買代金65百万円 <span class="src">[⑤]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI</h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">1,780円</div><div class="l">現在株価<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">15.6倍</div><div class="l">PER（会社予想EPS基準）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">1.15倍</div><div class="l">PBR（直近実績）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">3.37%</div><div class="l">配当利回り（予想）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">64.8%</div><div class="l">自己資本比率（2026年6月末）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">30.8%</div><div class="l">ROE（FY131実績）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">24.4%</div><div class="l">ROA（経常利益÷総資産・算出）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">186億円</div><div class="l">時価総額（2026-08-19）<span class="src">[④]</span></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">業績推移概観（売上高・経常利益） <span class="src">[①〜④]</span></h2>
+      <canvas id="chartOverview"></canvas>
+      <p class="foot">FY2027/3（今期）は会社予想。FY2022/3〜2026/3は有価証券報告書の実績値 <span class="src">[③]</span>、今期予想はkabutan・決算短信ベース <span class="src">[③][④]</span>。</p>
+    </div>
+
+    <div class="alert danger">
+      <b>特記事項・アラート：</b> FY2026/3（131期）はアンチモン地金価格の急騰（中国の輸出規制等を背景とした需給逼迫）により、売上高・利益とも過去最高水準を記録した。しかし2027年3月期第1四半期（2026年4〜6月）実績はアンチモン地金価格が前年同期比約55%下落した影響で、営業利益は前年同期比▲81.3%と急減。会社側の通期予想も前期比で営業利益▲71.9%・純利益▲73.4%という大幅減益を織り込んでおり、配当予想も前期400円から60円へ大幅減配となる見込み（前期は創立90周年記念配当を含む特別高水準だった点に留意）。トレーリングPER（3〜5倍台）と予想PER（15.6倍）の大きな乖離、および6ヶ月モメンタムの急落（-52.8%）は、この業績正常化を株価がすでに先取りしつつある動きとみられる <span class="src">[③][④]</span>。</p>
+    </div>
+  </div>
+
+  <!-- Tab2: 企業概要 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th class="l">内容</th></tr>
+        <tr><td class="l">会社名</td><td class="l">日本精鉱株式会社（英訳名：NIHON SEIKO CO.,LTD.）</td></tr>
+        <tr><td class="l">証券コード</td><td class="l">5729（東京証券取引所 スタンダード市場／非鉄金属）</td></tr>
+        <tr><td class="l">本店所在地</td><td class="l">東京都新宿区下宮比町3番2号</td></tr>
+        <tr><td class="l">代表者</td><td class="l">代表取締役社長　植田 憲高</td></tr>
+        <tr><td class="l">設立</td><td class="l">1935年6月（中瀬鉱業㈱として設立）／1936年2月　日本精鉱㈱に社名変更</td></tr>
+        <tr><td class="l">資本金</td><td class="l">1,018,126千円</td></tr>
+        <tr><td class="l">従業員数</td><td class="l">連結263名（2026年3月末）／提出会社（単体）86名</td></tr>
+        <tr><td class="l">連結子会社</td><td class="l">日本アトマイズ加工㈱（金属粉末事業）／日テイ精礦（上海）商貿有限公司（中国販売・原料調達拠点）</td></tr>
+        <tr><td class="l">その他関係会社</td><td class="l">株式会社川嶋（原料取引）</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">基本理念・長期ビジョン <span class="src">[③]</span></h2>
+      <p><b>基本理念：</b>「当社グループは、環境と安全そして成長を最重要課題と認識し、社会との共存を図り、より豊かで快適な生活環境を創るために必要な物づくりの一翼を担うことに誇りを持って、たゆむことなく挑み続けることを基本理念とします。」</p>
+      <p style="margin-top:8px"><b>長期ビジョン（創立100周年・2035年時点の「ありたい姿」）：</b>「日本精鉱グループはモノづくりを通じて、挑戦し続ける企業集団を目指します。」①独自の技術と高付加価値にこだわり続け、グローバル展開に挑む　②人的資本を充実させ、一段高いハードルを目指す人財を育成する　③社会への貢献とサーキュラーエコノミーの実現に取り組む　財務目標：ROEを安定的に10%以上</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業セグメント <span class="src">[③]</span></h2>
+      <div class="cat-grid">
+        <div class="seg-box"><div class="name">アンチモン事業</div><div class="num">293億円</div><div class="d">FY2026/3売上高（構成比71.9%）／各種プラスチック難燃剤・触媒用三酸化アンチモン、三硫化アンチモン等を製造販売。中国子会社が現地販売・原料調達を担う。</div></div>
+        <div class="seg-box"><div class="name">金属粉末事業</div><div class="num">114億円</div><div class="d">FY2026/3売上高（構成比28.0%）／子会社日本アトマイズ加工㈱が電子部品用金属粉末（銅粉・軟磁性材等）、粉末冶金用金属粉末を製造販売。</div></div>
+        <div class="seg-box"><div class="name">その他</div><div class="num">0.4億円</div><div class="d">FY2026/3売上高（構成比0.1%）／本社ビルの一部賃貸による不動産賃貸事業、高糖度トマト養液ハウス栽培事業（新規参入）。</div></div>
+      </div>
+      <h3>セグメント別売上高推移</h3>
+      <canvas id="chartSegment"></canvas>
+      <p class="foot">FY2027/3は会社予想（アンチモン・金属粉末の2区分のみ開示、その他は総額との差分で概算） <span class="src">[③]</span></p>
+    </div>
+  </div>
+
+  <!-- Tab3: 財務分析 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">連結損益計算書サマリー <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>売上高</th><th>売上総利益</th><th>販管費</th><th>営業利益</th><th>営業利益率</th><th>経常利益</th><th>純利益</th></tr>
+        <tr><td class="l">FY2022/3</td><td>17,098</td><td>－</td><td>－</td><td>－</td><td>－</td><td>2,247</td><td>1,541</td></tr>
+        <tr><td class="l">FY2023/3</td><td>15,923</td><td>－</td><td>－</td><td>－</td><td>－</td><td>791</td><td>482</td></tr>
+        <tr><td class="l">FY2024/3</td><td>15,589</td><td>－</td><td>－</td><td>－</td><td>－</td><td>706</td><td>503</td></tr>
+        <tr><td class="l">FY2025/3</td><td>25,180</td><td>4,952</td><td>1,354</td><td>3,598</td><td>14.3%</td><td>3,531</td><td>2,456</td></tr>
+        <tr class="h1-row"><td class="l">FY2026/3（実績）</td><td>40,867</td><td>7,711</td><td>1,631</td><td>6,081</td><td>14.9%</td><td>6,025</td><td>4,215</td></tr>
+        <tr class="h1-row"><td class="l">FY2027/3 1Q（実績）</td><td>9,393</td><td>－</td><td>－</td><td>538</td><td>5.7%</td><td>528</td><td>357</td></tr>
+        <tr class="forecast"><td class="l">FY2027/3（会社予想・通期）</td><td>34,400</td><td>－</td><td>－</td><td>1,710</td><td>5.0%</td><td>1,670</td><td>1,120</td></tr>
+      </table>
+      <p class="foot">単位：百万円。FY2022/3〜2024/3の売上総利益・販管費・営業利益は有価証券報告書の5期サマリー表に単独開示がないため「－」表記。前年同期比：FY2027/3 1Q 売上高-13.0%・営業利益-81.3%・経常利益-81.4%・純利益-81.8% <span class="src">[③]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">売上高・利益推移 <span class="src">[③]</span></h2>
+      <canvas id="chartPL"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">1株指標 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>EPS（円）</th><th>BPS（円）</th><th>DPS（円）</th><th>ROE</th><th>ROA<span class="src">算出</span></th><th>配当性向</th><th>期末株価（円）<span class="src">算出</span></th></tr>
+        <tr><td class="l">FY2022/3</td><td>157.86</td><td>952.58</td><td>140.00</td><td>17.9%</td><td>15.1%</td><td>42.0%</td><td>947</td></tr>
+        <tr><td class="l">FY2023/3</td><td>49.36</td><td>963.89</td><td>120.00</td><td>5.2%</td><td>5.7%</td><td>42.4%</td><td>775</td></tr>
+        <tr><td class="l">FY2024/3</td><td>51.46</td><td>992.68</td><td>80.00</td><td>5.3%</td><td>4.4%</td><td>69.8%</td><td>623</td></tr>
+        <tr><td class="l">FY2025/3</td><td>251.00</td><td>1,218.99</td><td>200.00</td><td>22.7%</td><td>16.9%</td><td>22.0%</td><td>1,230</td></tr>
+        <tr class="h1-row"><td class="l">FY2026/3</td><td>430.14</td><td>1,575.74</td><td>400.00</td><td>30.8%</td><td>24.4%</td><td>93.0%</td><td>2,366</td></tr>
+        <tr class="forecast"><td class="l">FY2027/3（予想）</td><td>114.25</td><td>－</td><td>60.00</td><td>7.3%<span class="src">算出</span></td><td>－</td><td>52.5%</td><td>－</td></tr>
+      </table>
+      <p class="foot">DPS・EPSは2026年4月1日付株式1→4分割を反映した分割後ベース（有価証券報告書の遡及修正値。ただし配当性向・発行済株式数は分割前実績を含む項目もあり注記あり）。期末株価は「開示PER×EPS」から逆算した参考値であり、未調整終値そのものではない点に留意 <span class="src">[③]</span>。ROAは経常利益÷総資産（会社方式）で当方算出。ROE予想（7.3%）は純利益予想1,120百万円÷FY2026/3期末自己資本15,447百万円で算出（期中平均ベースではない参考値）。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ROE・ROA推移</h2>
+      <canvas id="chartRoe"></canvas>
+    </div>
+    <div class="card">
+      <h2 class="section">EPS・DPS推移</h2>
+      <canvas id="chartEpsDps"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>総資産</th><th>純資産</th><th>自己資本比率</th><th>営業CF</th><th>投資CF</th><th>財務CF</th><th>FCF<span class="src">算出</span></th></tr>
+        <tr><td class="l">FY2022/3</td><td>14,840</td><td>9,299</td><td>62.7%</td><td>386</td><td>△645</td><td>△163</td><td>△259</td></tr>
+        <tr><td class="l">FY2023/3</td><td>13,954</td><td>9,409</td><td>67.4%</td><td>185</td><td>△744</td><td>△253</td><td>△559</td></tr>
+        <tr><td class="l">FY2024/3</td><td>15,874</td><td>9,701</td><td>61.1%</td><td>1,547</td><td>△1,570</td><td>766</td><td>△23</td></tr>
+        <tr><td class="l">FY2025/3</td><td>20,938</td><td>11,933</td><td>57.0%</td><td>△919</td><td>△629</td><td>645</td><td>△1,548</td></tr>
+        <tr class="h1-row"><td class="l">FY2026/3</td><td>24,730</td><td>15,447</td><td>62.5%</td><td>7,619</td><td>△1,053</td><td>△2,017</td><td>6,566</td></tr>
+        <tr class="h1-row"><td class="l">FY2027/3 1Q末</td><td>23,498</td><td>15,234</td><td>64.8%</td><td>－</td><td>△112<span class="src">概算</span></td><td>△410<span class="src">概算</span></td><td>－</td></tr>
+      </table>
+      <p class="foot">単位：百万円。FY2027/3 1QのCF内訳は決算補足資料の増減要因記載からの概算値 <span class="src">[③]</span>。財務基盤は自己資本比率60%超で一貫して健全水準。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">セグメント別売上高・利益詳細 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">セグメント</th><th>FY2025/3<br>売上高</th><th>FY2026/3<br>売上高</th><th>FY2027/3<br>予想売上高</th><th>FY2026/3<br>セグメント利益</th><th>FY2027/3<br>予想セグメント利益</th></tr>
+        <tr><td class="l">アンチモン事業</td><td>15,807</td><td>29,373</td><td>16,350</td><td>5,391</td><td>910</td></tr>
+        <tr><td class="l">金属粉末事業</td><td>9,336</td><td>11,453</td><td>17,234</td><td>653</td><td>800</td></tr>
+        <tr><td class="l">その他</td><td>36</td><td>40</td><td>816<span class="src">概算</span></td><td>2</td><td>－</td></tr>
+      </table>
+      <p class="foot">単位：百万円。FY2027/3予想の「その他」は通期予想売上34,400百万円と2区分予想の差分による概算 <span class="src">[③]</span>。</p>
+    </div>
+  </div>
+
+  <!-- Tab4: バリュエーション -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">15.6倍</div><div class="l">PER（会社予想EPS基準）</div></div>
+        <div class="kpi"><div class="v">1.15倍</div><div class="l">PBR（直近実績BPS基準）</div></div>
+        <div class="kpi"><div class="v">3.37%</div><div class="l">配当利回り（予想）</div></div>
+        <div class="kpi"><div class="v">1,093倍</div><div class="l">信用倍率</div></div>
+      </div>
+      <div class="alert">
+        <b>PERのトレーリング／予想基準の乖離について：</b> スクリーニング①の「PER 3.45倍」はFY2026/3実績EPS（430.14円）に対する直近株価ベース（基準日2026-07-17時点、株価1,485円）のトレーリングPER。一方kabutanが示す「PER 15.6倍」は会社の今期（FY2027/3）予想EPS（114.25円）に対する2026-08-19終値（1,780円）ベースの予想PER。両者は算出基準（実績 vs 予想、基準日）が異なり、FY2026/3の特別高収益の反動が予想PERの跳ね上がりに表れている <span class="src">[③][④][⑤]</span>。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">PER推移（トレーリング・実績ベース） <span class="src">[③]</span></h2>
+      <canvas id="chartPer"></canvas>
+      <p class="foot">FY2022/3〜FY2026/3は有価証券報告書開示の連結PER（各期末株価・実績EPSベース、株式分割調整後）。現在（予想PER15.6倍）は基準が異なるため別枠で参考表示 <span class="src">[③][④]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">PBR推移（推計） <span class="src">[③]</span></h2>
+      <canvas id="chartPbr"></canvas>
+      <p class="foot">各期末のPBRは「開示PER×開示EPS＝期末株価（推計）」を分母のBPSで除して算出した推計値（有価証券報告書に直接の開示はなし）。現在値（1.15倍）はkabutan公表値 <span class="src">[③][④]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">理論PBR分析（推計・保証なし）</h2>
+      <p>理論PBR ＝ ROE ÷ 株主資本コスト（仮定）で試算。株主資本コストを8%と仮定した場合：</p>
+      <table>
+        <tr><th class="l">ROEの前提</th><th>ROE</th><th>理論PBR</th><th>現在PBR</th><th class="l">評価（推計）</th></tr>
+        <tr><td class="l">FY2026/3実績ROE（特別高収益期）</td><td>30.8%</td><td>3.85倍</td><td rowspan="2">1.15倍</td><td class="l">実績ベースでは割安に見えるが、一時的高水準のため参考程度</td></tr>
+        <tr><td class="l">FY2027/3予想ROE（正常化想定）</td><td>7.3%</td><td>0.91倍</td><td class="l">予想ベースでは現在のPBR(1.15倍)がやや割高な可能性</td></tr>
+      </table>
+      <p class="foot">株主資本コスト8%は一般的な仮定値であり会社の開示値ではない。理論PBRはあくまで推計であり将来の株価を保証するものではない。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移 <span class="src">[③][④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>DPS（円）</th><th>配当性向</th><th>期末株価比利回り（推計）</th></tr>
+        <tr><td class="l">FY2022/3</td><td>140.00</td><td>42.0%</td><td>14.8%</td></tr>
+        <tr><td class="l">FY2023/3</td><td>120.00</td><td>42.4%</td><td>15.5%</td></tr>
+        <tr><td class="l">FY2024/3</td><td>80.00</td><td>69.8%</td><td>12.8%</td></tr>
+        <tr><td class="l">FY2025/3</td><td>200.00</td><td>22.0%</td><td>16.3%</td></tr>
+        <tr class="h1-row"><td class="l">FY2026/3</td><td>400.00</td><td>93.0%</td><td>16.9%</td></tr>
+        <tr class="forecast"><td class="l">FY2027/3（予想）</td><td>60.00</td><td>52.5%</td><td>3.37%（現在株価基準・会社公表値）</td></tr>
+      </table>
+      <p class="foot">FY2022〜2026/3の利回りは「推計期末株価」に対する参考値。FY2026/3の高DPS（400円）には創立90周年記念配当を含む特別要素あり。中期経営戦略では連結配当性向の目安を30%としており、FY2027/3予想の52.5%はこれを上回る水準 <span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ピア比較</h2>
+      <p class="foot">一次情報未取得のため省略。</p>
+    </div>
+  </div>
+
+  <!-- Tab5: カタリスト -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">中期経営戦略（2025年4月〜2028年3月） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th class="l">内容</th></tr>
+        <tr><td class="l">テーマ</td><td class="l">第2の創生（創立100周年）に向けた基盤づくりのための挑戦と変革</td></tr>
+        <tr><td class="l">財務目標（FY2028/3・3年平均）</td><td class="l">連結営業利益 30億円以上／ROE 10%以上</td></tr>
+        <tr><td class="l">基本方針</td><td class="l">①グループ連携の更なる強化　②既存事業の競争力強化とグローバル展開への挑戦　③最適な事業ポートフォリオの構築と新規事業の創出　④人的資本の充実とESGへの取り組み</td></tr>
+        <tr><td class="l">前提条件（アンチモン地金価格）</td><td class="l">2025年度39,500US$/t → 2026・2027年度18,000US$/t（策定時点の前提）</td></tr>
+      </table>
+      <p class="foot">長期ビジョン（2035年・創立100周年時点）：「日本精鉱グループはモノづくりを通じて、挑戦し続ける企業集団を目指す」財務目標ROE安定的に10%以上。中計策定時点(2025年3月)の前提に対し、FY2027/3 1Q実績のアンチモン地金価格は26,350US$/tと、前提24,000US$/tをやや上回る水準で推移 <span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト <span class="src">[③]</span></h2>
+      <div class="cat-grid">
+        <div class="cat-card"><div class="t">金属粉末事業の急拡大</div><div class="d">つくば工場の鉄系合金粉ライン増設が本格稼働。ハイエンドスマホ・AIサーバー向け電子部品用、自動車・家電向け粉末冶金用とも需要好調。FY2027/3 1Q実績は売上+85.3%・セグメント利益+328.4%。通期予想でも同事業がアンチモン事業を上回る売上規模となる見込み。</div></div>
+        <div class="cat-card"><div class="t">アンチモン原料調達の多様化</div><div class="d">グローバル調達を進め、中国当局の輸出規制下でも安定調達に一定の目処。供給先多様化は継続課題。</div></div>
+        <div class="cat-card"><div class="t">新製品開発体制の強化</div><div class="d">2025年4月に技術開発部を新設。電池材料など成長分野向け金属硫化物の新製品開発を推進。</div></div>
+        <div class="cat-card"><div class="t">第3の柱事業の構築</div><div class="d">M&Aなどを活用し、樹脂添加剤・樹脂コンパウンド・非鉄金属加工／リサイクル分野での新規事業構築を検討。</div></div>
+        <div class="cat-card"><div class="t">株主還元方針の明確化</div><div class="d">連結配当性向の目安を30%に設定し、業績に左右されない安定配当を志向。自己株式取得も検討対象。</div></div>
+        <div class="cat-card"><div class="t">資本コストを意識した経営対応</div><div class="d">東証要請を受け「資本コストや株価を意識した経営の実現に向けた対応について」を開示済み。</div></div>
+        <div class="cat-card"><div class="t">サーキュラーエコノミー対応</div><div class="d">金属粉末のリサイクル率向上・再生処理技術の確立に取り組む。</div></div>
+        <div class="cat-card"><div class="t">新規事業（アグリ事業）</div><div class="d">高糖度トマトの養液ハウス栽培に参入。働き方改革の一環かつ新規事業の芽として展開。</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">直近四半期（FY2027/3 1Q）実績進捗 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th>FY2026/3 1Q実績</th><th>FY2027/3 1Q実績</th><th>前年同期比</th><th>FY2027/3通期予想</th><th>進捗率</th></tr>
+        <tr><td class="l">売上高</td><td>10,793</td><td>9,393</td><td class="neg">△13.0%</td><td>34,400</td><td>27.3%</td></tr>
+        <tr><td class="l">営業利益</td><td>2,878</td><td>538</td><td class="neg">△81.3%</td><td>1,710</td><td>31.5%</td></tr>
+        <tr><td class="l">経常利益</td><td>2,839</td><td>528</td><td class="neg">△81.4%</td><td>1,670</td><td>31.6%</td></tr>
+        <tr><td class="l">純利益</td><td>1,967</td><td>357</td><td class="neg">△81.8%</td><td>1,120</td><td>31.9%</td></tr>
+      </table>
+      <p class="foot">単位：百万円（進捗率は会社公表値）。四半期進捗率自体は季節性を考慮すればおおむね順調（1Qとして27〜32%）だが、前年同期比では全項目大幅減益。通期予想は2026年5月12日公表・2026年8月6日時点で修正なし <span class="src">[③]</span>。※有報未提出のため、通常のH1（中間期）実績ではなく直近開示の1Q実績を使用。</p>
+    </div>
+  </div>
+
+  <!-- Tab6: リスク -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">主なリスク要因</h2>
+      <div class="cat-grid">
+        <div class="cat-card"><div class="t">原料アンチモン価格の変動</div><div class="d">アンチモン地金は国際相場品で中国への供給依存度が高い。FY2027/3 1Qは前年同期比約55%価格下落。中期前提（24,000US$/t）に対し実績26,350US$/tと下振れ余地・上振れ余地双方が残る <span class="src">[③]</span>。</div></div>
+        <div class="cat-card"><div class="t">FY2026/3の特別高収益の反動</div><div class="d">通期予想は前期比で営業利益△71.9%・純利益△73.4%の大幅減益を織り込み済み。1Q実績はこの減益見通しに沿って推移 <span class="src">[③]</span>。</div></div>
+        <div class="cat-card"><div class="t">大幅減配の見込み</div><div class="d">FY2027/3年間配当予想は60円で、前期400円から85%減。前期は創立90周年記念配当を含む特別高水準だった点は考慮要 <span class="src">[③]</span>。</div></div>
+        <div class="cat-card"><div class="t">株価モメンタムの急落</div><div class="d">6ヶ月モメンタム-52.8%（母集団内下位1%水準）でスクリーニング条件⑧が未達 <span class="src">[⑤]</span>。</div></div>
+        <div class="cat-card"><div class="t">為替変動</div><div class="d">中国子会社を保有し輸入原料も多い。中計前提は円ドル148円（2025年度）→155円（2026年度）。1Q実績為替160円 <span class="src">[③]</span>。</div></div>
+        <div class="cat-card"><div class="t">中期経営計画の前提未達リスク</div><div class="d">連結営業利益目標（3年平均30億円以上）はFY2027/3予想（17.1億円）だけでは未達水準。今後2期での挽回が前提 <span class="src">[③]</span>。</div></div>
+        <div class="cat-card"><div class="t">信用取引の高倍率</div><div class="d">信用倍率1,093倍と極めて高水準で、需給が偏りやすく値動きが荒くなりやすい <span class="src">[④]</span>。</div></div>
+        <div class="cat-card"><div class="t">売買代金・流動性</div><div class="d">売買代金65百万円と薄商い。急な売買で値が飛びやすい可能性 <span class="src">[⑤]</span>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab7: 投資結論 -->
+  <div class="panel" id="p6">
+    <div class="card">
+      <div class="verdict caution">慎重検討（スクリーニング一部未達：8条件中7条件クリア、⑧6ヶ月モメンタムが未達）</div>
+      <h2 class="section">総合評価</h2>
+      <p>日本精鉱はPER・PBR・CAGR・自己資本比率・時価総額・直近営業増益率の6条件を明確にクリアしており、バリュエーション・財務健全性・成長トラックレコードの面では割安株スクリーニングの基準を満たす <span class="src">[⑤]</span>。しかしFY2026/3（131期）の記録的好業績はアンチモン地金価格の急騰という一過性要因に強く依存しており、会社自身の今期（FY2027/3）予想はすでに大幅な減益・減配を織り込んでいる <span class="src">[③]</span>。市場もこれを織り込みつつあり、6ヶ月モメンタムが▲52.8%と急落してスクリーニング条件⑧が未達となった <span class="src">[⑤]</span>。トレーリング指標（PER3.45倍・PBR0.94倍）を額面通りに「割安」と捉えるのは適切でなく、予想ベースの指標（PER15.6倍・理論PBR0.91倍程度）で見ると、現在株価はむしろ正常化後の収益力に対してやや高いとも解釈できる <span class="src">[③][④]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計・保証なし）</h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:8px">以下の目標株価は一次情報から導出した推計値。実際の業績・株価を保証しない。</p>
+      <table>
+        <tr><th class="l">シナリオ</th><th class="l">前提</th><th>想定EPS</th><th>PER仮定</th><th>目標株価</th><th>現在比</th></tr>
+        <tr><td class="l">ベア（想定25%）</td><td class="l">アンチモン価格の一段安・需要減でFY2027/3予想比EPS-20%</td><td>91円</td><td>7倍</td><td>640円</td><td class="neg">-64.0%</td></tr>
+        <tr class="highlight"><td class="l">ベース（想定55%）</td><td class="l">会社予想EPS（114.25円）どおり達成</td><td>114円</td><td>9〜10倍</td><td>1,028〜1,142円</td><td class="neg">-42.2%〜-35.8%</td></tr>
+        <tr><td class="l">ブル（想定20%）</td><td class="l">金属粉末事業の伸長継続やアンチモン価格の底打ち反発でEPS+15%</td><td>131円</td><td>11〜12倍</td><td>1,445〜1,577円</td><td class="neg">-18.8%〜-11.4%</td></tr>
+      </table>
+      <canvas id="chartScenario"></canvas>
+      <p class="foot">現在株価1,780円（2026-08-19終値） <span class="src">[④]</span>基準。PER仮定は当社の過去5期トレーリングPER（4.9〜15.7倍）のレンジ下限〜中位を参考に設定した推計値。3シナリオすべてで現在株価を下回る試算となっており、正常化後の収益力に対して株価がやや先行している可能性を示唆する。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <table>
+        <tr><th class="l">項目</th><th>判定</th><th class="l">コメント</th></tr>
+        <tr><td class="l">①PER（トレーリング）</td><td>○</td><td class="l">3.45倍。ただし予想PERは15.6倍</td></tr>
+        <tr><td class="l">②PBR</td><td>○</td><td class="l">0.94倍（基準日）／現在1.15倍</td></tr>
+        <tr><td class="l">③売上高CAGR</td><td>○</td><td class="l">+15.1%（9年）</td></tr>
+        <tr><td class="l">④営業利益CAGR</td><td>○</td><td class="l">+22.7%</td></tr>
+        <tr><td class="l">⑤自己資本比率</td><td>○</td><td class="l">62.5%（FY131）／64.8%（1Q末）</td></tr>
+        <tr><td class="l">⑥時価総額</td><td>○</td><td class="l">146億円（基準日）／186億円（現在）</td></tr>
+        <tr><td class="l">⑦直近営業増益率</td><td>○</td><td class="l">+69.0%、母集団上位10%</td></tr>
+        <tr class="highlight"><td class="l">⑧6ヶ月モメンタム</td><td class="neg">×</td><td class="l">-52.8%、母集団下位1%水準</td></tr>
+        <tr><td class="l">業績トレンド</td><td>△</td><td class="l">FY2026/3は特別高収益、FY2027/3は大幅減益予想・1Q実績も同方向</td></tr>
+        <tr><td class="l">配当</td><td>△</td><td class="l">FY2027/3は大幅減配予想（400円→60円）。ただし前期は特別配当込み</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">免責事項</h2>
+      <p style="font-size:11px;color:var(--sub)">
+      本レポートは日本精鉱株式会社（証券コード5729）に関する一次情報（有価証券報告書 <span class="src">[③]</span>、会社公式IRサイト・決算短信・決算補足説明資料・中期経営戦略資料 <span class="src">[③]</span>、kabutan.jp <span class="src">[④]</span>、J-Quants API V2によるスクリーニング判定 <span class="src">[⑤]</span>）のみに基づき作成した個人投資の意思決定補助資料であり、投資勧誘を目的としたものではありません。シナリオ分析・理論PBR等の推計値は一次データからの試算であり、将来の業績・株価を保証するものではありません。irpocket公式IRデータExcel（<span class="src">[①]</span>）は本銘柄について取得できなかった（404）ため、財務データは有価証券報告書および会社公式開示PDFで代替しています。データ取得日：2026-08-19。スクリーニング基準日：2026-07-17（<span class="src">[⑤]</span>）。今期業績予想の公表日：2026-05-12、直近の修正確認：2026-08-06（第1四半期決算短信時点で修正なし）。投資判断は必ずご自身の責任において行ってください。
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(i){
+  document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active', idx===i));
+  document.querySelectorAll('.panel').forEach((p,idx)=>p.classList.toggle('active', idx===i));
+}
+document.querySelectorAll('.tab').forEach((t,idx)=>t.addEventListener('click',()=>showTab(idx)));
+
+const inkColor = '#111111', subColor = '#6b6b6b', lineColor = '#dcdcdc';
+Chart.defaults.color = subColor;
+Chart.defaults.borderColor = lineColor;
+Chart.defaults.font.size = 11;
+
+// Tab1: overview
+new Chart(document.getElementById('chartOverview'), {
+  data: {
+    labels: ['FY2022/3','FY2023/3','FY2024/3','FY2025/3','FY2026/3','FY2027/3(予)'],
+    datasets: [
+      {type:'bar', label:'売上高（百万円）', data:[17098,15923,15589,25180,40867,34400], backgroundColor:'#cccccc'},
+      {type:'line', label:'経常利益（百万円）', data:[2247,791,706,3531,6025,1670], borderColor:inkColor, backgroundColor:inkColor, tension:0.15}
+    ]
+  },
+  options:{responsive:true, plugins:{legend:{position:'bottom'}}}
+});
+
+// Tab2: segment
+new Chart(document.getElementById('chartSegment'), {
+  type:'bar',
+  data:{
+    labels:['FY2025/3','FY2026/3','FY2027/3(予)'],
+    datasets:[
+      {label:'アンチモン事業', data:[15807,29373,16350], backgroundColor:'#333333'},
+      {label:'金属粉末事業', data:[9336,11453,17234], backgroundColor:'#999999'},
+      {label:'その他', data:[36,40,816], backgroundColor:'#dddddd'}
+    ]
+  },
+  options:{responsive:true, plugins:{legend:{position:'bottom'}}, scales:{x:{stacked:true}, y:{stacked:true}}}
+});
+
+// Tab3: P&L
+new Chart(document.getElementById('chartPL'), {
+  data:{
+    labels:['FY2022/3','FY2023/3','FY2024/3','FY2025/3','FY2026/3','FY2027/3(予)'],
+    datasets:[
+      {type:'bar', label:'売上高（百万円）', data:[17098,15923,15589,25180,40867,34400], backgroundColor:'#cccccc'},
+      {type:'bar', label:'営業利益（百万円）', data:[null,null,null,3598,6081,1710], backgroundColor:'#333333'},
+      {type:'line', label:'経常利益（百万円）', data:[2247,791,706,3531,6025,1670], borderColor:inkColor, tension:0.15}
+    ]
+  },
+  options:{responsive:true, plugins:{legend:{position:'bottom'}}}
+});
+
+// ROE/ROA
+new Chart(document.getElementById('chartRoe'), {
+  type:'line',
+  data:{
+    labels:['FY2022/3','FY2023/3','FY2024/3','FY2025/3','FY2026/3','FY2027/3(予)'],
+    datasets:[
+      {label:'ROE(%)', data:[17.9,5.2,5.3,22.7,30.8,7.3], borderColor:inkColor, tension:0.15},
+      {label:'ROA(%・算出)', data:[15.1,5.7,4.4,16.9,24.4,null], borderColor:'#999999', tension:0.15}
+    ]
+  },
+  options:{responsive:true, plugins:{legend:{position:'bottom'}}}
+});
+
+// EPS/DPS
+new Chart(document.getElementById('chartEpsDps'), {
+  data:{
+    labels:['FY2022/3','FY2023/3','FY2024/3','FY2025/3','FY2026/3','FY2027/3(予)'],
+    datasets:[
+      {type:'bar', label:'EPS（円）', data:[157.86,49.36,51.46,251.00,430.14,114.25], backgroundColor:'#cccccc'},
+      {type:'line', label:'DPS（円）', data:[140,120,80,200,400,60], borderColor:inkColor, tension:0.15}
+    ]
+  },
+  options:{responsive:true, plugins:{legend:{position:'bottom'}}}
+});
+
+// PER history
+new Chart(document.getElementById('chartPer'), {
+  type:'bar',
+  data:{
+    labels:['FY2022/3','FY2023/3','FY2024/3','FY2025/3','FY2026/3','現在(予想PER)'],
+    datasets:[{label:'PER（倍）', data:[6.0,15.7,12.1,4.9,5.5,15.6], backgroundColor:['#333','#333','#333','#333','#333','#999']}]
+  },
+  options:{responsive:true, plugins:{legend:{display:false}}}
+});
+
+// PBR history
+new Chart(document.getElementById('chartPbr'), {
+  type:'bar',
+  data:{
+    labels:['FY2022/3','FY2023/3','FY2024/3','FY2025/3','FY2026/3','現在'],
+    datasets:[{label:'PBR（倍・推計）', data:[0.99,0.80,0.63,1.01,1.50,1.15], backgroundColor:['#333','#333','#333','#333','#333','#999']}]
+  },
+  options:{responsive:true, plugins:{legend:{display:false}}}
+});
+
+// Scenario
+new Chart(document.getElementById('chartScenario'), {
+  type:'bar',
+  data:{
+    labels:['ベア','ベース(下限)','ベース(上限)','ブル(下限)','ブル(上限)','現在株価'],
+    datasets:[{label:'株価（円）', data:[640,1028,1142,1445,1577,1780], backgroundColor:['#b42318','#666','#666','#333','#333','#111']}]
+  },
+  options:{indexAxis:'y', responsive:true, plugins:{legend:{display:false}}}
+});
+</script>
+</body></html>

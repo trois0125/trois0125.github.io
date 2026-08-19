@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>日本精鉱（5729） 有価証券報告書 定性分析レポート（第131期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+ul,ol{padding-left:20px;margin:8px 0}
+li{margin:4px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.kpi{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.kpi div{border:1px solid var(--line);border-radius:2px;padding:10px 14px;min-width:140px}
+.kpi div .n{font-size:19px;font-weight:800}
+.kpi div .l{font-size:11px;color:var(--sub)}
+footer.foot{margin-top:24px;font-size:11px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">日本精鉱（5729） 有報定性レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>日本精鉱株式会社（5729） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第131期（2025年4月～2026年3月）有価証券報告書 ／ 作成日：2026-08-19</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p><b>この企業を一文で：</b>兵庫県中瀬鉱山を起源に1935年創業、アンチモン（難燃剤原料）製錬を国内でほぼ独占的に担う専業メーカーであり、近年は中国の輸出規制に伴う地金価格急騰の追い風で業績が急拡大している会社。<span class="src">解釈</span></p>
+      <h3>最重要ポイント3点</h3>
+      <ol>
+        <li>第131期は売上高408.7億円（前年比+62.3%）、経常利益60.3億円（同+70.6%）と急拡大したが、その主因はアンチモン地金の国際相場急騰（中国の輸出管理強化を背景に前期比約48%上昇）による製品価格の上昇であり、販売数量はむしろ前年比12.8%減少している<span class="src">事実</span>。増収増益の質は「量」ではなく「価格・相場」に依存している。</li>
+        <li>大株主構成は福田金属箔粉工業（17.96%、主要株主かつ社外取締役の出身母体）と、静岡県浜松市の同一住所（湖東町3222）を本店とする「その他の関係会社」株式会社川嶋グループ（川嶋・三光・三興企画・富士興産・アルメルトの合算で約36%<span class="src">解釈</span>）が支配的な持分を持つ、実質的にオーナー系グループ企業に近い株主構成である<span class="src">事実</span>。</li>
+        <li>2026年4月に普通株式1株→4株の株式分割を実施し、投資単位の引き下げ・流動性向上を図った<span class="src">事実</span>。配当については連結配当性向30%を目安とする方針を掲げ、第131期は中間170円・期末230円（分割前基準、合計400円）を実施予定<span class="src">事実</span>。</li>
+      </ol>
+      <h3>最も注意すべき論点</h3>
+      <p>アンチモン事業の収益構造は、原料地金（中国依存度が高い）の国際相場変動に極めて敏感であり、有報自身が「相場の下落局面では高値在庫の影響で収益性が急低下しうる」と明記している<span class="src">事実</span>。実際、第131期第4四半期のアンチモン地金価格は第3四半期比で約38～39%下落しており、直近の急成長がそのまま翌期以降も続く保証はない<span class="src">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>5年推移（連結・代表6指標）</h3>
+      <table>
+        <tr><th class="l">回次</th><th>第127期</th><th>第128期</th><th>第129期</th><th>第130期</th><th>第131期</th><th>4年CAGR</th></tr>
+        <tr><td class="l">決算年月</td><td>2022/3</td><td>2023/3</td><td>2024/3</td><td>2025/3</td><td>2026/3</td><td>-</td></tr>
+        <tr><td class="l">売上高（百万円）</td><td>17,098</td><td>15,923</td><td>15,589</td><td>25,180</td><td>40,867</td><td>+24.3%</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>2,247</td><td>791</td><td>706</td><td>3,531</td><td>6,025</td><td>+28.0%</td></tr>
+        <tr><td class="l">EPS（円・分割調整後）</td><td>157.86</td><td>49.36</td><td>51.46</td><td>251.00</td><td>430.14</td><td>+28.5%</td></tr>
+        <tr><td class="l">ROE（%）</td><td>17.9</td><td>5.2</td><td>5.3</td><td>22.7</td><td>30.8</td><td>-</td></tr>
+        <tr><td class="l">自己資本比率（%）</td><td>62.7</td><td>67.4</td><td>61.1</td><td>57.0</td><td>62.5</td><td>-</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>386</td><td>185</td><td>1,547</td><td class="neg">△919</td><td>7,619</td><td>-</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px">出所：有報「主要な経営指標等の推移」<span class="src">③</span>。CAGRは筆者算出（第127期→第131期、4年間）。EPSは株式分割（2026年4月、1→4株）を遡及調整した数値（有報記載値）。</p>
+      <p>5年間で売上高は2.4倍、経常利益は2.7倍に拡大しているが、FY129まで実質横ばい・減益局面が続いた後、FY130・FY131の2期でアンチモン地金相場の急騰により急拡大した「後半集中型」の成長カーブである<span class="src">解釈</span>。営業CFはFY130に△919百万円（棚卸資産・売掛金の増加による運転資金圧迫）を記録した後、FY131は7,619百万円まで急回復しており、業績変動に対してキャッシュフローが大きく振れる体質がうかがえる<span class="src">事実</span>。</p>
+
+      <h3>事業の内容（事業系統図の言語化）</h3>
+      <p>当社グループは提出会社（日本精鉱）と連結子会社2社（日本アトマイズ加工㈱、日テイ精礦（上海）商貿有限公司）で構成される<span class="src">事実</span>。事業は「アンチモン事業」と「金属粉末事業」の2セグメントに大別される。アンチモン事業では、提出会社が海外から調達した原料地金（アンチモン）を国内の中瀬製錬所（兵庫県養父市）で三酸化アンチモン等に加工し、直販・代理店経由で難燃剤原料・触媒・ブレーキ材料等として販売する。中国子会社（日テイ精礦）は中国国内での販売・原料調達を担う<span class="src">事実</span>。金属粉末事業は、連結子会社の日本アトマイズ加工（千葉県野田市・茨城県つくば市に生産拠点）が電子部品用金属粉末（銅粉・貴金属粉・鉄系合金粉等）と粉末冶金用金属粉末を製造販売する<span class="src">事実</span>。その他区分では本社ビル賃貸事業と高糖度トマトの養液ハウス栽培事業（アグリ事業）を営む<span class="src">事実</span>。</p>
+
+      <h3>収益柱の照合（セグメント別売上・利益構成）</h3>
+      <table>
+        <tr><th class="l">セグメント</th><th>売上高（百万円）</th><th>売上構成比</th><th>セグメント利益（百万円）</th><th>利益構成比</th></tr>
+        <tr><td class="l">アンチモン事業</td><td>29,373</td><td>71.9%</td><td>5,391</td><td>89.0%</td></tr>
+        <tr><td class="l">金属粉末事業</td><td>11,453</td><td>28.0%</td><td>653</td><td>10.8%</td></tr>
+        <tr><td class="l">その他</td><td>40</td><td>0.1%</td><td>2</td><td>0.03%</td></tr>
+      </table>
+      <p>売上構成比（アンチモン72%・金属粉末28%）に対し、利益構成比はアンチモン事業に89%まで集中しており、「語りの大きさ」（2事業並記）と「利益の実態」（アンチモン事業依存）に乖離がある<span class="src">解釈</span>。特にFY131はアンチモン地金相場高騰の恩恵をアンチモン事業がほぼ独占的に享受した結果であり、金属粉末事業の収益貢献は相対的に小さい<span class="src">解釈</span>。</p>
+
+      <h3>競争優位</h3>
+      <p>アンチモン事業は原料調達（海外・主に中国依存）→国内製錬（中瀬製錬所での自社加工）→販売という垂直統合型の川中工程を担っており、国内で三酸化アンチモンを一貫製造できる数少ない企業の一つとみられる<span class="src">解釈</span>。ただし原料の川上（鉱石採掘）は自社で持たず外部調達に依存しており、供給元の多様化がリスク低減の主眼となっている<span class="src">事実</span>。金属粉末事業は独自の水アトマイズ法による微細粉末製造技術を優位性の源泉としている<span class="src">事実</span>。</p>
+
+      <h3>関係会社</h3>
+      <p>親会社は存在しない<span class="src">事実</span>。連結子会社2社（日本アトマイズ加工＝金属粉末事業、日テイ精礦（上海）＝アンチモン事業の中国販売・調達拠点）はいずれも100%子会社<span class="src">事実</span>。その他の関係会社である株式会社川嶋（静岡県浜松市、非鉄金属卸売業）とは原料仕入取引があり、当社に対する議決権被所有割合は9.93%（間接分16.58%を外数で含む）<span class="src">事実</span>。日本アトマイズ加工の売上高は連結売上の10%超を占めるが、セグメント間内部売上高の比率が90%を超えるため主要損益情報の個別開示は省略されている<span class="src">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>中瀬鉱山（兵庫県養父市）は1573年（天正元年）に砂金が発見されたのが起源とされ、豊臣・徳川期には天領（幕府直轄地）として金・銀を産出した、400年近い歴史を持つ鉱山である<span class="src">web＋中瀬金山見学情報／養父市・サードペディア百科事典</span>。明治維新後に民間へ払い下げられ、1935年（昭和10年）6月に中瀬鉱業㈱として資本金3百万円で設立されたのが当社の起源<span class="src">事実</span>。当初は金・銀が主力鉱物でアンチモンは副産物的な扱いであったが<span class="src">web＋サードペディア百科事典</span>、1936年2月に天美鉱業㈱を吸収合併し社名を「日本精鉱」に改称、本社を東京に移転した<span class="src">事実</span>。</p>
+      <p>戦時中の1943年には中瀬鉱山がアンチモン重要鉱山に指定され、重要鉱物増産法に基づき三菱鉱業㈱へ経営を委任、終戦後の1946年に委任解除となっている<span class="src">事実</span>。1948年10月、中瀬にアンチモン製錬所が竣工し、三酸化アンチモン・金属アンチモンの製造販売を開始した<span class="src">事実</span>。これがアンチモン専業化への転換点であり、鉱山会社から製錬メーカーへの事業モデル転換の起点となった<span class="src">解釈</span>。1949年に東京証券取引所市場第二部へ株式上場、同年大阪証券取引所市場第二部にも上場した<span class="src">事実</span>。</p>
+      <p>その後は増資と設備投資を重ねながらアンチモン加工品のラインアップ拡充（ATOX・PATOX等の商品開発、1982年）を進めた<span class="src">事実</span>。金鉱山としての中瀬鉱山自体は、戦後鉱量が年々減少し、1969年（昭和44年）に鉱量枯渇により約400年の歴史に幕を閉じて閉山した<span class="src">web＋サードペディア百科事典</span>。以後、アンチモン製錬事業は海外から原料地金を輸入する形態に転換し現在に至っている<span class="src">web＋サードペディア百科事典</span>。この「自社鉱山からの原料調達→全量輸入原料への転換」は、現在まで続く原料調達リスク（中国依存・輸出規制の影響を受けやすい体質）の構造的な起点である<span class="src">解釈</span>。</p>
+      <p>2000年8月、日本アトマイズ加工㈱（千葉県野田市）の株式55%を取得し子会社化、2008年6月に完全子会社化して金属粉末事業へ本格参入した<span class="src">事実</span>。2012年につくば工場を竣工、2013年7月に中国現地法人（日テイ精礦（上海）商貿有限公司）を設立し、金属粉末・アンチモンの両事業でグローバル展開の基盤を整えた<span class="src">事実</span>。2017年10月には5株を1株に併合する株式併合を実施している<span class="src">事実</span>。2022年4月、東証市場再編に伴いスタンダード市場に移行<span class="src">事実</span>。2024年7月にはトマトの養液ハウス栽培事業（アグリ事業）を開始し、非鉄金属加工以外への事業多角化にも着手した<span class="src">事実</span>。直近では2026年4月に1株を4株とする株式分割を実施し、投資単位の引き下げ・株主層拡大を図っている<span class="src">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本</h2>
+      <div class="kpi">
+        <div><div class="n">263人</div><div class="l">連結従業員数（2026年3月末）</div></div>
+        <div><div class="n">86人</div><div class="l">提出会社従業員数</div></div>
+        <div><div class="n">44.5歳</div><div class="l">提出会社平均年齢</div></div>
+        <div><div class="n">16.8年</div><div class="l">提出会社平均勤続年数</div></div>
+        <div><div class="n">792万円</div><div class="l">提出会社平均年間給与</div></div>
+      </div>
+      <p>連結従業員数はFY127の234人からFY131の263人へ5年間で+12.4%の緩やかな増加にとどまる一方、連結売上高は同期間で+139%（2.4倍）拡大しており、従業員1人当たり売上高はFY127の約7,307万円からFY131の約1.55億円へ倍増した<span class="src">解釈（①有報「従業員数」「主要な経営指標等」より算出）</span>。ただしこの生産性向上は主に人員増による組織拡大ではなく、アンチモン地金の相場上昇に伴う製品単価の上昇（＝販売数量はむしろ減少）に起因しており、労働生産性の実質的な改善というより市況要因が大きい点には留意が必要<span class="src">解釈</span>。事業モデルとしては労働集約型ではなく、限られた人員で高付加価値・素材加工型の生産を行う「仕組み型」に近い<span class="src">解釈</span>。</p>
+      <p>セグメント別従業員数（連結）はアンチモン事業88人・金属粉末事業175人・報告セグメント計263人であり、金属粉末事業（日本アトマイズ加工）の方が人員規模は大きい<span class="src">事実</span>。労働組合は「日本精鉱中瀬労働組合」（中瀬製錬所に本部、組合員53人、上部団体は日本基幹産業労働組合連合会）が存在するが、本社・大阪営業所・連結子会社には労働組合組織はない<span class="src">事実</span>。</p>
+      <h3>人的資本指標（数値のみ提示）</h3>
+      <table>
+        <tr><th class="l">指標</th><th>提出会社</th><th>日本アトマイズ加工㈱</th></tr>
+        <tr><td class="l">管理的地位にある労働者に占める女性割合</td><td>7.1%</td><td>-（開示なし）</td></tr>
+        <tr><td class="l">男性労働者の育児休業取得率</td><td>-（実績なし）</td><td>100.0%</td></tr>
+        <tr><td class="l">労働者の男女賃金差異（全労働者）</td><td>78.2%</td><td>79.5%</td></tr>
+        <tr><td class="l">有給休暇取得率（連結・目標比較）</td><td colspan="2">実績82.3% ／ 目標80%以上（継続）</td></tr>
+        <tr><td class="l">平均残業時間（連結）</td><td colspan="2">実績8.7時間 ／ 目標10時間未満（継続）</td></tr>
+      </table>
+      <p>役員構成では男性9名・女性1名（女性比率10%）<span class="src">事実</span>。管理職の中途採用者比率67%を「50%以上（継続）」の目標に対する実績として開示している<span class="src">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <h3>長期ビジョン・中期経営戦略</h3>
+      <p>日本精鉱創立100周年（2035年）時点の「ありたい姿」を想定した長期ビジョンを設定し、2025年4月～2028年3月の3カ年中期経営戦略「第2の創生（創立100周年）に向けた基盤づくりのための挑戦と変革」を策定<span class="src">事実</span>。基本方針は①グループ連携の更なる強化、②既存事業の競争力強化とグローバル展開への挑戦、③最適な事業ポートフォリオの構築と新規事業の創出、④人的資本の充実とESGへの取り組み、の4本柱<span class="src">事実</span>。数値目標は最終年度（2027年度）に連結営業利益（3年平均）30億円以上・ROE（3年平均）10%以上<span class="src">事実</span>。</p>
+      <p>FY131単年の実績（営業利益60.8億円・ROE30.8%）は既にこの3年平均目標水準を大きく上回っているが、これはアンチモン相場高騰による一過性要因が大きく、中期経営戦略の目標自体は市況変動を織り込んだ保守的な水準に設定されている可能性がある<span class="src">解釈</span>。「3年平均」という指標設計自体が、単年度の相場変動に業績が左右されやすい事業特性を経営陣が認識していることの表れとも読める<span class="src">解釈</span>。</p>
+      <h3>課題→打ち手の接続</h3>
+      <table>
+        <tr><th class="l">課題</th><th class="l">具体的打ち手</th></tr>
+        <tr><td class="l">アンチモン原料地金の中国依存・輸出管理</td><td class="l">供給元の多様化を推進</td></tr>
+        <tr><td class="l">アンチモン事業の収益性改善</td><td class="l">安定生産、高付加価値製品の販売、DX化・省人化による原価低減、電池材料向け金属硫化物等の新製品開発</td></tr>
+        <tr><td class="l">金属粉末事業の生産・販売拡大</td><td class="l">つくば工場鉄系合金粉ラインの稼働率向上、リサイクル率向上・製造工程改善による原価低減、MLCC・インダクタ向け新製品開発</td></tr>
+      </table>
+      <p>各課題に対応する打ち手は具体的な部署名（技術開発部）や数値（相場前提：アンチモン地金トン当たり24,000ドル、銅国内建値トン当たり2,130千円）を伴っており、定型文に留まらない固有の記述が多い<span class="src">解釈</span>。一方で「グループ連携の更なる強化」「最適な事業ポートフォリオの構築と新規事業の創出」という基本方針については、具体的な新規事業の中身（アグリ事業以外）が本章では明示されておらず、抽象度がやや高い<span class="src">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <h3>気候変動</h3>
+      <p>ISO14001に基づく品質環境マネジメントシステムのもと、代表取締役社長を最高責任者とするガバナンス体制を構築<span class="src">事実</span>。2018年度比で2030年までに中瀬製錬所のGHG排出量を30%削減する目標を掲げている<span class="src">事実</span>。目標に期限（2030年）と基準年（2018年度）が明記されており検証可能性は確保されているが<span class="src">解釈</span>、当該指標の直近実績値（進捗率）は本章では開示されていない<span class="src">要確認</span>。台風・大雨等の災害リスクへの対応はBCP策定、GHG排出規制への対応は再エネ使用・化石燃料からの転換という一般的な対応にとどまり、精錬業に特有の詳細な排出量データ（絶対量やスコープ別内訳）の記載はない<span class="src">解釈</span>。</p>
+      <p>アンチモン精錬という業種特性上、環境負荷物質・廃棄物管理（特化則対象物質を含む）は本業に直結するテーマだが、本節では簡潔な記述にとどまり、詳細はⅥ章の事業等のリスクで扱われている<span class="src">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+      <h3>固有リスクと定型リスクの仕分け</h3>
+      <p>アンチモン事業・金属粉末事業それぞれについて各7項目・5項目、計12項目のリスクが個別に記載されており、「経済活動の状況」「人財の確保」など両事業に共通する定型的リスクと、以下のような固有性の高いリスクが明確に区別できる<span class="src">解釈</span>。</p>
+      <ul>
+        <li><b>原料地金の調達（固有・最重要）</b>：主要産地である中国がレアメタル輸出規制を強化し、2024年9月15日にアンチモン関連品目が輸出管理対象となって以降、原料地金・加工品の輸出量が著しく減少<span class="src">事実</span>。同年12月3日には対米輸出を原則不許可とする発表もあった<span class="src">事実</span>。特定の国への依存を避けた供給元多様化が今後の重要課題と明記<span class="src">事実</span>。</li>
+        <li><b>三酸化アンチモンの特化則適用（固有）</b>：2017年6月から主要製品が特定化学物質障害予防規則の管理第2類物質に追加され、発散抑制措置・作業環境測定・特殊健康診断等の法令対応コストが発生<span class="src">事実</span>。</li>
+        <li><b>相場・在庫評価リスク（固有）</b>：相場下落局面では高値在庫の影響で収益性が急低下する可能性、棚卸資産の低価法評価の影響を受ける旨を明記<span class="src">事実</span>。これは第5「重要な会計上の見積り」の棚卸資産評価（当期評価損313,606千円）とも符合する<span class="src">解釈（財務照合）</span>。</li>
+      </ul>
+      <p>財務数値との照合では、アンチモン事業の急激な増収増益（+85.8%増収）が原料地金相場の急騰という外部要因に起因することがリスク章・MD&A章の双方で一貫して説明されており、開示に矛盾は見られない<span class="src">解釈</span>。むしろリスク章の記載が具体的・詳細であることは、経営陣がこの相場依存リスクを強く意識していることの表れと評価できる<span class="src">解釈</span>。</p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>該当事項なし<span class="src">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&A】</h2>
+      <h3>業績事実の要約</h3>
+      <p>FY131連結：売上高40,867百万円（前期比+62.3%）、営業利益6,080百万円（同+69.0%）、経常利益6,025百万円（同+70.6%）、親会社株主帰属当期純利益4,215百万円（同+71.6%）<span class="src">事実</span>。セグメント別では、アンチモン事業が売上29,373百万円（同+85.8%）・セグメント利益5,391百万円（同+76.2%）、金属粉末事業が売上11,453百万円（同+22.7%）・セグメント利益653百万円（同+30.0%）<span class="src">事実</span>。</p>
+      <p>アンチモン地金の当期平均価格はトン当たり約46,820ドル（前年度比+約48%、円建て+約46%）まで急騰した一方、第4四半期は第3四半期比でドル建て約39%・円建て約38%下落しており、期中の相場変動が非常に大きい<span class="src">事実</span>。アンチモン製品の販売数量自体は前年度比12.8%減（3,962トン）と減少しており、増収は完全に価格要因である<span class="src">事実</span>。金属粉末事業も銅国内建値の上昇（前年度比+14.7%）が寄与しつつ、電子部品向け・粉末冶金向けともに販売数量は減少（それぞれ▲7.3%、▲5.2%）している<span class="src">事実</span>。</p>
+      <p>相手先別販売実績では双日株式会社が当期に総販売実績の11.9%（4,850百万円）を占め、前期は10%未満だったため新規に開示対象となった<span class="src">事実</span>。特定顧客への依存度が急上昇している点は留意点である<span class="src">解釈</span>。</p>
+
+      <h3>経営者が着目する指標</h3>
+      <p>経営者の分析はセグメントごとの「販売数量」「平均価格（ドル建て・円建て）」「セグメント資産」を軸に展開されており、量と単価を分解した説明がなされている<span class="src">解釈</span>。これは相場変動リスクの大きい事業特性を踏まえ、価格要因と数量要因を区別して業績を語る経営姿勢の表れと評価できる<span class="src">解釈</span>。</p>
+
+      <h3>CF・資本の財源</h3>
+      <p>営業CFはFY131に7,619百万円のプラス（前期は919百万円のマイナス）に急回復。主因は税金等調整前当期純利益6,020百万円、売上債権の減少1,772百万円、契約負債の増加1,277百万円等<span class="src">事実</span>。運転資金・設備資金は内部留保資金に加え、短期借入金・長期借入金で調達（2026年3月末の短期借入金残高1,242百万円、長期借入金残高1,222百万円）<span class="src">事実</span>。資金需要の説明は原材料購入・製造費・人件費・設備投資と具体的であり、実質的な内容を伴っている<span class="src">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3>Ⅷ-a 設備の状況</h3>
+      <p>FY131の設備投資総額は992百万円（アンチモン事業201百万円、金属粉末事業791百万円）<span class="src">事実</span>。同期の減価償却費は653百万円であり、設備投資額（992百万円）が減価償却費を上回っていることから、当期は維持更新の範囲を超えた拡張投資局面にあると判定できる<span class="src">解釈（①③照合）</span>。今後の計画としても、中瀬製錬所での生産設備新設（三酸化アンチモン特殊加工品の生産能力を約20%増強、投資額213,838千円）や、日本アトマイズ加工つくば工場でのその他設備投資（763,640千円、自己資金及び借入金）など、能力増強を伴う投資が計画されている<span class="src">事実</span>。これはⅣ章の中期経営戦略「既存事業の競争力強化」、Ⅶ章の営業CF拡大（内部資金の確保）と整合的な資本配分である<span class="src">解釈</span>。</p>
+
+      <h3>Ⅷ-b 研究開発活動</h3>
+      <p>FY131の研究開発費総額は88,636千円（セグメント間取引消去後）で、連結売上高40,867百万円に対する比率は約0.22%と小さい<span class="src">解釈（③より算出）</span>。内訳はアンチモン事業25,375千円（新設の技術開発部を中心に、電池材料・電子材料・自動車分野向け新規金属硫化物の開発等）、金属粉末事業63,260千円（MLCC・インダクタ向け微細粉末・アモルファス合金粉末・表面改質技術等）<span class="src">事実</span>。研究開発費の絶対額・対売上比は素材加工業として標準的な水準にとどまり、成長ドライバーとしての「仕込み」は現時点では大きくない<span class="src">解釈</span>。ただし2025年4月の技術開発部新設は、研究開発体制強化への着手時期として重要な変化点である<span class="src">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>資本配分の規律</h3>
+      <p>配当方針は連結配当性向30%を目安に、中間・期末の年2回実施<span class="src">事実</span>。FY131の配当は中間170円・期末230円（分割前基準）で合計400円、提出会社ベースの配当性向は25.5%（FY130は創立90周年記念配当40円を含み22.0%）<span class="src">事実</span>。増益と配当は概ね連動しており、方針からの大きな乖離はない<span class="src">解釈</span>。自己株式の取得は単元未満株式の買取と譲渡制限付株式の無償取得が中心で、機動的な大規模自社株買いは実施されていない<span class="src">事実</span>。譲渡制限付株式報酬制度による自己株式の処分（役員・社員向け、FY131処分3,766株・20,582千円）を退職金の補完として位置付けている<span class="src">事実</span>。設備投資（992百万円）・株主還元（配当759百万円）・内部留保のバランスから見て、成長投資を優先しつつ株主還元も継続する規律ある資本配分と評価できる<span class="src">解釈</span>。</p>
+
+      <h3>株主構成（支配構造）</h3>
+      <table>
+        <tr><th class="l">株主</th><th>所有割合</th><th class="l">備考</th></tr>
+        <tr><td class="l">福田金属箔粉工業株式会社</td><td>17.96%</td><td class="l">主要株主。社外取締役1名（山本佳久栄氏）の出身母体</td></tr>
+        <tr><td class="l">株式会社川嶋</td><td>9.87%</td><td class="l">「その他の関係会社」・原料仕入取引先</td></tr>
+        <tr><td class="l">株式会社三光</td><td>9.87%</td><td class="l">川嶋と同一住所（浜松市中央区湖東町3222）</td></tr>
+        <tr><td class="l">株式会社三興企画</td><td>9.87%</td><td class="l">川嶋と同一住所</td></tr>
+        <tr><td class="l">富士興産株式会社</td><td>5.30%</td><td class="l">川嶋と同一住所</td></tr>
+        <tr><td class="l">有限会社アルメルト</td><td>1.31%</td><td class="l">川嶋と同一住所</td></tr>
+        <tr><td class="l">自己株式</td><td>5.95%</td><td class="l">-</td></tr>
+      </table>
+      <p>株式会社川嶋・三光・三興企画・富士興産・アルメルトの5社は本店所在地が同一（静岡県浜松市中央区湖東町3222）であり、単純合算では約36.2%を占める<span class="src">解釈（住所の一致から関連性を推定・要確認）</span>。福田金属箔粉工業（17.96%）と川嶋グループ（推定約36%）を合わせると過半数近くに達する可能性があり、実質的な支配株主はオーナー系・提携取引先グループに集中していると考えられる<span class="src">要確認</span>。上位10株主で発行済株式（自己株式除く）の64.59%を保有しており、少数株主の声が経営に届きにくい株主構造である可能性がある<span class="src">解釈</span>。</p>
+
+      <h3>政策保有株式</h3>
+      <p>純投資目的の株式は保有しない方針。純投資目的以外の投資株式は2銘柄・貸借対照表計上額合計223,664千円（日本化学産業㈱140,479千円、日本坩堝㈱83,185千円、いずれも取引関係の維持・発展目的）<span class="src">事実</span>。純資産合計15,446,990千円に対する比率は約1.45%と小さく、政策保有株式が資本効率を大きく損なう規模ではない<span class="src">解釈（①③より算出）</span>。取締役会が年1回、保有意義を資本コストとの見合いで検証する体制を整えている<span class="src">事実</span>。</p>
+
+      <h3>役員・創業家持株</h3>
+      <p>代表取締役社長・植田憲高氏の所有株式数は18千株（分割後換算）にとどまり、経営陣の自己保有比率は総じて小さい<span class="src">事実</span>。株主との利害一致という観点では、譲渡制限付株式報酬制度による株式インセンティブ付与が代替的な仕組みとして機能している<span class="src">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実</h3>
+      <p>監査役設置会社。取締役会は取締役6名（常勤4名・社外2名）、監査役会は監査役4名（常勤1名・社外3名）で構成<span class="src">事実</span>。取締役・監査役の指名報酬に助言する任意の諮問委員会（社外取締役が半数以上）を設置<span class="src">事実</span>。FY131の取締役会開催13回（出席率ほぼ100%）、諮問委員会2回、監査役会4回<span class="src">事実</span>。</p>
+
+      <h3>役員報酬（数値のみ）</h3>
+      <table>
+        <tr><th class="l">区分</th><th>報酬総額（千円）</th><th>月例報酬</th><th>賞与</th><th>株式報酬</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（社外除く）</td><td>196,619</td><td>50,010</td><td>138,000</td><td>8,609</td><td>4人</td></tr>
+        <tr><td class="l">監査役（社外除く）</td><td>10,410</td><td>10,110</td><td>300</td><td>-</td><td>1人</td></tr>
+        <tr><td class="l">社外役員</td><td>19,500</td><td>19,500</td><td>-</td><td>-</td><td>7人</td></tr>
+      </table>
+      <p>取締役報酬限度額は年額150百万円（うち株式報酬30百万円以内）と株主総会で決議済み<span class="src">事実</span>。FY131は「役員賞与支給の件」が定時株主総会で承認可決された場合、限度額とは別枠で社外取締役を除く取締役4名に役員賞与総額138百万円を支給予定と記載されている<span class="src">事実</span>。連結報酬1億円以上の個人は存在しない<span class="src">事実</span>。</p>
+
+      <h3>主要役員の属性</h3>
+      <p>代表取締役社長・植田憲高氏は1987年入社の生え抜きで、中瀬製錬所長・中国子会社総経理等を経て2022年6月に社長就任と、事業現場（製造・海外拠点）を歩んだキャリアである<span class="src">事実</span>。社外役員の独立性については、社外取締役の一人（山本佳久栄氏）が主要株主である福田金属箔粉工業の取締役を兼務、社外監査役の一人（岡田佳幸氏）が主要販売先である双日株式会社の社員を兼務しており、形式的な「社外」要件は満たすものの、当社の主要株主・主要取引先出身者が社外役員を務める構造となっている点は独立性の観点から留意が必要である<span class="src">解釈</span>。有報自身は「独立性について特段の定めはない」としつつ「独立した立場での職務遂行が可能な独立性が確保できることを前提に判断」と述べるにとどまる<span class="src">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>監査上の主要な検討事項（KAM）</h3>
+      <p>連結・個別とも共通のKAMは「期末日までに回収期限が到来しない売上高の期間帰属の適切性」の1項目<span class="src">事実</span>。売上債権期末残高3,335百万円・平均回転期間約1.0か月に対し、回収サイトが比較的長い取引先が存在すること、経営者が業績目標達成のプレッシャーを負う中で期末近くの売上計上に不適切計上リスクがあることを重視した監査対応（残高確認の範囲拡大、翌月売上マイナス仕訳の検証等）が取られている<span class="src">事実</span>。監査人が売上高の期間帰属という一般的だが重要な論点を単独のKAMとして選定していることから、在庫評価等の相場変動リスクよりも、収益認識の適切性を優先的なリスク領域と判断していることがうかがえる<span class="src">解釈</span>。</p>
+
+      <h3>重要な会計上の見積り</h3>
+      <p>棚卸資産の評価（正味売却価額と取得原価の比較による評価減）が重要な見積り項目として開示されている<span class="src">事実</span>。当期の棚卸資産評価損は313,606千円（前期は1,409千円の戻入）と大幅に増加しており、これはⅥ章の「相場下落局面での高値在庫リスク」の顕在化と整合する<span class="src">解釈（財務照合）</span>。第4四半期のアンチモン相場急落（前四半期比約38-39%下落）を踏まえると、翌期以降も在庫評価損の変動リスクは継続すると考えられる<span class="src">要確認</span>。</p>
+
+      <h3>本表の財務特徴</h3>
+      <p>FY131末時点で総資産24,730百万円、うち流動資産18,324百万円（74%）と流動資産比率が高く、自己資本比率62.5%と財務健全性は高い<span class="src">事実</span>。負債合計9,282百万円のうち有利子負債（短期1,242百万円＋長期1,222百万円）は限定的で、レバレッジは低い<span class="src">事実</span>。ROEは30.8%まで急上昇しているが、自己資本比率も同時に62.5%と高水準を維持しており、高ROEはレバレッジではなく利益率の急上昇（相場要因）によってもたらされている<span class="src">解釈</span>。総じて、財務体質は保守的（高自己資本比率・低レバレッジ）だが、損益は素材相場変動の影響を強く受ける「バランスシートは手堅く、損益は市況連動」という財務特徴を持つ<span class="src">解釈</span>。</p>
+
+      <h3>GC注記・後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する重要事象（GC注記）の記載はない<span class="src">事実</span>。重要な後発事象として、2026年4月1日付の株式分割（1株→4株）及びこれに伴う定款一部変更が記載されている（投資単位引き下げ・流動性向上・投資家層拡大が目的）<span class="src">事実</span>。偶発債務に関する特記事項は本文中に見当たらない<span class="src">要確認</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul>
+        <li>アンチモン事業を国内でほぼ独占的に一貫生産できる希少なポジション。中国の輸出規制継続が続く限り、国内外での価格決定力・供給安定性の面で相対的な優位に立ちうる<span class="src">解釈</span>。確からしさ：中程度（規制動向は当社のコントロール外）。</li>
+        <li>財務体質が保守的（自己資本比率62.5%、低レバレッジ）で、急拡大した利益を無理な負債で賄っていない<span class="src">事実</span>。確からしさ：高（数値で確認可能）。</li>
+        <li>技術開発部の新設（2025年4月）や電池材料向け金属硫化物等、新規成長分野への研究開発着手<span class="src">事実</span>。確からしさ：低〜中（研究開発費は依然として小規模で、成果は未知数）。</li>
+      </ul>
+      <h3>懸念材料と顕在化条件</h3>
+      <ul>
+        <li>アンチモン地金相場が輸出管理実施前の水準まで既に下落し始めている（第4四半期に前四半期比約38-39%下落）ことから、FY132（2027年3月期）以降は価格要因による増収効果が剥落し、大幅な減収減益に転じる可能性がある<span class="src">解釈</span>。顕在化条件：中国の輸出規制緩和・地金供給の正常化が進んだ場合。</li>
+        <li>棚卸資産評価損が急増（313,606千円）しており、相場下落が続けばさらなる評価損計上の可能性がある<span class="src">解釈</span>。顕在化条件：翌期以降のアンチモン相場のさらなる下落。</li>
+        <li>大株主・社外役員の構成から見て、福田金属箔粉工業と川嶋グループという少数の株主群に議決権が集中している可能性があり、一般株主の意思が経営に反映されにくい統治構造となっているおそれがある<span class="src">要確認</span>。</li>
+      </ul>
+      <h3>有報だけでは判断できず追加確認が要る事項</h3>
+      <ul>
+        <li>川嶋・三光・三興企画・富士興産・アルメルトの5社が実質的に同一グループ（同族保有等）であるかどうかは、有報の記載だけでは断定できない。大量保有報告書や決算説明資料での関係性の確認が必要<span class="src">要確認</span>。</li>
+        <li>FY132（2027年3月期）のアンチモン地金相場前提・業績予想の詳細は、決算短信・決算説明資料で別途確認する必要がある<span class="src">要確認</span>。</li>
+        <li>GHG排出量削減目標（2030年までに▲30%）の進捗実績は、本有報には記載がなく、統合報告書やサステナビリティ関連の適時開示での確認が必要<span class="src">要確認</span>。</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="foot">
+    出所：<span class="src">①</span> irpocket公式IRデータ（銘柄コード5729は同サービスに未登録のためデータ取得不可。数値は主に有報本文の記載値を使用）／
+    <span class="src">②</span> 会社公式IRページ（nihonseiko.co.jp/ir/）／
+    <span class="src">③</span> 会社公式開示PDF：日本精鉱株式会社 第131期有価証券報告書（2026年6月24日提出、会社公式IRページより取得）／
+    <span class="src">web</span> サードペディア百科事典「日本精鉱」、養父市「中瀬金山」見学情報（沿革章のみ使用）。<br>
+    データ取得日：2026年8月19日。対象事業年度：第131期（自2025年4月1日 至2026年3月31日）。予想ベース日：有価証券報告書提出日（2026年6月24日）時点の記載に基づく。<br>
+    本レポートに含まれる推計・算出値（CAGR・1人当たり売上高・政策保有株式の純資産比率・株主合算比率等）はいずれも筆者による算出であり、正確性を保証するものではありません。売買推奨・目標株価の提示は行っておりません。投資判断は必ずご自身の責任で行ってください。
+  </footer>
+</div>
+<script>
+const chapters = [
+  {id:'p0', label:'0.サマリー'},
+  {id:'p1', label:'Ⅰ.企業の輪郭'},
+  {id:'p2', label:'Ⅱ.沿革'},
+  {id:'p3', label:'Ⅲ.人的資本'},
+  {id:'p4', label:'Ⅳ.経営者の世界観'},
+  {id:'p5', label:'Ⅴ.サステナビリティ'},
+  {id:'p6', label:'Ⅵ.事業等のリスク'},
+  {id:'p7', label:'Ⅶ.MD&A'},
+  {id:'p8', label:'Ⅷ.設備・研究開発'},
+  {id:'p9', label:'Ⅸ.資本政策・株主還元'},
+  {id:'p10', label:'Ⅹ.ガバナンス'},
+  {id:'p11', label:'Ⅺ.会計シグナル'},
+  {id:'p12', label:'Ⅻ.論点'}
+];
+const tabsEl = document.getElementById('tabs');
+chapters.forEach((c,i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'tab' + (i===0?' active':'');
+  btn.textContent = c.label;
+  btn.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(c.id).classList.add('active');
+  };
+  tabsEl.appendChild(btn);
+});
+
+// 5年推移チャート（Ⅰ章カード内に挿入）
+const chartCard = document.createElement('div');
+chartCard.className = 'card';
+chartCard.innerHTML = '<h3>5年推移グラフ（売上高・経常利益）</h3><canvas id="trendChart"></canvas>';
+document.getElementById('p1').querySelector('.card').after(chartCard);
+new Chart(document.getElementById('trendChart'), {
+  type: 'bar',
+  data: {
+    labels: ['第127期\\n2022/3','第128期\\n2023/3','第129期\\n2024/3','第130期\\n2025/3','第131期\\n2026/3'],
+    datasets: [
+      {type:'bar', label:'売上高（百万円）', data:[17098,15923,15589,25180,40867], backgroundColor:'#111111'},
+      {type:'line', label:'経常利益（百万円）', data:[2247,791,706,3531,6025], borderColor:'#6b6b6b', backgroundColor:'#6b6b6b', yAxisID:'y1', tension:0.15}
+    ]
+  },
+  options: {
+    responsive:true,
+    scales:{
+      y:{beginAtZero:true, title:{display:true,text:'売上高'}},
+      y1:{beginAtZero:true, position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'経常利益'}}
+    },
+    plugins:{legend:{position:'bottom'}}
+  }
+});
+</script>
+</body></html>

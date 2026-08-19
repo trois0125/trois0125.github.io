@@ -2,6 +2,18 @@
   "generated": true,
   "stocks": [
     {
+      "code": "5729",
+      "name": "日本精鉱",
+      "report_date": "2026-08-19",
+      "qualitative_date": "2026-08-19"
+    },
+    {
+      "code": "5906",
+      "name": "エムケー精工",
+      "report_date": "2026-08-19",
+      "qualitative_date": "2026-08-18"
+    },
+    {
       "code": "3932",
       "name": "アカツキ",
       "report_date": "2026-08-18",
@@ -10,7 +22,7 @@
     {
       "code": "8285",
       "name": "三谷産業",
-      "report_date": null,
+      "report_date": "2026-08-18",
       "qualitative_date": "2026-08-18"
     },
     {
