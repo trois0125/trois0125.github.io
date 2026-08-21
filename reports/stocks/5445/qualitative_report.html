@@ -1,0 +1,466 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>東京鐵鋼株式会社（5445） 有価証券報告書 定性分析レポート（第98期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+p{margin:8px 0}
+ul,ol{margin:8px 0 8px 22px}
+li{margin:4px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.small{font-size:11.5px;color:var(--sub)}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">東京鐵鋼（5445） 有報定性レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>東京鐵鋼株式会社（5445） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第98期有価証券報告書（自2025年４月１日 至2026年３月31日／令和8年3月期）／ 作成日：2026-08-21</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p><b>この企業を一文で：</b>鉄スクラップを原料とする電炉により鉄筋コンクリート用棒鋼・主力製品「ネジテツコン」を製造販売し、環境リサイクル事業を併営する、自己資本比率78.8％という極めて保守的な財務体質を持つ中堅電炉メーカー<span class="src">①</span>。</p>
+      <h3>最重要ポイント3点</h3>
+      <ul>
+        <li>第98期（2026年3月期）は前期にピークを付けた経常利益150億5,900万円から一転して減益（120億4,000万円、前期比▲20.0％）となったが、主原料の鉄スクラップ価格急騰と建設需要の構造的な減少という業界共通の逆風が主因で、自己資本比率はむしろ73.5％→78.8％へ上昇し財務健全性は一段と強化された<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+        <li>主要販売先上位3社（伊藤忠丸紅住商テクノスチール・阪和興業・エムエム建材）で販売実績の79.1％を占める高い商社依存構造があるが、「事業等のリスク」章にはこの依存リスクへの言及がない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span></li>
+        <li>第98期の設備投資（キャッシュ・ベースで69億9千万円）は減価償却費（25億4千万円）の約2.7倍に達し、本社・八戸工場の建物純額はほぼ倍増しており、ネジテツコン増産に向けた明確な拡張投資局面にある<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+      </ul>
+      <h3>最も注意すべき論点1点</h3>
+      <p>2026年4月の株式1→3分割・自己株式取得枠拡大（上限5億円）という株主還元強化の動きと同時に、監査上の主要な検討事項（KAM）として「繰延税金資産の回収可能性」が特定されており、その判断の基礎は鉄スクラップ価格・販売数量・販売価格という不確実性の高い将来仮定に依存している。減益局面での増配余地と収益ボラティリティの高さが併存する点は、中期の還元持続力を評価する上で注視すべきである<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span></p>
+    </div>
+  </div>
+
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>5年推移（連結・代表6指標）<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">回次</th><th>第94期<br>2022/3</th><th>第95期<br>2023/3</th><th>第96期<br>2024/3</th><th>第97期<br>2025/3</th><th>第98期<br>2026/3</th></tr>
+        <tr><td class="l">売上高（百万円）</td><td>66,089</td><td>79,229</td><td>79,617</td><td>82,593</td><td>72,540</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td class="neg">△644</td><td>4,944</td><td>11,412</td><td>15,059</td><td>12,040</td></tr>
+        <tr><td class="l">EPS（円・分割調整後）</td><td class="neg">△172.69</td><td>135.09</td><td>294.97</td><td>412.92</td><td>315.59</td></tr>
+        <tr><td class="l">ROE（％）</td><td class="neg">△10.5</td><td>8.3</td><td>15.9</td><td>19.2</td><td>13.1</td></tr>
+        <tr><td class="l">自己資本比率（％）</td><td>67.2</td><td>66.1</td><td>68.2</td><td>73.5</td><td>78.8</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td class="neg">△5,104</td><td>6,879</td><td>12,089</td><td>8,183</td><td>5,181</td></tr>
+      </table>
+      <p class="small">2026年4月1日付で普通株式1株につき3株の株式分割を実施しており、EPS等は第94期期首に遡って調整済み（有報注記）<span class="src">①</span></p>
+      <canvas id="chart5y"></canvas>
+      <p><b>方向性の読み取り：</b>売上高は5年（第94期→第98期）でCAGR＋2.4％と緩やかな伸びに留まる一方、経常利益は第94期が赤字（△644百万円）を起点とするためCAGR算出は意味を持たない。黒字化した第95期（4,944百万円）を起点とすると第98期（12,040百万円）まで3年でCAGR＋34.5％の急回復を遂げたが、これは主にコロナ禍後の資材価格転嫁の進展による一過性の色彩が強く、直近1年（第97期→第98期）は逆に▲20.0％の減益に転じている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。自己資本比率は5年で67.2％→78.8％へ一貫して上昇しており、利益成長の変動が大きい一方で財務体質は着実に保守化している<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+
+      <h3>事業の内容・ビジネスモデル<span class="src">①</span></h3>
+      <p>当社グループは提出会社および連結子会社8社・非連結子会社2社・持分法適用関連会社1社（株式会社伊藤製鐵所、出資比率21.1％）で構成され、鉄スクラップを主原料とする電気炉（電炉）により小形棒鋼・鉄筋コンクリート用棒鋼、および機械式継手を用いた主力製品「ネジテツコン」を製造・販売する「鉄鋼事業」と、貨物運送・設備メンテナンス等を行う「その他」事業の2セグメントで構成される<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。グループ内の役割分担は、原材料調達を関東メタル（出資75％）・トーテツ資源（100％・青森）が担い、製品運搬をトーテツ興運（100％）、加工受託をJOTS（51％・新潟）、販売を東京鐵鋼土木（100％）・ティーティーケイコリア（100％・韓国）が担うという垂直統合型の商流である<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。事業系統図自体は画像のためテキスト抽出不能だが、関係会社の状況表の役割記載から上記の商流を再構成した<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+      <p>電炉の高温（1,500℃超）を活用した産業廃棄物の無害化処理・資源回収を行う「環境リサイクル事業」も併営しており、経営方針でも「低CO2鉄筋の生産・販売」の起点として位置づけられている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+
+      <h3>収益柱の照合（セグメント別売上・利益構成比、第98期）<span class="src">①</span></h3>
+      <div class="grid2">
+        <table>
+          <tr><th class="l">セグメント</th><th>売上高</th><th>構成比</th><th>セグメント利益</th><th>利益構成比</th></tr>
+          <tr><td class="l">鉄鋼事業</td><td>71,575</td><td>98.7％</td><td>11,783</td><td>98.1％</td></tr>
+          <tr><td class="l">その他</td><td>964</td><td>1.3％</td><td>227</td><td>1.9％</td></tr>
+        </table>
+        <canvas id="chartSeg"></canvas>
+      </div>
+      <p>語りの上では「環境リサイクル」「エンジニアリングサービス」等が経営方針で厚く語られるが、収益への寄与はセグメント区分上「鉄鋼事業」に含まれるため独立した収益貢献度は開示から追えない。少なくとも売上・利益の98％超は鉄鋼（棒鋼・ネジテツコン）事業が占め、「その他」（物流・メンテナンス受託）は補完的な位置付けにとどまる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>競争優位<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span></h3>
+      <p>主力製品「ネジテツコン」はネジ状の鉄筋と専用機械式継手を組み合わせた工法で、接合時にガス加熱を要さず建設現場の省力化・工期短縮に資する差別化商品として位置付けられている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。研究開発活動でも「鉄筋の機械式継手等既存商品の改良」に投資しており、汎用棒鋼のコモディティ価格競争から距離を置く高付加価値化戦略を取っている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。一方で原材料（鉄スクラップ）は関東メタル・トーテツ資源等のグループ内子会社経由での調達に加え外部購入もあり、川上（原材料）の内製化は部分的、川下（販売）は商社（伊藤忠丸紅住商テクノスチール等）への依存度が高く、価格決定力は主原料市況と商社の仲介マージンの両方に左右される構造とみられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>関係会社：支配構造とリスク<span class="src">①</span></h3>
+      <p>親会社は存在しない（親会社等該当なし）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。海外子会社は韓国のティーティーケイコリア（100％出資、資本金91百万円、従業員6名）のみで、グループ全体（従業員815名）に占める比重は小さい<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。持分法適用関連会社の株式会社伊藤製鐵所（21.1％出資）とは「原材料の共同購買」の関係にあり、2018年の資本業務提携以来の継続関係である<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。非100％子会社は関東メタル（75.0％）・JOTS（51.0％）の2社で、少数株主持分の存在による意思決定の複雑化リスクは限定的とみられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>1939年6月、東京都足立区に東京鐵鋼株式会社が設立され、銑鉄・鋳鉄の製造を開始した<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。1959年に普通鋼鋼塊の製造を開始した後、1969年に栃木県小山市の小山工場（現・本社工場）の製鋼・圧延設備が相次いで完成し、現在の主力生産拠点の原型が確立した<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。1971年に東証2部、1974年に東証1部へと上場区分を引き上げ、1976年には青森県八戸市に八戸工場を設けて生産拠点を東西2拠点体制とした<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+      <p>1983年には主力製品「ネジテツコン」を用いた継手工法が（財）日本建築センターの評定を取得しており、これが現在まで続く差別化戦略の技術的な起点になったとみられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。1980年11月には合同製鐵株式会社と業務提携を締結し、2002年には同社と共同で東京デーバー・スチール株式会社を設立するなど、業界内での連携を重ねてきた（同提携は現在も継続しており、合同製鐵は第98期末時点で発行済株式の5.45％を保有する主要株主でもある）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+      <blockquote class="yuho">2009年3月、東京鐵鋼は電炉大手の共英製鋼株式会社との経営統合（株式移転により持株会社「共英東京鐵鋼ホールディングス株式会社」を設立し、東京鐵鋼はその完全子会社となる計画）を発表したが、公正取引委員会の事前審査に時間を要したことを理由に、同年10月に統合を中止したと発表した。業務提携自体は継続した。<span class="lab web" style="padding:1px 6px;font-size:10px;">web＋Wikipedia「東京鐵鋼」</span></blockquote>
+      <p>この経営統合の中止は有報の沿革章には記載がなく、Web情報での確認に限られる点に留意が必要だが<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span>、単独路線を選び規模拡大よりも独自の高付加価値戦略（ネジテツコン中心）を志向してきたことを示す転換点として位置付けられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+      <p>2015年に東北東京鐵鋼株式会社を吸収合併して東北地区拠点を集約し、2018年には伊藤製鐵所と資本業務提携（持分法適用関連会社化）、2022年には東証市場区分再編に伴いプライム市場へ移行、2023年には新潟県三条市にJOTS株式会社を設立するなど、近年はM&Aよりも既存グループの再編・小規模な機能子会社の新設によって事業基盤を強化する路線が続いている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。なお、小山市には社名が類似する東京製鐵株式会社（東証プライム上場、資本関係なしの別会社）も工場を構えており、両社は混同されやすいが無関係である<span class="lab web" style="padding:1px 6px;font-size:10px;">web＋Wikipedia「東京鐵鋼」</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本</h2>
+      <h3>従業員数・生産性<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">回次（提出会社）</th><th>第94期</th><th>第95期</th><th>第96期</th><th>第97期</th><th>第98期</th></tr>
+        <tr><td class="l">従業員数（名）</td><td>596</td><td>585</td><td>588</td><td>593</td><td>607</td></tr>
+        <tr><td class="l">売上高（百万円）</td><td>62,024</td><td>74,954</td><td>76,678</td><td>80,483</td><td>70,356</td></tr>
+        <tr><td class="l">1人当たり売上高（百万円）</td><td>104.1</td><td>128.1</td><td>130.4</td><td>135.7</td><td>115.9</td></tr>
+      </table>
+      <p>提出会社の従業員数は5年間で596名→607名（＋1.8％）とほぼ横ばいで推移する一方、売上高は同期間で年により30％前後変動している。従業員数の変動幅が業績変動幅を大きく下回ることから、当社の生産は労働集約型ではなく電炉・圧延設備という装置産業型の仕組みに規定されており、需要変動は主に稼働率・製品価格の変動として吸収されているとみられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。連結ベースの従業員数は815名（うち鉄鋼事業657名、その他158名）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+      <p>提出会社の平均年間給与は7,577千円で前期比＋9.10％と大幅に増加した<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。平均年齢38.9歳・平均勤続年数13.4年<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。経営方針で「労働人口の減少によりますます貴重となる人材」への言及があり、賃上げは人材確保競争を意識した対応とみられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>人的資本指標（数値のみ）<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">指標</th><th>数値</th></tr>
+        <tr><td class="l">管理的地位にある女性労働者の割合</td><td>9.2％</td></tr>
+        <tr><td class="l">男性労働者の育児休業取得率</td><td>33％</td></tr>
+        <tr><td class="l">労働者の男女賃金差異（全労働者）</td><td>81.7％</td></tr>
+        <tr><td class="l">同（正規雇用労働者）</td><td>84.0％</td></tr>
+        <tr><td class="l">同（非正規雇用労働者）</td><td>80.7％</td></tr>
+        <tr><td class="l">役員のうち女性の比率</td><td>18.2％（11名中2名）</td></tr>
+      </table>
+      <p>連結子会社は開示義務対象外または非開示項目として記載を省略しており、グループ全体での実態は把握できない<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span>。</p>
+
+      <h3>採用・働き方指標と目標<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">指標</th><th>目標</th><th>実績</th></tr>
+        <tr><td class="l">採用計画人数の達成率</td><td>100.0％</td><td>93.9％</td></tr>
+        <tr><td class="l">多様な働き方に向けた新たな制度の導入数</td><td>2031年4月までに2つ以上</td><td>0</td></tr>
+      </table>
+      <p>採用計画は目標未達（93.9％）だが、有報はこれを率直に実績として記載しており、目標に対する誠実な開示姿勢がうかがえる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。一方「連結グループ全体での指標及び目標は設けておりません」と明記しており、人的資本戦略は各社独自運用にとどまりグループ横断のガバナンスは薄い<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <h3>目標とする経営指標と達成状況<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">指標</th><th>目標</th><th>第97期実績</th><th>第98期実績</th></tr>
+        <tr><td class="l">連結経常利益</td><td>70億円以上</td><td>150.6億円</td><td>120.4億円</td></tr>
+        <tr><td class="l">自己資本利益率（ROE）</td><td>10.0％以上</td><td>19.2％</td><td>13.1％</td></tr>
+      </table>
+      <p>第98期は両指標とも目標を上回って達成しているが、経常利益目標「70億円以上」は実績（120.4億円）の約58％の水準にとどまり、目標値自体が実力対比でかなり保守的に設定されている可能性がある<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。ROEは前期19.2％から今期13.1％へ6.1ポイント低下しており、「達成」の表現の裏で悪化トレンドにある点は経営指標の絶対値だけでは見えない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>課題→打ち手の接続の検証</h3>
+      <p>経営環境及び対処すべき課題として挙げられた項目と、対応する打ち手の有無を照合した。</p>
+      <table>
+        <tr><th class="l">課題</th><th class="l">対応する打ち手の記載</th></tr>
+        <tr><td class="l">主力分野（鉄筋コンクリート造）の棒鋼需要減少（人口減少が背景）</td><td class="l">コストの圧縮・効率化、商品改良・業務改革で高収益性を確保<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+        <tr><td class="l">デジタル技術の有効活用</td><td class="l">基幹システムの変更（具体名・時期の記載なし）<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈：やや抽象的</span></td></tr>
+        <tr><td class="l">八戸工場の収益性低下（東北地区の棒鋼需要減退）</td><td class="l">環境リサイクル事業の収益性向上、省力化・効率化、外販金属の付加価値向上<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+        <tr><td class="l">本社工場の生産余力減少</td><td class="l">八戸工場を補完拠点としたネジテツコン生産拡大（設備投資の実行と整合）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+        <tr><td class="l">新規分野開拓・成長戦略推進</td><td class="l">伊藤製鐵所とのアライアンスの活用・推進を「課題」と認識するにとどまり、具体的な新規アライアンス計画の記載なし<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span></td></tr>
+        <tr><td class="l">人的資本の最大化・ガバナンス強化</td><td class="l">Ⅲ・Ⅹ章に記載の各種施策<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+      </table>
+      <p>おおむね課題と打ち手は対応しているが、「新規分野の開拓」「デジタル技術の有効活用」の2項目は打ち手が抽象的または他社の意向に依存する内容にとどまり、具体性を欠く<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>経営環境認識の具体性</h3>
+      <p>「主原料である鉄スクラップ価格の急騰」「人手不足や諸資材高騰による工事の遅延・見直し」など、固有名詞は少ないものの当該年度に固有の市況変化を具体的な現象として記述しており、単なる定型的な業界説明にとどまらない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <blockquote class="yuho">「主力分野の鉄筋コンクリート造の建築物における棒鋼需要の減少は、人口減少を背景に今後も継続すると見込まれます。」</blockquote>
+      <p>主力市場の構造的な縮小を経営者自らが明言している点は、率直な開示姿勢として評価できる一方、当該構造課題に対する打ち手が「高付加価値化」「コスト圧縮」という総論的な内容にとどまり、定量的な中期目標（シェア目標・新製品売上目標等）は示されていない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <h3>戦略接続</h3>
+      <p>ガバナンス・戦略・リスク管理・指標目標の4分類（TCFD類似のフレームワーク）で記載されている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。戦略面では電炉事業を「鉄スクラップを主原料とし、環境負荷低減に貢献する事業活動そのものがSDGsの達成に直結する」と位置付けており、本業（電炉によるリサイクル）とサステナビリティの語りが素直に接続している点は他業種によくある「浮いた」サステナビリティ記述とは一線を画す<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>検証可能性（目標に期限・実績があるか）</h3>
+      <table>
+        <tr><th class="l">目標</th><th class="l">期限</th><th class="l">実績</th></tr>
+        <tr><td class="l">CO2自社排出量（Scope1・2）を2013年度比46％削減</td><td class="l">2030年度</td><td class="l">2024年度時点で35％削減達成<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+      </table>
+      <p>気候変動目標は期限・基準年・実績が明記されており検証可能性は高い<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。電炉は高温・大量電力を要する炭素集約的な工程であり、気候変動リスクは当社にとって投資論点に関わる重要性を持つと考えられるが、「事業等のリスク」章には炭素価格上昇・排出規制強化リスクとしての明記はなく、サステナビリティ章での目標開示にとどまっている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+      <p>ガバナンス体制として「サステナビリティ委員会」を設置し取締役会へ定期報告する体制を敷いている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+      <p>有報が開示する事業等のリスクはわずか3項目と、同業他社と比べても簡潔である<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+      <table>
+        <tr><th class="l">リスク項目</th><th class="l">分類</th><th class="l">対応策の記載</th></tr>
+        <tr><td class="l">製品・原材料の価格変動</td><td class="l">固有（電炉業界共通だが定量説明あり）</td><td class="l">市況影響の受けにくい継手商品の比率向上<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+        <tr><td class="l">建設需要の減少</td><td class="l">固有（人口減少という具体的背景を明示）</td><td class="l">付加価値製品の拡販<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+        <tr><td class="l">災害・事故に起因する生産停止</td><td class="l">定型</td><td class="l">BCP委員会の設置・定期協議<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></td></tr>
+      </table>
+
+      <h3>財務数値・他章との照合による過小開示の指摘</h3>
+      <p>販売実績データ（Ⅶ章参照）では、上位3社（伊藤忠丸紅住商テクノスチール35.0％、阪和興業22.1％、エムエム建材22.1％）で販売実績の79.1％を占める極めて高い顧客（商社）集中構造が確認できるが、これに対する依存・喪失リスクは「事業等のリスク」章に一切記載がない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈：過小開示の疑い</span>。</p>
+      <p>また、韓国子会社（ティーティーケイコリア）を保有し為替差損89百万円を計上しているにもかかわらず為替変動リスクの記載がなく、繰延税金資産の回収可能性がKAMに特定されるほどの見積りの不確実性を抱えながら会計上の見積りリスクとしての明記もない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈：過小開示の疑い</span>。政策保有株式（純資産の6.6％）の株価変動リスクについても言及がない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。総じて、法定必須項目を満たす最小限の開示にとどまっている可能性がある<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>「該当事項はありません」と記載されており<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>、伊藤製鐵所との資本業務提携・合同製鐵との業務提携は「重要な契約」としては開示対象外の扱いとなっている。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&A】</h2>
+      <h3>業績事実の要約<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">項目</th><th>第97期</th><th>第98期</th><th>前期比</th></tr>
+        <tr><td class="l">売上高</td><td>82,593</td><td>72,540</td><td class="neg">▲12.2％</td></tr>
+        <tr><td class="l">売上総利益</td><td>23,376</td><td>20,457</td><td class="neg">▲12.5％</td></tr>
+        <tr><td class="l">営業利益</td><td>14,676</td><td>12,042</td><td class="neg">▲17.9％</td></tr>
+        <tr><td class="l">経常利益</td><td>15,059</td><td>12,040</td><td class="neg">▲20.0％</td></tr>
+        <tr><td class="l">親会社株主に帰属する当期純利益</td><td>10,853</td><td>8,075</td><td class="neg">▲25.6％</td></tr>
+      </table>
+      <p>売上高減少（出荷数量減）が売上総利益率を圧迫（28.3％→28.2％はほぼ横ばいだが額として29億円減少）した上に、営業外・特別損益の悪化（持分法投資損益の益から損への転化、減損損失228百万円の計上）が重なり、純利益の減少率（▲25.6％）が営業利益の減少率（▲17.9％）を上回る「下振れの積み上がり」構造になっている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>販売実績・主要相手先</h3>
+      <table>
+        <tr><th class="l">相手先</th><th>第98期販売高（百万円）</th><th>割合</th></tr>
+        <tr><td class="l">伊藤忠丸紅住商テクノスチール</td><td>25,393</td><td>35.0％</td></tr>
+        <tr><td class="l">阪和興業</td><td>16,051</td><td>22.1％</td></tr>
+        <tr><td class="l">エムエム建材</td><td>16,018</td><td>22.1％</td></tr>
+        <tr><td class="l">上位3社計</td><td>57,462</td><td>79.1％</td></tr>
+      </table>
+
+      <h3>経営者が使う指標・関心の所在</h3>
+      <p>MD&A中で経営者は「連結経常利益70億円以上・自己資本利益率10.0％以上」を業績評価の物差しとして繰り返し使用しており、絶対額の利益水準と資本効率の両方を意識していることが読み取れる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。またセグメント別分析では鉄鋼事業について「適正な製品価格の確保及び一層のコストダウン」「省力化工法などの提案営業の強化」を課題としており、価格転嫁力の強化が経営者の当面の最重要関心事であることがうかがえる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>CF・資本の財源</h3>
+      <p>運転資金は内部資金を基本としつつ不足時は短期借入、設備資金は内部資金＋長期借入で調達し、加えて金融機関と総額120億円のコミットメントラインを設定するなど、資金調達の安定性を確保する体制を整えている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。第98期の営業CFは5,181百万円（前期比▲36.7％）で、税金等調整前当期純利益の減少（▲22.7％）を上回るペースで悪化しており、運転資本の増加（売上債権・棚卸資産の積み増し、仕入債務の圧縮）がキャッシュ創出力を圧迫した<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。使い道の説明（設備投資・株主還元）は具体的で、資金繰りの説明として実質的である<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3>Ⅷ-a 設備の状況<span class="src">①</span></h3>
+      <p>有形固定資産合計は33,013百万円で総資産（80,449百万円）の41.0％を占め、装置産業として中程度の資産集約度を持つ<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。第98期の設備投資額（有形・無形合計、キャッシュ・フロー計算書ベース）は6,994百万円で、減価償却費（有形・無形合計2,547百万円）の約2.7倍に達しており、明確な拡張投資局面にある<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。実際、本社工場・八戸工場を含む建物及び構築物の純額は前期4,923百万円→当期8,596百万円と1年でほぼ倍増した<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+      <p>この投資は経営方針で述べられた「生産余力が減少してきている本社工場を補完する生産拠点としての八戸工場でのネジテツコン生産拡大」という戦略と整合する<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。一方で「設備の新設、除却等の計画」章では「重要な設備の新設等：特記すべき事項はありません」と記載されており、実際には大型投資が進行中であるにもかかわらず前向きな設備計画の開示が形式的にとどまっている点は開示のギャップとして留意すべきである<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span>。</p>
+
+      <h3>Ⅷ-b 研究開発活動（第2-6）<span class="src">①</span></h3>
+      <p>研究開発費は320百万円（対売上高比0.44％）で前期274百万円から＋16.8％増加した<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。内容は「鉄筋の機械式継手等既存商品の改良や、既存商品を組み合わせた省力化商品の開発」に限定され、対売上比は低水準ながら金額としては増加傾向にあり、ネジテツコン関連商品の改良投資に絞った実務的なR&D姿勢がうかがえる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。「その他」セグメントの研究開発費はゼロ<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>配当・自己株買いの規律<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">項目</th><th>第98期</th></tr>
+        <tr><td class="l">1株当たり配当額</td><td>300円（うち中間100円）</td></tr>
+        <tr><td class="l">配当性向（提出会社ベース）</td><td>29.3％</td></tr>
+        <tr><td class="l">配当総額</td><td>約2,538百万円（中間852＋期末1,686）</td></tr>
+        <tr><td class="l">当期の自己株式取得額（3決議合計）</td><td>約1,500百万円（269,124株）</td></tr>
+        <tr><td class="l">総還元額（配当＋自己株買い）</td><td>約4,038百万円</td></tr>
+        <tr><td class="l">総還元性向（対連結純利益8,075百万円）</td><td>約50.0％</td></tr>
+      </table>
+      <p>配当性向は前期29.7％から今期29.3％とほぼ据え置きで安定運用されている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。一方、自己株式取得を積極的に活用しており、総還元性向は約50％に達する。さらに前期に取得済みの自己株式920,000株（3,492百万円相当）を消却しており、株式の希薄化防止・発行済株式数の実質的な圧縮に踏み込んでいる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。後発事象として2026年5月に上限350,000株・5億円の新たな自己株取得枠を決議しており、還元姿勢は継続する見込みである<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。減益局面でも配当性向を維持しつつ自己株買いを継続している点は、経営指標目標（ROE10％以上）達成の追い風にもなる資本効率重視の姿勢として整合的である<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>株主構成<span class="src">①</span></h3>
+      <div class="grid2">
+        <table>
+          <tr><th class="l">大株主</th><th>持株比率</th></tr>
+          <tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>9.93％</td></tr>
+          <tr><td class="l">合同製鐵株式会社</td><td>5.45％</td></tr>
+          <tr><td class="l">株式会社三井住友銀行</td><td>5.02％</td></tr>
+          <tr><td class="l">STATE STREET BANK AND TRUST</td><td>2.52％</td></tr>
+          <tr><td class="l">朝日工業株式会社</td><td>2.20％</td></tr>
+          <tr><td class="l">日本カストディ銀行（信託口）</td><td>1.96％</td></tr>
+          <tr><td class="l">東京鐵鋼従業員持株会</td><td>1.53％</td></tr>
+          <tr><td class="l">上位10位合計</td><td>32.15％</td></tr>
+        </table>
+        <canvas id="chartHolders"></canvas>
+      </div>
+      <p>創業家（吉原家）は代表取締役会長・社長を歴任しているが、大株主上位10位の中に個人としては現れず、役員一覧上も両氏の所有株式数は各30千株・4千株程度と少数にとどまる<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。すなわち経営権は創業家の資本的支配ではなく、信託銀行（実質的には機関投資家）が大株主上位を占める分散型の株主構成のもとで維持されている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。合同製鐵株式会社は業務提携先であると同時に主要株主（5.45％）でもあり、政策保有株式の相互性（後述）とあわせ、事業上の協力関係と資本関係が結びついた構造になっている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。従業員持株会は1.53％で、役員・従業員と株主の利害は限定的ながら一致している<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>政策保有株式<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">区分</th><th>銘柄数</th><th>貸借対照表計上額</th></tr>
+        <tr><td class="l">非上場株式</td><td>7銘柄</td><td>70百万円</td></tr>
+        <tr><td class="l">非上場株式以外</td><td>13銘柄</td><td>4,129百万円</td></tr>
+        <tr><td class="l">合計</td><td>20銘柄</td><td>4,199百万円</td></tr>
+      </table>
+      <p>政策保有株式合計は純資産（63,416百万円）の6.6％を占める（自己計算）<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。上位保有先は日本酸素ホールディングス（1,444百万円、酸素の調達先）、合同製鐵（977百万円、製品の調達先）等で、いずれも「定量的な保有効果については記載が困難であります」という定型文が個別銘柄ごとに繰り返されており、保有の妥当性検証は取締役会で行っているとするものの、検証内容の実質（削減判断の基準等）は開示されていない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈：ボイラープレート比率が高い</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実<span class="src">①</span></h3>
+      <ul>
+        <li>機関設計：監査等委員会設置会社<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+        <li>取締役会：11名（うち監査等委員5名、社外取締役4名）。原則月1回開催、第98期は17回開催で主要メンバーは全回または高い出席率<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+        <li>監査等委員会：5名中4名が社外取締役、うち2名は公認会計士。月1回以上開催（18回）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+        <li>指名報酬諮問委員会：7名（うち4名独立社外取締役）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+        <li>会計監査人：有限責任あずさ監査法人、継続監査期間17年間<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span></li>
+      </ul>
+      <p>会計監査人の継続監査期間17年間は一般的な監査人ローテーションの目安（国際的には7〜10年程度が独立性上望ましいとされる）と比べて長期にわたっており、独立性の観点で留意点となりうる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。監査報酬は44百万円（前期42百万円）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+
+      <h3>役員報酬（数値のみ）<span class="src">①</span></h3>
+      <table>
+        <tr><th class="l">役員区分</th><th>報酬総額</th><th>固定報酬</th><th>業績連動報酬</th><th>非金銭報酬等</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（監査等委員を除く）</td><td>385</td><td>181</td><td>184</td><td>19</td><td>7名</td></tr>
+        <tr><td class="l">取締役（監査等委員、社外除く）</td><td>25</td><td>25</td><td>―</td><td>―</td><td>1名</td></tr>
+        <tr><td class="l">社外役員</td><td>43</td><td>43</td><td>―</td><td>―</td><td>4名</td></tr>
+      </table>
+      <p class="small">単位：百万円。1億円以上の個別開示対象は吉原毎文氏（115百万円、固定48・業績連動61・非金銭5）、吉原栄孝氏（117百万円、固定51・業績連動61・非金銭5）の2名<span class="src">①</span></p>
+      <canvas id="chartComp"></canvas>
+      <p>業務執行取締役の報酬は固定報酬と業績連動報酬（連結売上高経常利益率に連動）がほぼ同水準で構成され、業績連動性が明確に組み込まれている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。監査等委員・社外役員は全額固定報酬で、独立性を意識した設計になっている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>主要役員の属性</h3>
+      <p>代表取締役会長・最高経営責任者の吉原毎文氏（1947年生、1973年入社、1992年代表取締役社長就任、2024年会長就任）と代表取締役社長・最高執行責任者の吉原栄孝氏（1975年生、2006年入社、2024年社長就任）は姓を同じくし、公益財団法人吉原育英会の理事長を吉原毎文氏が務めていることから創業家の親子承継関係にあると推察される<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。40代で社長に就任した吉原栄孝氏の経歴は、海外開発部・ネジ加工品事業部（ネジテツコン関連部門）を経て経営企画部長を務めるという、主力商品の現場を熟知した内部昇格型のキャリアパスである<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+      <p>社外取締役4名は弁護士2名（澤田和也氏・増江亜佐緒氏）、公認会計士2名（片岡宏介氏・下田祐子氏）で構成され、専門性の面では法務・財務会計に偏っている<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。他社との人的・資本・取引関係はいずれも「なし」と明記されており、形式的な独立性は担保されている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。役員のうち女性の比率は18.2％（11名中2名、いずれも社外取締役）で、業務執行陣（社内取締役）に女性は不在である<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>KAM・重要な見積り<span class="src">①</span></h3>
+      <p>監査上の主要な検討事項（KAM）は「繰延税金資産の回収可能性に関する判断の妥当性」の1項目のみである<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。繰延税金負債との相殺前の繰延税金資産1,463百万円（一時差異等総額2,923百万円から評価性引当額1,459百万円を控除）のうち、相殺後187百万円（前期355百万円から大幅減）を計上している<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。回収可能性の判断は①主原料（鉄スクラップ）価格、②販売数量、③販売価格という3つの将来仮定に基づく5年間の利益計画を基礎としており、監査法人はこれらの仮定について経営者・経理部長への質問と外部データとの照合により合理性を検証している<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。評価性引当額の規模（総額の約半分）が示すとおり、当社は税務上保守的に将来課税所得を見積もっている可能性がある一方、前期比で回収可能額が大きく縮小した背景（第98期の減益）が反映されており、見積り全体が業績連動的であることは楽観バイアスの小ささを示唆する<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>本表の財務特徴<span class="src">①</span></h3>
+      <p>連結総資産80,449百万円のうち流動資産36,783百万円（45.7％）・固定資産43,665百万円（54.3％）とほぼ均衡した構成である<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。現金及び預金は前期14,171百万円→当期7,172百万円とほぼ半減しており、自己株買い・配当・設備投資の同時進行が現預金を大きく取り崩した結果とみられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。負債合計は17,033百万円（前期21,533百万円から4,500百万円減）と縮小し、有利子負債（1年内返済予定長期借入金＋長期借入金＋リース債務）は合計4,747百万円と、純資産63,416百万円に対して極めて小さい<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。B/Sは実質的に無借金に近い保守的な財務体質であり、レバレッジを効かせた成長よりも内部留保と株主還元の両立を志向する経営スタイルが数値面からも裏付けられる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+      <p>投資その他の資産中の投資有価証券8,700百万円は主に政策保有株式（4,199百万円）とそれ以外の純投資株式で構成される<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。棚卸資産（商品及び製品9,818百万円＋原材料及び貯蔵品3,165百万円）は総資産の16.1％を占め、鉄スクラップ市況の変動を受けやすい在庫構成である<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。</p>
+
+      <h3>GC注記・後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する重要事象・GC注記の記載はない（監査報告書の「経営者の責任」記載中で一般的な言及があるのみで、固有の疑義事項の指摘はない）<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。重要な後発事象として、①2026年5月7日決議の自己株式取得（上限35万株・5億円、2026年5月11日〜6月30日）、②2026年1月30日決議・4月1日効力発生の1株につき3株の株式分割（発行済株式数8,445,305株→25,335,915株、発行可能株式総数28,000,000株→84,000,000株への定款変更）の2件が開示されている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>。いずれも既存株主への還元・投資単位引き下げによる投資家層拡大を志向する施策であり、重大なネガティブサプライズではない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>。偶発債務の記載は確認されなかった<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認：本文全体の精査は行ったが個別注記の見落としの可能性は排除できない</span>。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul>
+        <li>自己資本比率78.8％という極めて保守的な財務体質と、総還元性向約50％（配当＋自己株買い）という積極的な株主還元の両立。実質無借金経営でありながら還元強化を続けている<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>・確からしさ：高（数値ベース）</li>
+        <li>第98期の設備投資は減価償却費の2.7倍に達し、本社・八戸工場ともに拡張投資が進行中。ネジテツコンという差別化製品への集中投資であり、需要縮小が見込まれる汎用棒鋼市場からの高付加価値シフトという経営方針と整合する<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>・確からしさ：中（設備投資の成果が売上・利益に反映されるまでは検証できない）</li>
+        <li>研究開発費が前期比＋16.8％で増加し、対売上比は低いながらも既存商品改良への継続投資姿勢がみられる<span class="lab fact" style="padding:1px 6px;font-size:10px;">事実</span>・確からしさ：中</li>
+      </ul>
+
+      <h3>懸念材料と顕在化する条件</h3>
+      <ul>
+        <li>主要販売先上位3社（商社）への依存度79.1％。当該商社との取引関係が変化した場合（取引条件の悪化・他社への切替）、業績への影響は大きいと考えられるが、有報上のリスク開示はない<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>・顕在化条件：主要商社の取引方針転換、競合による代替品の提案</li>
+        <li>繰延税金資産の回収可能性判断（KAM）が鉄スクラップ価格・販売数量・販売価格という市況連動性の高い仮定に依存しており、第98期のように市況が悪化した局面では評価性引当額のさらなる積み増し（税負担の一時的増加）が生じうる<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>・顕在化条件：鉄スクラップ価格の高止まり継続、建設需要の一段の縮小</li>
+        <li>会計監査人の継続監査期間17年間という長期性。ローテーションが行われた場合の監査コスト・監査意見の変化リスクは通常想定の範囲だが、独立性の観点で継続的な留意点である<span class="lab interp" style="padding:1px 6px;font-size:10px;">解釈</span>・顕在化条件：金融庁・東証等の監査人交代を巡る規制強化</li>
+      </ul>
+
+      <h3>有報だけでは判断できず追加確認が要る事項</h3>
+      <ul>
+        <li>2009年の共英製鋼との経営統合中止の経緯・その後の業務提携の実態（現在も継続しているか）。有報の沿革章には記載がなく、統合報告書・決算説明資料等での補足確認が必要<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span></li>
+        <li>「新規分野の開拓など成長戦略推進」における伊藤製鐵所とのアライアンスの具体的な検討状況。中期経営計画や決算説明資料での進捗開示の有無を四半期報告書・適時開示で確認する必要がある<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span></li>
+        <li>設備の新設計画が「特記すべき事項はありません」とされる一方で実際には大型投資が進行している矛盾の背景（計画未確定なのか、開示方針上の簡素化なのか）。決算説明資料での補足が必要<span class="lab check" style="padding:1px 6px;font-size:10px;">要確認</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="small" style="margin-top:24px;border-top:1px solid var(--line);padding-top:14px;">
+    免責事項：本レポートは東京鐵鋼株式会社が2026年6月25日にEDINETへ提出した第98期有価証券報告書（自2025年4月1日至2026年3月31日）を主たる一次情報として、独立して構造化した定性分析の参考資料であり、投資助言・勧誘を目的とするものではない。数値の裏取りにirpocket公式IRデータの利用を試みたが銘柄コード5445は同サービス未登録（404）のため、有報本体の連結財務諸表・注記を主とし、会社公式IRページ「業績ハイライト」等（取得日2026-08-21）を補助的に参照した。沿革章のWeb情報はWikipedia「東京鐵鋼」記事（2026-08-21取得）に基づく。有報PDF取得日：2026-08-21（会社公式IRサイト「有価証券報告書/四半期報告書」ページより）。作成日：2026-08-21。売買推奨・目標株価の提示は行わない。
+  </p>
+</div>
+<script>
+const chapters = [
+  ["p0","0. サマリー"],["p1","Ⅰ.企業の輪郭"],["p2","Ⅱ.沿革"],["p3","Ⅲ.人的資本"],
+  ["p4","Ⅳ.経営者の世界観"],["p5","Ⅴ.サステナビリティ"],["p6","Ⅵ.事業等のリスク"],
+  ["p7","Ⅶ.経営成績の分析"],["p8","Ⅷ.将来への投資"],["p9","Ⅸ.資本政策・株主還元"],
+  ["p10","Ⅹ.ガバナンス"],["p11","Ⅺ.会計面の定性シグナル"],["p12","Ⅻ.論点と未解明事項"]
+];
+const tabsEl = document.getElementById('tabs');
+chapters.forEach((c,i)=>{
+  const b = document.createElement('button');
+  b.className = 'tab' + (i===0?' active':'');
+  b.textContent = c[1];
+  b.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(c[0]).classList.add('active');
+  };
+  tabsEl.appendChild(b);
+});
+
+const inkColor = '#111111', subColor='#6b6b6b', lineColor='#dcdcdc';
+
+new Chart(document.getElementById('chart5y'), {
+  type:'bar',
+  data:{
+    labels:['第94期','第95期','第96期','第97期','第98期'],
+    datasets:[
+      {label:'売上高（百万円）',data:[66089,79229,79617,82593,72540],backgroundColor:inkColor,yAxisID:'y'},
+      {label:'経常利益（百万円）',data:[-644,4944,11412,15059,12040],backgroundColor:subColor,yAxisID:'y'}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},
+    scales:{y:{title:{display:true,text:'百万円'}}}}
+});
+
+new Chart(document.getElementById('chartSeg'), {
+  type:'doughnut',
+  data:{labels:['鉄鋼事業','その他'],datasets:[{data:[71575,964],backgroundColor:[inkColor,lineColor]}]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},title:{display:true,text:'第98期 セグメント別売上構成'}}}
+});
+
+new Chart(document.getElementById('chartHolders'), {
+  type:'doughnut',
+  data:{labels:['日本マスタートラスト信託銀行','合同製鐵','三井住友銀行','STATE STREET','朝日工業','日本カストディ銀行','従業員持株会','その他上位3社','その他株主'],
+    datasets:[{data:[9.93,5.45,5.02,2.52,2.20,1.96,1.53,3.53,67.85],
+    backgroundColor:['#111111','#333333','#555555','#777777','#999999','#aaaaaa','#bbbbbb','#cccccc','#eeeeee']}]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:9}}},title:{display:true,text:'株主構成（上位10位・第98期末）'}}}
+});
+
+new Chart(document.getElementById('chartComp'), {
+  type:'bar',
+  data:{
+    labels:['取締役(監査等委員除く)','取締役(監査等委員)','社外役員'],
+    datasets:[
+      {label:'固定報酬',data:[181,25,43],backgroundColor:inkColor},
+      {label:'業績連動報酬',data:[184,0,0],backgroundColor:subColor},
+      {label:'非金銭報酬等',data:[19,0,0],backgroundColor:lineColor}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},
+    scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'百万円'}}}}
+});
+</script>
+</body></html>

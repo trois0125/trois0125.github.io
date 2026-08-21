@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>日本エアーテック（6291）投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}}
+.boxlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:10px 0}
+.box{border:1px solid var(--line);border-radius:2px;padding:12px 14px;background:#fbfbfb}
+.box h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.box p{font-size:12px;color:var(--sub)}
+.foot{font-size:11px;color:var(--sub);margin-top:8px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">日本エアーテック（6291） 定量レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>日本エアーテック（6291） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-20 ／ データ取得日：2026-08-20 ／ 一次情報のみ [①]〜[⑤]</div></header>
+  <div class="verdict caution">慎重検討（スクリーニング一部未達：⑦直近営業増益率が母集団内で上位1/3に届かず）</div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="0">①総合評価</button>
+    <button class="tab" data-p="1">②企業概要</button>
+    <button class="tab" data-p="2">③財務分析</button>
+    <button class="tab" data-p="3">④バリュエーション</button>
+    <button class="tab" data-p="4">⑤カタリスト</button>
+    <button class="tab" data-p="5">⑥リスク</button>
+    <button class="tab" data-p="6">⑦投資結論</button>
+  </div>
+
+  <!-- Tab1 総合評価 -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">スクリーニング8条件判定 <span class="src">[⑤]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">条件</th><th>基準値</th><th>実績値</th><th>判定</th><th class="l">備考</th></tr>
+        <tr><td class="l">①</td><td class="l">PER</td><td>≤15倍</td><td>11.21倍</td><td>○</td><td class="l">基準日2026-07-17 株価1,255円</td></tr>
+        <tr><td class="l">②</td><td class="l">PBR</td><td>≤1.5倍</td><td>0.87倍</td><td>○</td><td class="l">同上</td></tr>
+        <tr><td class="l">③</td><td class="l">売上高CAGR（5年平均）</td><td>≥4%</td><td>+5.3%</td><td>○</td><td class="l">9年で算出</td></tr>
+        <tr><td class="l">④</td><td class="l">営業利益CAGR（5年平均）</td><td>≥4%</td><td>+12.7%</td><td>○</td><td class="l">9年で算出</td></tr>
+        <tr><td class="l">⑤</td><td class="l">自己資本比率</td><td>≥40%</td><td>74.9%</td><td>○</td><td class="l">参照決算期 2025-12-31</td></tr>
+        <tr><td class="l">⑥</td><td class="l">時価総額</td><td>≤600億円</td><td>125億円</td><td>○</td><td class="l">基準日2026-07-17時点</td></tr>
+        <tr class="highlight"><td class="l">⑦</td><td class="l">直近1期の営業増益率</td><td>候補群上位1/3</td><td>+5.9%</td><td class="neg">×</td><td class="l">母集団内 上位59%（境界+22%）</td></tr>
+        <tr><td class="l">⑧</td><td class="l">6ヶ月株価モメンタム</td><td>候補群上位1/3</td><td>+3.9%</td><td>○</td><td class="l">母集団内 上位29%（境界+3%）</td></tr>
+      </table>
+      <p class="foot">判定：7/8条件クリア。母集団：①〜⑥通過101銘柄 ／ 8条件通過11銘柄。参考値：3ヶ月モメンタム-0.2%／12ヶ月+17.6%／直近増収率+4.7%／営業利益率8.2%／売買代金63百万円（すべて<span class="src">[⑤]</span> J-Quants API V2、ctx.py出力）。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI（現時点）</h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">1,358円</div><div class="l">現在株価<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">12.6倍</div><div class="l">PER（会社予想）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">0.91倍</div><div class="l">PBR（実績）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">4.05%</div><div class="l">配当利回り（予想）<span class="src">[④]</span></div></div>
+        <div class="kpi"><div class="v">81.1%</div><div class="l">自己資本比率（26/6末）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">7.8%</div><div class="l">ROE（FY25実績）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">8.1%</div><div class="l">ROA（経常利益/総資産・自己算出）<span class="src">[③]</span></div></div>
+        <div class="kpi"><div class="v">143億円</div><div class="l">時価総額<span class="src">[④]</span></div></div>
+      </div>
+      <p class="foot">※irpocket公式IRデータ（<span class="src">[①]</span>）は本銘柄未登録（https://irpocket.com/6291/chartest/data.xlsx が404）のため、本レポートの財務データは決算短信・有価証券報告書等の会社公式開示PDF<span class="src">[③]</span>で代替した。PER・PBR・時価総額は未調整終値ベース。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">業績推移概観（売上高・経常利益） <span class="src">[③]</span></h2>
+      <canvas id="chartOverview"></canvas>
+      <p class="foot">2019〜2025年度は決算説明資料の実績値、2026年度は会社予想（2026年8月12日公表・2月16日発表内容から修正なし）。2031年度の中期経営計画目標（売上高190億円・営業利益17億円）は別途カタリストタブに記載。</p>
+    </div>
+
+    <div class="alert">当中間期（2026年1-6月）は売上高6,754百万円（前年同期比△9.7%）、営業利益472百万円（同△35.1%）と減収減益。大口クリーンルーム案件の減少と人件費・仕入価格の上昇が主因。通期会社予想（2026年2月16日公表分）に修正はないが、下期の受注残高消化（61.4億円・前年同期比+21.3%）が計画達成の鍵となる<span class="src">[③]</span>。</div>
+  </div>
+
+  <!-- Tab2 企業概要 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[③]</span></h2>
+      <table>
+        <tr><td class="l">会社名</td><td class="l">日本エアーテック株式会社（AIRTECH JAPAN, Ltd.）</td><td class="l">証券コード</td><td class="l">6291</td></tr>
+        <tr><td class="l">設立</td><td class="l">1973年3月</td><td class="l">上場</td><td class="l">1997年7月（東証二部）→現在：東証スタンダード</td></tr>
+        <tr><td class="l">本店所在地</td><td class="l">東京都台東区入谷一丁目14番9号</td><td class="l">代表者</td><td class="l">代表取締役社長　平沢 真也</td></tr>
+        <tr><td class="l">資本金</td><td class="l">2,133,951千円（2025年12月末）</td><td class="l">発行済株式数</td><td class="l">10,538,420株</td></tr>
+        <tr><td class="l">従業員数</td><td class="l">473名（うち平均臨時雇用者7名／2025年12月31日現在）</td><td class="l">平均年齢／平均勤続</td><td class="l">42.06歳／15.05年</td></tr>
+        <tr><td class="l">業種</td><td class="l">機械（東証33業種）</td><td class="l">事業</td><td class="l">クリーンエアーシステムの企画・製造・販売（単一セグメント）</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業内容 <span class="src">[③]</span></h2>
+      <p>半導体・液晶等の電子工業分野、及び医薬品・医療機関・食品工業等のバイオロジカル分野を主要需要先として、クリーンルーム、クリーンルーム機器（エアーシャワー等）、クリーンブース、クリーンベンチ、バイオロジカリー機器、据付・保守サービス、クリーンサプライ商品まで、清浄な空気環境を実現する機器・システムを一貫して手がける。セグメント区分は困難として単一セグメントで開示（有報記載）<span class="src">[③]</span>。</p>
+      <div class="boxlist">
+        <div class="box"><h4>クリーンルーム／クリーンルーム機器</h4><p>パネル式クリーンルーム、エアーシャワー、フィルターユニット、クリーン保管庫等</p></div>
+        <div class="box"><h4>クリーンブース</h4><p>アルミ製／鋼板製クリーンブース、サーマルクリーンチャンバー等</p></div>
+        <div class="box"><h4>クリーンベンチ／バイオロジカリー機器</h4><p>標準・簡易クリーンベンチ、安全キャビネット、無菌治療室、アイソレーター等</p></div>
+        <div class="box"><h4>据付・保守／クリーンサプライ</h4><p>機器搬入据付、保守サービス、HEPAフィルター、無塵衣・ワイパー等消耗品</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">販売分野別売上高構成 <span class="src">[③]</span></h2>
+      <canvas id="chartSegment"></canvas>
+      <table style="margin-top:12px">
+        <tr><th class="l">決算期</th><th>電子工業分野</th><th>バイオロジカル分野</th><th>その他</th><th>合計</th></tr>
+        <tr><td class="l">2023年12月期</td><td>6,516百万円（47.7%）</td><td>5,890百万円（43.2%）</td><td>1,239百万円（9.1%）</td><td>13,646百万円</td></tr>
+        <tr><td class="l">2024年12月期</td><td>6,605百万円（48.9%）</td><td>4,912百万円（36.3%）</td><td>2,000百万円（14.8%）</td><td>13,517百万円</td></tr>
+        <tr class="h1-row"><td class="l">2025年12月期</td><td>7,416百万円（52.4%）</td><td>5,224百万円（36.9%）</td><td>1,510百万円（10.7%）</td><td>14,151百万円</td></tr>
+      </table>
+      <p class="foot">「その他」は最終顧客の分野が捕捉不能な物件（有報注記）。分野内訳（決算説明資料ベース・2025年度）：電子工業61%＝電子27.9%・半導体22.9%・自動車6.5%・その他3.7%／バイオロジカル39%＝製薬17.0%・医療10.4%・食品8.2%・その他3.4%（配分方法が有報表と異なるため参考値）<span class="src">[③]</span>。</p>
+    </div>
+  </div>
+
+  <!-- Tab3 財務分析 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">損益サマリー（3期＋H1＋今期予想） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>経常利益</th><th>純利益</th><th>前年比（売上）</th></tr>
+        <tr><td class="l">2023年12月期</td><td>13,646百万円</td><td>707百万円</td><td>5.2%</td><td>1,010百万円</td><td>731百万円</td><td>+3.6%</td></tr>
+        <tr><td class="l">2024年12月期</td><td>13,517百万円</td><td>1,098百万円</td><td>8.1%</td><td>1,529百万円</td><td>1,137百万円</td><td class="neg">△0.9%</td></tr>
+        <tr class="h1-row"><td class="l">2025年12月期</td><td>14,151百万円</td><td>1,163百万円</td><td>8.2%</td><td>1,606百万円</td><td>1,131百万円</td><td>+4.7%</td></tr>
+        <tr class="h1-row"><td class="l">2026年12月期 H1（実績）</td><td>6,754百万円</td><td>472百万円</td><td>7.0%</td><td>983百万円</td><td>704百万円</td><td class="neg">△9.7%</td></tr>
+        <tr class="forecast"><td class="l">2026年12月期（会社予想）</td><td>14,000百万円</td><td>1,150百万円</td><td>8.2%</td><td>1,500百万円</td><td>1,080百万円</td><td class="neg">△1.1%</td></tr>
+      </table>
+      <p class="foot">H1前年同期比：売上高△9.7%／営業利益△35.1%／経常利益△13.0%／中間純利益△11.2%。原価上昇と人的資本投資に伴う人件費増、大口クリーンルーム案件の減少が要因<span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">売上高・利益推移（2019〜2026予想） <span class="src">[③]</span></h2>
+      <canvas id="chartPL"></canvas>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>1株指標</h3>
+        <table>
+          <tr><th class="l">決算期</th><th>EPS</th><th>DPS</th><th>BPS</th><th>配当性向</th></tr>
+          <tr><td class="l">2021年12月期</td><td>153.03円</td><td>50.00円</td><td>1,293.71円</td><td>32.7%</td></tr>
+          <tr><td class="l">2022年12月期</td><td>99.08円</td><td>60.00円</td><td>1,350.02円</td><td>60.6%</td></tr>
+          <tr><td class="l">2023年12月期</td><td>70.85円</td><td>60.00円</td><td>1,360.01円</td><td>84.7%</td></tr>
+          <tr><td class="l">2024年12月期</td><td>109.75円</td><td>50.00円</td><td>1,414.01円</td><td>45.6%</td></tr>
+          <tr class="h1-row"><td class="l">2025年12月期</td><td>111.96円</td><td>55.00円</td><td>1,478.97円</td><td>49.1%</td></tr>
+          <tr class="forecast"><td class="l">2026年12月期（予想）</td><td>108.10円</td><td>55.00円</td><td>1,494.26円（26/6末）</td><td>51.5%（予想）</td></tr>
+        </table>
+        <p class="foot" style="margin-top:4px">BPSは2026年12月期のみ2026年6月末実績。出所<span class="src">[③]</span></p>
+      </div>
+      <div class="card">
+        <h3>ROE／ROA推移</h3>
+        <canvas id="chartROE"></canvas>
+        <p class="foot">ROAは経常利益÷総資産で自己算出（会社公式のROA開示なし）<span class="src">[③]</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>EPS／DPS推移</h3>
+      <canvas id="chartEPSDPS"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>総資産</th><th>純資産</th><th>自己資本比率</th><th>営業CF</th><th>投資CF</th><th>フリーCF</th></tr>
+        <tr><td class="l">2023年12月期</td><td>19,589百万円</td><td>14,108百万円</td><td>72.0%</td><td>454百万円</td><td class="neg">△775百万円</td><td class="neg">△321百万円</td></tr>
+        <tr><td class="l">2024年12月期</td><td>18,513百万円</td><td>14,302百万円</td><td>77.3%</td><td class="neg">△668百万円</td><td class="neg">△884百万円</td><td class="neg">△1,552百万円</td></tr>
+        <tr class="h1-row"><td class="l">2025年12月期</td><td>19,876百万円</td><td>14,772百万円</td><td>74.3%</td><td>1,626百万円</td><td class="neg">△901百万円</td><td>725百万円</td></tr>
+        <tr class="h1-row"><td class="l">2026年12月期 H1</td><td>18,437百万円</td><td>14,956百万円</td><td>81.1%</td><td class="neg">△766百万円</td><td class="neg">△292百万円</td><td class="neg">△1,058百万円</td></tr>
+      </table>
+      <p class="foot">H1の営業CF悪化は、電子記録債務（仕入債務）の支払サイト短縮による減少（△1,110百万円）が主因で、利益の悪化幅ほど深刻ではない一過性要素を含む<span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <p style="font-size:11px;color:var(--sub)">出所：<span class="src">[③]</span> 有価証券報告書（第53期・2026年3月27日提出）／2026年12月期第2四半期決算短信（2026年8月12日開示）／決算説明資料（2026年8月12日）。<span class="src">[⑤]</span> J-Quants API V2（screening judgement）。<span class="src">[④]</span> kabutan.jp（2026年8月20日フェッチ）。</p>
+    </div>
+  </div>
+
+  <!-- Tab4 バリュエーション -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">12.6倍</div><div class="l">PER（会社予想）</div></div>
+        <div class="kpi"><div class="v">0.91倍</div><div class="l">PBR（実績・26/6末BPS）</div></div>
+        <div class="kpi"><div class="v">4.05%</div><div class="l">配当利回り（予想）</div></div>
+        <div class="kpi"><div class="v">564倍</div><div class="l">信用倍率</div></div>
+      </div>
+      <p class="foot">株価1,358円（2026-08-20時点、未調整終値）。PBR検証：1,358円÷1,494.26円（26/6末BPS）＝0.91倍。PER検証：1,358円÷108.10円（会社予想EPS）＝12.56倍。いずれもkabutan掲載値と整合<span class="src">[④][③]</span>。</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>PER推移（2019〜現在）</h3>
+        <canvas id="chartPER"></canvas>
+      </div>
+      <div class="card">
+        <h3>PBR推移（2019〜現在）</h3>
+        <canvas id="chartPBR"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">理論PBR分析（ROEベース） <span class="src">[③]推計</span></h2>
+      <p>会社自身が資本コスト（株主資本コスト）を約5〜7%台と認識（決算説明資料）。直近ROE7.8%（FY2025実績）はこの水準とほぼ同等であり、理論上はPBR1倍近傍が妥当だが、実際のPBRは0.78〜0.91倍で推移し1倍を下回る状態が続いている。会社はこの乖離をPER側（成長期待の低さ）の問題と分析し、中期経営計画とIR活動強化でPER再評価を狙う方針<span class="src">[③]</span>。</p>
+      <table style="margin-top:10px">
+        <tr><th class="l">決算年度</th><th>営業利益率</th><th>ROE</th><th>資本コスト目安</th><th>PBR</th><th>PER</th></tr>
+        <tr><td class="l">2019</td><td>4.2%</td><td>4.0%</td><td>5〜7%</td><td>0.67倍</td><td>16.48倍</td></tr>
+        <tr><td class="l">2020</td><td>11.3%</td><td>10.3%</td><td>5〜7%</td><td>1.35倍</td><td>13.87倍</td></tr>
+        <tr><td class="l">2021</td><td>13.9%</td><td>12.4%</td><td>5〜7%</td><td>0.91倍</td><td>7.70倍</td></tr>
+        <tr><td class="l">2022</td><td>8.4%</td><td>7.4%</td><td>5〜7%</td><td>0.79倍</td><td>10.75倍</td></tr>
+        <tr><td class="l">2023</td><td>5.2%</td><td>5.2%</td><td>5〜7%</td><td>0.90倍</td><td>17.28倍</td></tr>
+        <tr><td class="l">2024</td><td>8.1%</td><td>8.0%</td><td>5〜7%</td><td>0.79倍</td><td>10.19倍</td></tr>
+        <tr class="h1-row"><td class="l">2025</td><td>8.2%</td><td>7.8%</td><td>5〜7%</td><td>0.78倍</td><td>10.35倍</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">決算年度</th><th>DPS</th><th>配当性向</th><th>総還元性向</th><th>配当利回り（期末株価比）</th></tr>
+        <tr><td class="l">2021</td><td>50円</td><td>32.7%</td><td>32.8%</td><td>4.2%</td></tr>
+        <tr><td class="l">2022</td><td>60円</td><td>60.6%</td><td>79.8%</td><td>5.6%</td></tr>
+        <tr><td class="l">2023</td><td>60円</td><td>84.7%</td><td>85.6%</td><td>4.9%</td></tr>
+        <tr><td class="l">2024</td><td>50円</td><td>45.6%</td><td>79.3%</td><td>4.5%</td></tr>
+        <tr class="h1-row"><td class="l">2025</td><td>55円</td><td>49.1%</td><td>68.9%</td><td>4.7%</td></tr>
+        <tr class="forecast"><td class="l">2026（予想）</td><td>55円</td><td>51.5%（予想）</td><td>65.0%以上（予想）</td><td>－</td></tr>
+      </table>
+      <p class="foot">中期経営計画（2027-2031）では総還元性向65%目安・DOE（株主資本配当率）3%下限を新方針として掲げる<span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ピア比較</h2>
+      <p style="color:var(--sub)">一次情報未取得のため省略。</p>
+    </div>
+  </div>
+
+  <!-- Tab5 カタリスト -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">中期経営計画（2027-2031年度）数値目標 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th>2025年度実績</th><th>2031年度目標</th></tr>
+        <tr><td class="l">売上高</td><td>14,151百万円</td><td class="target">19,000百万円</td></tr>
+        <tr><td class="l">営業利益</td><td>1,163百万円</td><td class="target">1,700百万円</td></tr>
+        <tr><td class="l">ROE</td><td>7.8%</td><td class="target">8%以上</td></tr>
+      </table>
+      <p class="foot">2026年8月12日にVol.3として更新（初版2024年11月13日）。従来計画（2024-2028年度）を事業環境変化を踏まえて見直し、新たに策定<span class="src">[③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト</h2>
+      <div class="boxlist">
+        <div class="box"><h4>赤城スマートファクトリー第二工場</h4><p>2026年9月稼働開始予定。標準品生産の集約・倉庫再編で生産効率とコスト構造を改善<span class="src">[③]</span></p></div>
+        <div class="box"><h4>半導体投資の継続的な追い風</h4><p>AI・データセンター向け半導体需要拡大により、電子工業分野の設備投資が国内外で継続<span class="src">[③]</span></p></div>
+        <div class="box"><h4>新製品：クリーンルーム対応ロボット掃除機</h4><p>2025年11月発売。清掃の効率化・省人化を訴求する新分野商材<span class="src">[③]</span></p></div>
+        <div class="box"><h4>受注残高の増加</h4><p>2026年H1末61.4億円（前年同期比+21.3%）。下期の売上化が通期計画達成の鍵<span class="src">[③]</span></p></div>
+        <div class="box"><h4>研究開発投資の拡大</h4><p>2031年にかけて研究開発投資を2025年度比1.5倍に拡大し、成長領域の技術開発を加速<span class="src">[③]</span></p></div>
+        <div class="box"><h4>株主還元強化・PBR改善方針</h4><p>総還元性向65%目安・DOE3%下限を新設。IR活動・開示充実によりPER再評価を狙う<span class="src">[③]</span></p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">H1実績進捗 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th>通期予想</th><th>H1実績</th><th>進捗率</th><th>前年同期比</th></tr>
+        <tr><td class="l">売上高</td><td>14,000百万円</td><td>6,754百万円</td><td>48.2%</td><td class="neg">△9.7%</td></tr>
+        <tr><td class="l">営業利益</td><td>1,150百万円</td><td>472百万円</td><td>41.1%</td><td class="neg">△35.1%</td></tr>
+        <tr><td class="l">経常利益</td><td>1,500百万円</td><td>983百万円</td><td>65.6%</td><td class="neg">△13.0%</td></tr>
+        <tr class="highlight"><td class="l">当期（中間）純利益</td><td>1,080百万円</td><td>704百万円</td><td>65.2%</td><td class="neg">△11.2%</td></tr>
+      </table>
+      <p class="foot">経常利益・純利益の進捗率が売上・営業利益より高いのは、受取配当金（営業外収益、H1で4.8億円）が上期に厚めに計上される季節性のため<span class="src">[③]</span>。会社は通期予想を据え置いており（2026年8月12日時点で修正なし）、下期の巻き返しを前提としている点に留意。</p>
+    </div>
+  </div>
+
+  <!-- Tab6 リスク -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">主要リスク <span class="src">[③]</span></h2>
+      <div class="boxlist">
+        <div class="box"><h4>特定2分野への依存</h4><p>電子工業分野・バイオロジカル分野の設備投資動向に業績が連動。2025年度は電子工業52.4%・バイオロジカル36.9%に集中<span class="src">[③]</span></p></div>
+        <div class="box"><h4>大口案件の変動</h4><p>クリーンルーム大型案件は仕様変更・値下げ圧力が大きく、受注可否・採算管理次第で業績に影響。H1減収の一因<span class="src">[③]</span></p></div>
+        <div class="box"><h4>部品調達・原材料価格</h4><p>中国のレアアース輸出規制による一部部品の調達制限・価格高騰、ホルムズ海峡情勢による石油由来製品・材料調達への影響が顕在化<span class="src">[③]</span></p></div>
+        <div class="box"><h4>協力会社への依存</h4><p>板金・塗装工程等を協力会社に大きく依存。資材コスト・労務費上昇時の価格転嫁が課題<span class="src">[③]</span></p></div>
+        <div class="box"><h4>人件費増加</h4><p>人的資本投資に伴う給料・賞与引当金の増加がH1営業減益（△35.1%）の主要因の一つ<span class="src">[③]</span></p></div>
+        <div class="box"><h4>取引先の信用リスク</h4><p>建築設備会社・装置メーカー等への直接販売があり、売掛債権回収困難化のリスクを内包<span class="src">[③]</span></p></div>
+        <div class="box"><h4>災害・事業継続リスク</h4><p>地震等自然災害・感染症流行・事故等による生産拠点の損害、操業中断のリスク<span class="src">[③]</span></p></div>
+      </div>
+    </div>
+    <div class="alert danger">スクリーニング⑦（直近1期の営業増益率）は母集団内で上位1/3の基準に届かず（実測+5.9%・境界+22%、母集団内順位は上位59%）。中間期の大幅減益（営業利益△35.1%）とあわせ、下期の業績回復ペースを注視する必要がある<span class="src">[⑤][③]</span>。</div>
+  </div>
+
+  <!-- Tab7 投資結論 -->
+  <div class="panel" id="p6">
+    <div class="verdict caution">慎重検討（スクリーニング一部未達）</div>
+    <div class="card">
+      <h2 class="section">総合評価</h2>
+      <p>PER11.21倍・PBR0.87倍（<span class="src">[⑤]</span>基準日2026-07-17）、自己資本比率74.9%（26/6末は81.1%まで上昇<span class="src">[③]</span>）、時価総額125億円と、スクリーニング8条件のうち7条件をクリアする割安性・財務健全性を備える。売上高CAGR+5.3%・営業利益CAGR+12.7%（<span class="src">[⑤]</span>9年ベース）は増収増益基調を示すが、直近の第2四半期決算では売上高△9.7%・営業利益△35.1%と急減速しており、スクリーニング⑦（直近1期の営業増益率が母集団上位1/3）を満たしていない<span class="src">[⑤]</span>。株価は今期会社予想EPS基準でPER12.6倍・PBR0.91倍と、会社自身が開示する過去平均PERレンジ（10〜17倍）の下限〜中位で推移しており、割高感は限定的である一方、下期の業績回復（受注残高消化、赤城第二工場稼働）が計画達成の前提となっている点はリスクとして残る<span class="src">[④][③]</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計・保証なし）</h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:8px">以下の目標株価は一次情報から導出した推計値。実際の業績・株価を保証しない。PER仮定は会社開示の過去7年間PERレンジ（7.70〜17.28倍）を基準に設定。</p>
+      <canvas id="chartScenario"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">シナリオ</th><th>想定確率</th><th>前提EPS</th><th>PER仮定</th><th>目標株価</th><th>現在比</th></tr>
+        <tr><td class="l">ベア</td><td>25%</td><td>91.9円（会社予想比△15%・推計）</td><td>7.70倍（過去最低水準）</td><td>708円</td><td class="neg">△47.9%</td></tr>
+        <tr class="highlight"><td class="l">ベース</td><td>55%</td><td>108.10円（会社予想）</td><td>10.35倍（2025年度実績）</td><td>1,119円</td><td class="neg">△17.6%</td></tr>
+        <tr><td class="l">ブル</td><td>20%</td><td>121.1円（会社予想比+12%・推計）</td><td>17.28倍（過去最高水準・2023年）</td><td>2,093円</td><td>+54.1%</td></tr>
+      </table>
+      <p class="foot">ベアケース前提：部品調達コスト高騰の長期化・大口案件減少の継続／ベースケース前提：通期計画達成・受注残高の売上化／ブルケース・トリガー：半導体投資加速、赤城第二工場の増産効果、上方修正。ベースケースの目標株価が現在株価（1,358円）を下回る点は、直近の急減益（H1営業利益△35.1%）が株価にまだ十分に反映されていない可能性、あるいは市場が下期の回復をすでに織り込んでいる可能性の両方が考えられ、判断が分かれる<span class="src">推計</span>。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <table>
+        <tr><th class="l">項目</th><th>判定</th><th class="l">コメント</th></tr>
+        <tr><td class="l">バリュエーション（PER・PBR）</td><td>○</td><td class="l">会社開示の過去平均レンジ内・不調時としては妥当水準</td></tr>
+        <tr><td class="l">財務健全性</td><td>○</td><td class="l">自己資本比率81.1%（26/6末）、実質無借金に近い水準</td></tr>
+        <tr><td class="l">成長性（長期）</td><td>○</td><td class="l">9年CAGR売上+5.3%・営業利益+12.7%<span class="src">[⑤]</span></td></tr>
+        <tr class="highlight"><td class="l">直近モメンタム</td><td class="neg">×</td><td class="l">H1営業利益△35.1%、⑦条件未達</td></tr>
+        <tr><td class="l">株主還元</td><td>○</td><td class="l">配当利回り4.05%・総還元性向65%目安の新方針</td></tr>
+        <tr><td class="l">中期成長ストーリー</td><td>○</td><td class="l">半導体需要の追い風・新工場稼働・研究開発拡大</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">免責事項</h2>
+      <p style="font-size:11.5px;color:var(--sub)">
+      本レポートは日本エアーテック株式会社（証券コード6291）の公開情報のみに基づく個人投資分析メモであり、投資勧誘を目的とするものではない。データ取得日：2026年8月20日。予想ベース日：会社業績予想は2026年8月12日開示の第2四半期決算短信時点（2026年2月16日公表内容から修正なし）。irpocket公式IRデータ<span class="src">[①]</span>は本銘柄が未登録のため利用できず、有価証券報告書・決算短信・決算説明資料等の会社公式開示PDF<span class="src">[③]</span>で代替した。シナリオ分析中の数値は推計であり、将来の業績・株価を保証するものではない。投資判断は自己責任で行うこと。
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+const panels=document.querySelectorAll('.panel');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  panels.forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('p'+t.dataset.p).classList.add('active');
+}));
+
+Chart.defaults.font.family="-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif";
+Chart.defaults.color="#6b6b6b";
+
+new Chart(document.getElementById('chartOverview'),{
+  type:'bar',
+  data:{labels:['2019','2020','2021','2022','2023','2024','2025','2026予'],
+    datasets:[
+      {type:'bar',label:'売上高（百万円）',data:[10442,12487,14289,13172,13646,13517,14151,14000],backgroundColor:'#111111'},
+      {type:'line',label:'経常利益（百万円）',data:[null,null,2196,1397,1010,1530,1607,1500],borderColor:'#6b6b6b',backgroundColor:'#6b6b6b',yAxisID:'y1',tension:.2}
+    ]},
+  options:{scales:{y:{beginAtZero:true},y1:{position:'right',beginAtZero:true,grid:{drawOnChartArea:false}}}}
+});
+
+new Chart(document.getElementById('chartSegment'),{
+  type:'bar',
+  data:{labels:['2023','2024','2025'],
+    datasets:[
+      {label:'電子工業分野',data:[6516,6605,7416],backgroundColor:'#111111'},
+      {label:'バイオロジカル分野',data:[5890,4912,5224],backgroundColor:'#6b6b6b'},
+      {label:'その他',data:[1239,2000,1510],backgroundColor:'#cfcfcf'}
+    ]},
+  options:{scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true}}}
+});
+
+new Chart(document.getElementById('chartPL'),{
+  type:'bar',
+  data:{labels:['2021','2022','2023','2024','2025','2026予'],
+    datasets:[
+      {type:'bar',label:'売上高（百万円）',data:[14289,13172,13646,13517,14151,14000],backgroundColor:'#dcdcdc'},
+      {type:'bar',label:'営業利益（百万円）',data:[1991,1105,707,1098,1163,1150],backgroundColor:'#111111'},
+      {type:'line',label:'経常利益（百万円）',data:[2196,1397,1010,1530,1607,1500],borderColor:'#b42318',backgroundColor:'#b42318',tension:.2}
+    ]},
+  options:{scales:{y:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById('chartROE'),{
+  type:'line',
+  data:{labels:['2021','2022','2023','2024','2025'],
+    datasets:[
+      {label:'ROE（%）',data:[12.4,7.4,5.2,8.0,7.8],borderColor:'#111111',backgroundColor:'#111111',tension:.2},
+      {label:'ROA（%・自己算出）',data:[11.00,6.99,5.16,8.26,8.08],borderColor:'#6b6b6b',backgroundColor:'#6b6b6b',tension:.2}
+    ]},
+  options:{scales:{y:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById('chartEPSDPS'),{
+  type:'bar',
+  data:{labels:['2021','2022','2023','2024','2025','2026予'],
+    datasets:[
+      {type:'bar',label:'EPS（円）',data:[153.03,99.08,70.85,109.75,111.96,108.10],backgroundColor:'#111111'},
+      {type:'line',label:'DPS（円）',data:[50.00,60.00,60.00,50.00,55.00,55.00],borderColor:'#b42318',backgroundColor:'#b42318',tension:.2}
+    ]},
+  options:{scales:{y:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById('chartPER'),{
+  type:'bar',
+  data:{labels:['2019','2020','2021','2022','2023','2024','2025','現在'],
+    datasets:[{label:'PER（倍）',data:[16.48,13.87,7.70,10.75,17.28,10.19,10.35,12.6],backgroundColor:'#111111'}]},
+  options:{scales:{y:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById('chartPBR'),{
+  type:'bar',
+  data:{labels:['2019','2020','2021','2022','2023','2024','2025','現在'],
+    datasets:[{label:'PBR（倍）',data:[0.67,1.35,0.91,0.79,0.90,0.79,0.78,0.91],backgroundColor:'#111111'}]},
+  options:{scales:{y:{beginAtZero:true}}}
+});
+
+new Chart(document.getElementById('chartScenario'),{
+  type:'bar',
+  data:{labels:['ベア','現在','ベース','ブル'],
+    datasets:[{label:'株価（円）',data:[708,1358,1119,2093],backgroundColor:['#b42318','#6b6b6b','#111111','#111111']}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}
+});
+</script>
+</body></html>

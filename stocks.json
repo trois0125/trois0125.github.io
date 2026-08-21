@@ -2,6 +2,18 @@
   "generated": true,
   "stocks": [
     {
+      "code": "5445",
+      "name": "東京鐵鋼",
+      "report_date": "2026-08-21",
+      "qualitative_date": "2026-08-21"
+    },
+    {
+      "code": "6291",
+      "name": "日本エアーテック",
+      "report_date": "2026-08-20",
+      "qualitative_date": "2026-08-19"
+    },
+    {
       "code": "5729",
       "name": "日本精鉱",
       "report_date": "2026-08-19",
@@ -12,12 +24,6 @@
       "name": "エムケー精工",
       "report_date": "2026-08-19",
       "qualitative_date": "2026-08-18"
-    },
-    {
-      "code": "6291",
-      "name": "日本エアーテック",
-      "report_date": null,
-      "qualitative_date": "2026-08-19"
     },
     {
       "code": "3932",
