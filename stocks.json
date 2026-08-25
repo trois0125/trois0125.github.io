@@ -2,6 +2,12 @@
   "generated": true,
   "stocks": [
     {
+      "code": "1828",
+      "name": "田辺工業",
+      "report_date": "2026-08-26",
+      "qualitative_date": null
+    },
+    {
       "code": "2153",
       "name": "Ｅ・Ｊホールディングス",
       "report_date": "2026-08-23",

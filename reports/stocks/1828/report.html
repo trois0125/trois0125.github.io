@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>田辺工業（1828）投資分析レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：マイナス／要警戒／見送り */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.verdict{display:flex;align-items:center;gap:10px;border:1px solid var(--ink);border-radius:2px;
+  padding:10px 16px;margin:16px 0;font-weight:700;font-size:14px}
+.verdict.buy{background:var(--ink);color:#fff}
+.verdict.buy-cond{background:#f0f0f0;color:var(--ink)}
+.verdict.caution{background:#fff;color:var(--sub);border-color:var(--line)}
+.verdict.avoid{background:#fff;color:var(--neg);border-color:var(--neg)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+</style></head><body>
+<style>
+.vi-crumb{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:12px;padding:10px 20px;background:#fff;color:#6b6b6b;border-bottom:1px solid #dcdcdc;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vi-crumb a{color:#6b6b6b;text-decoration:none}
+.vi-crumb a:hover{text-decoration:underline}
+.vi-crumb .sep{opacity:.5}
+.vi-crumb .cur{color:#111;font-weight:700}
+@media (prefers-color-scheme:dark){
+.vi-crumb{background:#0b0b0b;color:#9a9a9a;border-bottom-color:#2b2b2b}
+.vi-crumb a{color:#9a9a9a}
+.vi-crumb .cur{color:#f2f2f2}
+}
+</style>
+<div class="vi-crumb"><a href="../../../index.html">HOME</a><span class="sep">›</span><a href="../../../stocks.html">個別銘柄レポート</a><span class="sep">›</span><span class="cur">田辺工業（1828） 定量レポート</span></div>
+
+<div class="wrap">
+  <header class="rhead"><h1>田辺工業株式会社（1828） 投資分析レポート</h1>
+    <div class="sub">作成日：2026-08-26 ／ データ取得日：株価等2026-08-25・IR資料2026-08-26 ／ 一次情報のみ [①]〜[⑤]</div></header>
+  <div class="verdict caution">慎重検討（スクリーニング8条件中7条件クリア／6ヶ月モメンタムが基準未達）</div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="0">①総合評価</button>
+    <button class="tab" data-tab="1">②企業概要</button>
+    <button class="tab" data-tab="2">③財務分析</button>
+    <button class="tab" data-tab="3">④バリュエーション</button>
+    <button class="tab" data-tab="4">⑤カタリスト</button>
+    <button class="tab" data-tab="5">⑥リスク</button>
+    <button class="tab" data-tab="6">⑦投資結論</button>
+  </div>
+
+  <!-- Tab1: 総合評価 -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">スクリーニング8条件判定 <span class="src">[⑤]</span></h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:10px;">基準日：2026-07-17（参照決算：2026年3月期、開示日2026-05-13）／ 母集団：①〜⑥通過101銘柄・8条件通過11銘柄</p>
+      <table>
+        <tr><th class="l">#</th><th class="l">指標</th><th>基準値</th><th>実績値</th><th>判定</th><th class="l">補足</th></tr>
+        <tr><td class="l">1</td><td class="l">PER</td><td>≤15倍</td><td>7.17倍</td><td>○</td><td class="l"></td></tr>
+        <tr><td class="l">2</td><td class="l">PBR</td><td>≤1.5倍</td><td>0.89倍</td><td>○</td><td class="l"></td></tr>
+        <tr><td class="l">3</td><td class="l">売上高CAGR</td><td>≥4%</td><td>+6.2%</td><td>○</td><td class="l">9年で算出</td></tr>
+        <tr><td class="l">4</td><td class="l">営業利益CAGR</td><td>≥4%</td><td>+11.8%</td><td>○</td><td class="l"></td></tr>
+        <tr><td class="l">5</td><td class="l">自己資本比率</td><td>≥40%</td><td>59.3%</td><td>○</td><td class="l"></td></tr>
+        <tr><td class="l">6</td><td class="l">時価総額</td><td>≤600億円</td><td>248億円</td><td>○</td><td class="l"></td></tr>
+        <tr><td class="l">7</td><td class="l">直近営業増益率</td><td>上位1/3</td><td>+24.3%</td><td>○</td><td class="l">母集団内上位32%（境界+22%）</td></tr>
+        <tr class="highlight"><td class="l">8</td><td class="l">6ヶ月モメンタム</td><td>上位1/3</td><td class="neg">-13.2%</td><td class="neg">×</td><td class="l">母集団内上位73%（境界+3%）</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--sub);margin-top:8px;">判定：7/8条件クリア。参考値：3ヶ月モメンタム -2.8% ／ 12ヶ月モメンタム +2.7% ／ 直近増収率 +3.0% ／ 営業利益率 9.1% ／ 売買代金 50百万円 <span class="src">[⑤]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">主要KPI（現在値） <span class="src">[④]</span></h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:8px;">2026-08-25終値ベース（未調整終値）</p>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">2,300円</div><div class="l">株価</div></div>
+        <div class="kpi"><div class="v">8.9倍</div><div class="l">PER（予想EPS基準）</div></div>
+        <div class="kpi"><div class="v">0.87倍</div><div class="l">PBR</div></div>
+        <div class="kpi"><div class="v">4.35%</div><div class="l">配当利回り</div></div>
+        <div class="kpi"><div class="v">59.3%</div><div class="l">自己資本比率（26/3期末）</div></div>
+        <div class="kpi"><div class="v">13.0%</div><div class="l">ROE（26/3期・会社公表）</div></div>
+        <div class="kpi"><div class="v">10.2%</div><div class="l">ROA（経常利益ベース・26/3期）</div></div>
+        <div class="kpi"><div class="v">247億円</div><div class="l">時価総額</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">業績推移概観（売上高・経常利益） <span class="src">[④]</span></h2>
+      <canvas id="chartOverview"></canvas>
+    </div>
+
+    <div class="alert">
+      2027年3月期（今期）は会社計画で減収減益予想（売上高△4.5%・営業利益△19.3%）。中期経営計画「TRY2030」ステージⅠ（体制強化・変革期、25/3期〜27/3期）における先行投資局面にあたる点に留意 <span class="src">[③]</span>。
+    </div>
+    <div class="alert danger">
+      6ヶ月株価モメンタムはマイナス圏（-13.2%）で母集団内下位73%に位置し、スクリーニング条件⑧を唯一未達 <span class="src">[⑤]</span>。
+    </div>
+  </div>
+
+  <!-- Tab2: 企業概要 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">会社基本情報 <span class="src">[②][③]</span></h2>
+      <table>
+        <tr><td class="l" style="width:30%">会社名</td><td class="l">田辺工業株式会社（TANABE ENGINEERING CORPORATION）</td></tr>
+        <tr><td class="l">証券コード</td><td class="l">1828</td></tr>
+        <tr><td class="l">設立</td><td class="l">1969年2月1日（昭和44年）</td></tr>
+        <tr><td class="l">本社</td><td class="l">新潟県上越市大字福田20番地／東京本社：東京都千代田区神田駿河台2-2 御茶ノ水杏雲ビル4階</td></tr>
+        <tr><td class="l">資本金</td><td class="l">8億8,532万円</td></tr>
+        <tr><td class="l">従業員数</td><td class="l">連結1,044名／単体809名（2026年3月末時点）</td></tr>
+        <tr><td class="l">上場市場</td><td class="l">東京証券取引所 スタンダード市場（2007年3月上場、前身は1993年日本証券業協会店頭登録）</td></tr>
+        <tr><td class="l">業種</td><td class="l">建設業（プラントエンジニアリング）</td></tr>
+        <tr><td class="l">代表者</td><td class="l">代表取締役会長 四月朔日 義雄／代表取締役社長執行役員 水澤 文雄</td></tr>
+        <tr><td class="l">海外子会社</td><td class="l">TANABE(THAILAND)Co.,Ltd.（表面処理・設備工事）／TANABE ENGINEERING SINGAPORE PTE.LTD.／TANABE TECHNICAL SERVICE MALAYSIA SDN.BHD.／TANABE ENGINEERING ASIA CO.,LTD.</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">経営理念・ビジョン <span class="src">[③]</span></h2>
+      <p><strong>経営理念：</strong>「お客様・従業員・株主・業務関係者そして社会の、みんなに喜ばれる親切で的確な仕事をしよう」</p>
+      <p style="margin-top:8px;"><strong>Vision：</strong>「エンジニアリングの力で、産業社会と地域社会の発展に貢献する」</p>
+      <p style="margin-top:8px;"><strong>コーポレートスローガン：</strong>「ものづくりのための、モノづくり。」</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業セグメント（2026年3月期実績） <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">部門</th><th>売上高（百万円）</th><th>構成比</th><th class="l">事業内容</th></tr>
+        <tr><td class="l">産業プラント部門</td><td>22,618</td><td>43%</td><td class="l">化学・医薬・半導体・自動車等向けプラント設備の設計・施工・機器製作・メンテナンス</td></tr>
+        <tr><td class="l">設備保全（メンテナンス）部門</td><td>11,196</td><td>21%</td><td class="l">工場設備の定期修繕工事等（ストック型収益）</td></tr>
+        <tr><td class="l">電気計装部門</td><td>9,282</td><td>18%</td><td class="l">公共インフラ・プラント設備の電気設備構築、電力会社との送電設備建設・保守</td></tr>
+        <tr><td class="l">メカトロニクス部門</td><td>3,922</td><td>8%</td><td class="l">生産工程における自動化・省力化装置の設計・製造</td></tr>
+        <tr><td class="l">インフラ（送電）部門</td><td>2,271</td><td>4%</td><td class="l">送電設備の建設・保守</td></tr>
+        <tr><td class="l">インフラ（管設備）部門</td><td>1,495</td><td>3%</td><td class="l">水道管等インフラ設備の施工・メンテナンス</td></tr>
+        <tr><td class="l">表面処理事業部門</td><td>1,483</td><td>3%</td><td class="l">自動車・HDD・電子部品向けめっき加工（タイ子会社中心）</td></tr>
+        <tr><td class="l">その他</td><td>96</td><td>0%</td><td class="l">鋳造用工業炉部門は26/3期に事業廃止</td></tr>
+        <tr class="h1-row"><td class="l">合計</td><td>52,366</td><td>100%</td><td class="l"></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">セグメント別売上高推移 <span class="src">[③]</span></h2>
+      <canvas id="chartSegment"></canvas>
+    </div>
+  </div>
+
+  <!-- Tab3: 財務分析 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">連結P&Lサマリー <span class="src">[④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>経常利益</th><th>最終利益</th><th>前期比（最終益）</th></tr>
+        <tr><td class="l">2023.03</td><td>42,944</td><td>2,732</td><td>6.4%</td><td>2,785</td><td>1,656</td><td>-</td></tr>
+        <tr><td class="l">2024.03</td><td>51,842</td><td>2,677</td><td>5.2%</td><td>2,726</td><td>1,895</td><td>+14.4%</td></tr>
+        <tr><td class="l">2025.03</td><td>50,832</td><td>3,837</td><td>7.5%</td><td>3,906</td><td>2,593</td><td>+36.8%</td></tr>
+        <tr class="h1-row"><td class="l">2026.03（実績）</td><td>52,366</td><td>4,769</td><td>9.1%</td><td>4,809</td><td>3,452</td><td>+33.1%</td></tr>
+        <tr class="forecast"><td class="l">2027.03（会社予想）</td><td>50,000</td><td>3,850</td><td>7.7%</td><td>3,900</td><td>2,700</td><td class="neg">-21.8%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px;">単位：百万円。出所：<span class="src">[④]</span> kabutan決算短信開示データ反映値</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">P&L推移チャート <span class="src">[④]</span></h2>
+      <canvas id="chartPL"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">1株指標 <span class="src">[④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>EPS（円）</th><th>DPS（円）</th><th>配当性向</th><th>BPS（円）</th><th>ROE</th><th>ROA（経常益ベース）</th></tr>
+        <tr><td class="l">2023.03</td><td>154.8</td><td>40</td><td>25.8%</td><td>-</td><td>-</td><td>-</td></tr>
+        <tr><td class="l">2024.03</td><td>179.7</td><td>50</td><td>27.8%</td><td>2,161.55</td><td>8.4%</td><td>5.9%</td></tr>
+        <tr><td class="l">2025.03</td><td>247.5</td><td>87</td><td>35.2%</td><td>2,381.01</td><td>10.4%</td><td>8.5%</td></tr>
+        <tr class="h1-row"><td class="l">2026.03（実績）</td><td>329.0</td><td>100</td><td>30.4%</td><td>2,665.26</td><td>13.0%</td><td>10.2%</td></tr>
+        <tr class="forecast"><td class="l">2027.03（会社予想）</td><td>257.0</td><td>100</td><td>38.9%</td><td>-</td><td>9.4%（会社予想）</td><td>-</td></tr>
+        <tr><td class="l">26.04-06（Q1実績）</td><td>70.9</td><td>-</td><td>-</td><td>2,647.11</td><td>-</td><td>-</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px;">ROE・ROA（2024.03〜2026.03）は期末自己資本・総資産を用いた参考算出値（ROE=当期純利益÷期末自己資本、ROA=経常利益÷総資産）。会社公表ROE（26/3期実績13.0%・27/3期予想9.4%）は期中平均自己資本ベースのため若干異なる場合がある <span class="src">[④]</span>。2023.03期のBPSは一次情報未確認のため空欄。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">ROE/ROA推移 <span class="src">[④]</span></h2>
+      <canvas id="chartRoe"></canvas>
+    </div>
+    <div class="card">
+      <h2 class="section">EPS/DPS推移 <span class="src">[④]</span></h2>
+      <canvas id="chartEpsDps"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">貸借対照表・キャッシュフロー <span class="src">[④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>総資産</th><th>自己資本</th><th>自己資本比率</th><th>有利子負債倍率</th><th>営業CF</th><th>投資CF</th><th>財務CF</th><th>現金等残高</th></tr>
+        <tr><td class="l">2024.03</td><td>46,239</td><td>22,626</td><td>48.9%</td><td>0.22倍</td><td class="neg">-4,740</td><td class="neg">-1,089</td><td>2,899</td><td>3,290</td></tr>
+        <tr><td class="l">2025.03</td><td>45,976</td><td>24,980</td><td>54.3%</td><td>0.06倍</td><td>12,925</td><td class="neg">-1,278</td><td class="neg">-4,171</td><td>10,849</td></tr>
+        <tr class="h1-row"><td class="l">2026.03</td><td>47,195</td><td>27,981</td><td>59.3%</td><td>0.04倍</td><td>1,938</td><td class="neg">-875</td><td class="neg">-1,347</td><td>10,601</td></tr>
+        <tr><td class="l">26.04-06（Q1末）</td><td>46,431</td><td>27,790</td><td>59.9%</td><td>0.05倍</td><td colspan="4" class="l" style="color:var(--sub);font-style:italic;">四半期CF非開示</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px;">単位：百万円（CFのぞく比率・倍率を除く）。設備投資（有形固定資産取得支出）：24/3期11.3億円／25/3期13.0億円／26/3期7.1億円 <span class="src">[③]</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">事業別・部門別売上高詳細 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">部門</th><th>2025.03実績</th><th>2026.03実績</th><th>前期比</th><th>2027.03予想</th><th>予想比</th></tr>
+        <tr><td class="l">産業プラント部門</td><td>22,741</td><td>22,618</td><td class="neg">-0.5%</td><td>20,400</td><td class="neg">-9.8%</td></tr>
+        <tr><td class="l">設備保全（メンテナンス）部門</td><td>10,336</td><td>11,196</td><td>+8.3%</td><td>11,500</td><td>+2.7%</td></tr>
+        <tr><td class="l">電気計装部門</td><td>10,224</td><td>9,282</td><td class="neg">-9.2%</td><td>9,000</td><td class="neg">-3.0%</td></tr>
+        <tr><td class="l">メカトロニクス部門</td><td>2,215</td><td>3,922</td><td>+77.1%</td><td>4,000</td><td>+2.0%</td></tr>
+        <tr><td class="l">インフラ（送電）部門</td><td>2,645</td><td>2,271</td><td class="neg">-14.1%</td><td>2,200</td><td class="neg">-3.1%</td></tr>
+        <tr><td class="l">インフラ（管設備）部門</td><td>1,152</td><td>1,495</td><td>+29.8%</td><td>1,500</td><td>+0.3%</td></tr>
+        <tr><td class="l">表面処理事業部門</td><td>1,369</td><td>1,483</td><td>+8.3%</td><td>1,400</td><td class="neg">-5.6%</td></tr>
+        <tr><td class="l">その他</td><td>146</td><td>96</td><td class="neg">-34.4%</td><td>-</td><td>-</td></tr>
+        <tr class="h1-row"><td class="l">合計</td><td>50,832</td><td>52,366</td><td>+3.0%</td><td>50,000</td><td class="neg">-4.5%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab4: バリュエーション -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">現在バリュエーション <span class="src">[④]</span></h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="v">8.9倍</div><div class="l">PER（予想EPS257.0円基準）</div></div>
+        <div class="kpi"><div class="v">0.87倍</div><div class="l">PBR（26/3期末BPS基準）</div></div>
+        <div class="kpi"><div class="v">4.35%</div><div class="l">配当利回り</div></div>
+        <div class="kpi"><div class="v">-倍</div><div class="l">信用倍率（非公表）</div></div>
+      </div>
+      <p style="font-size:11px;color:var(--sub);margin-top:8px;">検証：PBR=2,300円÷2,665.26円=0.863倍（kabutan公表値0.87倍と概ね整合、直近四半期末BPS2,647.11円基準では0.869倍）／PER=2,300円÷257.0円=8.95倍（kabutan公表値8.9倍と整合）。株価・PER・PBR・時価総額はすべて未調整終値ベース。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">PER・PBR推移 <span class="src">[④]</span></h2>
+      <p style="font-size:12px;color:var(--sub);">複数年分の期末株価データを一次情報で確認できなかったため、過去複数年のPER・PBR推移は省略し、現在値のみ記載する。</p>
+      <canvas id="chartValuation"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">理論PBR分析（ROEベース・推計） <span class="src">[④]</span></h2>
+      <p>ROE13.0%（26/3期実績）を用い、株主資本コストを仮に8%と置くと、理論PBR＝ROE÷株主資本コスト＝13.0%÷8%＝<strong>1.63倍</strong>となる。現在PBR0.87倍はこの理論値に対し大幅なディスカウント状態にある。<br>
+      <span style="font-size:11px;color:var(--sub);">※ 株主資本コスト8%は一般的な仮定値であり、会社公表値ではない推計。「PBR1倍以上」を意識した経営を掲げつつ前中期経営計画では未達に終わった経緯がある点に留意（推計値・保証なし） <span class="src">[③]</span>。</span></p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">配当推移 <span class="src">[③][④]</span></h2>
+      <table>
+        <tr><th class="l">決算期</th><th>DPS（円）</th><th>配当性向</th></tr>
+        <tr><td class="l">2019.03</td><td>27</td><td>17.1%</td></tr>
+        <tr><td class="l">2020.03</td><td>30</td><td>18.9%</td></tr>
+        <tr><td class="l">2021.03</td><td>30</td><td>18.3%</td></tr>
+        <tr><td class="l">2022.03</td><td>33</td><td>18.9%</td></tr>
+        <tr><td class="l">2023.03</td><td>40</td><td>25.8%</td></tr>
+        <tr><td class="l">2024.03</td><td>50</td><td>27.8%</td></tr>
+        <tr><td class="l">2025.03</td><td>87</td><td>35.2%</td></tr>
+        <tr class="h1-row"><td class="l">2026.03（実績）</td><td>100</td><td>30.4%</td></tr>
+        <tr class="forecast"><td class="l">2027.03（会社予想）</td><td>100</td><td>38.9%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px;">配当方針：連結配当性向35〜40%を目安に、安定配当・累進配当を志向 <span class="src">[③]</span>。期末株価比の各年利回りは一次情報未確認のため省略。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">簡易ピア言及 <span class="src">[④]</span></h2>
+      <p>kabutan上で比較銘柄として挙げられているのは中外炉工業・朝日工業社・ビーエイブル。定量的なピア比較は一次情報（各社個別開示）を横断確認していないため省略する。</p>
+    </div>
+  </div>
+
+  <!-- Tab5: カタリスト -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">中期経営計画「TRY2030」数値目標 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">区分</th><th>受注高</th><th>売上高</th><th>営業利益率</th><th>ROE</th></tr>
+        <tr><td class="l">前中計「TRY500」実績（19/3期-24/3期）</td><td>547億円</td><td>518億円</td><td>5.2%</td><td>8.7%</td></tr>
+        <tr><td class="l">TRY2030ステージⅠ目標（25/3期-27/3期）</td><td>630億円</td><td>550億円</td><td>7%以上</td><td>10%以上</td></tr>
+        <tr class="target"><td class="l">TRY2030最終目標（〜30/3期）</td><td>800億円</td><td>700億円</td><td>8%以上</td><td>12%以上</td></tr>
+      </table>
+      <p style="font-size:12px;margin-top:8px;">TRY2030は「事業領域における全てのフェーズでお客様に貢献する総合エンジニアリング会社」を目指し、ステージⅠ（体制強化・変革期）とステージⅡ（再成長期）の2段階構成。2050年カーボンニュートラルと持続可能な社会の実現を長期の方向性として掲げる。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">カタリスト項目 <span class="src">[③]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">内容</th></tr>
+        <tr><td class="l">1</td><td class="l">26/3期営業利益4,769百万円（+24.3%）で会社計画（4,000百万円）を大幅超過達成、営業利益率9.1%まで改善。</td></tr>
+        <tr><td class="l">2</td><td class="l">メカトロニクス部門売上が前期比+77.1%（2,215→3,922百万円）と急拡大。充填ライン等自動化機器の受注・工事進捗が牽引。</td></tr>
+        <tr><td class="l">3</td><td class="l">設備保全（メンテナンス）部門が+8.3%と安定成長し、ストック型収益の比重が拡大（連結売上構成比21%）。</td></tr>
+        <tr><td class="l">4</td><td class="l">配当性向35〜40%を目安とする累進配当方針のもと、DPSは19/3期27円から26/3期100円まで拡大。</td></tr>
+        <tr><td class="l">5</td><td class="l">TRY2030ステージⅡ（28/3期-30/3期）では連結売上高700億円・ROE12%以上を目標に再成長を計画。</td></tr>
+        <tr><td class="l">6</td><td class="l">再生可能エネルギー電力比率が24/3期12%から26/3期27.1%へ改善（30/3期目標50%以上）。</td></tr>
+        <tr><td class="l">7</td><td class="l">GHG排出量削減が26/3期時点で21.9%減（22/3期比）と、30/3期目標（20%以上削減）を前倒しで達成。</td></tr>
+        <tr><td class="l">8</td><td class="l">26/3期末自己資本比率59.3%・有利子負債倍率0.04倍と財務健全性が高く、機動的な追加投資余力がある。</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">Q1実績進捗（27/3期） <span class="src">[④]</span></h2>
+      <table>
+        <tr><th class="l">項目</th><th>26.04-06実績</th><th>前年同期比</th><th>27/3期通期予想</th><th>参考進捗率</th></tr>
+        <tr><td class="l">売上高</td><td>12,822</td><td>+10.0%</td><td>50,000</td><td>25.6%</td></tr>
+        <tr><td class="l">営業利益</td><td>1,095</td><td>+34.9%</td><td>3,850</td><td>28.4%</td></tr>
+        <tr><td class="l">経常利益</td><td>1,125</td><td>+34.4%</td><td>3,900</td><td>28.8%</td></tr>
+        <tr><td class="l">最終利益</td><td>744</td><td>+33.1%</td><td>2,700</td><td>27.6%</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--sub);margin-top:6px;">単位：百万円（進捗率除く）。進捗率＝Q1実績÷通期会社予想。会社が示す上期予想は本レポート取得時点で非開示。単純な1/4基準（25%）との比較では、Q1は概ね順調な滑り出し <span class="src">[④]</span>。</p>
+    </div>
+  </div>
+
+  <!-- Tab6: リスク -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">リスク項目 <span class="src">[③][⑤]</span></h2>
+      <table>
+        <tr><th class="l">#</th><th class="l">内容</th></tr>
+        <tr><td class="l">1</td><td class="l">受注高減少：26/3期受注高46,210百万円（前期比-13.0%）。海外情勢等の影響で顧客の設備投資判断が慎重化している。</td></tr>
+        <tr><td class="l">2</td><td class="l">経済環境の不透明感：27/3期は物価上昇や金融政策の変化に伴う景気減速懸念、米国の通商政策・中東情勢が国内外経済に及ぼす影響を会社が想定。</td></tr>
+        <tr><td class="l">3</td><td class="l">海外事業の再建途上：前中計「TRY500」期間中、ASEAN地域の海外事業は全体的に低迷し、中国子会社は業績改善が見込めず清算。TRY2030でも「海外事業の再生」が主要課題として継続。</td></tr>
+        <tr><td class="l">4</td><td class="l">プロジェクト収益性・品質管理：前中計期間中に一部案件の低収益化・品質トラブルが発生したと会社が自己評価。</td></tr>
+        <tr><td class="l">5</td><td class="l">事業構造の変化：鋳造用工業炉部門を26/3期に事業廃止するなど、事業区分の再編が生じている。</td></tr>
+        <tr><td class="l">6</td><td class="l">資本効率目標の未達成の経緯：前中計でPBR1倍達成を掲げたが未達に終わった。現在PBRも0.87倍と1倍を下回る水準が続く。</td></tr>
+        <tr><td class="l">7</td><td class="l">人材確保・育成：TRY2030の組織戦略で「現場力・営業力の強化と継承に向けた人員体制拡充」を課題として明記。建設・プラント業界共通の技術者確保課題が示唆される。</td></tr>
+        <tr class="highlight"><td class="l">8</td><td class="l">スクリーニング上のモメンタム面：6ヶ月株価モメンタムが母集団内下位（-13.2%、上位1/3の基準未達）であり、短期的な市場評価は弱含み。</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab7: 投資結論 -->
+  <div class="panel" id="p6">
+    <div class="verdict caution">慎重検討（スクリーニング8条件中7条件クリア／6ヶ月モメンタムが基準未達）</div>
+
+    <div class="card">
+      <h2 class="section">総合評価</h2>
+      <p>田辺工業は割安株スクリーニング8条件のうち7条件をクリアする通過銘柄である <span class="src">[⑤]</span>。バリュエーション（PER8.9倍・PBR0.87倍）は東証スタンダードの建設・プラントエンジニアリング業態としては割安水準にあり <span class="src">[④]</span>、26/3期は営業利益+24.3%・ROE13.0%と収益性が大きく改善した <span class="src">[③]</span>。一方で27/3期は中期経営計画「TRY2030」ステージⅠ（体制強化・変革期）の位置づけの下、会社計画は売上高△4.5%・営業利益△19.3%の減収減益予想であり <span class="src">[③]</span>、6ヶ月株価モメンタムもマイナス圏（-13.2%）で推移している <span class="src">[⑤]</span>。割安な株価水準と足元の利益改善は評価できる一方、来期の減益計画と株価モメンタムの弱さを踏まえ、新規購入判断は次回四半期決算（Q2、27/3期上期）での計画進捗確認を待つのが妥当と考えられる。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="section">シナリオ分析（推計値・保証なし）</h2>
+      <p style="font-size:12px;color:var(--sub);margin-bottom:10px;">以下の目標株価は一次情報（27/3期会社予想EPS257.0円）から導出した推計値であり、実際の業績・株価を保証しない。</p>
+      <table>
+        <tr><th class="l">ケース</th><th>想定確率</th><th>前提</th><th>想定EPS</th><th>PER仮定</th><th>目標株価</th><th>現在比</th></tr>
+        <tr><td class="l">ベア</td><td>25%</td><td class="l">27/3期計画未達（EPS-15%）</td><td>218円</td><td>7倍</td><td>1,529円</td><td class="neg">-33.5%</td></tr>
+        <tr class="highlight"><td class="l">ベース</td><td>55%</td><td class="l">27/3期会社予想達成</td><td>257円</td><td>9倍</td><td>2,313円</td><td>+0.6%</td></tr>
+        <tr><td class="l">ブル</td><td>20%</td><td class="l">計画超過達成・上方修正（EPS+10%）</td><td>283円</td><td>11倍</td><td>3,110円</td><td>+35.2%</td></tr>
+      </table>
+      <canvas id="chartScenario" style="margin-top:14px;"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section">総合チェックリスト</h2>
+      <table>
+        <tr><th class="l">項目</th><th class="l">評価</th></tr>
+        <tr><td class="l">バリュエーション（PER・PBR）</td><td class="l">割安（PER8.9倍・PBR0.87倍、いずれも基準クリア）</td></tr>
+        <tr><td class="l">成長性（売上・営業利益CAGR）</td><td class="l">基準クリア（+6.2%／+11.8%、9年）</td></tr>
+        <tr><td class="l">財務健全性</td><td class="l">良好（自己資本比率59.3%、有利子負債倍率0.04倍）</td></tr>
+        <tr><td class="l">直近収益モメンタム</td><td class="l">良好（26/3期営業増益率+24.3%、母集団内上位32%）</td></tr>
+        <tr><td class="l">株価モメンタム</td><td class="l neg">弱い（6ヶ月-13.2%、母集団内下位73%）</td></tr>
+        <tr><td class="l">今期（27/3期）会社計画</td><td class="l neg">減収減益予想（売上△4.5%・営業利益△19.3%）</td></tr>
+        <tr><td class="l">株主還元</td><td class="l">累進配当方針・配当利回り4.35%</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 class="section">免責事項</h2>
+      <p style="font-size:11px;color:var(--sub);">本レポートは一次情報（irpocket公式IRデータ<span class="src">[①]</span>・会社公式IRページ<span class="src">[②]</span>・会社公式開示PDF<span class="src">[③]</span>・kabutan.jp<span class="src">[④]</span>・J-Quants API<span class="src">[⑤]</span>）に基づき作成した個人投資判断の参考資料であり、投資勧誘や助言を目的とするものではない。本レポート作成にあたり、irpocket公式IRデータExcelは404エラーのため取得できず、財務データはkabutan.jp（決算短信開示データ反映値）<span class="src">[④]</span>を主に使用した。株価・PER・PBR・時価総額等の市場データ取得日は2026年8月25日、決算・中期経営計画等の開示情報取得日は2026年8月26日、業績予想は2026年5月13日発表の27/3期会社予想に基づく。シナリオ分析の目標株価は推計値であり、実際の業績・株価を保証しない。投資の最終判断はご自身の責任で行うこと。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('p'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+const inkColor = '#111111';
+const subColor = '#6b6b6b';
+const lineColor = '#dcdcdc';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif";
+Chart.defaults.color = subColor;
+
+new Chart(document.getElementById('chartOverview'), {
+  type:'bar',
+  data:{
+    labels:['2023.03','2024.03','2025.03','2026.03','2027.03(予)'],
+    datasets:[
+      {type:'bar', label:'売上高(百万円)', data:[42944,51842,50832,52366,50000], backgroundColor:'#dcdcdc', order:2},
+      {type:'line', label:'経常利益(百万円)', data:[2785,2726,3906,4809,3900], borderColor:inkColor, backgroundColor:inkColor, yAxisID:'y1', order:1, tension:0.15}
+    ]
+  },
+  options:{
+    scales:{
+      y:{beginAtZero:true, title:{display:true,text:'売上高'}},
+      y1:{beginAtZero:true, position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'経常利益'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartSegment'), {
+  type:'bar',
+  data:{
+    labels:['2022.03','2023.03','2024.03','2025.03','2026.03'],
+    datasets:[
+      {label:'産業プラント', data:[19811,22031,26579,22741,22618], backgroundColor:'#111111'},
+      {label:'設備保全', data:[9736,10014,10332,10336,11196], backgroundColor:'#555555'},
+      {label:'電気計装', data:[8521,8795,9095,10224,9282], backgroundColor:'#8a8a8a'},
+      {label:'メカトロニクス', data:[2519,3196,3412,2215,3922], backgroundColor:'#b5b5b5'},
+      {label:'インフラ(送電)', data:[2224,2434,2290,2645,2271], backgroundColor:'#d4d4d4'},
+      {label:'インフラ(管設備)', data:[1039,1486,1173,1152,1495], backgroundColor:'#e6e6e6'},
+      {label:'表面処理', data:[1044,1079,1235,1369,1483], backgroundColor:'#f2f2f2'}
+    ]
+  },
+  options:{ scales:{ x:{stacked:true}, y:{stacked:true, beginAtZero:true} } }
+});
+
+new Chart(document.getElementById('chartPL'), {
+  type:'bar',
+  data:{
+    labels:['2023.03','2024.03','2025.03','2026.03','2027.03(予)'],
+    datasets:[
+      {type:'bar', label:'売上高', data:[42944,51842,50832,52366,50000], backgroundColor:'#dcdcdc'},
+      {type:'bar', label:'営業利益', data:[2732,2677,3837,4769,3850], backgroundColor:'#8a8a8a'},
+      {type:'line', label:'経常利益', data:[2785,2726,3906,4809,3900], borderColor:inkColor, tension:0.15}
+    ]
+  },
+  options:{ scales:{ y:{beginAtZero:true} } }
+});
+
+new Chart(document.getElementById('chartRoe'), {
+  type:'line',
+  data:{
+    labels:['2024.03','2025.03','2026.03'],
+    datasets:[
+      {label:'ROE(期末自己資本ベース)', data:[8.4,10.4,12.3], borderColor:inkColor, tension:0.15},
+      {label:'ROA(経常利益ベース)', data:[5.9,8.5,10.2], borderColor:'#8a8a8a', tension:0.15}
+    ]
+  },
+  options:{ scales:{ y:{ticks:{callback:v=>v+'%'}} } }
+});
+
+new Chart(document.getElementById('chartEpsDps'), {
+  data:{
+    labels:['2023.03','2024.03','2025.03','2026.03','2027.03(予)'],
+    datasets:[
+      {type:'bar', label:'EPS(円)', data:[154.8,179.7,247.5,329.0,257.0], backgroundColor:'#dcdcdc'},
+      {type:'line', label:'DPS(円)', data:[40,50,87,100,100], borderColor:inkColor, yAxisID:'y1', tension:0.15}
+    ]
+  },
+  options:{
+    scales:{
+      y:{beginAtZero:true, title:{display:true,text:'EPS'}},
+      y1:{beginAtZero:true, position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'DPS'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartValuation'), {
+  type:'bar',
+  data:{
+    labels:['PER(倍)','PBR(倍)'],
+    datasets:[{label:'現在値', data:[8.9,0.87], backgroundColor:['#111111','#8a8a8a']}]
+  },
+  options:{ scales:{ y:{beginAtZero:true} }, plugins:{legend:{display:false}} }
+});
+
+new Chart(document.getElementById('chartScenario'), {
+  type:'bar',
+  data:{
+    labels:['ブル(+35.2%)','ベース(+0.6%)','現在株価','ベア(-33.5%)'],
+    datasets:[{label:'株価(円)', data:[3110,2313,2300,1529], backgroundColor:['#b5b5b5','#8a8a8a','#111111','#dcdcdc']}]
+  },
+  options:{ indexAxis:'y', scales:{ x:{beginAtZero:true} }, plugins:{legend:{display:false}} }
+});
+</script>
+</body></html>
