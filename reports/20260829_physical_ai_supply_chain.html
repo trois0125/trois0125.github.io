@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フィジカルAIの現在地 ― 日本のサプライチェーンから見た臨界点</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E4E7E9;
+  --card:#F3F4F5;
+  --ink:#15202A;
+  --ink-soft:#54636E;
+  --petrol:#0D5566;
+  --amber:#B8860B;
+  --amber-lit:#D9A520;
+  --rust:#8E3520;
+  --line:#BFC5C9;
+  --line-soft:#D5DADD;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:"Zen Old Mincho",serif;font-weight:600;line-height:1.35;margin:0}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--petrol);font-weight:500;
+}
+
+/* ---------- masthead ---------- */
+header.masthead{
+  border-bottom:1px solid var(--ink);
+  padding:56px 0 40px;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 39px,var(--line-soft) 39px 40px);
+}
+.masthead .wrap{background:var(--paper);padding-top:8px;padding-bottom:8px}
+.kicker{
+  display:inline-block;
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+  border:1px solid var(--ink);padding:4px 10px;margin-bottom:26px;
+}
+h1{font-size:clamp(30px,5.4vw,52px);font-weight:900;letter-spacing:.01em}
+h1 .thin{font-weight:400;color:var(--ink-soft);display:block;font-size:.52em;margin-top:16px;letter-spacing:.04em;line-height:1.7}
+.meta{
+  margin-top:32px;display:flex;flex-wrap:wrap;gap:8px 28px;
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-soft);
+}
+
+/* ---------- thesis ---------- */
+.thesis{padding:52px 0 8px}
+.thesis p{font-size:19px;line-height:2.05;margin:0 0 20px;max-width:58ch}
+.thesis .lead{font-family:"Zen Old Mincho",serif;font-size:22px;font-weight:600;line-height:1.95}
+mark{background:linear-gradient(transparent 62%,var(--amber-lit) 62%);color:inherit;padding:0 1px}
+
+/* ---------- sections ---------- */
+section{padding:60px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px;flex-wrap:wrap}
+.sec-num{
+  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;
+  color:var(--paper);background:var(--petrol);padding:3px 9px;letter-spacing:.08em;
+}
+h2{font-size:clamp(22px,3.4vw,30px)}
+.sec-sub{color:var(--ink-soft);font-size:15px;margin:14px 0 34px;max-width:62ch}
+
+/* ---------- spread chart (signature) ---------- */
+.spread{background:var(--card);border:1px solid var(--line);padding:30px 26px 24px}
+.spread-title{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.12em;color:var(--ink-soft);margin-bottom:26px}
+.bar-row{margin-bottom:22px}
+.bar-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px;font-size:13.5px}
+.bar-src{color:var(--ink-soft)}
+.bar-val{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px}
+.bar-track{height:14px;background:#DDE1E3;position:relative;overflow:hidden}
+.bar-fill{height:100%;width:0;background:var(--petrol);transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.bar-row.hi .bar-fill{background:var(--amber)}
+.bar-row.lo .bar-fill{background:var(--ink-soft)}
+.spread-axis{
+  display:flex;justify-content:space-between;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--ink-soft);
+  border-top:1px solid var(--line);padding-top:8px;margin-top:26px;
+}
+.spread-note{margin-top:18px;font-size:13.5px;color:var(--ink-soft);line-height:1.8}
+
+/* ---------- stat strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:32px 0}
+.stat{background:var(--card);padding:22px 20px}
+.stat .n{font-family:"JetBrains Mono",monospace;font-size:27px;font-weight:700;line-height:1.2;color:var(--petrol)}
+.stat .n small{font-size:14px;font-weight:500}
+.stat .l{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.65}
+
+/* ---------- bottleneck cards ---------- */
+.bn{border-left:3px solid var(--amber);background:var(--card);padding:22px 24px;margin-bottom:14px}
+.bn h3{font-size:18px;margin-bottom:6px}
+.bn .tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--amber);display:block;margin-bottom:8px}
+.bn p{margin:0;font-size:14.5px;line-height:1.9}
+.bn .fig{font-family:"JetBrains Mono",monospace;font-weight:700}
+.bn.soft{border-left-color:var(--petrol)}
+.bn.soft .tag{color:var(--petrol)}
+
+/* ---------- layer table ---------- */
+.layers{border:1px solid var(--line);background:var(--card)}
+.layer{display:grid;grid-template-columns:104px 1fr;border-bottom:1px solid var(--line-soft)}
+.layer:last-child{border-bottom:none}
+.layer-k{
+  padding:18px 14px;border-right:1px solid var(--line-soft);
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;
+  color:var(--ink-soft);display:flex;flex-direction:column;gap:6px;
+}
+.pos{font-weight:700;font-size:12px}
+.pos.strong{color:var(--petrol)}
+.pos.mid{color:var(--amber)}
+.pos.weak{color:var(--rust)}
+.layer-v{padding:18px 20px}
+.layer-v h3{font-size:16px;margin-bottom:8px}
+.layer-v p{margin:0;font-size:14px;color:var(--ink-soft);line-height:1.85}
+.tickers{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.tk{font-family:"JetBrains Mono",monospace;font-size:11px;border:1px solid var(--line);padding:2px 7px;background:var(--paper)}
+
+/* ---------- calculator ---------- */
+.calc{background:var(--ink);color:var(--paper);padding:32px 28px}
+.calc h3{color:var(--paper);font-size:20px;margin-bottom:6px}
+.calc .hint{font-size:13.5px;color:#9BAAB5;margin:0 0 26px;line-height:1.8}
+.ctrl{margin-bottom:22px}
+.ctrl-top{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:8px}
+.ctrl-val{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--amber-lit);font-size:15px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:3px;background:#3B4A55;outline:none;margin:0;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:16px;height:16px;background:var(--amber-lit);
+  border-radius:50%;cursor:pointer;border:2px solid var(--ink);
+}
+input[type=range]::-moz-range-thumb{
+  width:16px;height:16px;background:var(--amber-lit);border-radius:50%;cursor:pointer;border:2px solid var(--ink);
+}
+input[type=range]:focus-visible{outline:2px solid var(--amber-lit);outline-offset:6px}
+.calc-out{border-top:1px solid #34424C;padding-top:24px;margin-top:6px}
+.calc-out .big{font-family:"JetBrains Mono",monospace;font-size:38px;font-weight:700;color:var(--amber-lit);line-height:1.15}
+.calc-out .cap{font-size:13px;color:#9BAAB5;margin-top:10px;line-height:1.8}
+.ref{margin-top:20px;font-size:12.5px;color:#9BAAB5}
+.ref-track{height:9px;background:#34424C;margin-top:9px;position:relative}
+.ref-fill{height:100%;background:var(--amber-lit);width:0;transition:width .35s}
+.ref-mark{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--paper)}
+
+/* ---------- trigger checklist ---------- */
+.trigs{border:1px solid var(--line)}
+.trig{
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;
+  background:var(--card);padding:18px 20px;border-bottom:1px solid var(--line-soft);
+  cursor:pointer;transition:background .18s;
+}
+.trig:last-child{border-bottom:none}
+.trig:hover{background:#EAECED}
+.trig:focus-visible{outline:2px solid var(--petrol);outline-offset:-2px}
+.box{
+  width:19px;height:19px;border:1.5px solid var(--ink-soft);margin-top:5px;flex:none;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;
+  font-family:"JetBrains Mono",monospace;font-weight:700;transition:all .18s;
+}
+.trig.on .box{background:var(--petrol);border-color:var(--petrol);color:#fff}
+.trig-body h3{font-size:15.5px;margin-bottom:5px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700}
+.trig.on .trig-body h3{color:var(--petrol)}
+.trig-body p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.8}
+.weight{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);border:1px solid var(--line);padding:2px 7px;white-space:nowrap;margin-top:5px}
+.trig-summary{
+  background:var(--ink);color:var(--paper);padding:18px 20px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.trig-summary .mono{font-size:15px;font-weight:700;color:var(--amber-lit)}
+.trig-summary p{margin:0;font-size:13px;color:#9BAAB5;max-width:52ch;line-height:1.75}
+
+/* ---------- axis cards ---------- */
+.axes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.axis{background:var(--card);border:1px solid var(--line);padding:22px 22px}
+.axis .q{font-family:"Zen Old Mincho",serif;font-size:17px;font-weight:600;line-height:1.6;margin-bottom:12px}
+.axis p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.85}
+
+/* ---------- callout ---------- */
+.callout{border:1px solid var(--rust);background:var(--card);padding:24px 26px;margin-top:26px}
+.callout .tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;color:var(--rust);display:block;margin-bottom:10px}
+.callout p{margin:0 0 12px;font-size:14.5px;line-height:1.9}
+.callout p:last-child{margin-bottom:0}
+
+/* ---------- sources ---------- */
+.srcs{columns:2;column-gap:34px;font-size:12.5px;color:var(--ink-soft);line-height:1.8}
+.srcs li{break-inside:avoid;margin-bottom:9px}
+footer{border-top:1px solid var(--ink);padding:34px 0 60px;font-size:12px;color:var(--ink-soft);line-height:1.85}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .bar-fill{transition:none}
+  html{scroll-behavior:auto}
+}
+@media (max-width:640px){
+  .layer{grid-template-columns:1fr}
+  .layer-k{border-right:none;border-bottom:1px solid var(--line-soft);flex-direction:row;gap:14px;align-items:center}
+  .srcs{columns:1}
+  .trig{grid-template-columns:auto 1fr}
+  .weight{grid-column:2;justify-self:start}
+  header.masthead{background:none}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="kicker">PHYSICAL AI / JAPAN SUPPLY CHAIN — 2026.08</span>
+    <h1>数字は爆発している。<br>ただし、まだ日本の<br>損益計算書の上ではない。
+      <span class="thin">フィジカルAIの現在地を、日本のサプライチェーンの側から測り直す。市場予測ではなく、供給能力・コスト目標・実際の受注で。</span>
+    </h1>
+    <div class="meta">
+      <span>作成 2026年8月29日</span>
+      <span>用途 銘柄の目利き軸づくり</span>
+      <span>視点 日本のサプライチェーン</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="thesis rv">
+  <p class="lead">この産業の現在地は、一言でいえば「出荷台数は3倍に伸びているのに、その8割以上が中国製で、日本の部品メーカーの売上にはまだほとんど乗っていない」という状態にある。</p>
+  <p>投資家として意味があるのは、市場規模予測を並べることではない。<mark>需要が伸びたときに、それが誰の売上として計上されるのか</mark>を先に決めておくことだ。このレポートは、そのために必要な4つの材料 ―― 実需の規模、量産のボトルネック、日本勢の位置、そして「臨界点」の観測指標 ―― を順に並べる。</p>
+</div>
+
+<!-- 01 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">01</span><h2>市場予測は、投資判断の材料にならない</h2></div>
+  <p class="sec-sub">同じ2035年について、調査会社の予測は最大で35倍ひらいている。これは「予測が難しい」という意味ではなく、前提となる台数と単価が各社バラバラだという意味だ。他人の数字を使うより、自分で台数×BOMを置いたほうが早い。</p>
+
+  <div class="spread">
+    <div class="spread-title">世界ヒューマノイド市場規模の予測 — 2035年前後（対数目盛）</div>
+
+    <div class="bar-row lo">
+      <div class="bar-label"><span class="bar-src">IDTechEx ／ 2036年に飽和</span><span class="bar-val">295億ドル</span></div>
+      <div class="bar-track"><div class="bar-fill" data-w="21"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span class="bar-src">MarketsandMarkets ／ 2035年</span><span class="bar-val">502.7億ドル</span></div>
+      <div class="bar-track"><div class="bar-fill" data-w="32"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span class="bar-src">GMInsights ／ 2035年</span><span class="bar-val">1,927億ドル</span></div>
+      <div class="bar-track"><div class="bar-fill" data-w="59"></div></div>
+    </div>
+    <div class="bar-row hi">
+      <div class="bar-label"><span class="bar-src">ReportOcean ／ 2035年</span><span class="bar-val">1兆360億ドル</span></div>
+      <div class="bar-track"><div class="bar-fill" data-w="92"></div></div>
+    </div>
+
+    <div class="spread-axis"><span>100億ドル</span><span>1,000億ドル</span><span>1兆ドル</span></div>
+    <p class="spread-note">最小値と最大値の差は約35倍。参考までに、経産省のAIロボティクス関連の検討では多用途ロボットの2040年世界市場を約60兆円、モルガン・スタンレーは2050年に5兆ドル・稼働10億台という長期シナリオを置いている。桁が合っていない予測を根拠に銘柄を買うと、何が起きても「想定内」になってしまう。</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">02</span><h2>実需の現在地 ― 立ち上がりは本物、ただし中国で</h2></div>
+  <p class="sec-sub">予測ではなく実績で見ると、2026年に入ってから明確な変化が起きている。研究用途から製造・物流現場への移行が始まり、出荷台数が前年同期比で約4倍になった。ただし、その内訳は極端に偏っている。</p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">2.2<small>万台超</small></div><div class="l">2026年上半期の世界出荷台数（前年同期比 約300%増）</div></div>
+    <div class="stat"><div class="n">86<small>%</small></div><div class="l">出荷上位5社のシェア。5社すべてが中国企業</div></div>
+    <div class="stat"><div class="n">10<small>万台</small></div><div class="l">中国の2026年通年の生産見込み。2025年は約2万台</div></div>
+    <div class="stat"><div class="n">1.6<small>万ドル</small></div><div class="l">Unitree G1の価格帯。研究機関以外が検討できる水準に</div></div>
+  </div>
+
+  <p style="font-size:15px;max-width:62ch">中国工業情報化省によれば、国内の完成品メーカーは140社超、2026年上半期の製品機種数は400を上回る。広東省仏山市では年産1万台超のヒューマノイド量産ラインが2026年3月に稼働し、重要工程の自動化率92%・組立精度0.02mm以内という水準が公表されている。EV と産業自動化で積み上げたモーター・減速機・センサー・電池のエコシステムが、そのまま横展開されている構図だ。</p>
+
+  <p style="font-size:15px;max-width:62ch">一方の米国勢は、台数ではなく現場実績で差別化している。Figure AI は自社工場 BotQ で生産速度を1日1台から1時間1台へ引き上げ、BMWのスパルタンバーグ工場ではFigure 02がX3を3万台超つくる工程に関与したと公表した。ただし、自動車の生産ラインと同じタクトタイムで動いているヒューマノイドは、まだ存在しない。</p>
+</section>
+
+<!-- 03 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">03</span><h2>量産を止めているのは、AIではなく供給網</h2></div>
+  <p class="sec-sub">ソフトウェアが未成熟なのは事実だが、より硬いのは物理側の制約だ。ここでは日本勢の売上に直結する順に5つ挙げる。上の3つがハード、下の2つがソフト側の制約になる。</p>
+
+  <div class="bn">
+    <span class="tag">BOTTLENECK 01 — アクチュエータの絶対的な供給能力</span>
+    <h3>数万本から1.4億本へ、3〜4桁のスケールアップが要る</h3>
+    <p>ヒューマノイド1台には約140本のアクチュエータが載る（Tesla Optimusの例）。年産100万台を成立させるには年<span class="fig">1.4億本</span>が必要だが、高精度アクチュエータを供給できる企業は世界で10社未満、現在の供給能力は年<span class="fig">数万本</span>規模とされる。新工場の立ち上げには2〜3年かかるため、これは資金では短縮できない時間の制約になる。裏を返せば、<mark>今この瞬間に設備投資を始めた企業しか2029年の需要を取れない</mark>。</p>
+  </div>
+
+  <div class="bn">
+    <span class="tag">BOTTLENECK 02 — 減速機のコスト目標</span>
+    <h3>目標価格3万ドルから逆算すると、1関節あたり数千円〜2万円</h3>
+    <p>アクチュエータと減速機で BOM の<span class="fig">30〜40%</span>を占める（独 Schaeffler は約50%と説明）。完成品の目標価格が3万ドルなら、減速機の調達価格は1関節あたり数千円〜2万円が上限になる。産業用ロボット向けの価格帯とは1桁違う世界で、ここに中国の蘇州緑的和諧（Green Harmonic）などが価格で切り込んでいる。日本勢にとっては、技術で勝っていても価格で採用されないという典型的な負け方が起こりうる領域だ。</p>
+  </div>
+
+  <div class="bn">
+    <span class="tag">BOTTLENECK 03 — 磁石とレアアース</span>
+    <h3>1台あたり3.5kgのネオジム磁石が、ほぼ中国製</h3>
+    <p>Optimus 1台に必要な NdFeB 磁石は約<span class="fig">3.5kg</span>とされ、その製造は中国がほぼ独占している。2025年4月の中国のレアアース輸出規制では Optimus の生産が実際に影響を受け、マスク自身が磁石が制約になっていると認めた。地政学リスクが「いつか起きる話」ではなく、すでに一度発現している。</p>
+  </div>
+
+  <div class="bn soft">
+    <span class="tag">BOTTLENECK 04 — 行動データ</span>
+    <h3>視覚・言語は足りている。足りないのは「行動」のデータ</h3>
+    <p>VLA（Vision-Language-Action）モデルは π0 系、GR00T、Helix、Gemini Robotics などが出そろったが、学習に必要な行動データは実機での試行かシミュレーションでしか集まらず、収集コストが高い。Sim-to-Real ギャップ、推論コスト、挙動のブラックボックス性、標準化の遅れも解消していない。日本政府がデータセット構築に予算を張っているのは、ここが構造的な弱点だと認識されているからだ。</p>
+  </div>
+
+  <div class="bn soft">
+    <span class="tag">BOTTLENECK 05 — できることの範囲</span>
+    <h3>2026年時点で確実なのは、運搬と条件のそろったピック＆プレース</h3>
+    <p>現場検証データに基づく到達点は、指定ステーション間のコンテナ移送と、形状・照明が安定した環境でのピック＆プレースまで。それ以外は試験運用の域を出ない。「汎用労働力」としての価格性能が人間を下回るのは、多くの見立てで2027〜2029年のフェーズとされている。</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">04</span><h2>日本はどの層にいるのか</h2></div>
+  <p class="sec-sub">層ごとに立ち位置がはっきり分かれる。上流（基盤モデル・統合）は弱く、下流（駆動・精密部品）は強い。投資対象として意味があるのは、強い層のなかで「価格競争に耐えられるか」を見分けることになる。</p>
+
+  <div class="layers">
+    <div class="layer">
+      <div class="layer-k"><span>LAYER 1</span><span class="pos weak">劣位</span></div>
+      <div class="layer-v">
+        <h3>基盤モデル・VLA・統合システム</h3>
+        <p>米中に明確に後れている層。国産の汎用基盤モデル開発に予算が集中しているのはこのためで、逆にいえば政策マネーが最も濃く流れる層でもある。上場企業で純粋なプレイヤーは乏しく、投資対象としては拾いにくい。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-k"><span>LAYER 2</span><span class="pos mid">競争中</span></div>
+      <div class="layer-v">
+        <h3>完成品・システムインテグレーション</h3>
+        <p>川崎重工のKaleido、産学連携のKyoHA（京都ヒューマノイドアソシエーション）など。KyoHAにはテムザック・村田製作所・早稲田大を中心に、住友重機械、ルネサス、日本航空電子、マブチモーター、NOK、カヤバ、ヒーハイスト、住友電工、ロームなどが参画している。純国産機の完成度が問われる段階。</p>
+        <div class="tickers"><span class="tk">7012 川崎重工</span><span class="tk">6981 村田製作所</span><span class="tk">6902 マブチモーター</span></div>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-k"><span>LAYER 3</span><span class="pos strong">優位</span></div>
+      <div class="layer-v">
+        <h3>駆動系 ― 減速機・サーボ・アクチュエータ</h3>
+        <p>BOMの3〜5割を占める最重要層で、日本が最も強い。ハーモニックは超小型・小型の波動歯車で、ナブテスコはRV減速機で大トルク側。ただし後述のとおり、期待はすでに株価に相当織り込まれている。</p>
+        <div class="tickers"><span class="tk">6324 ハーモニック</span><span class="tk">6268 ナブテスコ</span><span class="tk">6506 安川電機</span><span class="tk">6594 ニデック</span></div>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-k"><span>LAYER 4</span><span class="pos strong">優位</span></div>
+      <div class="layer-v">
+        <h3>精密部品 ― ベアリング・直動・ボールねじ</h3>
+        <p>関節1個ごとにベアリングと直動要素が必要になるため、台数が伸びれば最も素直に数量が効く層。小型化が進むほど評価・試験の難度が上がり、参入障壁になる。</p>
+        <div class="tickers"><span class="tk">6479 ミネベアミツミ</span><span class="tk">6481 THK</span><span class="tk">6471 日本精工</span><span class="tk">6472 NTN</span></div>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-k"><span>LAYER 5</span><span class="pos mid">部分優位</span></div>
+      <div class="layer-v">
+        <h3>センサ ― 視覚・力覚・トルク</h3>
+        <p>イメージセンサはソニーが世界的な地位を持つ一方、力覚・トルクセンサは中小規模のプレイヤーが担う。触覚まわりは技術的にまだ確定しておらず、標準が決まる前の段階。</p>
+        <div class="tickers"><span class="tk">6758 ソニーG</span><span class="tk">6861 キーエンス</span></div>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-k"><span>LAYER 6</span><span class="pos strong">見落とされがち</span></div>
+      <div class="layer-v">
+        <h3>製造装置・金型 ― 部品をつくるための設備</h3>
+        <p>アクチュエータを3〜4桁スケールアップするには、巻線機・モーターコア金型・組立装置の増設が先に来る。台数が伸びる前に発注が立つ層で、テーマとしての認知は最も遅れている。</p>
+        <div class="tickers"><span class="tk">6145 NITTOKU</span><span class="tk">6149 小田原エンジ</span><span class="tk">7726 黒田精工</span><span class="tk">6966 三井ハイテック</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">05</span><h2>自分で置く ― 台数から日本勢の売上を逆算する</h2></div>
+  <p class="sec-sub">他人の市場予測を使わずに規模感をつかむための計算。ヒューマノイドの年間出荷台数、1台あたりの精密減速機の搭載数、単価、日本勢のシェアを動かすと、減速機だけで日本勢が取りうる年間売上が出る。参考線はハーモニックの2026年3月期の連結売上高（595.6億円）。</p>
+
+  <div class="calc">
+    <h3>精密減速機の市場規模シミュレータ</h3>
+    <p class="hint">前提を動かして、「どの台数に届いたら、既存プレイヤーの売上規模を超えるのか」を確かめるための道具です。単価はBOM制約（1関節あたり数千円〜2万円）の範囲に収めてあります。</p>
+
+    <div class="ctrl">
+      <div class="ctrl-top"><label for="s1">年間出荷台数（世界）</label><span class="ctrl-val" id="v1">10万台</span></div>
+      <input type="range" id="s1" min="1" max="200" value="10" step="1">
+    </div>
+    <div class="ctrl">
+      <div class="ctrl-top"><label for="s2">1台あたり精密減速機の搭載数</label><span class="ctrl-val" id="v2">20個</span></div>
+      <input type="range" id="s2" min="6" max="40" value="20" step="1">
+    </div>
+    <div class="ctrl">
+      <div class="ctrl-top"><label for="s3">減速機1個あたり単価</label><span class="ctrl-val" id="v3">10,000円</span></div>
+      <input type="range" id="s3" min="3000" max="20000" value="10000" step="500">
+    </div>
+    <div class="ctrl">
+      <div class="ctrl-top"><label for="s4">日本勢の数量シェア</label><span class="ctrl-val" id="v4">40%</span></div>
+      <input type="range" id="s4" min="5" max="80" value="40" step="5">
+    </div>
+
+    <div class="calc-out">
+      <div class="big" id="out">800億円</div>
+      <p class="cap" id="cap">日本の減速機メーカー全体が、ヒューマノイド向けだけで年間に取りうる売上規模。</p>
+      <div class="ref">
+        <span id="refText">参考：ハーモニック 2026年3月期 連結売上高 595.6億円</span>
+        <div class="ref-track"><div class="ref-fill" id="refFill"></div><div class="ref-mark" style="left:50%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="tag">注意 — 期待と実績のギャップ</span>
+    <p>ハーモニックは2024年、ヒューマノイド向け減速機の量産体制整備に約100億円を投じ、2026年度に同分野で100〜200億円の売上を積み上げる方針を打ち出した。実際の2026年3月期は連結売上高595.6億円（前期比+7.0%）、営業利益25.7億円、純利益は投資有価証券売却益の減少で16.1億円（同-53.7%）。AIロボット向けの受注は増えているものの、<mark>全社が2桁成長する段階には至っていない</mark>。</p>
+    <p>同社は新中期経営計画（2026〜2030年度）で2030年度に連結売上高1,000億円以上・営業利益率15%以上を掲げた。つまり会社自身は4年で+400億円を見ている。一方の株価指標はPER163倍・PBR9.15倍の水準にある（2026年6月時点）。<mark>会社計画が達成されても足りない期待値が入っている</mark>、と読むのが素直だ。テーマの正しさと、その銘柄で儲かるかは別の問題になる。</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">06</span><h2>臨界点 ― 何が起きたら「爆発」なのか</h2></div>
+  <p class="sec-sub">感覚ではなく、観測可能な事象で定義しておく。クリックで点灯します。点いた数がそのまま、シナリオがどこまで現実化したかの目盛りになります。上4つがハード側、下3つが需要・ソフト側の条件です。</p>
+
+  <div class="trigs" id="trigs">
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>日本の部品メーカーの決算で、ヒューマノイド向けが独立セグメントまたは開示数値になる</h3>
+        <p>いま各社は「AIロボット向け受注が増加」という定性的な書き方にとどまっている。数値開示に切り替わる時点が、経理上意味のある規模に到達した瞬間。</p>
+      </div>
+      <span class="weight">最重要</span>
+    </div>
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>アクチュエータの年間供給能力が100万本を超える</h3>
+        <p>現在は数万本規模。工場新設に2〜3年かかるため、この数字は着工報道から逆算して先読みできる。設備投資の発表が実質的な先行指標になる。</p>
+      </div>
+      <span class="weight">先行指標</span>
+    </div>
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>減速機の量産単価が1関節1万円を割る</h3>
+        <p>完成品3万ドルというコスト目標が成立する条件。ここを日本勢が価格で満たせるかどうかで、数量が伸びても採用されない事態を回避できるかが決まる。</p>
+      </div>
+      <span class="weight">分岐点</span>
+    </div>
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>中国以外に、レアアース磁石の実用的な代替供給源が立つ</h3>
+        <p>2025年4月の輸出規制で Optimus の生産が実際に止まった前例がある。解消されない限り、量産計画そのものが政治変数に握られたままになる。</p>
+      </div>
+      <span class="weight">リスク解除</span>
+    </div>
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>自動車の生産ラインと同じタクトタイムで稼働する事例が出る</h3>
+        <p>現在の実証は運搬と単純なピック＆プレースまで。ライン速度で回った瞬間に、導入判断が「実験予算」から「設備投資予算」に移る。</p>
+      </div>
+      <span class="weight">需要転換</span>
+    </div>
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>RaaS（月額）でのコストが、対象業務の人件費を継続的に下回る</h3>
+        <p>台数ではなく単位時間あたりのコストで比較されるようになると、導入は個別の稟議から標準化された調達へ移る。</p>
+      </div>
+      <span class="weight">需要転換</span>
+    </div>
+    <div class="trig" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="box">✓</div>
+      <div class="trig-body">
+        <h3>国産の基盤モデルが、実機で他社モデルと同等の成功率を出す</h3>
+        <p>2026年度からの5年で1兆円規模の支援が検討されている領域。成果が実機で確認できるまでは、政策マネーは期待値としてしか株価に効かない。</p>
+      </div>
+      <span class="weight">政策検証</span>
+    </div>
+  </div>
+
+  <div class="trig-summary">
+    <span class="mono" id="trigCount">0 / 7 点灯</span>
+    <p id="trigMsg">ひとつも点いていない状態が、2026年8月時点の実態に近い。テーマは走っているが、条件はまだ揃っていない。</p>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">07</span><h2>銘柄を見るときの4つの問い</h2></div>
+  <p class="sec-sub">ここまでの構造から導かれる、個別銘柄に当てる質問。テーマ性の有無ではなく、需要が来たときに売上として着地するかどうかを見る。</p>
+
+  <div class="axes">
+    <div class="axis">
+      <div class="q">その会社は、台数に比例して売れるのか。それとも設備投資に比例して売れるのか。</div>
+      <p>部品メーカーは台数、装置・金型メーカーは相手の設備投資に連動する。装置側のほうが早く、鋭く、そして先に終わる。どちらのサイクルにいる会社かで、買う時期が変わる。</p>
+    </div>
+    <div class="axis">
+      <div class="q">1関節あたりのコスト目標を、その会社の原価構造で満たせるか。</div>
+      <p>技術的優位があっても、産業用ロボットの価格帯のまま出せば採用されない。量産品として原価を作り直せる企業か、既存の高付加価値路線から降りられない企業かを分ける。</p>
+    </div>
+    <div class="axis">
+      <div class="q">株価は、会社自身の計画をどこまで超えて織り込んでいるか。</div>
+      <p>中期計画の目標値と現在の時価総額を突き合わせる。計画を達成しても説明できない水準なら、テーマが正しくてもリターンは出にくい。ハーモニックが分かりやすい例になる。</p>
+    </div>
+    <div class="axis">
+      <div class="q">中国勢が同じものを作れるようになるまで、何年あるか。</div>
+      <p>減速機はすでに価格競争が始まっている。評価・試験の難度が高い領域（小型化された転がり疲労、耐久保証）は時間が稼げる。参入障壁の実体を、特許ではなく試験設備と実績年数で測る。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">08</span><h2>政策マネーの流れ</h2></div>
+  <p class="sec-sub">日本の場合、需要そのものより先に政策予算が動く。金額の桁と時間軸を押さえておくと、報道に振り回されずに済む。</p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">10.5<small>兆円</small></div><div class="l">2040年度までのフィジカルAI官民投資方針。2030年度までに1.5兆円規模の予算措置</div></div>
+    <div class="stat"><div class="n">3,873<small>億円</small></div><div class="l">AIロボット・フィジカルAIを見据えたマルチモーダル基盤モデル開発事業（令和8年度）</div></div>
+    <div class="stat"><div class="n">1.24<small>兆円</small></div><div class="l">AI・半導体分野の令和8年度当初予算（補正込みで約1.5兆円）</div></div>
+    <div class="stat"><div class="n">205<small>億円</small></div><div class="l">NEDO／AIRoAのAIロボット社会実装用データセット構築事業（48カ月）</div></div>
+  </div>
+  <p style="font-size:15px;max-width:62ch">2026年3月に経産省がAIロボティクス戦略検討会議を3回開催し、成長戦略の改定骨子案でフィジカルAIを重点分野に位置づけた。予算の大半は基盤モデルとデータ整備に向いており、<mark>ハードウェアの量産設備そのものに直接流れる金額は相対的に小さい</mark>。政策の恩恵を受ける会社と、需要の恩恵を受ける会社は、必ずしも同じではない。</p>
+</section>
+
+<!-- sources -->
+<section class="rv">
+  <div class="sec-head"><span class="sec-num">09</span><h2>出典</h2></div>
+  <p class="sec-sub">数値は2026年4月〜8月に公表・報道されたものが混在している。判断時には各社の最新開示で確認が必要。</p>
+  <ul class="srcs">
+    <li>Counterpoint Research「2026年上半期 世界ヒューマノイド出荷」</li>
+    <li>中国工業情報化省（MIIT）／世界人工知能大会 発表</li>
+    <li>中国税関統計（2026年1〜3月期）、36Kr Japan</li>
+    <li>IDTechEx「Humanoid Robots 2026-2036」</li>
+    <li>MarketsandMarkets、GMInsights、ReportOcean、The Business Research Company 各市場予測</li>
+    <li>Morgan Stanley「Humanoid Robot Market Expected to Reach $5 Trillion by 2050」</li>
+    <li>日刊工業新聞「フィジカルAIに官民投資10.5兆円」（2026年6月23日）</li>
+    <li>経済産業省「AIロボティクス戦略検討会議」資料、AI・半導体産業基盤強化フレーム</li>
+    <li>PwC Japan「フィジカルAI時代の技術動向と日本が進むべき道」</li>
+    <li>三菱総合研究所「フィジカルAI時代の日本のAIロボティクス戦略」</li>
+    <li>ハーモニック・ドライブ・システムズ 2026年3月期決算短信、中期経営計画（2026〜2030年度）</li>
+    <li>日刊工業新聞「ハーモニック、ヒト型ロボ向け減速機量産 戦略投資100億円」</li>
+    <li>Schaeffler ヒューマノイド向け統合モーション・ポートフォリオ発表資料</li>
+    <li>Intel Market Research（ヒューマノイド向け減速機市場）</li>
+    <li>株探（株価指標、2026年6月時点）</li>
+  </ul>
+</section>
+
+<footer>
+  <p>本レポートは公開情報の整理であり、特定銘柄の売買を推奨するものではありません。市場規模の予測値は出所によって前提が大きく異なるため、そのまま投資判断に用いず、台数と単価を自分で置いた試算と併用してください。株価指標および業績数値は作成時点のもので、最新の開示による確認が必要です。</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // reveal
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.08});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  // spread bars
+  var bio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.bar-fill').forEach(function(f,i){
+          setTimeout(function(){ f.style.width = f.dataset.w + '%'; }, i*130);
+        });
+        bio.unobserve(e.target);
+      }
+    });
+  },{threshold:.3});
+  var sp = document.querySelector('.spread');
+  if(sp) bio.observe(sp);
+
+  // calculator
+  var s1=document.getElementById('s1'), s2=document.getElementById('s2'),
+      s3=document.getElementById('s3'), s4=document.getElementById('s4');
+  var HARMONIC = 595.6; // 億円
+
+  function fmt(n){ return n.toLocaleString('ja-JP'); }
+
+  function calc(){
+    var units = +s1.value * 10000;          // 台
+    var perUnit = +s2.value;                // 個/台
+    var price = +s3.value;                  // 円/個
+    var share = +s4.value / 100;
+
+    document.getElementById('v1').textContent = fmt(+s1.value) + '万台';
+    document.getElementById('v2').textContent = perUnit + '個';
+    document.getElementById('v3').textContent = fmt(price) + '円';
+    document.getElementById('v4').textContent = (+s4.value) + '%';
+
+    var yen = units * perUnit * price * share;
+    var oku = yen / 100000000;
+
+    var disp;
+    if(oku >= 10000){ disp = (oku/10000).toFixed(1) + '兆円'; }
+    else { disp = fmt(Math.round(oku)) + '億円'; }
+    document.getElementById('out').textContent = disp;
+
+    var ratio = oku / HARMONIC;
+    document.getElementById('cap').textContent =
+      '日本の減速機メーカー全体が、ヒューマノイド向けだけで年間に取りうる売上規模。ハーモニックの現在の全社売上の約' +
+      (ratio < 10 ? ratio.toFixed(1) : Math.round(ratio)) + '倍にあたります。';
+
+    // 参考線：ハーモニック売上をトラックの50%位置に置く
+    var pct = Math.min(100, ratio * 50);
+    document.getElementById('refFill').style.width = pct + '%';
+    document.getElementById('refText').textContent =
+      '参考線（中央のマーク）：ハーモニック 2026年3月期 連結売上高 595.6億円';
+  }
+  [s1,s2,s3,s4].forEach(function(s){ s.addEventListener('input', calc); });
+  calc();
+
+  // triggers
+  var trigs = document.querySelectorAll('.trig');
+  var msgs = [
+    'ひとつも点いていない状態が、2026年8月時点の実態に近い。テーマは走っているが、条件はまだ揃っていない。',
+    '入口。単発の事象なら、株価は反応してもすぐ戻ることが多い。',
+    '供給側と需要側の両方で動きが出ているかを確認する段階。',
+    '設備投資サイクルが先に立つ。装置・金型メーカーの受注が先行する局面。',
+    '部品メーカーの数量が動き始める。ここから決算に乗る。',
+    '価格性能が人間を下回り、導入判断が設備投資予算に移る局面。',
+    '爆発的拡大の条件がほぼ揃った状態。ただしこの時点では株価は先に動き終わっている可能性が高い。',
+    '全条件が成立。産業構造の転換が完了した状態で、投資対象としてはすでに成熟局面に入る。'
+  ];
+  function updateTrigs(){
+    var n = document.querySelectorAll('.trig.on').length;
+    document.getElementById('trigCount').textContent = n + ' / 7 点灯';
+    document.getElementById('trigMsg').textContent = msgs[n];
+  }
+  trigs.forEach(function(t){
+    function toggle(){
+      t.classList.toggle('on');
+      t.setAttribute('aria-checked', t.classList.contains('on') ? 'true' : 'false');
+      updateTrigs();
+    }
+    t.addEventListener('click', toggle);
+    t.addEventListener('keydown', function(e){
+      if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); }
+    });
+  });
+  updateTrigs();
+})();
+</script>
+</body>
+</html>
