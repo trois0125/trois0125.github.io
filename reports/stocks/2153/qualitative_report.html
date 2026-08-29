@@ -1,0 +1,484 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ｅ・Ｊホールディングス（2153） 有価証券報告書 定性分析レポート（第18期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+ul.plain{margin:8px 0 8px 1.2em}
+ul.plain li{margin-bottom:4px}
+.summary3{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+.summary3 .item{border:1px solid var(--line);padding:10px 12px;border-radius:2px}
+.foot{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--sub)}
+</style></head><body>
+<div class="wrap">
+  <header class="rhead"><h1>Ｅ・Ｊホールディングス株式会社（2153） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第18期有価証券報告書（自 2024年６月１日　至 2025年５月31日／提出日 2025年８月27日）　／　作成日：2026-08-29</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="p0">0. サマリー</button>
+    <button class="tab" data-p="p1">Ⅰ. 企業の輪郭</button>
+    <button class="tab" data-p="p2">Ⅱ. 沿革</button>
+    <button class="tab" data-p="p3">Ⅲ. 人的資本</button>
+    <button class="tab" data-p="p4">Ⅳ. 経営者の世界観</button>
+    <button class="tab" data-p="p5">Ⅴ. サステナビリティ</button>
+    <button class="tab" data-p="p6">Ⅵ. 事業等のリスク</button>
+    <button class="tab" data-p="p7">Ⅶ. 経営成績の分析</button>
+    <button class="tab" data-p="p8">Ⅷ. 将来への投資</button>
+    <button class="tab" data-p="p9">Ⅸ. 資本政策・株主還元</button>
+    <button class="tab" data-p="p10">Ⅹ. ガバナンス</button>
+    <button class="tab" data-p="p11">Ⅺ. 会計面の定性シグナル</button>
+    <button class="tab" data-p="p12">Ⅻ. 論点と未解明事項</button>
+  </div>
+
+  <!-- 0. エグゼクティブサマリー -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p>Ｅ・Ｊホールディングスは、官公庁向け建設コンサルタント（測量・地質調査・防災/インフラ設計等）を営むグループ企業14社超を束ねる純粋持株会社であり、創業家（小谷家・資産管理会社「株式会社八雲」）が発行済株式の約22％を握る同族的なガバナンス構造のもと、M&amp;Aによる非連続な規模拡大を継続している会社である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+      <div class="summary3">
+        <div class="item"><b>最重要ポイント①：</b>当期（第18期）は東京ソイルリサーチの完全子会社化等により売上高427億円（前期比114.8％）と大きく伸びたが、営業利益は44.8億円（同103.1％）にとどまり、人件費・のれん償却の増加で増収率ほど利益が伸びていない。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></div>
+        <div class="item"><b>最重要ポイント②：</b>後発事象として2025年6-7月に公募・第三者割当増資（発行済株式総数が16,078,920株→18,378,920株、+14.3％）を実施し、約31億円をM&amp;A待機資金・借入金返済に充当する計画。今期末の自己資本比率65.5％（前期78.7％から13.2pt低下）は、この増資前の一時的な数値である点に注意が必要。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></div>
+        <div class="item"><b>最重要ポイント③：</b>第５次中期経営計画の最終年度実績は、売上高こそ目標比110.9％で超過達成した一方、営業利益92.4％・ROE9.6％（目標10％以上）と主要収益指標は未達で終わった。新設の第６次中計「Ｅ・Ｊ-Plan2027」は売上高500億円（2028年5月期）を掲げるが、これはM&amp;A効果を含まない数値である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></div>
+      </div>
+      <p style="margin-top:14px"><b>最も注意すべき論点：</b>のれんが前期末621百万円→当期末3,178百万円へ急増し、長期借入金も17百万円→68億円へ急拡大するなど、M&amp;A主導の成長がバランスシートの重さ（借入依存・のれん減損リスク）を伴い始めている。増資による自己資本の積み増しがどこまでこれを相殺するかは、次期以降の開示を待つ必要がある。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅰ. 企業の輪郭 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>5年推移（連結・代表6指標）</h3>
+      <canvas id="chart1"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">決算期</th><th>第14期<br>2021/5</th><th>第15期<br>2022/5</th><th>第16期<br>2023/5</th><th>第17期<br>2024/5</th><th>第18期<br>2025/5</th><th>CAGR(4年)</th></tr>
+        <tr><td class="l">売上高（百万円）</td><td>34,334</td><td>36,668</td><td>37,509</td><td>37,207</td><td>42,705</td><td>+5.6%</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>4,054</td><td>4,706</td><td>4,624</td><td>4,597</td><td>4,633</td><td>+3.4%</td></tr>
+        <tr><td class="l">EPS（円）</td><td>187.47</td><td>197.46</td><td>195.32</td><td>193.62</td><td>204.06</td><td>+2.1%</td></tr>
+        <tr><td class="l">ROE（％）</td><td>12.2</td><td>11.8</td><td>10.6</td><td>9.7</td><td>9.6</td><td>―</td></tr>
+        <tr><td class="l">自己資本比率（％）</td><td>68.0</td><td>70.2</td><td>76.2</td><td>78.7</td><td>65.5</td><td>―</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>3,397</td><td>956</td><td>1,382</td><td>3,940</td><td>4,135</td><td>―</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第１ 企業の概況　１ 主要な経営指標等の推移」<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［①］</p>
+      <p style="margin-top:8px">売上高・経常利益・EPSはいずれも4年で緩やかな増加基調（CAGR+2〜6％）だが、ROEは12.2％→9.6％、自己資本比率は78.7％（第17期）→65.5％（第18期）へ、直近1年で明確に低下している。これは後述の東京ソイルリサーチ完全子会社化に伴う総資産・借入金の拡大が主因であり、収益性そのものの悪化というより「M&amp;Aによる分母（総資産・自己資本比率の母数）拡大」局面の数値である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+      <p style="font-size:12px;color:var(--sub);margin-top:6px">※irpocket Excel［①］の経常利益系列では第16期（2023/5）が4,451百万円となっており、有報本表の4,624百万円と一致しない。有報注記5にある「第17期からの会計方針変更（営業費用の一部を売上原価から販管費へ組替）に伴う第16期の遡及修正」の反映有無の差と考えられる。本レポートは有報本表（遡及修正後）の数値を採用した。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></p>
+
+      <h3>事業の内容・ビジネスモデル</h3>
+      <p>当社は連結子会社14社・非連結子会社7社・持分法適用関連会社2社・その他の関係会社1社、計24社の関係会社を統括する純粋持株会社であり、自らは事業を持たずグループ経営管理に特化している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>グループの中核子会社「株式会社エイト日本技術開発」が総合建設コンサルタント事業全般（企画・計画・設計・診断・マネジメント・発注者支援・補償コンサルタント等の建設コンサルタント業務と、測量・地質調査等の調査業務）を担い、他の連結子会社はそれぞれの強み（近代設計＝北海道近代設計を含む建設コンサル、共立エンジニヤ・共立工営＝補償コンサル、都市開発設計＝補償コンサル、二神建築事務所・ダイミック＝測量、東京ソイルリサーチ＝地質調査、EJEC（Thailand）＝海外）を中心に事業を行う「総合建設コンサルタント事業」の単一セグメント構成である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p>顧客は国土交通省・都道府県・市区町村など官公庁が中心で、官公庁向け売上依存度は約85％に達する（後述Ⅵ参照）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>成果品（設計図書・調査報告書等）を納品した時点で収益を認識するため、年度末（第４四半期）納品への偏重が構造的に生じ、当期の売上構成比は第４四半期だけで61.3％を占める。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>業務別の売上・利益構成（収益柱の照合）</h3>
+      <canvas id="chart2"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">業務別</th><th>売上高（百万円）</th><th>構成比</th><th>売上総利益（百万円）</th><th>構成比</th><th>売上総利益率</th></tr>
+        <tr><td class="l">建設コンサルタント業務</td><td>33,472</td><td>78.4%</td><td>11,082</td><td>77.8%</td><td>33.1%</td></tr>
+        <tr><td class="l">調査業務</td><td>9,232</td><td>21.6%</td><td>3,170</td><td>22.2%</td><td>34.3%</td></tr>
+        <tr><td class="l">合計</td><td>42,705</td><td>100%</td><td>14,252</td><td>100%</td><td>33.4%</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第２ ４ 経営者による財政状態、経営成績及びキャッシュ・フローの状況の分析」定量分析表<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［③］</p>
+      <p style="margin-top:8px">売上規模では建設コンサルタント業務が約8割を占める本業だが、当期は調査業務（東京ソイルリサーチ連結化の寄与が大きい）が前期比200.2％と急伸し、売上総利益率も34.3％と建設コンサルタント業務（33.1％）を上回った。単一セグメント開示のため詳細な収益性比較はできないが、M&amp;Aで取り込んだ調査業務が粗利率の面でも本業と遜色ない、あるいはやや優位にあることが読み取れる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>競争優位の所在</h3>
+      <p>建設コンサルタント登録・補償コンサルタント登録・測量業者登録・地質調査業者登録という国土交通省の許認可を、傘下の各社がそれぞれ保有している（後述Ⅵの登録一覧）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>官公庁入札という性質上、こうした登録と技術士等の有資格者数（当期753名）が実質的な参入障壁であり、内製（自社技術者による設計・調査）中心で外注依存度は限定的とみられる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>川上（企画・計画）から川下（施工監理）まで一貫受注できる体制を「総合」建設コンサルタントとして標榜している点も差別化要素である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>関係会社の状況（支配構造・リスク）</h3>
+      <p>親会社は存在しない（金融商品取引法上の親会社等なし）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>連結子会社14社はいずれも議決権所有割合100％（EJEC（Thailand）のみ50％以下だが実質支配により子会社化、49.0％所有）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>持分法適用関連会社は演算工房（38.1％）とタイのDynamic Engineering Consultants（35.0％、2024年9月に持分法適用関連会社化）の2社で、いずれも小規模。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>中核子会社エイト日本技術開発の売上高（26,941百万円）は連結売上高の10％超を占める特定子会社に指定されている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅱ. 沿革 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>当社の設立は、単独の創業ではなく「敵対的TOBへの対抗」という緊迫した資本市場イベントを起点とする。2005年、人材派遣業の夢真ホールディングスが日本技術開発（当社の前身の一社）に対して敵対的株式公開買付け（TOB）を仕掛け、これに対しエイトコンサルタント（現・エイト日本技術開発）がホワイトナイトとして友好的TOBを実施し日本技術開発の親会社となった。<span class="lab web" style="font-size:10px;padding:0 5px">web＋Wikipedia「E・Jホールディングス」</span></p>
+      <p>この資本防衛を経て両社は経営統合の道を選び、2007年1月に株式移転による共同持株会社設立の基本合意を締結、同年6月にＥ・Ｊホールディングス株式会社を設立、東京証券取引所市場第二部に上場した。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <blockquote class="yuho">2007年１月　株式会社エイトコンサルタント及び日本技術開発株式会社が、両社の取締役会による決議において、株式移転により両社の完全親会社となる当社を設立し、その傘下で経営統合を行うことを決定し、株式移転に係る基本合意書を締結。<br>2007年６月　当社設立。株式会社東京証券取引所（市場第二部）に上場。</blockquote>
+      <p>設立後は、事業再編と地域展開型M&amp;Aを継続的に積み重ねる形で拡大してきた。2008年にエイトコンサルタントの計測事業を日本インフラマネジメントへ吸収分割、2009年に日本技術開発の建設コンサルタント事業をエイトコンサルタントへ集約し、エイトコンサルタントは「株式会社エイト日本技術開発」、日本技術開発は「株式会社ＥＪビジネス・パートナーズ」へそれぞれ社名変更した（2015年にエイト日本技術開発がＥＪビジネス・パートナーズを吸収合併し、事業会社としては実質的に一体化）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p>2010年の近代設計（現在の主要子会社の一つ）子会社化を皮切りに、2019年前後からアークコンサルタント・アイ・デベロップ・コンサルタンツ・二神建築事務所・ダイミック・共立エンジニヤ・共立工営・都市開発設計と、全国各地の中堅建設コンサルタント／測量会社を相次いで傘下に収める「地域×専門分野」型のM&amp;A戦略を明確化した。2018年には東証市場第一部に指定され、2022年の市場区分見直しでプライム市場に移行している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p>直近では2024年5月に日栄プランニング、同年9月に東京ソイルリサーチ（地質調査大手）を子会社化し、同時にタイのDynamic Engineering Consultantsを持分法適用関連会社化するなど、国内地域補完と海外（タイ）展開を並行して進めている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p><b>事業モデルの転換点の整理：</b>①2005-07年：敵対的TOBを契機とした資本防衛型の経営統合（守りから始まった持株会社化）、②2010年代：地域補完型M&amp;Aによる全国ネットワーク構築、③2018-22年：市場再編を経てプライム市場企業としての規律強化、④2024年以降：東京ソイルリサーチ級の中規模M&amp;Aと大型増資（後述Ⅺ）による非連続成長フェーズ、という4段階で企業モデルが進化してきたと整理できる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅲ. 人的資本 -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本</h2>
+      <h3>従業員数・生産性の推移</h3>
+      <canvas id="chart3"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">決算期</th><th>第14期</th><th>第15期</th><th>第16期</th><th>第17期</th><th>第18期</th></tr>
+        <tr><td class="l">連結従業員数（名）</td><td>1,621</td><td>1,686</td><td>1,721</td><td>1,713</td><td>2,052</td></tr>
+        <tr><td class="l">臨時雇用者平均（名）</td><td>256</td><td>253</td><td>307</td><td>328</td><td>291</td></tr>
+        <tr><td class="l">1人当たり売上高（百万円・推計）</td><td>21.2</td><td>21.7</td><td>21.8</td><td>21.7</td><td>20.8</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第１ ５ 従業員の状況」・「主要な経営指標等の推移」より算出<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［①］。1人当たり売上高は推計値・保証なし<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+      <p>連結従業員数は第17期の1,713名から第18期に一気に2,052名（+339名）へ増加したが、これはほぼ全て東京ソイルリサーチの新規連結によるものであり、有機的な採用増ではない。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>1人当たり売上高は20.8〜21.8百万円のレンジで概ね横ばいであり、M&amp;Aで規模を拡大しても労働集約的な事業特性（技術者1人当たりの生産性は急には変わらない）が続いていることを示す。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>提出会社単体（持株会社）の従業員は22名・平均年齢52.1歳・平均勤続8.4年（ただし主要子会社エイト日本技術開発との兼務者が中心で通算勤続年数は17.8年）である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>人的資本経営の指標</h3>
+      <table>
+        <tr><th class="l">指標</th><th>前期実績<br>2024/5期</th><th>今期実績<br>2025/5期</th><th>2028/5期目標</th><th>2030年度目標</th></tr>
+        <tr><td class="l">女性管理職比率</td><td>4.7%</td><td>4.8%</td><td>8.0%</td><td>10.0%以上</td></tr>
+        <tr><td class="l">男性育休取得率</td><td>60.9%</td><td>76.5%</td><td>100.0%</td><td>100.0%</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第２ ２ サステナビリティに関する考え方及び取組」（数値の提示のみ、優劣評価は行わない）<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［③］</p>
+      <p>男性育休取得率は1年で60.9％→76.5％へ大きく上昇した一方、女性管理職比率は4.7％→4.8％とほぼ横ばいで、2028年目標8.0％に対しては現在の伸び率では到達が見通しにくい。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>新入社員に占める女性比率は2024年5月期18.6％→2025年5月期14.9％とむしろ低下しており、有報自身が「未達」と明記している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>全労働者の男女賃金差異は58.1％（EJEC（Thailand）除く連結ベース）であり、建設コンサルタント業界に伝統的な男性中心の人員構成を反映した数値と読める。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>主要子会社別では、共立エンジニヤ（管理職女性比率11.8％）・ダイミック（11.1％）が相対的に高く、エイト日本技術開発（4.3％）・東京ソイルリサーチ（4.5％）は低い。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p>離職率は連結ベースで当期3.9％（前期比0.6pt改善）とされ、若年層の専門技術伝承の観点から離職率抑制を経営課題として明記している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>当期からグループ独自のエンゲージメント調査を開始し、心理的安全性の確保に取り組み始めた段階にある。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>第６次中期経営計画では新たに「技術者正社員数1,600人」「有資格者数（技術士）850人」（いずれも2028年5月期目標）を人的資本KPIとして追加しており、量（正社員数）と質（有資格者）の両面を管理指標化した点は具体性がある。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅳ. 経営者の世界観 -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <h3>基本方針の具体性</h3>
+      <p>経営の基本方針は「環境」「防災・保全」「行政支援」の3領域のマネジメント力・技術力をコア・コンピタンスとし、「わが国第一級のインフラ・ソリューション・コンサルタントグループ」を目指す、という記述である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>「地球レベルから地域レベルまで」「社会の進化と人類の豊かさへの願い」等の表現は多分に定型的・スローガン的であり、固有名詞や数値を伴う具体性は薄い。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>一方、経営環境認識の部分では「2025年6月閣議決定の第１次国土強靭化実施中期計画で2026年度からの5年間に約20兆円規模」という具体的な政策予算数値を引用しており、官公庁向けビジネスゆえに公共投資動向を精緻に追っている実務的な記述になっている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>中期経営計画の進捗・未達認識</h3>
+      <table>
+        <tr><th class="l">指標（連結）</th><th>2025年5月期（目標）</th><th>2025年5月期（実績）</th><th>目標比</th></tr>
+        <tr><td class="l">売上高</td><td>385億円</td><td>427億円</td><td class="fact">110.9%</td></tr>
+        <tr><td class="l">営業利益</td><td>48.5億円</td><td>44.8億円</td><td class="neg">92.4%</td></tr>
+        <tr><td class="l">親会社株主帰属当期純利益</td><td>33.5億円</td><td>32.0億円</td><td class="neg">95.6%</td></tr>
+        <tr><td class="l">ROE</td><td>10.0%以上</td><td>9.6%</td><td class="neg">未達</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第２ ４（４）経営方針・経営戦略、経営上の目標の達成状況を判断するための客観的な指標等」<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［③］</p>
+      <p>第５次中期経営計画（2021〜2024年度＝2022/5期〜2025/5期）の最終年度実績として、この未達を有報が数値付きで明記している点は開示姿勢として誠実である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>本文では「残念ながら期初計画をわずかに下回る結果」とも自己評価しており、人件費上昇と外注単価見直しによる原価率上昇、のれん償却費増を未達要因として挙げている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>課題→打ち手の接続検証</h3>
+      <p>第６次中期経営計画「Ｅ・Ｊ-Plan2027」は4つの基本方針（①基幹事業の拡充と新領域の開拓、②海外ビジネス本格化への挑戦、③バリューチェーンの強化、④サステナビリティ経営の推進）を掲げ、優先課題として次期に取り組む具体施策をほぼ一対一で列挙している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>①には「重点6分野（環境・エネルギー、自然災害・リスク軽減、都市・地域再生、インフラメンテナンス、公共マネジメント、デジタルインフラソリューション）の拡充」という分野名の明示があり、②には「アフリカの道路・橋梁・給水インフラ」「東南アジアの廃棄物分野トップシェア獲得」など地域・分野が具体的に紐づいている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>一方、③のプロダクト／プロセス／共創の「3イノベーション」は施策名が抽象的で、具体的な投資額・KPIとの接続がⅧ章の研究開発費（105百万円、対売上比0.25％）以外に見当たらず、打ち手が定量的にどこまで実装されているかは有報だけでは判断しづらい。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></p>
+      <p>連結業績目標（2028年5月期：売上高500億円、営業利益59億円、純利益39億円、ROE10％以上）は「新たなM&amp;Aによる業績見込みは組み込んでいません」と明記されており、有機成長のみでの到達目標であることが明確化されている点は評価できる誠実さである。ただし、実際には東京ソイルリサーチ級のM&amp;Aを継続的に行っている会社であるため、目標未達時に「M&amp;Aで上積みする」余地が計画外に残されている構図とも読める。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅴ. サステナビリティ -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <h3>戦略接続・検証可能性</h3>
+      <p>サステナビリティ推進委員会（代表取締役社長が委員長）を設置し、取締役会への報告ラインを整備している点はガバナンス上の骨格として明確である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>本文中には「資本コストを意識した経営」「ＰＢＲ1倍以上」という財務戦略との接続に触れる記述があり、サステナビリティ章がⅣの経営方針・Ⅹのガバナンスと部分的に連動している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>気候変動（建設コンサルタント業は炭素集約度は低いが、事業機会の側面で投資論点になりうる）</h3>
+      <canvas id="chart4"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">区分</th><th>基準値<br>2022/5期</th><th>前々期実績<br>2023/5期</th><th>前期実績<br>2024/5期</th><th>今期実績<br>2025/5期</th><th>2030年度目標</th></tr>
+        <tr><td class="l">スコープ1+2（tCO2）</td><td>2,774</td><td>1,879</td><td>1,677</td><td>1,776</td><td>1,609（▲42.0%）</td></tr>
+        <tr><td class="l">スコープ3カテゴリ1（tCO2）</td><td>17,427</td><td>17,404</td><td>16,916</td><td>22,357</td><td>目標なし（エンゲージメント目標）</td></tr>
+        <tr><td class="l">スコープ3カテゴリ6（出張・tCO2）</td><td>1,806</td><td>2,654</td><td>2,815</td><td>3,261</td><td>1,354（▲25.0%）</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第２ ２（４）指標及び目標」<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［③］、SBT認定取得済み（1.5℃水準）</p>
+      <p>スコープ1+2は目標に沿って基準年比で減少傾向だが、当期は東京ソイルリサーチの連結加入により5.9％増（前期は39％減だった）と反転しており、有報自身がM&amp;Aの影響を正直に説明している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>スコープ3カテゴリ1（購入した製品・サービス、サプライチェーン排出）は基準年比で28％以上増加しているが、削減率目標を設定せず「サプライヤーとのエンゲージメント目標」に留めている。数値目標を伴わない定性的な目標設定であり、検証可能性は低い。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>TCFDシナリオ分析では、当社にとって気候変動は「集中豪雨に起因する気象災害の激甚化」（対応：災害対応業務・国土強靭化対応の需要拡大＝機会として認識）が最大インパクト項目とされており、規制コストよりも受注機会の側面が強いことが示されている。建設コンサルタント業として整合的な評価である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+      <p>リスク管理は「グループリスク管理委員会」に気候変動・人的資本リスクを含む全リスクを一元的に統合しており、2022年に人権方針を策定、2023年度から人権デューデリジェンスを実施している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>サプライチェーン人権リスクに関する固有の事例やデューデリジェンスの具体的な発見事項の開示はなく、体制整備段階の記述にとどまる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅵ. 事業等のリスク -->
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+      <h3>固有リスクと定型リスクの仕分け</h3>
+      <p>有報は11項目のリスクを列挙している。うち「新型コロナウイルス等感染症拡大」「情報セキュリティー」「システム障害」「企業買収・アライアンス」「人材の確保・育成」は多くの企業に共通する定型的リスクである。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>一方、以下は当社固有性が高く、数値の裏付けもある実質的なリスク開示といえる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+      <ul class="plain">
+        <li><b>官公庁等への売上依存（依存度約85％）</b>：公共投資額の変動が業績に直結する構造リスクを、依存度の実数とともに明示。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></li>
+        <li><b>経営成績の季節的な変動</b>：第4四半期に売上・利益が偏重する実態を四半期別の実数（当期第4四半期の売上構成比61.3％、営業利益構成比は通期4,481百万円に対し第4四半期5,662百万円と、第1〜3四半期が営業損失であることまで開示）で裏付けている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></li>
+        <li><b>法的規制（建設コンサルタント登録等の失効リスク）</b>：主要登録の有効期限一覧（共立工営の補償コンサルタント登録は2025年8月30日失効予定など、提出日時点で期限が迫るものも含む）を会社別・登録別に列挙しており、開示密度が高い。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></li>
+        <li><b>企業買収・アライアンス（のれん減損リスク）</b>：「事前調査で把握できなかった問題」「投資やのれんの減損処理」に言及しており、後述Ⅺの会計上の見積り（のれんの減損）と整合的にリンクしている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></li>
+      </ul>
+      <p>「災害による事業活動への影響」「成果品に関する瑕疵」は建設コンサルタント業の職業的責任リスクとして具体性があるが、損害額の定量的な記載はない（損害賠償責任保険への加入という対応策のみ）。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>財務照合による指摘</h3>
+      <p>官公庁向け売上依存度85％というリスク記載は、Ⅶ章の発注機関別売上高（国土交通省24.2％＋都道府県30.6％＋市区町村16.4％＝約71％、「その他」28.8％の内訳は不明）と比較すると、地方公共団体等を含めた広義の官公庁依存度として整合的である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>一方、のれん減損リスクの記載に対し、当期末のれん残高は3,178百万円（前期621百万円から5倍超に急増、総資産の6.1％）に達しており、リスク文言が定型的な一般論にとどまらず、実額として相応の重みを持つ点は財務数値と整合した実質的リスクとして評価すべきである。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>「第２ ５ 経営上の重要な契約等」は「該当事項はありません」と記載されている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>特定の技術提携・ライセンス契約等への依存構造は開示上確認できず、追加のリスクは特に見当たらない。</p>
+    </div>
+  </div>
+
+  <!-- Ⅶ. 経営成績の分析 -->
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+      <h3>業績事実の要約</h3>
+      <p>当期は東京ソイルリサーチ（2024年9月30日完全子会社化、8カ月分連結）の寄与により、受注高446億円（前期比115.2％）、生産高431億円（同115.7％）、売上高427億円（同114.8％）と増収を確保した。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>一方、既存グループ会社の処遇改善に伴う人件費上昇、協力会社への発注単価見直しによる原価率上昇、のれん償却費の発生が販管費を押し上げ、営業利益44.8億円（同103.1％）・経常利益46.3億円（同100.8％）・親会社株主帰属純利益32.0億円（同105.6％）と、増収率（114.8％）に対し増益率は明確に鈍化した。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p>売上総利益の変動要因分析では、合計1,778百万円の増加のうち「売上高変動による要因」が1,438百万円、「売上原価率変動による要因」（率の悪化）が339百万円のプラスとなっており、原価率要因は当期についてはむしろ改善方向に寄与している（本文の「原価率上昇要因を完全には吸収しきれなかった」という記述とは、販管費まで含めた営業利益ベースでは整合するが、粗利ベースでは若干のニュアンス差がある）。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></p>
+
+      <h3>経営者が使う指標</h3>
+      <p>MD&amp;Aでは受注高・生産高・売上高・完成業務原価・売上総利益・総業務量完成率という、いずれも「業務の進捗管理」に直結する指標が多用されている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>特に「期首繰越受注残高＋受注高－売上高＝期末繰越受注残高」という受注残高ブリッジと、「総業務量変動要因」「総業務量完成率変動要因」への売上総利益変動分解は、プロジェクト型の労働集約ビジネスらしい管理会計の型であり、経営者の関心が「案件の積み上がり（受注残）」と「進捗の消化速度（完成率）」の両輪にあることをうかがわせる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>CF・資金繰りの質</h3>
+      <p>営業CFは4,135百万円のプラス（前期3,940百万円から微増）で、税金等調整前当期純利益4,923百万円、減価償却費859百万円を主な源泉としつつ、投資有価証券売却益553百万円の控除・売上債権及び契約資産の増加1,030百万円等の要因を経て積み上がっている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>投資CFは7,909百万円のマイナス（前期941百万円のマイナスから急拡大）で、子会社株式取得（東京ソイルリサーチ等）に6,623百万円を投じたことが主因。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>財務CFは5,944百万円のプラスで、長期借入金の新規調達7,644百万円が中心。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>結果としてフリーキャッシュフロー（営業CF－投資CF）は3,773百万円のマイナスとなり、有報自身が「将来への大きな投資を行った」と評価している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>M&amp;A原資を営業CFの範囲に収めず、借入で賄う財務構造への転換が当期に明確に表れている。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅷ. 将来への投資 -->
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3>Ⅷ-a　設備の状況</h3>
+      <p>当期設備投資総額は786百万円（内訳：職場環境改善385百万円、調査機器購入158百万円、DX関連115百万円、事業用土地購入70百万円）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>同期間の減価償却費は859百万円であり、設備投資額（786百万円）は減価償却費の範囲内にとどまっている。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>すなわち有形固定資産ベースでは「維持更新型」の投資規律であり、Ⅳの成長戦略・Ⅶの投資CF拡大（7,909百万円）の主因は設備投資ではなく子会社株式取得（M&amp;A）であることが、この対比から裏付けられる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>資産集約度自体は建設コンサルタント業（労働集約型サービス業）として低く、有形固定資産合計は7,485百万円（総資産の14.4％）にとどまる。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>徳島支店の建替（総額466百万円、2026年4月完了予定）等、生産能力増加を伴わない社屋改修が主な改修計画である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>Ⅷ-b　研究開発活動</h3>
+      <p>研究開発は中核子会社エイト日本技術開発が主体となり、災害リスク分野・データサイエンス分野・インフラ技術分野の3分野で実施。当期の研究開発費総額は105百万円（対売上比0.25％）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>建設コンサルタント業としては研究開発費率自体は小さいが、テーマは「AIを用いた土質定数設定プログラム」「DAS（光ファイバ振動観測）」「衛星SAR解析による大規模土木施設の変位推定」「AI個人情報自動マスキング」など、AI・リモートセンシング技術の実務適用に具体的なテーマ名・完了案件が多数示されており、内容の具体性は高い。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>「Eye-Con360」（360度写真×3DCADのプレゼンアプリ）「inMap」（インフラ管理システム）は既に外販可能な独自ツールとして開発が完了しており、研究開発が単なる社内効率化にとどまらず、対売上比は小さいながらも差別化技術・将来の周辺収益源の仕込みとして機能している可能性がある。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅸ. 資本政策・株主還元 -->
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>配当・自己株式（資本配分の規律）</h3>
+      <canvas id="chart5"></canvas>
+      <p style="margin-top:10px">配当政策は親会社所有者帰属持分配当率（DOE）3.0％以上を目安とする累進配当方針で、当期年間配当は1株67円（前期55円から+12円、5期連続増配）、配当性向は連結ベースで開示されていないが提出会社（単体）ベースで60.3％である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>自己株式取得は当事業年度において80株（価額0百万円）と、実質的に取得を行っていない。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>すなわち当期の株主還元は増配のみで、自社株買いという選択肢は使われていない。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>これは同時期に大型増資（後述Ⅺ）でM&amp;A原資を調達している資本政策と整合的であり、「まず調達・成長投資を優先し、株主還元は配当の累進で応える」という配分方針として理解できる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>株主構成（支配構造の解釈）</h3>
+      <canvas id="chart6"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">氏名・名称</th><th>所有株式数（株）</th><th>比率</th></tr>
+        <tr><td class="l">株式会社八雲（創業家資産管理会社）</td><td>3,529,700</td><td>21.95%</td></tr>
+        <tr><td class="l">日本マスタートラスト信託銀行（信託口）</td><td>1,550,700</td><td>9.64%</td></tr>
+        <tr><td class="l">日本カストディ銀行（信託口）</td><td>841,781</td><td>5.23%</td></tr>
+        <tr><td class="l">Ｅ・Ｊホールディングス社員持株会</td><td>699,540</td><td>4.35%</td></tr>
+        <tr><td class="l">小谷裕司（代表取締役社長）</td><td>409,600</td><td>2.54%</td></tr>
+        <tr><td class="l">小谷満俊（取締役）</td><td>241,000</td><td>1.49%</td></tr>
+        <tr><td class="l">上位10名合計</td><td>7,912,855</td><td>49.21%</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第４ １（６）大株主の状況」（2025年5月31日現在）<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［③］</p>
+      <p>筆頭株主「株式会社八雲」は代表取締役社長・小谷裕司氏が代表取締役を務める資産管理会社であり、小谷裕司氏個人（2.54％）・小谷満俊氏（1.49％、取締役）・株主一覧に別途登場する小谷浩治氏（0.98％）を合算すると、小谷家関連で発行済株式の27％前後を実質的に掌握している。信託銀行名義（日本マスタートラスト・日本カストディ）は機関投資家の実質保有だが名義上は運用信託であるため、小谷家＋社員持株会が最大の安定株主群を構成する創業家支配型のガバナンス構造であると解釈できる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>取締役会には小谷裕司氏（代表取締役社長）・小谷満俊氏（取締役CSR本部長）の2名が名を連ね、社外取締役は4名（全体の1/3超）を確保しているが、少数株主の意見がどこまで経営に反映されるかは、独立社外取締役の実効性（後述Ⅹ）に依存する構図である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>政策保有株式</h3>
+      <p>純投資目的以外の政策保有株式は、エイト日本技術開発（子会社）保有分12銘柄・貸借対照表計上額453百万円、提出会社（当社）保有分3銘柄・312百万円の合計765百万円。純資産34,053百万円に対する比率は約2.2％と小さい。<span class="lab fact" style="font-size:10px;padding:0 5px">事実（推計値・保証なし＝純資産比率は本レポートでの算出値）</span>保有先は大和証券・りそなHD・山陰合同銀行など、いずれも取引金融機関であり、事業上の取引関係を背景とした保有理由が中心。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>当期はショーボンドホールディングス（135,400株→純投資目的への変更・大部分売却）・三井住友トラストグループ（同）の2銘柄を政策保有から純投資目的へ変更しており、政策保有株式縮減の社会的要請に対応する動きが実際に進んでいる。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+      <p>役員持株は代表取締役社長・小谷裕司氏409,600株を筆頭に、取締役全体で相応の保有があり（役員合計735,434株）、株主との利害一致という観点では一定の水準にある。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅹ. ガバナンス -->
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実</h3>
+      <p>監査役会設置会社。取締役9名（うち社外取締役4名＝約44％）、監査役3名（うち社外監査役2名）。社外取締役及び社外監査役が過半数を占める任意の指名・報酬委員会を2019年に設置済み。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>2025年8月開催予定の定時株主総会では取締役8名選任議案が提案されており（1名減）、体制は微修正が続いている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>取締役会は月1回開催、当期13回開催で出席率はほぼ全員100％（社外取締役・阿部宏史氏のみ13回中12回）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>指名・報酬委員会は年6回開催、全委員が全回出席。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>役員報酬（総額・内訳の数値）</h3>
+      <canvas id="chart7"></canvas>
+      <table style="margin-top:10px">
+        <tr><th class="l">役員区分</th><th>報酬等総額（百万円）</th><th>金銭報酬</th><th>株式報酬</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（社外取締役を除く）</td><td>79</td><td>71</td><td>8</td><td>5名</td></tr>
+        <tr><td class="l">監査役（社外監査役を除く）</td><td>10</td><td>10</td><td>―</td><td>1名</td></tr>
+        <tr><td class="l">社外役員</td><td>35</td><td>35</td><td>―</td><td>6名</td></tr>
+      </table>
+      <p class="src" style="display:block;margin-top:6px">出所：有報「第４ ４（４）役員の報酬等」<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>［③］。連結報酬等総額1億円以上の個人は存在しない。</p>
+      <p>社内取締役の報酬は金銭報酬（月例固定）＋業績連動型株式報酬（信託方式、上限80百万円）で構成され、社外役員は監督機能維持のため基本報酬のみとする設計である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>監査法人はKPMGメンバーファーム系（有限責任あずさ監査法人と推定されるが法人名は明記されていない）で、監査報酬は提出会社19百万円・連結子会社30百万円の計50百万円、非監査業務報酬は該当なし。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>主要役員の属性</h3>
+      <p>代表取締役社長・小谷裕司氏は1990年にエイトコンサルタント（現エイト日本技術開発）に入社後、1996年に同社代表取締役社長、2007年の持株会社設立と同時に当社代表取締役社長に就任し、以後約19年にわたり社長職を継続している長期政権である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>社外取締役には、地域の環境政策に強い大学教授（阿部宏史氏、岡山大学名誉教授・環境理工学）、公認会計士（新田東平氏）、証券会社出身者（二宮幸一氏）、司法書士（磯﨑淳子氏）と、専門性の面では会計・法務・地域アカデミアという組み合わせが確保されている一方、建設コンサルタント業界の同業他社経験者や海外事業に精通した人材は社外役員の中に見当たらない。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>取締役・小谷満俊氏（小谷裕司氏の一族と推定される同姓）が経営陣に加わっており、創業家からの複数名の経営参画がⅨで見た資本構造と符合する。<span class="lab check" style="font-size:10px;padding:0 5px">要確認（両氏の親族関係は有報に明記なし）</span></p>
+      <p>役員等賠償責任保険は締結済み（保険料は全額会社負担）、責任限定契約・補償契約は締結していない。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅺ. 会計面の定性シグナル -->
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>KAM（監査上の主要な検討事項）</h3>
+      <p>連結財務諸表監査における唯一のKAMは「個別法による未成業務支出金の計上額の妥当性」である。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>未成業務支出金は3,704百万円（総資産の7.1％）に上り、うち主要子会社（エイト日本技術開発・近代設計）分が75.0％を占める。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>官公庁向け業務が年度末（下半期）に集中し複数契約が並行進行するため、契約案件ごとの直接労務費・外注費の集計誤りが生じやすいという業種特有の理由が、KAM選定理由として具体的に説明されている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>これはⅥ・Ⅶで確認した「第4四半期偏重の季節性」というビジネスモデル特性と完全に整合しており、監査人も同じ構造的リスクを最重要視していることが分かる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>なお提出会社（単体）財務諸表については「報告すべき監査上の主要な検討事項はない」とされている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></p>
+
+      <h3>重要な会計上の見積り</h3>
+      <p>有報が明示する重要な見積り項目は、①繰延税金資産の回収可能性、②固定資産の減損、③受注損失引当金、④のれんの減損の4つ。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>④のれんの減損は「その効果の発現する期間を見積り、その期間で均等償却」という会計方針であり、当期末のれん残高3,178百万円（前期比+2,557百万円、東京ソイルリサーチ等の新規連結が主因）の減損リスクが最も金額的インパクトの大きい見積りとなる。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>Ⅵ章の事業リスク「企業買収、他社とのアライアンスについて」の記載内容と直接リンクしており、M&amp;A主導の成長戦略を取る以上、今後も継続して注視すべき見積り項目である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>本表の財務特徴</h3>
+      <p>自己資本比率65.5％（前期78.7％から13.2pt低下）、流動比率336.3％（前期348.2％から低下したが依然300％超の高水準）であり、有報自身も「指標は低下となったが依然として財務の健全性を維持」と評価している。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>負債合計は前期末8,831百万円→当期末17,957百万円へほぼ倍増し、うち長期借入金が17百万円→6,846百万円へ急増（東京ソイルリサーチ買収資金）。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>もっとも純資産合計は32,592百万円→34,053百万円と着実に増加しており、負債の増加は自己資本の毀損ではなく他人資本によるレバレッジ活用（M&amp;Aのデットファイナンス）である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>回転・レバレッジの観点では、総資産が41,423百万円→52,011百万円へ1年で25.6％拡大する一方、売上高の伸びは14.8％にとどまっており、資産効率（総資産回転率）は一時的に低下したとみられる。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></p>
+
+      <h3>GC注記・後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する注記（GC注記）は記載されておらず、財務健全性への重大な懸念は開示上見当たらない。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>重要な後発事象として、2025年5月30日決議・6〜7月実行の公募及び第三者割当増資（発行済株式総数が16,078,920株→18,378,920株、+14.3％、調達額合計約31.4億円）があり、資金使途は「建設コンサルタント事業領域におけるM&amp;A待機資金及び長期借入金の一部返済」「DX・AI投資」「調査・計測機器購入」「研究開発」「既存不動産の改修」と明記されている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>この増資により、当期末時点で低下した自己資本比率（65.5％）は次期以降に相応に回復する見込みだが、その裏側で希薄化（+14.3％）が生じている点は株主にとって両義的な事象である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span>訴訟等の偶発債務についての特記事項は有報中に見当たらない。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></p>
+    </div>
+  </div>
+
+  <!-- Ⅻ. 論点と未解明事項 -->
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul class="plain">
+        <li>国土強靭化実施中期計画（2026〜2030年度に約20兆円規模）という官公庁向け建設コンサル需要の下支えとなる政策的追い風が、具体的な予算数値とともに有報に明記されている。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span>官公庁予算の中期見通しが立っている点は、依存度85％という同社の構造的リスクをある程度相殺する材料である。<span class="lab interp" style="font-size:10px;padding:0 5px">解釈</span></li>
+        <li>M&amp;A（東京ソイルリサーチ等）を通じた非連続な規模拡大が実際に売上・受注残に表れており（受注残高31,943百万円、前期比+15.3％）、増資により調達した資金でさらなるM&amp;Aを計画している旨が後発事象で明記されている。パイプラインの確度は不明だが、成長投資の意欲と原資は確認できる。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></li>
+        <li>累進配当（5期連続増配、DOE3.0％以上目安）を継続しており、増資による希薄化局面でも配当方針の後退は示されていない。<span class="lab fact" style="font-size:10px;padding:0 5px">事実</span></li>
+      </ul>
+      <h3>懸念材料と顕在化条件</h3>
+      <ul class="plain">
+        <li>のれん3,178百万円（総資産の6.1％）の減損リスク。買収先（東京ソイルリサーチ等）の業績が想定を下回った場合に顕在化する。次期以降の各子会社別の業績開示・減損テスト結果の有無を確認する必要がある。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+        <li>長期借入金6,846百万円への急拡大による金利上昇局面での財務負担増。有利子負債の金利条件（固定・変動の別、平均利率）は有報の開示範囲では確認できなかった。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+        <li>第５次中計での営業利益・ROE未達が示すとおり、増収と増益が連動しにくい費用構造（人件費・外注費・のれん償却）を抱えており、第６次中計「Ｅ・Ｊ-Plan2027」（2028年5月期ROE10％以上目標）が同じ壁に直面する可能性がある。次期以降の四半期進捗開示を確認する必要がある。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+        <li>創業家（株式会社八雲・小谷家）が発行済株式の約27％を実質支配する集中したガバナンス構造。増資による希薄化後の持株比率、及び社外取締役の実効性（反対票の有無等の議決権行使結果）は有報だけでは検証できない。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+      </ul>
+      <h3>追加確認が必要な事項（具体名）</h3>
+      <ul class="plain">
+        <li>2025年6-7月増資後の資本構成・希薄化後EPS、及び調達資金の具体的なM&amp;A案件への充当状況 → 次期（第19期）決算短信・決算説明資料での確認が必要。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+        <li>のれん3,178百万円の子会社別内訳・減損の兆候有無 → 有価証券報告書の注記（のれんの償却額等の内訳、本文では合算表記が中心）の追加確認、または決算説明資料での確認が必要。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+        <li>小谷裕司氏・小谷満俊氏・小谷浩治氏の親族関係（有報に明記なし） → 適時開示・過去の有報や統合報告書での確認が必要。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+        <li>有利子負債7,363〜7,482百万円（本表と irpocket 集計値に若干の差異）の金利条件・返済スケジュール → 決算説明資料または個別注記（金融商品関係）での追加確認が必要。<span class="lab check" style="font-size:10px;padding:0 5px">要確認</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    本レポートはＥ・Ｊホールディングス株式会社の第18期有価証券報告書（2025年8月27日提出、対象事業年度：自2024年6月1日 至2025年5月31日）の記述情報を主たる一次情報として作成した定性分析であり、irpocket公式IRデータ（Excel）で数値を裏取りしている。有報PDF取得日：2026年8月24日／レポート作成日：2026年8月29日。文中の推計値には「推計値・保証なし」を付記している。本レポートは投資判断の材料の提供を目的とするものであり、特定銘柄の売買を推奨し、または目標株価を示すものではない。記載内容の正確性には注意を払っているが、最新の適時開示・決算情報と合わせて利用者自身の判断で投資を行うこと。
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.p).classList.add('active');
+  });
+});
+
+const inkColor = '#111111';
+const subColor = '#6b6b6b';
+const lineColor = '#dcdcdc';
+
+// Chart1: 5年推移（複合）
+new Chart(document.getElementById('chart1'), {
+  type: 'bar',
+  data: {
+    labels: ['第14期\n2021/5','第15期\n2022/5','第16期\n2023/5','第17期\n2024/5','第18期\n2025/5'],
+    datasets: [
+      {type:'bar', label:'売上高（百万円）', data:[34334,36668,37509,37207,42705], backgroundColor:inkColor, yAxisID:'y'},
+      {type:'bar', label:'経常利益（百万円）', data:[4054,4706,4624,4597,4633], backgroundColor:'#bbbbbb', yAxisID:'y'},
+      {type:'line', label:'ROE（％・右軸）', data:[12.2,11.8,10.6,9.7,9.6], borderColor:inkColor, backgroundColor:inkColor, yAxisID:'y1', tension:.2}
+    ]
+  },
+  options: {
+    responsive:true,
+    plugins:{legend:{labels:{color:inkColor,font:{size:11}}}},
+    scales:{
+      y:{position:'left', ticks:{color:subColor}, grid:{color:lineColor}, title:{display:true,text:'百万円',color:subColor}},
+      y1:{position:'right', ticks:{color:subColor}, grid:{drawOnChartArea:false}, title:{display:true,text:'ROE(%)',color:subColor}},
+      x:{ticks:{color:subColor}, grid:{display:false}}
+    }
+  }
+});
+
+// Chart2: 業務別売上構成比
+new Chart(document.getElementById('chart2'), {
+  type: 'pie',
+  data: {
+    labels: ['建設コンサルタント業務','調査業務'],
+    datasets: [{data:[33472,9232], backgroundColor:[inkColor,'#bbbbbb'], borderColor:'#fff', borderWidth:2}]
+  },
+  options: {responsive:true, plugins:{legend:{position:'bottom',labels:{color:inkColor,font:{size:11}}}}}
+});
+
+// Chart3: 従業員数推移
+new Chart(document.getElementById('chart3'), {
+  type: 'bar',
+  data: {
+    labels: ['第14期','第15期','第16期','第17期','第18期'],
+    datasets: [{label:'連結従業員数（名）', data:[1621,1686,1721,1713,2052], backgroundColor:inkColor}]
+  },
+  options: {
+    responsive:true,
+    plugins:{legend:{labels:{color:inkColor,font:{size:11}}}},
+    scales:{y:{ticks:{color:subColor}, grid:{color:lineColor}}, x:{ticks:{color:subColor}, grid:{display:false}}}
+  }
+});
+
+// Chart4: CO2排出量推移
+new Chart(document.getElementById('chart4'), {
+  type: 'bar',
+  data: {
+    labels: ['基準値\n2022/5','前々期\n2023/5','前期\n2024/5','今期\n2025/5'],
+    datasets: [
+      {label:'スコープ1+2（tCO2）', data:[2774,1879,1677,1776], backgroundColor:inkColor},
+      {label:'スコープ3カテゴリ6（tCO2）', data:[1806,2654,2815,3261], backgroundColor:'#bbbbbb'}
+    ]
+  },
+  options: {
+    responsive:true,
+    plugins:{legend:{labels:{color:inkColor,font:{size:11}}}},
+    scales:{y:{ticks:{color:subColor}, grid:{color:lineColor}}, x:{ticks:{color:subColor}, grid:{display:false}}}
+  }
+});
+
+// Chart5: 配当推移
+new Chart(document.getElementById('chart5'), {
+  type: 'bar',
+  data: {
+    labels: ['第14期','第15期','第16期','第17期','第18期'],
+    datasets: [{label:'1株当たり配当額（円）', data:[35,43,50,55,67], backgroundColor:inkColor}]
+  },
+  options: {
+    responsive:true,
+    plugins:{legend:{labels:{color:inkColor,font:{size:11}}}},
+    scales:{y:{ticks:{color:subColor}, grid:{color:lineColor}}, x:{ticks:{color:subColor}, grid:{display:false}}}
+  }
+});
+
+// Chart6: 株主構成
+new Chart(document.getElementById('chart6'), {
+  type: 'pie',
+  data: {
+    labels: ['株式会社八雲（創業家）','日本マスタートラスト信託銀行','日本カストディ銀行','社員持株会','小谷裕司氏','その他上位','その他一般株主'],
+    datasets: [{data:[21.95,9.64,5.23,4.35,2.54,5.50,50.79], backgroundColor:[inkColor,'#444444','#777777','#999999','#bbbbbb','#dddddd','#f2f2f2'], borderColor:'#fff', borderWidth:1}]
+  },
+  options: {responsive:true, plugins:{legend:{position:'bottom',labels:{color:inkColor,font:{size:10}}}}}
+});
+
+// Chart7: 役員報酬内訳
+new Chart(document.getElementById('chart7'), {
+  type: 'bar',
+  data: {
+    labels: ['取締役（社内）','監査役（社内）','社外役員'],
+    datasets: [{label:'報酬等総額（百万円）', data:[79,10,35], backgroundColor:inkColor}]
+  },
+  options: {
+    responsive:true,
+    plugins:{legend:{labels:{color:inkColor,font:{size:11}}}},
+    scales:{y:{ticks:{color:subColor}, grid:{color:lineColor}}, x:{ticks:{color:subColor}, grid:{display:false}}}
+  }
+});
+</script>
+</body></html>

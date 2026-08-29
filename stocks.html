@@ -43,17 +43,6 @@
     .topbar .mark .sq { width: 8px; height: 8px; background: var(--fg); flex: none; }
     .topbar .meta { font-variant-numeric: tabular-nums; opacity: .6; }
 
-    .breadcrumb {
-      max-width: 980px; margin: 0 auto; padding: 12px 24px;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px; color: var(--fg); opacity: .55;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-    }
-    .breadcrumb a { text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb .sep { opacity: .5; }
-    .breadcrumb .current { opacity: 1; font-weight: 700; }
-
     .head { max-width: 980px; margin: 0 auto; padding: 56px 24px 32px; }
     .head .badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -129,12 +118,6 @@
     <div class="meta">JP EQUITIES <span style="opacity:.6">/ STOCKS</span></div>
   </div>
 
-  <div class="breadcrumb">
-    <a href="index.html">HOME</a>
-    <span class="sep">›</span>
-    <span class="current">個別銘柄レポート</span>
-  </div>
-
   <div class="head">
     <div class="badge"><span class="sq"></span>個別銘柄</div>
     <h1>個別銘柄レポート一覧</h1>
@@ -167,7 +150,7 @@ function esc(s) {
 
 function linkHtml(code, kind, date, label) {
   if (!date) return `<span class="rlink missing">${label}<span class="d">未作成</span></span>`;
-  return `<a class="rlink" href="reports/stocks/${code}/${kind}.html">${label}<span class="d">${date}</span></a>`;
+  return `<a class="rlink" href="reports/stocks/${code}/${kind}.html" target="_blank" rel="noopener">${label}<span class="d">${date}</span></a>`;
 }
 
 function render() {
