@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>田辺工業（1828） 有価証券報告書 定性分析レポート（第58期）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318; /* 唯一の意味色：[要確認] */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:15px}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{display:inline-block;font-size:11px;border-radius:2px;padding:2px 9px;font-weight:700}
+.lab.fact{background:var(--ink);color:#fff}
+.lab.interp{border:1px solid var(--ink);color:var(--ink)}
+.lab.check{border:1px solid var(--neg);color:var(--neg)}
+.lab.web{border:1px solid var(--line);color:var(--sub);font-weight:400}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:9px 14px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:16px 0 8px}
+blockquote.yuho{border-left:3px solid var(--ink);background:#f7f7f7;padding:10px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+canvas{max-height:320px}
+.badge{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:2px;padding:1px 7px;margin-right:4px;color:var(--sub)}
+ul.plain{margin-left:18px}
+ul.plain li{margin-bottom:6px}
+</style></head><body>
+<div class="wrap">
+  <header class="rhead"><h1>田辺工業株式会社（1828） 有価証券報告書 定性分析レポート</h1>
+    <div class="sub">対象：第58期有価証券報告書（自 2025年4月1日 至 2026年3月31日／2026年6月23日提出） ／ 作成日：2026-08-29</div></header>
+  <div class="legend">
+    <span class="lab fact">事実</span><span class="lab interp">解釈</span>
+    <span class="lab check">要確認</span><span class="lab web">web</span>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="p0">0. サマリー</button>
+    <button class="tab" data-p="p1">Ⅰ. 企業の輪郭</button>
+    <button class="tab" data-p="p2">Ⅱ. 沿革</button>
+    <button class="tab" data-p="p3">Ⅲ. 人的資本</button>
+    <button class="tab" data-p="p4">Ⅳ. 経営者の世界観</button>
+    <button class="tab" data-p="p5">Ⅴ. サステナビリティ</button>
+    <button class="tab" data-p="p6">Ⅵ. 事業等のリスク</button>
+    <button class="tab" data-p="p7">Ⅶ. MD&amp;A</button>
+    <button class="tab" data-p="p8">Ⅷ. 設備・研究開発</button>
+    <button class="tab" data-p="p9">Ⅸ. 資本政策</button>
+    <button class="tab" data-p="p10">Ⅹ. ガバナンス</button>
+    <button class="tab" data-p="p11">Ⅺ. 会計面</button>
+    <button class="tab" data-p="p12">Ⅻ. 論点</button>
+  </div>
+
+  <!-- 0. エグゼクティブサマリー -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <h2 class="section">0. エグゼクティブサマリー</h2>
+      <p><b>この企業を一文で：</b>新潟県上越市発祥、化学プラント向け設備工事（産業プラント設備工事・設備保全工事・電気計装工事等）を主力とする独立系エンジニアリング会社で、東証スタンダード市場に上場。第58期（2026年3月期）は増収増益・財務体質良好だが、受注・手持工事高は減少に転じている<span class="src">③</span>。</p>
+      <h3>最重要ポイント3点</h3>
+      <ul class="plain">
+        <li><b>最大顧客デンカ㈱への売上依存度が上昇。</b>完成工事高に占める同社比率は第57期17.1%→第58期21.0%へ拡大した<span class="src">③</span>。当社の起源は1921年、電気化学工業（現デンカ）青海工場構内での設備保全業務に遡り<span class="src">③</span>、100年超にわたる取引関係が売上の柱になっている構図が確認できる<span class="lab interp" style="padding:1px 6px">解釈</span>。</li>
+        <li><b>財務体質はきわめて保守的で、実質無借金に近い。</b>自己資本比率59.3%、有利子負債975百万円に対し現金及び現金同等物10,601百万円と、ネットキャッシュ約96億円を確保している<span class="src">③</span>。政策保有株式も連結純資産の1.35%と小さい<span class="src">③</span>。</li>
+        <li><b>中期経営計画「TRY2030」の数値目標のうち、営業利益率とROEは実質的に前倒しで達成水準に到達している。</b>目標は連結売上高700億円・営業利益率8%以上・ROE12%以上（2030年3月期）だが、第58期時点で営業利益率は9.1%、ROEは13.0%とすでに目標を上回る<span class="src">③</span>。残る主課題は売上規模（現523.7億円→700億円、+34%）の拡大である<span class="lab interp" style="padding:1px 6px">解釈</span>。</li>
+      </ul>
+      <h3>最も注意すべき論点</h3>
+      <p>受注高は前期比13.0%減（46,210百万円）、手持工事高（提出会社単体）も前期末比20.2%減（24,552百万円）と、先行指標がそろって悪化している<span class="src">③</span>。第58期の増収増益は前期繰越工事の消化に支えられた面が大きく、会社自身も2027年3月期を減収減益（連結売上高500億円・前期比4.5%減、営業利益385億円・同19.3%減）と計画している<span class="src">③</span>。増益基調の裏で受注環境が転換点にある可能性がある<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅰ. 企業の輪郭 -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <h2 class="section">Ⅰ. 企業の輪郭</h2>
+      <h3>5年推移（連結・代表指標）</h3>
+      <canvas id="chart5y"></canvas>
+      <table style="margin-top:12px">
+        <tr><th class="l">決算年月</th><th>第54期<br>2022/3</th><th>第55期<br>2023/3</th><th>第56期<br>2024/3</th><th>第57期<br>2025/3</th><th>第58期<br>2026/3</th><th>5年CAGR</th></tr>
+        <tr><td class="l">売上高（百万円）</td><td>42,526</td><td>42,944</td><td>51,842</td><td>50,832</td><td>52,366</td><td>+5.3%</td></tr>
+        <tr><td class="l">経常利益（百万円）</td><td>2,898</td><td>2,785</td><td>2,726</td><td>3,907</td><td>4,810</td><td>+13.5%</td></tr>
+        <tr><td class="l">EPS（円、連結）</td><td>175.02</td><td>154.78</td><td>179.71</td><td>247.47</td><td>328.95</td><td>+17.1%</td></tr>
+        <tr><td class="l">ROE（％）</td><td>10.1</td><td>8.2</td><td>8.7</td><td>10.9</td><td>13.0</td><td>−</td></tr>
+        <tr><td class="l">自己資本比率（％）</td><td>55.2</td><td>55.8</td><td>48.9</td><td>54.3</td><td>59.3</td><td>−</td></tr>
+        <tr><td class="l">営業CF（百万円）</td><td>3,052</td><td>1,830</td><td class="neg">△4,741</td><td>12,926</td><td>1,939</td><td>−</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:12.5px;color:var(--sub)">出所：有報「主要な経営指標等の推移」（連結）<span class="src">③</span>。CAGRは第54期→第58期の4年幅で自算。irpocketの公式IRデータExcelは本銘柄について取得不能（404）であったため、数値の裏取りは有報本文の記載に一本化している<span class="lab check" style="padding:1px 6px">要確認</span>。</p>
+      <p>自己資本比率は第56期（2024/3）に48.9%まで一時低下したが、これは総資産が前期比+86億円（35,574→46,239百万円）と大きく膨らんだ局面であり、翌期以降59.3%まで回復している<span class="src">①</span>。営業CFは△47億円（第56期）→+129億円（第57期）→+19億円（第58期）と振れが大きく、未成工事受入金の増減など工事進行基準特有の運転資本変動が主因とみられる<span class="lab interp" style="padding:1px 6px">解釈</span>（詳細はⅦ章）。</p>
+
+      <h3>事業の内容とビジネスモデル</h3>
+      <p>グループは提出会社と海外連結子会社4社で構成される<span class="src">③</span>。国内では設備工事事業（産業プラント設備工事・設備保全工事・電気計装工事・メカトロニクス・送電工事・管工事）を主体とし、海外はシンガポール・マレーシアで設備工事事業、タイで表面処理事業（HDD部品・自動車部品向けメッキ）を展開する<span class="src">③</span>。「その他」区分の鋳造用工業炉製造・販売は当期に事業廃止した<span class="src">③</span>。収益は基本的に個別受注の請負契約（EPC：企画・設計・調達・施工の一括受注）であり、量産型のプロダクトビジネスではない<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>収益柱の照合（セグメント別売上・利益構成、第58期）</h3>
+      <canvas id="chartSeg"></canvas>
+      <table style="margin-top:12px">
+        <tr><th class="l">セグメント</th><th>売上高（百万円）</th><th>構成比</th><th>セグメント利益（百万円）</th><th>利益率</th></tr>
+        <tr><td class="l">設備工事事業</td><td>50,786</td><td>97.0%</td><td>6,437</td><td>12.7%</td></tr>
+        <tr><td class="l">表面処理事業</td><td>1,483</td><td>2.8%</td><td>36</td><td>2.4%</td></tr>
+        <tr><td class="l">その他（鋳造用工業炉）</td><td>96</td><td>0.2%</td><td>12</td><td>12.5%</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：MD&amp;A セグメント業績<span class="src">③</span>。経営方針で語られる「海外事業の再生」「新規事業の探索」の分量に対し、実際の利益貢献はほぼ設備工事事業（国内中心）に一極集中している。海外・新規事業は語りの大きさに比して利益の大きさが小さい状態が続いている<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>競争優位</h3>
+      <p>自社従業員による直営の技能者集団（協力会社に頼らない直営部隊）を有し、他社に少ない機動力があると自認している<span class="src">③</span>。企画〜設計〜調達〜施工〜メンテナンスまでの一貫対応（総合力）をコア・コンピタンスとして掲げる<span class="src">③</span>。海外子会社に対しては「当社が技術を提供している」関係にあり（関係会社の状況に明記）<span class="src">③</span>、国内の技術蓄積を軸にした垂直統合的な優位性を志向していると読める<span class="lab interp" style="padding:1px 6px">解釈</span>。一方、請負ビジネスゆえに需要を機械的に見込みにくいという構造的弱みは経営者自身が認めている<span class="src">③</span>。</p>
+
+      <h3>関係会社（支配構造・リスク）</h3>
+      <p>親会社は存在しない<span class="src">③</span>。連結子会社4社はすべて海外（タイ2社・シンガポール1社・マレーシア1社）で、うちタナベタイランド社・タナベエンジニアリングシンガポール社・タナベテクニカルサービスマレーシア社は出資比率100%、2023年設立のタナベエンジニアリングアジア社（タイ）のみ出資比率49%（特定子会社には該当しないが連結範囲に含む）<span class="src">③</span>。いずれも有価証券報告書提出会社ではなく、連結売上高に占める割合はそれぞれ10%以下のため主要な損益情報の記載は省略されている<span class="src">③</span>。持分法適用会社の記載はない。海外子会社の業績は「ここ数年、海外経済の減速により低迷」と経営者自身が明言しており<span class="src">③</span>、海外事業比率は小さいながら業績変動要因として留意が必要である<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅱ. 沿革 -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2 class="section">Ⅱ. 沿革</h2>
+      <p>起源は1921年、新潟県西頸城郡青海町（現・糸魚川市）で、大手化学会社・電気化学工業株式会社青海工場の構内において生産設備の保全業務を個人経営で始めた「田辺鉄工所」に遡る<span class="src">③</span>。電気化学工業は2015年10月に社名を「デンカ株式会社」へ変更した会社であり<span class="lab web">web＋日本経済新聞</span>、当社の完成工事高の20%超（第58期21.0%）を占める最大顧客デンカ㈱<span class="src">③</span>は、創業の起点となった取引先と同一系譜にある。100年以上にわたり同一顧客グループとの関係が事業の根幹を形成してきたと読める<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+      <blockquote class="yuho">1969年２月　田辺建設株式会社の機電事業部（機械・電気部門）を分離し、資本金1,000万円をもって田辺工業株式会社を設立<span class="src">③</span></blockquote>
+      <p>1935年に法人化（合資会社田辺工作所）、1951年に業務分離で田辺建設・田辺化工機の2社を設立、1969年に田辺建設の機電事業部を分離する形で現・田辺工業が設立された<span class="src">③</span>。設立当初から機械製作・工業用炉製造・配管・空調・電気設備を事業内容とし、現在の設備工事事業の原型がこの時点で成立している<span class="src">③</span>。</p>
+      <p>上場については、1993年に日本証券業協会へ店頭登録、2004年にジャスダック証券取引所へ市場変更、2007年に東証市場第二部へ移行、2022年の東証市場区分見直しでスタンダード市場へ移行という経路をたどっている<span class="src">③</span>。海外展開は1996年のタイ・タナベタイランド社設立（表面処理事業）を起点に、2010年に中国・シンガポール、2018年にマレーシアへと広がったが、2024年には中国子会社（田工実業（上海）有限公司）を清算しており<span class="src">③</span>、東南アジア（タイ・シンガポール・マレーシア）中心の海外展開に収斂している<span class="lab interp" style="padding:1px 6px">解釈</span>。近年は2020〜2021年に大牟田支店・幕張エンジセンター・デジタルイノベーションセンターを相次いで新設するなど、国内の事業領域・拠点拡大に投資を振り向けている<span class="src">③</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅲ. 人的資本 -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2 class="section">Ⅲ. 人的資本（従業員＋サステナビリティ統合）</h2>
+      <h3>従業員数・生産性</h3>
+      <table>
+        <tr><th class="l">区分</th><th>第54期(22/3)</th><th>第58期(26/3)</th><th>増減</th></tr>
+        <tr><td class="l">従業員数（連結、人）</td><td>1,057</td><td>1,044</td><td>△13名</td></tr>
+        <tr><td class="l">従業員数（単体、人）</td><td>785</td><td>809</td><td>+24名</td></tr>
+        <tr><td class="l">売上高（単体、百万円）</td><td>39,623</td><td>49,933</td><td>+26.0%</td></tr>
+        <tr><td class="l">1人当たり売上高（単体、百万円）</td><td>50.5</td><td>61.7</td><td>+22.3%</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：主要な経営指標等の推移（単体）<span class="src">③</span>。連結従業員数は5年でほぼ横ばい（微減）だが単体は微増、その中で単体売上高は26.0%伸びており、増収の大半は人員増でなく1人当たり生産性の向上（+22.3%）によって実現されている<span class="lab interp" style="padding:1px 6px">解釈</span>。平均年間給与は6,920,350円で前年度比+6.2%と、ベースアップ（2021年比で新卒初任給+19%）とあわせ処遇改善が進んでいる<span class="src">③</span>。平均勤続年数15.5年、平均年齢41.1歳<span class="src">③</span>。</p>
+
+      <h3>労働環境・人的資本指標</h3>
+      <table>
+        <tr><th class="l">指標</th><th>2026年3月末実績</th><th>2030年3月末目標</th></tr>
+        <tr><td class="l">管理職における中途社員比率</td><td>28%</td><td>35%以上</td></tr>
+        <tr><td class="l">1級施工管理技士資格保有者数</td><td>165名</td><td>175名</td></tr>
+        <tr><td class="l">平均残業時間</td><td>20.1時間</td><td>20時間以内</td></tr>
+        <tr><td class="l">平均年休取得日数</td><td>13日</td><td>15日以上</td></tr>
+      </table>
+      <table style="margin-top:10px">
+        <tr><th class="l">指標（提出会社）</th><th>値</th></tr>
+        <tr><td class="l">管理的地位にある女性労働者の割合</td><td>2.9%</td></tr>
+        <tr><td class="l">男性労働者の育児休業取得率</td><td>65.0%</td></tr>
+        <tr><td class="l">男女の賃金の差異（全労働者）</td><td>68.0%</td></tr>
+        <tr><td class="l">男女の賃金の差異（正規雇用労働者）</td><td>74.8%</td></tr>
+        <tr><td class="l">男女の賃金の差異（パート・有期労働者）</td><td>40.0%</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：サステナビリティに関する考え方及び取組・従業員の状況等<span class="src">③</span>。数値は提示のみで優劣評価は行わない。平均残業時間・年休取得日数はいずれも目標にほぼ到達済み<span class="src">③</span>。女性管理職比率2.9%は建設・プラント業界の労働集約性を反映していると考えられる<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+      <p>教育センター（青海・大牟田・千葉・姫路の4拠点）による専門教育・技能伝承の仕組みを整備し、中途・専門外入社者の戦力化を図る「仕組み型」の人材育成に力点を置く<span class="src">③</span>。労働組合（田辺工業労働組合、上部団体UAゼンセン、組合員256名）があり労使関係は円満と記載されている<span class="src">③</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅳ. 経営者の世界観 -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2 class="section">Ⅳ. 経営者の世界観 ―【経営方針、経営環境及び対処すべき課題等】</h2>
+      <h3>基本戦略と中期経営計画「TRY2030」</h3>
+      <p>経営理念「お客様・従業員・株主・業務関係者そして社会の、みんなに喜ばれる親切で的確な仕事をしよう」を社是に掲げる<span class="src">③</span>。2024年11月公表の中期経営計画「TRY2030」（〜2030年3月期）では、連結売上高700億円・連結営業利益率8%以上・ROE12%以上を目標とする<span class="src">③</span>。基本戦略は①国内事業の進化②海外事業の再生③新規事業の探索④組織・業務改革⑤ESG対応・財務基盤の強化の5本柱<span class="src">③</span>。</p>
+
+      <h3>課題→打ち手の接続検証</h3>
+      <table>
+        <tr><th class="l">課題</th><th class="l">具体的施策</th><th class="l">接続の評価</th></tr>
+        <tr><td class="l">①国内事業の進化（大型EPC拡大）</td><td class="l">プロジェクト部新設（2026年4月）、幕張エンジセンター集約、人材補強</td><td class="l">具体的・進捗あり<span class="lab fact" style="padding:1px 6px">事実</span></td></tr>
+        <tr><td class="l">②海外事業の再生</td><td class="l">タイのEV向け新ライン、バンコクビジネスセンター拠点化</td><td class="l">具体策はあるが業績低迷が続くと自認<span class="lab interp" style="padding:1px 6px">解釈</span></td></tr>
+        <tr><td class="l">③新規事業の探索</td><td class="l">AGV・薬液充填ロボット、プロダクト開発部設立</td><td class="l">具体名あるが売上構成比は「その他」0.2%と小さい<span class="lab interp" style="padding:1px 6px">解釈</span></td></tr>
+        <tr><td class="l">④組織・業務改革</td><td class="l">人事部新設、教育センター拡充、新基幹系システム</td><td class="l">具体的<span class="lab fact" style="padding:1px 6px">事実</span></td></tr>
+        <tr><td class="l">⑤ESG対応・財務基盤</td><td class="l">マテリアリティ特定、自己資本比率50%以上を経営目標に明記</td><td class="l">具体的・定量目標あり<span class="lab fact" style="padding:1px 6px">事実</span></td></tr>
+      </table>
+      <p style="margin-top:8px">5課題すべてに対応施策が明示されており、空白の課題は見当たらない<span class="lab interp" style="padding:1px 6px">解釈</span>。ただし②③は「取り組んでいる」という記述に留まり、定量的なKPI・達成期限の記載はない<span class="lab check" style="padding:1px 6px">要確認</span>。</p>
+
+      <h3>経営環境認識の具体性</h3>
+      <p>「米国の通商政策や中東情勢が及ぼす国内外経済への影響」「物価上昇や金融政策の変化に伴う景気減速懸念」など、固有名詞を伴う一定の具体性はあるが、業界特有の定量情報（受注環境の先行指標の数値等）は限定的<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>中計の進捗・未達認識</h3>
+      <p>TRY2030の3目標のうち、営業利益率（第58期9.1%、目標8%以上）とROE（同13.0%、目標12%以上）はすでに達成水準にあり、売上高700億円（第58期実績523.7億円、+33.7%必要）が残された主要な差分である<span class="lab interp" style="padding:1px 6px">解釈</span>。一方、2027年3月期の会社計画は連結売上高500億円（前期比4.5%減）・営業利益385億円（同19.3%減）と、中計目標に対して逆行する単年度見通しを示している<span class="src">③</span>。中計の目標水準と直近の単年度計画の方向感に乖離があり、進捗に関する定量的な言及（例：中計は順調に進捗している等の評価コメント）は本文中に見当たらない<span class="lab check" style="padding:1px 6px">要確認</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅴ. サステナビリティ -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <h2 class="section">Ⅴ. サステナビリティ（人的資本を除く）</h2>
+      <h3>ガバナンス・戦略接続</h3>
+      <p>サステナビリティ委員会（委員長：代表取締役社長）を設置し、原則年2回取締役会に報告、下部組織のサステナビリティ協議会が各現場から情報を吸い上げる体制<span class="src">③</span>。マテリアリティは環境（カーボンニュートラル・環境負荷低減）・社会（品質安全・購買協力会社・新事業創出・人材確保・多様な人材の職場環境）・ガバナンス（コンプライアンス体制・情報セキュリティ）の3領域で特定されている<span class="src">③</span>。人的資本関連はⅢ章に統合済み。</p>
+      <p>気候変動・GHG排出量については「今後、GHG排出量の算定へ向けた検討をすすめてまいります」との記載にとどまり<span class="src">③</span>、算定・開示は未着手である<span class="lab interp" style="padding:1px 6px">解釈</span>。プラント建設業は炭素集約的な製造業ではなく、施主側の設備投資需要を請け負う立場であるため、GHG算定の投資判断上の重要性は相対的に低いと考えられる<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>検証可能性</h3>
+      <p>環境・社会マテリアリティの施策は列挙的で、期限・数値目標が明示されているのは人的資本項目（Ⅲ章参照）にほぼ限られる<span class="lab interp" style="padding:1px 6px">解釈</span>。「太陽光発電設備設置」「ペーパーレス化の推進」等は定型的な記述であり、固有の定量目標（削減率・削減量等）は開示されていない<span class="lab check" style="padding:1px 6px">要確認</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅵ. 事業等のリスク -->
+  <div class="panel" id="p6">
+    <div class="card">
+      <h2 class="section">Ⅵ. 事業等のリスク（＋経営上の重要な契約）</h2>
+      <h3>固有リスクと定型リスクの仕分け</h3>
+      <table>
+        <tr><th class="l">リスク項目</th><th class="l">性質</th></tr>
+        <tr><td class="l">(1)経済変動に伴う受注・価格競争リスク</td><td class="l">業界共通（定型）</td></tr>
+        <tr><td class="l">(2)表面処理事業のHDD部品依存</td><td class="l">固有（タイ子会社の顧客集中）</td></tr>
+        <tr><td class="l">(3)信用リスク（新規顧客の債権回収）</td><td class="l">定型</td></tr>
+        <tr><td class="l">(4)製品・施工の欠陥、不採算工事リスク</td><td class="l">業界共通だが工事進行基準の特性上、固有性やや高い</td></tr>
+        <tr><td class="l">(5)労働災害リスク</td><td class="l">建設・工事業共通（定型）</td></tr>
+        <tr><td class="l">(6)資材市況リスク</td><td class="l">定型</td></tr>
+        <tr><td class="l">(7)建設業許可の取消リスク</td><td class="l">法規制の定型記載</td></tr>
+        <tr><td class="l">(8)人材確保リスク</td><td class="l">業界共通だが少子高齢化下での深掘りあり（やや固有）</td></tr>
+        <tr><td class="l">(9)カントリーリスク（アセアン子会社）</td><td class="l">固有</td></tr>
+        <tr><td class="l">(10)感染症リスク</td><td class="l">定型（ボイラープレート）</td></tr>
+        <tr><td class="l">(11)情報セキュリティリスク</td><td class="l">定型</td></tr>
+      </table>
+      <p style="margin-top:8px">11項目のうち固有性が明確なのは(2)(9)の2項目程度で、大半は業界共通の定型記載にとどまる<span class="lab interp" style="padding:1px 6px">解釈</span>。一方で、開示されている最大の顧客集中度（デンカ㈱への完成工事高依存21.0%）や受注高・手持工事高の減少傾向（Ⅶ章参照）は、リスク項目として明示的な章立てがされていない<span class="lab check" style="padding:1px 6px">要確認</span>。これは財務数値（MD&A）で開示されている事実とリスク章の記載に粒度の差があることを意味し、過小開示の可能性として留意したい<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>経営上の重要な契約等</h3>
+      <p>「当連結会計年度において、締結している重要な契約等はありません」との記載のみ<span class="src">③</span>。特段の依存・更新リスクは確認されない。</p>
+    </div>
+  </div>
+
+  <!-- Ⅶ. MD&A -->
+  <div class="panel" id="p7">
+    <div class="card">
+      <h2 class="section">Ⅶ. 経営成績の分析 ―【MD&amp;A】</h2>
+      <h3>業績事実の要約</h3>
+      <p>受注高46,210百万円（前期比13.0%減）、売上高52,366百万円（同3.0%増）、営業利益4,769百万円（同24.3%増）、経常利益4,809百万円（同23.1%増）、親会社株主に帰属する当期純利益3,452百万円（同33.2%増）<span class="src">③</span>。売上総利益率は19.4%（前期比+2.3pt）へ改善し、工事資材費・労務費の上昇を施工効率改善で吸収した<span class="src">③</span>。</p>
+      <h3>受注・手持工事高（先行指標）</h3>
+      <table>
+        <tr><th class="l">区分</th><th>第57期</th><th>第58期</th><th>増減率</th></tr>
+        <tr><td class="l">受注工事高（提出会社計、百万円）</td><td>51,407</td><td>43,721</td><td>△15.0%</td></tr>
+        <tr><td class="l">次期繰越（手持）工事高（同、百万円）</td><td>30,764</td><td>24,552</td><td>△20.2%</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：生産、受注及び販売の実績<span class="src">③</span>。手持工事高が2割減少しており、これは会社計画（2027年3月期：連結売上高500億円、前期比4.5%減）の裏付けとして整合する<span class="lab interp" style="padding:1px 6px">解釈</span>。完成工事高総額に対する割合が10%以上の相手先はデンカ㈱のみで、第57期17.1%→第58期21.0%へ上昇した<span class="src">③</span>。</p>
+
+      <h3>セグメント動向</h3>
+      <p>設備工事事業のうち主力の産業プラント設備工事は受注高16,150百万円（前期比32.7%減）と大きく落ち込んだ一方、設備保全工事（定期修繕工事中心）は受注高11,869百万円（同15.2%増）と好調<span class="src">③</span>。「新規の大型設備投資」から「既存設備の維持・修繕」へ、顧客の投資姿勢がシフトしている可能性を示唆する<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>キャッシュ・フローの質</h3>
+      <p>営業CFは第56期に△4,741百万円（未成工事受入金の大幅な減少等が要因）まで落ち込んだ後、第57期に+12,926百万円へ急回復、第58期は+1,939百万円（前期比85.0%減）と鈍化した<span class="src">③</span>。要因として売上債権の増加1,131百万円・未成工事受入金の減少1,115百万円が挙げられており<span class="src">③</span>、工事進行基準特有の運転資本変動（前受金の入金タイミングと工事進捗のズレ）が営業CFのボラティリティの主因である<span class="lab interp" style="padding:1px 6px">解釈</span>。資金調達は内部資金＋国内金融機関からの借入が基本方針で、取引先金融機関3行とコミットメントライン契約（60億円）を締結し機動的な資金調達余地を確保している<span class="src">③</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅷ. 設備・研究開発 -->
+  <div class="panel" id="p8">
+    <div class="card">
+      <h2 class="section">Ⅷ. 将来への投資 ― 設備の状況／研究開発活動</h2>
+      <h3 style="margin-top:0">Ⅷ-a　設備の状況</h3>
+      <p>当連結会計年度の設備投資額は639百万円（提出会社570百万円＋タナベタイランド社69百万円）<span class="src">③</span>。MD&A記載の減価償却費785百万円と比較すると、設備投資額（639百万円）は減価償却費の範囲内にとどまり、全体としては維持更新型の投資水準と判定できる<span class="lab interp" style="padding:1px 6px">解釈</span>。一方、富山県富山市に岩瀬浜作業所（工場・事務所、投資予定総額273百万円、2026年7月着手・2027年6月完成予定）の新設計画があり<span class="src">③</span>、地域エリア拡大戦略（Ⅳ章①国内事業の進化）と整合する新規拠点投資も進行している<span class="lab interp" style="padding:1px 6px">解釈</span>。重要な設備の除却等の計画はない<span class="src">③</span>。事業用不動産は本社（新潟県上越市）を中心に全国12拠点・在外子会社5拠点に分散しており、資産集約度は装置産業ほど高くない（非資産集約型のエンジニアリング業態）<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>Ⅷ-b　研究開発活動</h3>
+      <p>当連結会計年度の研究開発費は134,242千円で、売上高52,366百万円に対する比率は約0.26%<span class="src">③</span>。全額が設備工事事業（各種自動化技術・通信関連技術・カメラ／AI・IoT・クラウド活用ソリューション）に投じられ、表面処理事業・その他では研究開発活動を行っていない<span class="src">③</span>。対売上高比率は低く、大規模な技術開発投資ではなく、既存業務の効率化・省人化に資する応用開発が中心とみられる<span class="lab interp" style="padding:1px 6px">解釈</span>。Ⅳ章「③新規事業の探索」で語られるAGV・ロボットセル等のオリジナル製品開発の原資としては、現状の研究開発費水準はやや小さい<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅸ. 資本政策・株主還元 -->
+  <div class="panel" id="p9">
+    <div class="card">
+      <h2 class="section">Ⅸ. 資本政策・株主還元</h2>
+      <h3>配当・自己株式による資本配分の規律</h3>
+      <p>配当方針は連結配当性向35〜40%を目安とする<span class="src">③</span>が、当期の実績（配当金総額1,049,845千円÷親会社株主帰属当期純利益3,452,802千円）は約30.4%、単体配当性向は29.9%（開示値）と、いずれも目安レンジをやや下回る<span class="src">③</span>。自己株式の取得は当事業年度829株・166,911円と僅少で、株主総会・取締役会決議に基づく計画的な取得は行われていない<span class="src">③</span>。総還元性向は配当中心・自社株買いはほぼ実施しない構成であり、方針で掲げる目安に対しては保守的な運用にとどまっている<span class="lab interp" style="padding:1px 6px">解釈</span>。増益基調が続く中で、目安未達の配当性向・低水準の自己株式取得は、資本配分の規律に一定の保守性があることを示す<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>株主構成（支配構造）</h3>
+      <canvas id="chartHolders"></canvas>
+      <table style="margin-top:12px">
+        <tr><th class="l">氏名・名称</th><th>所有割合</th></tr>
+        <tr><td class="l">田辺工業取引先持株会</td><td>9.48%</td></tr>
+        <tr><td class="l">有限会社ケイアンドアイ</td><td>8.19%</td></tr>
+        <tr><td class="l">株式会社第四北越銀行</td><td>4.76%</td></tr>
+        <tr><td class="l">四月朔日義雄（代表取締役会長）</td><td>3.06%</td></tr>
+        <tr><td class="l">田辺工業従業員持株会</td><td>2.98%</td></tr>
+        <tr><td class="l">清原達郎</td><td>2.90%</td></tr>
+        <tr><td class="l">田辺よし江</td><td>2.85%</td></tr>
+        <tr><td class="l">田辺商事株式会社</td><td>2.32%</td></tr>
+        <tr><td class="l">出頭久美子</td><td>2.11%</td></tr>
+        <tr><td class="l">合同会社TNB</td><td>2.09%</td></tr>
+        <tr><td class="l">上位10者計</td><td>40.79%</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：大株主の状況<span class="src">③</span>。単一の支配株主は存在せず、上位10者でも41%にとどまる分散型の株主構成<span class="lab interp" style="padding:1px 6px">解釈</span>。「田辺」姓・田辺商事・合同会社TNB（Tanabeの略と推測される）など創業家関連とみられる株主が複数あるが、いずれも持分は小さく分散している<span class="lab interp" style="padding:1px 6px">解釈</span>。取引先持株会・従業員持株会が上位に並び、金融機関（第四北越銀行）の政策的保有もみられる<span class="lab interp" style="padding:1px 6px">解釈</span>。株主に著名な個人投資家・清原達郎氏（元タワー投資顧問代表として知られるバリュー投資家）の名がある点は、外部の目利き資本が入っている一つの傍証として留意できる<span class="lab interp" style="padding:1px 6px">解釈</span>。有限会社ケイアンドアイ（8.19%）の実体・関係性は本文からは判断できない<span class="lab check" style="padding:1px 6px">要確認</span>。</p>
+
+      <h3>政策保有株式</h3>
+      <p>純投資目的以外の政策保有株式は非上場8銘柄8,379千円＋上場5銘柄369,557千円の計13銘柄・377,936千円<span class="src">③</span>。連結純資産27,992,327千円に対する比率は約1.35%と小さい<span class="lab interp" style="padding:1px 6px">解釈</span>。主な保有先はデンカ㈱（20,000株、20,000千円）・㈱第四北越フィナンシャルグループ（86,400株、161,481千円）・㈱レゾナック・ホールディングス（10,222株、100,198千円）等で、いずれも主要取引先・金融機関との関係維持目的<span class="src">③</span>。政策保有株式の水準は資本効率を大きく圧迫する規模ではない<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>役員・創業家持株</h3>
+      <p>役員全体の所有株式数は463千株（発行済株式10,728千株の約4.4%）<span class="src">③</span>。代表取締役会長・四月朔日義雄氏が321千株（約3.0%）と役員の中で突出しており、社長・水澤文雄氏は58千株（約0.5%）にとどまる<span class="src">③</span>。社外取締役・社外監査役は自社株の保有がゼロで、独立性重視の構成といえる<span class="lab interp" style="padding:1px 6px">解釈</span>。会長個人の持株は相応にあるが、経営陣全体としての株主との利害一致度は限定的である<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅹ. ガバナンス -->
+  <div class="panel" id="p10">
+    <div class="card">
+      <h2 class="section">Ⅹ. ガバナンス</h2>
+      <h3>体制の事実</h3>
+      <p>機関設計は監査役会設置会社。取締役会は8名（うち社外取締役2名）、監査役会は3名（うち社外監査役2名）<span class="src">③</span>。執行役員制度を導入し執行役員13名（うち5名が取締役兼務）<span class="src">③</span>。経営会議（月1回）、コンプライアンス委員会、サステナビリティ委員会をそれぞれ設置<span class="src">③</span>。取締役会は原則月1回開催、第58期の出席率はほぼ全員100%（社外取締役・横田猶一氏のみ17回中16回）<span class="src">③</span>。買収防衛策は導入していない<span class="src">③</span>。</p>
+
+      <h3>役員報酬</h3>
+      <table>
+        <tr><th class="l">区分</th><th>報酬総額（千円）</th><th>固定報酬</th><th>賞与</th><th>株式報酬</th><th>対象人数</th></tr>
+        <tr><td class="l">取締役（社外を除く）</td><td>216,471</td><td>119,580</td><td>85,000</td><td>11,891</td><td>6名</td></tr>
+        <tr><td class="l">監査役（社外を除く）</td><td>15,100</td><td>11,100</td><td>4,000</td><td>−</td><td>2名</td></tr>
+        <tr><td class="l">社外役員</td><td>25,340</td><td>17,040</td><td>8,300</td><td>−</td><td>4名</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：役員の報酬等<span class="src">③</span>。個別で1億円以上の開示対象者はいない<span class="src">③</span>。業務執行取締役には金銭報酬（月額＋賞与）に加え譲渡制限付株式報酬を導入し、企業価値向上とのインセンティブ連動を図っている<span class="src">③</span>。社外取締役は独立性の観点から金銭報酬のみとする方針<span class="src">③</span>。</p>
+
+      <h3>主要役員の属性</h3>
+      <p>代表取締役会長・四月朔日義雄氏（1941年生）は1969年入社、1998年に社長就任、2023年に会長就任という長期在任歴を持つ<span class="src">③</span>。代表取締役社長・水澤文雄氏（1955年生）は1983年入社、タイ・タナベタイランド社代表取締役等を経て2023年に社長就任<span class="src">③</span>。取締役6名（社外除く）は全員生え抜き（入社後、支店長等の現場責任者を経て昇格）で、外部招聘の経営陣はいない<span class="lab interp" style="padding:1px 6px">解釈</span>。社外取締役2名は元三菱電機グループ（横田猶一氏）と公認会計士（野本直樹氏）で、うち野本氏はかつて当社の会計監査人であるEY新日本有限責任監査法人に所属していた（2017年退職）ことが明記され、監査報酬（2025年3月期で約32百万円）の支払いとあわせて独立性判断の根拠が具体的に開示されている<span class="src">③</span>。社外監査役2名は弁護士・税理士で、それぞれの専門性に基づく起用<span class="src">③</span>。</p>
+
+      <h3>会計監査</h3>
+      <p>会計監査人はEY新日本有限責任監査法人、継続監査期間36年間<span class="src">③</span>。監査報酬は当連結会計年度34,500千円（前期32,800千円）<span class="src">③</span>。36年という継続監査期間は長期にわたるが、監査人ローテーション制度は日本の上場企業に法定義務がないため、これ自体を問題視するかは判断が分かれる<span class="lab check" style="padding:1px 6px">要確認</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅺ. 会計面 -->
+  <div class="panel" id="p11">
+    <div class="card">
+      <h2 class="section">Ⅺ. 会計面の定性シグナル ―【経理の状況】＋監査報告書</h2>
+      <h3>監査上の主要な検討事項（KAM）</h3>
+      <p>連結・単体とも唯一のKAMは「設備工事事業における一定の期間にわたり履行義務を充足し認識する収益」<span class="src">③</span>。当連結会計年度の売上高52,366百万円のうち、進行基準（コストに基づくインプット法）により収益認識した完成工事高は16,438百万円で全体の31%を占める<span class="src">③</span>。工事総原価の見積りは現場責任者の専門的判断に依拠し不確実性を伴うため、監査人は実行予算書との照合・現場視察・工事原価総額の事後比較等の手続を実施したと記載されている<span class="src">③</span>。KAMが単一項目に絞られていること自体、他に監査上重要な論点（減損・繰延税金資産等）が相対的に軽微であることを示唆する<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>重要な会計上の見積り</h3>
+      <p>①固定資産の減損：当期の減損損失計上額は2,948千円（前期22,927千円）と僅少<span class="src">③</span>。②工事進行基準の収益認識（KAMと同一項目）<span class="src">③</span>。見積りの前提（売上高・営業費用・成長率）は直近の受注・生産実績データに基づくとされ、楽観的な仮定を積極的に用いている様子は読み取れない<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>財務体質の特徴</h3>
+      <table>
+        <tr><th class="l">指標</th><th>値</th></tr>
+        <tr><td class="l">自己資本比率（連結）</td><td>59.3%</td></tr>
+        <tr><td class="l">有利子負債（連結、期末）</td><td>975百万円</td></tr>
+        <tr><td class="l">現金及び現金同等物（連結、期末）</td><td>10,601百万円</td></tr>
+        <tr><td class="l">ネットキャッシュ（現金−有利子負債）</td><td>約9,626百万円</td></tr>
+        <tr><td class="l">長期借入金の金利水準</td><td>0.56〜0.57%</td></tr>
+        <tr><td class="l">総資産回転率（売上高／総資産）</td><td>約1.11回</td></tr>
+      </table>
+      <p style="margin-top:8px">出所：連結貸借対照表・借入金明細等<span class="src">①</span>。有利子負債975百万円に対し現金同等物が10,601百万円と大きく上回り、実質的にほぼ無借金に近い財務構造である<span class="lab interp" style="padding:1px 6px">解釈</span>。長期借入金の資金使途は主に長期運転資金・設備資金で、金利水準も0.5%台と低い<span class="src">③</span>。B/Sの重さは軽く、レバレッジを積極活用しない保守的な財務運営が一貫している<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+
+      <h3>継続企業の前提・後発事象・偶発債務</h3>
+      <p>継続企業の前提に関する重要事象・重要な不確実性の注記はなく、GC注記は付されていない<span class="src">③</span>。重要な後発事象は「該当事項はありません」（連結・単体とも）<span class="src">③</span>。偶発債務についても本文中に特段の記載はない<span class="lab interp" style="padding:1px 6px">解釈</span>。</p>
+    </div>
+  </div>
+
+  <!-- Ⅻ. 論点と未解明事項 -->
+  <div class="panel" id="p12">
+    <div class="card">
+      <h2 class="section">Ⅻ. 論点と未解明事項</h2>
+      <h3>買い材料になりうる記述</h3>
+      <ul class="plain">
+        <li>中期経営計画TRY2030の3目標のうち、営業利益率・ROEはすでに実績が上回っており（Ⅳ章）、残る売上規模拡大が達成できれば財務指標面での上振れ余地は大きい<span class="lab interp" style="padding:1px 6px">解釈</span>。確からしさ：中程度（売上拡大の具体的な受注パイプラインの裏付けは限定的）。</li>
+        <li>実質無借金・自己資本比率59.3%という保守的な財務体質は、下方局面での耐性・資本政策の柔軟性（増配・自社株買い余地）を示唆する<span class="lab interp" style="padding:1px 6px">解釈</span>。確からしさ：高い（貸借対照表の事実に基づく）。</li>
+        <li>1人当たり生産性が5年で+22.3%向上しており、人員をあまり増やさずに増収を実現する体質改善が進んでいる<span class="lab interp" style="padding:1px 6px">解釈</span>。確からしさ：中程度（工事案件のミックス変化にも左右されるため単純延長は禁物）。</li>
+      </ul>
+
+      <h3>懸念材料と顕在化条件</h3>
+      <ul class="plain">
+        <li>受注高（前期比13.0%減）・手持工事高（同20.2%減）の悪化が続けば、会社計画どおり2027年3月期は減収減益となる可能性が高い<span class="lab interp" style="padding:1px 6px">解釈</span>。顕在化条件：主力の産業プラント設備工事の受注回復が遅れる場合。</li>
+        <li>最大顧客デンカ㈱への完成工事高依存度が17.1%→21.0%へ上昇しており、同社の設備投資方針変化の影響を受けやすい構造になりつつある<span class="lab interp" style="padding:1px 6px">解釈</span>。顕在化条件：デンカ㈱の投資計画縮小・他社への発注シフト。</li>
+        <li>研究開発費が売上高比0.26%と小さく、「新規事業の探索」で語られるオリジナル製品戦略が投資規模に見合うペースで進むか不透明<span class="lab interp" style="padding:1px 6px">解釈</span>。</li>
+      </ul>
+
+      <h3>有報だけでは判断できず追加確認が要る事項</h3>
+      <ul class="plain">
+        <li>2027年3月期の会社計画（減収減益）の前提となる受注環境の詳細見通し → 決算説明資料<span class="lab check" style="padding:1px 6px">要確認</span></li>
+        <li>大株主「有限会社ケイアンドアイ」（8.19%）の実体・当社との関係 → 適時開示・大量保有報告書等<span class="lab check" style="padding:1px 6px">要確認</span></li>
+        <li>デンカ㈱との取引の契約形態（個別受注か基本契約の有無）・今後の発注見通し → 決算説明資料・IR取材<span class="lab check" style="padding:1px 6px">要確認</span></li>
+        <li>TRY2030の年度別ブレークダウン・KPI進捗の定量開示有無 → 中期経営計画説明資料<span class="lab check" style="padding:1px 6px">要確認</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:11px;color:var(--sub);margin-top:18px;border-top:1px solid var(--line);padding-top:10px">
+  免責事項：本レポートは有価証券報告書（第58期、2026年6月23日提出）を主たる一次情報として作成した定性分析であり、投資判断・売買推奨・目標株価の提示を目的とするものではありません。データ取得日：2026年8月29日。irpocket公式IRデータExcelは本銘柄について取得できなかったため（404エラー）、数値の裏取りは有報本文の記載に基づいています。沿革章のWeb情報には出典を明記しています。本レポートの記述・解釈・推計に誤りが含まれる可能性があり、投資判断は必ずご自身の検証に基づき行ってください。
+  </p>
+</div>
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.p).classList.add('active');
+  });
+});
+const inkColors=['#111111','#6b6b6b','#9b9b9b','#c9c9c9','#3a3a3a'];
+new Chart(document.getElementById('chart5y'),{
+  type:'bar',
+  data:{labels:['第54期(22/3)','第55期(23/3)','第56期(24/3)','第57期(25/3)','第58期(26/3)'],
+  datasets:[
+    {type:'bar',label:'売上高（百万円）',data:[42526,42944,51842,50832,52366],backgroundColor:'#dcdcdc',yAxisID:'y'},
+    {type:'line',label:'経常利益（百万円）',data:[2898,2785,2726,3907,4810],borderColor:'#111111',backgroundColor:'#111111',yAxisID:'y1',tension:0.15}
+  ]},
+  options:{responsive:true,scales:{
+    y:{position:'left',title:{display:true,text:'売上高'}},
+    y1:{position:'right',title:{display:true,text:'経常利益'},grid:{drawOnChartArea:false}}
+  },plugins:{legend:{position:'bottom'}}}
+});
+new Chart(document.getElementById('chartSeg'),{
+  type:'pie',
+  data:{labels:['設備工事事業 97.0%','表面処理事業 2.8%','その他 0.2%'],
+  datasets:[{data:[50786,1483,96],backgroundColor:['#111111','#8c8c8c','#dcdcdc']}]},
+  options:{plugins:{legend:{position:'bottom'}}}
+});
+new Chart(document.getElementById('chartHolders'),{
+  type:'bar',
+  data:{labels:['取引先持株会','ケイアンドアイ','第四北越銀行','四月朔日義雄','従業員持株会','清原達郎','田辺よし江','田辺商事','出頭久美子','合同会社TNB'],
+  datasets:[{label:'所有割合（％）',data:[9.48,8.19,4.76,3.06,2.98,2.90,2.85,2.32,2.11,2.09],backgroundColor:'#111111'}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false}}}
+});
+</script>
+</body></html>

@@ -80,7 +80,7 @@
     }
     .row .code { font-size: 13px; font-variant-numeric: tabular-nums; opacity: .5; }
     .row .name { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
-    .row .links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .row .links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
     .rlink {
       display: inline-flex; align-items: baseline; gap: 6px;
       border: 1px solid var(--border-strong); border-radius: var(--radius);
@@ -92,6 +92,16 @@
     .rlink:hover .d { opacity: .8; }
     .rlink.missing {
       border-color: var(--border); opacity: .35; cursor: default; pointer-events: none;
+    }
+    /* note付録：無料の2レポートとは別欄（区切り線の右側）に表示する有料リンク */
+    .links-free { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .links-paid { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .links-divider { width: 1px; align-self: stretch; background: var(--border); margin: 0 2px; }
+    .rlink.appendix { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+    .rlink.appendix .d { opacity: .7; }
+    .rlink.appendix:hover { background: var(--bg); color: var(--fg); }
+    .rlink.appendix.missing {
+      background: none; color: var(--fg); border-color: var(--border); opacity: .35;
     }
 
     .empty { padding: 60px 4px; text-align: center; opacity: .5; font-size: 13px; }
@@ -122,7 +132,8 @@
     <div class="badge"><span class="sq"></span>個別銘柄</div>
     <h1>個別銘柄レポート一覧</h1>
     <p>スクリーニング通過銘柄を中心に作成した、定量レポート（財務・バリュエーション）と
-       有価証券報告書の定性分析レポートの一覧。銘柄コード・社名で絞り込めます。</p>
+       有価証券報告書の定性分析レポートの一覧。銘柄コード・社名で絞り込めます。
+       黒塗りの「note付録」はnote有料記事の購入者向け詳細分析です。</p>
   </div>
 
   <div class="toolbar">
@@ -148,9 +159,10 @@ function esc(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-function linkHtml(code, kind, date, label) {
-  if (!date) return `<span class="rlink missing">${label}<span class="d">未作成</span></span>`;
-  return `<a class="rlink" href="reports/stocks/${code}/${kind}.html" target="_blank" rel="noopener">${label}<span class="d">${date}</span></a>`;
+function linkHtml(code, kind, date, label, extraClass) {
+  const cls = extraClass ? `rlink ${extraClass}` : 'rlink';
+  if (!date) return `<span class="${cls} missing">${label}<span class="d">未作成</span></span>`;
+  return `<a class="${cls}" href="reports/stocks/${code}/${kind}.html" target="_blank" rel="noopener">${label}<span class="d">${date}</span></a>`;
 }
 
 function render() {
@@ -166,8 +178,11 @@ function render() {
       <div class="code">${esc(s.code)}</div>
       <div class="name">${esc(s.name)}</div>
       <div class="links">
-        ${linkHtml(s.code, 'report', s.report_date, '定量')}
-        ${linkHtml(s.code, 'qualitative_report', s.qualitative_date, '有報')}
+        <div class="links-free">
+          ${linkHtml(s.code, 'report', s.report_date, '定量')}
+          ${linkHtml(s.code, 'qualitative_report', s.qualitative_date, '有報')}
+        </div>
+        ${s.note_date ? `<div class="links-divider"></div><div class="links-paid">${linkHtml(s.code, 'note_report', s.note_date, 'note付録', 'appendix')}</div>` : ''}
       </div>
     </div>
   `).join('');

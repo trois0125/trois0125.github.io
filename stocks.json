@@ -2,130 +2,151 @@
   "generated": true,
   "stocks": [
     {
-      "code": "2153",
-      "name": "Ｅ・Ｊホールディングス",
-      "report_date": "2026-08-23",
-      "qualitative_date": "2026-08-29"
-    },
-    {
       "code": "1828",
       "name": "田辺工業",
       "report_date": "2026-08-26",
-      "qualitative_date": null
+      "qualitative_date": "2026-08-29",
+      "note_date": null
+    },
+    {
+      "code": "2153",
+      "name": "Ｅ・Ｊホールディングス",
+      "report_date": "2026-08-23",
+      "qualitative_date": "2026-08-29",
+      "note_date": null
     },
     {
       "code": "5445",
       "name": "東京鐵鋼",
       "report_date": "2026-08-21",
-      "qualitative_date": "2026-08-21"
+      "qualitative_date": "2026-08-21",
+      "note_date": null
     },
     {
       "code": "6378",
       "name": "木村化工機",
       "report_date": "2026-08-21",
-      "qualitative_date": "2026-08-21"
+      "qualitative_date": "2026-08-21",
+      "note_date": null
     },
     {
       "code": "6291",
       "name": "日本エアーテック",
       "report_date": "2026-08-20",
-      "qualitative_date": "2026-08-19"
+      "qualitative_date": "2026-08-19",
+      "note_date": null
     },
     {
       "code": "5729",
       "name": "日本精鉱",
       "report_date": "2026-08-19",
-      "qualitative_date": "2026-08-19"
+      "qualitative_date": "2026-08-19",
+      "note_date": null
     },
     {
       "code": "5906",
       "name": "エムケー精工",
       "report_date": "2026-08-19",
-      "qualitative_date": "2026-08-18"
+      "qualitative_date": "2026-08-18",
+      "note_date": null
     },
     {
       "code": "3932",
       "name": "アカツキ",
       "report_date": "2026-08-18",
-      "qualitative_date": "2026-08-14"
+      "qualitative_date": "2026-08-14",
+      "note_date": null
     },
     {
       "code": "8285",
       "name": "三谷産業",
       "report_date": "2026-08-18",
-      "qualitative_date": "2026-08-18"
+      "qualitative_date": "2026-08-18",
+      "note_date": null
     },
     {
       "code": "9880",
       "name": "イノテック",
       "report_date": "2026-08-18",
-      "qualitative_date": "2026-08-14"
+      "qualitative_date": "2026-08-14",
+      "note_date": null
     },
     {
       "code": "5288",
       "name": "アジアパイルホールディングス",
       "report_date": "2026-08-14",
-      "qualitative_date": "2026-08-13"
+      "qualitative_date": "2026-08-13",
+      "note_date": null
     },
     {
       "code": "5644",
       "name": "メタルアート",
       "report_date": "2026-08-13",
-      "qualitative_date": "2026-08-12"
+      "qualitative_date": "2026-08-12",
+      "note_date": null
     },
     {
       "code": "5757",
       "name": "CKサンエツ",
       "report_date": "2026-08-13",
-      "qualitative_date": "2026-08-11"
+      "qualitative_date": "2026-08-11",
+      "note_date": null
     },
     {
       "code": "6824",
       "name": "新コスモス電機",
       "report_date": "2026-08-12",
-      "qualitative_date": "2026-08-08"
+      "qualitative_date": "2026-08-08",
+      "note_date": null
     },
     {
       "code": "6391",
       "name": "加地テック",
       "report_date": "2026-08-11",
-      "qualitative_date": "2026-08-07"
+      "qualitative_date": "2026-08-07",
+      "note_date": null
     },
     {
       "code": "8935",
       "name": "FJネクストホールディングス",
       "report_date": "2026-08-09",
-      "qualitative_date": "2026-08-02"
+      "qualitative_date": "2026-08-02",
+      "note_date": null
     },
     {
       "code": "3611",
       "name": "マツオカコーポレーション",
       "report_date": "2026-07-26",
-      "qualitative_date": "2026-08-07"
+      "qualitative_date": "2026-08-07",
+      "note_date": null
     },
     {
       "code": "6145",
       "name": "NITTOKU",
       "report_date": "2026-07-20",
-      "qualitative_date": "2026-07-25"
+      "qualitative_date": "2026-07-25",
+      "note_date": null
     },
     {
       "code": "1435",
       "name": "robot_home",
       "report_date": "2026-05-31",
-      "qualitative_date": null
+      "qualitative_date": null,
+      "note_date": null
     },
     {
       "code": "3359",
       "name": "cotta",
       "report_date": "2026-05-31",
-      "qualitative_date": null
+      "qualitative_date": null,
+      "note_date": null
     },
     {
       "code": "2304",
       "name": "CSSホールディングス",
       "report_date": "2026-05-27",
-      "qualitative_date": null
+      "qualitative_date": null,
+      "note_date": null
     }
   ]
 }
