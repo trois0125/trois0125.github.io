@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NITTOKU株式会社（6145）詳細分析｜note付録</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#111111; --sub:#6b6b6b; --line:#dcdcdc;
+  --neg:#b42318;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+header.rhead h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+header.rhead .sub{color:var(--sub);font-size:12.5px}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 20px;border-bottom:2px solid var(--ink)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);
+  background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);background:var(--card)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px}
+h2.section{font-size:16px;font-weight:800;border-left:4px solid var(--ink);padding-left:10px;margin:0 0 14px}
+h3{font-size:14px;font-weight:700;margin:18px 0 8px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 16px}
+.kpi{background:#f4f4f4;border:1px solid var(--line);border-radius:2px;padding:10px 14px;text-align:center}
+.kpi .v{font-size:20px;font-weight:800}
+.kpi .l{font-size:11px;color:var(--sub);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{border-bottom:1px solid var(--line);padding:7px 9px;text-align:right}
+th{background:#f2f2f2;font-weight:700;color:var(--sub);text-align:center}
+td.l,th.l{text-align:left}
+tr.h1-row td{font-weight:800;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+tr.forecast td{font-style:italic;background:#f7f7f7}
+tr.target td{border-top:1px dashed var(--ink)}
+tr.highlight td{font-weight:800;background:#f4f4f4}
+td.neg{color:var(--neg)}
+.src{font-size:10px;color:var(--sub);font-weight:700;vertical-align:super;margin-left:2px;
+  border:1px solid var(--line);border-radius:2px;padding:0 3px}
+.alert{background:#f7f7f7;border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:2px;padding:12px 16px;margin:12px 0;font-size:13px}
+.alert.danger{border-left-color:var(--neg);color:var(--neg)}
+canvas{max-height:320px}
+p.body{font-size:13px;margin:10px 0}
+.foot{font-size:11px;color:var(--sub);line-height:1.9;margin-top:8px}
+</style></head><body>
+<div class="wrap">
+
+<header class="rhead">
+  <h1>NITTOKU株式会社（6145） 詳細分析（note付録）</h1>
+  <div class="sub">作成日：2026-08-29 ／ 株価基準日：2026-08-28終値 ／ 決算基準：2026年3月期本決算（2026-05-15）・2027年3月期第1四半期決算短信（2026-08-07）／ 一次情報のみ [②]〜[⑤]</div>
+</header>
+
+<div class="alert">
+  会社が開示している通期計画（営業利益51.0億円）は5月の公表から据え置かれていますが、
+  直近の第1四半期（4〜6月）は営業利益が前年同期比78.5%減という大きく低い滑り出しでした。
+  受注残高も「前年比では減少が続く」一方「四半期ベースでは下げ止まりつつある」という二つの読み方ができる状態です。
+  この付録では、この二面性を数字で腑分けしていきます（投資の推奨は行いません）。
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-t="p0">① スナップショット</button>
+  <button class="tab" data-t="p1">② 財務を読み解く</button>
+  <button class="tab" data-t="p2">③ 割安度を検証する</button>
+  <button class="tab" data-t="p3">④ 上昇材料とリスク</button>
+  <button class="tab" data-t="p4">⑤ シナリオと着地点</button>
+</div>
+
+<!-- ============ Tab1: スナップショット ============ -->
+<div class="panel active" id="p0">
+  <h2 class="section">会社基本情報 <span class="src">[②]</span></h2>
+  <div class="card">
+    <table>
+      <tbody>
+        <tr><td class="l">正式社名</td><td class="l">NITTOKU 株式会社（英文名：NITTOKU CO., LTD.）</td></tr>
+        <tr><td class="l">設立</td><td class="l">1972年9月28日</td></tr>
+        <tr><td class="l">本社所在地</td><td class="l">埼玉県さいたま市大宮区桜木町一丁目10番地2</td></tr>
+        <tr><td class="l">資本金</td><td class="l">68.8億円（6,884,928,042円）</td></tr>
+        <tr><td class="l">代表者</td><td class="l">代表取締役 社長執行役員CEO 笹澤 純人</td></tr>
+        <tr><td class="l">従業員数</td><td class="l">単体 580名／連結 1,254名（パート・嘱託を除く）</td></tr>
+        <tr><td class="l">市場区分・業種</td><td class="l">東証スタンダード・機械</td></tr>
+        <tr><td class="l">決算期</td><td class="l">3月期（次回2Q決算発表は例年11月中旬・未確定）</td></tr>
+        <tr><td class="l">発行済株式数／自己株式</td><td class="l">18,098,923株／1,224,441株</td></tr>
+      </tbody>
+    </table>
+    <p class="body">コイル製造用の自動巻線機で世界最大手。<span class="src">[④]</span>
+    モーター用巻線機、各種自動化システム機、非接触ICタグ・カードを手掛ける。EV用モーター、スマートフォンのアンテナコイル、
+    パワー半導体、ペロブスカイト太陽電池の製造装置まで、「巻く・貼る・積む」工程の生産設備を供給する立場にある。<span class="src">[③]</span>
+    2026年4月には株式会社片岡製作所からレーザ加工システム事業を譲り受け、新会社「NITTOKU KYOTO株式会社」を設立した。<span class="src">[③]</span></p>
+  </div>
+
+  <h2 class="section">現在地：主要指標 <span class="src">[④]</span></h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">2,489<small style="font-size:12px">円</small></div><div class="l">株価（前日比+20円 / +0.81%）</div></div>
+    <div class="kpi"><div class="v">12.7<small style="font-size:12px">倍</small></div><div class="l">PER（会社予想ベース）</div></div>
+    <div class="kpi"><div class="v">1.04<small style="font-size:12px">倍</small></div><div class="l">PBR</div></div>
+    <div class="kpi"><div class="v">3.29<small style="font-size:12px">%</small></div><div class="l">配当利回り</div></div>
+    <div class="kpi"><div class="v">450<small style="font-size:12px">億円</small></div><div class="l">時価総額</div></div>
+    <div class="kpi"><div class="v">62.1<small style="font-size:12px">%</small></div><div class="l">自己資本比率（1Q末）</div></div>
+    <div class="kpi"><div class="v">8.5<small style="font-size:12px">%</small></div><div class="l">ROE（FY2026/3実績・当方算出）</div></div>
+    <div class="kpi"><div class="v">5.5<small style="font-size:12px">%</small></div><div class="l">ROA（同左）</div></div>
+  </div>
+
+  <h2 class="section">10年の業績推移 <span class="src">[⑤]</span></h2>
+  <div class="card"><div class="chart" style="height:300px"><canvas id="c_ov"></canvas></div>
+  <div class="foot">irpocketの当銘柄向けIRデータExcelが404で取得できなかったため、通期の実績値はJ-Quants API V2（JPX公式）の開示サマリーを一次情報として採用（既存レポート作成時に検証済みの数値を継承）。2027/3期は会社予想（2026年5月公表・8月の1Q時点で修正なし）。</div></div>
+
+  <h2 class="section">事業セグメント（2026年3月期・通期） <span class="src">[③]</span></h2>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">セグメント</th><th>売上高</th><th>構成比</th><th>前期比</th></tr></thead>
+      <tbody>
+        <tr><td class="l">ワインディングシステム</td><td>319.9億</td><td>75.4%</td><td>+50.0%</td></tr>
+        <tr><td class="l">メカトロニクス</td><td>85.1億</td><td>20.1%</td><td class="neg">-16.4%</td></tr>
+        <tr><td class="l">非接触ICタグ・カード（RFID）</td><td>18.9億</td><td>4.5%</td><td>+5.9%</td></tr>
+        <tr class="h1-row"><td class="l">合計</td><td>424.1億</td><td>100%</td><td>+27.5%</td></tr>
+      </tbody>
+    </table>
+    <p class="body">2027年3月期からは報告セグメントが「ワインディングシステム＆メカトロニクス事業」（全体の約93%）と「非接触ICタグ・カード事業」の2区分に再編されている。<span class="src">[③]</span>
+    上表は再編前の旧3区分（2026/3期通期）であることに注意。</p>
+  </div>
+
+  <p class="body"><b>いま何合目にいるか：</b>2026年3月期は売上・営業利益とも過去最高を更新した年だった。
+  一方で2027年3月期の滑り出し（1Q）は営業利益が前年同期比78.5%減という厳しい数字で、
+  会社は通期計画を据え置いているものの、進捗率だけを見ると計画達成にはかなりの巻き返しが必要な状況にある。
+  詳細は次タブ以降で数字を追っていく。</p>
+</div>
+
+<!-- ============ Tab2: 財務を読み解く ============ -->
+<div class="panel" id="p1">
+  <h2 class="section">通期業績の10年推移 <span class="src">[⑤]</span></h2>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">決算期</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>純利益</th><th>EPS</th><th>BPS</th><th>自己資本比率</th></tr></thead>
+      <tbody>
+        <tr><td class="l">2017/3</td><td>232.8億</td><td>28.7億</td><td>12.3%</td><td>22.3億</td><td>123.40</td><td>1,270</td><td>68.1%</td></tr>
+        <tr><td class="l">2018/3</td><td>306.9億</td><td>40.2億</td><td>13.1%</td><td>32.0億</td><td>177.17</td><td>1,451</td><td>69.2%</td></tr>
+        <tr><td class="l">2019/3</td><td>318.4億</td><td>38.5億</td><td>12.1%</td><td>28.6億</td><td>158.08</td><td>1,554</td><td>72.5%</td></tr>
+        <tr><td class="l">2020/3</td><td>274.9億</td><td>24.8億</td><td>9.0%</td><td>21.2億</td><td>117.36</td><td>1,616</td><td>77.6%</td></tr>
+        <tr><td class="l">2021/3</td><td>220.5億</td><td>13.6億</td><td>6.2%</td><td>12.5億</td><td>69.05</td><td>1,743</td><td>74.5%</td></tr>
+        <tr><td class="l">2022/3</td><td>281.2億</td><td>28.9億</td><td>10.3%</td><td>23.1億</td><td>127.78</td><td>1,863</td><td>71.1%</td></tr>
+        <tr><td class="l">2023/3</td><td>294.6億</td><td>31.0億</td><td>10.5%</td><td>22.2億</td><td>123.10</td><td>1,977</td><td>74.9%</td></tr>
+        <tr><td class="l">2024/3</td><td>308.0億</td><td>41.7億</td><td>13.5%</td><td>27.4億</td><td>151.92</td><td>2,182</td><td>69.4%</td></tr>
+        <tr><td class="l neg">2025/3</td><td>332.7億</td><td class="neg">11.2億</td><td class="neg">3.4%</td><td class="neg">13.1億</td><td class="neg">73.97</td><td>2,157</td><td>60.2%</td></tr>
+        <tr class="h1-row"><td class="l">2026/3</td><td>424.1億</td><td>54.4億</td><td>12.8%</td><td>34.4億</td><td>203.85</td><td>2,386</td><td>64.0%</td></tr>
+        <tr class="forecast"><td class="l">2027/3 予</td><td>440.0億</td><td>51.0億</td><td>11.6%</td><td>33.0億</td><td>195.56</td><td>―</td><td>―</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">実績はJ-Quants API V2（JPX公式・決算短信サマリー）<span class="src">[⑤]</span>、2027/3期予想は会社公表値（2026年5月15日・8月7日時点で修正なし）<span class="src">[③]</span>。</div>
+  </div>
+
+  <h2 class="section">第1四半期（2026年4〜6月）実績 <span class="src">[③]</span></h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">64.4<small style="font-size:12px">億</small></div><div class="l">売上高（+1.6%）</div></div>
+    <div class="kpi"><div class="v neg">0.72<small style="font-size:12px">億</small></div><div class="l">営業利益（-78.5%）</div></div>
+    <div class="kpi"><div class="v">3.00<small style="font-size:12px">億</small></div><div class="l">純利益（+23.8%）</div></div>
+    <div class="kpi"><div class="v">17.82<small style="font-size:12px">円</small></div><div class="l">EPS（前年14.40円）</div></div>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">通期計画に対する進捗率</th><th>1Q実績</th><th>通期計画</th><th>進捗率</th></tr></thead>
+      <tbody>
+        <tr><td class="l">売上高</td><td>64.4億</td><td>440.0億</td><td>14.6%</td></tr>
+        <tr class="highlight"><td class="l">営業利益</td><td>0.72億</td><td>51.0億</td><td class="neg">1.4%</td></tr>
+        <tr><td class="l">純利益</td><td>3.00億</td><td>33.0億</td><td>9.1%</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">進捗率はいずれも当方の単純計算（1Q実績÷通期会社予想）。四半期均等配分なら25%が目安。</div>
+  </div>
+  <div class="alert">
+    純利益の進捗率（9.1%）が営業利益の進捗率（1.4%）より高いのは、片岡製作所のレーザ加工システム事業譲受に伴う
+    「負ののれん発生益」4.13億円が特別利益に一括計上されたため。<span class="src">[③]</span>
+    本業の利益水準を見る上では、営業利益・経常利益の進捗率（1.4%・1.5%）を基準に見るのが妥当と考えられる。
+  </div>
+
+  <h3>なぜ営業利益がここまで落ちたのか（原価・販管費の変化）</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">項目</th><th>前1Q（2025/4-6）</th><th>当1Q（2026/4-6）</th><th>変化</th></tr></thead>
+      <tbody>
+        <tr><td class="l">売上高</td><td>63.4億</td><td>64.4億</td><td>+1.6%</td></tr>
+        <tr><td class="l">売上原価（原価率）</td><td>42.2億（66.5%）</td><td>43.8億（68.0%）</td><td>+1.5pt</td></tr>
+        <tr><td class="l">売上総利益（率）</td><td>21.2億（33.5%）</td><td>20.6億（32.0%）</td><td class="neg">-1.5pt</td></tr>
+        <tr><td class="l">販管費（売上比）</td><td>17.8億（28.1%）</td><td>19.9億（30.8%）</td><td class="neg">+2.7pt</td></tr>
+        <tr class="h1-row"><td class="l">営業利益（率）</td><td>3.38億（5.3%）</td><td>0.72億（1.1%）</td><td class="neg">-4.2pt</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">出所：2027年3月期第1四半期決算短信 添付資料<span class="src">[③]</span>。</div>
+  </div>
+  <p class="body">原価率の悪化（+1.5pt）は資源・エネルギー価格の高騰による負担増と会社は説明している。<span class="src">[③]</span>
+  販管費比率の悪化（+2.7pt）は、4月に子会社化したNITTOKU KYOTOの費用が単純に上乗せされた影響が大きいと読める
+  （同社の売上計上はこれから本格化する見込みで、今1Qは費用が先行して出た形）。
+  <b>いずれも一過性の要素と構造要因が混在しており、この1四半期だけで「収益力が落ちた」と断定するのは早計</b>だが、
+  通期計画の51.0億円に対して1.4%の進捗という数字自体は重い。</p>
+
+  <h2 class="section">財務健全性 <span class="src">[③][⑤]</span></h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">62.1<small style="font-size:12px">%</small></div><div class="l">自己資本比率（1Q末・前期末64.0%）</div></div>
+    <div class="kpi"><div class="v">651.4<small style="font-size:12px">億</small></div><div class="l">総資産（1Q末）</div></div>
+    <div class="kpi"><div class="v">411.8<small style="font-size:12px">億</small></div><div class="l">純資産（1Q末）</div></div>
+    <div class="kpi"><div class="v">41.0<small style="font-size:12px">億</small></div><div class="l">営業CF（2026/3期・前期0.5億から回復）</div></div>
+  </div>
+  <p class="body">自己資本比率は10年間64〜78%で推移してきた財務基盤の堅さが特徴。<span class="src">[⑤]</span>
+  1Q末に62.1%へやや低下したのは、NITTOKU KYOTO設立に伴う土地・建物・投資有価証券の取得（固定資産+35.3億円）が主因で、<span class="src">[③]</span>
+  自己資本自体（404億→404億とほぼ横ばい）が毀損したわけではない。</p>
+
+  <div class="card"><h3>ROE・ROAの推移</h3><div class="chart"><canvas id="c_roe"></canvas></div>
+  <div class="foot">当方算出の近似値：ROE≈EPS÷BPS、ROA≈ROE×自己資本比率。決算短信サマリーには期中平均ベースの公式ROE/ROAが含まれないため、開示済みの数値<span class="src">[⑤]</span>から機械的に近似したもの（期末値ベースのため公式の期中平均ROEとは数値が一致しない場合がある）。</div></div>
+  <div class="card"><h3>EPS・DPSの推移</h3><div class="chart"><canvas id="c_epsdps"></canvas></div></div>
+</div>
+
+<!-- ============ Tab3: 割安度を検証する ============ -->
+<div class="panel" id="p2">
+  <h2 class="section">現在のバリュエーション <span class="src">[④]</span></h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">12.2<small style="font-size:12px">倍</small></div><div class="l">PER（実績・EPS203.85円）</div></div>
+    <div class="kpi"><div class="v">12.7<small style="font-size:12px">倍</small></div><div class="l">PER（会社予想・EPS195.56円）</div></div>
+    <div class="kpi"><div class="v">1.04<small style="font-size:12px">倍</small></div><div class="l">PBR（1Q末BPS 2,395円）</div></div>
+    <div class="kpi"><div class="v">42.9<small style="font-size:12px">倍</small></div><div class="l">信用倍率</div></div>
+  </div>
+  <p class="body">実績PER（12.2倍）と予想PER（12.7倍）がほぼ揃っているのは、
+  今期の会社予想EPS（195.56円）が前期実績（203.85円）よりわずかに低い＝減益計画のため。
+  市場が今期の減益計画をそのまま織り込んでいるとすれば、この水準は「妥当」の範囲に収まる。</p>
+
+  <h2 class="section">BPSの10年推移とPBR</h2>
+  <div class="card"><div class="chart"><canvas id="c_bps"></canvas></div>
+  <div class="foot">BPSは着実に成長（1,270円→2,386円、10年で+88%）。<span class="src">[⑤]</span> 現在のPBR1.04倍は、この間ほぼ一貫して解散価値をわずかに上回る水準で推移してきたレンジの中に収まっている。</div></div>
+
+  <h2 class="section">理論PBRの試算（推計）</h2>
+  <div class="alert danger">以下は当方の仮定に基づく推計であり、将来の株価を保証するものではありません。</div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">前提</th><th>数値</th><th style="text-align:left">考え方</th></tr></thead>
+      <tbody>
+        <tr><td class="l">ROE（FY2026/3実績・当方算出）</td><td>8.5%</td><td class="l">純利益34.4億÷自己資本402.6億</td></tr>
+        <tr><td class="l">株式コスト仮定</td><td>8.0%</td><td class="l">小型株の一般的な目安として仮置き</td></tr>
+        <tr class="highlight"><td class="l">理論PBR＝ROE÷株式コスト</td><td>1.06倍</td><td class="l">実際のPBR1.04倍とほぼ一致</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body">この試算が正しいとすれば、<b>現在の株価は「収益力に見合った、割高でも割安でもない水準」と読める。</b>
+  上振れが起きるとすれば、ROEそのものが変化する（＝収益力の水準が変わる）局面になる。
+  1Qの営業利益急減が一時的で終わるか、それとも今後のROE低下につながるかが、この理論PBRの前提を左右する。</p>
+
+  <h2 class="section">配当の推移 <span class="src">[⑤][③]</span></h2>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">決算期</th><th>DPS</th><th>EPS</th><th>配当性向</th></tr></thead>
+      <tbody>
+        <tr><td class="l">2024/3</td><td>34円</td><td>151.92</td><td>22.4%</td></tr>
+        <tr><td class="l neg">2025/3</td><td>42円</td><td class="neg">73.97</td><td class="neg">56.8%</td></tr>
+        <tr class="h1-row"><td class="l">2026/3</td><td>82円</td><td>203.85</td><td>40.2%</td></tr>
+        <tr class="forecast"><td class="l">2027/3 予</td><td>82円</td><td>195.56</td><td>41.9%</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">2027/3期は第2四半期末41.00円・期末41.00円の均等配分を予定（前期は30円・52円の傾斜配分）。年間82円で据え置き、修正なし。<span class="src">[③]</span></div>
+  </div>
+</div>
+
+<!-- ============ Tab4: 上昇材料とリスク ============ -->
+<div class="panel" id="p3">
+  <h2 class="section">上昇材料とリスク（対で見る）</h2>
+
+  <div class="card">
+    <h3>① 受注残高：下げ止まり感 vs 前年割れの継続</h3>
+    <p class="body"><b>材料：</b>主力セグメント（ワインディング＆メカトロニクス）の受注残高は、
+    2026/3期末205.7億→2027/3期1Q末214.2億へ、四半期ベースでは3四半期ぶりに増加した。<span class="src">[③]</span><br>
+    <b>リスク：</b>ただし前年同期比では-21.0%であり、水準自体はなお切り下がったまま。
+    1Qの受注高（フロー）も47.9億円と前年同期比-40.8%の急減で、残高が増えたのは受注の積み上がりというより
+    売上の消化ペースが鈍った結果の可能性もある。<span class="src">[③]</span></p>
+  </div>
+
+  <div class="card">
+    <h3>② 新規M&A：NITTOKU KYOTO（レーザ加工システム事業）</h3>
+    <p class="body"><b>材料：</b>2026年4月、片岡製作所からレーザ加工システム事業を譲り受け子会社化。
+    既存のレーザ関連事業とのシナジーが期待されている。<span class="src">[③]</span><br>
+    <b>リスク：</b>1Q時点では収益貢献よりも先に費用（人件費・設備関連費）が計上されており、
+    販管費比率の悪化要因になっている。統合効果が数字に表れるまでには時間がかかる可能性がある。</p>
+  </div>
+
+  <div class="card">
+    <h3>③ 半導体・AI関連の新規受注</h3>
+    <p class="body"><b>材料：</b>AIサーバー向け半導体需要の拡大を背景に、高速検査ハンドラーでAIサーバー向け案件を獲得し、
+    今期中の売上計上を予定していると会社は説明している。ヒューマノイドロボットの関節・指先向け小型モータ製造設備の開発にも着手。<span class="src">[③]</span><br>
+    <b>リスク：</b>「予定」段階であり、金額・時期は開示されていない。半導体関連の設備投資は循環性が強く、
+    投資サイクルが後ずれすれば計上時期がずれ込む可能性がある。</p>
+  </div>
+
+  <div class="card">
+    <h3>④ 株主還元の継続</h3>
+    <p class="body"><b>材料：</b>年間配当82円を据え置き。前期に42円→82円へ倍増させた水準を維持する計画。<span class="src">[③]</span><br>
+    <b>リスク：</b>配当性向は今期予想ベースで41.9%まで上昇しており、1Qのような減益が続けば、
+    「維持」自体にキャッシュフロー面でのプレッシャーがかかる可能性がある。</p>
+  </div>
+
+  <h2 class="section">受注残高の四半期推移 <span class="src">[③]</span></h2>
+  <div class="card"><div class="chart"><canvas id="c_backlog"></canvas></div>
+  <div class="foot">ワインディング＆メカトロニクス事業と非接触ICタグ・カード事業の受注残高の単純合算（当方集計）。2027年3月期からセグメント区分が変更されたため、2026/3期以前は旧区分の合算値。単位：百万円。</div></div>
+
+  <h2 class="section">中期経営計画の数値目標（据え置き） <span class="src">[③]</span></h2>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">項目</th><th>2026/3 実績</th><th>2027/3 計画</th><th>2028/3 中計目標</th></tr></thead>
+      <tbody>
+        <tr><td class="l">売上高</td><td>424.1億</td><td>440.0億</td><td>500.0億</td></tr>
+        <tr><td class="l">営業利益</td><td>54.4億</td><td class="neg">51.0億</td><td>55.0億</td></tr>
+        <tr><td class="l">営業利益率</td><td>12.8%</td><td>11.6%</td><td>11.0%</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">出所：2026年3月期決算説明資料。1Q決算短信時点で中計の修正発表はない。<span class="src">[③]</span></div>
+  </div>
+  <p class="body">2028/3期の中計目標（営業利益55.0億）は、2026/3期の実績（54.4億）とほぼ同水準まで既に到達している。
+  2027/3期の計画である51.0億は、その中計目標からいったん下がる一年になる想定であり、
+  <b>1Qの進捗（1.4%）がこのまま続けば、通期予想自体の下方修正も選択肢に入ってくる局面</b>と見ることができる。</p>
+</div>
+
+<!-- ============ Tab5: シナリオと着地点 ============ -->
+<div class="panel" id="p4">
+  <h2 class="section">シナリオ分析（推計）</h2>
+  <div class="alert danger">
+    以下の目標株価はすべて一次情報から導出した推計値です。実際の業績・株価を保証するものではありません。
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">シナリオ</th><th>前提EPS</th><th>想定PER</th><th>理論株価</th><th>現在比</th><th style="text-align:left">前提の考え方</th></tr></thead>
+      <tbody>
+        <tr><td class="l">弱気</td><td>150円</td><td>10倍</td><td class="neg">1,500円</td><td class="neg">-39.7%</td><td class="l">通期計画未達（1Qの利益率低下が下期も続く）。設備投資循環の下降局面入りでPERも収縮</td></tr>
+        <tr class="highlight"><td class="l">基本</td><td>195.6円</td><td>13倍</td><td>2,542円</td><td>+2.1%</td><td class="l">会社予想どおり着地（下期での挽回を想定）。PERは現状水準を維持</td></tr>
+        <tr><td class="l">強気</td><td>220円</td><td>15倍</td><td>3,300円</td><td>+32.6%</td><td class="l">半導体・AI関連の新規受注が計画を上回るペースで積み上がり、中計目標の前倒し達成が視野に入る</td></tr>
+      </tbody>
+    </table>
+    <div class="foot">理論株価＝前提EPS×想定PER。現在株価2,489円（2026年8月28日終値）基準。<span class="src">[④]</span></div>
+  </div>
+  <div class="card"><div class="chart"><canvas id="c_scenario"></canvas></div></div>
+
+  <h2 class="section">総合所見</h2>
+  <p class="body">この銘柄の材料を並べると、話は一点に集約される。<b>「1Qの利益急減は一過性の下振れなのか、通期計画そのものが崩れ始める予兆なのか」</b>という点である。<br><br>
+  <b>一過性と読む材料：</b>売上高は前年同期比+1.6%と伸びており、需要そのものが消えたわけではない。
+  利益率の悪化要因（原価高・NITTOKU KYOTO関連費用）は、いずれも性質上いずれ収束しうるコストである。
+  受注残高も四半期ベースでは増加に転じた。会社自身、通期計画を一度も修正していない。<br><br>
+  <b>予兆と読む材料：</b>1Qの営業利益進捗率はわずか1.4%で、四半期均等（25%）は言うに及ばず、
+  過去の同社の季節性を踏まえても低い水準に見える。受注高（フロー）は-40.8%と急減しており、
+  残高の増加が需要の強さではなく単に売上消化の鈍化によるものなら、先行指標として好ましい話ではない。</p>
+
+  <p class="body">この判断はスクリーニングや過去データだけからは導けない。<b>次に確認すべきは、2Q決算（例年11月中旬）で
+  通期計画の修正があるかどうか、そして受注高が1Qの落ち込みから回復しているかどうか</b>である。</p>
+
+  <h2 class="section">確認すべき今後のイベント</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">時期</th><th class="l">イベント</th><th class="l">着目点</th></tr></thead>
+      <tbody>
+        <tr><td class="l">2026年11月中旬（未確定）</td><td class="l">2027/3期 2Q決算</td><td class="l">通期計画の修正有無。受注高が1Qの-40.8%から回復しているか</td></tr>
+        <tr><td class="l">随時</td><td class="l">半導体・AIサーバー向け受注の進捗</td><td class="l">「今期中に売上計上予定」とされた案件の具体化</td></tr>
+        <tr><td class="l">未定</td><td class="l">次期中期経営計画</td><td class="l">2028/3期以降の成長絵姿。現中計は今期時点でほぼ達成済み</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section">読者用チェックリスト</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th class="l">確認項目</th><th class="l">本稿の該当箇所</th></tr></thead>
+      <tbody>
+        <tr><td class="l">1Q営業減益の理由に納得できるか（原価高・M&A費用）</td><td class="l">②財務を読み解く</td></tr>
+        <tr><td class="l">受注残高の増加を前向きに解釈できるか</td><td class="l">④上昇材料とリスク</td></tr>
+        <tr><td class="l">現在のPER・PBR水準を自分の基準で割安と感じるか</td><td class="l">③割安度を検証する</td></tr>
+        <tr><td class="l">配当利回り3.29%・配当性向41.9%を許容できるか</td><td class="l">③割安度を検証する</td></tr>
+        <tr><td class="l">弱気シナリオ（-39.7%）の前提が現実的だと感じるか</td><td class="l">⑤シナリオと着地点</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert danger">
+    本稿は投資助言・投資勧誘を目的としたものではなく、筆者個人が一次情報に基づいて行った分析・検証の記録です。
+    記載内容はデータ取得日（2026-08-28／株価、2026-08-07／決算短信）時点の情報、および会社発表の業績予想
+    （2026-05-15公表・2026-08-07時点で修正なし）に基づく推計を含み、将来の業績・株価を保証するものではありません。
+    投資に関する最終判断は、読者ご自身の責任において行ってください。
+    本稿はnoteの有料記事購入者向けの付録として提供するものであり、全部または一部の無断転載・再配布はご遠慮ください。
+  </div>
+
+  <div class="foot">
+    <b>データ出所</b><br>
+    <span class="src">[②]</span> NITTOKU株式会社 公式サイト会社概要ページ（https://nittoku.co.jp/company/outline/）<br>
+    <span class="src">[③]</span> 2026年3月期決算短信・決算説明資料（2026-05-15）、2027年3月期第1四半期決算短信（2026-08-07・xj-storage.jp経由の公式開示PDF）<br>
+    <span class="src">[④]</span> kabutan.jp（2026-08-28取得）― 現在株価・PER・PBR・配当利回り・信用倍率<br>
+    <span class="src">[⑤]</span> J-Quants API V2（JPX公式）― 通期財務実績10年分（irpocketの当銘柄向けデータが404のため代替使用）
+  </div>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.t).classList.add('active');
+  drawAll();
+}));
+
+const INK='#111111', SUB='#6b6b6b', GRID='rgba(17,17,17,.08)', NEG='#b42318';
+Chart.defaults.color=SUB;
+Chart.defaults.font.family='-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif';
+Chart.defaults.font.size=11;
+const made={};
+function mk(id,cfg){
+  const el=document.getElementById(id);
+  if(!el||made[id]||el.offsetParent===null) return;
+  made[id]=new Chart(el,cfg);
+}
+const ax=(extra={})=>Object.assign({grid:{color:GRID},ticks:{color:SUB}},extra);
+
+function drawAll(){
+  const yrs=['2017/3','2018/3','2019/3','2020/3','2021/3','2022/3','2023/3','2024/3','2025/3','2026/3','2027/3予'];
+  const sales=[232.8,306.9,318.4,274.9,220.5,281.2,294.6,308.0,332.7,424.1,440.0];
+  const op=[28.7,40.2,38.5,24.8,13.6,28.9,31.0,41.7,11.2,54.4,51.0];
+
+  mk('c_ov',{type:'bar',data:{labels:yrs,datasets:[
+    {label:'売上高（億円）',data:sales,
+      backgroundColor:sales.map((v,i)=>i===10?'rgba(17,17,17,.15)':'rgba(17,17,17,.35)'),
+      borderColor:'#111111',borderWidth:1},
+    {label:'営業利益（億円）',data:op,
+      backgroundColor:op.map((v,i)=>i===10?'rgba(17,17,17,.35)':'rgba(17,17,17,.75)'),
+      borderColor:'#111111',borderWidth:1}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{boxWidth:12,padding:14,color:INK}}},
+    scales:{x:ax(),y:ax({title:{display:true,text:'億円',color:SUB}})}}});
+
+  mk('c_roe',{type:'line',data:{labels:yrs.slice(0,10),datasets:[
+    {label:'ROE(%)近似',data:[9.7,12.2,10.2,7.3,4.0,6.9,6.2,7.0,3.4,8.5],
+      borderColor:'#111111',backgroundColor:'rgba(17,17,17,.08)',borderWidth:2,pointRadius:3,tension:.2},
+    {label:'ROA(%)近似',data:[6.6,8.4,7.4,5.7,3.0,4.9,4.6,4.9,2.0,5.4],
+      borderColor:'#6b6b6b',backgroundColor:'rgba(107,107,107,.08)',borderWidth:2,pointRadius:3,borderDash:[4,3],tension:.2}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{boxWidth:12,padding:14,color:INK}}},
+    scales:{x:ax(),y:ax({title:{display:true,text:'%',color:SUB}})}}});
+
+  mk('c_epsdps',{type:'bar',data:{labels:yrs,datasets:[
+    {label:'EPS（円）',data:[123.4,177.17,158.08,117.36,69.05,127.78,123.1,151.92,73.97,203.85,195.56],
+      backgroundColor:'rgba(17,17,17,.55)',borderColor:'#111111',borderWidth:1,yAxisID:'y'},
+    {label:'DPS（円）',data:[28,30,30,30,30,40,30,34,42,82,82],type:'line',
+      borderColor:'#b42318',backgroundColor:'#b42318',borderWidth:2,pointRadius:3,yAxisID:'y1',tension:.2}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{boxWidth:12,padding:14,color:INK}}},
+    scales:{x:ax(),y:ax({position:'left',title:{display:true,text:'EPS（円）',color:SUB}}),
+      y1:{position:'right',grid:{display:false},ticks:{color:NEG},title:{display:true,text:'DPS（円）',color:NEG}}}}});
+
+  mk('c_bps',{type:'line',data:{labels:yrs.slice(0,10),datasets:[{
+    label:'BPS（円）',data:[1270,1451,1554,1616,1743,1863,1977,2182,2157,2386],
+    borderColor:'#111111',backgroundColor:'rgba(17,17,17,.08)',borderWidth:2,pointRadius:3,fill:true,tension:.2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'1株純資産（円）',color:SUB}})}}});
+
+  mk('c_backlog',{type:'line',data:{
+    labels:['2024/3 1Q','2Q','3Q','4Q','2025/3 1Q','2Q','3Q','4Q','2026/3 1Q','2Q','3Q','4Q','2027/3 1Q'],
+    datasets:[{label:'受注残高（百万円・合算）',
+      data:[22077,20341,22768,18246,21277,22026,23153,22756,26829,24590,21738,20568,22054],
+      borderColor:'#111111',backgroundColor:'rgba(17,17,17,.08)',
+      borderWidth:2,pointRadius:3,pointBackgroundColor:(c)=>c.dataIndex===12?'#b42318':'#111111',fill:true,tension:.15}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:ax(),y:ax({title:{display:true,text:'百万円',color:SUB}})}}});
+
+  mk('c_scenario',{type:'bar',data:{labels:['弱気','現在値','基本','強気'],datasets:[{
+    label:'株価（円）',data:[1500,2489,2542,3300],
+    backgroundColor:['rgba(180,35,24,.55)','rgba(17,17,17,.85)','rgba(17,17,17,.35)','rgba(17,17,17,.2)'],
+    borderColor:['#b42318','#111111','#111111','#111111'],borderWidth:1}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:ax({title:{display:true,text:'円',color:SUB}}),y:ax()}}});
+}
+drawAll();
+</script>
+</body></html>

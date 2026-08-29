@@ -16,6 +16,13 @@
       "note_date": null
     },
     {
+      "code": "6145",
+      "name": "NITTOKU",
+      "report_date": "2026-07-20",
+      "qualitative_date": "2026-07-25",
+      "note_date": "2026-08-29"
+    },
+    {
       "code": "5445",
       "name": "東京鐵鋼",
       "report_date": "2026-08-21",
@@ -118,13 +125,6 @@
       "name": "マツオカコーポレーション",
       "report_date": "2026-07-26",
       "qualitative_date": "2026-08-07",
-      "note_date": null
-    },
-    {
-      "code": "6145",
-      "name": "NITTOKU",
-      "report_date": "2026-07-20",
-      "qualitative_date": "2026-07-25",
       "note_date": null
     },
     {
