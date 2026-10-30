@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-29T16:31:14Z",
-  "price_date": "2026-10-29",
+  "generated_at": "2026-10-30T16:23:14Z",
+  "price_date": "2026-10-30",
   "source": "J-Quants API V2（JPX公式・未調整終値）",
   "holdings": [
     {
@@ -9,10 +9,10 @@
       "shares": 50,
       "avg_cost": 2620.0,
       "cost_basis": 131000,
-      "price": 2740.0,
-      "value": 137000,
-      "gain": 6000,
-      "gain_pct": 4.58,
+      "price": 2697.0,
+      "value": 134850,
+      "gain": 3850,
+      "gain_pct": 2.94,
       "purchases": [
         {
           "date": "2026-07-31",
@@ -27,10 +27,10 @@
       "shares": 12,
       "avg_cost": 6240.0,
       "cost_basis": 74880,
-      "price": 6300.0,
-      "value": 75600,
-      "gain": 720,
-      "gain_pct": 0.96,
+      "price": 6182.0,
+      "value": 74184,
+      "gain": -696,
+      "gain_pct": -0.93,
       "purchases": [
         {
           "date": "2026-05-25",
@@ -42,8 +42,8 @@
   ],
   "totals": {
     "cost_basis": 205880,
-    "value": 212600,
-    "gain": 6720,
-    "gain_pct": 3.26
+    "value": 209034,
+    "gain": 3154,
+    "gain_pct": 1.53
   }
 }
